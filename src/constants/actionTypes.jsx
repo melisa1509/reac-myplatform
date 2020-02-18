@@ -1,5 +1,4 @@
 export const SET_DATA = 'SET_DATA_BEGIN';
-export const SET_DATA_NEW = 'SET_DATA_NEW';
 export const ADD_ARTICLE = 'ADD_ARTICLE';
 export const DATA_LOADED = 'DATA_LOADED';
 export const DATA_REQUESTED = 'DATA_REQUESTED';
