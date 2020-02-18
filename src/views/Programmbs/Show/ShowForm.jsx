@@ -81,7 +81,7 @@ class ShowForm extends React.Component {
                     },
                     {
                       tabButton: t("title.process"),
-                      tabIcon: Domain,
+                      tabIcon: AccountBalance,
                       tabContent: (
                         <ProcessTab />
                       )
