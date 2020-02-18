@@ -1,0 +1,30 @@
+{
+    "locale":   "es-mx",
+    "provider":   {
+
+        "label.chose_language":             "Elegir idioma",
+
+        "label.description":                "Descripción",
+        
+        "label.english":                    "Ingles",
+
+        "label.french":                     "Frances",
+
+        "label.language":                   "Idioma",
+
+        "label.name":                       "Nombre",
+
+        "label.portuguese":                 "Portugues",
+
+        "label.require_fields":             "Campos Requeridos",
+                    
+        "label.spanish":                    "Español",
+        "label.state":                      "Estado"
+    },
+    "buttons"     : {
+        "login" : "Iniciar Sesión ejemplo",
+        "create_account" : "Registrate", 
+        "title_login": "Titulo Iniciar Sesión"
+    }
+
+}

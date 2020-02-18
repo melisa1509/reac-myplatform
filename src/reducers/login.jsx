@@ -1,0 +1,34 @@
+import { SUCCESSFULL_AUTHENTICACION, FAILED_AUTHENTICATION, SUCCESSFULL_ACTIVE_USER} from "constants/actionTypes";
+
+const initialState = { 
+
+  loginError: false,
+  active_user: {
+    first_name: "",
+    last_name: ""
+  }
+
+}
+
+export const loginReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case SUCCESSFULL_AUTHENTICACION:
+            return Object.assign({}, state, {
+              token: action.payload.token
+            });
+        
+        case FAILED_AUTHENTICATION:
+            return Object.assign({}, state, {
+              loginError: true
+            });
+
+        case SUCCESSFULL_ACTIVE_USER:
+            console.log(action);
+            return Object.assign({}, state, {
+              active_user: action.payload.data
+            });
+
+    }
+    
+    return state;
+}
