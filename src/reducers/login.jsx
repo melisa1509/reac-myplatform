@@ -23,7 +23,6 @@ export const loginReducer = (state = initialState, action) => {
             });
 
         case SUCCESSFULL_ACTIVE_USER:
-            console.log(action);
             return Object.assign({}, state, {
               active_user: action.payload.data
             });

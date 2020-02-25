@@ -47,7 +47,6 @@ class ShowTable extends React.Component {
     
     render() {
         const { active_user } = this.props;
-        console.log(active_user);
         let { t } = this.props;
         return (
           <GridContainer justify="center">

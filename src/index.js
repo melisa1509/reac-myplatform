@@ -58,7 +58,7 @@ ReactDOM.render(
           <Route path="/course/new" component={CourseNew} />
           <Route path="/programmbs/:id" component={ProgramMbs} />
           <Route path="/user/show/:id" component={User} exact /> 
-          <Route path="/user/edit" component={UserEdit} exact /> 
+          <Route path="/user/edit/:id" component={UserEdit} exact /> 
           <Route path="/profile" component={Profile} exact />
           <Route path="/profile/edit" component={ProfileEdit} exact />
           <Redirect from="/" to="/admin/dashboard" />

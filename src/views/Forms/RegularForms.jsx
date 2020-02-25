@@ -338,7 +338,7 @@ class RegularForms extends React.Component {
                         classes.checkboxAndRadioHorizontal
                       }
                     >
-                      <FormControlLabel
+                      <FormControlLabel 
                         control={
                           <Checkbox
                             tabIndex={-1}

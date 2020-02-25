@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import { translate } from "react-translate";
 // react component for creating dynamic tables
 import { connect } from "react-redux";
-import { updateLanguageSelect } from "actions/selectActions.jsx";
+import { updateCountrySelect } from "actions/selectActions.jsx";
+import { CountryList } from "actions/selectActions.jsx";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -13,6 +14,8 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 
 import Success from "components/Typography/Success.jsx";
+
+
 
 // style for this view
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
@@ -26,11 +29,10 @@ const style = {
 };
 
 
-class LanguageSelect extends React.Component {
+class CountrySelect extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            
             // Select
             simpleSelect: "",
             desgin: false,
@@ -40,13 +42,12 @@ class LanguageSelect extends React.Component {
         
     }
      
-      
     sendState() {
         return this.state;
     }
     handleSimple = event => {
         this.setState({ [event.target.name]: event.target.value });
-        this.props.dispatchUpdateLanguageSelect(event.target.value);
+        this.props.dispatchUpdateCountrySelect(event.target.value);
     };
     handleChange = name => event => {
         this.setState({ [name]: event.target.checked });
@@ -54,10 +55,12 @@ class LanguageSelect extends React.Component {
     isValidated() {
         return true;
     }
-
+    componentDidMount() {
+        this.props.dispatchLoadCountryList();
+      }
 
     render() {
-        const { classes, input } = this.props;
+        const { classes, input, country_list } = this.props;
         let { t } = this.props;
         
         return (
@@ -66,7 +69,7 @@ class LanguageSelect extends React.Component {
                         htmlFor="simple-select"
                         className={classes.selectLabel}
                     >
-                        <Success>{t("label.language")}</Success>
+                        <Success>{t("label.country")}</Success>
                     </InputLabel>
                     <Select
                         MenuProps={{
@@ -89,44 +92,24 @@ class LanguageSelect extends React.Component {
                             }}
                             value="-1"
                         >
-                            {t("label.chose_language")}
+                            {t("label.chose_country")}
                         </MenuItem>
-                        <MenuItem
-                            classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                            }}
-                            value="en"
-                        >
-                            {t("label.english")}
-                        </MenuItem>
-                        <MenuItem
-                            classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                            }}
-                            value="es"
-                        >
-                            {t("label.spanish")}
-                        </MenuItem>
-                        <MenuItem
-                            classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                            }}
-                            value="fr"
-                        >
-                            {t("label.french")}
-                        </MenuItem>
-                        <MenuItem
-                            classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                            }}
-                            value="pr"
-                        >
-                            {t("label.portuguese")}
-                        </MenuItem>
+                        {
+                            country_list.map( (country, key ) => {
+                                return(
+                                    <MenuItem
+                                        classes={{
+                                            root: classes.selectMenuItem,
+                                            selected: classes.selectMenuItemSelected
+                                        }}
+                                        value={country.alpha3Code}
+                                    >
+                                        {country.name}
+                                    </MenuItem>
+                                )
+                            })
+                        }
+
                     </Select>
                 </FormControl>
         );
@@ -134,14 +117,17 @@ class LanguageSelect extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
+    country_list: state.selectReducer.country_list, 
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchUpdateLanguageSelect: key => dispatch( updateLanguageSelect(key) ), 
+  dispatchUpdateCountrySelect: key => dispatch( updateCountrySelect(key) ), 
+  dispatchLoadCountryList: () => dispatch(CountryList())
+
 });
 
-const LanguageSelectComponent = translate('provider')(withStyles(style)(LanguageSelect));
-export default connect(mapStateToProps, mapDispatchToPropsActions)(LanguageSelectComponent);
+const CountrySelectComponent = translate('provider')(withStyles(style)(CountrySelect));
+export default connect(mapStateToProps, mapDispatchToPropsActions)(CountrySelectComponent);
 
 
 

@@ -38,7 +38,6 @@ class ProcessTab extends React.Component {
   render() {
     const { classes, programmbs } = this.props;
     let { t } = this.props;
-    console.log(programmbs.process1);
     return (
         <Card>
           <CardBody>

@@ -15,7 +15,6 @@ import { translate } from "react-translate";
 
   let RevisionForm = props => {
     const { handleSubmit, load, t, name, labelText } = props;
-    console.log(props);
     return (
       <form onSubmit={handleSubmit}>
             <Field

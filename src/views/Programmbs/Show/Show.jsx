@@ -50,7 +50,6 @@ class Show extends React.Component {
               </GridItem>
             </GridContainer>
           </div>
-          <Footer blackFont />
         </div>
       </div>
       </PerfectScrollbar>

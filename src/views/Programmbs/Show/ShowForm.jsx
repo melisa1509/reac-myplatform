@@ -22,6 +22,9 @@ import PlanTab from "./PlanTab.jsx";
 import ProductTab from "./ProductTab.jsx";
 import ProcessTab from './ProcessTab.jsx';
 import PriceTab from './PriceTab.jsx';
+import PromotionTab from './PromotionTab.jsx';
+import PaperworkTab from './PaperworkTab.jsx';
+
 
 // style for this view
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
@@ -92,7 +95,22 @@ class ShowForm extends React.Component {
                       tabContent: (
                         <PriceTab />
                       )
+                    },
+                    {
+                      tabButton: t("title.promotion"),
+                      tabIcon: Domain,
+                      tabContent: (
+                        <PromotionTab />
+                      )
+                    },
+                    {
+                      tabButton: t("title.paperwork"),
+                      tabIcon: Domain,
+                      tabContent: (
+                        <PaperworkTab />
+                      )
                     }
+                    
                   ]}
                 />
                 

@@ -31,20 +31,6 @@ const styles = {
 
 class EditRep extends React.Component {
   
-  handleUpdateClick = () => {
-    this.props.dispatchSetData();
-  }
-
-  handleUpdateClickSuccess = () => {
-    this.props.dispatchSetData();
-  }
-
-  componentDidMount() {
-    // calling the new action creator
-    this.props.dispatchSetData();
-  }
-
-
   render() {
     const { classes, styles } = this.props;
     let { t } = this.props;
