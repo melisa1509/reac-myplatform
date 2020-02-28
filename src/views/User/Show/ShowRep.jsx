@@ -29,24 +29,7 @@ const styles = {
 };
 
 
-class ShowRep extends React.Component {
-  
-
-  handleUpdateClick = () => {
-   
-    this.props.dispatchShowUser();
-    
-  }
-
-  handleUpdateClickSuccess = () => {
-    this.props.dispatchShowUser();
-  }
-
-  componentDidMount() {
-    // calling the new action creator
-    this.props.dispatchShowUser();
-  }
-
+class ShowRep extends React.Component { 
 
   render() {
     const { classes, styles } = this.props;

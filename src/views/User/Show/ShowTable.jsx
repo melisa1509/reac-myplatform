@@ -1,5 +1,7 @@
 import React from "react";
 import { translate } from "react-translate";
+import { Link } from "react-router-dom";
+
 // react component for creating dynamic tables
 import { connect } from "react-redux";
 import { showUser } from "actions/userActions.jsx";
@@ -58,7 +60,7 @@ class ShowTable extends React.Component {
               striped
               tableHead={[]}
               tableData={[
-                [<th>{t("label.email")}</th>,<p>{show_user.first_name}</p>],
+                [<th>{t("label.email")}</th>,<p>{show_user.username}</p>],
                 [<th>{t("label.name")}</th>,show_user.first_name],
                 [<th>{t("label.lastName")}</th>,show_user.last_name],
                 [<th>{t("label.country")}</th>,show_user.country],
@@ -71,13 +73,24 @@ class ShowTable extends React.Component {
              <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
                       <center>
-                      <Button color="info" size="md" onClick={this.loginClick}>
+                      <Button color="default" size="sm" onClick={this.loginClick}>
+                      {t("button.return_to_list")}
+                      </Button>
+                      {" "}
+                      <Link to={"/user/edit/" + show_user.id}>
+                      <Button color="info" size="sm" onClick={this.loginClick}>
                       {t("button.edit")}
                       </Button>
                       {" "}
-                      <Button color="default" size="md" onClick={this.saveClick}>
+                      </Link>{" "}
+                      <Button color="warning" size="sm" onClick={this.saveClick}>
                       {t("button.change_password")}
                       </Button>
+                      {" "}
+                      <Button color="danger" size="sm" onClick={this.loginClick}>
+                      {t("button.delete")}
+                      </Button>
+                      {" "}
                       </center>
                   </GridItem>
               </GridContainer>
