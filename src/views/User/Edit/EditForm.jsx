@@ -4,16 +4,23 @@ import { translate } from "react-translate";
 // react component for creating dynamic tables
 import { connect } from "react-redux";
 import { Field, reduxForm } from 'redux-form';
+import { store } from "store";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
+import AddAlert from "@material-ui/icons/AddAlert";
+import Close from "@material-ui/icons/Close";
 
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
+import SnackbarContent from "components/Snackbar/SnackbarContent";
+import Danger from "components/Typography/Danger.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx'; 
 import { showUser } from "actions/userActions.jsx";
+import { editUser } from "actions/userActions.jsx"; 
+import { errorRequireFields } from "actions/userActions.jsx";
 import { verifyChange } from "assets/validation/index.jsx";
 import LanguageSelect from "views/Select/LanguageSelect.jsx";
 import CountrySelect from "views/Select/CountrySelect.jsx";
@@ -58,32 +65,56 @@ class EditForm extends React.Component {
       }
      
       saveClick() {
-        if (this.state.registerEmailState === "") {
-          this.setState({ registerEmailState: "error" });
+        if (this.state.usernameState === "") {
+          this.setState({ usernameState: "error" });
         }
-        if (this.state.registerPasswordState === "") {
-          this.setState({ registerPasswordState: "error" });
+        if (this.state.first_nameState === "") {
+          this.setState({ first_nameState: "error" });
         }
-        if (this.state.registerConfirmPasswordState === "") {
-          this.setState({ registerConfirmPasswordState: "error" });
+        if (this.state.last_nameState === "") {
+          this.setState({ last_nameState: "error" });
         }
-        if (this.state.registerCheckboxState === "") {
-          this.setState({ registerCheckboxState: "error" });
+        if (this.state.cityState === "") {
+          this.setState({ cityState: "error" });
+        }
+        if (this.state.whatsappState === "") {
+          this.setState({ whatsappState: "error" });
+        }
+        if(this.state.usernameState === "error" || this.state.first_nameState === "error" || this.state.last_nameState === "error"){
+          const stateRedux = store.getState();
+          this.props.dispatchErrorRequireFields();
+        }
+        if(this.state.usernameState === "success" && this.state.first_nameState === "success"&& this.state.last_nameState === "success"){
+          const stateRedux = store.getState();
+        this.props.dispatchEditUser();
         }
       }
      
-
       componentDidMount() {
         this.props.loadShowUser(this.props.match.params.id);
       }
       
     render() {
-        const { classes, styles } = this.props;
+        const { classes, successfull_edit, editError, errorRequire } = this.props;
         let { t } = this.props;
         return (
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={8}>
               <form>
+              <GridContainer justify="center">
+                  <GridItem xs={12} sm={12} md={12}>
+                      { successfull_edit ?      
+                      <SnackbarContent
+                        message={
+                          <center>Success Update</center>
+                        }
+                        close
+                        color="success"
+                        icon={AddAlert}
+                      />
+                      : ""}
+                  </GridItem>
+              </GridContainer>
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <Field
@@ -197,17 +228,33 @@ class EditForm extends React.Component {
                     />
                 </GridItem>
               </GridContainer>
+              <GridContainer justify="center">
+                  <GridItem xs={12} sm={12} md={12}>
+                      { errorRequire ? <Danger><h6 className={classes.infoText}>Require Fields *</h6></Danger>: ""}
+                  </GridItem>
+              </GridContainer>
+              <GridContainer justify="center">
+                  <GridItem xs={12} sm={12} md={12}>
+                      { editError ?      
+                      <SnackbarContent
+                        message={
+                          <center>Error Update</center>
+                        }
+                        close
+                        color="danger"
+                      />
+                      : ""}
+                  </GridItem>
+              </GridContainer>
               <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
                       <center>
-                      <Button color="info" size="md" onClick={this.loginClick}>
+                      <Button color="info" size="md" onClick={this.saveClick}>
                       {t("button.save")}
                       </Button>
                       </center>
                   </GridItem>
               </GridContainer>
-
-            
               </form>
             </GridItem>
           </GridContainer>
@@ -224,8 +271,12 @@ EditForm = reduxForm({
 EditForm = connect(
   state => ({
     initialValues: state.userReducer.data,
+    errorRequire:state.userReducer.errorRequire,
+    edit_user: state.userReducer.edit_user,
+    editError: state.userReducer.editError,
+    successfull_edit:state.userReducer.successfull_edit
   }),
-  { loadShowUser: showUser },
+  { loadShowUser: showUser, dispatchEditUser: editUser, dispatchErrorRequireFields: errorRequireFields},
 )(EditForm);
 
 export default  withRouter(translate('provider')(withStyles(style)(EditForm)));
