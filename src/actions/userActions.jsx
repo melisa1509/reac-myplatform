@@ -23,7 +23,7 @@ export const editUser =() => {
         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
       
             var urlencoded = new URLSearchParams();
-            urlencoded.append("username", );
+            urlencoded.append("username", reduxState.form.values.username);
             urlencoded.append("language","es");
             urlencoded.append("firstName",);
             urlencoded.append("lastName", );
