@@ -1,5 +1,6 @@
 import { SHOW_USER, LOAD_FORM_USER, EDIT_USER,  ERROR_EDIT_USER, SUCCESSFULL_EDIT_USER, ERROR_REQUIRE_FIELDS } from 'constants/actionTypes.jsx';
-import { SUCCESSFULL_ACTIVE_USER } from 'constants/actionTypes';
+
+
 
 export const showUser = key => {
     return (dispatch) => {
