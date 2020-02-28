@@ -34,9 +34,8 @@ import { FormLabel } from "@material-ui/core";
 
 const style = {
     infoText: {
-      fontWeight: "300",
-      margin: "10px 0 30px",
-      textAlign: "center"
+      fontWeight: "500",
+      textAlign: "left"
     },
     inputAdornmentIcon: {
       color: "#555"
@@ -103,14 +102,26 @@ class EditForm extends React.Component {
               <form>
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
+                      { editError ?      
+                      <SnackbarContent
+                        message={
+                          <center>{t("label.update_error")}</center>
+                        }
+                        close
+                        color="danger"
+                      />
+                      : ""}
+                  </GridItem>
+              </GridContainer>
+              <GridContainer justify="center">
+                  <GridItem xs={12} sm={12} md={12}>
                       { successfull_edit ?      
                       <SnackbarContent
                         message={
-                          <center>Success Update</center>
+                          <center>{t("label.save_success")}</center>
                         }
                         close
                         color="success"
-                        icon={AddAlert}
                       />
                       : ""}
                   </GridItem>
@@ -230,28 +241,24 @@ class EditForm extends React.Component {
               </GridContainer>
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
-                      { errorRequire ? <Danger><h6 className={classes.infoText}>Require Fields *</h6></Danger>: ""}
-                  </GridItem>
-              </GridContainer>
-              <GridContainer justify="center">
-                  <GridItem xs={12} sm={12} md={12}>
-                      { editError ?      
-                      <SnackbarContent
-                        message={
-                          <center>Error Update</center>
-                        }
-                        close
-                        color="danger"
-                      />
-                      : ""}
+                      { errorRequire ? <Danger><h6 className={classes.infoText}>{t("label.require_fields")}</h6></Danger>: ""}
                   </GridItem>
               </GridContainer>
               <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
                       <center>
-                      <Button color="info" size="md" onClick={this.saveClick}>
+                      <Button color="default" size="sm" onClick={this.loginClick}>
+                      {t("button.return_to_list")}
+                      </Button>
+                      {" "}
+                      <Button color="warning" size="sm" onClick={this.saveClick}>
+                      {t("button.change_password")}
+                      </Button>
+                      {" "}
+                      <Button color="info" size="sm" onClick={this.saveClick}>
                       {t("button.save")}
                       </Button>
+                      {" "}
                       </center>
                   </GridItem>
               </GridContainer>
