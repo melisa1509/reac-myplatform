@@ -191,7 +191,7 @@ class EditForm extends React.Component {
                   </GridItem>
               </GridContainer>
               <GridContainer >
-                  <GridItem xs={12} sm={12} md={8}>
+                  <GridItem xs={12} sm={12} md={9}>
                     <Field
                       labelText={t("label.city")+ " *"}
                       component={CustomInputRedux}
