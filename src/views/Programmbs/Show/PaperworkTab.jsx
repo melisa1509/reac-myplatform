@@ -173,6 +173,17 @@ class PaperworkTab extends React.Component {
       startP8 = startP8 + 10;
       endP8 = endP8 + 10;
     }
+
+    const expensesPaperwork8 = [];
+    const expensesArray = Array.from(programmbs.paperwork8.p8_expenses);
+    expensesArray.unshift(t("label.total_expenses"));
+    expensesPaperwork8.push(expensesArray);
+
+    const earnings_losesPaperwork8 = [];
+    const earnings_losesArray = Array.from(programmbs.paperwork8.p8_earnings_loses);
+    earnings_losesArray.unshift(t("label.total_earnings_loses"));
+    earnings_losesPaperwork8.push(earnings_losesArray);
+
   
     
     return (
@@ -363,6 +374,13 @@ class PaperworkTab extends React.Component {
                     rowsPaperwork8.map((prop,key) => {
                       return(
                             <RenderCell data={prop} widthColums={widthColumsPaperwork7Title}  />
+                      )
+                    })     
+                  }
+                  {
+                    expensesPaperwork8.map((prop,key) => {
+                      return(
+                            <CustomRenderCell data={prop} widthColums={widthColumsPaperwork7Title} cellStyles={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold + " "+ classes.textAlignRight } />
                       )
                     })     
                   }
