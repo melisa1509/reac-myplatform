@@ -8,8 +8,8 @@ import { store } from "store";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-import AddAlert from "@material-ui/icons/AddAlert";
-import Close from "@material-ui/icons/Close";
+import InputLabel from "@material-ui/core/InputLabel";
+import SuccessLabel from "components/Typography/SuccessLabel.jsx";
 
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -19,6 +19,7 @@ import Danger from "components/Typography/Danger.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx'; 
+import DateTimePicker from 'components/DateTimePicker/DateTimePickerRedux.jsx';
 import { showUser } from "actions/userActions.jsx";
 import { editUser } from "actions/userActions.jsx"; 
 import { errorRequireFields } from "actions/userActions.jsx";
@@ -45,6 +46,9 @@ const style = {
       textAlign: "center",
       cursor: "pointer",
       marginTop: "20px"
+    },
+    label:{
+      color:"red"
     },
     ...customSelectStyle,
     ...validationFormsStyle
@@ -146,6 +150,13 @@ class EditForm extends React.Component {
                               verifyChange(event, "username", "length", 0, null, this),
                         type: "text",
                       }}
+                    />
+                    <InputLabel className={classes.label}>
+                      <SuccessLabel>Datetime Picker</SuccessLabel>
+                    </InputLabel>
+                    <Field
+                      component={DateTimePicker}
+                      name="created_at"
                     />
                 </GridItem>
               </GridContainer>
