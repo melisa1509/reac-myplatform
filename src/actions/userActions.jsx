@@ -1,4 +1,4 @@
-import { SHOW_USER, LOAD_FORM_USER, EDIT_USER,  ERROR_EDIT_USER, SUCCESSFULL_EDIT_USER, ERROR_REQUIRE_FIELDS } from 'constants/actionTypes.jsx';
+import { SHOW_USER, LOAD_FORM_USER, EDIT_USER,  ERROR_EDIT_USER, SUCCESSFULL_EDIT_USER, ERROR_REQUIRE_FIELDS, EDIT_PASSWORD_USER} from 'constants/actionTypes.jsx';
 
 
 
@@ -55,5 +55,28 @@ export const editUser =() => {
 };
 
 export const errorRequireFields =() => ({ type: ERROR_REQUIRE_FIELDS})
+
+export const editPassword = params => {
+    var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+  
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("password", params.userPassword);
+  
+        var requestOptions = {
+          method: 'PUT',
+          headers: myHeaders,
+          body: urlencoded,
+          redirect: 'follow'
+        };
+
+    return (dispatch) => {
+      return fetch("http://api.interweavesolutions.org/user/editpassword/2740", requestOptions)
+      .then(response => response.json())
+      .then(json => {
+          dispatch ({ type: EDIT_PASSWORD_USER, payload: json.data });
+      });
+  }
+}
 
 

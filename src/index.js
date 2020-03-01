@@ -18,6 +18,7 @@ import CourseNew from 'views/Course/New/New.jsx';
 import ProgramMbs from 'views/Programmbs/Show/Show.jsx';
 import User from 'views/User/Show/Show.jsx';
 import UserEdit  from 'views/User/Edit/Edit.jsx';
+import UserChangePassword  from 'views/User/ChangePassword/ChangePassword.jsx';
 import Profile  from 'views/Profile/Show/Show.jsx';
 import ProfileEdit  from 'views/Profile/Edit/Edit.jsx';
 import { store } from 'store/index.jsx';
@@ -59,6 +60,7 @@ ReactDOM.render(
           <Route path="/programmbs/:id" component={ProgramMbs} />
           <Route path="/user/show/:id" component={User} exact /> 
           <Route path="/user/edit/:id" component={UserEdit} exact /> 
+          <Route path="/user/editpassword/:id" component={UserChangePassword} exact /> 
           <Route path="/profile" component={Profile} exact />
           <Route path="/profile/edit" component={ProfileEdit} exact />
           <Redirect from="/" to="/admin/dashboard" />

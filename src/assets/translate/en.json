@@ -71,7 +71,7 @@
     "label.portuguese":                 "Portuguese",
     "label.project_mbs":                "MBS project",
     "label.password":                   "Password",
-    "label.require_fields":             "Required fields",
+    "label.require_fields":             "Require Fields",
     "label.spanish":                    "Spanish",
     "label.state":                      "State",
     "label.username":                   "Username or email",
@@ -220,6 +220,7 @@
     "label.initial_capital":             "Starting Cash Balance",
     "label.income_expenses":             "Ending Cash Balance",
     "label.label_balance":               "Ending Cah Balance",
+    "label.update_error":                "Update Error, please contact whith Admin",
 
     "link.administrator":               "Administration",
     "link.admins":                      "Administrators",

@@ -59,7 +59,7 @@ export const verifyChange = (event, stateName, type, stateNameEqualTo, maxValue,
         }
         break;
       case "equalTo":
-        if (compare(event.target.value, this.state[stateNameEqualTo])) {
+        if (compare(event.target.value, state[stateNameEqualTo])) {
           state.setState({ [stateName + "State"]: "success" });
         } else {
           state.setState({ [stateName + "State"]: "error" });

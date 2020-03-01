@@ -83,10 +83,12 @@ class ShowTable extends React.Component {
                       </Button>
                       {" "}
                       </Link>{" "}
+                      <Link to={"/user/editpassword/" + show_user.id}>
                       <Button color="warning" size="sm" onClick={this.saveClick}>
                       {t("button.change_password")}
                       </Button>
                       {" "}
+                      </Link>{" "}
                       <Button color="danger" size="sm" onClick={this.loginClick}>
                       {t("button.delete")}
                       </Button>

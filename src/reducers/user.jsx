@@ -1,6 +1,6 @@
 import { SHOW_USER, LOAD_FORM_USER, EDIT_USER, ERROR_REQUIRE_FIELDS} from "constants/actionTypes";
-import { ERROR_EDIT_USER } from "constants/actionTypes";
-import { SUCCESSFULL_EDIT_USER } from "constants/actionTypes";
+import { ERROR_EDIT_USER,SUCCESSFULL_EDIT_USER  } from "constants/actionTypes";
+import {EDIT_PASSWORD_USER } from "constants/actionTypes";
 
 const initialState = { 
   editError: false,
@@ -18,6 +18,9 @@ const initialState = {
   edit_user:{
     username: "",
     city:""
+  },
+  edit_password:{
+    userPassword:""
   }
 }
 
@@ -54,6 +57,12 @@ export const userReducer = (state = initialState, action) => {
         return Object.assign({}, state, {
           errorRequire: true
         });
+    }
+    switch (action.type) {
+      case EDIT_PASSWORD_USER:
+          return Object.assign({}, state, {
+            edit_password: action.payload
+          }); 
     }
 
     return state;
