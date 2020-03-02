@@ -14,7 +14,6 @@ import SuccessLabel from "components/Typography/SuccessLabel.jsx";
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import SnackbarContent from "components/Snackbar/SnackbarContent";
-import Snackbar from "components/Snackbar/Snackbar";
 import Danger from "components/Typography/Danger.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
@@ -59,7 +58,6 @@ class EditForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tc:true,
             usernameState: "success",
             first_nameState: "success",
             last_nameState: "success",
@@ -109,12 +107,11 @@ class EditForm extends React.Component {
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
                       { editError ?      
-                      <Snackbar
-                        place="tc"
-                        message={t("label.update_error")}
-                        open={this.state.tc}
+                      <SnackbarContent
+                        message={
+                          <center>{t("label.update_error")}</center>
+                        }
                         close
-                        closeNotification={() => this.setState({ tc: false })}
                         color="danger"
                       />
                       : ""}
@@ -127,8 +124,7 @@ class EditForm extends React.Component {
                         message={
                           <center>{t("label.save_success")}</center>
                         }
-                        open={true}
-                        close={false}
+                        close
                         color="success"
                       />
                       : ""}
@@ -256,7 +252,7 @@ class EditForm extends React.Component {
               </GridContainer>
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
-                      { errorRequire ? <Danger><h6 className={classes.infoText}>{t("label.require_fields")+ "*" }</h6></Danger>: ""}
+                      { errorRequire ? <Danger><h6 className={classes.infoText}>{t("label.require_fields")}</h6></Danger>: ""}
                   </GridItem>
               </GridContainer>
               <GridContainer>
