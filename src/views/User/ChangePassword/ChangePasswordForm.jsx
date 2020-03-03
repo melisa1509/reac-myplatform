@@ -2,10 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { translate } from "react-translate";
 // react component for creating dynamic tables
-import ReactTable from "react-table";
-import { connect } from "react-redux";
-import { store } from "store";
 
+import { connect } from "react-redux";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -16,7 +14,7 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx'; 
-import StateSelect from "views/Select/StateSelect.jsx";
+
 // style for this view
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
 import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";

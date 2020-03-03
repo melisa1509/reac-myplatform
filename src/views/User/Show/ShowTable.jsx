@@ -5,11 +5,13 @@ import { Link } from "react-router-dom";
 // react component for creating dynamic tables
 import { connect } from "react-redux";
 import { showUser } from "actions/userActions.jsx";
+import { deleteUser } from "actions/userActions.jsx";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 
 // core components
+import SnackbarContent from "components/Snackbar/SnackbarContent";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
@@ -35,8 +37,6 @@ const style = {
       cursor: "pointer",
       marginTop: "20px"
     },
-    ...customSelectStyle,
-    ...validationFormsStyle
 };
 
 class ShowTable extends React.Component {
@@ -45,17 +45,33 @@ class ShowTable extends React.Component {
         this.state = {
         
         };
+     this.deleteClick = this.deleteClick.bind(this);
+    }
+
+    deleteClick() {
+      this.props.dispatchDeleteUser(this.props.match.params.id);
     }
     componentDidMount() {
       this.props.dispatchShowUser(this.props.match.params.id);
     }
 
     render() {
-        const { show_user } = this.props;
+        const { show_user, successful_delete } = this.props;
         let { t } = this.props;
         return (
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={8}>
+              <GridItem xs={12} sm={12} md={12}>
+                  { successful_delete ?      
+                  <SnackbarContent
+                    message={
+                      <center>{t("label.successful_delete")}</center>
+                    }
+                    close={false}
+                    color="success"
+                  />
+                  : ""}
+              </GridItem>
             <Table
               striped
               tableHead={[]}
@@ -73,23 +89,23 @@ class ShowTable extends React.Component {
              <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
                       <center>
-                      <Button color="default" size="sm" onClick={this.loginClick}>
+                      <Button color="default" size="sm">
                       {t("button.return_to_list")}
                       </Button>
                       {" "}
                       <Link to={"/user/edit/" + show_user.id}>
-                      <Button color="info" size="sm" onClick={this.loginClick}>
+                      <Button color="info" size="sm">
                       {t("button.edit")}
                       </Button>
                       {" "}
                       </Link>{" "}
                       <Link to={"/user/editpassword/" + show_user.id}>
-                      <Button color="warning" size="sm" onClick={this.saveClick}>
+                      <Button color="warning" size="sm">
                       {t("button.change_password")}
                       </Button>
                       {" "}
                       </Link>{" "}
-                      <Button color="danger" size="sm" onClick={this.loginClick}>
+                      <Button color="danger" size="sm" onClick={this.deleteClick}>
                       {t("button.delete")}
                       </Button>
                       {" "}
@@ -103,11 +119,14 @@ class ShowTable extends React.Component {
     }
 }
 const mapStateToProps = state => ({ 
-  show_user: state.userReducer.show_user   
+  show_user: state.userReducer.show_user,
+  delete_user: state.userReducer.delete_user, 
+  successful_delete: state.generalReducer.successful_delete
 });
 
 const mapDispatchToPropsActions = dispatch => ({
   dispatchShowUser: key => dispatch(showUser(key)), 
+  dispatchDeleteUser: key => dispatch(deleteUser(key))
 });
 
 const ShowTableComponent = translate('provider')(withStyles(style)(ShowTable));

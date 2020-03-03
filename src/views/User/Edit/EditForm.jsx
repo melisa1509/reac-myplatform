@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { translate } from "react-translate";
+import { Link } from "react-router-dom";
+
 // react component for creating dynamic tables
 import { connect } from "react-redux";
 import { Field, reduxForm } from 'redux-form';
@@ -22,7 +24,8 @@ import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx';
 import DateTimePicker from 'components/DateTimePicker/DateTimePickerRedux.jsx';
 import { showUser } from "actions/userActions.jsx";
 import { editUser } from "actions/userActions.jsx"; 
-import { errorRequireFields } from "actions/userActions.jsx";
+import { errorRequiredFields } from "actions/generalActions.jsx";
+import { successRequiredFields } from "actions/generalActions.jsx";
 import { verifyChange } from "assets/validation/index.jsx";
 import LanguageSelect from "views/Select/LanguageSelect.jsx";
 import CountrySelect from "views/Select/CountrySelect.jsx";
@@ -32,7 +35,6 @@ import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/
 import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
 import { withRouter } from 'react-router-dom';
 import { FormLabel } from "@material-ui/core";
-
 
 const style = {
     infoText: {
@@ -87,11 +89,12 @@ class EditForm extends React.Component {
         }
         if(this.state.usernameState === "error" || this.state.first_nameState === "error" || this.state.last_nameState === "error"){
           const stateRedux = store.getState();
-          this.props.dispatchErrorRequireFields();
+          this.props.dispatchErrorRequiredFields();
         }
         if(this.state.usernameState === "success" && this.state.first_nameState === "success"&& this.state.last_nameState === "success"){
-          const stateRedux = store.getState();
+        const reduxState = store.getState();
         this.props.dispatchEditUser();
+        this.props.dispatchSuccessRequiredFields();
         }
       }
      
@@ -100,7 +103,7 @@ class EditForm extends React.Component {
       }
       
     render() {
-        const { classes, successfull_edit, editError, errorRequire } = this.props;
+        const { classes, successfull_edit, editError, errorRequired, successRequired, show_user } = this.props;
         let { t } = this.props;
         return (
           <GridContainer justify="center">
@@ -256,7 +259,8 @@ class EditForm extends React.Component {
               </GridContainer>
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
-                      { errorRequire ? <Danger><h6 className={classes.infoText}>{t("label.require_fields")+ "*" }</h6></Danger>: ""}
+                      { errorRequired ? <Danger><h6 className={classes.infoText}>{t("label.require_fields")+ "*" }</h6></Danger>: ""}
+                      { successRequired ? "" :  ""}
                   </GridItem>
               </GridContainer>
               <GridContainer>
@@ -266,9 +270,11 @@ class EditForm extends React.Component {
                       {t("button.return_to_list")}
                       </Button>
                       {" "}
-                      <Button color="warning" size="sm" onClick={this.saveClick}>
+                      <Link to={"/user/editpassword/" +  show_user.id}>
+                      <Button color="warning" size="sm">
                       {t("button.change_password")}
                       </Button>
+                      </Link>
                       {" "}
                       <Button color="info" size="sm" onClick={this.saveClick}>
                       {t("button.save")}
@@ -293,12 +299,14 @@ EditForm = reduxForm({
 EditForm = connect(
   state => ({
     initialValues: state.userReducer.data,
-    errorRequire:state.userReducer.errorRequire,
+    errorRequired:state.generalReducer.errorRequired,
+    successRequired:state.generalReducer.successRequired,
     edit_user: state.userReducer.edit_user,
     editError: state.userReducer.editError,
-    successfull_edit:state.userReducer.successfull_edit
+    successfull_edit:state.generalReducer.successfull_edit,
+    show_user: state.userReducer.show_user,
   }),
-  { loadShowUser: showUser, dispatchEditUser: editUser, dispatchErrorRequireFields: errorRequireFields},
+  { loadShowUser: showUser, dispatchEditUser: editUser, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields},
 )(EditForm);
 
 export default  withRouter(translate('provider')(withStyles(style)(EditForm)));

@@ -4,7 +4,9 @@ import { loginReducer } from 'reducers/login.jsx';
 import { studentReducer } from 'reducers/student.jsx';
 import { programmbsReducer } from 'reducers/programmbs.jsx';
 import { userReducer } from 'reducers/user.jsx';
+import { generalReducer } from 'reducers/general.jsx';
 import { selectReducer } from 'reducers/select.jsx';
+import { groupReducer } from 'reducers/group.jsx';
 import { reducer as reduxFormReducer } from 'redux-form';
 
 export default combineReducers({
@@ -14,5 +16,7 @@ export default combineReducers({
     programmbsReducer,
     userReducer,
     selectReducer,
+    generalReducer,
+    groupReducer,
     form: reduxFormReducer,
 })

@@ -1,4 +1,4 @@
-import { SUCCESSFULL_AUTHENTICACION, FAILED_AUTHENTICATION } from 'constants/actionTypes.jsx';
+import { SUCCESSFULL_AUTHENTICATION, FAILED_AUTHENTICATION } from 'constants/actionTypes.jsx';
 import $ from 'jquery';
 import { SUCCESSFULL_ACTIVE_USER } from 'constants/actionTypes';
 
@@ -22,7 +22,7 @@ export const getAuthenticacion = ( params, redirect ) => {
         return $.ajax(settings)
                 .done(function (response) {
                     
-                    dispatch ({ type: SUCCESSFULL_AUTHENTICACION, payload: response });
+                    dispatch ({ type: SUCCESSFULL_AUTHENTICATION, payload: response });
                     redirect.push('/student');
 
                 })

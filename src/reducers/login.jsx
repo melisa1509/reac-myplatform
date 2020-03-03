@@ -1,4 +1,4 @@
-import { SUCCESSFULL_AUTHENTICACION, FAILED_AUTHENTICATION, SUCCESSFULL_ACTIVE_USER} from "constants/actionTypes";
+import { SUCCESSFULL_AUTHENTICATION, FAILED_AUTHENTICATION, SUCCESSFULL_ACTIVE_USER} from "constants/actionTypes";
 
 const initialState = { 
 
@@ -12,7 +12,7 @@ const initialState = {
 
 export const loginReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SUCCESSFULL_AUTHENTICACION:
+        case SUCCESSFULL_AUTHENTICATION:
             return Object.assign({}, state, {
               token: action.payload.token
             });

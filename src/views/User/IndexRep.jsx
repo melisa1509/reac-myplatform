@@ -30,7 +30,7 @@ import { translate } from "react-translate";
 import { setData } from "actions/actions.jsx";
 
 import { store } from 'store/index.jsx';
-import { getCourseList } from "actions/courseActions";
+import { getCourseList } from "actions/courseActions.jsx";
 
 const styles = {
   cardIconTitle: {
