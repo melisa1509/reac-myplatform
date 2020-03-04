@@ -21,8 +21,8 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx'; 
 import DateTimePicker from 'components/DateTimePicker/DateTimePickerRedux.jsx';
-import { showUser } from "actions/userActions.jsx";
-import { editUser } from "actions/userActions.jsx"; 
+import { showStudent } from "actions/studentActions.jsx";
+import { editStudent } from "actions/studentActions.jsx"; 
 import { errorRequiredFields } from "actions/generalActions.jsx";
 import { successRequiredFields } from "actions/generalActions.jsx";
 import { verifyChange } from "assets/validation/index.jsx";
@@ -33,7 +33,6 @@ import CountrySelect from "views/Select/CountrySelect.jsx";
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
 import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
 import { withRouter } from 'react-router-dom';
-import { FormLabel } from "@material-ui/core";
 
 const style = {
     infoText: {
@@ -91,17 +90,17 @@ class EditForm extends React.Component {
         }
         if(this.state.usernameState === "success" && this.state.first_nameState === "success"&& this.state.last_nameState === "success"){
         const reduxState = store.getState();
-        this.props.dispatchEditUser();
+        this.props.dispatchEditStudent();
         this.props.dispatchSuccessRequiredFields();
         }
       }
      
       componentDidMount() {
-        this.props.loadShowUser(this.props.match.params.id);
+        this.props.loadShowStudent(this.props.match.params.id);
       }
       
     render() {
-        const { classes, successfull_edit, editError, errorRequired, successRequired, show_user } = this.props;
+        const { classes, successfull_edit, editError, errorRequired, successRequired, show_student } = this.props;
         let { t } = this.props;
         return (
           <GridContainer justify="center">
@@ -255,7 +254,11 @@ class EditForm extends React.Component {
               <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
                       <center>
-                      <Link to={"/user/editpassword/" +  show_user.id}>
+                      <Button color="default" size="sm" onClick={this.loginClick}>
+                      {t("button.return_to_list")}
+                      </Button>
+                      {" "}
+                      <Link to={"/user/editpassword/" +  show_student.id}>
                       <Button color="warning" size="sm">
                       {t("button.change_password")}
                       </Button>
@@ -277,7 +280,7 @@ class EditForm extends React.Component {
 }
 
 EditForm = reduxForm({
-  form: 'userform', 
+  form: 'studentform', 
 })(EditForm);
 
 
@@ -286,12 +289,12 @@ EditForm = connect(
     initialValues: state.userReducer.data,
     errorRequired:state.generalReducer.errorRequired,
     successRequired:state.generalReducer.successRequired,
-    edit_user: state.userReducer.edit_user,
-    editError: state.userReducer.editError,
+    edit_student: state.studentReducer.edit_student,
+    editError: state.studentReducer.editError,
     successfull_edit:state.generalReducer.successfull_edit,
-    show_user: state.userReducer.show_user,
+    show_student: state.studentReducer.show_student,
   }),
-  { loadShowUser: showUser, dispatchEditUser: editUser, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields},
+  { loadShowStudent: showStudent, dispatchEditStudent: editStudent, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields},
 )(EditForm);
 
 export default  withRouter(translate('provider')(withStyles(style)(EditForm)));

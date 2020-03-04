@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 // react component for creating dynamic tables
 import { connect } from "react-redux";
-import { showUser } from "actions/userActions.jsx";
+import { showGroup } from "actions/groupActions.jsx";
 import { deleteUser } from "actions/userActions.jsx";
 
 // @material-ui/core components
@@ -37,6 +37,8 @@ const style = {
       cursor: "pointer",
       marginTop: "20px"
     },
+    ...validationFormsStyle,
+    ...customSelectStyle
 };
 
 class ShowTable extends React.Component {
@@ -52,12 +54,19 @@ class ShowTable extends React.Component {
       this.props.dispatchDeleteUser(this.props.match.params.id);
     }
     componentDidMount() {
-      this.props.dispatchShowUser(this.props.match.params.id);
+      this.props.dispatchShowGroup(this.props.match.params.id);
     }
 
     render() {
-        const { show_user, successful_delete } = this.props;
+        const { show_group, successful_delete } = this.props;
         let { t } = this.props;
+        let i = 0;
+        let start_date=[];
+        let final_date=[];
+          for (i = 0; i < 10 ; i++) {
+              start_date[i]=show_group.start_date[i]
+              final_date[i]=show_group.final_date[i]
+          }
         return (
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={8}>
@@ -76,28 +85,28 @@ class ShowTable extends React.Component {
               striped
               tableHead={[]}
               tableData={[
-                [<th>{t("label.email")}</th>,<p>{show_user.username}</p>],
-                [<th>{t("label.name")}</th>,show_user.first_name],
-                [<th>{t("label.lastName")}</th>,show_user.last_name],
-                [<th>{t("label.country")}</th>,show_user.country],
-                [<th>{t("label.city")}</th>, show_user.city],
-                [<th>{t("label.whatsApp")}</th>, show_user.whatsapp],
-                [<th>{t("label.language")}</th>,  show_user.language],
+                [<th>{t("label.name")}</th>,show_group.name],
+                [<th>{t("label.embassador_mentor")}</th>,show_group.embassador.first_name+ " "+ show_group.embassador.last_name,],
+                [<th>{t("label.start_date")}</th>,start_date],
+                [<th>{t("label.final_date")}</th>,final_date],
+                [<th>{t("label.number_students_enrolled")}</th>,show_group.number_students],
+                [<th>{t("label.modality")}</th>,t(show_group.modality)],
+                [<th>{t("label.program")}</th>,t(show_group.program)],
               ]}
             />
             <br/>
              <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
                       <center>
-                      <Link to={"/user/edit/" + show_user.id}>
-                      <Button color="info" size="sm">
-                      {t("button.edit")}
+                      <Link to={"/group"}>
+                      <Button color="default" size="sm">
+                      {t("button.return_to_list")}
                       </Button>
                       {" "}
                       </Link>{" "}
-                      <Link to={"/user/editpassword/" + show_user.id}>
-                      <Button color="warning" size="sm">
-                      {t("button.change_password")}
+                      <Link to={"/user/edit/" + show_group.id}>
+                      <Button color="info" size="sm">
+                      {t("button.edit")}
                       </Button>
                       {" "}
                       </Link>{" "}
@@ -115,13 +124,13 @@ class ShowTable extends React.Component {
     }
 }
 const mapStateToProps = state => ({ 
-  show_user: state.userReducer.show_user,
+  show_group: state.groupReducer.show_group,
   delete_user: state.userReducer.delete_user, 
   successful_delete: state.generalReducer.successful_delete
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchShowUser: key => dispatch(showUser(key)), 
+  dispatchShowGroup: key => dispatch(showGroup(key)), 
   dispatchDeleteUser: key => dispatch(deleteUser(key))
 });
 

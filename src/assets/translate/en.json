@@ -98,6 +98,7 @@
     "label.dismatch_password":          "Dismatch Password",
     "label.dashboard_language":         "Dashboard Language",
     "label.session_expired":            "Session Expired",
+    "label.embassador_mentor":          "Success Ambassador Mentor",
     "label.evaluation_question1_option1":   "Yes",
     "label.evaluation_question1_option2":   "Not",
     "label.evaluation_question2_option1":   "Never",

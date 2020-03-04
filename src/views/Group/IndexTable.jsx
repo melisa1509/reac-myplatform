@@ -98,7 +98,7 @@ class IndexTable extends React.Component {
         ),
         actions: (
           <div className="actions-left">
-            <Link to={"/user/show/" + prop.id}>
+            <Link to={"/group/show/" + prop.id}>
               <Button
                 justIcon
                 round4
@@ -112,7 +112,7 @@ class IndexTable extends React.Component {
               <Button
                 justIcon
                 round
-                simple            
+                simple             
                 color="warning"
               >
                 <Create />

@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 // react component for creating dynamic tables
 import { connect } from "react-redux";
-import { showUser } from "actions/userActions.jsx";
-import { deleteUser } from "actions/userActions.jsx";
+import { showStudent } from "actions/studentActions.jsx";
+import { deleteStudent } from "actions/studentActions.jsx";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -49,14 +49,14 @@ class ShowTable extends React.Component {
     }
 
     deleteClick() {
-      this.props.dispatchDeleteUser(this.props.match.params.id);
+      this.props.dispatchDeleteStudent(this.props.match.params.id);
     }
     componentDidMount() {
-      this.props.dispatchShowUser(this.props.match.params.id);
+      this.props.dispatchShowStudent(this.props.match.params.id);
     }
 
     render() {
-        const { show_user, successful_delete } = this.props;
+        const { show_student, successful_delete } = this.props;
         let { t } = this.props;
         return (
           <GridContainer justify="center">
@@ -76,26 +76,32 @@ class ShowTable extends React.Component {
               striped
               tableHead={[]}
               tableData={[
-                [<th>{t("label.email")}</th>,<p>{show_user.username}</p>],
-                [<th>{t("label.name")}</th>,show_user.first_name],
-                [<th>{t("label.lastName")}</th>,show_user.last_name],
-                [<th>{t("label.country")}</th>,show_user.country],
-                [<th>{t("label.city")}</th>, show_user.city],
-                [<th>{t("label.whatsApp")}</th>, show_user.whatsapp],
-                [<th>{t("label.language")}</th>,  show_user.language],
+                [<th>{t("label.email")}</th>,<p>{show_student.username}</p>],
+                [<th>{t("label.name")}</th>,show_student.first_name],
+                [<th>{t("label.lastName")}</th>,show_student.last_name],
+                [<th>{t("label.country")}</th>,show_student.country],
+                [<th>{t("label.city")}</th>, show_student.city],
+                [<th>{t("label.whatsApp")}</th>, show_student.whatsapp],
+                [<th>{t("label.language")}</th>,  show_student.language],
               ]}
             />
             <br/>
              <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
                       <center>
-                      <Link to={"/user/edit/" + show_user.id}>
+                      <Link to={"/student"}>
+                      <Button color="default" size="sm">
+                      {t("button.return_to_list")}
+                      </Button>
+                      {" "}
+                      </Link>{" "}
+                      <Link to={"/student/edit/" + show_student.id}>
                       <Button color="info" size="sm">
                       {t("button.edit")}
                       </Button>
                       {" "}
                       </Link>{" "}
-                      <Link to={"/user/editpassword/" + show_user.id}>
+                      <Link to={"/student/editpassword/" + show_student.id}>
                       <Button color="warning" size="sm">
                       {t("button.change_password")}
                       </Button>
@@ -115,14 +121,14 @@ class ShowTable extends React.Component {
     }
 }
 const mapStateToProps = state => ({ 
-  show_user: state.userReducer.show_user,
-  delete_user: state.userReducer.delete_user, 
+  show_student: state.studentReducer.show_student,
+  delete_student: state.studentReducer.delete_student, 
   successful_delete: state.generalReducer.successful_delete
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchShowUser: key => dispatch(showUser(key)), 
-  dispatchDeleteUser: key => dispatch(deleteUser(key))
+  dispatchShowStudent: key => dispatch(showStudent(key)), 
+  dispatchDeleteStudent: key => dispatch(deleteStudent(key))
 });
 
 const ShowTableComponent = translate('provider')(withStyles(style)(ShowTable));

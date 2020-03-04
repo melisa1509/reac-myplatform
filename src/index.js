@@ -13,7 +13,11 @@ import ReactTable from "views/Tables/ReactTables.jsx";
 import Age from 'views/Age/Age.jsx';
 import Login from 'views/Login/Login.jsx';
 import Student from 'views/Student/Index.jsx';
+import ShowStudent from 'views/Student/Show/Show.jsx';
+import EditStudent from 'views/Student/Edit/Edit.jsx';
+import StudentChangePassword  from 'views/Student/ChangePassword/ChangePassword.jsx';
 import Group from 'views/Group/Index.jsx';
+import ShowGroup from 'views/Group/Show/Show.jsx';
 import App from 'views/Age/App.jsx';
 import CourseNew from 'views/Course/New/New.jsx';
 import ProgramMbs from 'views/Programmbs/Show/Show.jsx';
@@ -48,8 +52,10 @@ ReactDOM.render(
     <TranslatorProvider translations={require('assets/translate/'+ getLanguage("lang") +'.json')}>
       <Router history={hist}>
         <Switch>
-          <Route path="/student" component={Student} />
-          
+          <Route path="/student" component={Student} exact />
+          <Route path="/student/show/:id" component={ShowStudent} exact />
+          <Route path="/student/edit/:id" component={EditStudent} exact />
+          <Route path="/student/editpassword/:id" component={StudentChangePassword} exact /> 
           <Route path="/rtl" component={RtlLayout} />
           <Route path="/auth" component={AuthLayout} />
           <Route path="/admin" component={AdminLayout} />
@@ -64,7 +70,8 @@ ReactDOM.render(
           <Route path="/user/editpassword/:id" component={UserChangePassword} exact /> 
           <Route path="/profile" component={Profile} exact />
           <Route path="/profile/edit" component={ProfileEdit} exact />
-          <Route path="/group" component={Group} />
+          <Route path="/group" component={Group} exact /> 
+          <Route path="/group/show/:id" component={ShowGroup} exact /> 
           <Redirect from="/" to="/admin/dashboard" />
         </Switch>
       </Router>,
