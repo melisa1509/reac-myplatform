@@ -21,8 +21,7 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx'; 
 import DateTimePicker from 'components/DateTimePicker/DateTimePickerRedux.jsx';
-import { showGroup } from "actions/groupActions.jsx";
-import { editGroup } from "actions/groupActions.jsx"; 
+import { newGroup } from "actions/groupActions.jsx"; 
 import { errorRequiredFields } from "actions/generalActions.jsx";
 import { successRequiredFields } from "actions/generalActions.jsx";
 import { verifyChange } from "assets/validation/index.jsx";
@@ -56,14 +55,14 @@ const style = {
 };
 
 
-class EditForm extends React.Component {
+class NewForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            groupnameState: "success",
-            full_nameState: "success",
-            interweaveLocalState: "success",
-            authorizationCodeState: "success"
+            groupnameState: "",
+            full_nameState: "",
+            interweaveLocalState: "",
+            authorizationCodeState: ""
         };
         this.saveClick = this.saveClick.bind(this);
       }
@@ -87,17 +86,14 @@ class EditForm extends React.Component {
         }
         if(this.state.groupnameState === "success" && this.state.full_nameState){
         const reduxState = store.getState();
-        this.props.dispatchEditGroup();
+        this.props.dispatchNewGroup();
         this.props.dispatchSuccessRequiredFields();
         }
       }
      
-      componentDidMount() {
-        this.props.loadShowGroup(this.props.match.params.id);
-      }
       
     render() {
-        const { classes, successfull_edit, editError, errorRequired, successRequired } = this.props;
+        const { classes, successfull_edit, editError, errorRequired, successRequired, show_group } = this.props;
         let { t } = this.props;
         return (
           <GridContainer justify="center">
@@ -142,7 +138,7 @@ class EditForm extends React.Component {
                       }}
                       inputProps={{
                         onKeyUp: event => 
-                              verifyChange(event, "name", "length", 0, null, this),
+                              verifyChange(event, "groupname", "length", 0, null, this),
                         type: "text",
                       }}
                     />
@@ -231,7 +227,7 @@ class EditForm extends React.Component {
                       }}
                       inputProps={{
                         onKeyUp: event => 
-                              verifyChange(event, "interweave_local", "length", 0, null, this),
+                              verifyChange(event, "interweaveLocal", "length", 0, null, this),
                         type: "text",
                       }}
                     />
@@ -250,7 +246,7 @@ class EditForm extends React.Component {
                       }}
                       inputProps={{
                         onKeyUp: event => 
-                              verifyChange(event, "authorization_code", "length", 0, null, this),
+                              verifyChange(event, "authorizationCode", "length", 0, null, this),
                         type: "text",
                       }}
                     />
@@ -286,24 +282,21 @@ class EditForm extends React.Component {
     }
 }
 
-EditForm = reduxForm({
-  form: 'groupform', 
-})(EditForm);
+NewForm = reduxForm({
+  form: 'groupNewform', 
+})(NewForm);
 
 
-EditForm = connect(
+NewForm = connect(
   state => ({
-    initialValues: state.groupReducer.data,
     errorRequired:state.generalReducer.errorRequired,
     successRequired:state.generalReducer.successRequired,
-    edit_group: state.groupReducer.edit_group,
-    successfull_edit:state.generalReducer.successfull_edit,
-    show_group: state.groupReducer.show_group,
+    new_group: state.groupReducer.new_group,
   }),
-  { loadShowGroup: showGroup, dispatchEditGroup: editGroup, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields},
-)(EditForm);
+  { dispatchNewGroup: newGroup, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields},
+)(NewForm);
 
-export default  withRouter(translate('provider')(withStyles(style)(EditForm)));
+export default  withRouter(translate('provider')(withStyles(style)(NewForm)));
 
 
 

@@ -40,7 +40,7 @@ export const deleteStudent  = (key) => {
     };
 
     return (dispatch) => {
-      return fetch("http://localhost:8000/user/delete/"+ key +"?callback=foo", requestOptions)
+      return fetch("http://api.interweavesolutions.org/user/delete/"+ key +"?callback=foo", requestOptions)
       .then(response => response.json())
       .then(json => {
           dispatch ({ type: DELETE_STUDENT, payload: json.data });

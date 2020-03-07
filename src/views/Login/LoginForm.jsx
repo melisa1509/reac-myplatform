@@ -178,11 +178,8 @@ class LoginForm extends React.Component {
     }
 
     componentDidMount() {
-      this.props.dispatchGetStudentList();
+
     }
-
-    
-
 
     render() {
         const { classes, styles, loginError } = this.props;
@@ -263,7 +260,6 @@ const mapStateToProps = state => (
 
 const mapDispatchToPropsActions = dispatch => ({
   dispatchGetAuthenticacion: (params, history) => dispatch( getAuthenticacion(params, history) ),
-  dispatchGetStudentList: () => dispatch( getStudentList() ),
 });
 
 const LoginFormComponent = translate('provider')(withStyles(style)(LoginForm));

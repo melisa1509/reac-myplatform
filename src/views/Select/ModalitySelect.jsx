@@ -65,7 +65,7 @@ class ModalitySelect extends React.Component {
                     <InputLabel
                         htmlFor="simple-select"
                     >
-                        <Success><h5>{t("label.modality")}</h5></Success>
+                        <Success>{t("label.modality")}</Success>
                     </InputLabel>
                     <Select
                         MenuProps={{

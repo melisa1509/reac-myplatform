@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 // react component for creating dynamic tables
 import { connect } from "react-redux";
 import { showGroup } from "actions/groupActions.jsx";
-import { deleteUser } from "actions/userActions.jsx";
+import { deleteGroup } from "actions/groupActions.jsx";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -51,7 +51,7 @@ class ShowTable extends React.Component {
     }
 
     deleteClick() {
-      this.props.dispatchDeleteUser(this.props.match.params.id);
+      this.props.dispatchDeleteGroup(this.props.match.params.id);
     }
     componentDidMount() {
       this.props.dispatchShowGroup(this.props.match.params.id);
@@ -125,13 +125,13 @@ class ShowTable extends React.Component {
 }
 const mapStateToProps = state => ({ 
   show_group: state.groupReducer.show_group,
-  delete_user: state.userReducer.delete_user, 
+  delete_group: state.groupReducer.delete_group, 
   successful_delete: state.generalReducer.successful_delete
 });
 
 const mapDispatchToPropsActions = dispatch => ({
   dispatchShowGroup: key => dispatch(showGroup(key)), 
-  dispatchDeleteUser: key => dispatch(deleteUser(key))
+  dispatchDeleteGroup: key => dispatch(deleteGroup(key))
 });
 
 const ShowTableComponent = translate('provider')(withStyles(style)(ShowTable));

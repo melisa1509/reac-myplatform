@@ -53,4 +53,6 @@ export const GROUP_LIST="GROUP_LIST"
 export const LOAD_FORM_GROUP="LOAD_FORM_GROUP";
 export const SHOW_GROUP="SHOW_GROUP"
 export const EDIT_GROUP="EDIT_GROUP"
+export const NEW_GROUP="NEW_GROUP"
+export const DELETE_GROUP="DELETE_GROUP"
 

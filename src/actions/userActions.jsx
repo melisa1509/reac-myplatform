@@ -4,7 +4,7 @@ import { SHOW_USER, LOAD_FORM_USER, EDIT_USER, ERROR_EDIT_USER, SUCCESSFULL_EDIT
 
 export const showUser = key => {
     return (dispatch) => {
-        return fetch("http://localhost:8000/user/show/"+ key +"?callback=foo")
+        return fetch("http://api.interweavesolutions.org/user/show/"+ key +"?callback=foo")
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: SHOW_USER, payload: json.data });
@@ -33,7 +33,6 @@ export const editUser =() => {
             urlencoded.append("country",reduxState.form.userform.values.country);
             urlencoded.append("city",reduxState.form.userform.values.city );
             urlencoded.append("whatsapp",reduxState.form.userform.values.whatsapp );
-            urlencoded.append("code","2");
       
             var requestOptions = {
               method: 'PUT',
@@ -92,7 +91,7 @@ export const deleteUser  = (key) => {
     };
 
     return (dispatch) => {
-      return fetch("http://localhost:8000/user/delete/"+ key +"?callback=foo", requestOptions)
+      return fetch("http://api.interweavesolutions.org/user/delete/"+ key +"?callback=foo", requestOptions)
       .then(response => response.json())
       .then(json => {
           dispatch ({ type: DELETE_USER, payload: json.data });

@@ -65,7 +65,7 @@ class ProgramSelect extends React.Component {
                     <InputLabel
                         htmlFor="simple-select"
                     >
-                        <Success><h5>{t("label.program")}</h5></Success>
+                        <Success>{t("label.program")}</Success>
                     </InputLabel>
                     <Select
                         MenuProps={{

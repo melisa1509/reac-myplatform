@@ -23,7 +23,7 @@ export const getAuthenticacion = ( params, redirect ) => {
                 .done(function (response) {
                     
                     dispatch ({ type: SUCCESSFULL_AUTHENTICATION, payload: response });
-                    redirect.push('/student');
+                    redirect.push('/group/new');
 
                 })
                 .fail(function (response){
