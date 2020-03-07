@@ -78,7 +78,7 @@ class IndexTable extends React.Component {
         id: key, 
         full_name: prop.name,
         date:start_date,
-        AmbassadorMentor: prop.embassador.first_name + " "+ prop.embassador.last_name,
+        AmbassadorMentor: prop.embassador.first_name + " " + prop.embassador.last_name,
         projects: (
           <div className="actions-left">
               <Button
@@ -108,7 +108,7 @@ class IndexTable extends React.Component {
                 <Visibility />
               </Button>
             </Link>{" "}
-            <Link to={"/user/edit/" + prop.id}>
+            <Link to={"/group/edit/" + prop.id}>
               <Button
                 justIcon
                 round
@@ -118,7 +118,7 @@ class IndexTable extends React.Component {
                 <Create />
               </Button>
             </Link>{" "}
-            <Link to={"/user/show/" + prop.id}>
+            <Link to={"/delete/show/" + prop.id}>
               <Button
                 justIcon
                 round

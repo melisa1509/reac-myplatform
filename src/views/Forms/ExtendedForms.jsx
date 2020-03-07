@@ -796,7 +796,7 @@ class ExtendedForms extends React.Component {
                   <GridItem xs={12} sm={4} md={3}>
                     <legend>Avatar</legend>
                     <ImageUpload
-                      avatar
+                      avatar={false}
                       addButtonProps={{
                         color: "rose",
                         round: true

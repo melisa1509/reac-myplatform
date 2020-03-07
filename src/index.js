@@ -18,6 +18,7 @@ import EditStudent from 'views/Student/Edit/Edit.jsx';
 import StudentChangePassword  from 'views/Student/ChangePassword/ChangePassword.jsx';
 import Group from 'views/Group/Index.jsx';
 import ShowGroup from 'views/Group/Show/Show.jsx';
+import EditGroup from 'views/Group/Edit/Edit.jsx';
 import App from 'views/Age/App.jsx';
 import CourseNew from 'views/Course/New/New.jsx';
 import ProgramMbs from 'views/Programmbs/Show/Show.jsx';
@@ -72,6 +73,7 @@ ReactDOM.render(
           <Route path="/profile/edit" component={ProfileEdit} exact />
           <Route path="/group" component={Group} exact /> 
           <Route path="/group/show/:id" component={ShowGroup} exact /> 
+          <Route path="/group/edit/:id" component={EditGroup} exact /> 
           <Redirect from="/" to="/admin/dashboard" />
         </Switch>
       </Router>,

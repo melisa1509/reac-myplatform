@@ -1,5 +1,5 @@
 import {GROUP_LIST} from 'constants/actionTypes.jsx';
-import { LOAD_FORM_GROUP, SHOW_GROUP } from 'constants/actionTypes';
+import { LOAD_FORM_GROUP, SHOW_GROUP, EDIT_GROUP, SUCCESSFULL_EDIT } from 'constants/actionTypes';
 
 export const getGroupList= () => {
     return (dispatch) => {
@@ -19,6 +19,41 @@ export const showGroup = key => {
         .then(json => {
             dispatch ({ type: SHOW_GROUP, payload: json.data });
             dispatch ({ type: LOAD_FORM_GROUP, data: json.data });   
+        })
+
+    }
+};
+
+export const editGroup = ()=> {
+    return (dispatch, getState) => {
+    const reduxState = getState();
+    const key = reduxState.form.groupform.values.id;
+  
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("name", reduxState.form.groupform.values.name);
+        urlencoded.append("startDate", reduxState.form.groupform.values.start_date);
+        urlencoded.append("finalDate", reduxState.form.groupform.values.final_date);
+        urlencoded.append("graduationDate", reduxState.form.groupform.values.graduation_date);
+        urlencoded.append("modality", reduxState.form.groupform.values.modality);
+        urlencoded.append("program", reduxState.form.groupform.values.program );
+        urlencoded.append("interweaveLocal", reduxState.form.groupform.values.interweave_local);
+        urlencoded.append("authorizationCode", reduxState.form.groupform.values.authorization_code);
+
+        var requestOptions = {
+        method: 'PUT',
+        headers: myHeaders,
+        body: urlencoded,
+        redirect: 'follow'
+        };
+
+        return fetch("http://api.interweavesolutions.org/group/edit/"+ key +"?callback=foo", requestOptions)
+        .then(response => response.json())
+        .then(json => {
+            dispatch ({ type: EDIT_GROUP, payload: json.data });
+            dispatch ({ type: SUCCESSFULL_EDIT});  
         })
 
     }

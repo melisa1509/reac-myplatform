@@ -87,7 +87,8 @@ export const editStudent =() => {
 };
 
 
-export const editPassword = (params) => {
+export const editPassword = (params,key) => {
+    
     var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
   
@@ -102,10 +103,10 @@ export const editPassword = (params) => {
         };
 
     return (dispatch) => {
-      return fetch("http://api.interweavesolutions.org/user/editpassword/2332", requestOptions)
+      return fetch("http://api.interweavesolutions.org/user/editpassword/"+ key +"?callback=foo", requestOptions)
       .then(response => response.json())
       .then(json => {
-          dispatch ({ type: EDIT_PASSWORD_STUDENT, payload: json });
+          dispatch ({ type: EDIT_PASSWORD_STUDENT, payload: json }); 
       });
   }
 }

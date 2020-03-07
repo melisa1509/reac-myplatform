@@ -21,13 +21,13 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx'; 
 import DateTimePicker from 'components/DateTimePicker/DateTimePickerRedux.jsx';
-import { showStudent } from "actions/studentActions.jsx";
-import { editStudent } from "actions/studentActions.jsx"; 
+import { showGroup } from "actions/groupActions.jsx";
+import { editGroup } from "actions/groupActions.jsx"; 
 import { errorRequiredFields } from "actions/generalActions.jsx";
 import { successRequiredFields } from "actions/generalActions.jsx";
 import { verifyChange } from "assets/validation/index.jsx";
-import LanguageSelect from "views/Select/LanguageSelect.jsx";
-import CountrySelect from "views/Select/CountrySelect.jsx";
+import ModalitySelect from "views/Select/ModalitySelect.jsx";
+import ProgramSelect from "views/Select/ProgramSelect.jsx";
 
 // style for this view
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
@@ -48,7 +48,8 @@ const style = {
       marginTop: "20px"
     },
     label:{
-      color:"red"
+      color:"red",
+      fontWeight: "500",
     },
     ...customSelectStyle,
     ...validationFormsStyle
@@ -59,48 +60,44 @@ class EditForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            usernameState: "success",
-            first_nameState: "success",
-            last_nameState: "success",
-            cityState: "success",
-            whatsappState: "success"
+            groupnameState: "success",
+            full_nameState: "success",
+            interweaveLocalState: "success",
+            authorizationCodeState: "success"
         };
         this.saveClick = this.saveClick.bind(this);
       }
      
       saveClick() {
-        if (this.state.usernameState === "") {
-          this.setState({ usernameState: "error" });
+        if (this.state.groupnameState === "") {
+          this.setState({ groupnameState: "error" });
         }
-        if (this.state.first_nameState === "") {
+        if (this.state.full_nameState === "") {
           this.setState({ first_nameState: "error" });
         }
-        if (this.state.last_nameState === "") {
-          this.setState({ last_nameState: "error" });
+        if (this.state.interweaveLocalState === "") {
+          this.setState({ imterweaveLocalState: "error" });
         }
-        if (this.state.cityState === "") {
-          this.setState({ cityState: "error" });
+        if (this.state.authorizationCodeState === "") {
+          this.setState({ authorizationCodeState: "error" });
         }
-        if (this.state.whatsappState === "") {
-          this.setState({ whatsappState: "error" });
-        }
-        if(this.state.usernameState === "error" || this.state.first_nameState === "error" || this.state.last_nameState === "error"){
+        if(this.state.groupnameState === "error" || this.state.full_nameState === "error"){
           const stateRedux = store.getState();
           this.props.dispatchErrorRequiredFields();
         }
-        if(this.state.usernameState === "success" && this.state.first_nameState === "success"&& this.state.last_nameState === "success"){
+        if(this.state.groupnameState === "success" && this.state.full_nameState){
         const reduxState = store.getState();
-        this.props.dispatchEditStudent();
+        this.props.dispatchEditGroup();
         this.props.dispatchSuccessRequiredFields();
         }
       }
      
       componentDidMount() {
-        this.props.loadShowStudent(this.props.match.params.id);
+        this.props.loadShowGroup(this.props.match.params.id);
       }
       
     render() {
-        const { classes, successfull_edit, editError, errorRequired, successRequired, show_student } = this.props;
+        const { classes, successfull_edit, editError, errorRequired, successRequired, show_group } = this.props;
         let { t } = this.props;
         return (
           <GridContainer justify="center">
@@ -135,36 +132,17 @@ class EditForm extends React.Component {
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <Field
-                      labelText={t("label.username")+ " *"}
-                      component={CustomInputRedux}
-                      name="username"
-                      success={this.state.usernameState === "success"}
-                      error={this.state.usernameState === "error"}
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        onKeyUp: event => 
-                              verifyChange(event, "username", "length", 0, null, this),
-                        type: "text",
-                      }}
-                    />
-                </GridItem>
-              </GridContainer>
-              <GridContainer >
-                  <GridItem xs={12} sm={12} md={12}>
-                    <Field
                       labelText={t("label.name")+ " *"}
                       component={CustomInputRedux}
-                      name="first_name"
-                      success={this.state.first_nameState === "success"}
-                      error={this.state.first_nameState === "error"}
+                      name="name"
+                      success={this.state.groupnameState === "success"}
+                      error={this.state.groupnameState === "error"}
                       formControlProps={{
                         fullWidth: true
                       }}
                       inputProps={{
                         onKeyUp: event => 
-                              verifyChange(event, "first_name", "length", 0, null, this),
+                              verifyChange(event, "name", "length", 0, null, this),
                         type: "text",
                       }}
                     />
@@ -173,54 +151,87 @@ class EditForm extends React.Component {
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <Field
-                      labelText={t("label.lastname")+ " *"}
+                      labelText={t("label.embassador")+ " *"}
                       component={CustomInputRedux}
-                      name="last_name"
-                      success={this.state.last_nameState === "success"}
-                      error={this.state.last_nameState === "error"}
+                      name={("embassador.first_name")}
+                      success={this.state.full_nameState === "success"}
+                      error={this.state.full_nameState === "error"}
                       formControlProps={{
                         fullWidth: true
                       }}
                       inputProps={{
                         onKeyUp: event => 
-                              verifyChange(event, "last_name", "length", 0, null, this),
+                              verifyChange(event, "full_name", "length", 0, null, this),
                         type: "text",
                       }}
                     />
                 </GridItem>
               </GridContainer>
               <GridContainer >
-                  <GridItem xs={12} sm={12} md={6}>
+                <GridItem xs={12} sm={12} md={6}>
+                  <InputLabel className={classes.label}>
+                    <SuccessLabel className={classes.infoText}><h5>{t("label.start_classes")}</h5></SuccessLabel>
+                  </InputLabel>
                     <Field
-                      name="language"
+                      component={DateTimePicker}
+                      name="start_date"
+                    />
+                </GridItem>
+              </GridContainer>
+              <GridContainer >
+                <GridItem xs={12} sm={12} md={6}>
+                  <InputLabel className={classes.label}>
+                    <SuccessLabel><h5>{t("label.final_clases")}</h5></SuccessLabel>
+                  </InputLabel>
+                    <Field
+                      component={DateTimePicker}
+                      name="final_date"
+                    />
+                </GridItem>
+              </GridContainer>
+              <GridContainer >
+                <GridItem xs={12} sm={12} md={6}>
+                  <InputLabel className={classes.label}>
+                    <SuccessLabel><h5>{t("label.graduation_date")}</h5></SuccessLabel>
+                  </InputLabel>
+                    <Field
+                      component={DateTimePicker}
+                      name="graduation_date"
+                    />
+                </GridItem>
+              </GridContainer>
+              <GridContainer >
+                  <GridItem xs={12} sm={12} md={8}>
+                    <Field
+                      name="modality"
                       formName="programmbs"
-                      component={LanguageSelect}
+                      component={ModalitySelect}
                     />
                   </GridItem>
               </GridContainer>
               <GridContainer >
-                  <GridItem xs={12} sm={12} md={7}>
+                  <GridItem xs={12} sm={12} md={8}>
                     <Field
-                      name="country"
+                      name="program"
                       formName="programmbs"
-                      component={CountrySelect}
+                      component={ProgramSelect}
                     />
                   </GridItem>
               </GridContainer>
               <GridContainer >
-                  <GridItem xs={12} sm={12} md={9}>
+                  <GridItem xs={12} sm={12} md={12}>
                     <Field
-                      labelText={t("label.city")+ " *"}
+                      labelText={t("label.interweave_local")}
                       component={CustomInputRedux}
-                      name="city"
-                      success={this.state.cityState === "success"}
-                      error={this.state.cityState === "error"}
+                      name="interweave_local"
+                      success={this.state.interweaveLocalState === "success"}
+                      error={this.state.interweaveLocalState === "error"}
                       formControlProps={{
                         fullWidth: true
                       }}
                       inputProps={{
                         onKeyUp: event => 
-                              verifyChange(event, "city", "length", 0, null, this),
+                              verifyChange(event, "interweave_local", "length", 0, null, this),
                         type: "text",
                       }}
                     />
@@ -229,17 +240,17 @@ class EditForm extends React.Component {
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <Field
-                      labelText={t("label.whatsapp")+ " *"}
+                      labelText={t("label.authorization_code1")}
                       component={CustomInputRedux}
-                      name="whatsapp"
-                      success={this.state.whatsappState === "success"}
-                      error={this.state.whatsappState === "error"}
+                      name="authorization_code"
+                      success={this.state.authorizationCodeState === "success"}
+                      error={this.state.authorizationCodeState === "error"}
                       formControlProps={{
                         fullWidth: true
                       }}
                       inputProps={{
                         onKeyUp: event => 
-                              verifyChange(event, "whatsapp", "length", 0, null, this),
+                              verifyChange(event, "authorization_code", "length", 0, null, this),
                         type: "text",
                       }}
                     />
@@ -247,23 +258,19 @@ class EditForm extends React.Component {
               </GridContainer>
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
-                      { errorRequired ? <Danger><h6 className={classes.infoText}>{t("label.require_fields")+ "*" }</h6></Danger>: ""}
+                      { errorRequired ? <Danger><h6 className={classes.infoText}>{t("label.require_fields")}</h6></Danger>: ""}
                       { successRequired ? "" :  ""}
                   </GridItem>
               </GridContainer>
               <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
                       <center>
+                      <Link to={"/group"}>
                       <Button color="default" size="sm" onClick={this.loginClick}>
                       {t("button.return_to_list")}
                       </Button>
                       {" "}
-                      <Link to={"/user/editpassword/" +  show_student.id}>
-                      <Button color="warning" size="sm">
-                      {t("button.change_password")}
-                      </Button>
-                      </Link>
-                      {" "}
+                      </Link>{" "}
                       <Button color="info" size="sm" onClick={this.saveClick}>
                       {t("button.save")}
                       </Button>
@@ -280,21 +287,20 @@ class EditForm extends React.Component {
 }
 
 EditForm = reduxForm({
-  form: 'studentform', 
+  form: 'groupform', 
 })(EditForm);
 
 
 EditForm = connect(
   state => ({
-    initialValues: state.userReducer.data,
+    initialValues: state.groupReducer.data,
     errorRequired:state.generalReducer.errorRequired,
     successRequired:state.generalReducer.successRequired,
-    edit_student: state.studentReducer.edit_student,
-    editError: state.studentReducer.editError,
+    edit_group: state.groupReducer.group_student,
     successfull_edit:state.generalReducer.successfull_edit,
-    show_student: state.studentReducer.show_student,
+    show_group: state.groupReducer.show_group,
   }),
-  { loadShowStudent: showStudent, dispatchEditStudent: editStudent, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields},
+  { loadShowGroup: showGroup, dispatchEditGroup: editGroup, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields},
 )(EditForm);
 
 export default  withRouter(translate('provider')(withStyles(style)(EditForm)));

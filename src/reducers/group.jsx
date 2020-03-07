@@ -1,6 +1,7 @@
 import { GROUP_LIST } from "constants/actionTypes";
 import { SHOW_GROUP } from "constants/actionTypes";
 import { LOAD_FORM_GROUP } from "constants/actionTypes";
+import { EDIT_GROUP } from "constants/actionTypes";
 
 const initialState = { 
   show_group: {
@@ -8,14 +9,15 @@ const initialState = {
     name:"",
     data:[],
     first_name:"",
+    last_name:"",
     start_date:"",
     final_date:"",
     number_students:"",
     madality:"",
     program:""
   },
-  group_list: [], 
-  loading: true
+  group_list: [],
+  loading: true,
 }
 
 export const groupReducer = (state = initialState, action) => {
@@ -38,6 +40,11 @@ export const groupReducer = (state = initialState, action) => {
           data: action.data
         });
     }
-    
+    switch (action.type) {
+      case EDIT_GROUP:
+          return Object.assign({}, state, {
+            edit_group: action.payload
+          }); 
+    }
     return state;
 }

@@ -9,6 +9,7 @@ const initialState = {
   loading: true,
   editError: false,
   show_student: {
+    id:"",
     email:"",
     username:"",
     language:"",

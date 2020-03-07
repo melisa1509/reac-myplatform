@@ -104,7 +104,7 @@ class ShowTable extends React.Component {
                       </Button>
                       {" "}
                       </Link>{" "}
-                      <Link to={"/user/edit/" + show_group.id}>
+                      <Link to={"/group/edit/" + show_group.id}>
                       <Button color="info" size="sm">
                       {t("button.edit")}
                       </Button>

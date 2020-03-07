@@ -47,10 +47,12 @@ class ChangePasswordForm extends React.Component {
         super(props);
         this.state = {
 
+
             userPasswordState:"",
             userPassword:"",
             userRepeatPasswordState:"",
             userRepeatPassword:"",
+            key:"",
   
             // Select
             simpleSelect: "",
@@ -60,7 +62,7 @@ class ChangePasswordForm extends React.Component {
         };
         this.saveClick = this.saveClick.bind(this);
       }
-     
+      
       saveClick() {
         if (this.state.userPasswordState === "") {
           this.setState({ userPasswordState: "error" });
@@ -77,9 +79,9 @@ class ChangePasswordForm extends React.Component {
           this.props.dispatchEditPassword(params);
         }
       }
-
+      
     render() {
-        const { classes } = this.props;
+        const { } = this.props;
         let { t } = this.props;
         return (
           <GridContainer justify="center">
@@ -115,7 +117,7 @@ class ChangePasswordForm extends React.Component {
                         }}
                         inputProps={{
                           onChange: event =>
-                          verifyChange(event,"userRepeatPassword","equalTo","userPassword", null, this),
+                          verifyChange(event,"userRepeatPassword","password","userPassword", null, this),
                           type: "password",
                           autoComplete: "off"
                         }}
@@ -139,11 +141,12 @@ class ChangePasswordForm extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
-  edit_password: state.studentReducer.edit_password ,
+  show_student: state.studentReducer.show_student,
+  edit_password: state.studentReducer.edit_password,
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchEditPassword: (params) => dispatch(editPassword(params)),
+  dispatchEditPassword: (params,key) => dispatch(editPassword(params,key)),
 });
 
 const ChangePasswordFormComponent = translate('provider')(withStyles(style)(ChangePasswordForm));

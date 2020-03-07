@@ -86,7 +86,6 @@ class EditForm extends React.Component {
           this.setState({ whatsappState: "error" });
         }
         if(this.state.usernameState === "error" || this.state.first_nameState === "error" || this.state.last_nameState === "error"){
-          const stateRedux = store.getState();
           this.props.dispatchErrorRequiredFields();
         }
         if(this.state.usernameState === "success" && this.state.first_nameState === "success"&& this.state.last_nameState === "success"){
