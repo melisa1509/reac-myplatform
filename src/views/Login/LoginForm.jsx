@@ -22,8 +22,6 @@ import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSel
 
 import { verifyChange } from "assets/validation/index.jsx";
 import { getAuthenticacion } from "actions/loginActions";
-import { dispatchGetStudentList } from "actions/studentActions";
-import { getStudentList } from "actions/studentActions";
 
 
 const style = {

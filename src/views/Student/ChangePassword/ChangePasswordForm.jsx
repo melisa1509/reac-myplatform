@@ -76,7 +76,7 @@ class ChangePasswordForm extends React.Component {
             userRepeatPassword: this.state.userRepeatPassword,
             redirect: this.props.history,
           }
-          this.props.dispatchEditPassword(params);
+          this.props.dispatchEditPassword(params,this.props.match.params.id);
         }
       }
       

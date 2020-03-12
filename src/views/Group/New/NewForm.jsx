@@ -48,7 +48,7 @@ const style = {
     },
     label:{
       color:"red",
-      fontWeight: "500",
+      fontSize:"20px"
     },
     ...customSelectStyle,
     ...validationFormsStyle
@@ -166,7 +166,7 @@ class NewForm extends React.Component {
               <GridContainer >
                 <GridItem xs={12} sm={12} md={6}>
                   <InputLabel className={classes.label}>
-                    <SuccessLabel className={classes.infoText}><h5>{t("label.start_classes")}</h5></SuccessLabel>
+                    <SuccessLabel>{t("label.start_classes")}</SuccessLabel>
                   </InputLabel>
                     <Field
                       component={DateTimePicker}
@@ -177,7 +177,7 @@ class NewForm extends React.Component {
               <GridContainer >
                 <GridItem xs={12} sm={12} md={6}>
                   <InputLabel className={classes.label}>
-                    <SuccessLabel><h5>{t("label.final_clases")}</h5></SuccessLabel>
+                    <SuccessLabel>{t("label.final_clases")}</SuccessLabel>
                   </InputLabel>
                     <Field
                       component={DateTimePicker}
@@ -188,7 +188,7 @@ class NewForm extends React.Component {
               <GridContainer >
                 <GridItem xs={12} sm={12} md={6}>
                   <InputLabel className={classes.label}>
-                    <SuccessLabel><h5>{t("label.graduation_date")}</h5></SuccessLabel>
+                    <SuccessLabel>{t("label.graduation_date")}</SuccessLabel>
                   </InputLabel>
                     <Field
                       component={DateTimePicker}

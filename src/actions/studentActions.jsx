@@ -25,7 +25,7 @@ export const showStudent = key => {
 
 export const loadFormStudent = data => ({ type: LOAD_FORM_STUDENT, data });
 
-export const deleteStudent  = (key) => {
+export const deleteStudent  = (key,redirect) => {
     
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -45,6 +45,7 @@ export const deleteStudent  = (key) => {
       .then(json => {
           dispatch ({ type: DELETE_STUDENT, payload: json.data });
           dispatch ({ type: SUCCESSFUL_DELETE}); 
+          redirect.push('/student');
       });
   }
 }
@@ -65,7 +66,6 @@ export const editStudent =() => {
             urlencoded.append("country",reduxState.form.studentform.values.country);
             urlencoded.append("city",reduxState.form.studentform.values.city );
             urlencoded.append("whatsapp",reduxState.form.studentform.values.whatsapp );
-            urlencoded.append("code","2");
       
             var requestOptions = {
               method: 'PUT',

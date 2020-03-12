@@ -7,6 +7,7 @@ import { userReducer } from 'reducers/user.jsx';
 import { generalReducer } from 'reducers/general.jsx';
 import { selectReducer } from 'reducers/select.jsx';
 import { groupReducer } from 'reducers/group.jsx';
+import { ambassadorReducer } from 'reducers/ambassador.jsx';
 import { reducer as reduxFormReducer } from 'redux-form';
 
 export default combineReducers({
@@ -18,5 +19,6 @@ export default combineReducers({
     selectReducer,
     generalReducer,
     groupReducer,
+    ambassadorReducer,
     form: reduxFormReducer,
 })

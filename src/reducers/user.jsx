@@ -4,7 +4,6 @@ import {EDIT_PASSWORD_USER, DELETE_USER } from "constants/actionTypes";
 
 const initialState = { 
   editError: false,
-  errorRequire: false,
   show_user: {
     id:"",
     email:"",
@@ -15,13 +14,6 @@ const initialState = {
     last_name: "",
     country:"",
   },
-  edit_user:{
-    username: "",
-    city:""
-  },
-  edit_password:{
-    userPassword:""
-  }
 }
 
 export const userReducer = (state = initialState, action) => {

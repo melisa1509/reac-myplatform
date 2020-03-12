@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 // react component for creating dynamic tables
 import ReactTable from "react-table";
 import { connect } from "react-redux";
-import { getGroupList } from "actions/groupActions.jsx";
+import { getAmbassadorList } from "actions/ambassadorActions.jsx";
 import { Link } from "react-router-dom";
 
 // @material-ui/icons
@@ -17,9 +18,6 @@ import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
 import { translate } from "react-translate";
-
-
-
 
 class IndexTable extends React.Component {
   constructor(props) {
@@ -47,6 +45,7 @@ class IndexTable extends React.Component {
     const { value } = e.target;
     const filterAll = value;
     const filtered = [{ id: 'all', value: filterAll }];
+    // NOTE: this completely clears any COLUMN filters
     this.setState({ filterAll, filtered });
   }
 
@@ -60,45 +59,25 @@ class IndexTable extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatchGetGroupList();
+    this.props.dispatchGetAmbassadorList();
   }
-
  
   render() {
-    const { group_list, loading } = this.props;
+    const { ambassador_list, loading } = this.props;
     let { t } = this.props;
             
-    const data = group_list.map((prop, key) => {
-      let i = 0;
-      let start_date=[];
-      for (i = 0; i < 10 ; i++) {
-         start_date[i]=prop.start_date[i]
-      }
+    const data = ambassador_list.map((prop, key) => {
       return {
         id: key, 
-        full_name: prop.name,
-        date:start_date,
-        AmbassadorMentor: prop.embassador.first_name + " " + prop.embassador.last_name,
-        projects: (
-          <div className="actions-left">
-              <Button
-                size="sm"
-                color="success"
-              >
-                {t('button.manage_participants')}
-              </Button>
-            {" "}
-              <Button
-                size="sm"
-                color="info"
-              >
-                {t('button.project_progress')}
-              </Button>
-          </div>
-        ),
+        name: prop.first_name,
+        last_name:prop.last_name,
+        username:prop.username,
+        country:prop.country,
+        code:prop.code,
         actions: (
+          // we've added some custom button actions
           <div className="actions-left">
-            <Link to={"/group/show/" + prop.id}>
+            <Link to={"/ambassador/show/" + prop.id}>
               <Button
                 justIcon
                 round4
@@ -108,16 +87,17 @@ class IndexTable extends React.Component {
                 <Visibility />
               </Button>
             </Link>{" "}
-            <Link to={"/group/edit/" + prop.id}>
+            <Link to={"/ambassador/edit/" + prop.id}>
               <Button
                 justIcon
                 round
-                simple             
+                simple            
                 color="warning"
               >
                 <Create />
               </Button>
             </Link>{" "}
+            <Link to={"/student/delete/" + prop.id}>
               <Button
                 justIcon
                 round
@@ -126,10 +106,13 @@ class IndexTable extends React.Component {
               >
                 <Close />
               </Button>
+            </Link>{" "}
           </div>
         )
       };
     });
+    
+    
     
     return (
       <GridContainer>
@@ -152,23 +135,27 @@ class IndexTable extends React.Component {
               defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value}
               data={data}
               loading={loading}
-
               columns={[
                 {
                   Header: t("th.name"),
-                  accessor: "full_name",
-                  sortable: false
+                  accessor: "name",
                 },
                 {
-                  Header: t("th.embassador_mentor"),
-                  accessor: "AmbassadorMentor",
-                  sortable: false
+                  Header: t("th.lastname"),
+                  accessor: "last_name"
                 },
                 {
-                  Header: t("th.start_classes"),
-                  accessor: "date",
-                  sortable: false,
-                  filterable: false
+                  Header: t("th.username"),
+                  accessor: "username",
+                  resizable:true
+                },
+                {
+                  Header: t("th.country"),
+                  accessor: "country"
+                },
+                {
+                  Header: t("th.code"),
+                  accessor: "code",
                 },
                 {
                   Header: t("th.actions"),
@@ -177,11 +164,11 @@ class IndexTable extends React.Component {
                   filterable: false
                 },
                 {
-                  Header: "",
-                  accessor: "projects",
-                  sortable: false
-                },
-                {
+                  // NOTE - this is a "filter all" DUMMY column
+                  // you can't HIDE it because then it wont FILTER
+                  // but it has a size of ZERO with no RESIZE and the
+                  // FILTER component is NULL (it adds a little to the front)
+                  // You culd possibly move it to the end
                   Header: "",
                   id: 'all',
                   width: 0,
@@ -190,14 +177,14 @@ class IndexTable extends React.Component {
                   
                   getProps: () => {
                     return {
-                      style: { padding: "0px"}
+                      style: { padding: "5px"}
                     }
                   },
                   filterMethod: (filter, rows) => {
                     const result = matchSorter(rows, filter.value, {
                       keys: [
-                        "full_name",
-                        "AmbassadorMentor"
+                        "name",
+                        "last_name",
                       ], threshold: matchSorter.rankings.WORD_STARTS_WITH
                     });
                     return result;
@@ -211,30 +198,18 @@ class IndexTable extends React.Component {
               className="-striped -highlight"
           />
         </GridItem>
-          <GridContainer>
-            <GridItem xs={12} sm={12} md={12}>
-                <center>
-                <Link to={"/group/new"}>
-                <Button color="info" size="sm">
-                {t("button.create_new")}
-                </Button>
-                {" "}
-                </Link>{" "}
-                </center>
-            </GridItem>
-        </GridContainer>
       </GridContainer>
     );
   }
 }
 
 const mapStateToProps = state => ({ 
-      group_list: state.groupReducer.group_list, 
-      loading: state.groupReducer.loading
+      ambassador_list: state.ambassadorReducer.ambassador_list, 
+      loading: state.ambassadorReducer.loading
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetGroupList: () => dispatch( getGroupList() )
+  dispatchGetAmbassadorList: () => dispatch( getAmbassadorList() )
 });
 
 const IndexTableComponent = translate('provider')(IndexTable);

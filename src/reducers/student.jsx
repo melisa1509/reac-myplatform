@@ -18,9 +18,6 @@ const initialState = {
     last_name: "",
     country:"",
   },
-  edit_password:{
-    userPassword:""
-  }
 }
 
 export const studentReducer = (state = initialState, action) => {

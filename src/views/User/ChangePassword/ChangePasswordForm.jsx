@@ -74,7 +74,7 @@ class ChangePasswordForm extends React.Component {
             userRepeatPassword: this.state.userRepeatPassword,
             redirect: this.props.history,
           }
-          this.props.dispatchEditPassword(params);
+          this.props.dispatchEditPassword(params, this.props.match.params.id);
         }
       }
 
@@ -115,7 +115,7 @@ class ChangePasswordForm extends React.Component {
                         }}
                         inputProps={{
                           onChange: event =>
-                          verifyChange(event,"userRepeatPassword","equalTo","userPassword", null, this),
+                          verifyChange(event,"userRepeatPassword","password","userPassword", null, this),
                           type: "password",
                           autoComplete: "off"
                         }}
@@ -143,7 +143,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchEditPassword: (params) => dispatch(editPassword(params)),
+  dispatchEditPassword: (params, key) => dispatch(editPassword(params, key)),
 });
 
 const ChangePasswordFormComponent = translate('provider')(withStyles(style)(ChangePasswordForm));

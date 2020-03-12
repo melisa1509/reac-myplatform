@@ -93,7 +93,7 @@ export const newGroup = ()=> {
 
     }
 };
-export const deleteGroup  = (key) => {
+export const deleteGroup  = (key, redirect) => {
     
     var requestOptions = {
       method: 'DELETE',
@@ -106,6 +106,7 @@ export const deleteGroup  = (key) => {
       .then(json => {
           dispatch ({ type: DELETE_GROUP, payload: json.data });
           dispatch ({ type: SUCCESSFUL_DELETE}); 
+          redirect.push('/group');
       });
   }
 }

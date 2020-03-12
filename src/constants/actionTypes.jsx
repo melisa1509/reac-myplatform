@@ -51,8 +51,14 @@ export const UPDATE_COUNTRY_SELECT="UPDATE_COUNTRY_SELECT";
 // Constants of Group
 export const GROUP_LIST="GROUP_LIST"
 export const LOAD_FORM_GROUP="LOAD_FORM_GROUP";
-export const SHOW_GROUP="SHOW_GROUP"
-export const EDIT_GROUP="EDIT_GROUP"
-export const NEW_GROUP="NEW_GROUP"
-export const DELETE_GROUP="DELETE_GROUP"
+export const SHOW_GROUP="SHOW_GROUP";
+export const EDIT_GROUP="EDIT_GROUP";
+export const NEW_GROUP="NEW_GROUP";
+export const DELETE_GROUP="DELETE_GROUP";
 
+// Constants of Ambassador 
+export const AMBASSADOR_LIST = "AMBASSADOR_LIST";
+export const SHOW_AMBASSADOR="SHOW_AMBASSADOR";
+export const LOAD_FORM_AMBASSADOR="LOAD_FORM_AMBASSADOR";
+export const EDIT_AMBASSADOR="EDIT_AMBASSADOR";
+export const ERROR_EDIT_AMBASSADOR="ERROR_EDIT_AMBASSADOR";
