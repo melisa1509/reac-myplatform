@@ -2,6 +2,8 @@ import { AMBASSADOR_LIST} from "constants/actionTypes";
 import { SHOW_AMBASSADOR } from "constants/actionTypes";
 import { LOAD_FORM_AMBASSADOR } from "constants/actionTypes";
 import { EDIT_AMBASSADOR, ERROR_EDIT_AMBASSADOR } from "constants/actionTypes";
+import { NEW_AMBASSADOR } from "constants/actionTypes";
+import { EDIT_PASSWORD_AMBASSADOR } from "constants/actionTypes";
 
 
 const initialState = { 
@@ -48,6 +50,18 @@ export const ambassadorReducer = (state = initialState, action) => {
           return Object.assign({}, state, {
             editError: true
           })
+      }
+      switch (action.type) {
+        case NEW_AMBASSADOR:
+            return Object.assign({}, state, {
+              new_ambassador: action.payload
+            }); 
+      }
+      switch (action.type) {
+        case EDIT_PASSWORD_AMBASSADOR:
+            return Object.assign({}, state, {
+              edit_password: action.payload
+            }); 
       }
     return state;
 }

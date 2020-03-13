@@ -198,6 +198,18 @@ class IndexTable extends React.Component {
               className="-striped -highlight"
           />
         </GridItem>
+          <GridContainer>
+            <GridItem xs={12} sm={12} md={12}>
+                <center>
+                <Link to={"/ambassador/new"}>
+                <Button color="info" size="sm">
+                {t("button.create_new")}
+                </Button>
+                {" "}
+                </Link>{" "}
+                </center>
+            </GridItem>
+          </GridContainer>
       </GridContainer>
     );
   }

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 // react component for creating dynamic tables
 import { connect } from "react-redux";
 import { showAmbassador } from "actions/ambassadorActions.jsx";
-import { deleteStudent } from "actions/studentActions.jsx";
+import { deleteAmbassador } from "actions/ambassadorActions.jsx";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -51,7 +51,7 @@ class ShowTable extends React.Component {
     }
 
     deleteClick() {
-      this.props.dispatchDeleteStudent(this.props.match.params.id, this.props.history);
+      this.props.dispatchDeleteAmbassador(this.props.match.params.id, this.props.history);
     }
     componentDidMount() {
       this.props.dispatchShowAmbassador(this.props.match.params.id);
@@ -103,7 +103,7 @@ class ShowTable extends React.Component {
                       </Button>
                       {" "}
                       </Link>{" "}
-                      <Link to={"/student/editpassword/" + show_ambassador.id}>
+                      <Link to={"/ambassador/editpassword/" + show_ambassador.id}>
                       <Button color="warning" size="sm">
                       {t("button.change_password")}
                       </Button>
@@ -124,13 +124,13 @@ class ShowTable extends React.Component {
 }
 const mapStateToProps = state => ({ 
   show_ambassador: state.ambassadorReducer.show_ambassador,
-  delete_student: state.studentReducer.delete_student, 
+  delete_ambassador: state.ambassadorReducer.ambassador_student, 
   successful_delete: state.generalReducer.successful_delete
 });
 
 const mapDispatchToPropsActions = dispatch => ({
   dispatchShowAmbassador: key => dispatch(showAmbassador(key)), 
-  dispatchDeleteStudent: (key, history) => dispatch(deleteStudent(key, history))
+  dispatchDeleteAmbassador: (key, history) => dispatch(deleteAmbassador(key, history))
 });
 
 const ShowTableComponent = translate('provider')(withStyles(style)(ShowTable));
