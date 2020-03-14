@@ -67,7 +67,6 @@ class CountrySelect extends React.Component {
                 <FormControl fullWidth className={classes.selectFormControl}>
                     <InputLabel
                         htmlFor="simple-select"
-                        className={classes.selectLabel}
                     >
                         <Success>{t("label.country")}</Success>
                     </InputLabel>

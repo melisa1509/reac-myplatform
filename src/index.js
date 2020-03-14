@@ -20,6 +20,7 @@ import Group from 'views/Group/Index.jsx';
 import ShowGroup from 'views/Group/Show/Show.jsx';
 import EditGroup from 'views/Group/Edit/Edit.jsx';
 import NewGroup from 'views/Group/New/New.jsx';
+import GroupAmbassadors from 'views/Group/New/ListAmbassador/Index.jsx';
 import App from 'views/Age/App.jsx';
 import CourseNew from 'views/Course/New/New.jsx';
 import ProgramMbs from 'views/Programmbs/Show/Show.jsx';
@@ -28,6 +29,11 @@ import UserEdit  from 'views/User/Edit/Edit.jsx';
 import UserChangePassword  from 'views/User/ChangePassword/ChangePassword.jsx';
 import Profile  from 'views/Profile/Show/Show.jsx';
 import ProfileEdit  from 'views/Profile/Edit/Edit.jsx';
+import Ambassador from 'views/Ambassador/Index.jsx'
+import ShowAmbassador from 'views/Ambassador/Show/Show.jsx';
+import EditAmbassador from 'views/Ambassador/Edit/Edit.jsx';
+import NewAmbassador from 'views/Ambassador/New/New.jsx';
+import AmbassadorChangePassword  from 'views/Ambassador/ChangePassword/ChangePassword.jsx';
 import { store } from 'store/index.jsx';
 
 import "assets/scss/material-dashboard-pro-react.scss?v=1.7.0";
@@ -76,6 +82,12 @@ ReactDOM.render(
           <Route path="/group/new" component={NewGroup} exact /> 
           <Route path="/group/show/:id" component={ShowGroup} exact /> 
           <Route path="/group/edit/:id" component={EditGroup} exact /> 
+          <Route path="/group/ambassador" component={GroupAmbassadors} exact /> 
+          <Route path="/ambassadors" component={Ambassador} exact /> 
+          <Route path="/ambassador/show/:id" component={ShowAmbassador} exact /> 
+          <Route path="/ambassador/edit/:id" component={EditAmbassador} exact /> 
+          <Route path="/ambassador/new" component={NewAmbassador} exact /> 
+          <Route path="/ambassador/editpassword/:id" component={AmbassadorChangePassword} exact /> 
           <Redirect from="/" to="/admin/dashboard" />
         </Switch>
       </Router>,

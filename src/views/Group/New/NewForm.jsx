@@ -49,7 +49,7 @@ const style = {
     },
     label:{
       color:"red",
-      fontWeight: "500",
+      fontSize:"20px"
     },
     ...customSelectStyle,
     ...validationFormsStyle
@@ -60,10 +60,10 @@ class NewForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            groupnameState: "",
-            full_nameState: "",
-            interweaveLocalState: "",
-            authorizationCodeState: ""
+            groupnameState: "success",
+            full_nameState: "success",
+            interweaveLocalState: "success",
+            authorizationCodeState: "success"
         };
         this.saveClick = this.saveClick.bind(this);
       }
@@ -94,24 +94,13 @@ class NewForm extends React.Component {
      
       
     render() {
-        const { classes, successfull_edit, editError, errorRequired, successRequired, show_group } = this.props;
+        const { classes, successfull_edit, errorRequired, successRequired, show_group } = this.props;
         let { t } = this.props;
         return (
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={8}>
               <form>
               <GridContainer justify="center">
-                  <GridItem xs={12} sm={12} md={12}>
-                      { editError ?      
-                      <SnackbarContent
-                        message={
-                          <center>{t("label.update_error")}</center>
-                        }
-                        close
-                        color="danger"
-                      />
-                      : ""}
-                  </GridItem>
               </GridContainer>
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
@@ -167,7 +156,7 @@ class NewForm extends React.Component {
               <GridContainer >
                 <GridItem xs={12} sm={12} md={6}>
                   <InputLabel className={classes.label}>
-                    <SuccessLabel className={classes.infoText}><h5>{t("label.start_classes")}</h5></SuccessLabel>
+                    <SuccessLabel>{t("label.start_classes")}</SuccessLabel>
                   </InputLabel>
                     <Field
                       component={DateTimePicker}
@@ -178,7 +167,7 @@ class NewForm extends React.Component {
               <GridContainer >
                 <GridItem xs={12} sm={12} md={6}>
                   <InputLabel className={classes.label}>
-                    <SuccessLabel><h5>{t("label.final_clases")}</h5></SuccessLabel>
+                    <SuccessLabel>{t("label.final_clases")}</SuccessLabel>
                   </InputLabel>
                     <Field
                       component={DateTimePicker}

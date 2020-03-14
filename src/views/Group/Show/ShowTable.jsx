@@ -51,7 +51,7 @@ class ShowTable extends React.Component {
     }
 
     deleteClick() {
-      this.props.dispatchDeleteGroup(this.props.match.params.id);
+      this.props.dispatchDeleteGroup(this.props.match.params.id,  this.props.history);
     }
     componentDidMount() {
       this.props.dispatchShowGroup(this.props.match.params.id);
@@ -131,7 +131,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToPropsActions = dispatch => ({
   dispatchShowGroup: key => dispatch(showGroup(key)), 
-  dispatchDeleteGroup: key => dispatch(deleteGroup(key))
+  dispatchDeleteGroup: (key, history) => dispatch(deleteGroup(key, history))
 });
 
 const ShowTableComponent = translate('provider')(withStyles(style)(ShowTable));

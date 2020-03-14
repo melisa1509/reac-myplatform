@@ -21,7 +21,7 @@ import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSel
 
 import { verifyChange } from "assets/validation/index.jsx";
 import { withRouter } from 'react-router-dom';
-import { editPassword } from "actions/userActions.jsx";
+import { editPassword } from "actions/ambassadorActions.jsx";
 
 const style = {
     infoText: {
@@ -46,11 +46,11 @@ class ChangePasswordForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
-            userPasswordState:"",
-            userPassword:"",
-            userRepeatPasswordState:"",
-            userRepeatPassword:"",
+            ambassadorPasswordState:"",
+            ambassadorPassword:"",
+            ambassadorRepeatPasswordState:"",
+            ambassadorRepeatPassword:"",
+            key:"",
   
             // Select
             simpleSelect: "",
@@ -60,26 +60,26 @@ class ChangePasswordForm extends React.Component {
         };
         this.saveClick = this.saveClick.bind(this);
       }
-     
+      
       saveClick() {
-        if (this.state.userPasswordState === "") {
-          this.setState({ userPasswordState: "error" });
+        if (this.state.ambassadorPasswordState === "") {
+          this.setState({ ambassadorPasswordState: "error" });
         }
-        if (this.state.userRepeatPasswordState === "") {
-          this.setState({ userRepeatPasswordState: "error" });
+        if (this.state.ambassadorRepeatPasswordState === "") {
+          this.setState({ ambassadorRepeatPasswordState: "error" });
         }
-        if(this.state.userPasswordState === "success" && this.state.userRepeatPasswordState === "success"){
+        if(this.state.ambassadorPasswordState === "success" && this.state.ambassadorRepeatPasswordState === "success"){
           const params = {
-            userPassword: this.state.userPassword,
-            userRepeatPassword: this.state.userRepeatPassword,
+            ambassadorPassword: this.state.ambassadorPassword,
+            ambassadorRepeatPassword: this.state.ambassadorRepeatPassword,
             redirect: this.props.history,
           }
-          this.props.dispatchEditPassword(params, this.props.match.params.id);
+          this.props.dispatchEditPassword(params,this.props.match.params.id);
         }
       }
-
+      
     render() {
-        const { classes } = this.props;
+        const { } = this.props;
         let { t } = this.props;
         return (
           <GridContainer justify="center">
@@ -88,15 +88,15 @@ class ChangePasswordForm extends React.Component {
                   <GridItem xs={12} sm={12} md={12}>
                     <CustomInput
                      labelText={t("label.password")}
-                     success={this.state.userPasswordState === "success"}
-                     error={this.state.userPasswordState === "error"}
-                     id="userPassword"
+                     success={this.state.ambassadorPasswordState === "success"}
+                     error={this.state.ambassadorPasswordState === "error"}
+                     id="ambassadorPassword"
                      formControlProps={{
                          fullWidth: true,
                      }}
                      inputProps={{
                          onChange: event =>
-                         verifyChange(event, "userPassword", "password", 0, null, this),
+                         verifyChange(event, "ambassadorPassword", "password", 0, null, this),
                          type: "password",
                          autoComplete: "off",
                      }}
@@ -107,15 +107,15 @@ class ChangePasswordForm extends React.Component {
                   <GridItem xs={12} sm={12} md={12}>
                       <CustomInput
                         labelText={t("label.repeat_password")}
-                        success={this.state.userRepeatPasswordState === "success"}
-                        error={this.state.userRepeatPasswordState === "error"}
-                        id="userRepeatPassword"
+                        success={this.state.ambassadorRepeatPasswordState === "success"}
+                        error={this.state.ambassadorRepeatPasswordState === "error"}
+                        id="ambassadorRepeatPassword"
                         formControlProps={{
                           fullWidth: true
                         }}
                         inputProps={{
                           onChange: event =>
-                          verifyChange(event,"userRepeatPassword","password","userPassword", null, this),
+                          verifyChange(event,"ambassadorRepeatPassword","password","ambassadorPassword", null, this),
                           type: "password",
                           autoComplete: "off"
                         }}
@@ -139,11 +139,11 @@ class ChangePasswordForm extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
-  edit_password: state.userReducer.edit_password ,
+  edit_password: state.ambassadorReducer.edit_password,
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchEditPassword: (params, key) => dispatch(editPassword(params, key)),
+  dispatchEditPassword: (params,key) => dispatch(editPassword(params,key)),
 });
 
 const ChangePasswordFormComponent = translate('provider')(withStyles(style)(ChangePasswordForm));
