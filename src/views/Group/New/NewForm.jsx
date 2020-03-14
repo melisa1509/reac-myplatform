@@ -27,6 +27,7 @@ import { successRequiredFields } from "actions/generalActions.jsx";
 import { verifyChange } from "assets/validation/index.jsx";
 import ModalitySelect from "views/Select/ModalitySelect.jsx";
 import ProgramSelect from "views/Select/ProgramSelect.jsx";
+import moment from "moment";
 
 // style for this view
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
@@ -188,7 +189,7 @@ class NewForm extends React.Component {
               <GridContainer >
                 <GridItem xs={12} sm={12} md={6}>
                   <InputLabel className={classes.label}>
-                    <SuccessLabel><h5>{t("label.graduation_date")}</h5></SuccessLabel>
+                    <SuccessLabel>{t("label.graduation_date")}</SuccessLabel>
                   </InputLabel>
                     <Field
                       component={DateTimePicker}

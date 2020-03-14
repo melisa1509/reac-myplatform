@@ -74,7 +74,7 @@ class ProgramSelect extends React.Component {
                         classes={{
                             select: classes.select
                         }}
-                            value={input.value}
+                            value={input.value === undefined ? input.value : "option.program1"}
                             onChange={this.handleSimple , input.onChange}
                             inputProps={{
                             name: "simpleSelect",

@@ -181,8 +181,13 @@ class PaperworkTab extends React.Component {
 
     const earnings_losesPaperwork8 = [];
     const earnings_losesArray = Array.from(programmbs.paperwork8.p8_earnings_loses);
-    earnings_losesArray.unshift(t("label.total_earnings_loses"));
+    earnings_losesArray.unshift(t("label.earnings_loses"));
     earnings_losesPaperwork8.push(earnings_losesArray);
+
+    const balancePaperwork8 = [];
+    const balanceArray = Array.from(programmbs.paperwork8.p8_balance);
+    balanceArray.unshift(t("label.balance"));
+    balancePaperwork8.push(balanceArray);
 
   
     
@@ -384,163 +389,23 @@ class PaperworkTab extends React.Component {
                       )
                     })     
                   }
-                  
-      <tr>
-        <td className="td-table text-right padding-left-10 vertical-center" style={{
-              width: '28%'
-            }}><h7 className="td-bold">Total Expenses</h7></td>
-        <td className="td-table" style={{
-              width: '8%'
-            }}><input type="text" name="paperwork8_expenses" style={{
-                width: '100%'
-              }} className="text-right" defaultValue={333166} /></td>
-        <td className="td-table" style={{
-              width: '8%'
-            }}><input type="text" name="paperwork8_expenses" style={{
-                width: '100%'
-              }} className="text-right" defaultValue={171723} /></td>
-        <td className="td-table" style={{
-              width: '8%'
-            }}><input type="text" name="paperwork8_expenses" style={{
-                width: '100%'
-              }} className="text-right" defaultValue={317526} /></td>
-        <td className="td-table" style={{
-              width: '8%'
-            }}><input type="text" name="paperwork8_expenses" style={{
-                width: '100%'
-              }} className="text-right" defaultValue={286806} /></td>
-        <td className="td-table" style={{
-              width: '8%'
-            }}><input type="text" name="paperwork8_expenses" style={{
-                width: '100%'
-              }} className="text-right" defaultValue={268374} /></td>
-        <td className="td-table" style={{
-              width: '8%'
-            }}><input type="text" name="paperwork8_expenses" style={{
-                width: '100%'
-              }} className="text-right" defaultValue={245334} /></td>
-        <td className="td-table" style={{
-              width: '8%'
-            }}><input type="text" name="paperwork8_expenses" style={{
-                width: '100%'
-              }} className="text-right" defaultValue={275286} /></td>
-        <td className="td-table" style={{
-              width: '8%'
-            }}><input type="text" name="paperwork8_expenses" style={{
-                width: '100%'
-              }} className="text-right" defaultValue={267606} /></td>
-        <td className="td-table" style={{
-              width: '8%'
-            }}><input type="text" name="paperwork8_expenses" style={{
-                width: '100%'
-              }} className="text-right" defaultValue={256086} /></td>
-      </tr>
-      <tr>
-        <td className="td-table text-left padding-left-10 vertical-center td-background-color" style={{
-              width: '28%'
-            }}><h7 className="td-bolder">Profit/Loss</h7></td>
-        <td className="td-table" style={{
-              width: '8%'
-            }}><input type="text" name="paperwork8_earnings_loses" style={{
-                width: '100%'
-              }} className="text-right" defaultValue={16834} /></td>
-        <td className="td-table" style={{
-              width: '8%'
-            }}><input type="text" name="paperwork8_earnings_loses" style={{
-                width: '100%'
-              }} className="text-right" defaultValue={33277} /></td>
-        <td className="td-table" style={{
-              width: '8%'
-            }}><input type="text" name="paperwork8_earnings_loses" style={{
-                width: '100%'
-              }} className="text-right" defaultValue={77474} /></td>
-        <td className="td-table" style={{
-              width: '8%'
-            }}><input type="text" name="paperwork8_earnings_loses" style={{
-                width: '100%'
-              }} className="text-right" defaultValue={68194} /></td>
-        <td className="td-table" style={{
-              width: '8%'
-            }}><input type="text" name="paperwork8_earnings_loses" style={{
-                width: '100%'
-              }} className="text-right" defaultValue={62626} /></td>
-        <td className="td-table" style={{
-              width: '8%'
-            }}><input type="text" name="paperwork8_earnings_loses" style={{
-                width: '100%'
-              }} className="text-right" defaultValue={55666} /></td>
-        <td className="td-table" style={{
-              width: '8%'
-            }}><input type="text" name="paperwork8_earnings_loses" style={{
-                width: '100%'
-              }} className="text-right" defaultValue={64714} /></td>
-        <td className="td-table" style={{
-              width: '8%'
-            }}><input type="text" name="paperwork8_earnings_loses" style={{
-                width: '100%'
-              }} className="text-right" defaultValue={62394} /></td>
-        <td className="td-table" style={{
-              width: '8%'
-            }}><input type="text" name="paperwork8_earnings_loses" style={{
-                width: '100%'
-              }} className="text-right" defaultValue={58914} /></td>
-      </tr>
-      <tr>
-        <td className="td-table text-left padding-left-10 vertical-center td-background-color" style={{
-              width: '28%'
-            }}><h7 className="td-bolder">Ending Cash Balance</h7></td>
-        <td className="td-table" style={{
-              width: '8%'
-            }}><input type="text" name="paperwork8_balance" style={{
-                width: '100%'
-              }} className="text-right" defaultValue={66834} /></td>
-        <td className="td-table" style={{
-              width: '8%'
-            }}><input type="text" name="paperwork8_balance" style={{
-                width: '100%'
-              }} className="text-right" defaultValue={100111} /></td>
-        <td className="td-table" style={{
-              width: '8%'
-            }}><input type="text" name="paperwork8_balance" style={{
-                width: '100%'
-              }} className="text-right" defaultValue={177474} /></td>
-        <td className="td-table" style={{
-              width: '8%'
-            }}><input type="text" name="paperwork8_balance" style={{
-                width: '100%'
-              }} className="text-right" defaultValue={245668} /></td>
-        <td className="td-table" style={{
-              width: '8%'
-            }}><input type="text" name="paperwork8_balance" style={{
-                width: '100%'
-              }} className="text-right" defaultValue={308294} /></td>
-        <td className="td-table" style={{
-              width: '8%'
-            }}><input type="text" name="paperwork8_balance" style={{
-                width: '100%'
-              }} className="text-right" defaultValue={363960} /></td>
-        <td className="td-table" style={{
-              width: '8%'
-            }}><input type="text" name="paperwork8_balance" style={{
-                width: '100%'
-              }} className="text-right" defaultValue={428674} /></td>
-        <td className="td-table" style={{
-              width: '8%'
-            }}><input type="text" name="paperwork8_balance" style={{
-                width: '100%'
-              }} className="text-right" defaultValue={491068} /></td>
-        <td className="td-table" style={{
-              width: '8%'
-            }}><input type="text" name="paperwork8_balance" style={{
-                width: '100%'
-              }} className="text-right" defaultValue={549982} /></td>
-      </tr>
-    </tbody>
-  </table>
-  }
-
-}
-
+                  {
+                    earnings_losesPaperwork8.map((prop,key) => {
+                      return(
+                            <CustomRenderCell data={prop} widthColums={widthColumsPaperwork7Title} cellStyles={classes.tdBackgroundColor + " "+ classes.tdTable + " "+ classes.verticalCenter} />
+                      )
+                    })     
+                  }
+                  {
+                    balancePaperwork8.map((prop,key) => {
+                      return(
+                            <CustomRenderCell data={prop} widthColums={widthColumsPaperwork7Title} cellStyles={classes.tdBackgroundColor + " "+ classes.tdTable + " "+ classes.verticalCenter} />
+                      )
+                    })     
+                  }
+               
+                  </tbody>
+                </table>
               </GridItem>
             </GridContainer>
             <br/>

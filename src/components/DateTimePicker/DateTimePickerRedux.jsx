@@ -22,11 +22,11 @@ class DateTimePickerRedux extends React.Component {
                 dateFormat="YYYY-MM-DD"
                 timeFormat={false}
                 onChange={input.onChange}
-                defaultValue={defaultValue}
+                defaultValue={moment().calendar()}
                 closeOnSelect={true}
                 inputProps={{ 
                     placeholder: placeholder,
-                    value:moment(input.value).format('YYYY-MMM-DD')
+                    value: moment(input.value).format('YYYY-MMM-DD'),
                 }}
                 />
             </FormControl>

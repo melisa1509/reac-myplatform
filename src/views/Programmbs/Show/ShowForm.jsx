@@ -24,6 +24,7 @@ import ProcessTab from './ProcessTab.jsx';
 import PriceTab from './PriceTab.jsx';
 import PromotionTab from './PromotionTab.jsx';
 import PaperworkTab from './PaperworkTab.jsx';
+import QualitylifeTab from './QualitylifeTab.jsx';
 
 
 // style for this view
@@ -109,7 +110,15 @@ class ShowForm extends React.Component {
                       tabContent: (
                         <PaperworkTab />
                       )
+                    },
+                    {
+                      tabButton: t("title.quality"),
+                      tabIcon: Domain,
+                      tabContent: (
+                        <QualitylifeTab />
+                      )
                     }
+
                     
                   ]}
                 />

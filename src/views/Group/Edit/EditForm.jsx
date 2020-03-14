@@ -181,7 +181,7 @@ class EditForm extends React.Component {
               <GridContainer >
                 <GridItem xs={12} sm={12} md={6}>
                   <InputLabel className={classes.label}>
-                    <SuccessLabel><h5>{t("label.final_clases")}</h5></SuccessLabel>
+                    <SuccessLabel>{t("label.final_clases")}</SuccessLabel>
                   </InputLabel>
                     <Field
                       component={DateTimePicker}
