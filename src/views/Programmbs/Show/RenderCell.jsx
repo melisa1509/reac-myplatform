@@ -64,7 +64,6 @@ class RenderCell extends React.Component {
   
   render() {
     const { classes, data, widthColums } = this.props;
-        console.log(data);
     return (
         <tr>
             {

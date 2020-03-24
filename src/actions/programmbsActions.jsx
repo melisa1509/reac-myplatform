@@ -1,9 +1,9 @@
-import { SHOW_PROGRAMMBS } from 'constants/actionTypes.jsx';
-import { UPDATE_REVISION_PROGRAMMBS, LOAD_FORM_PROGRAMMBS } from 'constants/actionTypes';
+import { SHOW_PROGRAMMBS, LOAD_FORM_PROGRAMMBS, SUCCESSFULL_EDIT_REVISION, ERROR_EDIT_REVISION, HIDE_REVISION_ALERT } from 'constants/actionTypes.jsx';
+import { BASE_URL } from 'constants/urlTypes';
 
 export const getShowProgrammbs = key => {
     return (dispatch) => {
-        return fetch("https://api.interweavesolutions.org/programmbs/show/"+ key +"?callback=foo")
+        return fetch(BASE_URL + "/programmbs/show/"+ key +"?callback=foo")
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: SHOW_PROGRAMMBS, payload: json.data });
@@ -24,7 +24,13 @@ export const editRevisionProgrammbs = () => {
 
         var urlencoded = new URLSearchParams();
         urlencoded.append("revisionplan", reduxState.form.programmbs.values.revisionplan);
-        urlencoded.append("revisionproduct", reduxState.form.programmbs.values.revisionplan);
+        urlencoded.append("revisionproduct", reduxState.form.programmbs.values.revisionproduct);
+        urlencoded.append("revisionprice", reduxState.form.programmbs.values.revisionprice);
+        urlencoded.append("revisionpromotion", reduxState.form.programmbs.values.revisionpromotion);
+        urlencoded.append("revisionprocess", reduxState.form.programmbs.values.revisionprocess);
+        urlencoded.append("revisionpaperwork", reduxState.form.programmbs.values.revisionpaperwork);
+        urlencoded.append("revisionquality", reduxState.form.programmbs.values.revisionquality);
+        urlencoded.append("revisionservice", reduxState.form.programmbs.values.revisionservice);
 
         var requestOptions = {
             method: 'PUT',
@@ -33,10 +39,13 @@ export const editRevisionProgrammbs = () => {
             redirect: 'follow'
         };
 
-        return fetch("https://api.interweavesolutions.org/programmbs/update_revision/"+ key +"?callback=foo", requestOptions)
+        return fetch( BASE_URL + "/programmbs/update_revision/" + key + "?callback=foo", requestOptions)
         .then(response => response.json())
         .then(json => {
-            alert();
+            dispatch({type:SUCCESSFULL_EDIT_REVISION})
+        })
+        .catch(json =>{
+            dispatch({type:ERROR_EDIT_REVISION})
         });
 
     }
@@ -44,3 +53,5 @@ export const editRevisionProgrammbs = () => {
 }
 
 export const loadFormProgrammbs = data => ({ type: LOAD_FORM_PROGRAMMBS, data });
+
+export const hideRevisionAlert = () => ({ type: HIDE_REVISION_ALERT })

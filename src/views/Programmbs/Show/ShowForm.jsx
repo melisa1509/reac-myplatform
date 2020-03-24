@@ -14,6 +14,13 @@ import withStyles from "@material-ui/core/styles/withStyles";
 // @material-ui/icons
 import Domain from "@material-ui/icons/Domain";
 import AccountBalance from "@material-ui/icons/AccountBalance";
+import Timeline from "@material-ui/icons/Timeline";
+import MonetizationOn from "@material-ui/icons/MonetizationOn";
+import RecordVoiceOver from "@material-ui/icons/RecordVoiceOver";
+import FileCopy from "@material-ui/icons/FileCopy";
+import AccessibityNew from "@material-ui/icons/AccessibilityNew";
+import PanTool from "@material-ui/icons/PanTool";
+import Face from "@material-ui/icons/Face";
 
 
 // core components
@@ -25,6 +32,8 @@ import PriceTab from './PriceTab.jsx';
 import PromotionTab from './PromotionTab.jsx';
 import PaperworkTab from './PaperworkTab.jsx';
 import QualitylifeTab from './QualitylifeTab.jsx';
+import ServiceTab from './ServiceTab.jsx';
+import HistoryTab from './HistoryTab.jsx';
 
 
 // style for this view
@@ -85,39 +94,55 @@ class ShowForm extends React.Component {
                     },
                     {
                       tabButton: t("title.process"),
-                      tabIcon: AccountBalance,
+                      tabIcon: Timeline,
                       tabContent: (
                         <ProcessTab />
                       )
                     },
                     {
                       tabButton: t("title.price"),
-                      tabIcon: Domain,
+                      tabIcon: MonetizationOn,
                       tabContent: (
                         <PriceTab />
                       )
                     },
                     {
                       tabButton: t("title.promotion"),
-                      tabIcon: Domain,
+                      tabIcon: RecordVoiceOver,
                       tabContent: (
                         <PromotionTab />
                       )
                     },
                     {
                       tabButton: t("title.paperwork"),
-                      tabIcon: Domain,
+                      tabIcon: FileCopy,
                       tabContent: (
                         <PaperworkTab />
                       )
                     },
                     {
-                      tabButton: t("title.quality"),
-                      tabIcon: Domain,
+                      tabButton: t("title.quality_life"),
+                      tabIcon: AccessibityNew,
                       tabContent: (
                         <QualitylifeTab />
                       )
+                    },
+                    {
+                      tabButton: t("title.service"),
+                      tabIcon: PanTool,
+                      tabContent: (
+                        <ServiceTab />
+                      )
+                    },
+                    {
+                      tabButton: t("title.history"),
+                      tabIcon: Face,
+                      tabContent: (
+                        <HistoryTab />
+                      )
                     }
+
+
 
                     
                   ]}

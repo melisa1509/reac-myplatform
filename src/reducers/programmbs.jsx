@@ -1,5 +1,6 @@
-import { SHOW_PROGRAMMBS, UPDATE_REVISION_PROGRAMMBS, LOAD } from "constants/actionTypes";
+import { SHOW_PROGRAMMBS, UPDATE_REVISION_PROGRAMMBS, ERROR_EDIT_REVISION, SUCCESSFULL_EDIT_REVISION } from "constants/actionTypes";
 import { LOAD_FORM_PROGRAMMBS } from "constants/actionTypes";
+import { HIDE_REVISION_ALERT } from "constants/actionTypes";
 
 const initialState = { 
   programmbs:{
@@ -111,8 +112,12 @@ const initialState = {
           }
         }
     },
-  }
+  },
+  editRevisionError: false,
+  editRevisionSuccessfull: false
 }
+
+
 
 export const programmbsReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -120,24 +125,37 @@ export const programmbsReducer = (state = initialState, action) => {
         return Object.assign({}, state, {
           programmbs: action.payload
         });
-    }
 
-    switch (action.type) {
       case UPDATE_REVISION_PROGRAMMBS:
         return Object.assign({}, state, {
           programmbs: Object.assign(state.programmbs, {
             [action.payload.name]: action.payload.value
           })
         });
-    }
 
-    switch (action.type) {
       case LOAD_FORM_PROGRAMMBS:
         return Object.assign({}, state, {
           data: action.data
         });
+
+      case ERROR_EDIT_REVISION:
+        return Object.assign({}, state, {
+          editRevisionError: true
+        });
+
+      case SUCCESSFULL_EDIT_REVISION:
+        return Object.assign({}, state, {
+          editRevisionSuccessfull: true
+        });
+
+      case HIDE_REVISION_ALERT:
+        return Object.assign({}, state, {
+          editRevisionError: false,
+          editRevisionSuccessfull: false
+        });
     }
-    
+
+   
     return state;
 }
 
