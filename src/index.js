@@ -79,11 +79,11 @@ ReactDOM.render(
           <Route path="/profile" component={Profile} exact />
           <Route path="/profile/edit" component={ProfileEdit} exact />
           <Route path="/group" component={Group} exact /> 
-          <Route path="/group/new" component={NewGroup} exact /> 
+          <Route path="/group/new/:id" component={NewGroup} exact /> 
           <Route path="/group/show/:id" component={ShowGroup} exact /> 
           <Route path="/group/edit/:id" component={EditGroup} exact /> 
           <Route path="/group/ambassador" component={GroupAmbassadors} exact /> 
-          <Route path="/ambassadors" component={Ambassador} exact /> 
+          <Route path="/ambassador" component={Ambassador} exact /> 
           <Route path="/ambassador/show/:id" component={ShowAmbassador} exact /> 
           <Route path="/ambassador/edit/:id" component={EditAmbassador} exact /> 
           <Route path="/ambassador/new" component={NewAmbassador} exact /> 

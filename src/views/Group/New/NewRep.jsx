@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 // react component for creating dynamic tables
 import { connect } from "react-redux";
+import moment from "moment";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -25,13 +26,19 @@ const styles = {
     marginBottom: "0px"
   } 
 };
-
-
 class NewRep extends React.Component {
   
   render() {
     const { classes, styles } = this.props;
     let { t } = this.props;
+    const initialValuesGroup= {
+      modality:"option.modality1",
+      program:"option.program1",
+      start_date:moment().format('YYYY-MMM-DD'),
+      final_date:moment().format('YYYY-MMM-DD'),
+      graduation_date:moment().format('YYYY-MMM-DD'),
+      id_ambassador:this.props.match.params.id,
+    }
     return (
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={8}>
@@ -42,7 +49,7 @@ class NewRep extends React.Component {
              </center>
             </CardHeader>
             <CardBody>
-                <NewForm  />  
+                <NewForm initialValues={initialValuesGroup} />  
             </CardBody>
           </Card>
         </GridItem>

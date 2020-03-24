@@ -25,8 +25,10 @@ const styles = {
     marginBottom: "0px"
   } 
 };
-
-
+const initialValuesAmbassador= {
+  language:"en",
+  country:"AFG",
+}
 class NewRep extends React.Component {
   
   render() {
@@ -42,7 +44,7 @@ class NewRep extends React.Component {
              </center>
             </CardHeader>
             <CardBody>
-                <NewForm  />  
+                <NewForm initialValues={initialValuesAmbassador} />  
             </CardBody>
           </Card>
         </GridItem>
@@ -56,10 +58,14 @@ NewRep.propTypes = {
 };
 
 
+const mapDispatchToProps = state => ({
+   ambassador_id: state.AmbassadorReducer.ambassador_id
+});
+
 const mapDispatchToPropsActions = dispatch => ({
 
 });
 
 
 const NewRepComponent = translate('provider')(withStyles(styles)(NewRep));
-export default withRouter(connect(null, mapDispatchToPropsActions)(NewRepComponent));
+export default withRouter(connect(null, mapDispatchToPropsActions, mapDispatchToProps)(NewRepComponent));
