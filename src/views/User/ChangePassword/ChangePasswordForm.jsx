@@ -1,13 +1,12 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { translate } from "react-translate";
 // react component for creating dynamic tables
 
 import { connect } from "react-redux";
+import { withRouter } from 'react-router-dom';
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-import FormLabel from "@material-ui/core/FormLabel";
 
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -19,9 +18,11 @@ import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
 import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
 
-import { verifyChange } from "assets/validation/index.jsx";
-import { withRouter } from 'react-router-dom';
+import { verifyChange, compare } from "assets/validation/index.jsx";
 import { editPassword } from "actions/userActions.jsx";
+import { errorRequiredFields } from "actions/generalActions.jsx";
+import { successRequiredFields } from "actions/generalActions.jsx";
+import { dismatchPassword } from "actions/generalActions.jsx";
 
 const style = {
     infoText: {
@@ -68,13 +69,22 @@ class ChangePasswordForm extends React.Component {
         if (this.state.userRepeatPasswordState === "") {
           this.setState({ userRepeatPasswordState: "error" });
         }
+        if(this.state.userPasswordState === "error" || this.state.userRepeatPasswordState === "error" ){
+          this.props.dispatchErrorRequiredFields();
+        }
         if(this.state.userPasswordState === "success" && this.state.userRepeatPasswordState === "success"){
           const params = {
             userPassword: this.state.userPassword,
             userRepeatPassword: this.state.userRepeatPassword,
             redirect: this.props.history,
           }
-          this.props.dispatchEditPassword(params, this.props.match.params.id);
+          if(compare(this.state.userPassword, this.state.userRepeatPassword)){
+            this.props.dispatchEditPassword(params,this.props.match.params.id);
+          }
+          else {
+            this.props.dispatchDismatchPassword()
+          }
+          this.props.dispatchSuccessRequiredFields();
         }
       }
 
@@ -139,11 +149,18 @@ class ChangePasswordForm extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
-  edit_password: state.userReducer.edit_password ,
+  edit_password: state.userReducer.edit_password,
+  errorRequired:state.generalReducer.errorRequired,
+  successRequired:state.generalReducer.successRequired,
+  successfull_edit:state.generalReducer.successfull_edit,
+  dismatch_password:state.generalReducer.dismatch_password
 });
 
 const mapDispatchToPropsActions = dispatch => ({
   dispatchEditPassword: (params, key) => dispatch(editPassword(params, key)),
+  dispatchErrorRequiredFields:() => dispatch(errorRequiredFields()),
+  dispatchSuccessRequiredFields:() => dispatch(successRequiredFields()),
+  dispatchDismatchPassword:() => dispatch(dismatchPassword())
 });
 
 const ChangePasswordFormComponent = translate('provider')(withStyles(style)(ChangePasswordForm));

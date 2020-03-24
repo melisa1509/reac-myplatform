@@ -109,7 +109,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchUpdateModalitySelect: key => dispatch( updateModalitySelect(key) ), 
+  dispatchUpdateModalitySelect: () => dispatch( updateModalitySelect() ), 
 });
 
 const ModalitySelectComponent = translate('provider')(withStyles(style)(ModalitySelect));

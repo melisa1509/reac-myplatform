@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 // react component for creating dynamic tables
 import ReactTable from "react-table";
@@ -7,10 +6,6 @@ import { connect } from "react-redux";
 import { getAmbassadorList } from "actions/ambassadorActions.jsx";
 import { Link } from "react-router-dom";
 
-// @material-ui/icons
-import Create from "@material-ui/icons/Create";
-import Visibility from "@material-ui/icons/Visibility";
-import Close from "@material-ui/icons/Close";
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
@@ -18,6 +13,8 @@ import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
 import { translate } from "react-translate";
+
+import { withRouter } from 'react-router-dom';
 
 class IndexTable extends React.Component {
   constructor(props) {
@@ -65,7 +62,6 @@ class IndexTable extends React.Component {
   render() {
     const { ambassador_list, loading } = this.props;
     let { t } = this.props;
-            
     const data = ambassador_list.map((prop, key) => {
       return {
         id: key, 
@@ -75,14 +71,15 @@ class IndexTable extends React.Component {
         actions: (
           // we've added some custom button actions
           <div className="actions-left">
-             <Link to={"/group/new"}>
+            <Link to={"/group/new/" + prop.id}>
               <Button
                 size="sm"
                 color="info"
+                onClick={this.saveClick}
               >
                 {t('button.create_group')}
               </Button>
-            </Link>{" "}
+            </Link>
           </div>
         )
       };
@@ -162,32 +159,20 @@ class IndexTable extends React.Component {
               className="-striped -highlight"
           />
         </GridItem>
-          <GridContainer>
-            <GridItem xs={12} sm={12} md={12}>
-                <center>
-                <Link to={"/ambassador/new"}>
-                <Button color="info" size="sm">
-                {t("button.create_new")}
-                </Button>
-                {" "}
-                </Link>{" "}
-                </center>
-            </GridItem>
-          </GridContainer>
       </GridContainer>
     );
   }
 }
 
 const mapStateToProps = state => ({ 
-      ambassador_list: state.ambassadorReducer.ambassador_list, 
+      ambassador_list: state.ambassadorReducer.ambassador_list,
       loading: state.ambassadorReducer.loading
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetAmbassadorList: () => dispatch( getAmbassadorList() )
+  dispatchGetAmbassadorList: () => dispatch(getAmbassadorList()),
 });
 
 const IndexTableComponent = translate('provider')(IndexTable);
-export default connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent);
+export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent));
 

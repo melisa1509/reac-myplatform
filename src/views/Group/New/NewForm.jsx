@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { translate } from "react-translate";
 import { Link } from "react-router-dom";
 
@@ -27,7 +26,6 @@ import { successRequiredFields } from "actions/generalActions.jsx";
 import { verifyChange } from "assets/validation/index.jsx";
 import ModalitySelect from "views/Select/ModalitySelect.jsx";
 import ProgramSelect from "views/Select/ProgramSelect.jsx";
-import moment from "moment";
 
 // style for this view
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
@@ -91,25 +89,21 @@ class NewForm extends React.Component {
         this.props.dispatchSuccessRequiredFields();
         }
       }
-     
       
     render() {
-        const { classes, successfull_edit, errorRequired, successRequired, show_group } = this.props;
+        const { classes, successfull_new, errorRequired, successRequired } = this.props;
         let { t } = this.props;
         return (
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={8}>
               <form>
               <GridContainer justify="center">
-              </GridContainer>
-              <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
-                      { successfull_edit ?      
+                      { successfull_new ?      
                       <SnackbarContent
                         message={
                           <center>{t("label.save_success")}</center>
                         }
-                        close
                         color="success"
                       />
                       : ""}
@@ -129,25 +123,6 @@ class NewForm extends React.Component {
                       inputProps={{
                         onKeyUp: event => 
                               verifyChange(event, "groupname", "length", 0, null, this),
-                        type: "text",
-                      }}
-                    />
-                </GridItem>
-              </GridContainer>
-              <GridContainer >
-                  <GridItem xs={12} sm={12} md={12}>
-                    <Field
-                      labelText={t("label.embassador")+ " *"}
-                      component={CustomInputRedux}
-                      name={("embassador.first_name")}
-                      success={this.state.full_nameState === "success"}
-                      error={this.state.full_nameState === "error"}
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        onKeyUp: event => 
-                              verifyChange(event, "full_name", "length", 0, null, this),
                         type: "text",
                       }}
                     />
@@ -242,6 +217,17 @@ class NewForm extends React.Component {
                     />
                 </GridItem>
               </GridContainer>
+              <GridContainer >
+                  <GridItem xs={12} sm={12} md={12}>
+                    <Field
+                      component={CustomInputRedux}
+                      name="id_ambassador"
+                      inputProps={{
+                        type: "hidden",
+                      }}
+                    />
+                </GridItem>
+              </GridContainer>
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
                       { errorRequired ? <Danger><h6 className={classes.infoText}>{t("label.require_fields")}</h6></Danger>: ""}
@@ -281,6 +267,7 @@ NewForm = connect(
   state => ({
     errorRequired:state.generalReducer.errorRequired,
     successRequired:state.generalReducer.successRequired,
+    successfull_new:state.generalReducer.successfull_new,
     new_group: state.groupReducer.new_group,
   }),
   { dispatchNewGroup: newGroup, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields},

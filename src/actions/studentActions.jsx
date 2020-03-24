@@ -1,5 +1,5 @@
 import { STUDENT_LIST, SHOW_STUDENT, LOAD_FORM_STUDENT, DELETE_STUDENT, SUCCESSFUL_DELETE, EDIT_STUDENT, ERROR_EDIT_STUDENT, SUCCESSFULL_EDIT} from 'constants/actionTypes.jsx';
-import { EDIT_PASSWORD_STUDENT } from 'constants/actionTypes';
+import { EDIT_PASSWORD_STUDENT   } from 'constants/actionTypes';
 
 export const getStudentList = key => {
     return (dispatch) => {
@@ -107,6 +107,7 @@ export const editPassword = (params,key) => {
       .then(response => response.json())
       .then(json => {
           dispatch ({ type: EDIT_PASSWORD_STUDENT, payload: json }); 
+          dispatch ({ type: SUCCESSFULL_EDIT});  
       });
   }
 }

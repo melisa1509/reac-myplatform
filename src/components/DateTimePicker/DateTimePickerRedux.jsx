@@ -25,8 +25,8 @@ class DateTimePickerRedux extends React.Component {
                 defaultValue={moment().calendar()}
                 closeOnSelect={true}
                 inputProps={{ 
-                    placeholder: placeholder,
-                    value: moment(input.value).format('YYYY-MMM-DD'),
+                    placeholder:placeholder,
+                    value: moment(input.value).format('YYYY-MMM-DD') 
                 }}
                 />
             </FormControl>

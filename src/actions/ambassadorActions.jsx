@@ -121,6 +121,7 @@ export const editPassword = (params,key) => {
       .then(response => response.json())
       .then(json => {
           dispatch ({ type: EDIT_PASSWORD_AMBASSADOR, payload: json }); 
+          dispatch ({ type: SUCCESSFULL_EDIT});  
       });
   }
 }
