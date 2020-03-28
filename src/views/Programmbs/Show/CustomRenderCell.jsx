@@ -64,7 +64,6 @@ class CustomRenderCell extends React.Component {
   
   render() {
     const { classes, data, widthColums, cellStyles } = this.props;
-        console.log(data);
     return (
         <tr>
             {

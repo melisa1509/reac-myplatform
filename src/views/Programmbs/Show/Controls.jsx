@@ -6,11 +6,13 @@ import { connect } from "react-redux";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 
+
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import { editRevisionProgrammbs } from "actions/programmbsActions.jsx";
+import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 
 import { translate } from "react-translate";
 
@@ -24,7 +26,8 @@ const styles = {
   },
   verticalSpace:{
     paddingBottom: "30px"
-  }
+  },
+  ...sweetAlertStyle
 };
 
 
@@ -33,6 +36,7 @@ class Controls extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      
     };
     this.handleSaveRevision = this.handleSaveRevision.bind(this);
   }
