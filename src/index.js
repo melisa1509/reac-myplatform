@@ -36,6 +36,9 @@ import NewAmbassador from 'views/Ambassador/New/New.jsx';
 import AmbassadorChangePassword  from 'views/Ambassador/ChangePassword/ChangePassword.jsx';
 import CertificateGroup from 'views/Certificate/Group/Index.jsx';
 import CertificateList from 'views/Certificate/Student/Index.jsx';
+import Dashboard from 'views/Dashboard/Index.jsx';
+import AssignMentor from 'views/Dashboard/AssignMentor/Index.jsx';
+import ConfirmMentor from 'views/Dashboard/AssignMentor/Confirm.jsx';
 import { store } from 'store/index.jsx';
 
 import "assets/scss/material-dashboard-pro-react.scss?v=1.7.0";
@@ -92,6 +95,9 @@ ReactDOM.render(
           <Route path="/ambassador/editpassword/:id" component={AmbassadorChangePassword} exact /> 
           <Route path="/certificate/list/group" component={CertificateGroup} exact /> 
           <Route path="/certificate/list/student/:id" component={CertificateList} exact /> 
+          <Route path="/dashboard" component={Dashboard} exact />
+          <Route path="/dashboard/assignmentor/:id" component={AssignMentor} exact />
+          <Route path="/dashboard/confirmmentor/:id" component={ConfirmMentor} exact />
           <Redirect from="/" to="/admin/dashboard" />
         </Switch>
       </Router>,

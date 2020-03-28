@@ -75,3 +75,8 @@ export const DELETE_AMBASSADOR="DELETE_AMBASSADOR";
 
 // Constants of Certificate 
 export const GET_CERTIFICATE_LIST= "GET_CERTIFICATE_LIST";
+
+// Constants of Dashboard
+export const STUDENT_MBS_LIST = "STUDENT_MBS_LIST";
+export const STUDENT_AMBASSADOR_LIST = "STUDENT_AMBASSADOR_LIST";
+export const FUTURE_AMBASSADOR_LIST = "FUTURE_AMBASSADOR_LIST";
