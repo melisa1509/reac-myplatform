@@ -13,7 +13,7 @@ import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import ConfirmTable from 'views/Dashboard/AssignMentor/ConfirmTable.jsx';
+import ClearTable from 'views/Dashboard/AssignMentor/ClearTable.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from "react-translate";
@@ -29,7 +29,7 @@ const styles = {
 };
 
 
-class ConfirmRep extends React.Component { 
+class ClearRep extends React.Component { 
 
   render() {
     const { classes, styles } = this.props;
@@ -40,11 +40,11 @@ class ConfirmRep extends React.Component {
           <Card>
             <CardHeader color="info">
             <center>
-             <h4 className={classes.cardTitle}>{t("title.assign_group")}</h4>
+             <h4 className={classes.cardTitle}>{t("title.student_list_future_ambassador_revision")}</h4>
              </center>
             </CardHeader>
             <CardBody>
-                <ConfirmTable  />  
+                <ClearTable  />  
             </CardBody>
           </Card>
         </GridItem>
@@ -53,16 +53,16 @@ class ConfirmRep extends React.Component {
   }
 }
 
-ConfirmRep.propTypes = {
+ClearRep.propTypes = {
   classes: PropTypes.object,
 };
 
 //export default withStyles(styles)(ReactTables);
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchConfirmUser: (key) => dispatch( showUser(key) )
+  dispatchClearUser: (key) => dispatch( showUser(key) )
 });
 
 
-const ConfirmRepComponent = translate('provider')(withStyles(styles)(ConfirmRep));
-export default withRouter(connect(null, mapDispatchToPropsActions)(ConfirmRepComponent));
+const ClearRepComponent = translate('provider')(withStyles(styles)(ClearRep));
+export default withRouter(connect(null, mapDispatchToPropsActions)(ClearRepComponent));

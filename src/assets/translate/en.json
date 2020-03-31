@@ -58,6 +58,7 @@
     "button.show_entire_list":           "Show Entire List",
     "button.clean_pending_list":         "Clear from Pending",
     "button.approve_selected_certificates":  "Approved Selected Certificates",
+    "button.clear":                      "Clear",
 
     "label.chose_language":             "Elegir idioma",
     "label.successful_delete":          "Successful Delete",   
@@ -275,6 +276,7 @@
     "title.welcome":                    "Welcome!",
     "title.new_course":                 "New Course",
     "title.avaliable_certificates":     "Avaliable Certificates",
+    "title.assign_group":               "Confirm Group Assigment",
     "title.cash_flow":                  "Cash Flow",
     "title.dashboard":                  "Dashboard",
     "title.edit_ambassador":            "Edit Ambassador",

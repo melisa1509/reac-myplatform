@@ -17,6 +17,7 @@ import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
 import { translate } from "react-translate";
+import { withRouter } from 'react-router-dom';
 
 
 
@@ -61,12 +62,15 @@ class IndexTable extends React.Component {
 
   componentDidMount() {
     this.props.dispatchGetGroupList();
+    
   }
 
  
   render() {
     const { group_list, loading } = this.props;
     let { t } = this.props;
+    const student_id = this.props.match.params.student;
+    
             
     const data = group_list.map((prop, key) => {
       let i = 0;
@@ -81,7 +85,7 @@ class IndexTable extends React.Component {
         AmbassadorMentor: prop.embassador.first_name + " " + prop.embassador.last_name,
         projects: (
           <div className="actions-left">
-            <Link to={"/dashboard/confirmmentor/" + prop.id }>
+            <Link to={"/dashboard/confirmmentor/"+ student_id + "/" + prop.id }>
               <Button
                 size="sm"
                 color="info"
@@ -183,5 +187,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 const IndexTableComponent = translate('provider')(IndexTable);
-export default connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent);
+export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent));
 

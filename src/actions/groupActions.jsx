@@ -13,7 +13,7 @@ export const getGroupList= () => {
 
 export const showGroup = key => {
     return (dispatch) => {
-        return fetch("http://api.interweavesolutions.org/group/show/"+ key +"?callback=foo")
+        return fetch("https://lms.interweavesolutions.org/group/show/"+ key +"?callback=foo")
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: SHOW_GROUP, payload: json.data });

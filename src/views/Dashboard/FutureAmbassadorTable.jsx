@@ -82,6 +82,15 @@ class FutureAmbassadorTable extends React.Component {
                 {t('button.assing_mentor')}
               </Button>
             </Link>
+            {" "}
+            <Link to={"/dashboard/clearpending/" + prop.id }>
+              <Button
+                size="sm"
+                color="danger"
+              >
+                {t('button.clear')}
+              </Button>
+            </Link>
             
           </div>
         )
@@ -128,7 +137,7 @@ class FutureAmbassadorTable extends React.Component {
                 {
                   Header: t("th.projects"),
                   accessor: "projects",
-                  width: 150,
+                  width: 220,
                   sortable: false,
                   filterable: false
                 },

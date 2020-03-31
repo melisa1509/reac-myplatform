@@ -39,6 +39,7 @@ import CertificateList from 'views/Certificate/Student/Index.jsx';
 import Dashboard from 'views/Dashboard/Index.jsx';
 import AssignMentor from 'views/Dashboard/AssignMentor/Index.jsx';
 import ConfirmMentor from 'views/Dashboard/AssignMentor/Confirm.jsx';
+import ClearPendingDashboard from 'views/Dashboard/AssignMentor/Clear.jsx';
 import { store } from 'store/index.jsx';
 
 import "assets/scss/material-dashboard-pro-react.scss?v=1.7.0";
@@ -96,8 +97,9 @@ ReactDOM.render(
           <Route path="/certificate/list/group" component={CertificateGroup} exact /> 
           <Route path="/certificate/list/student/:id" component={CertificateList} exact /> 
           <Route path="/dashboard" component={Dashboard} exact />
-          <Route path="/dashboard/assignmentor/:id" component={AssignMentor} exact />
-          <Route path="/dashboard/confirmmentor/:id" component={ConfirmMentor} exact />
+          <Route path="/dashboard/assignmentor/:student" component={AssignMentor} exact />
+          <Route path="/dashboard/confirmmentor/:student/:group" component={ConfirmMentor} exact />
+          <Route path="/dashboard/clearpending/:student" component={ClearPendingDashboard} exact />
           <Redirect from="/" to="/admin/dashboard" />
         </Switch>
       </Router>,

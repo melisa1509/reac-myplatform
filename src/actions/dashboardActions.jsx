@@ -71,3 +71,62 @@ export const getFutureAmbassadorList =() => {
       })
     }
 };
+
+export const confirmGroup = (params, redirect)=> {
+  return (dispatch) => {
+  
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+
+  var urlencoded = new URLSearchParams();
+  var group = params.group;
+  var student = params.student;
+  urlencoded.append("group", group.toString());
+  urlencoded.append("student", student.toString());
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: urlencoded,
+    redirect: 'follow'
+  };
+  
+      return fetch("https://lms.interweavesolutions.org/student/confirmgroup?callback=foo", requestOptions)
+      .then(response => response.json())
+      .then(json => {
+        dispatch(clearPending(params, redirect));
+      })
+
+  }
+  
+};
+
+export const clearPending = (params, redirect)=> {
+  return (dispatch) => {
+  
+    alert();
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+
+  var urlencoded = new URLSearchParams();
+  var student = params.student;
+  urlencoded.append("student", student.toString());
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: urlencoded,
+    redirect: 'follow'
+  };
+  
+      return fetch("https://lms.interweavesolutions.org/student/deletefutureambassador?callback=foo", requestOptions)
+      .then(response => response.json())
+      .then(json => {
+        redirect.push('/dashboard'); 
+      })
+
+  }
+  
+};

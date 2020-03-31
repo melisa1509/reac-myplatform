@@ -10,7 +10,7 @@ import GridItem from "components/Grid/GridItem.jsx";
 
 
 import mainPageStyle from "assets/jss/material-kit-react/views/mainPage.jsx";
-import ConfirmRep from 'views/Dashboard/AssignMentor/ConfirmRep.jsx';
+import ClearRep from 'views/Dashboard/AssignMentor/ClearRep.jsx';
 import AdminHeader from "views/Header/AdminHeader.jsx";
 
 
@@ -19,7 +19,7 @@ const styles = {
   ...PerfectScrollbarStyle
 };
 
-class Confirm extends React.Component {
+class Clear extends React.Component {
   constructor(props) {
     super(props);
     // we use this to make the card to appear after the page has been rendered
@@ -43,7 +43,7 @@ class Confirm extends React.Component {
           <div className={classes.container}>
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={12}>
-                <ConfirmRep generalStyles={styles}/>
+                <ClearRep generalStyles={styles}/>
               </GridItem>
             </GridContainer>
           </div>
@@ -54,4 +54,4 @@ class Confirm extends React.Component {
   }
 }
 
-export default withStyles(styles)(Confirm);
+export default withStyles(styles)(Clear);

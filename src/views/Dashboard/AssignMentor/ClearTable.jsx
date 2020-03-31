@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 // react component for creating dynamic tables
 import { connect } from "react-redux";
 import { showUser } from "actions/userActions.jsx";
-import { showGroup } from "actions/groupActions.jsx";
-import { confirmGroup } from 'actions/dashboardActions.jsx';
+import { clearPending } from 'actions/dashboardActions.jsx';
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -40,7 +39,7 @@ const style = {
     },
 };
 
-class ConfirmTable extends React.Component {
+class ClearTable extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -51,15 +50,13 @@ class ConfirmTable extends React.Component {
 
     saveClick(){
       const params = {
-        group: this.props.match.params.group,
         student: this.props.match.params.student
       }
-      this.props.dispatchConfirmGroup(params, this.props.history );
+      this.props.dispatchClearPending(params, this.props.history );
     }
    
     componentDidMount() {
       this.props.dispatchShowUser(this.props.match.params.student);
-      this.props.dispatchShowGroup(this.props.match.params.group);
     }
 
     render() {
@@ -74,8 +71,6 @@ class ConfirmTable extends React.Component {
               tableData={[
                 [<th>{t("label.name")}</th>,show_user.first_name],
                 [<th>{t("label.lastName")}</th>,show_user.last_name],
-                [<th>{t("label.group")}</th>,show_group.name],
-                [<th>{t("label.embassador_mentor")}</th>, show_group.embassador.first_name + " " + show_group.embassador.last_name],
               ]}
             />
             <br/>
@@ -89,7 +84,7 @@ class ConfirmTable extends React.Component {
                       {" "}
                       </Link>{" "}
                       <Button color="success" size="sm" onClick={this.saveClick}>
-                      {t("button.confirm_assing")}
+                      {t("button.clean_pending_list")}
                       </Button>
                       {" "}
                       </center>
@@ -108,11 +103,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToPropsActions = dispatch => ({
   dispatchShowUser: key => dispatch(showUser(key)), 
-  dispatchShowGroup: key => dispatch(showGroup(key)),
-  dispatchConfirmGroup: (params, history ) => dispatch(confirmGroup(params, history))
+  dispatchClearPending: (params, history ) => dispatch(clearPending(params, history))
 });
 
-const ConfirmTableComponent = translate('provider')(withStyles(style)(ConfirmTable));
-export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(ConfirmTableComponent));
+const ClearTableComponent = translate('provider')(withStyles(style)(ClearTable));
+export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(ClearTableComponent));
 
 
