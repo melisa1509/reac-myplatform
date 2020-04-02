@@ -100,11 +100,12 @@ class IndexTable extends React.Component {
               size="sm"
               color="info"
               href={"https://myplatform.interweavesolutions.org/certificate/mbs?id=" + prop.student.id}
+              target="_blank"
             >
               {t('button.certificate_mbs')}
             </Button>
           :
-            "Certificate Not Available"
+           t("label.not_available")
           }      
           </div>
         ),
@@ -119,7 +120,7 @@ class IndexTable extends React.Component {
             {t('button.certificate_ambassador')}
           </Button>
           :
-            "Certificate Not Available"
+            t("label.not_available")
           }
       </div>
       )
@@ -159,10 +160,13 @@ class IndexTable extends React.Component {
                 {
                   Header: t("th.certificate_mbs"),
                   accessor: "MBScertificate",
+                  width: 250
                 },
                 {
                   Header: t("th.certificate_ambassador"),
                   accessor: "SAcertificate",
+                  filterable: false,
+                
                 },
                 {
                   Header: "",
@@ -170,6 +174,7 @@ class IndexTable extends React.Component {
                   width: 0,
                   resizable: false,
                   sortable: false,
+
                   getProps: () => {
                     return {
                       style: { padding: "20px"}
@@ -179,6 +184,7 @@ class IndexTable extends React.Component {
                     const result = matchSorter(rows, filter.value, {
                       keys: [
                         "full_name",
+                        "status"
                       ], threshold: matchSorter.rankings.WORD_STARTS_WITH
                     });
                     return result;
@@ -186,7 +192,8 @@ class IndexTable extends React.Component {
                   filterAll: true,
                 }
               ]}
-              defaultPageSize={6}
+              key={data.length}
+              defaultPageSize={data.length < 10 ? data.length : 10}
               showPaginationTop={false}
               showPaginationBottom={true}
               className="-striped -highlight"
