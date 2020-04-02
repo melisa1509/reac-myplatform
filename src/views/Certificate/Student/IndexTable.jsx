@@ -116,6 +116,7 @@ class IndexTable extends React.Component {
             size="sm"
             color="success"
             href={"https://myplatform.interweavesolutions.org/certificate/ambassador?id=" + prop.student.id}
+            target="_blank"
           >
             {t('button.certificate_ambassador')}
           </Button>
