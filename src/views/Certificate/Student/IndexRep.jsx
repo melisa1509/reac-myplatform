@@ -33,7 +33,7 @@ class IndexRep extends React.Component {
     let { t } = this.props;
     return (
       <GridContainer justify="center">
-        <GridItem xs={12} sm={12} md={10}>
+        <GridItem xs={12} sm={12} md={12}>
           <Card>
             <CardHeader color="info">
                 <h4 className={classes.cardTitle}>{t("title.student_list")}</h4>

@@ -115,5 +115,12 @@ const mapDispatchToPropsActions = dispatch => ({
 const ModalitySelectComponent = translate('provider')(withStyles(style)(ModalitySelect));
 export default connect(mapStateToProps, mapDispatchToPropsActions)(ModalitySelectComponent);
 
+ 
+  
 
-
+  
+  
+  
+  
+  
+  

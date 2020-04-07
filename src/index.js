@@ -1,4 +1,3 @@
-
 import React from "react";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
@@ -41,6 +40,7 @@ import Dashboard from 'views/Dashboard/Index.jsx';
 import AssignMentor from 'views/Dashboard/AssignMentor/Index.jsx';
 import ConfirmMentor from 'views/Dashboard/AssignMentor/Confirm.jsx';
 import ClearPendingDashboard from 'views/Dashboard/AssignMentor/Clear.jsx';
+import Reports from 'views/Reports/Index.jsx';
 import { store } from 'store/index.jsx';
 
 import "assets/scss/material-dashboard-pro-react.scss?v=1.7.0";
@@ -102,6 +102,7 @@ ReactDOM.render(
           <Route path="/dashboard/assignmentor/:student" component={AssignMentor} exact />
           <Route path="/dashboard/confirmmentor/:student/:group" component={ConfirmMentor} exact />
           <Route path="/dashboard/clearpending/:student" component={ClearPendingDashboard} exact />
+          <Route path="/report" component={Reports} exact />
           <Redirect from="/" to="/admin/dashboard" />
         </Switch>
       </Router>,
