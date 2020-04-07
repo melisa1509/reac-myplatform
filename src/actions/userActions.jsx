@@ -1,10 +1,10 @@
 import { SHOW_USER, LOAD_FORM_USER, EDIT_USER, ERROR_EDIT_USER, SUCCESSFULL_EDIT, DELETE_USER, EDIT_PASSWORD_USER, SUCCESSFUL_DELETE} from 'constants/actionTypes.jsx';
-
+import { BASE_URL} from 'constants/urlTypes.jsx';
 
 
 export const showUser = key => {
     return (dispatch) => {
-        return fetch("http://api.interweavesolutions.org/user/show/"+ key +"?callback=foo")
+        return fetch(BASE_URL + "/user/show/"+ key +"?callback=foo")
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: SHOW_USER, payload: json.data });
@@ -41,7 +41,7 @@ export const editUser =() => {
               redirect: 'follow'
             }
     
-        return fetch("http://api.interweavesolutions.org/user/edit/"+ key +"?callback=foo", requestOptions)
+        return fetch(BASE_URL + "/user/edit/"+ key +"?callback=foo", requestOptions)
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: EDIT_USER, payload: json.data });  
@@ -68,7 +68,7 @@ export const editPassword = (params, key) => {
         };
 
     return (dispatch) => {
-      return fetch("http://api.interweavesolutions.org/user/editpassword/"+ key +"?callback=foo", requestOptions)
+      return fetch(BASE_URL + "/user/editpassword/"+ key +"?callback=foo", requestOptions)
       .then(response => response.json())
       .then(json => {
           dispatch ({ type: EDIT_PASSWORD_USER, payload: json });
@@ -91,7 +91,7 @@ export const deleteUser  = (key) => {
     };
 
     return (dispatch) => {
-      return fetch("http://api.interweavesolutions.org/user/delete/"+ key +"?callback=foo", requestOptions)
+      return fetch(BASE_URL + "/user/delete/"+ key +"?callback=foo", requestOptions)
       .then(response => response.json())
       .then(json => {
           dispatch ({ type: DELETE_USER, payload: json.data });

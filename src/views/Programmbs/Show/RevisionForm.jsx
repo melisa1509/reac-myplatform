@@ -36,16 +36,16 @@ import { translate } from "react-translate";
   
   // Decorate with reduxForm(). It will read the initialValues prop provided by connect()
   RevisionForm = reduxForm({
-    form: 'programmbs', // a unique identifier for this form
+    form: 'programmbs',
+    enableReinitialize: true,
   })(RevisionForm);
 
  
-  // You have to connect() to any reducers that you wish to connect to yourself
   RevisionForm = connect(
     state => ({
-      initialValues: state.programmbsReducer.data, // pull initial values from account reducer
+      initialValues: state.programmbsReducer.data, 
     }),
-    { load: loadFormProgrammbs }, // bind account loading action creator
+    { load: loadFormProgrammbs }, 
   )(RevisionForm);
 
   

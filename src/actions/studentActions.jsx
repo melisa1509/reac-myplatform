@@ -1,9 +1,10 @@
 import { STUDENT_LIST, SHOW_STUDENT, LOAD_FORM_STUDENT, DELETE_STUDENT, SUCCESSFUL_DELETE, EDIT_STUDENT, ERROR_EDIT_STUDENT, SUCCESSFULL_EDIT} from 'constants/actionTypes.jsx';
 import { EDIT_PASSWORD_STUDENT   } from 'constants/actionTypes';
+import { BASE_URL} from 'constants/urlTypes.jsx';
 
 export const getStudentList = key => {
     return (dispatch) => {
-        return fetch("https://api.interweavesolutions.org/student/?callback=foo")
+        return fetch(BASE_URL + "/student/?callback=foo")
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: STUDENT_LIST, payload: json.data });
@@ -13,7 +14,7 @@ export const getStudentList = key => {
 
 export const showStudent = key => {
     return (dispatch) => {
-        return fetch("http://api.interweavesolutions.org/user/show/"+ key +"?callback=foo")
+        return fetch(BASE_URL + "/user/show/"+ key +"?callback=foo")
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: SHOW_STUDENT, payload: json.data });
@@ -40,7 +41,7 @@ export const deleteStudent  = (key,redirect) => {
     };
 
     return (dispatch) => {
-      return fetch("http://api.interweavesolutions.org/user/delete/"+ key +"?callback=foo", requestOptions)
+      return fetch(BASE_URL + "/user/delete/"+ key +"?callback=foo", requestOptions)
       .then(response => response.json())
       .then(json => {
           dispatch ({ type: DELETE_STUDENT, payload: json.data });
@@ -53,7 +54,7 @@ export const editStudent =() => {
     return (dispatch,getState) => {
 
         const reduxState = getState();
-        const key = reduxState.form.userform.values.id;
+        const key = reduxState.form.studentform.values.id;
       
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
@@ -74,7 +75,7 @@ export const editStudent =() => {
               redirect: 'follow'
             }
     
-        return fetch("http://api.interweavesolutions.org/user/edit/"+ key +"?callback=foo", requestOptions)
+        return fetch(BASE_URL + "/user/edit/"+ key +"?callback=foo", requestOptions)
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: EDIT_STUDENT, payload: json.data });  
@@ -103,7 +104,7 @@ export const editPassword = (params,key) => {
         };
 
     return (dispatch) => {
-      return fetch("http://api.interweavesolutions.org/user/editpassword/"+ key +"?callback=foo", requestOptions)
+      return fetch(BASE_URL + "/user/editpassword/"+ key +"?callback=foo", requestOptions)
       .then(response => response.json())
       .then(json => {
           dispatch ({ type: EDIT_PASSWORD_STUDENT, payload: json }); 

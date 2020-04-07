@@ -1,9 +1,10 @@
 import {GROUP_LIST} from 'constants/actionTypes.jsx';
 import { LOAD_FORM_GROUP, SHOW_GROUP, EDIT_GROUP, SUCCESSFULL_EDIT, NEW_GROUP, DELETE_GROUP, SUCCESSFUL_DELETE, SUCCESSFULL_NEW} from 'constants/actionTypes';
+import { BASE_URL } from 'constants/urlTypes.jsx';
 
 export const getGroupList= () => {
     return (dispatch) => {
-        return fetch("https://api.interweavesolutions.org/group/?callback=foo")
+        return fetch( BASE_URL + "/group/?callback=foo")
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: GROUP_LIST, payload: json.data });
@@ -13,7 +14,7 @@ export const getGroupList= () => {
 
 export const showGroup = key => {
     return (dispatch) => {
-        return fetch("https://lms.interweavesolutions.org/group/show/"+ key +"?callback=foo")
+        return fetch( BASE_URL + "/group/show/"+ key +"?callback=foo")
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: SHOW_GROUP, payload: json.data });
@@ -48,7 +49,7 @@ export const editGroup = ()=> {
         redirect: 'follow'
         };
 
-        return fetch("http://api.interweavesolutions.org/group/edit/"+ key +"?callback=foo", requestOptions)
+        return fetch( BASE_URL + "/group/edit/"+ key +"?callback=foo", requestOptions)
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: EDIT_GROUP, payload: json.data });
@@ -83,7 +84,7 @@ export const newGroup = ()=> {
       redirect: 'follow'
     };
     
-        return fetch("http://api.interweavesolutions.org/group/new", requestOptions)
+        return fetch( BASE_URL + "/group/new", requestOptions)
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: NEW_GROUP, payload: json.data });
@@ -100,7 +101,7 @@ export const deleteGroup  = (key, redirect) => {
     };
 
     return (dispatch) => {
-      return fetch("http://api.interweavesolutions.org/group/delete/"+ key +"?callback=foo", requestOptions)
+      return fetch(BASE_URL + "/group/delete/"+ key +"?callback=foo", requestOptions)
       .then(response => response.json())
       .then(json => {
           dispatch ({ type: DELETE_GROUP, payload: json.data });

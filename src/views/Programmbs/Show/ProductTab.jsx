@@ -107,7 +107,7 @@ class ProductTab extends React.Component {
               { programmbs.product7 }
             </MutedText>
             <br/>
-            <RevisionForm name="revisionproduct" />
+            <RevisionForm name="revisionproduct" labelText={t("label.revision_product")+ " *"}/>
             <Controls/>
           </CardBody>
         </Card>

@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 // react component for creating dynamic tables
 import { connect } from "react-redux";
+import { withRouter } from 'react-router-dom';
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -11,7 +12,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
-import { editRevisionProgrammbs } from "actions/programmbsActions.jsx";
+import { editRevisionProgrammbs, approveProject } from "actions/programmbsActions.jsx";
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 
 import { translate } from "react-translate";
@@ -39,10 +40,15 @@ class Controls extends React.Component {
       
     };
     this.handleSaveRevision = this.handleSaveRevision.bind(this);
+    this.handleApproveProject = this.handleApproveProject.bind(this);
   }
 
   handleSaveRevision(){
-    this.props.dispatchEditRevisionProgrammbs();
+    this.props.dispatchEditRevisionProgrammbs(this.props.history);
+  }
+
+  handleApproveProject(){
+    this.props.dispatchApproveProject(this.props.history);
   }
  
 
@@ -69,7 +75,7 @@ class Controls extends React.Component {
                     {t("button.certificate_attendance")}
                 </Button>
                 {" "}
-                <Button color="success" size="sm" onClick={this.saveClick}>
+                <Button color="success" size="sm" onClick={this.handleApproveProject}>
                     {t("button.approved")}
                 </Button>
                 
@@ -77,7 +83,7 @@ class Controls extends React.Component {
         </GridItem>
       </GridContainer>
     );
-  }
+  } 
 }
 
 Controls.propTypes = {
@@ -88,9 +94,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchEditRevisionProgrammbs: () => dispatch( editRevisionProgrammbs() )
+  dispatchEditRevisionProgrammbs: param => dispatch( editRevisionProgrammbs(param) ), 
+  dispatchApproveProject: param => dispatch( approveProject(param))
 });
 
 
 const ConstrolsComponent = translate('provider')(withStyles(styles)(Controls));
-export default connect(mapStateToProps, mapDispatchToPropsActions)(ConstrolsComponent);
+export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(ConstrolsComponent));

@@ -5,7 +5,8 @@ const initialState = {
   loginError: false,
   active_user: {
     first_name: "",
-    last_name: ""
+    last_name: "",
+    roles: [""]
   }
 
 }
@@ -14,7 +15,7 @@ export const loginReducer = (state = initialState, action) => {
     switch (action.type) {
         case SUCCESSFULL_AUTHENTICATION:
             return Object.assign({}, state, {
-              token: action.payload.token
+              token: action.payload.token, 
             });
         
         case FAILED_AUTHENTICATION:

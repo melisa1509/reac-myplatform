@@ -22,6 +22,10 @@ import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSel
 
 import { verifyChange } from "assets/validation/index.jsx";
 import { getAuthenticacion } from "actions/loginActions";
+import { getGroupList } from "actions/groupActions.jsx";
+import { getStudentList } from "actions/studentActions.jsx";
+import { getAdminStudentMbsList } from "actions/dashboardActions.jsx";
+import { getAmbassadorList } from "actions/ambassadorActions";
 
 
 const style = {
@@ -176,7 +180,11 @@ class LoginForm extends React.Component {
     }
 
     componentDidMount() {
-
+      //Initialize Resources
+      this.props.dispatchGetStudentList();
+      this.props.dispatchGetGroupList();
+      this.props.dispatchGetStudentMbsList();
+      this.props.dispatchGetAmbassadorList();
     }
 
     render() {
@@ -258,6 +266,11 @@ const mapStateToProps = state => (
 
 const mapDispatchToPropsActions = dispatch => ({
   dispatchGetAuthenticacion: (params, history) => dispatch( getAuthenticacion(params, history) ),
+  dispatchGetGroupList: () => dispatch( getGroupList() ),
+  dispatchGetStudentList: () => dispatch( getStudentList() ),
+  dispatchGetStudentMbsList: () => dispatch( getAdminStudentMbsList() ),
+  dispatchGetAmbassadorList: () => dispatch( getAmbassadorList())
+  
 });
 
 const LoginFormComponent = translate('provider')(withStyles(style)(LoginForm));

@@ -29,6 +29,7 @@ import UserEdit  from 'views/User/Edit/Edit.jsx';
 import UserChangePassword  from 'views/User/ChangePassword/ChangePassword.jsx';
 import Profile  from 'views/Profile/Show/Show.jsx';
 import ProfileEdit  from 'views/Profile/Edit/Edit.jsx';
+import ProfileEditPassword  from 'views/Profile/ChangePassword/ChangePassword.jsx';
 import Ambassador from 'views/Ambassador/Index.jsx'
 import ShowAmbassador from 'views/Ambassador/Show/Show.jsx';
 import EditAmbassador from 'views/Ambassador/Edit/Edit.jsx';
@@ -78,12 +79,13 @@ ReactDOM.render(
           <Route path="/login" component={Login} />
           <Route path="/app" component={App} />
           <Route path="/course/new" component={CourseNew} />
-          <Route path="/programmbs/:id" component={ProgramMbs} />
+          <Route path="/programmbs/show/:id" component={ProgramMbs} />
           <Route path="/user/show/:id" component={User} exact /> 
           <Route path="/user/edit/:id" component={UserEdit} exact /> 
           <Route path="/user/editpassword/:id" component={UserChangePassword} exact /> 
           <Route path="/profile" component={Profile} exact />
           <Route path="/profile/edit" component={ProfileEdit} exact />
+          <Route path="/profile/editpassword" component={ProfileEditPassword} exact />
           <Route path="/group" component={Group} exact /> 
           <Route path="/group/new/:id" component={NewGroup} exact /> 
           <Route path="/group/show/:id" component={ShowGroup} exact /> 
@@ -94,7 +96,7 @@ ReactDOM.render(
           <Route path="/ambassador/edit/:id" component={EditAmbassador} exact /> 
           <Route path="/ambassador/new" component={NewAmbassador} exact /> 
           <Route path="/ambassador/editpassword/:id" component={AmbassadorChangePassword} exact /> 
-          <Route path="/certificate/list/group" component={CertificateGroup} exact /> 
+          <Route path="/certificate" component={CertificateGroup} exact /> 
           <Route path="/certificate/list/student/:id" component={CertificateList} exact /> 
           <Route path="/dashboard" component={Dashboard} exact />
           <Route path="/dashboard/assignmentor/:student" component={AssignMentor} exact />

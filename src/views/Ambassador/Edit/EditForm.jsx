@@ -303,12 +303,13 @@ class EditForm extends React.Component {
 
 EditForm = reduxForm({
   form: 'ambassadorform', 
+  enableReinitialize: true,
 })(EditForm);
 
 
 EditForm = connect(
   state => ({
-    initialValues: state.ambassadorReducer.data,
+    initialValues: state.ambassadorReducer.show_ambassador,
     errorRequired:state.generalReducer.errorRequired,
     successRequired:state.generalReducer.successRequired,
     edit_ambassador: state.ambassadorReducer.edit_ambassador,

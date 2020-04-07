@@ -282,6 +282,7 @@ class EditForm extends React.Component {
 
 EditForm = reduxForm({
   form: 'studentform', 
+  enableReinitialize: true,
 })(EditForm);
 
 

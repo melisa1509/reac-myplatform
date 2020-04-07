@@ -95,7 +95,7 @@ class IndexTable extends React.Component {
         state: projectState,
         projects: (
           <div className="actions-left">
-            <Link to={buttonMbs ? "/programmbs/" + idMbs : "#"}>
+            <Link to={buttonMbs ? "/programmbs/show/" + idMbs : "#"}>
               <Button
                 size="sm"
                 color={buttonMbs ? "success" : "default" }
@@ -104,7 +104,7 @@ class IndexTable extends React.Component {
               </Button>
             </Link>
             {" "}
-            <Link to={buttonSa ? "/programsa/" + idSa : "#"}>
+            <Link to={buttonSa ? "/programsa/show/" + idSa : "#"}>
               <Button
                 size="sm"
                 color={buttonSa ? "info" : "default" }

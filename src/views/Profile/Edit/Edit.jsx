@@ -11,7 +11,7 @@ import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 
 
 import mainPageStyle from "assets/jss/material-kit-react/views/mainPage.jsx";
-import EditRep from 'views/User/Edit/EditRep.jsx';
+import EditRep from 'views/Profile/Edit/EditRep.jsx';
 import AdminHeader from "views/Header/AdminHeader.jsx";
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
@@ -33,8 +33,8 @@ class Edit extends React.Component {
   render() {
     const { classes, ...rest } = this.props;
     return (
-      <PerfectScrollbar>
       <div>
+        <AdminHeader {...rest}/>
         <div
           className={classes.main}
           style={{
@@ -53,7 +53,6 @@ class Edit extends React.Component {
           <Footer blackFont />
         </div>
       </div>
-      </PerfectScrollbar>
     );
   }
 }

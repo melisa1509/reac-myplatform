@@ -1,11 +1,11 @@
-import { SUCCESSFULL_AUTHENTICATION, FAILED_AUTHENTICATION } from 'constants/actionTypes.jsx';
+import { SUCCESSFULL_AUTHENTICATION, FAILED_AUTHENTICATION, SUCCESSFULL_ACTIVE_USER } from 'constants/actionTypes.jsx';
 import $ from 'jquery';
-import { SUCCESSFULL_ACTIVE_USER } from 'constants/actionTypes';
+import { BASE_URL } from 'constants/urlTypes';
 
 
 export const getAuthenticacion = ( params, redirect ) => {
     var settings = {
-                "url": "https://api.interweavesolutions.org/api/login_check",
+                "url": BASE_URL + "/api/login_check",
                 "method": "POST",
                 "timeout": 0,
                 "headers": {
@@ -20,10 +20,30 @@ export const getAuthenticacion = ( params, redirect ) => {
     return (dispatch, getState ) => {
 
         return $.ajax(settings)
-                .done(function (response) {
+                .done(function (data) {
                     
-                    dispatch ({ type: SUCCESSFULL_AUTHENTICATION, payload: response });
-                    redirect.push('');
+                    //dispatch ({ type: SUCCESSFULL_AUTHENTICATION, payload: response });
+                    var settings = {
+                        "url": BASE_URL + "/user/active_user",
+                        "method": "POST",
+                        "timeout": 0,
+                        "headers": {
+                          "Content-Type": "application/x-www-form-urlencoded",
+                          "Authorization": "Bearer " + data.token
+                        },
+                        "data": {
+                        }
+                      };
+                    return $.ajax(settings)
+                            .done(function (response) {
+                                dispatch ({ type: SUCCESSFULL_AUTHENTICATION, payload: data });
+                                dispatch ({ type: SUCCESSFULL_ACTIVE_USER, payload: JSON.parse(response) });
+                                redirect.push('/dashboard');
+                            })
+                            .fail(function (response){
+                                redirect.push('/login');
+                            });
+
 
                 })
                 .fail(function (response){
@@ -39,7 +59,7 @@ export const getActiveUser = ( redirect ) => {
         const reduxState = getState();
         
         var settings = {
-            "url": "https://api.interweavesolutions.org/user/active_user",
+            "url": BASE_URL + "/user/active_user",
             "method": "POST",
             "timeout": 0,
             "headers": {

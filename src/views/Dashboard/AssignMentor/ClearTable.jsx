@@ -77,7 +77,7 @@ class ClearTable extends React.Component {
              <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
                       <center>
-                      <Link to={"/dashboard"}>
+                      <Link to={"/dashboard/clearpending/" + this.props.match.params.student}>
                       <Button color="defautl" size="sm">
                       {t("button.return_to_list")}
                       </Button>

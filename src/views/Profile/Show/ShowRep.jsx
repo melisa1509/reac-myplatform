@@ -56,11 +56,13 @@ ShowRep.propTypes = {
   classes: PropTypes.object,
 };
 
-//export default withStyles(styles)(ReactTables);
+const mapStateToProps = state => ({ 
+  active_user: state.loginReducer.active_user
+});
 
 const mapDispatchToPropsActions = dispatch => ({
 });
 
 
 const ShowRepComponent = translate('provider')(withStyles(styles)(ShowRep));
-export default withRouter(connect(null, mapDispatchToPropsActions)(ShowRepComponent));
+export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(ShowRepComponent));

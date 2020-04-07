@@ -171,6 +171,17 @@ class IndexTable extends React.Component {
               showPaginationBottom={true}
               className="-striped -highlight"
           />
+          <GridContainer>
+                  <GridItem xs={12} sm={12} md={12}>
+                      <center>
+                      <Link to={"/dashboard"}>
+                      <Button color="defautl" size="sm">
+                      {t("button.return_to_list")}
+                      </Button>
+                      </Link>
+                      </center>
+                  </GridItem>
+              </GridContainer>
         </GridItem>
       </GridContainer>
     );
