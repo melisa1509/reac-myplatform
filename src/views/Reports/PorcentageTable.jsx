@@ -19,10 +19,6 @@ class PorcentageTable extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.props.dispatchGetReports();
-  }
-
   render() {
     const {report_list} = this.props;
     let { t } = this.props;
