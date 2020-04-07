@@ -103,7 +103,7 @@ ReactDOM.render(
           <Route path="/dashboard/confirmmentor/:student/:group" component={ConfirmMentor} exact />
           <Route path="/dashboard/clearpending/:student" component={ClearPendingDashboard} exact />
           <Route path="/report" component={Reports} exact />
-          <Redirect from="/" to="/admin/dashboard" />
+          <Redirect from="/" to="/login" />
         </Switch>
       </Router>,
     </TranslatorProvider>

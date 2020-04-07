@@ -16,6 +16,7 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
+import { Link } from "react-router-dom";
 
 
 class IndexTable extends React.Component {
@@ -202,15 +203,31 @@ class IndexTable extends React.Component {
            <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
                       <center>
+                      <Link to={"/certificate"}>
+                        <Button color="default" size="sm">
+                        {t("button.return_to_list")}
+                        </Button>
+                        {" "}
+                      </Link>{" "}
                       <Button color="warning" size="sm">
                       {t("button.download_all_attendance_certificates")}
                       </Button>
                       {" "}
-                      <Button color="info" size="sm">
+                      <Button
+                        color="info"
+                        size="sm"
+                        href={"https://myplatform.interweavesolutions.org/certificate/mbs/list?id=" + this.props.match.params.id}
+                        target="_blank"
+                      >
                       {t("button.download_all_mbs_certificates")}
                       </Button>
                       {" "}
-                      <Button color="success" size="sm">
+                      <Button
+                        color="success"
+                        size="sm"
+                        href={"https://myplatform.interweavesolutions.org/certificate/ambassador/list?id=" + this.props.match.params.id}
+                        target="_blank"
+                      >
                       {t("button.download_all_ambassador_certificates")}
                       </Button>
                       {" "}

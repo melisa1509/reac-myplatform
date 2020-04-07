@@ -58,8 +58,14 @@ class AdminHeaderLinks extends React.Component {
             {t("link.ambassadors")}
           </Link>,
           <Link to={'/certificate'} className={classes.dropdownLink}>
-          {t("link.codes")}
-        </Link>,
+            {t("link.certificates")}
+          </Link>,
+          <Link to={'/code'} className={classes.dropdownLink}>
+            {t("link.codes")}
+          </Link>,
+          <Link to={'/report'} className={classes.dropdownLink}>
+            {t("link.reports")}
+          </Link>,
           <Link to={'/login'} className={classes.dropdownLink}>
             {t("link.logout")}
           </Link>,

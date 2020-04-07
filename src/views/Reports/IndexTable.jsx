@@ -19,6 +19,7 @@ import Success from "components/Typography/Success";
 import Danger from "components/Typography/Danger";
 
 
+
 class IndexTable extends React.Component {
   constructor(props) {
     super(props);
