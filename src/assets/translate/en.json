@@ -227,7 +227,7 @@
     "label.years":                       "Years",
     "label.initial_capital":             "Starting Cash Balance",
     "label.income_expenses":             "Ending Cash Balance",
-    "label.label_balance":               "Ending Cah Balance",
+    "label.ending_balance":              "Ending Cash Balance",
     "label.update_error":                "Update Error, please contact whith Admin",
     "label.save_error":                  "An error has occurred. Reload the page, type something and try saving again. If the problem persists, contact the administrator.",
 

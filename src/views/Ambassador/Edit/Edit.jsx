@@ -31,8 +31,8 @@ class Edit extends React.Component {
   render() {
     const { classes, ...rest } = this.props;
     return (
-      <PerfectScrollbar>
       <div>
+        <AdminHeader {...rest}/>
         <div
           className={classes.main}
           style={{
@@ -51,7 +51,6 @@ class Edit extends React.Component {
           <Footer blackFont />
         </div>
       </div>
-      </PerfectScrollbar>
     );
   }
 }

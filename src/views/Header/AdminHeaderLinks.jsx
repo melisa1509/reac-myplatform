@@ -42,42 +42,33 @@ class AdminHeaderLinks extends React.Component {
       let roles = active_user.roles === undefined ? [] : active_user.roles
       if( roles.includes("ROLE_ADMIN") ){
         links = [
-          <Link to={'/user'} className={classes.dropdownLink}>
-            Participants
-          </Link>,
-          <Link to={'/course/new'} className={classes.dropdownLink}>
-            Course
-          </Link>,
-          <Link to={'/student'} className={classes.dropdownLink}>
-            Student
+          <Link to={'/dashboard'} className={classes.dropdownLink}>
+            {t("link.dashboard")}
           </Link>,
           <Link to={'/profile'} className={classes.dropdownLink}>
-            Profile
+            {t("link.user_profile")}
           </Link>,
-          <a
-            href="https://creativetimofficial.github.io/material-kit-react/#/documentation"
-            target="_blank"
-            className={classes.dropdownLink}
-          >
-            Documentation
-          </a>
+          <Link to={'/group'} className={classes.dropdownLink}>
+            {t("link.groups")}
+          </Link>,
+          <Link to={'/student'} className={classes.dropdownLink}>
+            {t("link.participants")}
+          </Link>,
+          <Link to={'/ambassador'} className={classes.dropdownLink}>
+            {t("link.ambassadors")}
+          </Link>,
+          <Link to={'/certificate'} className={classes.dropdownLink}>
+          {t("link.codes")}
+        </Link>,
+          <Link to={'/login'} className={classes.dropdownLink}>
+            {t("link.logout")}
+          </Link>,
+
         ]
       }
       else if( roles.includes("ROLE_STUDENT") ){
         links = [
-          <Link to="/" className={classes.dropdownLink}>
-            All componentes
-          </Link>,
-          <Link to={'/age'} className={classes.dropdownLink}>
-            AgesStudent
-          </Link>,
-          <a
-            href="https://creativetimofficial.github.io/material-kit-react/#/documentation"
-            target="_blank"
-            className={classes.dropdownLink}
-          >
-            Documentation
-          </a>
+          
         ]
       }
       else {

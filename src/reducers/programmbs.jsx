@@ -1,4 +1,4 @@
-import { SHOW_PROGRAMMBS, UPDATE_REVISION_PROGRAMMBS, ERROR_EDIT_REVISION, SUCCESSFULL_EDIT_REVISION } from "constants/actionTypes";
+import { SHOW_PROGRAMMBS, UPDATE_REVISION_PROGRAMMBS, ERROR_EDIT_REVISION, SUCCESSFULL_EDIT_REVISION, SUCCESSFULL_APPROVE_PROJECT, ERROR_APPROVE_PROJECT } from "constants/actionTypes";
 import { LOAD_FORM_PROGRAMMBS } from "constants/actionTypes";
 import { HIDE_REVISION_ALERT } from "constants/actionTypes";
 
@@ -114,7 +114,9 @@ const initialState = {
     },
   },
   editRevisionError: false,
-  editRevisionSuccessfull: false
+  editRevisionSuccessfull: false,
+  approveProjectError: false,
+  approveProjectSuccessfull: false
 }
 
 
@@ -148,10 +150,22 @@ export const programmbsReducer = (state = initialState, action) => {
           editRevisionSuccessfull: true
         });
 
+      case ERROR_APPROVE_PROJECT:
+        return Object.assign({}, state, {
+          approveProjectError: true
+        });
+
+      case SUCCESSFULL_APPROVE_PROJECT:
+        return Object.assign({}, state, {
+          approveProjectSuccessfull: true
+        });
+
       case HIDE_REVISION_ALERT:
         return Object.assign({}, state, {
           editRevisionError: false,
-          editRevisionSuccessfull: false
+          editRevisionSuccessfull: false,
+          approveProjectError: false,
+          approveProjectSuccessfull: false
         });
     }
 

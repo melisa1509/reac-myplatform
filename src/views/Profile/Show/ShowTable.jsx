@@ -55,13 +55,13 @@ class ShowTable extends React.Component {
               striped
               tableHead={[]}
               tableData={[
-                [<th>{t("label.email")}</th>,<p>{active_user.first_name}</p>],
-                [<th>{t("label.name")}</th>,],
-                [<th>{t("label.lastName")}</th>,],
-                [<th>{t("label.country")}</th>,],
-                [<th>{t("label.city")}</th>, "Minerva Hooper"],
-                [<th>{t("label.whatsApp")}</th>, "Minerva Hooper"],
-                [<th>{t("label.language")}</th>,  "Minerva Hooper"],
+                [<th>{t("label.username")}</th>,<p>{active_user.username}</p>],
+                [<th>{t("label.name")}</th>,<p>{active_user.first_name}</p>],
+                [<th>{t("label.lastName")}</th>,<p>{active_user.last_name}</p>],
+                [<th>{t("label.country")}</th>,<p>{active_user.country}</p>],
+                [<th>{t("label.city")}</th>,<p>{active_user.city}</p>],
+                [<th>{t("label.whatsApp")}</th>,<p>{active_user.whatsapp}</p>],
+                [<th>{t("label.language")}</th>,<p>{active_user.language}</p>],
               ]}
             />
             <br/>

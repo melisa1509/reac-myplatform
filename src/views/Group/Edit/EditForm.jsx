@@ -288,6 +288,7 @@ class EditForm extends React.Component {
 
 EditForm = reduxForm({
   form: 'groupform', 
+  enableReinitialize: true
 })(EditForm);
 
 

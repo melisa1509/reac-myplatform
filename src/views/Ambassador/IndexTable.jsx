@@ -69,8 +69,7 @@ class IndexTable extends React.Component {
     const data = ambassador_list.map((prop, key) => {
       return {
         id: key, 
-        name: prop.first_name,
-        last_name:prop.last_name,
+        name: prop.first_name + " " + prop.last_name ,
         username:prop.username,
         country:prop.country,
         code:prop.code,
@@ -141,27 +140,26 @@ class IndexTable extends React.Component {
                   accessor: "name",
                 },
                 {
-                  Header: t("th.lastname"),
-                  accessor: "last_name"
-                },
-                {
                   Header: t("th.username"),
                   accessor: "username",
                   resizable:true
                 },
                 {
                   Header: t("th.country"),
-                  accessor: "country"
+                  accessor: "country",
+                  width: 150,
                 },
                 {
                   Header: t("th.code"),
                   accessor: "code",
+                  width: 150,
                 },
                 {
                   Header: t("th.actions"),
                   accessor: "actions",
                   sortable: false,
-                  filterable: false
+                  filterable: false,
+                  width: 150,
                 },
                 {
                   // NOTE - this is a "filter all" DUMMY column
@@ -184,7 +182,7 @@ class IndexTable extends React.Component {
                     const result = matchSorter(rows, filter.value, {
                       keys: [
                         "name",
-                        "last_name",
+                        "username",
                       ], threshold: matchSorter.rankings.WORD_STARTS_WITH
                     });
                     return result;

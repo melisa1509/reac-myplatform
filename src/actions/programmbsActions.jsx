@@ -1,4 +1,4 @@
-import { SHOW_PROGRAMMBS, LOAD_FORM_PROGRAMMBS, SUCCESSFULL_EDIT_REVISION, ERROR_EDIT_REVISION, HIDE_REVISION_ALERT } from 'constants/actionTypes.jsx';
+import { SHOW_PROGRAMMBS, LOAD_FORM_PROGRAMMBS, SUCCESSFULL_EDIT_REVISION, ERROR_EDIT_REVISION, HIDE_REVISION_ALERT, SUCCESSFULL_APPROVE_PROJECT, ERROR_APPROVE_PROJECT } from 'constants/actionTypes.jsx';
 import { BASE_URL } from 'constants/urlTypes';
 
 export const getShowProgrammbs = key => {
@@ -13,7 +13,7 @@ export const getShowProgrammbs = key => {
     
 }
 
-export const editRevisionProgrammbs = () => {
+export const editRevisionProgrammbs = (redirect) => {
     return (dispatch, getState) => {
 
         const reduxState = getState();
@@ -23,14 +23,14 @@ export const editRevisionProgrammbs = () => {
         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
         var urlencoded = new URLSearchParams();
-        urlencoded.append("revisionplan", reduxState.form.programmbs.values.revisionplan);
-        urlencoded.append("revisionproduct", reduxState.form.programmbs.values.revisionproduct);
-        urlencoded.append("revisionprice", reduxState.form.programmbs.values.revisionprice);
-        urlencoded.append("revisionpromotion", reduxState.form.programmbs.values.revisionpromotion);
-        urlencoded.append("revisionprocess", reduxState.form.programmbs.values.revisionprocess);
-        urlencoded.append("revisionpaperwork", reduxState.form.programmbs.values.revisionpaperwork);
-        urlencoded.append("revisionquality", reduxState.form.programmbs.values.revisionquality);
-        urlencoded.append("revisionservice", reduxState.form.programmbs.values.revisionservice);
+        urlencoded.append("revisionplan", reduxState.form.programmbs.values.revisionplan !== undefined ? reduxState.form.programmbs.values.revisionplan : "");
+        urlencoded.append("revisionproduct", reduxState.form.programmbs.values.revisionproduct !== undefined ? reduxState.form.programmbs.values.revisionproduct : "");
+        urlencoded.append("revisionprice", reduxState.form.programmbs.values.revisionprice !== undefined ? reduxState.form.programmbs.values.revisionprice : "");
+        urlencoded.append("revisionpromotion", reduxState.form.programmbs.values.revisionpromotion !== undefined ? reduxState.form.programmbs.values.revisionpromotion : "");
+        urlencoded.append("revisionprocess", reduxState.form.programmbs.values.revisionprocess !== undefined ? reduxState.form.programmbs.values.revisionprocess : "");
+        urlencoded.append("revisionpaperwork", reduxState.form.programmbs.values.revisionpaperwork !== undefined ? reduxState.form.programmbs.values.revisionpaperwork : "");
+        urlencoded.append("revisionquality", reduxState.form.programmbs.values.revisionquality !== undefined ? reduxState.form.programmbs.values.revisionquality : "");
+        urlencoded.append("revisionservice", reduxState.form.programmbs.values.revisionservice !== undefined ? reduxState.form.programmbs.values.revisionservice : "");
 
         var requestOptions = {
             method: 'PUT',
@@ -43,6 +43,7 @@ export const editRevisionProgrammbs = () => {
         .then(response => response.json())
         .then(json => {
             dispatch({type:SUCCESSFULL_EDIT_REVISION})
+            redirect.push('/programmbs/show/' + reduxState.form.programmbs.values.id);
         })
         .catch(json =>{
             dispatch({type:ERROR_EDIT_REVISION})
@@ -52,6 +53,46 @@ export const editRevisionProgrammbs = () => {
     
 }
 
+export const approveProject = (redirect) => {
+    return (dispatch, getState) => {
+
+        const reduxState = getState();
+        const key = reduxState.form.programmbs.values.id;
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("id", key);
+        
+        var requestOptions = {
+            method: 'PUT',
+            headers: myHeaders,
+            body: urlencoded,
+            redirect: 'follow'
+        };
+
+        return fetch( BASE_URL + "/programmbs/approved?callback=foo", requestOptions)
+        .then(response => response.json())
+        .then(json => {
+            dispatch({type:SUCCESSFULL_APPROVE_PROJECT})
+            redirect.push('/programmbs/show/' + reduxState.form.programmbs.values.id);
+        })
+        .catch(json =>{
+            dispatch({type:ERROR_APPROVE_PROJECT})
+        });
+
+    }
+    
+}
+
 export const loadFormProgrammbs = data => ({ type: LOAD_FORM_PROGRAMMBS, data });
 
 export const hideRevisionAlert = () => ({ type: HIDE_REVISION_ALERT })
+
+export const redirectDashboard = redirect => { 
+    return (dispatch, getState) => {
+        dispatch({ type: HIDE_REVISION_ALERT })
+        return redirect.push('/dashboard');
+    }
+}

@@ -229,7 +229,7 @@ class ProcessTab extends React.Component {
             <MutedText>
               {programmbs.process4}
             </MutedText>
-            <RevisionForm name="revisionprocess" />
+            <RevisionForm name="revisionprocess" labelText={t("label.revision_process")+ " *"}/>
             <Controls/>
           </CardBody>
         </Card>

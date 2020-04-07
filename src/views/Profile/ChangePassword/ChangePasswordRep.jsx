@@ -9,11 +9,13 @@ import withStyles from "@material-ui/core/styles/withStyles";
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
+import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import NewForm from 'views/Ambassador/New/NewForm.jsx';
+import ChangePasswordForm from 'views/Profile/ChangePassword/ChangePasswordForm.jsx';
 
+import { getData } from "actions/actions.jsx";
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from "react-translate";
 import { withRouter } from 'react-router-dom';
@@ -25,11 +27,9 @@ const styles = {
     marginBottom: "0px"
   } 
 };
-const initialValuesAmbassador= {
-  language:"en",
-  country:"AFG",
-}
-class NewRep extends React.Component {
+
+
+class ChangePasswordRep extends React.Component {
   
   render() {
     const { classes, styles } = this.props;
@@ -40,11 +40,11 @@ class NewRep extends React.Component {
           <Card>
             <CardHeader color="info">
             <center>
-             <h4 className={classes.cardTitle}>{t("title.new_ambassador")}</h4>
+             <h4 className={classes.cardTitle}>{t("title.edit_password")}</h4>
              </center>
             </CardHeader>
             <CardBody>
-                <NewForm initialValues={initialValuesAmbassador} />  
+                <ChangePasswordForm  />  
             </CardBody>
           </Card>
         </GridItem>
@@ -53,18 +53,15 @@ class NewRep extends React.Component {
   }
 }
 
-NewRep.propTypes = {
+ChangePasswordRep.propTypes = {
   classes: PropTypes.object,
 };
 
 
-const mapDispatchToProps = state => ({
-});
-
 const mapDispatchToPropsActions = dispatch => ({
-
+  dispatchSetData: () => dispatch( getData() )
 });
 
 
-const NewRepComponent = translate('provider')(withStyles(styles)(NewRep));
-export default withRouter(connect(null, mapDispatchToPropsActions, mapDispatchToProps)(NewRepComponent));
+const ChangePasswordRepComponent = translate('provider')(withStyles(styles)(ChangePasswordRep));
+export default withRouter(connect(null, mapDispatchToPropsActions)(ChangePasswordRepComponent));

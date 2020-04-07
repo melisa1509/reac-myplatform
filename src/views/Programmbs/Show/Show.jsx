@@ -12,12 +12,12 @@ import { connect } from "react-redux";
 import { translate } from "react-translate";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
-import Button from "components/CustomButtons/Button.jsx";
+import AdminHeader from "views/Header/AdminHeader.jsx";
 import ShowRep from "./ShowRep.jsx";
 import mainPageStyle from "assets/jss/material-kit-react/views/mainPage.jsx";
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 
-import { hideRevisionAlert } from "actions/programmbsActions.jsx";
+import { hideRevisionAlert, redirectDashboard } from "actions/programmbsActions.jsx";
 
 const styles = {
     ...mainPageStyle,
@@ -37,10 +37,14 @@ class Show extends React.Component {
   hideAlert() {
     this.props.dispatchHideRevisionAlert();
   }
+  redirectDashboard(){
+    this.props.dispatchRedirectDashboard(this.props.history);
+  }
   render() {
-    const { classes, editRevisionSuccessfull, editRevisionError, t } = this.props;
+    const { classes, editRevisionSuccessfull, editRevisionError, approveProjectError, approveProjectSuccessfull, t } = this.props;
     return (
         <div>
+          <AdminHeader/>
             {editRevisionSuccessfull ? 
               <SweetAlert
                   success
@@ -56,6 +60,34 @@ class Show extends React.Component {
               </SweetAlert>
             : ""}
             {editRevisionError ? 
+              <SweetAlert
+                  warning
+                  style={{ display: "block", marginTop: "-100px" }}
+                  onConfirm={() => this.hideAlert()}
+                  onCancel={() => this.hideAlert()}
+                  confirmBtnText={t("button.continue")}
+                  confirmBtnCssClass={
+                      this.props.classes.button + " " + this.props.classes.success
+                  }
+                  >
+                  <h4>{t("label.save_error")}</h4>
+              </SweetAlert>
+            : ""}
+            {approveProjectSuccessfull ? 
+              <SweetAlert
+                  success
+                  style={{ display: "block", marginTop: "-100px" }}
+                  onConfirm={() => this.redirectDashboard()}
+                  onCancel={() => this.hideAlert()}
+                  confirmBtnText={t("button.continue")}
+                  confirmBtnCssClass={
+                      this.props.classes.button + " " + this.props.classes.success
+                  }
+                  >
+                  <h4>{t("label.save_success_revision")}</h4>
+              </SweetAlert>
+            : ""}
+            {approveProjectError ? 
               <SweetAlert
                   warning
                   style={{ display: "block", marginTop: "-100px" }}
@@ -100,11 +132,14 @@ Show.propTypes = {
 const mapStateToProps = state => ({ 
   editRevisionError: state.programmbsReducer.editRevisionError,
   editRevisionSuccessfull: state.programmbsReducer.editRevisionSuccessfull,
+  approveProjectError: state.programmbsReducer.approveProjectError,
+  approveProjectSuccessfull: state.programmbsReducer.approveProjectSuccessfull
     
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchHideRevisionAlert: () => dispatch( hideRevisionAlert() )
+  dispatchHideRevisionAlert: () => dispatch( hideRevisionAlert() ),
+  dispatchRedirectDashboard: param => dispatch( redirectDashboard(param) )
 });
 
 const ShowComponent = translate('provider')(withStyles(styles)(Show));

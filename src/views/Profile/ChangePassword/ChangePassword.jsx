@@ -9,7 +9,7 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 
 import mainPageStyle from "assets/jss/material-kit-react/views/mainPage.jsx";
-import IndexRep from "./IndexRep.jsx";
+import ChangePasswordRep from 'views/Profile/ChangePassword/ChangePasswordRep.jsx';
 import AdminHeader from "views/Header/AdminHeader.jsx";
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
@@ -19,8 +19,15 @@ const styles = {
   ...PerfectScrollbarStyle
 };
 
-class Index extends React.Component {
-  
+class ChangePassword extends React.Component {
+  constructor(props) {
+    super(props);
+    // we use this to make the card to appear after the page has been rendered
+    this.state = {
+
+    };
+  }
+
   render() {
     const { classes, ...rest } = this.props;
     return (
@@ -36,8 +43,8 @@ class Index extends React.Component {
         >
           <div className={classes.container}>
             <GridContainer justify="center">
-              <GridItem xs={12} sm={12} md={10}>
-                <IndexRep generalStyles={styles}/>
+              <GridItem xs={12} sm={12} md={12}>
+                <ChangePasswordRep generalStyles={styles}/>
               </GridItem>
             </GridContainer>
           </div>
@@ -48,4 +55,4 @@ class Index extends React.Component {
   }
 }
 
-export default withStyles(styles)(Index);
+export default withStyles(styles)(ChangePassword);

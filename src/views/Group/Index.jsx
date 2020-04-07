@@ -26,8 +26,8 @@ class Index extends React.Component {
   render() {
     const { classes, ...rest } = this.props;
     return (
-      <PerfectScrollbar>
       <div>
+        <AdminHeader {...rest}/>
         <div
           className={classes.main}
           style={{
@@ -46,7 +46,6 @@ class Index extends React.Component {
           <Footer blackFont />
         </div>
       </div>
-      </PerfectScrollbar>
     );
   }
 }

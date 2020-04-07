@@ -3,10 +3,11 @@ import { EDIT_AMBASSADOR, ERROR_EDIT_AMBASSADOR, SUCCESSFULL_EDIT } from 'consta
 import { NEW_AMBASSADOR } from 'constants/actionTypes';
 import { EDIT_PASSWORD_AMBASSADOR } from 'constants/actionTypes';
 import { DELETE_AMBASSADOR, SUCCESSFUL_DELETE } from 'constants/actionTypes';
+import { BASE_URL} from 'constants/urlTypes.jsx';
 
 export const getAmbassadorList = () => {
     return (dispatch) => {
-        return fetch("https://api.interweavesolutions.org/ambassador")
+        return fetch(BASE_URL + "/ambassador")
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: AMBASSADOR_LIST , payload: json.data });
@@ -15,7 +16,7 @@ export const getAmbassadorList = () => {
 }
 export const showAmbassador = key => {
     return (dispatch) => {
-        return fetch("http://api.interweavesolutions.org/ambassador/show/"+ key +"?callback=foo")
+        return fetch(BASE_URL + "/ambassador/show/"+ key +"?callback=foo")
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: SHOW_AMBASSADOR, payload: json.data });
@@ -53,7 +54,7 @@ export const editAmbassador =() => {
               redirect: 'follow'
             }
     
-        return fetch("http://api.interweavesolutions.org/ambassador/edit/"+ key +"?callback=foo", requestOptions)
+        return fetch(BASE_URL + "/ambassador/edit/"+ key +"?callback=foo", requestOptions)
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: EDIT_AMBASSADOR, payload: json.data });  
@@ -91,7 +92,7 @@ export const newAmbassador = ()=> {
       redirect: 'follow'
     };
     
-        return fetch("http://api.interweavesolutions.org/ambassador/new", requestOptions)
+        return fetch(BASE_URL + "/ambassador/new", requestOptions)
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: NEW_AMBASSADOR, payload: json.data });
@@ -117,7 +118,7 @@ export const editPassword = (params,key) => {
         };
 
     return (dispatch) => {
-      return fetch("http://api.interweavesolutions.org/ambassador/editpassword/"+ key +"?callback=foo", requestOptions)
+      return fetch(BASE_URL + "/ambassador/editpassword/"+ key +"?callback=foo", requestOptions)
       .then(response => response.json())
       .then(json => {
           dispatch ({ type: EDIT_PASSWORD_AMBASSADOR, payload: json }); 
@@ -133,7 +134,7 @@ export const deleteAmbassador  = (key,redirect) => {
     };
 
     return (dispatch) => {
-      return fetch("http://api.interweavesolutions.org/ambassador/delete/"+ key +"?callback=foo", requestOptions)
+      return fetch(BASE_URL + "/ambassador/delete/"+ key +"?callback=foo", requestOptions)
       .then(response => response.json())
       .then(json => {
           dispatch ({ type: DELETE_AMBASSADOR, payload: json.data });

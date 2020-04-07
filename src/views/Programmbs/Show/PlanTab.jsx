@@ -54,7 +54,7 @@ class PlanTab extends React.Component {
               {programmbs.plan2}
             </MutedText>
             <br/>
-            <RevisionForm name="revisionplan" labelText={t("label.revision_product")+ " *"} />
+            <RevisionForm name="revisionplan" labelText={t("label.revision_plan")+ " *"} />
             <br/>
             <Controls/>
           </CardBody>
