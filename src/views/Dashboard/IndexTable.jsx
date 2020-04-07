@@ -19,6 +19,7 @@ import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
 import { translate } from "react-translate";
 
+
 class IndexTable extends React.Component {
   constructor(props) {
     super(props);
@@ -60,6 +61,7 @@ class IndexTable extends React.Component {
 
   componentDidMount() {
     this.props.dispatchGetAmbassadorList();
+    
   }
  
   render() {
@@ -221,7 +223,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetAmbassadorList: () => dispatch( getAmbassadorList() )
+  dispatchGetAmbassadorList: () => dispatch( getAmbassadorList() ),
+  
 });
 
 const IndexTableComponent = translate('provider')(IndexTable);

@@ -7,10 +7,7 @@ import { connect } from "react-redux";
 import { getStudentMbsList } from "actions/dashboardActions.jsx";
 import { Link } from "react-router-dom";
 
-// @material-ui/icons
-import Create from "@material-ui/icons/Create";
-import Visibility from "@material-ui/icons/Visibility";
-import Close from "@material-ui/icons/Close";
+
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
@@ -60,6 +57,7 @@ class MbsTable extends React.Component {
 
   componentDidMount() {
     this.props.dispatchGetStudentMbsList();
+    
   }
  
   render() {
@@ -180,7 +178,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetStudentMbsList: () => dispatch( getStudentMbsList() )
+  dispatchGetStudentMbsList: () => dispatch( getStudentMbsList() ),
+  
 });
 
 const MbsTableComponent = translate('provider')(MbsTable);

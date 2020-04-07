@@ -45,6 +45,7 @@ const compare =(param1, param2 , param3)=>{
   }
 }
 
+
 class IndexTable extends React.Component {
   constructor(props) {
     super(props);

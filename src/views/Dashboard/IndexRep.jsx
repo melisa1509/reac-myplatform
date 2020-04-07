@@ -12,7 +12,6 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import IndexTable from './IndexTable.jsx';
 import MbsTable from './MbsTable.jsx';
 import AmbassadorTable from './AmbassadorTable.jsx';
 import FutureAmbassadorTable from './FutureAmbassadorTable.jsx';

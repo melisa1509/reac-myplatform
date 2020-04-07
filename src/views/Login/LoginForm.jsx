@@ -26,6 +26,8 @@ import { getGroupList } from "actions/groupActions.jsx";
 import { getStudentList } from "actions/studentActions.jsx";
 import { getAdminStudentMbsList } from "actions/dashboardActions.jsx";
 import { getAmbassadorList } from "actions/ambassadorActions";
+import { getReports } from "actions/reportActions.jsx";
+
 
 
 const style = {
@@ -185,6 +187,11 @@ class LoginForm extends React.Component {
       this.props.dispatchGetGroupList();
       this.props.dispatchGetStudentMbsList();
       this.props.dispatchGetAmbassadorList();
+      
+    }
+
+    componentWillUnmount(){
+      this.props.dispatchGetReports();
     }
 
     render() {
@@ -269,8 +276,9 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchGetGroupList: () => dispatch( getGroupList() ),
   dispatchGetStudentList: () => dispatch( getStudentList() ),
   dispatchGetStudentMbsList: () => dispatch( getAdminStudentMbsList() ),
-  dispatchGetAmbassadorList: () => dispatch( getAmbassadorList())
-  
+  dispatchGetAmbassadorList: () => dispatch( getAmbassadorList()),
+  dispatchGetReports: () => dispatch( getReports() )
+    
 });
 
 const LoginFormComponent = translate('provider')(withStyles(style)(LoginForm));
