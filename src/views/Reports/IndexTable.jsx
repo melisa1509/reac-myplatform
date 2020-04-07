@@ -154,6 +154,7 @@ class IndexTable extends React.Component {
                 {
                   Header: t("th.name"),
                   accessor: "name",
+                  width: 150,   
                 },
                 {
                   Header: t("th.question1"),
@@ -206,24 +207,19 @@ class IndexTable extends React.Component {
                 {
                   Header: t("th.question9"),
                   accessor: "question9",
-                  width: 80,
+                  width: 70,
                   filterable: false
                 },
                 {
                   Header: t("th.ambassador"),
                   accessor: "ambassador",
-                  width: 150
+                  width: 120
                 },
                 {
                   Header: t("th.group"),
                   accessor: "group",
                 },
                 {
-                  Header: "",
-                  id: 'all',
-                  width: 0,
-                  resizable: false,
-                  sortable: false,
                   
                   getProps: () => {
                     return {
