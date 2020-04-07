@@ -143,5 +143,3 @@ export const verifyChange = (event, stateName, type, stateNameEqualTo, maxValue,
         break;
     }
   }
-
-  

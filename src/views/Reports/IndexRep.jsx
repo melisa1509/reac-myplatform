@@ -46,8 +46,8 @@ class IndexRep extends React.Component {
         <GridContainer>
           <GridItem xs={6} sm={6} md={6} lg={6}>
           <Card>
-            <CardHeader color="info" stats icon>
-              <CardIcon color="info">
+            <CardHeader color="warning" stats icon>
+              <CardIcon color="warning">
                 <Icon>supervisor_account</Icon>
               </CardIcon>
                 <p className={classes.cardCategory}>{t("label.student_graduated_mbs")}</p>

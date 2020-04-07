@@ -18,6 +18,32 @@ import Info from "components/Typography/Info.jsx";
 import Success from "components/Typography/Success";
 import Danger from "components/Typography/Danger";
 
+var equal = false
+var improvement = false
+var worsen = false
+const compare =(param1, param2 , param3)=>{
+  if(param1 == param2){
+    return (
+      <Info>
+        <DragHandle/> 
+      </Info>
+    )
+  }
+  else if(param1 == param3){
+    return(
+      <Success>
+        <Navigation/> 
+      </Success>
+    )
+  }
+  else{
+    return (
+      <Danger>
+        <SignalWifi/> 
+      </Danger>
+    )
+  }
+}
 
 class IndexTable extends React.Component {
   constructor(props) {
@@ -67,48 +93,36 @@ class IndexTable extends React.Component {
     let { t } = this.props;
             
     const data = report_list.evaluations.map((prop) => {
-      let equal=false
-      let improvement=false
-      let worsen=false
-       if(prop.question1 == "IQUAL"){
-         equal=true
-       }
-       else if(prop.question1 == "IMPROVEMENT"){
-        improvement=true
-       }
-       else {
-         worsen=true
-       }
+      let question1
+      let question2
+      let question3
+      let question4
+      let question5
+      let question6
+      let question7
+      let question8
+      let question9
+      question1=compare(prop.question1,"IQUAL","IMPROVEMENT")
+      question2=compare(prop.question2,"IQUAL","IMPROVEMENT")
+      question3=compare(prop.question3,"IQUAL","IMPROVEMENT")
+      question4=compare(prop.question4,"IQUAL","IMPROVEMENT")
+      question5=compare(prop.question5,"IQUAL","IMPROVEMENT")
+      question6=compare(prop.question6,"IQUAL","IMPROVEMENT")
+      question7=compare(prop.question7,"IQUAL","IMPROVEMENT")
+      question8=compare(prop.question8,"IQUAL","IMPROVEMENT")
+      question9=compare(prop.question9,"IQUAL","IMPROVEMENT")
+
       return { 
         name: prop.name,
-        question1:(
-          <div>
-         {equal 
-          ?   
-          <Info>
-              <DragHandle/> 
-          </Info>
-          : 
-          ""
-         }
-         {improvement 
-          ?
-          <Success>
-              <Navigation/> 
-          </Success>
-          : 
-          ""
-         }
-         {worsen
-          ?   
-          <Danger>
-              <SignalWifi/> 
-          </Danger>
-          : 
-          ""
-         }
-         </div>
-        ),
+        question1:question1,
+        question2:question2,
+        question3:question3,
+        question4:question4,
+        question5:question5,
+        question6:question6,
+        question7:question7,
+        question8:question8,
+        question9:question9,
         ambassador: prop.ambassador,
         group: prop.group,
       };
@@ -144,11 +158,61 @@ class IndexTable extends React.Component {
                 {
                   Header: t("th.question1"),
                   accessor: "question1",
+                  width: 80,
+                  filterable: false
+                },
+                {
+                  Header: t("th.question2"),
+                  accessor: "question2",
+                  width: 80,
+                  filterable: false
+                },
+                {
+                  Header: t("th.question3"),
+                  accessor: "question3",
+                  width: 80,
+                  filterable: false
+                },
+                {
+                  Header: t("th.question4"),
+                  accessor: "question4",
+                  width: 80,
+                  filterable: false
+                },
+                {
+                  Header: t("th.question5"),
+                  accessor: "question5",
+                  width: 80,
+                  filterable: false
+                },
+                {
+                  Header: t("th.question6"),
+                  accessor: "question6",
+                  width: 80,
+                  filterable: false
+                },
+                {
+                  Header: t("th.question7"),
+                  accessor: "question7",
+                  width: 80,
+                  filterable: false
+                },
+                {
+                  Header: t("th.question8"),
+                  accessor: "question8",
+                  width: 80,
+                  filterable: false
+                },
+                {
+                  Header: t("th.question9"),
+                  accessor: "question9",
+                  width: 80,
                   filterable: false
                 },
                 {
                   Header: t("th.ambassador"),
                   accessor: "ambassador",
+                  width: 150
                 },
                 {
                   Header: t("th.group"),
