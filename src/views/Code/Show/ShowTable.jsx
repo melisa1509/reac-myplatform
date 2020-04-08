@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 // react component for creating dynamic tables
 import { connect } from "react-redux";
 import { showCode } from "actions/codeActions.jsx";
-import { deleteStudent } from "actions/studentActions.jsx";
+import { deleteCode } from "actions/codeActions.jsx";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -49,7 +49,7 @@ class ShowTable extends React.Component {
     }
 
     deleteClick() {
-      this.props.dispatchDeleteStudent(this.props.match.params.id, this.props.history);
+      this.props.dispatchDeleteCode(this.props.match.params.id, this.props.history);
     }
     componentDidMount() {
       this.props.dispatchShowCode(this.props.match.params.id);
@@ -113,13 +113,13 @@ class ShowTable extends React.Component {
 }
 const mapStateToProps = state => ({ 
   show_code: state.codeReducer.show_code,
-  delete_student: state.studentReducer.delete_student, 
+  delete_code: state.codeReducer.delete_code, 
   successful_delete: state.generalReducer.successful_delete
 });
 
 const mapDispatchToPropsActions = dispatch => ({
   dispatchShowCode: key => dispatch(showCode(key)), 
-  dispatchDeleteStudent: (key, history) => dispatch(deleteStudent(key, history))
+  dispatchDeleteCode: (key, history) => dispatch(deleteCode(key, history))
 });
 
 const ShowTableComponent = translate('provider')(withStyles(style)(ShowTable));

@@ -1,4 +1,5 @@
 import { CODE_LIST, SHOW_CODE, LOAD_FORM_CODE, EDIT_CODE, ERROR_EDIT_CODE } from "constants/actionTypes";
+import { DELETE_CODE } from "constants/actionTypes";
 
 const initialState = { 
   code_list:{
@@ -37,6 +38,10 @@ export const codeReducer = (state = initialState, action) => {
         return Object.assign({}, state, {
           editError: true
         })
+      case DELETE_CODE:
+        return Object.assign({}, state, {
+          delete_code: action.payload
+        }); 
     }
     return state;
 }

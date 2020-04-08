@@ -54,10 +54,10 @@ class EditForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            country: "success",
-            code: "success",
-            program: "success",
-            number: "success",
+            countrySatate: "success",
+            codeState: "success",
+            programState: "success",
+            numberState: "success",
         };
         this.saveClick = this.saveClick.bind(this);
       }

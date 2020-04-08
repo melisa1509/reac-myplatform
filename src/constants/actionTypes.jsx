@@ -92,3 +92,4 @@ export const SHOW_CODE="SHOW_CODE"
 export const LOAD_FORM_CODE="LOAD_FORM_CODE"
 export const EDIT_CODE="EDIT_CODE"
 export const ERROR_EDIT_CODE="ERROR_EDIT_CODE";
+export const DELETE_CODE="DELETE_CODE";
