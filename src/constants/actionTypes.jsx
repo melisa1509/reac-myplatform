@@ -85,3 +85,6 @@ export const FUTURE_AMBASSADOR_LIST = "FUTURE_AMBASSADOR_LIST";
 
 //Constants of Reports
 export const GET_REPORTS = "GET_REPORTS"
+
+//Constants of Code
+export const CODE_LIST="CODE_LIST"
