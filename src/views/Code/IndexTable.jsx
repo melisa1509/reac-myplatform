@@ -74,7 +74,7 @@ class IndexTable extends React.Component {
         actions: (
           // we've added some custom button actions
           <div className="actions-left">
-            <Link to={"/student/show/" + prop.id}>
+            <Link to={"/code/show/" + prop.id}>
               <Button
                 justIcon
                 round4
@@ -84,7 +84,7 @@ class IndexTable extends React.Component {
                 <Visibility />
               </Button>
             </Link>{" "}
-            <Link to={"/student/edit/" + prop.id}>
+            <Link to={"/code/edit/" + prop.id}>
               <Button
                 justIcon
                 round

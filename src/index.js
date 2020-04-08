@@ -42,6 +42,8 @@ import ConfirmMentor from 'views/Dashboard/AssignMentor/Confirm.jsx';
 import ClearPendingDashboard from 'views/Dashboard/AssignMentor/Clear.jsx';
 import Reports from 'views/Reports/Index.jsx';
 import ListCode from 'views/Code/Index.jsx';
+import ShowCode from 'views/Code/Show/Show.jsx';
+import EditCode from 'views/Code/Edit/Edit.jsx';
 import { store } from 'store/index.jsx';
 
 import "assets/scss/material-dashboard-pro-react.scss?v=1.7.0";
@@ -105,6 +107,8 @@ ReactDOM.render(
           <Route path="/dashboard/clearpending/:student" component={ClearPendingDashboard} exact />
           <Route path="/report" component={Reports} exact />
           <Route path="/code" component={ListCode} exact />
+          <Route path="/code/show/:id" component={ShowCode} exact />
+          <Route path="/code/edit/:id" component={EditCode} exact />
           <Redirect from="/" to="/login" />
         </Switch>
       </Router>,

@@ -69,7 +69,7 @@ class CodeSATable extends React.Component {
         actions: (
           // we've added some custom button actions
           <div className="actions-left">
-            <Link to={"/student/show/" + prop.id}>
+            <Link to={"/code/show/" + prop.id}>
               <Button
                 justIcon
                 round4
