@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
 
 // @material-ui/icons
-import { Apps, Message, Face } from "@material-ui/icons";
+import { Apps, Message, Face, Dashboard, HowToReg, SupervisorAccount, TrackChanges, LibraryBooks, Person, Stars, School, Cancel } from "@material-ui/icons";
 
 // core components
 import CustomDropdown from "components/CustomDropdown/CustomDropdown.jsx";
@@ -40,39 +40,57 @@ class AdminHeaderLinks extends React.Component {
       const { classes, t, active_user } = this.props;
       let links = '';
       let roles = active_user.roles === undefined ? [] : active_user.roles
-      if( roles.includes("ROLE_ADMIN") ){
+      if( roles.includes("ROLE_ADMIN")) {
         links = [
           <Link to={'/dashboard'} className={classes.dropdownLink}>
-            {t("link.dashboard")}
+            
+              <Dashboard color="danger" className={classes.icons} /> {t("link.dashboard")}
+            
           </Link>,
           <Link to={'/profile'} className={classes.dropdownLink}>
-            {t("link.user_profile")}
+            
+                <Person color="danger" className={classes.icons} /> {t("link.user_profile")}
+            
           </Link>,
           <Link to={'/group'} className={classes.dropdownLink}>
-            {t("link.groups")}
+            
+                <Stars color="danger" className={classes.icons} /> {t("link.groups")}
+            
           </Link>,
           <Link to={'/student'} className={classes.dropdownLink}>
-            {t("link.participants")}
+            
+                <HowToReg color="danger" className={classes.icons} /> {t("link.participants")}
+            
           </Link>,
           <Link to={'/ambassador'} className={classes.dropdownLink}>
-            {t("link.ambassadors")}
+            
+                <SupervisorAccount color="danger" className={classes.icons} /> {t("link.ambassadors")}
+            
           </Link>,
           <Link to={'/certificate'} className={classes.dropdownLink}>
-            {t("link.certificates")}
+            
+                <School color="danger" className={classes.icons} /> {t("link.certificates")}
+            
           </Link>,
           <Link to={'/code'} className={classes.dropdownLink}>
-            {t("link.codes")}
+            
+                <TrackChanges color="danger" className={classes.icons} /> {t("link.codes")}
+            
           </Link>,
           <Link to={'/report'} className={classes.dropdownLink}>
-            {t("link.reports")}
+            
+                <LibraryBooks color="danger" className={classes.icons} /> {t("link.reports")}
+            
           </Link>,
           <Link to={'/login'} className={classes.dropdownLink}>
-            {t("link.logout")}
+            
+                <Cancel color="danger" className={classes.icons} /> {t("link.logout")}
+            
           </Link>,
 
         ]
       }
-      else if( roles.includes("ROLE_STUDENT") ){
+      else if( roles.includes("ROLE_ADMIN")) {
         links = [
           
         ]
@@ -106,12 +124,12 @@ class AdminHeaderLinks extends React.Component {
             />
           </ListItem>
           <ListItem className={classes.listItem}>
-            <Button
-              color="transparent"
-              className={classes.navLink}
+          <Button
+                color="transparent" 
+                className={classes.navLink}
             >
-             Messages <Message color="danger" className={classes.icons} /> 
-            </Button>
+            <Message color="danger" className={classes.icons} />Messages
+          </Button>
           </ListItem>
           
         </List>
