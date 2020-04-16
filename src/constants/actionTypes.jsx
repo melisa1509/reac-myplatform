@@ -64,6 +64,7 @@ export const NEW_GROUP="NEW_GROUP";
 export const DELETE_GROUP="DELETE_GROUP";
 export const DEFAULT_FORM_GROUP="DEFAULT_FORM_GROUP";
 export const GET_AMBASSADOR_ID="GET_AMBASSADOR_ID";
+export const GET_PROJECT_PROGRESS="GET_PROJECT_PROGRESS";
 
 // Constants of Ambassador 
 export const AMBASSADOR_LIST = "AMBASSADOR_LIST";
@@ -85,3 +86,12 @@ export const FUTURE_AMBASSADOR_LIST = "FUTURE_AMBASSADOR_LIST";
 
 //Constants of Reports
 export const GET_REPORTS = "GET_REPORTS"
+export const GET_REPORT_COUNTRY = "GET_REPORT_COUNTRY"
+
+//Constants of Code
+export const CODE_LIST="CODE_LIST"
+export const SHOW_CODE="SHOW_CODE"
+export const LOAD_FORM_CODE="LOAD_FORM_CODE"
+export const EDIT_CODE="EDIT_CODE"
+export const ERROR_EDIT_CODE="ERROR_EDIT_CODE";
+export const DELETE_CODE="DELETE_CODE";

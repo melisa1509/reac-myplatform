@@ -3,13 +3,21 @@ import React from "react";
 import { connect } from "react-redux";
 import { translate } from "react-translate";
 
-
 // core components
+import withStyles from "@material-ui/core/styles/withStyles";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
-import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import Table from "components/Table/Table.jsx";
+import ReportSelect from "views/Select/ReportSelect.jsx";
 import { getReports } from "actions/reportActions.jsx";
+
+import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
+import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
+
+const style = {
+    ...customSelectStyle,
+    ...validationFormsStyle
+};
 
 class PorcentageATable extends React.Component {
   constructor(props) {
@@ -18,7 +26,7 @@ class PorcentageATable extends React.Component {
     
     };
   }
-
+  
   render() {
     const {report_list} = this.props;
     let { t } = this.props;
@@ -55,6 +63,12 @@ class PorcentageATable extends React.Component {
     return (
       <GridContainer justify="center">
         <GridItem xs={8}>
+          <GridContainer justify="center">
+            <GridItem xs={4}>
+              <ReportSelect/> 
+            </GridItem> 
+          </GridContainer>
+        <br/> 
           <Table
               tableData={[
                 [<th>Questions</th>,<th>PreEvaluations</th>," ",<th>PostEvaluations</th>," "],
@@ -83,6 +97,6 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchGetReports: () => dispatch( getReports() )
 });
 
-const PorcentageATableComponent = translate('provider')(PorcentageATable);
+const PorcentageATableComponent = translate('provider')(withStyles(style)(PorcentageATable));
 export default connect(mapStateToProps, mapDispatchToPropsActions)(PorcentageATableComponent);
 

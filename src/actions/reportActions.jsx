@@ -1,4 +1,5 @@
-import { GET_REPORTS } from 'constants/actionTypes.jsx';
+import { GET_REPORTS, GET_REPORT_COUNTRY } from 'constants/actionTypes.jsx';
+import { BASE_URL } from 'constants/urlTypes.jsx';
 
 export const getReports = () => {
 
@@ -22,3 +23,16 @@ export const getReports = () => {
         });
     }  
 }
+
+export const getReportCountry= () => {
+    return (dispatch, getState) => {
+        const reduxState = getState();
+        const key= reduxState.selected_country
+        return fetch( BASE_URL + "/report/country/"+ key +"?callback=foo")
+        .then(response => response.json())
+        .then(json => {
+            dispatch ({ type: GET_REPORT_COUNTRY, payload: json.data });
+        });
+    }
+}
+

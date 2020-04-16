@@ -20,6 +20,8 @@ import ShowGroup from 'views/Group/Show/Show.jsx';
 import EditGroup from 'views/Group/Edit/Edit.jsx';
 import NewGroup from 'views/Group/New/New.jsx';
 import GroupAmbassadors from 'views/Group/New/ListAmbassador/Index.jsx';
+import ProjectProgress from 'views/Group/Progress/Index.jsx';
+import StudentGroup from 'views/Group/Participants/Index.jsx';
 import App from 'views/Age/App.jsx';
 import CourseNew from 'views/Course/New/New.jsx';
 import ProgramMbs from 'views/Programmbs/Show/Show.jsx';
@@ -42,6 +44,9 @@ import AssignMentor from 'views/Dashboard/AssignMentor/Index.jsx';
 import ConfirmMentor from 'views/Dashboard/AssignMentor/Confirm.jsx';
 import ClearPendingDashboard from 'views/Dashboard/AssignMentor/Clear.jsx';
 import Reports from 'views/Reports/Index.jsx';
+import ListCode from 'views/Code/Index.jsx';
+import ShowCode from 'views/Code/Show/Show.jsx';
+import EditCode from 'views/Code/Edit/Edit.jsx';
 import { store } from 'store/index.jsx';
 
 import "assets/scss/material-dashboard-pro-react.scss?v=1.7.0";
@@ -93,6 +98,8 @@ ReactDOM.render(
           <Route path="/group/show/:id" component={ShowGroup} exact /> 
           <Route path="/group/edit/:id" component={EditGroup} exact /> 
           <Route path="/group/ambassador" component={GroupAmbassadors} exact /> 
+          <Route path="/group/progress/:id" component={ProjectProgress} exact /> 
+          <Route path="/group/student/:id" component={StudentGroup} exact /> 
           <Route path="/ambassador" component={Ambassador} exact /> 
           <Route path="/ambassador/show/:id" component={ShowAmbassador} exact /> 
           <Route path="/ambassador/edit/:id" component={EditAmbassador} exact /> 
@@ -105,6 +112,9 @@ ReactDOM.render(
           <Route path="/dashboard/confirmmentor/:student/:group" component={ConfirmMentor} exact />
           <Route path="/dashboard/clearpending/:student" component={ClearPendingDashboard} exact />
           <Route path="/report" component={Reports} exact />
+          <Route path="/code" component={ListCode} exact />
+          <Route path="/code/show/:id" component={ShowCode} exact />
+          <Route path="/code/edit/:id" component={EditCode} exact />
           <Redirect from="/" to="/login" />
         </Switch>
       </Router>,

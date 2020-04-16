@@ -1,4 +1,4 @@
-import {GROUP_LIST} from 'constants/actionTypes.jsx';
+import {GROUP_LIST, GET_PROJECT_PROGRESS} from 'constants/actionTypes.jsx';
 import { LOAD_FORM_GROUP, SHOW_GROUP, EDIT_GROUP, SUCCESSFULL_EDIT, NEW_GROUP, DELETE_GROUP, SUCCESSFUL_DELETE, SUCCESSFULL_NEW} from 'constants/actionTypes';
 import { BASE_URL } from 'constants/urlTypes.jsx';
 
@@ -111,3 +111,12 @@ export const deleteGroup  = (key, redirect) => {
   }
 }
 
+export const getProjectProgress= (key) => {
+    return (dispatch) => {
+        return fetch( BASE_URL + "/student/progress/"+ key +"?callback=foo")
+        .then(response => response.json())
+        .then(json => {
+            dispatch ({ type: GET_PROJECT_PROGRESS, payload: json.data });
+        });
+    }
+}

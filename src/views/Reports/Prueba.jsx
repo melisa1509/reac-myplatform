@@ -9,44 +9,49 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import ReportSelect from "views/Select/ReportSelect.jsx";
 import Table from "components/Table/Table.jsx";
-import { getReports } from "actions/reportActions.jsx";
+import { getReportCountry } from "actions/reportActions.jsx";
+import { store } from "store";
+import { Field, reduxForm } from 'redux-form';
 
-class PorcentageTable extends React.Component {
+class PruebaTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
     
     };
   }
-
+  componentDidMount(){
+    const reduxState = store.getState();
+      this.props.dispatchGetReportCountry();
+  }
   render() {
-    const {report_list} = this.props;
+    const {report_country} = this.props;
     let { t } = this.props;
-    const question = report_list.statistics.map((prop)=>{
+    const question = report_country.map((prop)=>{
       let TableData=[]
       return(
         TableData=[[t(prop.question)]]
       );
     });
-    const studentPre  = report_list.statistics.map((prop)=>{
+    const studentPre  = report_country.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.studentsPre]
       );
     });
-    const students  = report_list.statistics.map((prop)=>{
+    const students  = report_country.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.students]
       );
     });
-    const percentagePre  = report_list.statistics.map((prop)=>{
+    const percentagePre  = report_country.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.percentagePre +"%"]
       );
     });
-    const percentage = report_list.statistics.map((prop)=>{
+    const percentage = report_country.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.percentage +"%" ]
@@ -57,9 +62,7 @@ class PorcentageTable extends React.Component {
       <GridContainer justify="center">
         <GridItem xs={8}>
           <GridContainer justify="center">
-            <GridItem xs={4}>
-              <ReportSelect/> 
-            </GridItem> 
+           <ReportSelect/> 
           </GridContainer>
         <br/> 
           <Table
@@ -83,14 +86,14 @@ class PorcentageTable extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
-      report_list: state.reportReducer.report_list,
+      report_country: state.reportReducer.report_country,
       selected_country: state.selectReducer.selected_country,
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetReports: () => dispatch( getReports() )
+  dispatchGetReportCountry: () => dispatch( getReportCountry() )
 });
 
-const PorcentageTableComponent = translate('provider')(PorcentageTable);
-export default connect(mapStateToProps, mapDispatchToPropsActions)(PorcentageTableComponent);
+const PruebaTableComponent = translate('provider')(PruebaTable);
+export default connect(mapStateToProps, mapDispatchToPropsActions)(PruebaTableComponent);
 

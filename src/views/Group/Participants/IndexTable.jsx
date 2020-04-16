@@ -1,20 +1,24 @@
 import React from "react";
-
 // react component for creating dynamic tables
+
 import ReactTable from "react-table";
+import matchSorter from 'match-sorter';
 import { connect } from "react-redux";
-import { getAmbassadorList } from "actions/ambassadorActions.jsx";
-import { Link } from "react-router-dom";
+import { translate } from "react-translate";
+import { withRouter } from 'react-router-dom';
+import { getCertificateList } from "actions/certificateActions.jsx";
+
+import Create from "@material-ui/icons/Create";
+import Visibility from "@material-ui/icons/Visibility";
+import Close from "@material-ui/icons/Close";
 
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
-import matchSorter from 'match-sorter';
-import { translate } from "react-translate";
+import { Link } from "react-router-dom";
 
-import { withRouter } from 'react-router-dom';
 
 class IndexTable extends React.Component {
   constructor(props) {
@@ -22,7 +26,7 @@ class IndexTable extends React.Component {
     this.state = {
       filtered: [],
       filterAll: '',
-      
+      checked: [],
     };
     this.filterAll = this.filterAll.bind(this);
     this.searchFilter = this.searchFilter.bind(this);
@@ -42,7 +46,6 @@ class IndexTable extends React.Component {
     const { value } = e.target;
     const filterAll = value;
     const filtered = [{ id: 'all', value: filterAll }];
-    // NOTE: this completely clears any COLUMN filters
     this.setState({ filterAll, filtered });
   }
 
@@ -56,34 +59,74 @@ class IndexTable extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatchGetAmbassadorList();
+    this.props.dispatchGetCertificateList(this.props.match.params.id);
   }
+
  
   render() {
-    const { ambassador_list, loading } = this.props;
+    const { certificate_list } = this.props;
     let { t } = this.props;
-    const data = ambassador_list.map((prop, key) => {
+    const data = certificate_list.map((prop, key) => {
+     let state="";
+        if(prop.student.programsa !== undefined){
+          state=t("label.project_ambassador")+ " " + t(prop.student.programsa.state)
+        }
+        else if(prop.student.programmbs !== undefined){
+          state=t("label.project_mbs")+ " " + t(prop.student.programmbs.state)
+        }
+        else {
+          state=t("label.project_mbs")+ " " + t("state.without_starting")
+        }
+ 
       return {
         id: key, 
-        name: prop.first_name,
-        last_name:prop.last_name,
-        country:prop.country,
-        actions: (
-          // we've added some custom button actions
-          <div className="actions-left">
-            <Link to={"/group/new/" + prop.id}>
-              <Button
-                size="sm"
-                color="info"
-                onClick={this.saveClick}
-              >
-                {t('button.create_group')}
-              </Button>
-            </Link>
+        full_name: prop.student.first_name + " " + prop.student.last_name,
+        status:state,
+        projects: (
+          <div className="actions-left">      
+            <Button
+              size="sm"
+              color="info"
+            >
+              {t('button.mbs')}
+            </Button>    
           </div>
-        )
+        ),
+        actions:(
+          <div className="actions-left">
+          <Link to={"/student/show/" + prop.id}>
+            <Button
+              justIcon
+              round4
+              simple
+              color="info"
+            >
+              <Visibility />
+            </Button>
+          </Link>{" "}
+          <Link to={"/student/edit/" + prop.id}>
+            <Button
+              justIcon
+              round
+              simple             
+              color="warning"
+            >
+              <Create />
+            </Button>
+          </Link>{" "}
+            <Button
+              justIcon
+              round
+              simple            
+              color="danger"
+            >
+              <Close />
+            </Button>
+        </div>
+      )
       };
     });
+    
     return (
       <GridContainer>
         <GridItem xs={12}>
@@ -104,25 +147,25 @@ class IndexTable extends React.Component {
               onFilteredChange={this.onFilteredChange.bind(this)}
               defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value}
               data={data}
-              loading={loading}
+              hover
               columns={[
                 {
                   Header: t("th.name"),
-                  accessor: "name",
+                  accessor: "full_name",
                 },
                 {
-                  Header: t("th.lastname"),
-                  accessor: "last_name"
+                  Header: t("th.status"),
+                  accessor: "status",
                 },
                 {
-                  Header: t("th.country"),
-                  accessor: "country"
+                  Header: t("th.projects"),
+                  accessor: "projects",
                 },
                 {
                   Header: t("th.actions"),
                   accessor: "actions",
                   sortable: false,
-                  filterable: false
+                  width:200
                 },
                 {
                   Header: "",
@@ -130,17 +173,17 @@ class IndexTable extends React.Component {
                   width: 0,
                   resizable: false,
                   sortable: false,
-                  
+
                   getProps: () => {
                     return {
-                      style: { padding: "5px"}
+                      style: { padding: "0px"}
                     }
                   },
                   filterMethod: (filter, rows) => {
                     const result = matchSorter(rows, filter.value, {
                       keys: [
-                        "name",
-                        "last_name",
+                        "full_name",
+                        "status"
                       ], threshold: matchSorter.rankings.WORD_STARTS_WITH
                     });
                     return result;
@@ -148,11 +191,32 @@ class IndexTable extends React.Component {
                   filterAll: true,
                 }
               ]}
-              defaultPageSize={10}
+              key={data.length}
+              defaultPageSize={data.length < 10 ? data.length : 10}
               showPaginationTop={false}
               showPaginationBottom={true}
               className="-striped -highlight"
           />
+           <GridContainer>
+                  <GridItem xs={12} sm={12} md={12}>
+                      <center>
+                      <Link to={"/group"}>
+                        <Button color="default" size="sm">
+                        {t("button.return_to_list")}
+                        </Button>
+                        {" "}
+                      </Link>{" "}
+                      <Button color="warning" size="sm">
+                      {t("button.export_list")}
+                      </Button>
+                      {" "}
+                      <Button color="info" size="sm">
+                      {t("button.create_new")}
+                      </Button>
+                      {" "}
+                      </center>
+                  </GridItem>
+              </GridContainer>
         </GridItem>
       </GridContainer>
     );
@@ -160,12 +224,11 @@ class IndexTable extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
-      ambassador_list: state.ambassadorReducer.ambassador_list,
-      loading: state.ambassadorReducer.loading
+      certificate_list: state.certificateReducer.certificate_list, 
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetAmbassadorList: () => dispatch(getAmbassadorList()),
+  dispatchGetCertificateList: (key) => dispatch( getCertificateList(key))
 });
 
 const IndexTableComponent = translate('provider')(IndexTable);

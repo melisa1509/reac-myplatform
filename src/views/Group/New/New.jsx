@@ -30,7 +30,6 @@ class New extends React.Component {
     const { classes, ...rest } = this.props;
     return (
       <div>
-        <AdminHeader {...rest}/>
         <div
           className={classes.main}
           style={{

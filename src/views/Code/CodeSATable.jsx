@@ -1,11 +1,14 @@
 import React from "react";
-
 // react component for creating dynamic tables
 import ReactTable from "react-table";
 import { connect } from "react-redux";
-import { getAmbassadorList } from "actions/ambassadorActions.jsx";
+import { getCodeList } from "actions/codeActions.jsx";
 import { Link } from "react-router-dom";
 
+// @material-ui/icons
+import Create from "@material-ui/icons/Create";
+import Visibility from "@material-ui/icons/Visibility";
+import Close from "@material-ui/icons/Close";
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
@@ -14,9 +17,8 @@ import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
 import { translate } from "react-translate";
 
-import { withRouter } from 'react-router-dom';
 
-class IndexTable extends React.Component {
+class CodeSATable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -54,39 +56,56 @@ class IndexTable extends React.Component {
     }
     
   }
-
-  componentDidMount() {
-    this.props.dispatchGetAmbassadorList();
-  }
  
   render() {
-    const { ambassador_list, loading } = this.props;
-    let { t } = this.props;
-    const data = ambassador_list.map((prop, key) => {
+    const { code_list, loading } = this.props;
+    let { t } = this.props;          
+    const data = code_list.codesSa.map((prop,key) => {
       return {
-        id: key, 
-        name: prop.first_name,
-        last_name:prop.last_name,
-        country:prop.country,
+        id:key,
+        country: prop.name,
+        code:prop.country,
+        number:prop.number,
         actions: (
           // we've added some custom button actions
           <div className="actions-left">
-            <Link to={"/group/new/" + prop.id}>
+            <Link to={"/code/show/" + prop.id}>
               <Button
-                size="sm"
+                justIcon
+                round4
+                simple
                 color="info"
-                onClick={this.saveClick}
               >
-                {t('button.create_group')}
+                <Visibility />
               </Button>
-            </Link>
+            </Link>{" "}
+            <Link to={"/student/edit/" + prop.id}>
+              <Button
+                justIcon
+                round
+                simple            
+                color="warning"
+              >
+                <Create />
+              </Button>
+            </Link>{" "}
+            <Link to={"/student/delete/" + prop.id}>
+              <Button
+                justIcon
+                round
+                simple            
+                color="danger"
+              >
+                <Close />
+              </Button>
+            </Link>{" "}
           </div>
         )
       };
     });
     return (
-      <GridContainer>
-        <GridItem xs={12}>
+      <GridContainer justify="center">
+        <GridItem xs={10}>
         <CustomInput
           inputProps={{
             placeholder: "Search",
@@ -105,18 +124,19 @@ class IndexTable extends React.Component {
               defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value}
               data={data}
               loading={loading}
+
               columns={[
                 {
-                  Header: t("th.name"),
-                  accessor: "name",
-                },
-                {
-                  Header: t("th.lastname"),
-                  accessor: "last_name"
-                },
-                {
-                  Header: t("th.country"),
+                  Header: t("label.name"),
                   accessor: "country"
+                },
+                {
+                  Header: t("label.state"),
+                  accessor: "code"
+                },
+                {
+                  Header: t("th.projects"),
+                  accessor: "number"
                 },
                 {
                   Header: t("th.actions"),
@@ -133,14 +153,17 @@ class IndexTable extends React.Component {
                   
                   getProps: () => {
                     return {
-                      style: { padding: "5px"}
+                      // style: { padding: "0px"}
                     }
                   },
                   filterMethod: (filter, rows) => {
+                    // using match-sorter
+                    // it will take the content entered into the "filter"
+                    // and search for it in EITHER the firstName or lastName
                     const result = matchSorter(rows, filter.value, {
                       keys: [
-                        "name",
-                        "last_name",
+                        "country",
+                        "code"
                       ], threshold: matchSorter.rankings.WORD_STARTS_WITH
                     });
                     return result;
@@ -160,14 +183,14 @@ class IndexTable extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
-      ambassador_list: state.ambassadorReducer.ambassador_list,
-      loading: state.ambassadorReducer.loading
+      code_list: state.codeReducer.code_list, 
+      loading: state.codeReducer.loading
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetAmbassadorList: () => dispatch(getAmbassadorList()),
+  dispatchGetCodeList: () => dispatch( getCodeList() )
 });
 
-const IndexTableComponent = translate('provider')(IndexTable);
-export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent));
+const CodeSATableComponent = translate('provider')(CodeSATable);
+export default connect(mapStateToProps, mapDispatchToPropsActions)(CodeSATableComponent);
 

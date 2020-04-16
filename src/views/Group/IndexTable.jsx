@@ -81,19 +81,23 @@ class IndexTable extends React.Component {
         AmbassadorMentor: prop.embassador.first_name + " " + prop.embassador.last_name,
         projects: (
           <div className="actions-left">
+            <Link to={"/group/student/" + prop.id}>
               <Button
                 size="sm"
                 color="success"
               >
                 {t('button.manage_participants')}
               </Button>
+            </Link>
             {" "}
+            <Link to={"/group/progress/" + prop.id}>
               <Button
                 size="sm"
                 color="info"
               >
                 {t('button.project_progress')}
               </Button>
+            </Link>
           </div>
         ),
         actions: (
