@@ -7,7 +7,7 @@ import { translate } from "react-translate";
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
-import CountrySelect from "views/Select/CountrySelect.jsx";
+import ReportSelect from "views/Select/ReportSelect.jsx";
 import Table from "components/Table/Table.jsx";
 import { getReportCountry } from "actions/reportActions.jsx";
 import { store } from "store";
@@ -62,13 +62,7 @@ class PruebaTable extends React.Component {
       <GridContainer justify="center">
         <GridItem xs={8}>
           <GridContainer justify="center">
-            <GridItem xs={4}>
-              <Field
-                formName="report"
-                name="country"
-                component={CountrySelect}
-              />
-            </GridItem> 
+           <ReportSelect/> 
           </GridContainer>
         <br/> 
           <Table
@@ -90,11 +84,6 @@ class PruebaTable extends React.Component {
     );
   }
 }
-
-PruebaTable = reduxForm({
-  form: 'reportform', 
-  enableReinitialize: true,
-})(PruebaTable);
 
 const mapStateToProps = state => ({ 
       report_country: state.reportReducer.report_country,

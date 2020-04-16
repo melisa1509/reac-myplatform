@@ -27,10 +27,7 @@ export const getReports = () => {
 export const getReportCountry= () => {
     return (dispatch, getState) => {
         const reduxState = getState();
-        const key= ""
-        if(reduxState.form.reportform.values !== undefined){
-           key = reduxState.form.reportform.values.country
-        }
+        const key= reduxState.selected_country
         return fetch( BASE_URL + "/report/country/"+ key +"?callback=foo")
         .then(response => response.json())
         .then(json => {
