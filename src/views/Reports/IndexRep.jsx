@@ -23,6 +23,7 @@ import dashboardStyle from "assets/jss/material-dashboard-pro-react/views/dashbo
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from "react-translate";
 import PorcentageTable from "./PorcentageTable.jsx";
+import Prueba from "./Prueba.jsx";
 import PorcentageATable from "./PorcentageATable.jsx";
 import GlobalTable from "./GlobalTable.jsx";
 
@@ -104,7 +105,7 @@ class IndexRep extends React.Component {
               </Muted>
             </CardHeader>
             <CardBody>
-                <PorcentageTable/>      
+                <Prueba/>      
             </CardBody>
           </Card>
           <br/>

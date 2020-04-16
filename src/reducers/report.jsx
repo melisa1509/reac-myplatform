@@ -1,15 +1,18 @@
 import { GET_REPORTS } from "constants/actionTypes";
+import { GET_REPORT_COUNTRY } from "constants/actionTypes";
 
 const initialState = { 
   report_list:{
       evaluations:[],
       studentsMbs:[],
       topNumbers:[],
+      topNumbers2:[],
       statistics:[],
       vectorMap:{
         BO:""
       }
   },
+  report_country:[],
   loading: true,
 }
 export const reportReducer = (state = initialState, action) => {
@@ -18,6 +21,10 @@ export const reportReducer = (state = initialState, action) => {
         return Object.assign({}, state, {
           report_list: action.payload,
           loading: false
+        });
+      case GET_REPORT_COUNTRY:
+        return Object.assign({}, state, {
+          report_country: action.payload,
         });
     }
     return state;

@@ -1,9 +1,9 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 // react component for creating dynamic tables
 import ReactTable from "react-table";
 import { connect } from "react-redux";
-import { getAmbassadorList } from "actions/ambassadorActions.jsx";
+import { getProjectProgress } from "actions/groupActions";
 import { Link } from "react-router-dom";
 
 // core components
@@ -13,10 +13,10 @@ import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
 import { translate } from "react-translate";
-
 import { withRouter } from 'react-router-dom';
 
-class IndexTable extends React.Component {
+
+class SATable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,7 +42,6 @@ class IndexTable extends React.Component {
     const { value } = e.target;
     const filterAll = value;
     const filtered = [{ id: 'all', value: filterAll }];
-    // NOTE: this completely clears any COLUMN filters
     this.setState({ filterAll, filtered });
   }
 
@@ -56,34 +55,29 @@ class IndexTable extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatchGetAmbassadorList();
+    this.props.dispatchGetProjectProgress(this.props.match.params.id);
   }
+
  
   render() {
-    const { ambassador_list, loading } = this.props;
+    const { progress_list, loading } = this.props;
     let { t } = this.props;
-    const data = ambassador_list.map((prop, key) => {
+            
+    const data = progress_list.progressSa.map((prop, key) => {
       return {
         id: key, 
-        name: prop.first_name,
-        last_name:prop.last_name,
-        country:prop.country,
-        actions: (
-          // we've added some custom button actions
-          <div className="actions-left">
-            <Link to={"/group/new/" + prop.id}>
-              <Button
-                size="sm"
-                color="info"
-                onClick={this.saveClick}
-              >
-                {t('button.create_group')}
-              </Button>
-            </Link>
-          </div>
-        )
+        name: prop.name,
+        plan:prop.plan,
+        product:prop.product,
+        process:prop.process,
+        price:prop.price,
+        promotion:prop.promotion,
+        paperwork:prop.paperwork,
+        quality:prop.quality,
+        service:prop.service,
       };
     });
+    
     return (
       <GridContainer>
         <GridItem xs={12}>
@@ -105,24 +99,43 @@ class IndexTable extends React.Component {
               defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value}
               data={data}
               loading={loading}
+
               columns={[
                 {
                   Header: t("th.name"),
                   accessor: "name",
                 },
                 {
-                  Header: t("th.lastname"),
-                  accessor: "last_name"
+                  Header: t("th.plan"),
+                  accessor: "plan",
                 },
                 {
-                  Header: t("th.country"),
-                  accessor: "country"
+                  Header: t("th.product"),
+                  accessor: "product",
                 },
                 {
-                  Header: t("th.actions"),
-                  accessor: "actions",
-                  sortable: false,
-                  filterable: false
+                  Header: t("th.process"),
+                  accessor: "process",
+                },
+                {
+                  Header: t("th.price"),
+                  accessor: "price",
+                },
+                {
+                  Header: t("th.promotion"),
+                  accessor: "promotion",
+                },
+                {
+                  Header: t("th.paperwork"),
+                  accessor: "paperwork",
+                },
+                {
+                  Header: t("th.quality"),
+                  accessor: "quality",
+                },
+                {
+                  Header: t("th.service"),
+                  accessor: "service",
                 },
                 {
                   Header: "",
@@ -133,14 +146,12 @@ class IndexTable extends React.Component {
                   
                   getProps: () => {
                     return {
-                      style: { padding: "5px"}
                     }
                   },
                   filterMethod: (filter, rows) => {
                     const result = matchSorter(rows, filter.value, {
                       keys: [
-                        "name",
-                        "last_name",
+                        "name"
                       ], threshold: matchSorter.rankings.WORD_STARTS_WITH
                     });
                     return result;
@@ -148,26 +159,39 @@ class IndexTable extends React.Component {
                   filterAll: true,
                 }
               ]}
-              defaultPageSize={10}
+              key={data.length}
+              defaultPageSize={data.length < 10 ? data.length : 10 }
               showPaginationTop={false}
               showPaginationBottom={true}
               className="-striped -highlight"
           />
         </GridItem>
+          <GridContainer>
+            <GridItem xs={12} sm={12} md={12}>
+                <center>
+                <Link to={"/group"}>
+                <Button color="default" size="sm">
+                {t("button.return_to_list")}
+                </Button>
+                {" "}
+                </Link>{" "}
+                </center>
+            </GridItem>
+          </GridContainer>
       </GridContainer>
     );
   }
 }
 
 const mapStateToProps = state => ({ 
-      ambassador_list: state.ambassadorReducer.ambassador_list,
-      loading: state.ambassadorReducer.loading
+      progress_list: state.groupReducer.progress_list, 
+      loading: state.groupReducer.loading
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetAmbassadorList: () => dispatch(getAmbassadorList()),
+  dispatchGetProjectProgress: (key) => dispatch( getProjectProgress(key) )
 });
 
-const IndexTableComponent = translate('provider')(IndexTable);
-export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent));
+const SATableComponent = translate('provider')(SATable);
+export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(SATableComponent));
 
