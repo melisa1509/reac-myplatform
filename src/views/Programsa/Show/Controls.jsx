@@ -12,7 +12,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
-import { editRevisionProgrammbs, approveProject, sendRevisionProject } from "actions/programmbsActions.jsx";
+import { editRevisionProgramsa, approveProject, sendRevisionProject } from "actions/programsaActions.jsx";
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 
 import { translate } from "react-translate";
@@ -45,7 +45,7 @@ class Controls extends React.Component {
   }
 
   handleSaveRevision(){
-    this.props.dispatchEditRevisionProgrammbs(this.props.history);
+    this.props.dispatchEditRevisionProgramsa(this.props.history);
   }
 
   handleApproveProject(){
@@ -58,7 +58,7 @@ class Controls extends React.Component {
  
 
   render() {
-    const { classes, programmbs } = this.props;
+    const { classes, programsa } = this.props;
     let { t } = this.props;
     return (
       <GridContainer justify="center">
@@ -99,7 +99,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchEditRevisionProgrammbs: param => dispatch( editRevisionProgrammbs(param) ), 
+  dispatchEditRevisionProgramsa: param => dispatch( editRevisionProgramsa(param) ), 
   dispatchApproveProject: param => dispatch( approveProject(param)),
   dispatchSendRevisionProject: param => dispatch( sendRevisionProject(param))
 });

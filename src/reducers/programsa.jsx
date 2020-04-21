@@ -1,81 +1,44 @@
-import { SHOW_PROGRAMMBS, UPDATE_REVISION_PROGRAMMBS, ERROR_EDIT_REVISION, SUCCESSFULL_EDIT_REVISION, SUCCESSFULL_APPROVE_PROJECT, ERROR_APPROVE_PROJECT } from "constants/actionTypes";
-import { LOAD_FORM_PROGRAMMBS } from "constants/actionTypes";
+import { SHOW_PROGRAMSA, UPDATE_REVISION_PROGRAMSA, ERROR_EDIT_REVISION, SUCCESSFULL_EDIT_REVISION, SUCCESSFULL_APPROVE_PROJECT, ERROR_APPROVE_PROJECT } from "constants/actionTypes";
+import { LOAD_FORM_PROGRAMSA } from "constants/actionTypes";
 import { HIDE_REVISION_ALERT, ERROR_SEND_REVISION_PROJECT, SUCCESSFULL_SEND_REVISION_PROJECT, } from "constants/actionTypes";
 
 const initialState = { 
-  programmbs:{
-    plan1: "",
-    plan2: "",
-    product1: "",
-    product3: "",
-    product4: "",
-    product5: "",
-    product6: "",
-    product7: "",
-    process1: [],
-    process2: "",
-    process3: "",
-    process4: "",
-    price1: "",
-    price2: "",
-    price3: "",
-    price4: "",
-    promotion1: "",
-    promotion2: "",
-    promotion3: "",
-    promotion4: "",
-    promotion5: "",
-    paperwork1: "",
-    paperwork2: "",
-    paperwork3: [],
-    paperwork4: {p4_initial_capital: "", p4_expenses: "", p4_income: "", p4_balance: "", p4_array: []},
-    paperwork5: {p5_income: "", p5_array: []},
-    paperwork6: {p6_expenses: "", p6_earnings_loses: "", p6_balance: "", p6_array: []},
-    paperwork7: {p7_title: [], p7_income: [], p7_array: []},
-    paperwork8: {p8_balance: [], p8_expenses: [], p8_earnings_loses: [], p8_array: []},
-    quality_p1: "",
-    quality_p2: "",
-    quality_p3: "",
-    quality_p4: "",
-    quality_p5: "",
-    quality_p6: "",
-    quality_p7: "",
-    quality_p8: "",
-    quality_q1: "",
-    quality_q2: "",
-    quality_q3: "",
-    quality_q4: "",
-    quality_q5: "",
-    quality_q6: "",
-    quality_q7: "",
-    quality_q8: "",
-    quality_g1: "",
-    quality_g2: "",
-    quality_g3: "",
-    quality_g4: "",
-    quality_g5: "",
-    quality_g6: "",
-    quality_g7: "",
-    qualityg8: "",
-    service1: "",
-    service2: "",
-    service3: "",
-    service4: "",
-    service5: "",
-    service6: "",
-    history2: "",
+  programsa:{
+    mision1: "",
+    mision3: "",
+    mision4: "",  
+    generate_groups1: [],
+    generate_groups2: "",
+    generate_groups3: [],
+    generate_groups4: "",
+    generate_groups5: [],
+    generate_groups6: "",
+    generate_groups7: "",   
+    graduate1: "",
+    graduate2: "",
+    graduate3: "",
+    graduate4: "",
+    graduate5: [],   
+    rule1: "",
+    rule2: "",
+    rule3: "",
+    rule4: "",
+    rule5: "",
+    rule6: "",
+    rule7: "",
+    rule8: "",  
+    support1: "",
+    support2: "",
+    support3: "",
     state: "",
-    statusplan: "",
-    statusproduct: "",
-    statusprice: "",
-    statuspromotion: "",
-    statuspaperwork: "",
-    statusprocess: "",
-    statusquality: "",
-    statusservice: "",
+    statusmision: "",
+    statusgraduate: "",
+    statusgenerate_groups: "",
+    statusrule: "",
+    statussupport: "",
     code: "",
     student:{
-        id: 142,
+        id: 1,
         username: "",
         language: "",
         language_grader: [],
@@ -123,21 +86,21 @@ const initialState = {
 
 
 
-export const programmbsReducer = (state = initialState, action) => {
+export const programsaReducer = (state = initialState, action) => {
     switch (action.type) {
-      case SHOW_PROGRAMMBS:
+      case SHOW_PROGRAMSA:
         return Object.assign({}, state, {
-          programmbs: action.payload
+          programsa: action.payload
         });
 
-      case UPDATE_REVISION_PROGRAMMBS:
+      case UPDATE_REVISION_PROGRAMSA:
         return Object.assign({}, state, {
-          programmbs: Object.assign(state.programmbs, {
+          programsa: Object.assign(state.programsa, {
             [action.payload.name]: action.payload.value
           })
         });
 
-      case LOAD_FORM_PROGRAMMBS:
+      case LOAD_FORM_PROGRAMSA:
         return Object.assign({}, state, {
           data: action.data
         });

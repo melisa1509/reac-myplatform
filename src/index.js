@@ -26,6 +26,7 @@ import App from 'views/Age/App.jsx';
 import CourseNew from 'views/Course/New/New.jsx';
 import ProgramMbs from 'views/Programmbs/Show/Show.jsx';
 import ProgramMbsFile from 'views/Programmbs/ShowFile/Show.jsx';
+import ProgramSa from 'views/Programsa/Show/Show.jsx';
 import User from 'views/User/Show/Show.jsx';
 import UserEdit  from 'views/User/Edit/Edit.jsx';
 import UserChangePassword  from 'views/User/ChangePassword/ChangePassword.jsx';
@@ -87,6 +88,7 @@ ReactDOM.render(
           <Route path="/course/new" component={CourseNew} />
           <Route path="/programmbs/show/:id" component={ProgramMbs} />
           <Route path="/programmbs/showfile/:id" component={ProgramMbsFile} />
+          <Route path="/programsa/show/:id" component={ProgramSa} />
           <Route path="/user/show/:id" component={User} exact /> 
           <Route path="/user/edit/:id" component={UserEdit} exact /> 
           <Route path="/user/editpassword/:id" component={UserChangePassword} exact /> 

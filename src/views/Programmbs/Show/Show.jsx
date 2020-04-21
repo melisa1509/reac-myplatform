@@ -41,7 +41,7 @@ class Show extends React.Component {
     this.props.dispatchRedirectDashboard(this.props.history);
   }
   render() {
-    const { classes, editRevisionSuccessfull, editRevisionError, approveProjectError, approveProjectSuccessfull, t } = this.props;
+    const { classes, sendRevisionProjectSuccessfull, sendRevisionProjectError, editRevisionSuccessfull, editRevisionError, approveProjectError, approveProjectSuccessfull, t } = this.props;
     return (
         <div>
           <AdminHeader/>
@@ -73,6 +73,34 @@ class Show extends React.Component {
                   <h4>{t("label.save_error")}</h4>
               </SweetAlert>
             : ""}
+            {sendRevisionProjectSuccessfull ? 
+              <SweetAlert
+                  success
+                  style={{ display: "block", marginTop: "-100px" }}
+                  onConfirm={() => this.redirectDashboard()}
+                  onCancel={() => this.hideAlert()}
+                  confirmBtnText={t("button.continue")}
+                  confirmBtnCssClass={
+                      this.props.classes.button + " " + this.props.classes.success
+                  }
+                  >
+                  <h4>{t("label.revision_sent_successfully")}</h4>
+              </SweetAlert>
+            : ""}
+            {sendRevisionProjectError ? 
+              <SweetAlert
+                  warning
+                  style={{ display: "block", marginTop: "-100px" }}
+                  onConfirm={() => this.hideAlert()}
+                  onCancel={() => this.hideAlert()}
+                  confirmBtnText={t("button.continue")}
+                  confirmBtnCssClass={
+                      this.props.classes.button + " " + this.props.classes.success
+                  }
+                  >
+                  <h4>{t("label.save_error")}</h4>
+              </SweetAlert>
+            : ""}
             {approveProjectSuccessfull ? 
               <SweetAlert
                   success
@@ -84,7 +112,7 @@ class Show extends React.Component {
                       this.props.classes.button + " " + this.props.classes.success
                   }
                   >
-                  <h4>{t("label.save_success_revision")}</h4>
+                  <h4>{t("label.success_approved")}</h4>
               </SweetAlert>
             : ""}
             {approveProjectError ? 
@@ -133,7 +161,9 @@ const mapStateToProps = state => ({
   editRevisionError: state.programmbsReducer.editRevisionError,
   editRevisionSuccessfull: state.programmbsReducer.editRevisionSuccessfull,
   approveProjectError: state.programmbsReducer.approveProjectError,
-  approveProjectSuccessfull: state.programmbsReducer.approveProjectSuccessfull
+  approveProjectSuccessfull: state.programmbsReducer.approveProjectSuccessfull,
+  sendRevisionProjectError: state.programmbsReducer.sendRevisionProjectError,
+  sendRevisionProjectSuccessfull: state.programmbsReducer.sendRevisionProjectSuccessfull
     
 });
 
