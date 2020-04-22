@@ -1,12 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { translate } from "react-translate";
 // react component for creating dynamic tables
 import { connect } from "react-redux";
 import { updateCountrySelect } from "actions/selectActions.jsx";
-import { getReportCountry } from "actions/reportActions.jsx";
-import { getAmbassadorCountry } from "actions/reportActions.jsx";
-import { CountryList } from "actions/selectActions.jsx";
+import { getReportAmbassador } from "actions/reportActions.jsx";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -46,8 +43,7 @@ class ReportSelect extends React.Component {
     handleSimple = event => {
         this.setState({ [event.target.name]: event.target.value });
         this.props.dispatchUpdateCountrySelect(event.target.value);
-        this.props.dispatchGetReportCountry(event.target.value);
-        this.props.dispatchGetAmbassadorCountry(event.target.value);
+        this.props.dispatchGetReportAmbassador(event.target.value);
     };
     handleChange = name => event => {
         this.setState({ [name]: event.target.checked });
@@ -55,11 +51,9 @@ class ReportSelect extends React.Component {
     isValidated() {
         return true;
     }
-    componentDidMount() {
-        this.props.dispatchLoadCountryList();
-      }
+
     render() {
-        const { classes, input, country_list } = this.props;
+        const { classes, ambassador_country } = this.props;
         let { t } = this.props;
         
         return (
@@ -68,7 +62,7 @@ class ReportSelect extends React.Component {
                         htmlFor="simple-select"
                         className={classes.selectLabel}
                     >
-                        {t("label.country")}
+                        {t("label.ambassador")}
                     </InputLabel>
                     <Select
                         MenuProps={{
@@ -91,7 +85,7 @@ class ReportSelect extends React.Component {
                             }}
                             value="-1"
                         >
-                            {t("label.chose_country")}
+                            {t("label.chose_ambassador")}
                         </MenuItem>
                         <MenuItem
                             classes={{
@@ -99,19 +93,19 @@ class ReportSelect extends React.Component {
                             }}
                             value="ALL"
                         >
-                            {t("label.all_country")}
+                            {t("label.all_ambassadors")}
                         </MenuItem>
                         {
-                            country_list.map( (country, key ) => {
+                            ambassador_country.map( (prop) => {
                                 return(
                                     <MenuItem
                                         classes={{
                                             root: classes.selectMenuItem,
                                             selected: classes.selectMenuItemSelected
                                         }}
-                                        value={country.alpha3Code}
+                                        value={prop.id}
                                     >
-                                        {country.name}
+                                        {prop.first_name +" "+ prop.last_name}
                                     </MenuItem>
                                 )
                             })
@@ -124,16 +118,13 @@ class ReportSelect extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
-    country_list: state.selectReducer.country_list, 
-    report_list: state.reportReducer.report_list, 
-    report_country: state.reportReducer.report_country
+    ambassador_country: state.reportReducer.ambassador_country, 
+    report_ambassador: state.reportReducer.report_ambassador
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchUpdateCountrySelect: key => dispatch( updateCountrySelect(key) ), 
-  dispatchGetReportCountry: key => dispatch( getReportCountry(key)),
-  dispatchGetAmbassadorCountry: key => dispatch (getAmbassadorCountry(key)),
-  dispatchLoadCountryList: () => dispatch(CountryList())
+  dispatchUpdateCountrySelect: key => dispatch( updateCountrySelect(key)), 
+  dispatchGetReportAmbassador: key => dispatch( getReportAmbassador(key))
 
 });
 

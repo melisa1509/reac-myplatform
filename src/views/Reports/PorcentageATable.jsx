@@ -8,8 +8,8 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Table from "components/Table/Table.jsx";
-import ReportSelect from "views/Select/ReportSelect.jsx";
-import { getReports } from "actions/reportActions.jsx";
+import AmbassadorSelect from "views/Select/AmbassadorSelect.jsx";
+import { getReportAmbassador } from "actions/reportActions.jsx";
 
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
 import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
@@ -26,35 +26,37 @@ class PorcentageATable extends React.Component {
     
     };
   }
-  
+  componentDidMount(){
+    this.props.dispatchGetReportAmbassador();
+  }
   render() {
-    const {report_list} = this.props;
+    const {report_ambassador} = this.props;
     let { t } = this.props;
-    const question = report_list.statistics.map((prop)=>{
+    const question = report_ambassador.map((prop)=>{
       let TableData=[]
       return(
         TableData=[[t(prop.question)]]
       );
     });
-    const studentPre  = report_list.statistics.map((prop)=>{
+    const studentPre  = report_ambassador.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.studentsPre]
       );
     });
-    const students  = report_list.statistics.map((prop)=>{
+    const students  = report_ambassador.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.students]
       );
     });
-    const percentagePre  = report_list.statistics.map((prop)=>{
+    const percentagePre  = report_ambassador.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.percentagePre +"%"]
       );
     });
-    const percentage = report_list.statistics.map((prop)=>{
+    const percentage = report_ambassador.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.percentage +"%" ]
@@ -65,7 +67,7 @@ class PorcentageATable extends React.Component {
         <GridItem xs={8}>
           <GridContainer justify="center">
             <GridItem xs={4}>
-              <ReportSelect/> 
+              <AmbassadorSelect/> 
             </GridItem> 
           </GridContainer>
         <br/> 
@@ -91,10 +93,11 @@ class PorcentageATable extends React.Component {
 
 const mapStateToProps = state => ({ 
       report_list: state.reportReducer.report_list,
+      report_ambassador: state.reportReducer.report_ambassador
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetReports: () => dispatch( getReports() )
+  dispatchGetReportAmbassador: () => dispatch( getReportAmbassador() )
 });
 
 const PorcentageATableComponent = translate('provider')(withStyles(style)(PorcentageATable));

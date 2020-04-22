@@ -105,7 +105,7 @@ class IndexRep extends React.Component {
               </Muted>
             </CardHeader>
             <CardBody>
-                <PorcentageTable/>      
+                <Prueba/>      
             </CardBody>
           </Card>
           <br/>

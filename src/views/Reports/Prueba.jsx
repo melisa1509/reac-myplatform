@@ -11,7 +11,6 @@ import ReportSelect from "views/Select/ReportSelect.jsx";
 import Table from "components/Table/Table.jsx";
 import { getReportCountry } from "actions/reportActions.jsx";
 import { store } from "store";
-import { Field, reduxForm } from 'redux-form';
 
 class PruebaTable extends React.Component {
   constructor(props) {
@@ -21,7 +20,6 @@ class PruebaTable extends React.Component {
     };
   }
   componentDidMount(){
-    const reduxState = store.getState();
       this.props.dispatchGetReportCountry();
   }
   render() {
@@ -62,7 +60,9 @@ class PruebaTable extends React.Component {
       <GridContainer justify="center">
         <GridItem xs={8}>
           <GridContainer justify="center">
-           <ReportSelect/> 
+            <GridItem xs={4}>
+              <ReportSelect/> 
+            </GridItem> 
           </GridContainer>
         <br/> 
           <Table

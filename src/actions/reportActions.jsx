@@ -1,4 +1,4 @@
-import { GET_REPORTS, GET_REPORT_COUNTRY } from 'constants/actionTypes.jsx';
+import { GET_REPORTS, GET_REPORT_COUNTRY, GET_AMBASSADOR_COUNTRY, GET_REPORT_AMBASSADOR } from 'constants/actionTypes.jsx';
 import { BASE_URL } from 'constants/urlTypes.jsx';
 
 export const getReports = () => {
@@ -24,10 +24,8 @@ export const getReports = () => {
     }  
 }
 
-export const getReportCountry= () => {
-    return (dispatch, getState) => {
-        const reduxState = getState();
-        const key= reduxState.selected_country
+export const getReportCountry= (key) => {
+    return (dispatch) => {
         return fetch( BASE_URL + "/report/country/"+ key +"?callback=foo")
         .then(response => response.json())
         .then(json => {
@@ -36,3 +34,22 @@ export const getReportCountry= () => {
     }
 }
 
+export const getAmbassadorCountry= (key) => {
+    return (dispatch) => {
+        return fetch( BASE_URL + "/ambassador/country/"+ key +"?callback=foo")
+        .then(response => response.json())
+        .then(json => {
+            dispatch ({ type: GET_AMBASSADOR_COUNTRY, payload: json.data });
+        });
+    }
+}
+
+export const getReportAmbassador= (key) => {
+    return (dispatch) => {
+        return fetch( BASE_URL + "/report/ambassador/"+ key +"?callback=foo")
+        .then(response => response.json())
+        .then(json => {
+            dispatch ({ type: GET_REPORT_AMBASSADOR, payload: json.data });
+        });
+    }
+}
