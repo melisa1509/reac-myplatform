@@ -71,71 +71,89 @@ const styles = {
 
 
 
-class GenerateGroupsTab extends React.Component {
+class FacilitateGroupsTab extends React.Component {
 
   
   render() {
     const { classes, programsa } = this.props;
     let { t } = this.props;
-    const optionsGenerateGroups1 = {
-         value: programsa.generate_groups1,
-         options:[
-            { label: t("label.generateGroup1.option1") },
-            { label: t("label.generateGroup1.option2") },
-            { label: t("label.generateGroup1.option3") },
-            { label: t("label.generateGroup1.option4") }
-         ]
-    }
-
-    const optionsGenerateGroups3 = {
-        value: programsa.generate_groups3,
-        options:[
-           { label: t("label.generateGroup3.option1") },
-           { label: t("label.generateGroup3.option2") },
-           { label: t("label.generateGroup3.option3") },
-        ]
-    }
-
     
     
     return (
         <Card >
           <CardBody>
-            <h3 className={classes.cardTitleCenter} >{t("title.generate_groups")}</h3>
+            <h3 className={classes.cardTitleCenter} >{t("title.rules")}</h3>
             <br/>
             <SuccessBold>
-              {t("question.generateGroups1")}
-            </SuccessBold>
-            <br/>
-            <CustomCheckbox data={optionsGenerateGroups1} />
-            <br/>
-            <SuccessBold>
-              {t("question.generateGroups2")}
+              {t("question.rule1")}
             </SuccessBold>
             <br/>
             <MutedText>
-              {programsa.generate_groups2}
+              {programsa.rule1}
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.generateGroups3")}
-            </SuccessBold>
-            <br/>
-            <CustomCheckbox data={optionsGenerateGroups3} />
-            <br/>
-            <SuccessBold>
-              {t("question.generateGroups4")}
+              {t("question.rule1")}
             </SuccessBold>
             <br/>
             <MutedText>
-              {programsa.generate_groups4}
+              {programsa.rule2}
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.generateGroups5")}
+              {t("question.rule3")}
             </SuccessBold>
+            <br/>
+            <MutedText>
+              {programsa.rule3}
+            </MutedText>
+            <br/>
+            <SuccessBold>
+              {t("question.rule4")}
+            </SuccessBold>
+            <br/>
+            <MutedText>
+              {programsa.rule4}
+            </MutedText>
+            <br/>
+            <SuccessBold>
+              {t("question.rule5")}
+            </SuccessBold>
+            <br/>
+            <MutedText>
+              {programsa.rule5}
+            </MutedText>
+            <br/>
+            <SuccessBold>
+              {t("question.rule6")}
+            </SuccessBold>
+            <br/>
+            <MutedText>
+              {programsa.rule6}
+            </MutedText>
+            <br/>
+            <SuccessBold>
+              {t("question.rule7")}
+            </SuccessBold>
+            <br/>
+            <MutedText>
+              {programsa.rule7}
+            </MutedText>
+            <br/>
+            <SuccessBold>
+              {t("question.rule8")}
+            </SuccessBold>
+            <br/>
+            <MutedText>
+              {programsa.rule8}
+            </MutedText>
+            <br/>
+            <SuccessBold>
+              {t("question.rule9")}
+            </SuccessBold>
+            <br/>
             {
-              programsa.generate_groups5.map((prop, key) => 
+              programsa.rule9.map((prop, key) => 
               <MutedText>
                 {prop}
               </MutedText>
@@ -143,22 +161,14 @@ class GenerateGroupsTab extends React.Component {
             }
             <br/>
             <SuccessBold>
-              {t("question.generateGroups6")}
+              {t("question.rule10")}
             </SuccessBold>
             <br/>
             <MutedText>
-              {programsa.generate_groups6}
+              {programsa.rule10}
             </MutedText>
             <br/>
-            <SuccessBold>
-              {t("question.generateGroups7")}
-            </SuccessBold>
-            <br/>
-            <MutedText>
-              {programsa.generate_groups7}
-            </MutedText>
-            <br/>
-            <RevisionForm name="revisiongenerategroups" labelText={t("label.revision_generate_groups")+ " *"} />
+            <RevisionForm name="revisionrule" labelText={t("label.revision_rule")+ " *"} />
             <br/>
             <Controls/>
           </CardBody>
@@ -167,7 +177,7 @@ class GenerateGroupsTab extends React.Component {
   }
 }
 
-GenerateGroupsTab.propTypes = {
+FacilitateGroupsTab.propTypes = {
   classes: PropTypes.object,
 };
 
@@ -180,5 +190,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const GenerateGroupsTabComponent = translate('provider')(withStyles(styles)(GenerateGroupsTab));
-export default connect(mapStateToProps, mapDispatchToPropsActions)(GenerateGroupsTabComponent);
+const FacilitateGroupsTabComponent = translate('provider')(withStyles(styles)(FacilitateGroupsTab));
+export default connect(mapStateToProps, mapDispatchToPropsActions)(FacilitateGroupsTabComponent);

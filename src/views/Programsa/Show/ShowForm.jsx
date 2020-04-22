@@ -27,6 +27,9 @@ import Face from "@material-ui/icons/Face";
 import NavPills from "components/NavPills/NavPills.jsx";
 import MisionTab from "./MisionTab.jsx";
 import GenerateGroupsTab from "./GenerateGroupsTab.jsx";
+import FacilitateGroupsTab from "./FacilitateGroupsTab.jsx";
+import GraduateGroupsTab from "./GraduateGroupsTab.jsx";
+import SupportGroupsTab from "./SupportGroupsTab.jsx";
 
 
 
@@ -73,19 +76,40 @@ class ShowForm extends React.Component {
                   color="warning"
                   tabs={[
                     {
-                      tabButton: t("title.plan"),
+                      tabButton: t("title.mision"),
                       tabIcon: AccountBalance,
                       tabContent: (
                         <MisionTab />
                       )
                     },
                     {
-                      tabButton: t("title.product"),
+                      tabButton: t("title.generate_groups"),
                       tabIcon: Domain,
                       tabContent: (
                         <GenerateGroupsTab />
                       )
-                    }
+                    },
+                    {
+                      tabButton: t("title.rules"),
+                      tabIcon: Domain,
+                      tabContent: (
+                        <FacilitateGroupsTab />
+                      )
+                    },
+                    {
+                      tabButton: t("title.graduate_groups"),
+                      tabIcon: Domain,
+                      tabContent: (
+                        <GraduateGroupsTab />
+                      )
+                    },
+                    {
+                      tabButton: t("title.support_groups"),
+                      tabIcon: Domain,
+                      tabContent: (
+                        <SupportGroupsTab />
+                      )
+                    },
                   ]}
                 />
                 

@@ -77,88 +77,44 @@ class GenerateGroupsTab extends React.Component {
   render() {
     const { classes, programsa } = this.props;
     let { t } = this.props;
-    const optionsGenerateGroups1 = {
-         value: programsa.generate_groups1,
-         options:[
-            { label: t("label.generateGroup1.option1") },
-            { label: t("label.generateGroup1.option2") },
-            { label: t("label.generateGroup1.option3") },
-            { label: t("label.generateGroup1.option4") }
-         ]
-    }
-
-    const optionsGenerateGroups3 = {
-        value: programsa.generate_groups3,
-        options:[
-           { label: t("label.generateGroup3.option1") },
-           { label: t("label.generateGroup3.option2") },
-           { label: t("label.generateGroup3.option3") },
-        ]
-    }
-
     
     
     return (
         <Card >
           <CardBody>
-            <h3 className={classes.cardTitleCenter} >{t("title.generate_groups")}</h3>
+            <h3 className={classes.cardTitleCenter} >{t("title.graduate_groups")}</h3>
             <br/>
             <SuccessBold>
-              {t("question.generateGroups1")}
-            </SuccessBold>
-            <br/>
-            <CustomCheckbox data={optionsGenerateGroups1} />
-            <br/>
-            <SuccessBold>
-              {t("question.generateGroups2")}
+              {t("question.graduated1")}
             </SuccessBold>
             <br/>
             <MutedText>
-              {programsa.generate_groups2}
+              {programsa.graduate1}
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.generateGroups3")}
-            </SuccessBold>
-            <br/>
-            <CustomCheckbox data={optionsGenerateGroups3} />
-            <br/>
-            <SuccessBold>
-              {t("question.generateGroups4")}
+              {t("question.graduated2")}
             </SuccessBold>
             <br/>
             <MutedText>
-              {programsa.generate_groups4}
+              {programsa.graduate2}
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.generateGroups5")}
-            </SuccessBold>
-            {
-              programsa.generate_groups5.map((prop, key) => 
-              <MutedText>
-                {prop}
-              </MutedText>
-              )
-            }
-            <br/>
-            <SuccessBold>
-              {t("question.generateGroups6")}
+              {t("question.graduated3")}
             </SuccessBold>
             <br/>
             <MutedText>
-              {programsa.generate_groups6}
+              {programsa.graduate3}
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.generateGroups7")}
+              {t("question.graduated4")}
             </SuccessBold>
             <br/>
             <MutedText>
-              {programsa.generate_groups7}
+              {programsa.graduate4}
             </MutedText>
-            <br/>
-            <RevisionForm name="revisiongenerategroups" labelText={t("label.revision_generate_groups")+ " *"} />
             <br/>
             <Controls/>
           </CardBody>

@@ -27,6 +27,8 @@ const initialState = {
     rule6: "",
     rule7: "",
     rule8: "",  
+    rule9: [],
+    rule10: "",
     support1: "",
     support2: "",
     support3: "",
