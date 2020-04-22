@@ -3,6 +3,7 @@ import { appReducer } from 'reducers/app.jsx';
 import { loginReducer } from 'reducers/login.jsx';
 import { studentReducer } from 'reducers/student.jsx';
 import { programmbsReducer } from 'reducers/programmbs.jsx';
+import { programsaReducer } from 'reducers/programsa.jsx';
 import { userReducer } from 'reducers/user.jsx';
 import { generalReducer } from 'reducers/general.jsx';
 import { selectReducer } from 'reducers/select.jsx';
@@ -19,6 +20,7 @@ export default combineReducers({
     loginReducer,
     studentReducer,
     programmbsReducer,
+    programsaReducer,
     userReducer,
     selectReducer,
     generalReducer,

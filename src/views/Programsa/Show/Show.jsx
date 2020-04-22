@@ -17,7 +17,7 @@ import ShowRep from "./ShowRep.jsx";
 import mainPageStyle from "assets/jss/material-kit-react/views/mainPage.jsx";
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 
-import { hideRevisionAlert, redirectDashboard } from "actions/programmbsActions.jsx";
+import { hideRevisionAlert, redirectDashboard } from "actions/programsaActions.jsx";
 
 const styles = {
     ...mainPageStyle,
@@ -44,7 +44,6 @@ class Show extends React.Component {
     const { classes, sendRevisionProjectSuccessfull, sendRevisionProjectError, editRevisionSuccessfull, editRevisionError, approveProjectError, approveProjectSuccessfull, t } = this.props;
     return (
         <div>
-          <AdminHeader/>
             {editRevisionSuccessfull ? 
               <SweetAlert
                   success
@@ -158,12 +157,12 @@ Show.propTypes = {
 
 
 const mapStateToProps = state => ({ 
-  editRevisionError: state.programmbsReducer.editRevisionError,
-  editRevisionSuccessfull: state.programmbsReducer.editRevisionSuccessfull,
-  approveProjectError: state.programmbsReducer.approveProjectError,
-  approveProjectSuccessfull: state.programmbsReducer.approveProjectSuccessfull,
-  sendRevisionProjectError: state.programmbsReducer.sendRevisionProjectError,
-  sendRevisionProjectSuccessfull: state.programmbsReducer.sendRevisionProjectSuccessfull
+  editRevisionError: state.programsaReducer.editRevisionError,
+  editRevisionSuccessfull: state.programsaReducer.editRevisionSuccessfull,
+  approveProjectError: state.programsaReducer.approveProjectError,
+  approveProjectSuccessfull: state.programsaReducer.approveProjectSuccessfull,
+  sendRevisionProjectError: state.programsaReducer.sendRevisionProjectError,
+  sendRevisionProjectSuccessfull: state.programsaReducer.sendRevisionProjectSuccessfull
     
 });
 

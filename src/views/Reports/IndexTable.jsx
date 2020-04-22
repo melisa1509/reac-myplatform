@@ -160,55 +160,64 @@ class IndexTable extends React.Component {
                 {
                   Header: t("th.question1"),
                   accessor: "question1",
-                  width: 80,
+                  width: 50,
+                  sortable: false,
                   filterable: false
                 },
                 {
                   Header: t("th.question2"),
                   accessor: "question2",
-                  width: 80,
+                  width: 50,
+                  sortable: false,
                   filterable: false
                 },
                 {
                   Header: t("th.question3"),
                   accessor: "question3",
-                  width: 80,
+                  width: 50,
+                  sortable: false,
                   filterable: false
                 },
                 {
                   Header: t("th.question4"),
                   accessor: "question4",
-                  width: 80,
+                  width: 50,
+                  sortable: false,
                   filterable: false
                 },
                 {
                   Header: t("th.question5"),
                   accessor: "question5",
-                  width: 80,
+                  width: 50,
+                  sortable: false,
                   filterable: false
                 },
                 {
                   Header: t("th.question6"),
                   accessor: "question6",
-                  width: 80,
+                  width: 50,
+                  sortable: false,
                   filterable: false
                 },
                 {
                   Header: t("th.question7"),
                   accessor: "question7",
-                  width: 80,
+                  width: 50,
+                  sortable: false,
                   filterable: false
                 },
                 {
                   Header: t("th.question8"),
                   accessor: "question8",
-                  width: 80,
+                  width: 50,
+                  sortable: false,
                   filterable: false
                 },
                 {
                   Header: t("th.question9"),
                   accessor: "question9",
-                  width: 70,
+                  width: 50,
+                  sortable: false,
                   filterable: false
                 },
                 {

@@ -31,9 +31,9 @@ class Show extends React.Component {
     this.state = {
      
     };
-    
+   
   }
-  
+
   hideAlert() {
     this.props.dispatchHideRevisionAlert();
   }
@@ -44,7 +44,6 @@ class Show extends React.Component {
     const { classes, sendRevisionProjectSuccessfull, sendRevisionProjectError, editRevisionSuccessfull, editRevisionError, approveProjectError, approveProjectSuccessfull, t } = this.props;
     return (
         <div>
-          <AdminHeader/>
             {editRevisionSuccessfull ? 
               <SweetAlert
                   success
@@ -169,7 +168,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToPropsActions = dispatch => ({
   dispatchHideRevisionAlert: () => dispatch( hideRevisionAlert() ),
-  dispatchRedirectDashboard: param => dispatch( redirectDashboard(param) )
+  dispatchRedirectDashboard: param => dispatch( redirectDashboard(param) ),
 });
 
 const ShowComponent = translate('provider')(withStyles(styles)(Show));
