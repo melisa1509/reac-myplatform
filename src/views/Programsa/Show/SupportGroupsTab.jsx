@@ -89,7 +89,7 @@ class SupportGroupsTab extends React.Component {
             </SuccessBold>
             <br/>
             <MutedText>
-              {programsa.graduate1}
+              {programsa.support1}
             </MutedText>
             <br/>
             <SuccessBold>
@@ -97,7 +97,7 @@ class SupportGroupsTab extends React.Component {
             </SuccessBold>
             <br/>
             <MutedText>
-              {programsa.graduate2}
+              {programsa.support2}
             </MutedText>
             <br/>
             <SuccessBold>
@@ -105,16 +105,10 @@ class SupportGroupsTab extends React.Component {
             </SuccessBold>
             <br/>
             <MutedText>
-              {programsa.graduate3}
+              {programsa.support3}
             </MutedText>
             <br/>
-            <SuccessBold>
-              {t("question.support4")}
-            </SuccessBold>
-            <br/>
-            <MutedText>
-              {programsa.graduate4}
-            </MutedText>
+            <RevisionForm name="revisionsupport" labelText={t("label.revision_support")} />
             <br/>
             <Controls/>
           </CardBody>

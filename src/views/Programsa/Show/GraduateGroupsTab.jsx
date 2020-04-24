@@ -116,6 +116,8 @@ class GenerateGroupsTab extends React.Component {
               {programsa.graduate4}
             </MutedText>
             <br/>
+            <RevisionForm name="revisiongraduate" labelText={t("label.revision_graduate")} />
+            <br/>
             <Controls/>
           </CardBody>
         </Card>

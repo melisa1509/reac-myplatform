@@ -71,7 +71,7 @@ class MisionTab extends React.Component {
               {programsa.mision4}
             </MutedText>
             <br/>
-            <RevisionForm name="revisionmision" labelText={t("label.revision_mision")+ " *"} />
+            <RevisionForm name="revisionmision" labelText={t("label.revision_mision")} />
             <br/>
             <Controls/>
           </CardBody>
