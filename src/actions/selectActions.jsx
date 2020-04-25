@@ -1,4 +1,4 @@
-import { UPDATE_LANGUAGE_SELECT, UPDATE_COUNTRY_SELECT, COUNTRY_LIST, UPDATE_MODALITY_SELECT, UPDATE_PROGRAM_SELECT } from 'constants/actionTypes.jsx';
+import { UPDATE_LANGUAGE_SELECT, UPDATE_COUNTRY_SELECT, COUNTRY_LIST, UPDATE_MODALITY_SELECT, UPDATE_PROGRAM_SELECT, UPDATE_ROLE_SELECT } from 'constants/actionTypes.jsx';
 
 
 export const updateLanguageSelect = params => {
@@ -15,6 +15,11 @@ export const updateCountrySelect = params => {
 export const updateModalitySelect = params => {
     return (dispatch) => {
             dispatch ({ type: UPDATE_MODALITY_SELECT, payload: params });
+    }   
+}
+export const updateRoleSelect = params => {
+    return (dispatch) => {
+            dispatch ({ type: UPDATE_ROLE_SELECT, payload: params });
     }   
 }
 export const updateProgramSelect = params => {

@@ -48,6 +48,8 @@ import Reports from 'views/Reports/Index.jsx';
 import ListCode from 'views/Code/Index.jsx';
 import ShowCode from 'views/Code/Show/Show.jsx';
 import EditCode from 'views/Code/Edit/Edit.jsx';
+import ListAdmin from 'views/Administrator/Index.jsx';
+import NewAdmin from 'views/Administrator/New/New.jsx';
 import { store } from 'store/index.jsx';
 
 import "assets/scss/material-dashboard-pro-react.scss?v=1.7.0";
@@ -80,7 +82,7 @@ ReactDOM.render(
           <Route path="/student/editpassword/:id" component={StudentChangePassword} exact /> 
           <Route path="/rtl" component={RtlLayout} />
           <Route path="/auth" component={AuthLayout} />
-          <Route path="/admin" component={AdminLayout} />
+          <Route path="/admin" component={AdminLayout} exact/>
           <Route path="/table" component={ReactTable} />
           <Route path="/age" component={Age} />
           <Route path="/login" component={Login} />
@@ -117,6 +119,8 @@ ReactDOM.render(
           <Route path="/code" component={ListCode} exact />
           <Route path="/code/show/:id" component={ShowCode} exact />
           <Route path="/code/edit/:id" component={EditCode} exact />
+          <Route path="/administrator" component={ListAdmin} exact />
+          <Route path="/admin/new" component={NewAdmin} exact />
           <Redirect from="/" to="/login" />
         </Switch>
       </Router>,

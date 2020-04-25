@@ -1,9 +1,10 @@
-import { UPDATE_LANGUAGE_SELECT,  UPDATE_COUNTRY_SELECT, COUNTRY_LIST, UPDATE_MODALITY_SELECT, UPDATE_PROGRAM_SELECT } from "constants/actionTypes";
+import { UPDATE_LANGUAGE_SELECT,  UPDATE_COUNTRY_SELECT, COUNTRY_LIST, UPDATE_MODALITY_SELECT, UPDATE_PROGRAM_SELECT, UPDATE_ROLE_SELECT } from "constants/actionTypes";
 
 const initialState = { 
   selected_language: "",
   selected_country: "",
   selected_modality:"",
+  selected_role:"",
   selected_program:"",
   country_list: []
 }
@@ -14,26 +15,26 @@ export const selectReducer = (state = initialState, action) => {
             return Object.assign({}, state, {
               selected_language: action.payload
             });
-    }
-    switch (action.type) {
+
       case UPDATE_COUNTRY_SELECT:
           return Object.assign({}, state, {
             selected_country: action.payload
           });
-    }
-    switch (action.type) {
+
       case UPDATE_MODALITY_SELECT:
           return Object.assign({}, state, {
             selected_modality: action.payload
           });
-    }
-    switch (action.type) {
+      case UPDATE_ROLE_SELECT:
+        return Object.assign({}, state, {
+          selected_role: action.payload
+        });
+
       case UPDATE_PROGRAM_SELECT:
           return Object.assign({}, state, {
             selected_program: action.payload
           });
-    }
-    switch (action.type) {
+          
       case COUNTRY_LIST:
           return Object.assign({}, state, {
             country_list: action.payload

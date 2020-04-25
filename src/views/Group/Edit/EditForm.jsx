@@ -26,6 +26,7 @@ import { editGroup } from "actions/groupActions.jsx";
 import { errorRequiredFields } from "actions/generalActions.jsx";
 import { successRequiredFields } from "actions/generalActions.jsx";
 import { verifyChange } from "assets/validation/index.jsx";
+import { deleteSuccessful } from "actions/generalActions.jsx";
 import ModalitySelect from "views/Select/ModalitySelect.jsx";
 import ProgramSelect from "views/Select/ProgramSelect.jsx";
 
@@ -66,6 +67,7 @@ class EditForm extends React.Component {
             authorizationCodeState: "success"
         };
         this.saveClick = this.saveClick.bind(this);
+        this.deleteClick = this.deleteClick.bind(this);
       }
      
       saveClick() {
@@ -91,7 +93,11 @@ class EditForm extends React.Component {
         this.props.dispatchSuccessRequiredFields();
         }
       }
-     
+
+      deleteClick(){
+        this.props.dispatchDeleteSuccessful();
+      }
+
       componentDidMount() {
         this.props.loadShowGroup(this.props.match.params.id);
       }
@@ -266,7 +272,7 @@ class EditForm extends React.Component {
                   <GridItem xs={12} sm={12} md={12}>
                       <center>
                       <Link to={"/group"}>
-                      <Button color="default" size="sm" onClick={this.loginClick}>
+                      <Button color="default" size="sm" onClick={this.deleteClick}>
                       {t("button.return_to_list")}
                       </Button>
                       {" "}
@@ -301,7 +307,7 @@ EditForm = connect(
     successfull_edit:state.generalReducer.successfull_edit,
     show_group: state.groupReducer.show_group,
   }),
-  { loadShowGroup: showGroup, dispatchEditGroup: editGroup, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields},
+  { loadShowGroup: showGroup, dispatchEditGroup: editGroup, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful},
 )(EditForm);
 
 export default  withRouter(translate('provider')(withStyles(style)(EditForm)));

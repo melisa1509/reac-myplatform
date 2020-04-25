@@ -1,7 +1,7 @@
 import { ERROR_REQUIRED_FIELDS, SUCCESS_REQUIRED_FIELDS} from "constants/actionTypes";
 import { SUCCESSFULL_EDIT, SUCCESSFUL_DELETE  } from "constants/actionTypes";
 import { DISMATCH_PASSWORD } from "constants/actionTypes";
-import { SUCCESSFULL_NEW } from "constants/actionTypes";
+import { SUCCESSFULL_NEW, DELETE_SUCCESSFUL } from "constants/actionTypes";
 
 const initialState = { 
   successfull_edit: false,
@@ -9,7 +9,8 @@ const initialState = {
   errorRequired: false,
   successRequired: false,
   dismatch_password:false,
-  successfull_new:false
+  successfull_new:false,
+  delete:false
 }
 //crear un 
 
@@ -32,6 +33,12 @@ export const generalReducer = (state = initialState, action) => {
           return Object.assign({}, state, {
             successful_delete: true
           }); 
+        case DELETE_SUCCESSFUL:
+          return Object.assign({}, state, {
+            delete: true,
+            successfull_edit: false,
+            successfull_new: false
+          });
         case DISMATCH_PASSWORD:
           return Object.assign({}, state, {
             dismatch_password: true

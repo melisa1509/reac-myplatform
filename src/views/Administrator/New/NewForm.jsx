@@ -11,20 +11,22 @@ import { store } from "store";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 // core components
+import SuccessBold from "components/Typography/SuccessBold.jsx";
+import CustomCheckbox from 'components/CustomCheckbox/CustomCheckbox.jsx';
 import GridContainer from "components/Grid/GridContainer.jsx";
 import SnackbarContent from "components/Snackbar/SnackbarContent";
 import Danger from "components/Typography/Danger.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx'; 
-import { showStudent } from "actions/studentActions.jsx";
-import { editStudent } from "actions/studentActions.jsx"; 
+import { newAdministrator } from "actions/administratorActions.jsx"; 
 import { errorRequiredFields } from "actions/generalActions.jsx";
 import { successRequiredFields } from "actions/generalActions.jsx";
-import { deleteSuccessful } from "actions/generalActions.jsx";
 import { verifyChange } from "assets/validation/index.jsx";
-import LanguageSelect from "views/Select/LanguageSelect.jsx";
+import { deleteSuccessful } from "actions/generalActions.jsx";
 import CountrySelect from "views/Select/CountrySelect.jsx";
+import LanguageSelect from "views/Select/LanguageSelect.jsx";
+import RoleSelect from "views/Select/RoleSelect.jsx";
 
 // style for this view
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
@@ -45,25 +47,24 @@ const style = {
       marginTop: "20px"
     },
     label:{
-      color:"red"
+      color:"red",
+      fontSize:"20px"
     },
     ...customSelectStyle,
     ...validationFormsStyle
 };
 
 
-class EditForm extends React.Component {
+class NewForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             usernameState: "success",
             first_nameState: "success",
             last_nameState: "success",
-            cityState: "success",
-            whatsappState: "success"
         };
         this.saveClick = this.saveClick.bind(this);
-        this.deleteClick = this.deleteClick.bind(this);
+        this.deleteClick= this.deleteClick.bind(this);
       }
      
       saveClick() {
@@ -76,58 +77,45 @@ class EditForm extends React.Component {
         if (this.state.last_nameState === "") {
           this.setState({ last_nameState: "error" });
         }
-        if (this.state.cityState === "") {
-          this.setState({ cityState: "error" });
-        }
-        if (this.state.whatsappState === "") {
-          this.setState({ whatsappState: "error" });
-        }
+        
         if(this.state.usernameState === "error" || this.state.first_nameState === "error" || this.state.last_nameState === "error"){
           const stateRedux = store.getState();
           this.props.dispatchErrorRequiredFields();
         }
-        if(this.state.usernameState === "success" && this.state.first_nameState === "success"&& this.state.last_nameState === "success"){
-          const reduxState = store.getState();
-          this.props.dispatchEditStudent();
-          this.props.dispatchSuccessRequiredFields();
+        if(this.state.usernameState === "success" && this.state.first_nameState === "success" && this.state.last_nameState ==="success" ){
+        const reduxState = store.getState();
+        this.props.dispatchNewAdministrator();
+        this.props.dispatchSuccessRequiredFields();
         }
       }
 
       deleteClick(){
         this.props.dispatchDeleteSuccessful();
       }
-      componentDidMount() {
-        this.props.loadShowStudent(this.props.match.params.id);
-      }
-
+      
     render() {
-        const { classes, successfull_edit, editError, errorRequired, successRequired, show_student} = this.props;
+        const { classes, successfull_new, errorRequired, successRequired, new_administrator } = this.props;
         let { t } = this.props;
+        const languages = {
+          value:new_administrator.language_grader,
+          options:[
+             { label: t("label.english") },
+             { label: t("label.spanish") },
+             { label: t("label.french") },
+          ]
+     }
+ 
         return (
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={8}>
               <form>
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
-                      { editError ?     
-                      <SnackbarContent
-                      message={
-                          <center>{t("label.update_error")}</center>
-                        }
-                        close
-                        color="danger"
-                      />
-                      : ""}
-                  </GridItem>
-              </GridContainer>
-              <GridContainer justify="center">
-                  <GridItem xs={12} sm={12} md={12}>
-                      { successfull_edit ?  
+                      { successfull_new ?      
                       <SnackbarContent
                         message={
                           <center>{t("label.save_success")}</center>
                         }
-                        close
                         color="success"
                       />
                       : ""}
@@ -136,7 +124,7 @@ class EditForm extends React.Component {
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <Field
-                      labelText={t("label.username")+ " *"}
+                      labelText={t("label.email")+ " *"}
                       component={CustomInputRedux}
                       name="username"
                       success={this.state.usernameState === "success"}
@@ -174,7 +162,7 @@ class EditForm extends React.Component {
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <Field
-                      labelText={t("label.lastname")+ " *"}
+                      labelText={t("label.lastName")+ " *"}
                       component={CustomInputRedux}
                       name="last_name"
                       success={this.state.last_nameState === "success"}
@@ -191,82 +179,50 @@ class EditForm extends React.Component {
                 </GridItem>
               </GridContainer>
               <GridContainer >
-                  <GridItem xs={12} sm={12} md={6}>
+                <GridItem xs={12} sm={12} md={6}>
                     <Field
-                      name="language"
-                      formName="programmbs"
-                      component={LanguageSelect}
-                    />
-                  </GridItem>
-              </GridContainer>
-              <GridContainer >
-                  <GridItem xs={12} sm={12} md={7}>
-                    <Field
-                      name="country"
-                      formName="programmbs"
                       component={CountrySelect}
-                    />
-                  </GridItem>
-              </GridContainer>
-              <GridContainer >
-                  <GridItem xs={12} sm={12} md={9}>
-                    <Field
-                      labelText={t("label.city")+ " *"}
-                      component={CustomInputRedux}
-                      name="city"
-                      success={this.state.cityState === "success"}
-                      error={this.state.cityState === "error"}
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        onKeyUp: event => 
-                              verifyChange(event, "city", "length", 0, null, this),
-                        type: "text",
-                      }}
+                      name="country"
                     />
                 </GridItem>
               </GridContainer>
               <GridContainer >
-                  <GridItem xs={12} sm={12} md={12}>
+                <GridItem xs={12} sm={12} md={6}>
                     <Field
-                      labelText={t("label.whatsapp")+ " *"}
-                      component={CustomInputRedux}
-                      name="whatsapp"
-                      success={this.state.whatsappState === "success"}
-                      error={this.state.whatsappState === "error"}
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        onKeyUp: event => 
-                              verifyChange(event, "whatsapp", "length", 0, null, this),
-                        type: "text",
-                      }}
+                      component={LanguageSelect}
+                      name="language"
                     />
                 </GridItem>
               </GridContainer>
+              <GridContainer >
+                <GridItem xs={12} sm={12} md={6}>
+                    <Field
+                      component={RoleSelect}
+                      name="role"
+                    />
+                </GridItem>
+              </GridContainer>
+              <br/>
+              <SuccessBold>
+                  {t("label.language_grader")}
+              </SuccessBold>
+              <CustomCheckbox  data={languages} />
+              <br/>
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
-                      { errorRequired ? <Danger><h6 className={classes.infoText}>{t("label.require_fields")+ "*" }</h6></Danger>: ""}
+                      { errorRequired ? <Danger><h6 className={classes.infoText}>{t("label.require_fields")}</h6></Danger>: ""}
                       { successRequired ? "" :  ""}
                   </GridItem>
               </GridContainer>
               <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
                       <center>
-                      <Link to={"/student"}>
+                      <Link to={"/administrator"}>
                       <Button color="default" size="sm" onClick={this.deleteClick}>
                       {t("button.return_to_list")}
                       </Button>
-                      </Link>
                       {" "}
-                      <Link to={"/student/editpassword/" +  show_student.id}>
-                      <Button color="warning" size="sm" onClick={this.deleteClick}>
-                      {t("button.change_password")}
-                      </Button>
-                      </Link>
-                      {" "}
+                      </Link>{" "}
                       <Button color="info" size="sm" onClick={this.saveClick}>
                       {t("button.save")}
                       </Button>
@@ -282,26 +238,22 @@ class EditForm extends React.Component {
     }
 }
 
-EditForm = reduxForm({
-  form: 'studentform', 
-  enableReinitialize: true,
-})(EditForm);
+NewForm = reduxForm({
+  form: 'adminNewform', 
+})(NewForm);
 
 
-EditForm = connect(
+NewForm = connect(
   state => ({
-    initialValues: state.studentReducer.data,
     errorRequired:state.generalReducer.errorRequired,
     successRequired:state.generalReducer.successRequired,
-    edit_student: state.studentReducer.edit_student,
-    editError: state.studentReducer.editError,
-    successfull_edit:state.generalReducer.successfull_edit,
-    show_student: state.studentReducer.show_student,
+    successfull_new:state.generalReducer.successfull_new,
+    new_administrator: state.administratorReducer.new_administrator
   }),
-  { loadShowStudent: showStudent, dispatchEditStudent: editStudent, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful},
-)(EditForm);
+  { dispatchNewAdministrator: newAdministrator, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful},
+)(NewForm);
 
-export default  withRouter(translate('provider')(withStyles(style)(EditForm)));
+export default  withRouter(translate('provider')(withStyles(style)(NewForm)));
 
 
 

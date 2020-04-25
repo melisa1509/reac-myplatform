@@ -13,6 +13,7 @@ import { certificateReducer } from 'reducers/certificate.jsx';
 import { dashboardReducer } from 'reducers/dashboard.jsx';
 import { reportReducer } from 'reducers/report.jsx';
 import { codeReducer } from 'reducers/code.jsx';
+import { administratorReducer } from 'reducers/administrator.jsx';
 import { reducer as reduxFormReducer } from 'redux-form';
 
 export default combineReducers({
@@ -30,5 +31,6 @@ export default combineReducers({
     dashboardReducer,
     reportReducer,
     codeReducer,
+    administratorReducer,
     form: reduxFormReducer,
 })

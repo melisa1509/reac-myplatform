@@ -122,6 +122,7 @@ class IndexTable extends React.Component {
                 <Create />
               </Button>
             </Link>{" "}
+            <Link to={"/group/show/" + prop.id}>
               <Button
                 justIcon
                 round
@@ -130,6 +131,7 @@ class IndexTable extends React.Component {
               >
                 <Close />
               </Button>
+            </Link>
           </div>
         )
       };

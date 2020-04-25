@@ -94,16 +94,6 @@ class IndexTable extends React.Component {
                 <Create />
               </Button>
             </Link>{" "}
-            <Link to={"/student/delete/" + prop.id}>
-              <Button
-                justIcon
-                round
-                simple            
-                color="danger"
-              >
-                <Close />
-              </Button>
-            </Link>{" "}
           </div>
         )
       };

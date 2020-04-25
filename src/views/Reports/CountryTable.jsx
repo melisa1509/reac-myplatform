@@ -25,6 +25,9 @@ class PruebaTable extends React.Component {
   render() {
     const {report_country} = this.props;
     let { t } = this.props;
+    const initialValuesReport= {
+      myselect:"label.all_country",
+    }
     const question = report_country.map((prop)=>{
       let TableData=[]
       return(
@@ -61,7 +64,7 @@ class PruebaTable extends React.Component {
         <GridItem xs={8}>
           <GridContainer justify="center">
             <GridItem xs={4}>
-              <ReportSelect/> 
+              <ReportSelect initialValues={initialValuesReport}/> 
             </GridItem> 
           </GridContainer>
         <br/> 

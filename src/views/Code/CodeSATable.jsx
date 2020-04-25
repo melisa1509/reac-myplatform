@@ -79,7 +79,7 @@ class CodeSATable extends React.Component {
                 <Visibility />
               </Button>
             </Link>{" "}
-            <Link to={"/student/edit/" + prop.id}>
+            <Link to={"/code/edit/" + prop.id}>
               <Button
                 justIcon
                 round
@@ -87,16 +87,6 @@ class CodeSATable extends React.Component {
                 color="warning"
               >
                 <Create />
-              </Button>
-            </Link>{" "}
-            <Link to={"/student/delete/" + prop.id}>
-              <Button
-                justIcon
-                round
-                simple            
-                color="danger"
-              >
-                <Close />
               </Button>
             </Link>{" "}
           </div>
