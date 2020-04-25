@@ -168,7 +168,7 @@ class FacilitateGroupsTab extends React.Component {
               {programsa.rule10}
             </MutedText>
             <br/>
-            <RevisionForm name="revisionrule" labelText={t("label.revision_rule")+ " *"} />
+            <RevisionForm name="revisionrule" labelText={t("label.revision_facilitate_groups")} />
             <br/>
             <Controls/>
           </CardBody>

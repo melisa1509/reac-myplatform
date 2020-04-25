@@ -16,6 +16,8 @@ export const getShowProgramsa = key => {
 export const editRevisionProgramsa = (redirect) => {
     return (dispatch, getState) => {
 
+        alert();
+
         const reduxState = getState();
         const key = reduxState.form.programsa.values.id;
 
@@ -23,14 +25,12 @@ export const editRevisionProgramsa = (redirect) => {
         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
         var urlencoded = new URLSearchParams();
-        urlencoded.append("revisionplan", reduxState.form.programsa.values.revisionplan !== undefined ? reduxState.form.programsa.values.revisionplan : "");
-        urlencoded.append("revisionproduct", reduxState.form.programsa.values.revisionproduct !== undefined ? reduxState.form.programsa.values.revisionproduct : "");
-        urlencoded.append("revisionprice", reduxState.form.programsa.values.revisionprice !== undefined ? reduxState.form.programsa.values.revisionprice : "");
-        urlencoded.append("revisionpromotion", reduxState.form.programsa.values.revisionpromotion !== undefined ? reduxState.form.programsa.values.revisionpromotion : "");
-        urlencoded.append("revisionprocess", reduxState.form.programsa.values.revisionprocess !== undefined ? reduxState.form.programsa.values.revisionprocess : "");
-        urlencoded.append("revisionpaperwork", reduxState.form.programsa.values.revisionpaperwork !== undefined ? reduxState.form.programsa.values.revisionpaperwork : "");
-        urlencoded.append("revisionquality", reduxState.form.programsa.values.revisionquality !== undefined ? reduxState.form.programsa.values.revisionquality : "");
-        urlencoded.append("revisionservice", reduxState.form.programsa.values.revisionservice !== undefined ? reduxState.form.programsa.values.revisionservice : "");
+        urlencoded.append("id", key);
+        urlencoded.append("revisionmision", reduxState.form.programsa.values.revisionmision !== undefined ? reduxState.form.programsa.values.revisionmision : "");
+        urlencoded.append("revisiongenerategroups", reduxState.form.programsa.values.revisiongenerategroups !== undefined ? reduxState.form.programsa.values.revisiongenerategroups : "");
+        urlencoded.append("revisionrule", reduxState.form.programsa.values.revisionrule !== undefined ? reduxState.form.programsa.values.revisionrule : "");
+        urlencoded.append("revisiongraduate", reduxState.form.programsa.values.revisiongraduate !== undefined ? reduxState.form.programsa.values.revisiongraduate : "");
+        urlencoded.append("revisionsupport", reduxState.form.programsa.values.revisionsupport !== undefined ? reduxState.form.programsa.values.revisionsupport : "");
 
         var requestOptions = {
             method: 'PUT',
@@ -95,14 +95,11 @@ export const sendRevisionProject = (redirect) => {
 
         var urlencoded = new URLSearchParams();
         urlencoded.append("id", key);
-        urlencoded.append("revisionplan", reduxState.form.programsa.values.revisionplan !== undefined ? reduxState.form.programsa.values.revisionplan : "");
-        urlencoded.append("revisionproduct", reduxState.form.programsa.values.revisionproduct !== undefined ? reduxState.form.programsa.values.revisionproduct : "");
-        urlencoded.append("revisionprice", reduxState.form.programsa.values.revisionprice !== undefined ? reduxState.form.programsa.values.revisionprice : "");
-        urlencoded.append("revisionpromotion", reduxState.form.programsa.values.revisionpromotion !== undefined ? reduxState.form.programsa.values.revisionpromotion : "");
-        urlencoded.append("revisionprocess", reduxState.form.programsa.values.revisionprocess !== undefined ? reduxState.form.programsa.values.revisionprocess : "");
-        urlencoded.append("revisionpaperwork", reduxState.form.programsa.values.revisionpaperwork !== undefined ? reduxState.form.programsa.values.revisionpaperwork : "");
-        urlencoded.append("revisionquality", reduxState.form.programsa.values.revisionquality !== undefined ? reduxState.form.programsa.values.revisionquality : "");
-        urlencoded.append("revisionservice", reduxState.form.programsa.values.revisionservice !== undefined ? reduxState.form.programsa.values.revisionservice : "");
+        urlencoded.append("revisionmision", reduxState.form.programsa.values.revisionmision !== undefined ? reduxState.form.programsa.values.revisionmision : "");
+        urlencoded.append("revisiongenerategroups", reduxState.form.programsa.values.revisiongenerategroups !== undefined ? reduxState.form.programsa.values.revisiongenerategroups : "");
+        urlencoded.append("revisionrule", reduxState.form.programsa.values.revisionrule !== undefined ? reduxState.form.programsa.values.revisionrule : "");
+        urlencoded.append("revisiongraduate", reduxState.form.programsa.values.revisiongraduate !== undefined ? reduxState.form.programsa.values.revisiongraduate : "");
+        urlencoded.append("revisionsupport", reduxState.form.programsa.values.revisionsupport !== undefined ? reduxState.form.programsa.values.revisionsupport : "");
 
         
         var requestOptions = {
