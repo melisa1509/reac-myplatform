@@ -10,7 +10,7 @@ export const getAdminStudentMbsList =() => {
         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
       
             var urlencoded = new URLSearchParams();
-            urlencoded.append("role", "ROLE_ADMIN");
+            urlencoded.append("role", reduxState.loginReducer.active_user.roles);
             urlencoded.append("language", reduxState.loginReducer.active_user.language_grader);
             urlencoded.append("state", "state.revision");
       
@@ -100,7 +100,7 @@ export const getFutureAmbassadorList =() => {
       myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
     
           var urlencoded = new URLSearchParams();
-          urlencoded.append("lang", reduxState.loginReducer.active_user.language_grader);
+          urlencoded.append("language", reduxState.loginReducer.active_user.language_grader);
           urlencoded.append("role", reduxState.loginReducer.active_user.roles[0]);
     
           var requestOptions = {

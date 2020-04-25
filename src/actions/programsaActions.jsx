@@ -16,8 +16,6 @@ export const getShowProgramsa = key => {
 export const editRevisionProgramsa = (redirect) => {
     return (dispatch, getState) => {
 
-        alert();
-
         const reduxState = getState();
         const key = reduxState.form.programsa.values.id;
 

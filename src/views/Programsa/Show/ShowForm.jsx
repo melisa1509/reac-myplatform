@@ -38,6 +38,7 @@ import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/
 import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
 
 import { withRouter } from 'react-router-dom';
+import { SupervisedUserCircle, ListAlt, School, Airplay } from "@material-ui/icons";
 
 
 const style = {
@@ -84,28 +85,28 @@ class ShowForm extends React.Component {
                     },
                     {
                       tabButton: t("title.generate_groups"),
-                      tabIcon: Domain,
+                      tabIcon: SupervisedUserCircle,
                       tabContent: (
                         <GenerateGroupsTab />
                       )
                     },
                     {
                       tabButton: t("title.rules"),
-                      tabIcon: Domain,
+                      tabIcon: ListAlt,
                       tabContent: (
                         <FacilitateGroupsTab />
                       )
                     },
                     {
                       tabButton: t("title.graduate_groups"),
-                      tabIcon: Domain,
+                      tabIcon: School,
                       tabContent: (
                         <GraduateGroupsTab />
                       )
                     },
                     {
                       tabButton: t("title.support_groups"),
-                      tabIcon: Domain,
+                      tabIcon: Airplay,
                       tabContent: (
                         <SupportGroupsTab />
                       )
