@@ -28,40 +28,30 @@ export const ambassadorReducer = (state = initialState, action) => {
           ambassador_list: action.payload,
           loading: false
         });
-    }
-    switch (action.type) {
-        case SHOW_AMBASSADOR:
-            return Object.assign({}, state, {
-              show_ambassador: action.payload
-            });
-      }
-      switch (action.type) {
-        case LOAD_FORM_AMBASSADOR:
+      case SHOW_AMBASSADOR:
           return Object.assign({}, state, {
-            data: action.data
+            show_ambassador: action.payload
           });
-      }
-      switch (action.type) {
-        case EDIT_AMBASSADOR:
-            return Object.assign({}, state, {
-              edit_ambassador: action.payload
-            }); 
-        case ERROR_EDIT_AMBASSADOR:
+      case LOAD_FORM_AMBASSADOR:
+        return Object.assign({}, state, {
+          data: action.data
+        });
+      case EDIT_AMBASSADOR:
           return Object.assign({}, state, {
-            editError: true
-          })
-      }
-      switch (action.type) {
-        case NEW_AMBASSADOR:
-            return Object.assign({}, state, {
-              new_ambassador: action.payload
-            }); 
-      }
-      switch (action.type) {
-        case EDIT_PASSWORD_AMBASSADOR:
-            return Object.assign({}, state, {
-              edit_password: action.payload
-            }); 
+            edit_ambassador: action.payload
+          }); 
+      case ERROR_EDIT_AMBASSADOR:
+        return Object.assign({}, state, {
+          editError: true
+        })
+      case NEW_AMBASSADOR:
+          return Object.assign({}, state, {
+            new_ambassador: action.payload
+          }); 
+      case EDIT_PASSWORD_AMBASSADOR:
+          return Object.assign({}, state, {
+            edit_password: action.payload
+          }); 
       }
     return state;
 }

@@ -99,7 +99,7 @@ class IndexTable extends React.Component {
                 <Create />
               </Button>
             </Link>{" "}
-            <Link to={"/student/delete/" + prop.id}>
+            <Link to={"/ambassador/show/" + prop.id}>
               <Button
                 justIcon
                 round

@@ -1,16 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 // react component for creating dynamic tables
 import ReactTable from "react-table";
 import { connect } from "react-redux";
-import { getAmbassadorList } from "actions/ambassadorActions.jsx";
+import { getAdminLanguageList } from "actions/administratorActions.jsx";
 import { Link } from "react-router-dom";
 
 // @material-ui/icons
 import Create from "@material-ui/icons/Create";
 import Visibility from "@material-ui/icons/Visibility";
-import Close from "@material-ui/icons/Close";
+
+
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
@@ -19,7 +19,9 @@ import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
 import { translate } from "react-translate";
 
-class IndexTable extends React.Component {
+
+
+class AdminLanguageTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -45,7 +47,6 @@ class IndexTable extends React.Component {
     const { value } = e.target;
     const filterAll = value;
     const filtered = [{ id: 'all', value: filterAll }];
-    // NOTE: this completely clears any COLUMN filters
     this.setState({ filterAll, filtered });
   }
 
@@ -59,24 +60,23 @@ class IndexTable extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatchGetAmbassadorList();
+    this.props.dispatchGetAdminLanguageList();
   }
+
  
   render() {
-    const { ambassador_list, loading } = this.props;
+    const { adminlanguage_list, loading } = this.props;
     let { t } = this.props;
             
-    const data = ambassador_list.map((prop, key) => {
+    const data = adminlanguage_list.map((prop, key) => {
       return {
         id: key, 
-        name: prop.first_name + " " + prop.last_name ,
+        name: prop.first_name + " " + prop.last_name,
         username:prop.username,
-        country:prop.country,
-        code:prop.code,
+        language:prop.language,
         actions: (
-          // we've added some custom button actions
           <div className="actions-left">
-            <Link to={"/ambassador/show/" + prop.id}>
+            <Link to={"/group/show/" + prop.id}>
               <Button
                 justIcon
                 round4
@@ -86,32 +86,20 @@ class IndexTable extends React.Component {
                 <Visibility />
               </Button>
             </Link>{" "}
-            <Link to={"/ambassador/edit/" + prop.id}>
+            <Link to={"/group/edit/" + prop.id}>
               <Button
                 justIcon
                 round
-                simple            
+                simple             
                 color="warning"
               >
                 <Create />
-              </Button>
-            </Link>{" "}
-            <Link to={"/ambassador/show/" + prop.id}>
-              <Button
-                justIcon
-                round
-                simple            
-                color="danger"
-              >
-                <Close />
               </Button>
             </Link>{" "}
           </div>
         )
       };
     });
-    
-    
     
     return (
       <GridContainer>
@@ -134,39 +122,34 @@ class IndexTable extends React.Component {
               defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value}
               data={data}
               loading={loading}
+
               columns={[
                 {
                   Header: t("th.name"),
                   accessor: "name",
+                  width:300,
+                  sortable: false
                 },
                 {
                   Header: t("th.username"),
                   accessor: "username",
-                  resizable:true
+                  width:300,
+                  sortable: false,
+                  filterable: false
                 },
                 {
-                  Header: t("th.country"),
-                  accessor: "country",
-                  width: 150,
-                },
-                {
-                  Header: t("th.code"),
-                  accessor: "code",
-                  width: 150,
+                  Header: "Language Grader",
+                  accessor: "language",
+                  sortable: false,
+                  filterable: false
                 },
                 {
                   Header: t("th.actions"),
                   accessor: "actions",
                   sortable: false,
-                  filterable: false,
-                  width: 150,
+                  filterable: false
                 },
                 {
-                  // NOTE - this is a "filter all" DUMMY column
-                  // you can't HIDE it because then it wont FILTER
-                  // but it has a size of ZERO with no RESIZE and the
-                  // FILTER component is NULL (it adds a little to the front)
-                  // You culd possibly move it to the end
                   Header: "",
                   id: 'all',
                   width: 0,
@@ -175,14 +158,13 @@ class IndexTable extends React.Component {
                   
                   getProps: () => {
                     return {
-                      style: { padding: "5px"}
                     }
                   },
                   filterMethod: (filter, rows) => {
                     const result = matchSorter(rows, filter.value, {
                       keys: [
                         "name",
-                        "username",
+                        "username"
                       ], threshold: matchSorter.rankings.WORD_STARTS_WITH
                     });
                     return result;
@@ -190,7 +172,8 @@ class IndexTable extends React.Component {
                   filterAll: true,
                 }
               ]}
-              defaultPageSize={10}
+              key={data.length}
+              defaultPageSize={data.length < 10 ? data.length : 10}
               showPaginationTop={false}
               showPaginationBottom={true}
               className="-striped -highlight"
@@ -199,7 +182,7 @@ class IndexTable extends React.Component {
           <GridContainer>
             <GridItem xs={12} sm={12} md={12}>
                 <center>
-                <Link to={"/ambassador/new"}>
+                <Link to={"/admin/new"}>
                 <Button color="info" size="sm">
                 {t("button.create_new")}
                 </Button>
@@ -214,14 +197,14 @@ class IndexTable extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
-      ambassador_list: state.ambassadorReducer.ambassador_list, 
-      loading: state.ambassadorReducer.loading
+      adminlanguage_list: state.administratorReducer.adminlanguage_list, 
+      loading: state.administratorReducer.loading
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetAmbassadorList: () => dispatch( getAmbassadorList() )
+  dispatchGetAdminLanguageList: () => dispatch( getAdminLanguageList() )
 });
 
-const IndexTableComponent = translate('provider')(IndexTable);
-export default connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent);
+const AdminLanguageTableComponent = translate('provider')(AdminLanguageTable);
+export default connect(mapStateToProps, mapDispatchToPropsActions)(AdminLanguageTableComponent);
 

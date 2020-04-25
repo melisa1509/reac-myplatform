@@ -223,13 +223,19 @@ class IndexTable extends React.Component {
                 {
                   Header: t("th.ambassador"),
                   accessor: "ambassador",
-                  width: 120
+                  width: 150
                 },
                 {
                   Header: t("th.group"),
                   accessor: "group",
+                  width: 150
                 },
                 {
+                  Header: "",
+                  id: 'all',
+                  width: 0,
+                  resizable: false,
+                  sortable: false,
                   
                   getProps: () => {
                     return {

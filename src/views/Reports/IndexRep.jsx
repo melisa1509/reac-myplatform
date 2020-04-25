@@ -17,11 +17,13 @@ import CardFooter from "components/Card/CardFooter.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import Muted from "components/Typography/Muted.jsx";
-import IndexTable from './IndexTable.jsx';
 
 import dashboardStyle from "assets/jss/material-dashboard-pro-react/views/dashboardStyle";
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from "react-translate";
+import { withRouter } from 'react-router-dom';
+
+import IndexTable from './IndexTable.jsx';
 import CountryTable from "./CountryTable.jsx";
 import AmbassadorTable from "./AmbassadorTable.jsx";
 import GlobalTable from "./GlobalTable.jsx";
@@ -36,10 +38,14 @@ const styles = {
     ...dashboardStyle,
 };
 
+
 class IndexRep extends React.Component {
   render() {
     const { classes, report_list } = this.props;
     let { t } = this.props;
+    const initialValuesReport= {
+      country:"label.all_country",
+    }
     return (
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={12}>
@@ -104,7 +110,7 @@ class IndexRep extends React.Component {
               </Muted>
             </CardHeader>
             <CardBody>
-                <CountryTable/>      
+                <CountryTable initialValues={initialValuesReport}/>      
             </CardBody>
           </Card>
           <br/>
@@ -156,4 +162,4 @@ const mapDispatchToPropsActions = dispatch => ({
 
 
 const NewRepComponent = translate('provider')(withStyles(styles)(IndexRep));
-export default connect(mapStateToProps, mapDispatchToPropsActions)(NewRepComponent);
+export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(NewRepComponent));

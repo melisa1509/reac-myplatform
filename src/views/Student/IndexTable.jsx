@@ -138,7 +138,7 @@ class IndexTable extends React.Component {
                 <Create />
               </Button>
             </Link>{" "}
-            <Link to={"/student/delete/" + prop.id}>
+            <Link to={"/student/show/" + prop.id}>
               <Button
                 justIcon
                 round
@@ -197,11 +197,6 @@ class IndexTable extends React.Component {
                   filterable: false
                 },
                 {
-                  // NOTE - this is a "filter all" DUMMY column
-                  // you can't HIDE it because then it wont FILTER
-                  // but it has a size of ZERO with no RESIZE and the
-                  // FILTER component is NULL (it adds a little to the front)
-                  // You culd possibly move it to the end
                   Header: "",
                   id: 'all',
                   width: 0,
