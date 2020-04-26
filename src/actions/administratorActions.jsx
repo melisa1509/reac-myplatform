@@ -14,6 +14,7 @@ export const getAdministratorList = () => {
         });
     }  
 }
+
 export const getAdminLanguageList = () => {
     return (dispatch) => {
         return fetch(BASE_URL + "/admin/language")

@@ -209,7 +209,6 @@ class NewForm extends React.Component {
               <div>      
                   {
                       languages.options.map((prop, key) => {
-                          const nOption = key + 1;
                           return (
                             <Field
                               component={CustomCheckbox}
