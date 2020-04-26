@@ -48,6 +48,7 @@ const style = {
 };
 
 
+
 class LoginForm extends React.Component {
     constructor(props) {
         super(props);
@@ -101,6 +102,7 @@ class LoginForm extends React.Component {
         this.loginClick = this.loginClick.bind(this);
         this.typeClick = this.typeClick.bind(this);
         this.rangeClick = this.rangeClick.bind(this);
+        this.escFunction = this.escFunction.bind(this);
       }
      
       registerClick() {
@@ -168,36 +170,58 @@ class LoginForm extends React.Component {
           this.setState({ maxValueState: "error" });
         }
       }
-    sendState() {
-        return this.state;
-    }
-    handleSimple = event => {
-        this.setState({ [event.target.name]: event.target.value });
-    };
-    handleChange = name => event => {
-        this.setState({ [name]: event.target.checked });
-    };
-    isValidated() {
-        return true;
-    }
+      sendState() {
+          return this.state;
+      }
+      handleSimple = event => {
+          this.setState({ [event.target.name]: event.target.value });
+      };
+      handleChange = name => event => {
+          this.setState({ [name]: event.target.checked });
+      };
+      isValidated() {
+          return true;
+      }
 
-    componentDidMount() {
-      //Initialize Resources
-      this.props.dispatchGetStudentList();
-      this.props.dispatchGetGroupList();
-      this.props.dispatchGetStudentMbsList();
-      this.props.dispatchGetAmbassadorList();
-      
-    }
+      componentDidMount() {
+        //Initialize Resources
+        this.props.dispatchGetStudentList();
+        this.props.dispatchGetGroupList();
+        this.props.dispatchGetStudentMbsList();
+        this.props.dispatchGetAmbassadorList();
+        document.addEventListener("keydown", this.escFunction, false);
+        
+      }
 
-    componentWillUnmount(){
-      this.props.dispatchGetReports();
-    }
+      componentWillUnmount(){
+        this.props.dispatchGetReports();
+      }
+
+
+      escFunction(event){
+        if(event.keyCode === 13) {
+          if (this.state.loginUsernameState === "") {
+            this.setState({ loginUsernameState: "error" });
+          }
+          if (this.state.loginPasswordState === "") {
+            this.setState({ loginPasswordState: "error" });
+          }
+          if(this.state.loginUsernameState === "success" && this.state.loginPasswordState === "success"){
+            const params = {
+              username: this.state.loginUsername,
+              password: this.state.loginPassword
+            }
+            this.props.dispatchGetAuthenticacion(params, this.props.history);
+            
+          }
+        }
+      }
 
     render() {
         const { classes, styles, loginError } = this.props;
         let { t } = this.props;
         const login = "es";
+
         
         
         return (
@@ -246,7 +270,7 @@ class LoginForm extends React.Component {
               </GridContainer>
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
-                      <Button color="danger" fullWidth  onClick={this.loginClick}>
+                      <Button color="danger" fullWidth  onClick={this.loginClick} >
                           {t("button.login")}
                       </Button>
                   </GridItem>

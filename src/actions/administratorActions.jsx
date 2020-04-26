@@ -2,6 +2,8 @@ import { ADMINISTRATOR_LIST, ADMINLANGUAGE_LIST } from 'constants/actionTypes';
 import { BASE_URL} from 'constants/urlTypes.jsx';
 import { NEW_ADMINISTRATOR, SUCCESSFULL_NEW } from 'constants/actionTypes';
 import { SHOW_ADMINISTRATOR, LOAD_FORM_ADMINISTRATOR } from 'constants/actionTypes';
+import { jsonToArray } from "assets/functions/general.jsx";
+
 
 export const getAdministratorList = () => {
     return (dispatch) => {
@@ -28,7 +30,8 @@ export const newAdministrator = ()=> {
     
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-    
+
+   
     var urlencoded = new URLSearchParams();
         urlencoded.append("username", reduxState.form.adminNewform.values.username);
         urlencoded.append("first_name", reduxState.form.adminNewform.values.first_name);
@@ -36,7 +39,7 @@ export const newAdministrator = ()=> {
         urlencoded.append("language", reduxState.form.adminNewform.values.language);
         urlencoded.append("country", reduxState.form.adminNewform.values.country);
         urlencoded.append("roles", reduxState.form.adminNewform.values.role);
-        urlencoded.append("language_grader", "es");
+        urlencoded.append("language_grader", jsonToArray(reduxState.form.adminNewform.values.language_grader));
     
     var requestOptions = {
       method: 'POST',
@@ -48,6 +51,7 @@ export const newAdministrator = ()=> {
         return fetch(BASE_URL + "/admin/new", requestOptions)
         .then(response => response.json())
         .then(json => {
+            console.log(json);
             dispatch ({ type: NEW_ADMINISTRATOR, payload: json.data });
             dispatch ({ type: SUCCESSFULL_NEW}); 
         })

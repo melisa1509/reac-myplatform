@@ -83,7 +83,6 @@ ReactDOM.render(
           <Route path="/student/editpassword/:id" component={StudentChangePassword} exact /> 
           <Route path="/rtl" component={RtlLayout} />
           <Route path="/auth" component={AuthLayout} />
-          <Route path="/admin" component={AdminLayout} exact/>
           <Route path="/table" component={ReactTable} />
           <Route path="/age" component={Age} />
           <Route path="/login" component={Login} />
@@ -120,7 +119,7 @@ ReactDOM.render(
           <Route path="/code" component={ListCode} exact />
           <Route path="/code/show/:id" component={ShowCode} exact />
           <Route path="/code/edit/:id" component={EditCode} exact />
-          <Route path="/administrator" component={ListAdmin} exact />
+          <Route path="/admin" component={ListAdmin} exact />
           <Route path="/admin/new" component={NewAdmin} exact />
           <Route path="/admin/show/:id" component={ShowAdmin} exact />
           <Redirect from="/" to="/login" />

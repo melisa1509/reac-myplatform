@@ -40,7 +40,7 @@ class AdminHeaderLinks extends React.Component {
       const { classes, t, active_user } = this.props;
       let links = '';
       let roles = active_user.roles === undefined ? [] : active_user.roles
-      if( roles.includes("ROLE_ADMIN")) {
+      if( roles.includes("ROLE_ADMIN")  || roles.includes("ROLE_LANGUAGE_ADMIN") ) {
         links = [
           <Link to={'/dashboard'} className={classes.dropdownLink}>
             
@@ -90,7 +90,7 @@ class AdminHeaderLinks extends React.Component {
 
         ]
       }
-      else if( roles.includes("ROLE_ADMIN")) {
+      else if( roles.includes("ROLE_EMBASSADOR")) {
         links = [
           
         ]

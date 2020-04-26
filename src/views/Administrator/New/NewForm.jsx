@@ -12,7 +12,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 // core components
 import SuccessBold from "components/Typography/SuccessBold.jsx";
-import CustomCheckbox from 'components/CustomCheckbox/CustomCheckbox.jsx';
+import CustomCheckbox from 'components/CustomCheckbox/CustomCheckboxRedux.jsx';
 import GridContainer from "components/Grid/GridContainer.jsx";
 import SnackbarContent from "components/Snackbar/SnackbarContent";
 import Danger from "components/Typography/Danger.jsx";
@@ -96,14 +96,14 @@ class NewForm extends React.Component {
     render() {
         const { classes, successfull_new, errorRequired, successRequired, new_administrator } = this.props;
         let { t } = this.props;
-        const languages = {
-          value:new_administrator.language_grader,
+        const languages = {         
           options:[
-             { label: t("label.english") },
-             { label: t("label.spanish") },
-             { label: t("label.french") },
+            { label: t("label.english"),    val: "language_grader[en]"  },
+            { label: t("label.spanish"),    val: "language_grader[es]"  },
+            { label: t("label.french"),     val: "language_grader[fr]"  },
+            { label: t("label.portugues") , val: "language_grader[pr]"  },
           ]
-     }
+        }
  
         return (
           <GridContainer justify="center">
@@ -206,7 +206,20 @@ class NewForm extends React.Component {
               <SuccessBold>
                   {t("label.language_grader")}
               </SuccessBold>
-              <CustomCheckbox  data={languages} />
+              <div>      
+                  {
+                      languages.options.map((prop, key) => {
+                          const nOption = key + 1;
+                          return (
+                            <Field
+                              component={CustomCheckbox}
+                              name={prop.val}
+                              label={prop.label}                             
+                            />
+                            );
+                      })
+                  }
+              </div>
               <br/>
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
@@ -248,7 +261,8 @@ NewForm = connect(
     errorRequired:state.generalReducer.errorRequired,
     successRequired:state.generalReducer.successRequired,
     successfull_new:state.generalReducer.successfull_new,
-    new_administrator: state.administratorReducer.new_administrator
+    new_administrator: state.administratorReducer.new_administrator,
+    initialValues: state.administratorReducer.new_administrator
   }),
   { dispatchNewAdministrator: newAdministrator, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful},
 )(NewForm);
