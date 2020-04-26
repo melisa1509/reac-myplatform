@@ -6,7 +6,8 @@ const initialState = {
   administrator_list: [],
   adminlanguage_list: [], 
   new_administrator:{
-    language_grader:""
+    language_grader:{"es" :  true},
+    language: "es"
   },
   loading: true,
 }

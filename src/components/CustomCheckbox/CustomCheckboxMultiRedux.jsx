@@ -273,38 +273,45 @@ class CustomCheckboxRedux extends React.Component {
     }
   }
   render() {
-    const { classes, input, label } = this.props;
+    const { classes, input } = this.props;
     return (
-     
-      <div
-      className={
-          classes.checkboxAndRadio +
-          " " +
-          classes.checkboxAndRadioHorizontal
-      }
-      >
-      <FormControlLabel
-          control={
-          <Checkbox
-              checked={input.value}
-              checkedIcon={
-              <Check className={classes.checkedIcon} />
-              }
-              icon={<Check className={classes.uncheckedIcon} />}
-              classes={{
-              checked: classes.checked,
-              root: classes.checkRoot
-              }}
-              onChange={input.onChange}
-          />
-          }
-          classes={{ 
-          label: classes.label,
-          root: classes.labelRoot
-          }}
-          label={label}
-      />
-      </div>
+        <div>      
+        {
+            data.options.map((prop, key) => {
+                const nOption = key + 1;
+                return (
+                    <div
+                    className={
+                        classes.checkboxAndRadio +
+                        " " +
+                        classes.checkboxAndRadioHorizontal
+                    }
+                    >
+                    <FormControlLabel
+                        control={
+                        <Checkbox
+                            checked={data.value.includes("option" + nOption) }
+                            checkedIcon={
+                            <Check className={classes.checkedIcon} />
+                            }
+                            icon={<Check className={classes.uncheckedIcon} />}
+                            classes={{
+                            checked: classes.checked,
+                            root: classes.checkRoot
+                            }}
+                        />
+                        }
+                        classes={{
+                        label: classes.label,
+                        root: classes.labelRoot
+                        }}
+                        label={prop.label}
+                    />
+                    </div>
+                );
+            })
+        }
+    </div>
     );
   }
 }
