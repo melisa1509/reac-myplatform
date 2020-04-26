@@ -239,7 +239,6 @@ class IndexTable extends React.Component {
                   
                   getProps: () => {
                     return {
-                      style: { padding: "20px"}
                     }
                   },
                   filterMethod: (filter, rows) => {

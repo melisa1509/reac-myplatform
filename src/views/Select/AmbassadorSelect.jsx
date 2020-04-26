@@ -2,7 +2,7 @@ import React from "react";
 import { translate } from "react-translate";
 // react component for creating dynamic tables
 import { connect } from "react-redux";
-import { updateCountrySelect } from "actions/selectActions.jsx";
+import { updateAmbassadorSelect } from "actions/selectActions.jsx";
 import { getReportAmbassador } from "actions/reportActions.jsx";
 
 // @material-ui/core components
@@ -42,7 +42,7 @@ class ReportSelect extends React.Component {
     }
     handleSimple = event => {
         this.setState({ [event.target.name]: event.target.value });
-        this.props.dispatchUpdateCountrySelect(event.target.value);
+        this.props.dispatchUpdateAmbassadorSelect(event.target.value);
         this.props.dispatchGetReportAmbassador(event.target.value);
     };
     handleChange = name => event => {
@@ -123,7 +123,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchUpdateCountrySelect: key => dispatch( updateCountrySelect(key)), 
+  dispatchUpdateAmbassadorSelect: key => dispatch( updateAmbassadorSelect(key)), 
   dispatchGetReportAmbassador: key => dispatch( getReportAmbassador(key))
 
 });

@@ -23,11 +23,8 @@ class PruebaTable extends React.Component {
       this.props.dispatchGetReportCountry();
   }
   render() {
-    const {report_country} = this.props;
+    const {report_country, loading} = this.props;
     let { t } = this.props;
-    const initialValuesReport= {
-      myselect:"label.all_country",
-    }
     const question = report_country.map((prop)=>{
       let TableData=[]
       return(
@@ -64,11 +61,12 @@ class PruebaTable extends React.Component {
         <GridItem xs={8}>
           <GridContainer justify="center">
             <GridItem xs={4}>
-              <ReportSelect initialValues={initialValuesReport}/> 
+              <ReportSelect/> 
             </GridItem> 
           </GridContainer>
         <br/> 
           <Table
+              loading={loading}
               tableData={[
                 [<th>Questions</th>,<th>PreEvaluations</th>," ",<th>PostEvaluations</th>," "],
                 [question[0],studentPre[0], percentagePre[0],students[0],percentage[0]],
@@ -91,6 +89,7 @@ class PruebaTable extends React.Component {
 const mapStateToProps = state => ({ 
       report_country: state.reportReducer.report_country,
       selected_country: state.selectReducer.selected_country,
+      loading: state.reportReducer.loading 
 });
 
 const mapDispatchToPropsActions = dispatch => ({

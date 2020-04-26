@@ -76,7 +76,7 @@ class AdminLanguageTable extends React.Component {
         language:prop.language,
         actions: (
           <div className="actions-left">
-            <Link to={"/group/show/" + prop.id}>
+            <Link to={"/admin/show/" + prop.id}>
               <Button
                 justIcon
                 round4

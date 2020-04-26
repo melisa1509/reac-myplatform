@@ -50,6 +50,7 @@ import ShowCode from 'views/Code/Show/Show.jsx';
 import EditCode from 'views/Code/Edit/Edit.jsx';
 import ListAdmin from 'views/Administrator/Index.jsx';
 import NewAdmin from 'views/Administrator/New/New.jsx';
+import ShowAdmin from 'views/Administrator/Show/Show.jsx';
 import { store } from 'store/index.jsx';
 
 import "assets/scss/material-dashboard-pro-react.scss?v=1.7.0";
@@ -121,6 +122,7 @@ ReactDOM.render(
           <Route path="/code/edit/:id" component={EditCode} exact />
           <Route path="/administrator" component={ListAdmin} exact />
           <Route path="/admin/new" component={NewAdmin} exact />
+          <Route path="/admin/show/:id" component={ShowAdmin} exact />
           <Redirect from="/" to="/login" />
         </Switch>
       </Router>,

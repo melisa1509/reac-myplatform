@@ -1,4 +1,5 @@
 import { UPDATE_LANGUAGE_SELECT,  UPDATE_COUNTRY_SELECT, COUNTRY_LIST, UPDATE_MODALITY_SELECT, UPDATE_PROGRAM_SELECT, UPDATE_ROLE_SELECT } from "constants/actionTypes";
+import { UPDATE_AMBASSADOR_SELECT } from "constants/actionTypes";
 
 const initialState = { 
   selected_language: "",
@@ -6,6 +7,7 @@ const initialState = {
   selected_modality:"",
   selected_role:"",
   selected_program:"",
+  selected_ambassador:"",
   country_list: []
 }
 
@@ -34,6 +36,11 @@ export const selectReducer = (state = initialState, action) => {
           return Object.assign({}, state, {
             selected_program: action.payload
           });
+
+      case UPDATE_AMBASSADOR_SELECT:
+        return Object.assign({}, state, {
+          selected_ambassador: action.payload
+        });
           
       case COUNTRY_LIST:
           return Object.assign({}, state, {

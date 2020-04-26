@@ -1,6 +1,7 @@
 import { ADMINISTRATOR_LIST, ADMINLANGUAGE_LIST } from 'constants/actionTypes';
 import { BASE_URL} from 'constants/urlTypes.jsx';
 import { NEW_ADMINISTRATOR, SUCCESSFULL_NEW } from 'constants/actionTypes';
+import { SHOW_ADMINISTRATOR, LOAD_FORM_ADMINISTRATOR } from 'constants/actionTypes';
 
 export const getAdministratorList = () => {
     return (dispatch) => {
@@ -53,3 +54,17 @@ export const newAdministrator = ()=> {
 
     }
 };
+
+export const showAdministrator = key => {
+    return (dispatch) => {
+        return fetch(BASE_URL + "/admin/show/"+ key +"?callback=foo")
+        .then(response => response.json())
+        .then(json => {
+            dispatch ({ type: SHOW_ADMINISTRATOR, payload: json.data });
+            dispatch ({ type: LOAD_FORM_ADMINISTRATOR, data: json.data });   
+        })
+
+    }
+};
+
+export const loadFormAdministrator = data => ({ type: LOAD_FORM_ADMINISTRATOR, data });

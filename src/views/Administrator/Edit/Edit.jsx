@@ -9,7 +9,7 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 
 import mainPageStyle from "assets/jss/material-kit-react/views/mainPage.jsx";
-import EditRep from 'views/Ambassador/Edit/EditRep.jsx';
+import EditRep from 'views/Administrator/Edit/EditRep.jsx';
 import AdminHeader from "views/Header/AdminHeader.jsx";
 import PerfectScrollbar from 'react-perfect-scrollbar';
 

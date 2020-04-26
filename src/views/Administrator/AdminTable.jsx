@@ -76,7 +76,7 @@ class AdminTable extends React.Component {
         country:prop.country,
         actions: (
           <div className="actions-left">
-            <Link to={"/group/show/" + prop.id}>
+            <Link to={"/admin/show/" + prop.id}>
               <Button
                 justIcon
                 round4

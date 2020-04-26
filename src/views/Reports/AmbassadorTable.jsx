@@ -30,44 +30,91 @@ class PorcentageATable extends React.Component {
     this.props.dispatchGetReportAmbassador();
   }
   render() {
-    const {report_ambassador} = this.props;
+    const {report_ambassador, selected_ambassador, report_country} = this.props;
     let { t } = this.props;
-    const question = report_ambassador.map((prop)=>{
+    const initialValuesReport= {
+       ambassador:"label.all_ambassador",
+    }
+    let question=[]
+    let studentPre=[]
+    let students=[]
+    let percentagePre=[]
+    let percentage=[]
+
+    if (selected_ambassador == "ALL"){
+      question = report_country.map((prop)=>{
+        let TableData=[]
+        return(
+          TableData=[[t(prop.question)]]
+        );
+      });
+
+      studentPre  = report_country.map((prop)=>{
+        let TableData=[]
+        return(
+          TableData=[prop.studentsPre]
+        );
+      });
+
+      students  = report_country.map((prop)=>{
+        let TableData=[]
+        return(
+          TableData=[prop.students]
+        );
+      });
+
+      percentagePre  = report_country.map((prop)=>{
+        let TableData=[]
+        return(
+          TableData=[prop.percentagePre +"%"]
+        );
+      });
+
+      percentage = report_country.map((prop)=>{
+        let TableData=[]
+        return(
+          TableData=[prop.percentage +"%" ]
+        );
+      });
+    }
+  else {
+    question = report_ambassador.map((prop)=>{
       let TableData=[]
       return(
         TableData=[[t(prop.question)]]
       );
     });
-    const studentPre  = report_ambassador.map((prop)=>{
+    studentPre  = report_ambassador.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.studentsPre]
       );
     });
-    const students  = report_ambassador.map((prop)=>{
+    students  = report_ambassador.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.students]
       );
     });
-    const percentagePre  = report_ambassador.map((prop)=>{
+    percentagePre  = report_ambassador.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.percentagePre +"%"]
       );
     });
-    const percentage = report_ambassador.map((prop)=>{
+    percentage = report_ambassador.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.percentage +"%" ]
       );
     });
+  }
     return (
       <GridContainer justify="center">
         <GridItem xs={8}>
           <GridContainer justify="center">
             <GridItem xs={4}>
-              <AmbassadorSelect/> 
+              <AmbassadorSelect initialValue={initialValuesReport}/> 
             </GridItem> 
           </GridContainer>
         <br/> 
@@ -92,8 +139,10 @@ class PorcentageATable extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
+      report_country: state.reportReducer.report_country,
       report_list: state.reportReducer.report_list,
-      report_ambassador: state.reportReducer.report_ambassador
+      report_ambassador: state.reportReducer.report_ambassador,
+      selected_ambassador: state.selectReducer.selected_ambassador
 });
 
 const mapDispatchToPropsActions = dispatch => ({
