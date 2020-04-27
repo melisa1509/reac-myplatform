@@ -11,7 +11,9 @@ const initialState = {
   editError: false,
   new_administrator:{
     language_grader:{"es" :  true},
-    language: "es"
+    language: "es",
+    country:"AFG",
+    roles:"ROLE_ADMIN"
   },
   edit_administrator:{
     language_grader:{"es" :  true},
@@ -19,7 +21,7 @@ const initialState = {
   },
   show_administrator: {
     role:"",
-    language:"es",
+    language:"",
     language_grader:[],
     first_name:"",
     last_name: "",

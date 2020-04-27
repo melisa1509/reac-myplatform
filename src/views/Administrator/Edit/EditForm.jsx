@@ -100,7 +100,7 @@ class EditForm extends React.Component {
       }
       
     render() {
-        const { classes, successfull_edit, editError, errorRequired, successRequired, show_administrator, edit_administrator } = this.props;
+        const { classes, successfull_edit, editError, errorRequired, successRequired, show_administrator, data } = this.props;
         let { t } = this.props;
         const languages = {         
           options:[
@@ -290,6 +290,7 @@ EditForm = connect(
     editError: state.administratorReducer.editError,
     successfull_edit:state.generalReducer.successfull_edit,
     show_administrator: state.administratorReducer.show_administrator,
+    data: state.administratorReducer.data,
   }),
   { loadShowAdministrator: showAdministrator, dispatchEditAdministrator: editAdministrator, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful},
 )(EditForm);
