@@ -86,7 +86,7 @@ class AdminTable extends React.Component {
                 <Visibility />
               </Button>
             </Link>{" "}
-            <Link to={"/group/edit/" + prop.id}>
+            <Link to={"/admin/edit/" + prop.id}>
               <Button
                 justIcon
                 round

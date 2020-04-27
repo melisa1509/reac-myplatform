@@ -124,7 +124,7 @@ class ShowTable extends React.Component {
 }
 const mapStateToProps = state => ({ 
   show_ambassador: state.ambassadorReducer.show_ambassador,
-  delete_ambassador: state.ambassadorReducer.ambassador_student, 
+  delete_ambassador: state.ambassadorReducer.delete_ambassador, 
   successful_delete: state.generalReducer.successful_delete
 });
 

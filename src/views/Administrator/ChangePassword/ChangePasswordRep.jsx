@@ -12,7 +12,7 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import EditForm from 'views/Ambassador/Edit/EditForm.jsx';
+import ChangePasswordForm from 'views/Administrator/ChangePassword/ChangePasswordForm.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from "react-translate";
@@ -26,7 +26,8 @@ const styles = {
   } 
 };
 
-class EditRep extends React.Component {
+
+class ChangePasswordRep extends React.Component {
   
   render() {
     const { classes, styles } = this.props;
@@ -37,11 +38,11 @@ class EditRep extends React.Component {
           <Card>
             <CardHeader color="info">
             <center>
-             <h4 className={classes.cardTitle}>{t("title.edit_ambassador")}</h4>
+             <h4 className={classes.cardTitle}>{t("title.edit_password")}</h4>
              </center>
             </CardHeader>
             <CardBody>
-                <EditForm  />  
+                <ChangePasswordForm  />  
             </CardBody>
           </Card>
         </GridItem>
@@ -50,16 +51,15 @@ class EditRep extends React.Component {
   }
 }
 
-EditRep.propTypes = {
+ChangePasswordRep.propTypes = {
   classes: PropTypes.object,
 };
 
-//export default withStyles(styles)(ReactTables);
 
 const mapDispatchToPropsActions = dispatch => ({
-
+  
 });
 
 
-const EditRepComponent = translate('provider')(withStyles(styles)(EditRep));
-export default withRouter(connect(null, mapDispatchToPropsActions)(EditRepComponent));
+const ChangePasswordRepComponent = translate('provider')(withStyles(styles)(ChangePasswordRep));
+export default withRouter(connect(null, mapDispatchToPropsActions)(ChangePasswordRepComponent));

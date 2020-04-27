@@ -118,6 +118,7 @@ class ReportSelect extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
+    initialValues: state.selectReducer.selected_ambassador,
     ambassador_country: state.reportReducer.ambassador_country, 
     report_ambassador: state.reportReducer.report_ambassador
 });

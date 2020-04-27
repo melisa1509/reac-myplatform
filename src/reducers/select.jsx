@@ -7,7 +7,7 @@ const initialState = {
   selected_modality:"",
   selected_role:"",
   selected_program:"",
-  selected_ambassador:"",
+  selected_ambassador:"ALL",
   country_list: []
 }
 

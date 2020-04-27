@@ -25,26 +25,32 @@ const styles = {
     marginBottom: "0px"
   } 
 };
-const initialValuesAmbassador= {
-  username:"mombasa"
-}
 
+ 
 class EditRep extends React.Component {
   
   render() {
-    const { classes, styles } = this.props;
+    const { classes, show_administrator  } = this.props;
     let { t } = this.props;
+    let i= 0
+    let language=show_administrator.language_grader
+    for (i = 0; i < 10 ; i++) {
+      language[i]={"es" :  true, "fr" : true}
+    }
+    const initialValuesAdmin= {
+      roles: language
+    }
     return (
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={8}>
           <Card>
             <CardHeader color="info">
             <center>
-             <h4 className={classes.cardTitle}>{t("title.edit_ambassador")}</h4>
+             <h4 className={classes.cardTitle}>{t("title.edit_admin")}</h4>
              </center>
             </CardHeader>
             <CardBody>
-                <EditForm  />  
+                <EditForm initialValues={initialValuesAdmin}  />  
             </CardBody>
           </Card>
         </GridItem>
@@ -57,12 +63,14 @@ EditRep.propTypes = {
   classes: PropTypes.object,
 };
 
-//export default withStyles(styles)(ReactTables);
+const mapStateToProps = state => ({ 
+   show_administrator: state.administratorReducer.show_administrator,
+
+});
 
 const mapDispatchToPropsActions = dispatch => ({
 
 });
 
-
 const EditRepComponent = translate('provider')(withStyles(styles)(EditRep));
-export default withRouter(connect(null, mapDispatchToPropsActions)(EditRepComponent));
+export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(EditRepComponent));

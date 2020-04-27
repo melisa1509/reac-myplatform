@@ -51,6 +51,8 @@ import EditCode from 'views/Code/Edit/Edit.jsx';
 import ListAdmin from 'views/Administrator/Index.jsx';
 import NewAdmin from 'views/Administrator/New/New.jsx';
 import ShowAdmin from 'views/Administrator/Show/Show.jsx';
+import EditAdmin from 'views/Administrator/Edit/Edit.jsx';
+import AdminPassword from 'views/Administrator/ChangePassword/ChangePassword.jsx';
 import { store } from 'store/index.jsx';
 
 import "assets/scss/material-dashboard-pro-react.scss?v=1.7.0";
@@ -122,6 +124,8 @@ ReactDOM.render(
           <Route path="/admin" component={ListAdmin} exact />
           <Route path="/admin/new" component={NewAdmin} exact />
           <Route path="/admin/show/:id" component={ShowAdmin} exact />
+          <Route path="/admin/edit/:id" component={EditAdmin} exact />
+          <Route path="/admin/editpassword/:id" component={AdminPassword} exact /> 
           <Redirect from="/" to="/login" />
         </Switch>
       </Router>,

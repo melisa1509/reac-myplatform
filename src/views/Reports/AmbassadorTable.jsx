@@ -32,9 +32,6 @@ class PorcentageATable extends React.Component {
   render() {
     const {report_ambassador, selected_ambassador, report_country} = this.props;
     let { t } = this.props;
-    const initialValuesReport= {
-       ambassador:"label.all_ambassador",
-    }
     let question=[]
     let studentPre=[]
     let students=[]
@@ -114,7 +111,7 @@ class PorcentageATable extends React.Component {
         <GridItem xs={8}>
           <GridContainer justify="center">
             <GridItem xs={4}>
-              <AmbassadorSelect initialValue={initialValuesReport}/> 
+              <AmbassadorSelect/> 
             </GridItem> 
           </GridContainer>
         <br/> 
@@ -139,6 +136,7 @@ class PorcentageATable extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
+      initialValues: state.selectReducer.selected_ambassador,
       report_country: state.reportReducer.report_country,
       report_list: state.reportReducer.report_list,
       report_ambassador: state.reportReducer.report_ambassador,
