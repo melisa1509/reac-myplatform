@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 // react component for creating dynamic tables
 import { connect } from "react-redux";
 import { showAdministrator} from "actions/administratorActions.jsx";
-import { deleteAmbassador } from "actions/ambassadorActions.jsx";
+import { deleteAdministrator } from "actions/administratorActions.jsx";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -51,7 +51,7 @@ class ShowTable extends React.Component {
     }
 
     deleteClick() {
-      this.props.dispatchDeleteAmbassador(this.props.match.params.id, this.props.history);
+      this.props.dispatchDeleteAdministrator(this.props.match.params.id, this.props.history);
     }
     componentDidMount() {
       this.props.dispatchShowAdministrator(this.props.match.params.id);
@@ -98,13 +98,13 @@ class ShowTable extends React.Component {
              <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
                       <center>
-                      <Link to={"/administrator"}>
+                      <Link to={"/admin"}>
                       <Button color="default" size="sm">
                       {t("button_return_to_list")}
                       </Button>
                       {" "}
                       </Link>{" "}
-                      <Link to={"/ambassador/edit/" + show_administrator.id}>
+                      <Link to={"/admin/edit/" + show_administrator.id}>
                       <Button color="info" size="sm">
                       {t("button_edit")}
                       </Button>
@@ -125,13 +125,13 @@ class ShowTable extends React.Component {
 }
 const mapStateToProps = state => ({ 
   show_administrator: state.administratorReducer.show_administrator,
-  delete_ambassador: state.ambassadorReducer.ambassador_student, 
+  delete_admin: state.administratorReducer.delete_admin, 
   successful_delete: state.generalReducer.successful_delete
 });
 
 const mapDispatchToPropsActions = dispatch => ({
   dispatchShowAdministrator: key => dispatch(showAdministrator(key)), 
-  dispatchDeleteAmbassador: (key, history) => dispatch(deleteAmbassador(key, history))
+  dispatchDeleteAdministrator: (key, history) => dispatch(deleteAdministrator(key, history))
 });
 
 const ShowTableComponent = translate(withStyles(style)(ShowTable));

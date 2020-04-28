@@ -25,9 +25,6 @@ const styles = {
     marginBottom: "0px"
   } 
 };
-const initialValuesAmbassador= {
-  username:"mombasa"
-}
 
 class EditRep extends React.Component {
   

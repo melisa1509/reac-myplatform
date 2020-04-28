@@ -12,20 +12,23 @@ import { store } from "store";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 // core components
+import SuccessBold from "components/Typography/SuccessBold.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import SnackbarContent from "components/Snackbar/SnackbarContent";
+import CustomCheckbox from 'components/CustomCheckbox/CustomCheckboxRedux.jsx';
 import Danger from "components/Typography/Danger.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx'; 
-import { showAmbassador } from "actions/ambassadorActions.jsx";
-import { editAmbassador } from "actions/ambassadorActions.jsx"; 
+import { showAdministrator } from "actions/administratorActions.jsx";
+import { editAdministrator } from "actions/administratorActions.jsx"; 
 import { errorRequiredFields } from "actions/generalActions.jsx";
 import { successRequiredFields } from "actions/generalActions.jsx";
 import { deleteSuccessful } from "actions/generalActions.jsx";
 import { verifyChange } from "assets/validation/index.jsx";
 import LanguageSelect from "views/Select/LanguageSelect.jsx";
 import CountrySelect from "views/Select/CountrySelect.jsx";
+import RoleSelect from "views/Select/RoleSelect.jsx";
 
 // style for this view
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
@@ -57,17 +60,15 @@ class EditForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            usernameState: "success",
-            first_nameState: "success",
-            last_nameState: "success",
-            cityState: "success",
-            whatsappState: "success",
-            codeState:"success"
+          usernameState: "success",
+          first_nameState: "success",
+          last_nameState: "success",
         };
         this.saveClick = this.saveClick.bind(this);
         this.deleteClick = this.deleteClick.bind(this);
       }
      
+      
       saveClick() {
         if (this.state.usernameState === "") {
           this.setState({ usernameState: "error" });
@@ -78,22 +79,14 @@ class EditForm extends React.Component {
         if (this.state.last_nameState === "") {
           this.setState({ last_nameState: "error" });
         }
-        if (this.state.cityState === "") {
-          this.setState({ cityState: "error" });
-        }
-        if (this.state.whatsappState === "") {
-          this.setState({ whatsappState: "error" });
-        }
-        if (this.state.codeState === "") {
-          this.setState({ codeState: "error" });
-        }
+        
         if(this.state.usernameState === "error" || this.state.first_nameState === "error" || this.state.last_nameState === "error"){
           const stateRedux = store.getState();
           this.props.dispatchErrorRequiredFields();
         }
-        if(this.state.usernameState === "success" && this.state.first_nameState === "success"&& this.state.last_nameState === "success"){
+        if(this.state.usernameState === "success" && this.state.first_nameState === "success" && this.state.last_nameState ==="success" ){
         const reduxState = store.getState();
-        this.props.dispatchEditAmbassador();
+        this.props.dispatchEditAdministrator();
         this.props.dispatchSuccessRequiredFields();
         }
       }
@@ -103,12 +96,20 @@ class EditForm extends React.Component {
       }
      
       componentDidMount() {
-        this.props.loadShowAmbassador(this.props.match.params.id);
+        this.props.loadShowAdministrator(this.props.match.params.id);
       }
       
     render() {
-        const { classes, successfull_edit, editError, errorRequired, successRequired, show_ambassador } = this.props;
+        const { classes, successfull_edit, editError, errorRequired, successRequired, show_administrator, data } = this.props;
         let { t } = this.props;
+        const languages = {         
+          options:[
+            { label: t("label.english"),    val: "language_grader[en]"  },
+            { label: t("label.spanish"),    val: "language_grader[es]"  },
+            { label: t("label.french"),     val: "language_grader[fr]"  },
+            { label: t("label.portugues") , val: "language_grader[pr]"  },
+          ]
+        }
         return (
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={8}>
@@ -161,7 +162,7 @@ class EditForm extends React.Component {
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <Field
-                      labelText={t("label_name")+ " *"}
+                      labelText={t("first_name")+ " *"}
                       component={CustomInputRedux}
                       name="first_name"
                       success={this.state.first_nameState === "success"}
@@ -197,80 +198,47 @@ class EditForm extends React.Component {
                 </GridItem>
               </GridContainer>
               <GridContainer >
-                  <GridItem xs={12} sm={12} md={6}>
+                <GridItem xs={12} sm={12} md={6}>
                     <Field
-                      name="language"
-                      formName="programmbs"
-                      component={LanguageSelect}
-                    />
-                  </GridItem>
-              </GridContainer>
-              <GridContainer >
-                  <GridItem xs={12} sm={12} md={7}>
-                    <Field
-                      name="country"
-                      formName="programmbs"
                       component={CountrySelect}
-                    />
-                  </GridItem>
-              </GridContainer>
-              <GridContainer >
-                  <GridItem xs={12} sm={12} md={9}>
-                    <Field
-                      labelText={t("label_city")+ " *"}
-                      component={CustomInputRedux}
-                      name="city"
-                      success={this.state.cityState === "success"}
-                      error={this.state.cityState === "error"}
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        onKeyUp: event => 
-                              verifyChange(event, "city", "length", 0, null, this),
-                        type: "text",
-                      }}
+                      name="country"
                     />
                 </GridItem>
               </GridContainer>
               <GridContainer >
-                  <GridItem xs={12} sm={12} md={12}>
+                <GridItem xs={12} sm={12} md={6}>
                     <Field
-                      labelText={t("label_whatsapp")+ " *"}
-                      component={CustomInputRedux}
-                      name="whatsapp"
-                      success={this.state.whatsappState === "success"}
-                      error={this.state.whatsappState === "error"}
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        onKeyUp: event => 
-                              verifyChange(event, "whatsapp", "length", 0, null, this),
-                        type: "text",
-                      }}
+                      component={LanguageSelect}
+                      name="language"
                     />
                 </GridItem>
               </GridContainer>
               <GridContainer >
-                  <GridItem xs={12} sm={12} md={9}>
+                <GridItem xs={12} sm={12} md={6}>
                     <Field
-                      labelText={t("label_code")+ " *"}
-                      component={CustomInputRedux}
-                      name="code"
-                      success={this.state.codeState === "success"}
-                      error={this.state.codeState === "error"}
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        onKeyUp: event => 
-                              verifyChange(event, "code", "length", 0, null, this),
-                        type: "text",
-                      }}
+                      component={RoleSelect}
+                      name="roles"
                     />
                 </GridItem>
               </GridContainer>
+              <br/>
+              <SuccessBold>
+                  {t("label_language_grader")}
+              </SuccessBold>
+              <div>      
+                  {
+                      languages.options.map((prop, key) => {
+                          return (
+                            <Field
+                              component={CustomCheckbox}
+                              name={prop.val}
+                              label={prop.label}                             
+                            />
+                            );
+                      })
+                  }
+              </div>
+              <br/>
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
                       { errorRequired ? <Danger><h6 className={classes.infoText}>{t("label_require_fields")+ "*" }</h6></Danger>: ""}
@@ -280,13 +248,13 @@ class EditForm extends React.Component {
               <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
                       <center>
-                      <Link to={"/ambassador"}>
+                      <Link to={"/admin"}>
                       <Button color="default" size="sm" onClick={this.deleteClick}>
                       {t("button_return_to_list")}
                       </Button>
                       </Link>
                       {" "}
-                      <Link to={"/student/editpassword/" +  show_ambassador.id}>
+                      <Link to={"/admin/editpassword/" +  show_administrator.id}>
                       <Button color="warning" size="sm" onClick={this.deleteClick}>
                       {t("button_change_password")}
                       </Button>
@@ -308,22 +276,23 @@ class EditForm extends React.Component {
 }
 
 EditForm = reduxForm({
-  form: 'ambassadorform', 
+  form: 'adminform', 
   enableReinitialize: true,
 })(EditForm);
 
 
 EditForm = connect(
   state => ({
-    initialValues: state.ambassadorReducer.show_ambassador,
+    initialValues: state.administratorReducer.show_administrator,
     errorRequired:state.generalReducer.errorRequired,
     successRequired:state.generalReducer.successRequired,
-    edit_ambassador: state.ambassadorReducer.edit_ambassador,
-    editError: state.ambassadorReducer.editError,
+    edit_administrator: state.administratorReducer.edit_administrator,
+    editError: state.administratorReducer.editError,
     successfull_edit:state.generalReducer.successfull_edit,
-    show_ambassador: state.ambassadorReducer.show_ambassador,
+    show_administrator: state.administratorReducer.show_administrator,
+    data: state.administratorReducer.data,
   }),
-  { loadShowAmbassador: showAmbassador, dispatchEditAmbassador: editAmbassador, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful},
+  { loadShowAdministrator: showAdministrator, dispatchEditAdministrator: editAdministrator, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful},
 )(EditForm);
 
 export default  withRouter(translate(withStyles(style)(EditForm)));

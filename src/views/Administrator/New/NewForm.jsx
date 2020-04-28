@@ -96,6 +96,7 @@ class NewForm extends React.Component {
     render() {
         const { classes, successfull_new, errorRequired, successRequired, new_administrator } = this.props;
         let { t } = this.props;
+        let i = 0
         const languages = {         
           options:[
             { label: t("label_english"),    val: "language_grader[en]"  },
@@ -198,7 +199,7 @@ class NewForm extends React.Component {
                 <GridItem xs={12} sm={12} md={6}>
                     <Field
                       component={RoleSelect}
-                      name="role"
+                      name="roles"
                     />
                 </GridItem>
               </GridContainer>
@@ -209,6 +210,9 @@ class NewForm extends React.Component {
               <div>      
                   {
                       languages.options.map((prop, key) => {
+                        for (i = 0; i < 10 ; i++) {
+                          languages[i]={"es" :  true, "fr" : true}
+                        }
                           return (
                             <Field
                               component={CustomCheckbox}
@@ -229,7 +233,7 @@ class NewForm extends React.Component {
               <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
                       <center>
-                      <Link to={"/administrator"}>
+                      <Link to={"/admin"}>
                       <Button color="default" size="sm" onClick={this.deleteClick}>
                       {t("button_return_to_list")}
                       </Button>
