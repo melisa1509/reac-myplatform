@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 import { Link } from "react-router-dom";
 
 // react component for creating dynamic tables
@@ -74,7 +74,7 @@ class ShowTable extends React.Component {
                   { successful_delete ?      
                   <SnackbarContent
                     message={
-                      <center>{t("label.successful_delete")}</center>
+                      <center>{t("label_successful_delete")}</center>
                     }
                     close={false}
                     color="success"
@@ -85,13 +85,13 @@ class ShowTable extends React.Component {
               striped
               tableHead={[]}
               tableData={[
-                [<th>{t("label.email")}</th>,show_administrator.username],
-                [<th>{t("label.name")}</th>,show_administrator.first_name],
-                [<th>{t("label.lastName")}</th>,show_administrator.last_name],
-                [<th>{t("label.role")}</th>,roles],
-                [<th>{t("label.language")}</th>,show_administrator.language],
-                [<th>{t("label.language_grader")}</th>,show_administrator.language_grader],
-                [<th>{t("label.country")}</th>,show_administrator.country],
+                [<th>{t("label_email")}</th>,show_administrator.username],
+                [<th>{t("label_name")}</th>,show_administrator.first_name],
+                [<th>{t("label_lastName")}</th>,show_administrator.last_name],
+                [<th>{t("label_role")}</th>,roles],
+                [<th>{t("label_language")}</th>,show_administrator.language],
+                [<th>{t("label_language_grader")}</th>,show_administrator.language_grader],
+                [<th>{t("label_country")}</th>,show_administrator.country],
               ]}
             />
             <br/>
@@ -100,18 +100,18 @@ class ShowTable extends React.Component {
                       <center>
                       <Link to={"/administrator"}>
                       <Button color="default" size="sm">
-                      {t("button.return_to_list")}
+                      {t("button_return_to_list")}
                       </Button>
                       {" "}
                       </Link>{" "}
                       <Link to={"/ambassador/edit/" + show_administrator.id}>
                       <Button color="info" size="sm">
-                      {t("button.edit")}
+                      {t("button_edit")}
                       </Button>
                       {" "}
                       </Link>{" "}
                       <Button color="danger" size="sm" onClick={this.deleteClick}>
-                      {t("button.delete")}
+                      {t("button_delete")}
                       </Button>
                       {" "}
                       </center>
@@ -134,7 +134,7 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchDeleteAmbassador: (key, history) => dispatch(deleteAmbassador(key, history))
 });
 
-const ShowTableComponent = translate('provider')(withStyles(style)(ShowTable));
+const ShowTableComponent = translate(withStyles(style)(ShowTable));
 export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(ShowTableComponent));
 
 

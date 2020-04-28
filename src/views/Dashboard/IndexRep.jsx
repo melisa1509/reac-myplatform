@@ -17,7 +17,7 @@ import AmbassadorTable from './AmbassadorTable.jsx';
 import FutureAmbassadorTable from './FutureAmbassadorTable.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 const styles = {
@@ -41,7 +41,7 @@ class IndexRep extends React.Component {
         <GridItem xs={12} sm={12} md={12}>
           <Card>
             <CardHeader color="info">
-                <h4 className={classes.cardTitle}>{t("title.student_list_revision")}</h4>
+                <h4 className={classes.cardTitle}>{t("title_student_list_revision")}</h4>
             </CardHeader>
             <CardBody>
                 <MbsTable  />      
@@ -50,7 +50,7 @@ class IndexRep extends React.Component {
           <br/>
           <Card>
             <CardHeader color="info">
-                <h4 className={classes.cardTitle}>{t("title.student_list_ambassador")}</h4>
+                <h4 className={classes.cardTitle}>{t("title_student_list_ambassador")}</h4>
             </CardHeader>
             <CardBody>
                 <AmbassadorTable  />      
@@ -59,7 +59,7 @@ class IndexRep extends React.Component {
           <br/>
           <Card>
             <CardHeader color="info">
-                <h4 className={classes.cardTitle}>{t("title.student_list_future_ambassador_revision")}</h4>
+                <h4 className={classes.cardTitle}>{t("title_student_list_future_ambassador_revision")}</h4>
             </CardHeader>
             <CardBody>
                 <FutureAmbassadorTable  />      
@@ -78,5 +78,5 @@ IndexRep.propTypes = {
 const mapDispatchToPropsActions = dispatch => ({
 });
 
-const IndexRepComponent = translate('provider')(withStyles(styles)(IndexRep));
+const IndexRepComponent = translate(withStyles(styles)(IndexRep));
 export default connect(null, mapDispatchToPropsActions)(IndexRepComponent);

@@ -17,7 +17,7 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 class FutureAmbassadorTable extends React.Component {
   constructor(props) {
@@ -79,7 +79,7 @@ class FutureAmbassadorTable extends React.Component {
                 size="sm"
                 color="warning"
               >
-                {t('button.assing_mentor')}
+                {t('button_assing_mentor')}
               </Button>
             </Link>
             {" "}
@@ -88,7 +88,7 @@ class FutureAmbassadorTable extends React.Component {
                 size="sm"
                 color="danger"
               >
-                {t('button.clear')}
+                {t('button_clear')}
               </Button>
             </Link>
             
@@ -122,20 +122,20 @@ class FutureAmbassadorTable extends React.Component {
               loading={loading}
               columns={[
                 {
-                  Header: t("th.name"),
+                  Header: t("th_name"),
                   accessor: "name",
                 },
                 {
-                  Header: t("th.ambassador"),
+                  Header: t("th_ambassador"),
                   accessor: "ambassador"
                 },
                 {
-                  Header: t("th.group"),
+                  Header: t("th_group"),
                   accessor: "group",
                   resizable:true
                 },
                 {
-                  Header: t("th.projects"),
+                  Header: t("th_projects"),
                   accessor: "projects",
                   width: 220,
                   sortable: false,
@@ -192,6 +192,6 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchGetFutureAmbassadorList: () => dispatch( getFutureAmbassadorList() )
 });
 
-const FutureAmbassadorTableComponent = translate('provider')(FutureAmbassadorTable);
+const FutureAmbassadorTableComponent = translate(FutureAmbassadorTable);
 export default connect(mapStateToProps, mapDispatchToPropsActions)(FutureAmbassadorTableComponent);
 

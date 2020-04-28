@@ -74,7 +74,6 @@ function getLanguage(variable) {
 
 ReactDOM.render(
   <Provider store={store}>
-    <TranslatorProvider translations={require('assets/translate/'+ getLanguage("lang") +'.json')}>
       <Router history={hist}>
         <Switch>
           <Route path="/student" component={Student} exact />
@@ -125,7 +124,6 @@ ReactDOM.render(
           <Redirect from="/" to="/login" />
         </Switch>
       </Router>,
-    </TranslatorProvider>
   </Provider>,
   document.getElementById("root")
 );

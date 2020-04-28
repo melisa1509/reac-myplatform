@@ -16,7 +16,7 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import ClearTable from 'views/Dashboard/AssignMentor/ClearTable.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
 import { showUser } from "actions/userActions.jsx";
 
@@ -40,7 +40,7 @@ class ClearRep extends React.Component {
           <Card>
             <CardHeader color="info">
             <center>
-             <h4 className={classes.cardTitle}>{t("title.student_list_future_ambassador_revision")}</h4>
+             <h4 className={classes.cardTitle}>{t("title_student_list_future_ambassador_revision")}</h4>
              </center>
             </CardHeader>
             <CardBody>
@@ -64,5 +64,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const ClearRepComponent = translate('provider')(withStyles(styles)(ClearRep));
+const ClearRepComponent = translate(withStyles(styles)(ClearRep));
 export default withRouter(connect(null, mapDispatchToPropsActions)(ClearRepComponent));

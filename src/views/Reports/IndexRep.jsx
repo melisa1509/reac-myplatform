@@ -20,7 +20,7 @@ import Muted from "components/Typography/Muted.jsx";
 
 import dashboardStyle from "assets/jss/material-dashboard-pro-react/views/dashboardStyle";
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
 
 import IndexTable from './IndexTable.jsx';
@@ -44,7 +44,7 @@ class IndexRep extends React.Component {
     const { classes, report_list } = this.props;
     let { t } = this.props;
     const initialValuesReport= {
-      country:"label.all_country",
+      country:"label_all_country",
     }
     return (
       <GridContainer justify="center">
@@ -56,7 +56,7 @@ class IndexRep extends React.Component {
               <CardIcon color="warning">
                 <Icon>supervisor_account</Icon>
               </CardIcon>
-                <p className={classes.cardCategory}>{t("label.student_graduated_mbs")}</p>
+                <p className={classes.cardCategory}>{t("label_student_graduated_mbs")}</p>
                 <Muted><h3>{report_list.studentsMbs}</h3></Muted>
             </CardHeader>
             <CardFooter stats>
@@ -73,7 +73,7 @@ class IndexRep extends React.Component {
               <CardIcon color="info">
                 <Icon>person_outline</Icon>
               </CardIcon>
-              <p className={classes.cardCategory}>{t("label.student_graduated_sa")}</p>
+              <p className={classes.cardCategory}>{t("label_student_graduated_sa")}</p>
               <Muted><h3>{report_list.studentsAmbassador}</h3></Muted>
             </CardHeader>
             <CardFooter stats>
@@ -92,7 +92,7 @@ class IndexRep extends React.Component {
                 <Icon>language</Icon>
               </CardIcon>
               <Muted>
-                <h4>{t("title.global_certificates_by_countries")}</h4>
+                <h4>{t("title_global_certificates_by_countries")}</h4>
               </Muted>
             </CardHeader>
             <CardBody>
@@ -106,7 +106,7 @@ class IndexRep extends React.Component {
                 <Icon>dns</Icon>
               </CardIcon>
               <Muted>
-                <h4>{t("title.number_people_improvement") + " " + t( "title.by_country")}</h4>
+                <h4>{t("title_number_people_improvement") + " " + t( "title_by_country")}</h4>
               </Muted>
             </CardHeader>
             <CardBody>
@@ -120,7 +120,7 @@ class IndexRep extends React.Component {
                 <Icon>rss_feed</Icon>
               </CardIcon>
               <Muted>
-                <h4>{t("title.number_people_improvement") + " " + t( "title.by_ambassador")}</h4>
+                <h4>{t("title_number_people_improvement") + " " + t( "title_by_ambassador")}</h4>
               </Muted>
             </CardHeader>
             <CardBody>
@@ -134,7 +134,7 @@ class IndexRep extends React.Component {
               <Icon>equalizer</Icon>
               </CardIcon>
               <Muted>
-                <h4>{t("title.evaluation_statistics") + " " + t( "title.by_student")}</h4>
+                <h4>{t("title_evaluation_statistics") + " " + t( "title_by_student")}</h4>
               </Muted>
             </CardHeader>
             <CardBody>
@@ -161,5 +161,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const NewRepComponent = translate('provider')(withStyles(styles)(IndexRep));
+const NewRepComponent = translate(withStyles(styles)(IndexRep));
 export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(NewRepComponent));

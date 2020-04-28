@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 import { Link } from "react-router-dom";
 
 // react component for creating dynamic tables
@@ -65,7 +65,7 @@ class ShowTable extends React.Component {
                   { successful_delete ?      
                   <SnackbarContent
                     message={
-                      <center>{t("label.successful_delete")}</center>
+                      <center>{t("label_successful_delete")}</center>
                     }
                     close={false}
                     color="success"
@@ -76,10 +76,10 @@ class ShowTable extends React.Component {
               striped
               tableHead={[]}
               tableData={[
-                [<th>{t("label.name")}</th>,<p>{show_code.name}</p>],
-                [<th>{t("label.code")}</th>,show_code.country],
-                [<th>{t("label.program")}</th>,show_code.program],
-                [<th>{t("label.number")}</th>,show_code.number],
+                [<th>{t("label_name")}</th>,<p>{show_code.name}</p>],
+                [<th>{t("label_code")}</th>,show_code.country],
+                [<th>{t("label_program")}</th>,show_code.program],
+                [<th>{t("label_number")}</th>,show_code.number],
               ]}
             />
             <br/>
@@ -88,18 +88,18 @@ class ShowTable extends React.Component {
                       <center>
                       <Link to={"/code"}>
                       <Button color="default" size="sm">
-                      {t("button.return_to_list")}
+                      {t("button_return_to_list")}
                       </Button>
                       {" "}
                       </Link>{" "}
                       <Link to={"/code/edit/" + show_code.id}>
                       <Button color="info" size="sm">
-                      {t("button.edit")}
+                      {t("button_edit")}
                       </Button>
                       {" "}
                       </Link>{" "}
                       <Button color="danger" size="sm" onClick={this.deleteClick}>
-                      {t("button.delete")}
+                      {t("button_delete")}
                       </Button>
                       {" "}
                       </center>
@@ -122,7 +122,7 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchDeleteCode: (key, history) => dispatch(deleteCode(key, history))
 });
 
-const ShowTableComponent = translate('provider')(withStyles(style)(ShowTable));
+const ShowTableComponent = translate(withStyles(style)(ShowTable));
 export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(ShowTableComponent));
 
 

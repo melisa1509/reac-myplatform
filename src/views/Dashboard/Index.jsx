@@ -11,7 +11,6 @@ import GridItem from "components/Grid/GridItem.jsx";
 import mainPageStyle from "assets/jss/material-kit-react/views/mainPage.jsx";
 import IndexRep from "./IndexRep.jsx";
 import AdminHeader from "views/Header/AdminHeader.jsx";
-import PerfectScrollbar from 'react-perfect-scrollbar';
 
 
 const styles = {
@@ -20,11 +19,20 @@ const styles = {
 };
 
 class Index extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {     
+      
+    };
+  }
+
   
   render() {
-    const { classes, ...rest } = this.props;
+    const { classes, t, ...rest } = this.props;
     return (
       <div>
+        <AdminHeader/>
         <div
           className={classes.main}
           style={{
@@ -47,4 +55,5 @@ class Index extends React.Component {
   }
 }
 
-export default withStyles(styles)(Index);
+const indexComponent = Index;
+export default withStyles(styles)(indexComponent);

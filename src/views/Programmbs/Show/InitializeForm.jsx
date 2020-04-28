@@ -9,7 +9,7 @@ import LanguageSelect from "views/Select/LanguageSelect.jsx";
 import { load as loadAccount } from "actions/programmbsActions.jsx";
 import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx';
 import CustomCheckboxRedux from 'components/CustomCheckbox/CustomCheckboxRedux.jsx';
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 const data = {
@@ -36,7 +36,7 @@ const data = {
           <label>First Name</label>
           <div>
             <Field
-              labelText={t("label.revision_product")+ " *"}
+              labelText={t("label_revision_product")+ " *"}
               component={CustomInputRedux}
               name="firstName"
               success
@@ -132,4 +132,4 @@ const data = {
   )(InitializeFromStateForm);
 
   
-  export default  translate('provider')(InitializeFromStateForm);
+  export default  translate(InitializeFromStateForm);

@@ -9,7 +9,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 
 // core components
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import AdminHeader from "views/Header/AdminHeader.jsx";
@@ -50,12 +50,12 @@ class Show extends React.Component {
                   style={{ display: "block", marginTop: "-100px" }}
                   onConfirm={() => this.hideAlert()}
                   onCancel={() => this.hideAlert()}
-                  confirmBtnText={t("button.continue")}
+                  confirmBtnText={t("button_continue")}
                   confirmBtnCssClass={
                       this.props.classes.button + " " + this.props.classes.success
                   }
                   >
-                  <h4>{t("label.save_success_revision")}</h4>
+                  <h4>{t("label_save_success_revision")}</h4>
               </SweetAlert>
             : ""}
             {editRevisionError ? 
@@ -64,12 +64,12 @@ class Show extends React.Component {
                   style={{ display: "block", marginTop: "-100px" }}
                   onConfirm={() => this.hideAlert()}
                   onCancel={() => this.hideAlert()}
-                  confirmBtnText={t("button.continue")}
+                  confirmBtnText={t("button_continue")}
                   confirmBtnCssClass={
                       this.props.classes.button + " " + this.props.classes.success
                   }
                   >
-                  <h4>{t("label.save_error")}</h4>
+                  <h4>{t("label_save_error")}</h4>
               </SweetAlert>
             : ""}
             {sendRevisionProjectSuccessfull ? 
@@ -78,12 +78,12 @@ class Show extends React.Component {
                   style={{ display: "block", marginTop: "-100px" }}
                   onConfirm={() => this.redirectDashboard()}
                   onCancel={() => this.hideAlert()}
-                  confirmBtnText={t("button.continue")}
+                  confirmBtnText={t("button_continue")}
                   confirmBtnCssClass={
                       this.props.classes.button + " " + this.props.classes.success
                   }
                   >
-                  <h4>{t("label.revision_sent_successfully")}</h4>
+                  <h4>{t("label_revision_sent_successfully")}</h4>
               </SweetAlert>
             : ""}
             {sendRevisionProjectError ? 
@@ -92,12 +92,12 @@ class Show extends React.Component {
                   style={{ display: "block", marginTop: "-100px" }}
                   onConfirm={() => this.hideAlert()}
                   onCancel={() => this.hideAlert()}
-                  confirmBtnText={t("button.continue")}
+                  confirmBtnText={t("button_continue")}
                   confirmBtnCssClass={
                       this.props.classes.button + " " + this.props.classes.success
                   }
                   >
-                  <h4>{t("label.save_error")}</h4>
+                  <h4>{t("label_save_error")}</h4>
               </SweetAlert>
             : ""}
             {approveProjectSuccessfull ? 
@@ -106,12 +106,12 @@ class Show extends React.Component {
                   style={{ display: "block", marginTop: "-100px" }}
                   onConfirm={() => this.redirectDashboard()}
                   onCancel={() => this.hideAlert()}
-                  confirmBtnText={t("button.continue")}
+                  confirmBtnText={t("button_continue")}
                   confirmBtnCssClass={
                       this.props.classes.button + " " + this.props.classes.success
                   }
                   >
-                  <h4>{t("label.success_approved")}</h4>
+                  <h4>{t("label_success_approved")}</h4>
               </SweetAlert>
             : ""}
             {approveProjectError ? 
@@ -120,12 +120,12 @@ class Show extends React.Component {
                   style={{ display: "block", marginTop: "-100px" }}
                   onConfirm={() => this.hideAlert()}
                   onCancel={() => this.hideAlert()}
-                  confirmBtnText={t("button.continue")}
+                  confirmBtnText={t("button_continue")}
                   confirmBtnCssClass={
                       this.props.classes.button + " " + this.props.classes.success
                   }
                   >
-                  <h4>{t("label.save_error")}</h4>
+                  <h4>{t("label_save_error")}</h4>
               </SweetAlert>
             : ""}
             
@@ -171,5 +171,5 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchRedirectDashboard: param => dispatch( redirectDashboard(param) ),
 });
 
-const ShowComponent = translate('provider')(withStyles(styles)(Show));
+const ShowComponent = translate(withStyles(styles)(Show));
 export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(ShowComponent));

@@ -13,7 +13,7 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 class AmbassadorTable extends React.Component {
   constructor(props) {
@@ -109,20 +109,20 @@ class AmbassadorTable extends React.Component {
               loading={loading}
               columns={[
                 {
-                  Header: t("th.name"),
+                  Header: t("th_name"),
                   accessor: "name",
                 },
                 {
-                  Header: t("th.ambassador"),
+                  Header: t("th_ambassador"),
                   accessor: "ambassador"
                 },
                 {
-                  Header: t("th.group"),
+                  Header: t("th_group"),
                   accessor: "group",
                   resizable:true
                 },
                 {
-                  Header: t("th.projects"),
+                  Header: t("th_projects"),
                   accessor: "projects",
                   width: 150,
                   sortable: false,
@@ -179,6 +179,6 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchGetStudentAmbassadorList: () => dispatch( getStudentAmbassadorList() )
 });
 
-const AmbassadorTableComponent = translate('provider')(AmbassadorTable);
+const AmbassadorTableComponent = translate(AmbassadorTable);
 export default connect(mapStateToProps, mapDispatchToPropsActions)(AmbassadorTableComponent);
 

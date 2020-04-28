@@ -22,7 +22,7 @@ import RevisionForm from './RevisionForm.jsx';
 import RenderCell from './RenderCell.jsx';
 import CustomRenderCell from './CustomRenderCell.jsx';
 
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 const styles = {
@@ -82,10 +82,10 @@ class SupportGroupsTab extends React.Component {
     return (
         <Card >
           <CardBody>
-            <h3 className={classes.cardTitleCenter} >{t("title.support_groups")}</h3>
+            <h3 className={classes.cardTitleCenter} >{t("title_support_groups")}</h3>
             <br/>
             <SuccessBold>
-              {t("question.support1")}
+              {t("question_support1")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -93,7 +93,7 @@ class SupportGroupsTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.support2")}
+              {t("question_support2")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -101,14 +101,14 @@ class SupportGroupsTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.support3")}
+              {t("question_support3")}
             </SuccessBold>
             <br/>
             <MutedText>
               {programsa.support3}
             </MutedText>
             <br/>
-            <RevisionForm name="revisionsupport" labelText={t("label.revision_support")} />
+            <RevisionForm name="revisionsupport" labelText={t("label_revision_support")} />
             <br/>
             <Controls/>
           </CardBody>
@@ -130,5 +130,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const SupportGroupsTabComponent = translate('provider')(withStyles(styles)(SupportGroupsTab));
+const SupportGroupsTabComponent = translate(withStyles(styles)(SupportGroupsTab));
 export default connect(mapStateToProps, mapDispatchToPropsActions)(SupportGroupsTabComponent);

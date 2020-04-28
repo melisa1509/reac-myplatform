@@ -17,7 +17,7 @@ import Controls from './Controls.jsx';
 import RevisionForm from './RevisionForm.jsx';
 import footerStyle from "assets/jss/material-dashboard-pro-react/components/footerStyle";
 
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 const styles = {
@@ -42,10 +42,10 @@ class ServiceTab extends React.Component {
     return (
         <Card >
           <CardBody>
-            <h3 className={classes.cardTitleCenter} >{t("title.service")}</h3>
+            <h3 className={classes.cardTitleCenter} >{t("title_service")}</h3>
             <br/>
             <SuccessBold>
-              {t("question.service1")}
+              {t("question_service1")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -53,7 +53,7 @@ class ServiceTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.service2")}
+              {t("question_service2")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -61,7 +61,7 @@ class ServiceTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.service3")}
+              {t("question_service3")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -69,7 +69,7 @@ class ServiceTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.service4")}
+              {t("question_service4")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -77,7 +77,7 @@ class ServiceTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.service5")}
+              {t("question_service5")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -85,7 +85,7 @@ class ServiceTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.service6")}
+              {t("question_service6")}
             </SuccessBold>
             <br/>
             {programmbs.service6 ? 
@@ -94,11 +94,11 @@ class ServiceTab extends React.Component {
                 target="_blank"
                 className={anchor}
             >
-                {t("label.download_file")}
+                {t("label_download_file")}
             </a>
             : ""}
             <br/>
-            <RevisionForm name="revisionservice" labelText={t("label.revision_service")+ " *"} />
+            <RevisionForm name="revisionservice" labelText={t("label_revision_service")+ " *"} />
             <br/>
             <Controls/>
           </CardBody>
@@ -120,5 +120,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const ServiceTabComponent = translate('provider')(withStyles(styles)(ServiceTab));
+const ServiceTabComponent = translate(withStyles(styles)(ServiceTab));
 export default connect(mapStateToProps, mapDispatchToPropsActions)(ServiceTabComponent);

@@ -28,10 +28,10 @@ function HeaderLinksAdmin({ ...props }) {
   if(rol === 'ROLE_ADMIN'){
     links = [
       <Link to="/" className={classes.dropdownLink}>
-        {t("link.users")}
+        {t("label.password")}
       </Link>,
-      <Link to={'/app'} className={classes.dropdownLink}>
-        App
+      <Link to={'/admin'} className={classes.dropdownLink}>
+        Admin
       </Link>,
       <Link to={'/course/new'} className={classes.dropdownLink}>
         Course

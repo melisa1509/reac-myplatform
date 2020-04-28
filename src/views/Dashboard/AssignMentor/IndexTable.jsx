@@ -16,7 +16,7 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
 
 
@@ -90,7 +90,7 @@ class IndexTable extends React.Component {
                 size="sm"
                 color="info"
               >
-                {t('button.assign_to_this_group')}
+                {t('button_assign_to_this_group')}
               </Button>
             </Link>
           </div>
@@ -122,23 +122,23 @@ class IndexTable extends React.Component {
 
               columns={[
                 {
-                  Header: t("th.name"),
+                  Header: t("th_name"),
                   accessor: "full_name",
                   sortable: false
                 },
                 {
-                  Header: t("th.embassador_mentor"),
+                  Header: t("th_embassador_mentor"),
                   accessor: "AmbassadorMentor",
                   sortable: false
                 },
                 {
-                  Header: t("th.start_classes"),
+                  Header: t("th_start_classes"),
                   accessor: "date",
                   sortable: false,
                   filterable: false
                 },                
                 {
-                  Header: t("th.actions"),
+                  Header: t("th_actions"),
                   accessor: "projects",
                   sortable: false
                 },
@@ -176,7 +176,7 @@ class IndexTable extends React.Component {
                       <center>
                       <Link to={"/dashboard"}>
                       <Button color="defautl" size="sm">
-                      {t("button.return_to_list")}
+                      {t("button_return_to_list")}
                       </Button>
                       </Link>
                       </center>
@@ -197,6 +197,6 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchGetGroupList: () => dispatch( getGroupList() )
 });
 
-const IndexTableComponent = translate('provider')(IndexTable);
+const IndexTableComponent = translate(IndexTable);
 export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent));
 

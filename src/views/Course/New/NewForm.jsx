@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 // react component for creating dynamic tables
 import ReactTable from "react-table";
 import { connect } from "react-redux";
@@ -148,7 +148,7 @@ class NewForm extends React.Component {
             courseName: this.state.courseName,
             courseDescription: this.state.courseDescription,
             courseLanguage: "En",
-            courseState: "state.draft",
+            courseState: "state_draft",
             redirect: this.props.history,
           }
           const stateRedux = store.getState();
@@ -211,7 +211,7 @@ class NewForm extends React.Component {
                       <CustomInput
                           success={this.state.courseNameState === "success"}
                           error={this.state.courseNameState === "error"}
-                          labelText={t("label.name")+ " *"}
+                          labelText={t("label_name")+ " *"}
                           id="courseName"
                           formControlProps={{
                               fullWidth: true
@@ -229,7 +229,7 @@ class NewForm extends React.Component {
                       <CustomInput
                         success={this.state.courseDescriptionState === "success"}
                         error={this.state.courseDescriptionState === "error"}
-                        labelText={t("label.description")+ " *"}
+                        labelText={t("label_description")+ " *"}
                         id="courseDescription"
                         formControlProps={{
                           fullWidth: true
@@ -256,7 +256,7 @@ class NewForm extends React.Component {
               <GridContainer>
                   <GridItem xs={12} sm={12} md={9}>
                       <div className={classes.formCategory}>
-                          <small>*</small> {t("label.require_fields")}
+                          <small>*</small> {t("label_require_fields")}
                       </div>
                   </GridItem>
               </GridContainer>
@@ -286,7 +286,7 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchNewCourse: params => dispatch(newCourse(params)), 
 });
 
-const NewFormComponent = translate('provider')(withStyles(style)(NewForm));
+const NewFormComponent = translate(withStyles(style)(NewForm));
 export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(NewFormComponent));
 
 

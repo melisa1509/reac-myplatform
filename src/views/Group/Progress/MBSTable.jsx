@@ -12,7 +12,7 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
 
 
@@ -102,39 +102,39 @@ class MBSTable extends React.Component {
 
               columns={[
                 {
-                  Header: t("th.name"),
+                  Header: t("th_name"),
                   accessor: "name",
                 },
                 {
-                  Header: t("th.plan"),
+                  Header: t("th_plan"),
                   accessor: "plan",
                 },
                 {
-                  Header: t("th.product"),
+                  Header: t("th_product"),
                   accessor: "product",
                 },
                 {
-                  Header: t("th.process"),
+                  Header: t("th_process"),
                   accessor: "process",
                 },
                 {
-                  Header: t("th.price"),
+                  Header: t("th_price"),
                   accessor: "price",
                 },
                 {
-                  Header: t("th.promotion"),
+                  Header: t("th_promotion"),
                   accessor: "promotion",
                 },
                 {
-                  Header: t("th.paperwork"),
+                  Header: t("th_paperwork"),
                   accessor: "paperwork",
                 },
                 {
-                  Header: t("th.quality"),
+                  Header: t("th_quality"),
                   accessor: "quality",
                 },
                 {
-                  Header: t("th.service"),
+                  Header: t("th_service"),
                   accessor: "service",
                 },
                 {
@@ -171,7 +171,7 @@ class MBSTable extends React.Component {
                 <center>
                 <Link to={"/group"}>
                 <Button color="default" size="sm">
-                {t("button.return_to_list")}
+                {t("button_return_to_list")}
                 </Button>
                 {" "}
                 </Link>{" "}
@@ -192,6 +192,6 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchGetProjectProgress: (key) => dispatch( getProjectProgress(key) )
 });
 
-const MBSTableComponent = translate('provider')(MBSTable);
+const MBSTableComponent = translate(MBSTable);
 export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(MBSTableComponent));
 

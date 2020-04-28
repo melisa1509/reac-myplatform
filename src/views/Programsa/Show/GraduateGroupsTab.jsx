@@ -22,7 +22,7 @@ import RevisionForm from './RevisionForm.jsx';
 import RenderCell from './RenderCell.jsx';
 import CustomRenderCell from './CustomRenderCell.jsx';
 
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 const styles = {
@@ -82,10 +82,10 @@ class GenerateGroupsTab extends React.Component {
     return (
         <Card >
           <CardBody>
-            <h3 className={classes.cardTitleCenter} >{t("title.graduate_groups")}</h3>
+            <h3 className={classes.cardTitleCenter} >{t("title_graduate_groups")}</h3>
             <br/>
             <SuccessBold>
-              {t("question.graduated1")}
+              {t("question_graduated1")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -93,7 +93,7 @@ class GenerateGroupsTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.graduated2")}
+              {t("question_graduated2")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -101,7 +101,7 @@ class GenerateGroupsTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.graduated3")}
+              {t("question_graduated3")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -109,14 +109,14 @@ class GenerateGroupsTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.graduated4")}
+              {t("question_graduated4")}
             </SuccessBold>
             <br/>
             <MutedText>
               {programsa.graduate4}
             </MutedText>
             <br/>
-            <RevisionForm name="revisiongraduate" labelText={t("label.revision_graduate")} />
+            <RevisionForm name="revisiongraduate" labelText={t("label_revision_graduate")} />
             <br/>
             <Controls/>
           </CardBody>
@@ -138,5 +138,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const GenerateGroupsTabComponent = translate('provider')(withStyles(styles)(GenerateGroupsTab));
+const GenerateGroupsTabComponent = translate(withStyles(styles)(GenerateGroupsTab));
 export default connect(mapStateToProps, mapDispatchToPropsActions)(GenerateGroupsTabComponent);

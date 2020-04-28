@@ -1,7 +1,7 @@
 import React from "react";
 // react component for creating dynamic tables
 import { connect } from "react-redux";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 // core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -33,7 +33,7 @@ class PorcentageATable extends React.Component {
     const {report_ambassador, selected_ambassador, report_country} = this.props;
     let { t } = this.props;
     const initialValuesReport= {
-       ambassador:"label.all_ambassador",
+       ambassador:"label_all_ambassador",
     }
     let question=[]
     let studentPre=[]
@@ -149,6 +149,6 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchGetReportAmbassador: () => dispatch( getReportAmbassador() )
 });
 
-const PorcentageATableComponent = translate('provider')(withStyles(style)(PorcentageATable));
+const PorcentageATableComponent = translate(withStyles(style)(PorcentageATable));
 export default connect(mapStateToProps, mapDispatchToPropsActions)(PorcentageATableComponent);
 

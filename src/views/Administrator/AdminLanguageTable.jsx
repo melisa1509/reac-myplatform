@@ -17,7 +17,7 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 
@@ -125,13 +125,13 @@ class AdminLanguageTable extends React.Component {
 
               columns={[
                 {
-                  Header: t("th.name"),
+                  Header: t("th_name"),
                   accessor: "name",
                   width:300,
                   sortable: false
                 },
                 {
-                  Header: t("th.username"),
+                  Header: t("th_username"),
                   accessor: "username",
                   width:300,
                   sortable: false,
@@ -144,7 +144,7 @@ class AdminLanguageTable extends React.Component {
                   filterable: false
                 },
                 {
-                  Header: t("th.actions"),
+                  Header: t("th_actions"),
                   accessor: "actions",
                   sortable: false,
                   filterable: false
@@ -184,7 +184,7 @@ class AdminLanguageTable extends React.Component {
                 <center>
                 <Link to={"/admin/new"}>
                 <Button color="info" size="sm">
-                {t("button.create_new")}
+                {t("button_create_new")}
                 </Button>
                 {" "}
                 </Link>{" "}
@@ -205,6 +205,6 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchGetAdminLanguageList: () => dispatch( getAdminLanguageList() )
 });
 
-const AdminLanguageTableComponent = translate('provider')(AdminLanguageTable);
+const AdminLanguageTableComponent = translate(AdminLanguageTable);
 export default connect(mapStateToProps, mapDispatchToPropsActions)(AdminLanguageTableComponent);
 

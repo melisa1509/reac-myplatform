@@ -1,6 +1,7 @@
 import { SUCCESSFULL_AUTHENTICATION, FAILED_AUTHENTICATION, SUCCESSFULL_ACTIVE_USER } from 'constants/actionTypes.jsx';
 import $ from 'jquery';
 import { BASE_URL } from 'constants/urlTypes';
+import { setLanguage } from 'react-switch-lang';
 
 
 export const getAuthenticacion = ( params, redirect ) => {
@@ -73,6 +74,7 @@ export const getActiveUser = ( redirect ) => {
         return $.ajax(settings)
                 .done(function (response) {
                     dispatch ({ type: SUCCESSFULL_ACTIVE_USER, payload: JSON.parse(response) });
+                    setLanguage(reduxState.loginReducer.active_user.language);
 
                 })
                 .fail(function (response){

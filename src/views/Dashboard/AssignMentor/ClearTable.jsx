@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 import { Link } from "react-router-dom";
 
 // react component for creating dynamic tables
@@ -69,8 +69,8 @@ class ClearTable extends React.Component {
               striped
               tableHead={[]}
               tableData={[
-                [<th>{t("label.name")}</th>,show_user.first_name],
-                [<th>{t("label.lastName")}</th>,show_user.last_name],
+                [<th>{t("label_name")}</th>,show_user.first_name],
+                [<th>{t("label_lastName")}</th>,show_user.last_name],
               ]}
             />
             <br/>
@@ -79,12 +79,12 @@ class ClearTable extends React.Component {
                       <center>
                       <Link to={"/dashboard/clearpending/" + this.props.match.params.student}>
                       <Button color="defautl" size="sm">
-                      {t("button.return_to_list")}
+                      {t("button_return_to_list")}
                       </Button>
                       {" "}
                       </Link>{" "}
                       <Button color="success" size="sm" onClick={this.saveClick}>
-                      {t("button.clean_pending_list")}
+                      {t("button_clean_pending_list")}
                       </Button>
                       {" "}
                       </center>
@@ -106,7 +106,7 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchClearPending: (params, history ) => dispatch(clearPending(params, history))
 });
 
-const ClearTableComponent = translate('provider')(withStyles(style)(ClearTable));
+const ClearTableComponent = translate(withStyles(style)(ClearTable));
 export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(ClearTableComponent));
 
 

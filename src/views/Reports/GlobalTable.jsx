@@ -1,7 +1,7 @@
 import React from "react";
 // react component for creating dynamic tables
 import { connect } from "react-redux";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 import { VectorMap } from "react-jvectormap";
 
 
@@ -367,7 +367,7 @@ class GlobalTable extends React.Component {
             <GridItem xs={12} sm={12} md={12}>
                 <center>
                 <Button color="default" size="sm" onClick={this.saveClick}>
-                {t("button.hide_all_list")}
+                {t("button_hide_all_list")}
                 </Button>
                 {" "}
                 </center>
@@ -467,7 +467,7 @@ class GlobalTable extends React.Component {
             <GridItem xs={12} sm={12} md={12}>
                 <center>
                 <Button color="default" size="sm" onClick={this.saveClick}>
-                {t("button.show_entire_list")}
+                {t("button_show_entire_list")}
                 </Button>
                 {" "}
                 </center>
@@ -486,6 +486,6 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchGetReports: () => dispatch( getReports() )
 });
 
-const GlobalTableComponent = translate('provider')(GlobalTable);
+const GlobalTableComponent = translate(GlobalTable);
 export default connect(mapStateToProps, mapDispatchToPropsActions)(GlobalTableComponent);
 

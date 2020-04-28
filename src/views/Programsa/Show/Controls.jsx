@@ -15,7 +15,7 @@ import Button from "components/CustomButtons/Button.jsx";
 import { editRevisionProgramsa, approveProject, sendRevisionProject } from "actions/programsaActions.jsx";
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 const styles = {
@@ -65,23 +65,23 @@ class Controls extends React.Component {
         <GridItem xs={12} sm={12} md={12}>
             <GridContainer justify="center">
                 <Button color="warning" size="sm" onClick={this.loginClick}>
-                    {t("button.approve_this_section")}
+                    {t("button_approve_this_section")}
                 </Button>
             </GridContainer>
             <GridContainer justify="center" className={ classes.verticalSpace }>
                 <Button color="info" size="sm" onClick={this.handleSaveRevision}>
-                    {t("button.save_revision")}
+                    {t("button_save_revision")}
                 </Button>
                 {" "}
                 <Button color="danger" size="sm" onClick={this.handleSendRevisionProject}>
-                    {t("button.send_correction")}
+                    {t("button_send_correction")}
                 </Button>
                 <Button color="defaul" size="sm" onClick={this.loginClick}>
-                    {t("button.certificate_attendance")}
+                    {t("button_certificate_attendance")}
                 </Button>
                 {" "}
                 <Button color="success" size="sm" onClick={this.handleApproveProject}>
-                    {t("button.approved")}
+                    {t("button_approved")}
                 </Button>
                 
             </GridContainer>
@@ -105,5 +105,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const ConstrolsComponent = translate('provider')(withStyles(styles)(Controls));
+const ConstrolsComponent = translate(withStyles(styles)(Controls));
 export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(ConstrolsComponent));

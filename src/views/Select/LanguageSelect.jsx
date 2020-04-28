@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 // react component for creating dynamic tables
 import { connect } from "react-redux";
 import { updateLanguageSelect } from "actions/selectActions.jsx";
@@ -65,7 +65,7 @@ class LanguageSelect extends React.Component {
                     <InputLabel
                         htmlFor="simple-select"
                     >
-                        <Success>{t("label.language")}</Success>
+                        <Success>{t("label_language")}</Success>
                     </InputLabel>
                     <Select
                         MenuProps={{
@@ -88,7 +88,7 @@ class LanguageSelect extends React.Component {
                             }}
                             value="-1"
                         >
-                            {t("label.chose_language")}
+                            {t("label_chose_language")}
                         </MenuItem>
                         <MenuItem
                             classes={{
@@ -97,7 +97,7 @@ class LanguageSelect extends React.Component {
                             }}
                             value="en"
                         >
-                            {t("label.english")}
+                            {t("label_english")}
                         </MenuItem>
                         <MenuItem
                             classes={{
@@ -106,7 +106,7 @@ class LanguageSelect extends React.Component {
                             }}
                             value="es"
                         >
-                            {t("label.spanish")}
+                            {t("label_spanish")}
                         </MenuItem>
                         <MenuItem
                             classes={{
@@ -115,7 +115,7 @@ class LanguageSelect extends React.Component {
                             }}
                             value="fr"
                         >
-                            {t("label.french")}
+                            {t("label_french")}
                         </MenuItem>
                         <MenuItem
                             classes={{
@@ -124,7 +124,7 @@ class LanguageSelect extends React.Component {
                             }}
                             value="pr"
                         >
-                            {t("label.portuguese")}
+                            {t("label_portuguese")}
                         </MenuItem>
                     </Select>
                 </FormControl>
@@ -139,7 +139,7 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchUpdateLanguageSelect: key => dispatch( updateLanguageSelect(key) ), 
 });
 
-const LanguageSelectComponent = translate('provider')(withStyles(style)(LanguageSelect));
+const LanguageSelectComponent = translate(withStyles(style)(LanguageSelect));
 export default connect(mapStateToProps, mapDispatchToPropsActions)(LanguageSelectComponent);
 
 

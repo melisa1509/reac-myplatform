@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
 
 // react component for creating dynamic tables
@@ -232,7 +232,7 @@ class LoginForm extends React.Component {
                       <CustomInput
                           success={this.state.loginUsernameState === "success"}
                           error={this.state.loginUsernameState === "error"}
-                          labelText={t("label.username")}
+                          labelText={t("label_username")}
                           id="loginUsername"
                           formControlProps={{
                               fullWidth: true
@@ -253,7 +253,7 @@ class LoginForm extends React.Component {
                       <CustomInput
                           success={this.state.loginPasswordState === "success"}
                           error={this.state.loginPasswordState === "error"}
-                          labelText={t("label.password")}
+                          labelText={t("label_password")}
                           id="loginpassword"
                           formControlProps={{
                             fullWidth: true
@@ -271,7 +271,7 @@ class LoginForm extends React.Component {
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
                       <Button color="danger" fullWidth  onClick={this.loginClick} >
-                          {t("button.login")}
+                          {t("button_login")}
                       </Button>
                   </GridItem>
               </GridContainer>
@@ -305,7 +305,7 @@ const mapDispatchToPropsActions = dispatch => ({
     
 });
 
-const LoginFormComponent = translate('provider')(withStyles(style)(LoginForm));
+const LoginFormComponent = translate(withStyles(style)(LoginForm));
 export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(LoginFormComponent));
 
 

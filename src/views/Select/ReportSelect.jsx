@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 // react component for creating dynamic tables
 import { connect } from "react-redux";
 import { updateCountrySelect } from "actions/selectActions.jsx";
@@ -66,7 +66,7 @@ class ReportSelect extends React.Component {
                     <InputLabel
                         htmlFor="simple-select"
                     >
-                        {t("label.country")}
+                        {t("label_country")}
                     </InputLabel>
                     <Select 
                         id="simple-select"
@@ -90,7 +90,7 @@ class ReportSelect extends React.Component {
                             }}
                             value="-1"
                         >
-                            {t("label.chose_country")}
+                            {t("label_chose_country")}
                         </MenuItem>
                         <MenuItem
                             classes={{
@@ -99,7 +99,7 @@ class ReportSelect extends React.Component {
                             }}
                             value="ALL"
                         >
-                            {t("label.all_country")}
+                            {t("label_all_country")}
                         </MenuItem>
                         {
                             country_list.map( (country) => {
@@ -137,7 +137,7 @@ const mapDispatchToPropsActions = dispatch => ({
 
 });
 
-const ReportSelectComponent = translate('provider')(withStyles(style)(ReportSelect));
+const ReportSelectComponent = translate(withStyles(style)(ReportSelect));
 export default connect(mapStateToProps, mapDispatchToPropsActions)(ReportSelectComponent);
 
 

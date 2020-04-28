@@ -15,7 +15,7 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 class IndexTable extends React.Component {
@@ -122,19 +122,19 @@ class IndexTable extends React.Component {
 
               columns={[
                 {
-                  Header: t("label.name"),
+                  Header: t("label_name"),
                   accessor: "country"
                 },
                 {
-                  Header: t("label.state"),
+                  Header: t("label_state"),
                   accessor: "code"
                 },
                 {
-                  Header: t("th.projects"),
+                  Header: t("th_projects"),
                   accessor: "number"
                 },
                 {
-                  Header: t("th.actions"),
+                  Header: t("th_actions"),
                   accessor: "actions",
                   sortable: false,
                   filterable: false
@@ -186,6 +186,6 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchGetCodeList: () => dispatch( getCodeList() )
 });
 
-const IndexTableComponent = translate('provider')(IndexTable);
+const IndexTableComponent = translate(IndexTable);
 export default connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent);
 

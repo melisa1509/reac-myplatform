@@ -14,7 +14,7 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 class MbsTable extends React.Component {
   constructor(props) {
@@ -72,12 +72,12 @@ class MbsTable extends React.Component {
         group:prop.group.name,
         projects: (
           <div className="actions-left">
-            <Link to={prop.student.programmbs.modality === "option.modality1" ? "/programmbs/showfile/" + prop.student.programmbs.id : "/programmbs/show/" + prop.student.programmbs.id}>
+            <Link to={prop.student.programmbs.modality === "option_modality1" ? "/programmbs/showfile/" + prop.student.programmbs.id : "/programmbs/show/" + prop.student.programmbs.id}>
               <Button
                 size="sm"
                 color="success"
               >
-                {t('button.mbs')}
+                {t('button_mbs')}
               </Button>
             </Link>
             
@@ -111,20 +111,20 @@ class MbsTable extends React.Component {
               loading={loading}
               columns={[
                 {
-                  Header: t("th.name"),
+                  Header: t("th_name"),
                   accessor: "name",
                 },
                 {
-                  Header: t("th.ambassador"),
+                  Header: t("th_ambassador"),
                   accessor: "ambassador"
                 },
                 {
-                  Header: t("th.group"),
+                  Header: t("th_group"),
                   accessor: "group",
                   resizable:true
                 },
                 {
-                  Header: t("th.projects"),
+                  Header: t("th_projects"),
                   accessor: "projects",
                   width: 150,
                   sortable: false,
@@ -182,6 +182,6 @@ const mapDispatchToPropsActions = dispatch => ({
   
 });
 
-const MbsTableComponent = translate('provider')(MbsTable);
+const MbsTableComponent = translate(MbsTable);
 export default connect(mapStateToProps, mapDispatchToPropsActions)(MbsTableComponent);
 

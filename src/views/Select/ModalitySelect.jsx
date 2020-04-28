@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 // react component for creating dynamic tables
 import { connect } from "react-redux";
 import { updateModalitySelect } from "actions/selectActions.jsx";
@@ -64,7 +64,7 @@ class ModalitySelect extends React.Component {
                     <InputLabel
                         htmlFor="simple-select"
                     >
-                        <Success>{t("label.modality")}</Success>
+                        <Success>{t("label_modality")}</Success>
                     </InputLabel>
                     <Select
                         MenuProps={{
@@ -87,7 +87,7 @@ class ModalitySelect extends React.Component {
                             }}
                             value="option.modality1"
                         >
-                            {t("option.modality1")}
+                            {t("option_modality1")}
                         </MenuItem>
                         <MenuItem
                             classes={{
@@ -96,7 +96,7 @@ class ModalitySelect extends React.Component {
                             }}
                             value="option.modality2"
                         >
-                            {t("option.modality2")}
+                            {t("option_modality2")}
                         </MenuItem>
                     </Select>
                 </FormControl>
@@ -111,7 +111,7 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchUpdateModalitySelect: () => dispatch( updateModalitySelect() ), 
 });
 
-const ModalitySelectComponent = translate('provider')(withStyles(style)(ModalitySelect));
+const ModalitySelectComponent = translate(withStyles(style)(ModalitySelect));
 export default connect(mapStateToProps, mapDispatchToPropsActions)(ModalitySelectComponent);
 
  

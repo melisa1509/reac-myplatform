@@ -16,7 +16,7 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import ConfirmTable from 'views/Dashboard/AssignMentor/ConfirmTable.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
 import { showUser } from "actions/userActions.jsx";
 
@@ -40,7 +40,7 @@ class ConfirmRep extends React.Component {
           <Card>
             <CardHeader color="info">
             <center>
-             <h4 className={classes.cardTitle}>{t("title.assign_group")}</h4>
+             <h4 className={classes.cardTitle}>{t("title_assign_group")}</h4>
              </center>
             </CardHeader>
             <CardBody>
@@ -64,5 +64,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const ConfirmRepComponent = translate('provider')(withStyles(styles)(ConfirmRep));
+const ConfirmRepComponent = translate(withStyles(styles)(ConfirmRep));
 export default withRouter(connect(null, mapDispatchToPropsActions)(ConfirmRepComponent));

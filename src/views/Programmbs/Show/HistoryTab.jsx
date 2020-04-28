@@ -17,7 +17,7 @@ import Controls from './Controls.jsx';
 import RevisionForm from './RevisionForm.jsx';
 import footerStyle from "assets/jss/material-dashboard-pro-react/components/footerStyle";
 
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 const styles = {
@@ -42,10 +42,10 @@ class HistoryTab extends React.Component {
     return (
         <Card >
           <CardBody>
-            <h3 className={classes.cardTitleCenter} >{t("title.history")}</h3>
+            <h3 className={classes.cardTitleCenter} >{t("title_history")}</h3>
             <br/>
             <SuccessBold>
-              {t("question.history1")}
+              {t("question_history1")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -53,7 +53,7 @@ class HistoryTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.history2")}
+              {t("question_history2")}
             </SuccessBold>
             <br/>
             {programmbs.history2 ? 
@@ -62,13 +62,13 @@ class HistoryTab extends React.Component {
                 target="_blank"
                 className={anchor}
             >
-                {t("label.download_file")}
+                {t("label_download_file")}
             </a>
             : ""}
             <br/>
             <br/>
             <SuccessBold>
-              {t("question.history4")}
+              {t("question_history4")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -95,5 +95,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const HistoryTabComponent = translate('provider')(withStyles(styles)(HistoryTab));
+const HistoryTabComponent = translate(withStyles(styles)(HistoryTab));
 export default connect(mapStateToProps, mapDispatchToPropsActions)(HistoryTabComponent);

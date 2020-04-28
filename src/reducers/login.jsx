@@ -6,6 +6,7 @@ const initialState = {
   active_user: {
     first_name: "",
     last_name: "",
+    language: "en",
     roles: [""]
   }
 

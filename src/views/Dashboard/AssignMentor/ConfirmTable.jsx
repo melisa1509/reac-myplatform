@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 import { Link } from "react-router-dom";
 
 // react component for creating dynamic tables
@@ -72,10 +72,10 @@ class ConfirmTable extends React.Component {
               striped
               tableHead={[]}
               tableData={[
-                [<th>{t("label.name")}</th>,show_user.first_name],
-                [<th>{t("label.lastName")}</th>,show_user.last_name],
-                [<th>{t("label.group")}</th>,show_group.name],
-                [<th>{t("label.embassador_mentor")}</th>, show_group.embassador.first_name + " " + show_group.embassador.last_name],
+                [<th>{t("label_name")}</th>,show_user.first_name],
+                [<th>{t("label_lastName")}</th>,show_user.last_name],
+                [<th>{t("label_group")}</th>,show_group.name],
+                [<th>{t("label_embassador_mentor")}</th>, show_group.embassador.first_name + " " + show_group.embassador.last_name],
               ]}
             />
             <br/>
@@ -84,12 +84,12 @@ class ConfirmTable extends React.Component {
                       <center>
                       <Link to={"/dashboard/assignmentor/" + this.props.match.params.student}>
                       <Button color="defautl" size="sm">
-                      {t("button.return_to_list")}
+                      {t("button_return_to_list")}
                       </Button>
                       {" "}
                       </Link>{" "}
                       <Button color="success" size="sm" onClick={this.saveClick}>
-                      {t("button.confirm_assing")}
+                      {t("button_confirm_assing")}
                       </Button>
                       {" "}
                       </center>
@@ -112,7 +112,7 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchConfirmGroup: (params, history ) => dispatch(confirmGroup(params, history))
 });
 
-const ConfirmTableComponent = translate('provider')(withStyles(style)(ConfirmTable));
+const ConfirmTableComponent = translate(withStyles(style)(ConfirmTable));
 export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(ConfirmTableComponent));
 
 

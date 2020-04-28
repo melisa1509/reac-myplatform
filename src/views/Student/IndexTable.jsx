@@ -16,7 +16,7 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 
@@ -76,22 +76,25 @@ class IndexTable extends React.Component {
       let idMbs = "";
       let idSa = "";
       if (prop.programsa !== undefined) {
-            projectState = t("label.project_ambassador") + " " +  t(prop.programsa.state);
+            projectState = t("label_project_ambassador") + " " +  t(prop.programsa.state);
             buttonSa =  true;
             idSa = prop.programsa.id;
             
       }
       else if(prop.programmbs !== undefined){
-            projectState = t("state.project_mbs") + " " +  t(prop.programmbs.state);
+            projectState = t("state_project_mbs") + " " +  t(prop.programmbs.state);
             buttonMbs =  true;
             idMbs = prop.programmbs.id;
       }
       else{
-            projectState = t("label.project_mbs") + " " +  t("state.without_starting");
+            projectState = t("label_project_mbs") + " " +  t("state_without_starting");
       }
+
+      var groups = (prop.studentgroup !== undefined ? prop.studentgroup.group.name : "") + (prop.studentambassadorgroup !== undefined ? " / " + prop.studentambassadorgroup.group.name : "");
       return {
         id: key, 
         full_name: prop.first_name + " "+ prop.last_name,
+        group: groups,
         state: projectState,
         projects: (
           <div className="actions-left">
@@ -100,7 +103,7 @@ class IndexTable extends React.Component {
                 size="sm"
                 color={buttonMbs ? "success" : "default" }
               >
-                {t('button.mbs')}
+                {t('button_mbs')}
               </Button>
             </Link>
             {" "}
@@ -109,7 +112,7 @@ class IndexTable extends React.Component {
                 size="sm"
                 color={buttonSa ? "info" : "default" }
               >
-                {t('button.embassador')}
+                {t('button_embassador')}
               </Button>
             </Link>
             
@@ -179,22 +182,28 @@ class IndexTable extends React.Component {
 
               columns={[
                 {
-                  Header: t("label.name"),
+                  Header: t("label_name"),
                   accessor: "full_name"
                 },
                 {
-                  Header: t("label.state"),
+                  Header: t("label_state"),
                   accessor: "state"
                 },
                 {
-                  Header: t("th.projects"),
+                  Header: t("th_group"),
+                  accessor: "group",
+                  resizable:true
+                },
+                {
+                  Header: t("th_projects"),
                   accessor: "projects"
                 },
                 {
-                  Header: t("th.actions"),
+                  Header: t("th_actions"),
                   accessor: "actions",
                   sortable: false,
-                  filterable: false
+                  filterable: false,
+                  width: 150,
                 },
                 {
                   Header: "",
@@ -243,6 +252,6 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchGetStudentList: key => dispatch( getStudentList(key) )
 });
 
-const IndexTableComponent = translate('provider')(IndexTable);
+const IndexTableComponent = translate(IndexTable);
 export default connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent);
 

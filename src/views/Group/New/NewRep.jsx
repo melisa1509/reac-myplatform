@@ -16,7 +16,7 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import NewForm from 'views/Group/New/NewForm.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
 
 const styles = {
@@ -32,8 +32,8 @@ class NewRep extends React.Component {
     const { classes, styles } = this.props;
     let { t } = this.props;
     const initialValuesGroup= {
-      modality:"option.modality1",
-      program:"option.program1",
+      modality:"option_modality1",
+      program:"option_program1",
       start_date:moment().format('YYYY-MMM-DD'),
       final_date:moment().format('YYYY-MMM-DD'),
       graduation_date:moment().format('YYYY-MMM-DD'),
@@ -45,7 +45,7 @@ class NewRep extends React.Component {
           <Card>
             <CardHeader color="info">
             <center>
-             <h4 className={classes.cardTitle}>{t("title.new_group")}</h4>
+             <h4 className={classes.cardTitle}>{t("title_new_group")}</h4>
              </center>
             </CardHeader>
             <CardBody>
@@ -68,5 +68,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const NewRepComponent = translate('provider')(withStyles(styles)(NewRep));
+const NewRepComponent = translate(withStyles(styles)(NewRep));
 export default withRouter(connect(null, mapDispatchToPropsActions)(NewRepComponent));

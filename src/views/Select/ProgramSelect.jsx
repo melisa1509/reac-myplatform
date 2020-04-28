@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 // react component for creating dynamic tables
 import { connect } from "react-redux";
 import { updateProgramSelect } from "actions/selectActions.jsx";
@@ -65,7 +65,7 @@ class ProgramSelect extends React.Component {
                     <InputLabel
                         htmlFor="simple-select"
                     >
-                        <Success>{t("label.program")}</Success>
+                        <Success>{t("label_program")}</Success>
                     </InputLabel>
                     <Select
                         MenuProps={{
@@ -88,7 +88,7 @@ class ProgramSelect extends React.Component {
                             }}
                             value="option.program1"
                         >
-                            {t("option.program1")}
+                            {t("option_program1")}
                         </MenuItem>
                         <MenuItem
                             classes={{
@@ -97,7 +97,7 @@ class ProgramSelect extends React.Component {
                             }}
                             value="option.program2"
                         >
-                            {t("option.program2")}
+                            {t("option_program2")}
                         </MenuItem>
                         <MenuItem
                             classes={{
@@ -106,7 +106,7 @@ class ProgramSelect extends React.Component {
                             }}
                             value="option.program3"
                         >
-                            {t("option.program3")}
+                            {t("option_program3")}
                         </MenuItem>
                     </Select>
                 </FormControl>
@@ -121,7 +121,7 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchUpdateProgramSelect: key => dispatch( updateProgramSelect(key) ), 
 });
 
-const ProgramSelectComponent = translate('provider')(withStyles(style)(ProgramSelect));
+const ProgramSelectComponent = translate(withStyles(style)(ProgramSelect));
 export default connect(mapStateToProps, mapDispatchToPropsActions)(ProgramSelectComponent);
 
 

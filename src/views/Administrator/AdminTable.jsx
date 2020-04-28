@@ -17,7 +17,7 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 
@@ -125,26 +125,26 @@ class AdminTable extends React.Component {
 
               columns={[
                 {
-                  Header: t("th.name"),
+                  Header: t("th_name"),
                   accessor: "name",
                   width:300,
                   sortable: false
                 },
                 {
-                  Header: t("th.username"),
+                  Header: t("th_username"),
                   accessor: "username",
                   width:300,
                   sortable: false,
                   filterable: false
                 },
                 {
-                  Header: t("th.country"),
+                  Header: t("th_country"),
                   accessor: "country",
                   sortable: false,
                   filterable: false
                 },
                 {
-                  Header: t("th.actions"),
+                  Header: t("th_actions"),
                   accessor: "actions",
                   sortable: false,
                   filterable: false
@@ -184,7 +184,7 @@ class AdminTable extends React.Component {
                 <center>
                 <Link to={"/admin/new"}>
                 <Button color="info" size="sm">
-                {t("button.create_new")}
+                {t("button_create_new")}
                 </Button>
                 {" "}
                 </Link>{" "}
@@ -205,6 +205,6 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchGetAdministratorList: () => dispatch( getAdministratorList() )
 });
 
-const AdminTableComponent = translate('provider')(AdminTable);
+const AdminTableComponent = translate(AdminTable);
 export default connect(mapStateToProps, mapDispatchToPropsActions)(AdminTableComponent);
 

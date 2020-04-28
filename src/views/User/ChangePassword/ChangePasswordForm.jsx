@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 // react component for creating dynamic tables
 
 import { connect } from "react-redux";
@@ -97,7 +97,7 @@ class ChangePasswordForm extends React.Component {
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
                     <CustomInput
-                     labelText={t("label.password")}
+                     labelText={t("label_password")}
                      success={this.state.userPasswordState === "success"}
                      error={this.state.userPasswordState === "error"}
                      id="userPassword"
@@ -116,7 +116,7 @@ class ChangePasswordForm extends React.Component {
               <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
                       <CustomInput
-                        labelText={t("label.repeat_password")}
+                        labelText={t("label_repeat_password")}
                         success={this.state.userRepeatPasswordState === "success"}
                         error={this.state.userRepeatPasswordState === "error"}
                         id="userRepeatPassword"
@@ -136,7 +136,7 @@ class ChangePasswordForm extends React.Component {
                   <GridItem xs={12} sm={12} md={8}>
                       <center>
                       <Button color="info" size="md" onClick={this.saveClick}>
-                      {t("button.save")}
+                      {t("button_save")}
                       </Button>
                       </center>
                   </GridItem>
@@ -163,6 +163,6 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchDismatchPassword:() => dispatch(dismatchPassword())
 });
 
-const ChangePasswordFormComponent = translate('provider')(withStyles(style)(ChangePasswordForm));
+const ChangePasswordFormComponent = translate(withStyles(style)(ChangePasswordForm));
 export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(ChangePasswordFormComponent));
 

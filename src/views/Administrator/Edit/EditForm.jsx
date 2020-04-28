@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 import { Link } from "react-router-dom";
 
 // react component for creating dynamic tables
@@ -118,7 +118,7 @@ class EditForm extends React.Component {
                       { editError ?      
                       <SnackbarContent
                         message={
-                          <center>{t("label.update_error")}</center>
+                          <center>{t("label_update_error")}</center>
                         }
                         close
                         color="danger"
@@ -131,7 +131,7 @@ class EditForm extends React.Component {
                       { successfull_edit ?      
                       <SnackbarContent
                         message={
-                          <center>{t("label.save_success")}</center>
+                          <center>{t("label_save_success")}</center>
                         }
                         close
                         color="success"
@@ -142,7 +142,7 @@ class EditForm extends React.Component {
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <Field
-                      labelText={t("label.username")+ " *"}
+                      labelText={t("label_username")+ " *"}
                       component={CustomInputRedux}
                       name="username"
                       success={this.state.usernameState === "success"}
@@ -161,7 +161,7 @@ class EditForm extends React.Component {
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <Field
-                      labelText={t("label.name")+ " *"}
+                      labelText={t("label_name")+ " *"}
                       component={CustomInputRedux}
                       name="first_name"
                       success={this.state.first_nameState === "success"}
@@ -180,7 +180,7 @@ class EditForm extends React.Component {
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <Field
-                      labelText={t("label.lastname")+ " *"}
+                      labelText={t("label_lastname")+ " *"}
                       component={CustomInputRedux}
                       name="last_name"
                       success={this.state.last_nameState === "success"}
@@ -217,7 +217,7 @@ class EditForm extends React.Component {
               <GridContainer >
                   <GridItem xs={12} sm={12} md={9}>
                     <Field
-                      labelText={t("label.city")+ " *"}
+                      labelText={t("label_city")+ " *"}
                       component={CustomInputRedux}
                       name="city"
                       success={this.state.cityState === "success"}
@@ -236,7 +236,7 @@ class EditForm extends React.Component {
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <Field
-                      labelText={t("label.whatsapp")+ " *"}
+                      labelText={t("label_whatsapp")+ " *"}
                       component={CustomInputRedux}
                       name="whatsapp"
                       success={this.state.whatsappState === "success"}
@@ -255,7 +255,7 @@ class EditForm extends React.Component {
               <GridContainer >
                   <GridItem xs={12} sm={12} md={9}>
                     <Field
-                      labelText={t("label.code")+ " *"}
+                      labelText={t("label_code")+ " *"}
                       component={CustomInputRedux}
                       name="code"
                       success={this.state.codeState === "success"}
@@ -273,7 +273,7 @@ class EditForm extends React.Component {
               </GridContainer>
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
-                      { errorRequired ? <Danger><h6 className={classes.infoText}>{t("label.require_fields")+ "*" }</h6></Danger>: ""}
+                      { errorRequired ? <Danger><h6 className={classes.infoText}>{t("label_require_fields")+ "*" }</h6></Danger>: ""}
                       { successRequired ? "" :  ""}
                   </GridItem>
               </GridContainer>
@@ -282,18 +282,18 @@ class EditForm extends React.Component {
                       <center>
                       <Link to={"/ambassador"}>
                       <Button color="default" size="sm" onClick={this.deleteClick}>
-                      {t("button.return_to_list")}
+                      {t("button_return_to_list")}
                       </Button>
                       </Link>
                       {" "}
                       <Link to={"/student/editpassword/" +  show_ambassador.id}>
                       <Button color="warning" size="sm" onClick={this.deleteClick}>
-                      {t("button.change_password")}
+                      {t("button_change_password")}
                       </Button>
                       </Link>
                       {" "}
                       <Button color="info" size="sm" onClick={this.saveClick}>
-                      {t("button.save")}
+                      {t("button_save")}
                       </Button>
                       {" "}
                       </center>
@@ -326,7 +326,7 @@ EditForm = connect(
   { loadShowAmbassador: showAmbassador, dispatchEditAmbassador: editAmbassador, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful},
 )(EditForm);
 
-export default  withRouter(translate('provider')(withStyles(style)(EditForm)));
+export default  withRouter(translate(withStyles(style)(EditForm)));
 
 
 

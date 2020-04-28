@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 // react component for creating dynamic tables
 import ReactTable from "react-table";
 import { connect } from "react-redux";
@@ -82,41 +82,41 @@ class ShowForm extends React.Component {
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={12}>
               <center>
-                  <h4 className={classes.cardTitleCenter} >{t("label.file_student")}</h4>
+                  <h4 className={classes.cardTitleCenter} >{t("label_file_student")}</h4>
                   <p>{ moment(programmbs.upload_date_student).format('MMM/DD/YYYY  HH:mm')  }</p>
                   <p className={classes.right}>
                     <a
                       href={"https://myplatform.interweavesolutions.org/file/" + programmbs.filestudent}
                       target="_blank"
                     >
-                      {t("label.download_file")}
+                      {t("label_download_file")}
                     </a>{" "}
                   </p>
               </center>
-              <RevisionForm name="revisionplan" labelText={t("label.corrections")} />
+              <RevisionForm name="revisionplan" labelText={t("label_corrections")} />
               <br/>
               <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
                       <center>
                       <Button color="danger" size="sm" onClick={this.handleSendRevisionProject}>
-                          {t("button.send_correction")}
+                          {t("button_send_correction")}
                       </Button>
                           {" "}
                         <Link to={"/profile/editpassword/"}>
                           <Button color="warning" size="sm">
-                          {t("button.clean_pending_list")}
+                          {t("button_clean_pending_list")}
                         </Button>
                         </Link>
                       </center>
                       <center>
                         <Link to={"/profile/edit/"}> 
                           <Button color="default" size="sm">
-                          {t("button.certificate_attendance")}
+                          {t("button_certificate_attendance")}
                           </Button>
                         </Link>
                           {" "}
                         <Button color="success" size="sm" onClick={this.handleApproveProject}>
-                            {t("button.approved")}
+                            {t("button_approved")}
                         </Button>
                       </center>
                   </GridItem>
@@ -139,7 +139,7 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchSendRevisionProject: param => dispatch( sendRevisionProject(param))
 });
 
-const ShowFormComponent = translate('provider')(withStyles(style)(ShowForm));
+const ShowFormComponent = translate(withStyles(style)(ShowForm));
 export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(ShowFormComponent));
 
 

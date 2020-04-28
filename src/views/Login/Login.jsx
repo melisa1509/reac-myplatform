@@ -12,7 +12,7 @@ import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 
 import mainPageStyle from "assets/jss/material-kit-react/views/mainPage.jsx";
 import LoginRep from "./LoginRep.jsx";
-import AdminHeader from "views/Header/AdminHeader.jsx";
+import { setDefaultLanguage } from 'react-switch-lang';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
 
@@ -20,6 +20,10 @@ const styles = {
   ...mainPageStyle,
   ...PerfectScrollbarStyle
 };
+
+var userLang = navigator.language || navigator.userLanguage; 
+var lang = userLang.split("-");
+setDefaultLanguage(lang[0]);
 
 class Login extends React.Component {
   constructor(props) {

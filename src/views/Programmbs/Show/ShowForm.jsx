@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 // react component for creating dynamic tables
 import ReactTable from "react-table";
 import { connect } from "react-redux";
@@ -79,63 +79,63 @@ class ShowForm extends React.Component {
                   color="warning"
                   tabs={[
                     {
-                      tabButton: t("title.plan"),
+                      tabButton: t("title_plan"),
                       tabIcon: AccountBalance,
                       tabContent: (
                         <PlanTab />
                       )
                     },
                     {
-                      tabButton: t("title.product"),
+                      tabButton: t("title_product"),
                       tabIcon: Domain,
                       tabContent: (
                         <ProductTab />
                       )
                     },
                     {
-                      tabButton: t("title.process"),
+                      tabButton: t("title_process"),
                       tabIcon: Timeline,
                       tabContent: (
                         <ProcessTab />
                       )
                     },
                     {
-                      tabButton: t("title.price"),
+                      tabButton: t("title_price"),
                       tabIcon: MonetizationOn,
                       tabContent: (
                         <PriceTab />
                       )
                     },
                     {
-                      tabButton: t("title.promotion"),
+                      tabButton: t("title_promotion"),
                       tabIcon: RecordVoiceOver,
                       tabContent: (
                         <PromotionTab />
                       )
                     },
                     {
-                      tabButton: t("title.paperwork"),
+                      tabButton: t("title_paperwork"),
                       tabIcon: FileCopy,
                       tabContent: (
                         <PaperworkTab />
                       )
                     },
                     {
-                      tabButton: t("title.quality_life"),
+                      tabButton: t("title_quality_life"),
                       tabIcon: AccessibityNew,
                       tabContent: (
                         <QualitylifeTab />
                       )
                     },
                     {
-                      tabButton: t("title.service"),
+                      tabButton: t("title_service"),
                       tabIcon: PanTool,
                       tabContent: (
                         <ServiceTab />
                       )
                     },
                     {
-                      tabButton: t("title.history"),
+                      tabButton: t("title_history"),
                       tabIcon: Face,
                       tabContent: (
                         <HistoryTab />
@@ -161,7 +161,7 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchShowProgrammbs: key => dispatch(getShowProgrammbs(key)), 
 });
 
-const ShowFormComponent = translate('provider')(withStyles(style)(ShowForm));
+const ShowFormComponent = translate(withStyles(style)(ShowForm));
 export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(ShowFormComponent));
 
 

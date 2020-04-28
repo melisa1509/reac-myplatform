@@ -17,7 +17,7 @@ import Controls from './Controls.jsx';
 import RevisionForm from './RevisionForm.jsx';
 import footerStyle from "assets/jss/material-dashboard-pro-react/components/footerStyle";
 
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 const styles = {
@@ -42,10 +42,10 @@ class PromotionTab extends React.Component {
     return (
         <Card >
           <CardBody>
-            <h3 className={classes.cardTitleCenter} >{t("title.promotion")}</h3>
+            <h3 className={classes.cardTitleCenter} >{t("title_promotion")}</h3>
             <br/>
             <SuccessBold>
-              {t("question.promotion1")}
+              {t("question_promotion1")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -53,7 +53,7 @@ class PromotionTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.promotion2")}
+              {t("question_promotion2")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -61,7 +61,7 @@ class PromotionTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.promotion3")}
+              {t("question_promotion3")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -69,7 +69,7 @@ class PromotionTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.promotion4")}
+              {t("question_promotion4")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -77,7 +77,7 @@ class PromotionTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.promotion5")}
+              {t("question_promotion5")}
             </SuccessBold>
             <br/>
             <a
@@ -85,10 +85,10 @@ class PromotionTab extends React.Component {
                 target="_blank"
                 className={anchor}
             >
-                {t("label.download_file")}
+                {t("label_download_file")}
             </a>
             <br/>
-            <RevisionForm name="revisionpromotion" labelText={t("label.revision_promotion")+ " *"} />
+            <RevisionForm name="revisionpromotion" labelText={t("label_revision_promotion")+ " *"} />
             <br/>
             <Controls/>
           </CardBody>
@@ -110,5 +110,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const PromotionTabComponent = translate('provider')(withStyles(styles)(PromotionTab));
+const PromotionTabComponent = translate(withStyles(styles)(PromotionTab));
 export default connect(mapStateToProps, mapDispatchToPropsActions)(PromotionTabComponent);

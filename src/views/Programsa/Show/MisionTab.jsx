@@ -17,7 +17,7 @@ import MutedText from "components/Typography/Muted.jsx";
 import Controls from './Controls.jsx';
 import RevisionForm from './RevisionForm.jsx';
 
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 const styles = {
@@ -37,10 +37,10 @@ class MisionTab extends React.Component {
     return (
         <Card >
           <CardBody>
-            <h3 className={classes.cardTitleCenter} >{t("title.mision")}</h3>
+            <h3 className={classes.cardTitleCenter} >{t("title_mision")}</h3>
             <br/>
             <SuccessBold>
-              {t("question.mision1")}
+              {t("question_mision1")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -48,7 +48,7 @@ class MisionTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.mision2")}
+              {t("question_mision2")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -56,7 +56,7 @@ class MisionTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.mision3")}
+              {t("question_mision3")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -64,14 +64,14 @@ class MisionTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.mision4")}
+              {t("question_mision4")}
             </SuccessBold>
             <br/>
             <MutedText>
               {programsa.mision4}
             </MutedText>
             <br/>
-            <RevisionForm name="revisionmision" labelText={t("label.revision_mision")} />
+            <RevisionForm name="revisionmision" labelText={t("label_revision_mision")} />
             <br/>
             <Controls/>
           </CardBody>
@@ -93,5 +93,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const MisionTabComponent = translate('provider')(withStyles(styles)(MisionTab));
+const MisionTabComponent = translate(withStyles(styles)(MisionTab));
 export default connect(mapStateToProps, mapDispatchToPropsActions)(MisionTabComponent);

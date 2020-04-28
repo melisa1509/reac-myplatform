@@ -22,7 +22,7 @@ import RevisionForm from './RevisionForm.jsx';
 import RenderCell from './RenderCell.jsx';
 import CustomRenderCell from './CustomRenderCell.jsx';
 
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 const styles = {
@@ -82,10 +82,10 @@ class FacilitateGroupsTab extends React.Component {
     return (
         <Card >
           <CardBody>
-            <h3 className={classes.cardTitleCenter} >{t("title.rules")}</h3>
+            <h3 className={classes.cardTitleCenter} >{t("title_rules")}</h3>
             <br/>
             <SuccessBold>
-              {t("question.rule1")}
+              {t("question_rule1")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -93,7 +93,7 @@ class FacilitateGroupsTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.rule1")}
+              {t("question_rule1")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -101,7 +101,7 @@ class FacilitateGroupsTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.rule3")}
+              {t("question_rule3")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -109,7 +109,7 @@ class FacilitateGroupsTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.rule4")}
+              {t("question_rule4")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -117,7 +117,7 @@ class FacilitateGroupsTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.rule5")}
+              {t("question_rule5")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -125,7 +125,7 @@ class FacilitateGroupsTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.rule6")}
+              {t("question_rule6")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -133,7 +133,7 @@ class FacilitateGroupsTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.rule7")}
+              {t("question_rule7")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -141,7 +141,7 @@ class FacilitateGroupsTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.rule8")}
+              {t("question_rule8")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -149,7 +149,7 @@ class FacilitateGroupsTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.rule9")}
+              {t("question_rule9")}
             </SuccessBold>
             <br/>
             {
@@ -161,14 +161,14 @@ class FacilitateGroupsTab extends React.Component {
             }
             <br/>
             <SuccessBold>
-              {t("question.rule10")}
+              {t("question_rule10")}
             </SuccessBold>
             <br/>
             <MutedText>
               {programsa.rule10}
             </MutedText>
             <br/>
-            <RevisionForm name="revisionrule" labelText={t("label.revision_facilitate_groups")} />
+            <RevisionForm name="revisionrule" labelText={t("label_revision_facilitate_groups")} />
             <br/>
             <Controls/>
           </CardBody>
@@ -190,5 +190,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const FacilitateGroupsTabComponent = translate('provider')(withStyles(styles)(FacilitateGroupsTab));
+const FacilitateGroupsTabComponent = translate(withStyles(styles)(FacilitateGroupsTab));
 export default connect(mapStateToProps, mapDispatchToPropsActions)(FacilitateGroupsTabComponent);

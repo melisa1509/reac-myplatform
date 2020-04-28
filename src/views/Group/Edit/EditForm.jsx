@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 import { Link } from "react-router-dom";
 
 // react component for creating dynamic tables
@@ -114,7 +114,7 @@ class EditForm extends React.Component {
                       { editError ?      
                       <SnackbarContent
                         message={
-                          <center>{t("label.update_error")}</center>
+                          <center>{t("label_update_error")}</center>
                         }
                         close
                         color="danger"
@@ -127,7 +127,7 @@ class EditForm extends React.Component {
                       { successfull_edit ?      
                       <SnackbarContent
                         message={
-                          <center>{t("label.save_success")}</center>
+                          <center>{t("label_save_success")}</center>
                         }
                         close
                         color="success"
@@ -138,7 +138,7 @@ class EditForm extends React.Component {
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <Field
-                      labelText={t("label.name")+ " *"}
+                      labelText={t("label_name")+ " *"}
                       component={CustomInputRedux}
                       name="name"
                       success={this.state.groupnameState === "success"}
@@ -157,7 +157,7 @@ class EditForm extends React.Component {
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <Field
-                      labelText={t("label.embassador")+ " *"}
+                      labelText={t("label_embassador")+ " *"}
                       component={CustomInputRedux}
                       name={("embassador.first_name")}
                       success={this.state.full_nameState === "success"}
@@ -176,7 +176,7 @@ class EditForm extends React.Component {
               <GridContainer >
                 <GridItem xs={12} sm={12} md={6}>
                   <InputLabel className={classes.label}>
-                    <SuccessLabel>{t("label.start_classes")}</SuccessLabel>
+                    <SuccessLabel>{t("label_start_classes")}</SuccessLabel>
                   </InputLabel>
                     <Field
                       component={DateTimePicker}
@@ -187,7 +187,7 @@ class EditForm extends React.Component {
               <GridContainer >
                 <GridItem xs={12} sm={12} md={6}>
                   <InputLabel className={classes.label}>
-                    <SuccessLabel>{t("label.final_clases")}</SuccessLabel>
+                    <SuccessLabel>{t("label_final_clases")}</SuccessLabel>
                   </InputLabel>
                     <Field
                       component={DateTimePicker}
@@ -198,7 +198,7 @@ class EditForm extends React.Component {
               <GridContainer >
                 <GridItem xs={12} sm={12} md={6}>
                   <InputLabel className={classes.label}>
-                    <SuccessLabel>{t("label.graduation_date")}</SuccessLabel>
+                    <SuccessLabel>{t("label_graduation_date")}</SuccessLabel>
                   </InputLabel>
                     <Field
                       component={DateTimePicker}
@@ -227,7 +227,7 @@ class EditForm extends React.Component {
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <Field
-                      labelText={t("label.interweave_local")}
+                      labelText={t("label_interweave_local")}
                       component={CustomInputRedux}
                       name="interweave_local"
                       success={this.state.interweaveLocalState === "success"}
@@ -246,7 +246,7 @@ class EditForm extends React.Component {
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <Field
-                      labelText={t("label.authorization_code1")}
+                      labelText={t("label_authorization_code1")}
                       component={CustomInputRedux}
                       name="authorization_code"
                       success={this.state.authorizationCodeState === "success"}
@@ -264,7 +264,7 @@ class EditForm extends React.Component {
               </GridContainer>
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
-                      { errorRequired ? <Danger><h6 className={classes.infoText}>{t("label.require_fields")}</h6></Danger>: ""}
+                      { errorRequired ? <Danger><h6 className={classes.infoText}>{t("label_require_fields")}</h6></Danger>: ""}
                       { successRequired ? "" :  ""}
                   </GridItem>
               </GridContainer>
@@ -273,12 +273,12 @@ class EditForm extends React.Component {
                       <center>
                       <Link to={"/group"}>
                       <Button color="default" size="sm" onClick={this.deleteClick}>
-                      {t("button.return_to_list")}
+                      {t("button_return_to_list")}
                       </Button>
                       {" "}
                       </Link>{" "}
                       <Button color="info" size="sm" onClick={this.saveClick}>
-                      {t("button.save")}
+                      {t("button_save")}
                       </Button>
                       {" "}
                       </center>
@@ -310,7 +310,7 @@ EditForm = connect(
   { loadShowGroup: showGroup, dispatchEditGroup: editGroup, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful},
 )(EditForm);
 
-export default  withRouter(translate('provider')(withStyles(style)(EditForm)));
+export default  withRouter(translate(withStyles(style)(EditForm)));
 
 
 

@@ -14,7 +14,7 @@ import MutedText from "components/Typography/Muted.jsx";
 import Controls from './Controls.jsx';
 import RevisionForm from './RevisionForm.jsx';
 
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 const styles = {
@@ -49,10 +49,10 @@ class ProductTab extends React.Component {
     return (
         <Card>
           <CardBody>
-            <h3 className={classes.cardTitleCenter} >{t("title.product")}</h3>
+            <h3 className={classes.cardTitleCenter} >{t("title_product")}</h3>
             <br/>
             <SuccessBold>
-              {t("question.product1")}
+              {t("question_product1")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -60,7 +60,7 @@ class ProductTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.product2")}
+              {t("question_product2")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -68,7 +68,7 @@ class ProductTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.product3")}
+              {t("question_product3")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -76,7 +76,7 @@ class ProductTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.product4")}
+              {t("question_product4")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -84,7 +84,7 @@ class ProductTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.product5")}
+              {t("question_product5")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -92,7 +92,7 @@ class ProductTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.product6")}
+              {t("question_product6")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -100,14 +100,14 @@ class ProductTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.product7")}
+              {t("question_product7")}
             </SuccessBold>
             <br/>
             <MutedText>
               { programmbs.product7 }
             </MutedText>
             <br/>
-            <RevisionForm name="revisionproduct" labelText={t("label.revision_product")+ " *"}/>
+            <RevisionForm name="revisionproduct" labelText={t("label_revision_product")+ " *"}/>
             <Controls/>
           </CardBody>
         </Card>
@@ -127,5 +127,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const ProductTabComponent = translate('provider')(withStyles(styles)(ProductTab));
+const ProductTabComponent = translate(withStyles(styles)(ProductTab));
 export default connect(mapStateToProps, mapDispatchToPropsActions)(ProductTabComponent);

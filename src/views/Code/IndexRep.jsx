@@ -16,7 +16,7 @@ import IndexTable from './IndexTable.jsx';
 import CodeSATable from './CodeSATable.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 const styles = {
@@ -39,7 +39,7 @@ class IndexRep extends React.Component {
         <GridItem xs={12} sm={12} md={12}>
           <Card>
             <CardHeader color="info">
-                <h4 className={classes.cardTitle}>{t("title.code_list_mbs")}</h4>
+                <h4 className={classes.cardTitle}>{t("title_code_list_mbs")}</h4>
             </CardHeader>
             <CardBody>
                 <IndexTable  />      
@@ -48,7 +48,7 @@ class IndexRep extends React.Component {
           <br/>
           <Card>
             <CardHeader color="info">
-                <h4 className={classes.cardTitle}>{t("title.code_list_sa")}</h4>
+                <h4 className={classes.cardTitle}>{t("title_code_list_sa")}</h4>
             </CardHeader>
             <CardBody>
                 <CodeSATable  />      
@@ -70,5 +70,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const NewRepComponent = translate('provider')(withStyles(styles)(IndexRep));
+const NewRepComponent = translate(withStyles(styles)(IndexRep));
 export default connect(null, mapDispatchToPropsActions)(NewRepComponent);

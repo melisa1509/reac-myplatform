@@ -1,7 +1,7 @@
 import React from "react";
 // react component for creating dynamic tables
 import { connect } from "react-redux";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 // core components
@@ -96,6 +96,6 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchGetReportCountry: () => dispatch( getReportCountry() )
 });
 
-const PruebaTableComponent = translate('provider')(PruebaTable);
+const PruebaTableComponent = translate(PruebaTable);
 export default connect(mapStateToProps, mapDispatchToPropsActions)(PruebaTableComponent);
 

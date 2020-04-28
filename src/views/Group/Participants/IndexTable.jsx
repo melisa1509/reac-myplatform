@@ -4,7 +4,7 @@ import React from "react";
 import ReactTable from "react-table";
 import matchSorter from 'match-sorter';
 import { connect } from "react-redux";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
 import { getCertificateList } from "actions/certificateActions.jsx";
 
@@ -69,32 +69,57 @@ class IndexTable extends React.Component {
     const data = certificate_list.map((prop, key) => {
      let state="";
         if(prop.student.programsa !== undefined){
-          state=t("label.project_ambassador")+ " " + t(prop.student.programsa.state)
+          state=t("label_project_ambassador")+ " " + t(prop.student.programsa.state)
         }
         else if(prop.student.programmbs !== undefined){
-          state=t("label.project_mbs")+ " " + t(prop.student.programmbs.state)
+          state=t("label_project_mbs")+ " " + t(prop.student.programmbs.state)
         }
         else {
-          state=t("label.project_mbs")+ " " + t("state.without_starting")
+          state=t("label_project_mbs")+ " " + t("state_without_starting")
         }
- 
+        let buttonMbs = false;
+        let buttonSa = false;
+        let idMbs = "";
+        let idSa = "";
+        if (prop.student.programsa !== undefined) {
+              buttonSa =  true;
+              idSa = prop.student.programsa.id;
+              
+        }
+        else if(prop.student.programmbs !== undefined){
+              buttonMbs =  true;
+              idMbs = prop.student.programmbs.id;
+        }
+       
       return {
         id: key, 
         full_name: prop.student.first_name + " " + prop.student.last_name,
         status:state,
         projects: (
-          <div className="actions-left">      
-            <Button
-              size="sm"
-              color="info"
-            >
-              {t('button.mbs')}
-            </Button>    
+          <div className="actions-left">
+            <Link to={buttonMbs ? "/programmbs/show/" + idMbs : "#"}>
+              <Button
+                size="sm"
+                color={buttonMbs ? "success" : "default" }
+              >
+                {t('button_mbs')}
+              </Button>
+            </Link>
+            {" "}
+            <Link to={buttonSa ? "/programsa/show/" + idSa : "#"}>
+              <Button
+                size="sm"
+                color={buttonSa ? "info" : "default" }
+              >
+                {t('button_embassador')}
+              </Button>
+            </Link>
+            
           </div>
         ),
         actions:(
           <div className="actions-left">
-          <Link to={"/student/show/" + prop.id}>
+          <Link to={"/student/show/" + prop.student.id}>
             <Button
               justIcon
               round4
@@ -104,7 +129,7 @@ class IndexTable extends React.Component {
               <Visibility />
             </Button>
           </Link>{" "}
-          <Link to={"/student/edit/" + prop.id}>
+          <Link to={"/student/edit/" + prop.student.id}>
             <Button
               justIcon
               round
@@ -114,6 +139,7 @@ class IndexTable extends React.Component {
               <Create />
             </Button>
           </Link>{" "}
+          <Link to={"/student/show/" + prop.student.id}>
             <Button
               justIcon
               round
@@ -122,6 +148,7 @@ class IndexTable extends React.Component {
             >
               <Close />
             </Button>
+            </Link>
         </div>
       )
       };
@@ -150,19 +177,19 @@ class IndexTable extends React.Component {
               hover
               columns={[
                 {
-                  Header: t("th.name"),
+                  Header: t("th_name"),
                   accessor: "full_name",
                 },
                 {
-                  Header: t("th.status"),
+                  Header: t("th_status"),
                   accessor: "status",
                 },
                 {
-                  Header: t("th.projects"),
+                  Header: t("th_projects"),
                   accessor: "projects",
                 },
                 {
-                  Header: t("th.actions"),
+                  Header: t("th_actions"),
                   accessor: "actions",
                   sortable: false,
                   width:200
@@ -202,16 +229,16 @@ class IndexTable extends React.Component {
                       <center>
                       <Link to={"/group"}>
                         <Button color="default" size="sm">
-                        {t("button.return_to_list")}
+                        {t("button_return_to_list")}
                         </Button>
                         {" "}
                       </Link>{" "}
                       <Button color="warning" size="sm">
-                      {t("button.export_list")}
+                      {t("button_export_list")}
                       </Button>
                       {" "}
                       <Button color="info" size="sm">
-                      {t("button.create_new")}
+                      {t("button_create_new")}
                       </Button>
                       {" "}
                       </center>
@@ -225,12 +252,13 @@ class IndexTable extends React.Component {
 
 const mapStateToProps = state => ({ 
       certificate_list: state.certificateReducer.certificate_list, 
+      active_user: state.loginReducer.active_user
 });
 
 const mapDispatchToPropsActions = dispatch => ({
   dispatchGetCertificateList: (key) => dispatch( getCertificateList(key))
 });
 
-const IndexTableComponent = translate('provider')(IndexTable);
+const IndexTableComponent = translate(IndexTable);
 export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent));
 

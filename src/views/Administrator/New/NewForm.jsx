@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 import { Link } from "react-router-dom";
 
 // react component for creating dynamic tables
@@ -98,10 +98,10 @@ class NewForm extends React.Component {
         let { t } = this.props;
         const languages = {         
           options:[
-            { label: t("label.english"),    val: "language_grader[en]"  },
-            { label: t("label.spanish"),    val: "language_grader[es]"  },
-            { label: t("label.french"),     val: "language_grader[fr]"  },
-            { label: t("label.portugues") , val: "language_grader[pr]"  },
+            { label: t("label_english"),    val: "language_grader[en]"  },
+            { label: t("label_spanish"),    val: "language_grader[es]"  },
+            { label: t("label_french"),     val: "language_grader[fr]"  },
+            { label: t("label_portugues") , val: "language_grader[pr]"  },
           ]
         }
  
@@ -114,7 +114,7 @@ class NewForm extends React.Component {
                       { successfull_new ?      
                       <SnackbarContent
                         message={
-                          <center>{t("label.save_success")}</center>
+                          <center>{t("label_save_success")}</center>
                         }
                         color="success"
                       />
@@ -124,7 +124,7 @@ class NewForm extends React.Component {
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <Field
-                      labelText={t("label.email")+ " *"}
+                      labelText={t("label_email")+ " *"}
                       component={CustomInputRedux}
                       name="username"
                       success={this.state.usernameState === "success"}
@@ -143,7 +143,7 @@ class NewForm extends React.Component {
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <Field
-                      labelText={t("label.name")+ " *"}
+                      labelText={t("label_name")+ " *"}
                       component={CustomInputRedux}
                       name="first_name"
                       success={this.state.first_nameState === "success"}
@@ -162,7 +162,7 @@ class NewForm extends React.Component {
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <Field
-                      labelText={t("label.lastName")+ " *"}
+                      labelText={t("label_lastName")+ " *"}
                       component={CustomInputRedux}
                       name="last_name"
                       success={this.state.last_nameState === "success"}
@@ -204,7 +204,7 @@ class NewForm extends React.Component {
               </GridContainer>
               <br/>
               <SuccessBold>
-                  {t("label.language_grader")}
+                  {t("label_language_grader")}
               </SuccessBold>
               <div>      
                   {
@@ -222,7 +222,7 @@ class NewForm extends React.Component {
               <br/>
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
-                      { errorRequired ? <Danger><h6 className={classes.infoText}>{t("label.require_fields")}</h6></Danger>: ""}
+                      { errorRequired ? <Danger><h6 className={classes.infoText}>{t("label_require_fields")}</h6></Danger>: ""}
                       { successRequired ? "" :  ""}
                   </GridItem>
               </GridContainer>
@@ -231,12 +231,12 @@ class NewForm extends React.Component {
                       <center>
                       <Link to={"/administrator"}>
                       <Button color="default" size="sm" onClick={this.deleteClick}>
-                      {t("button.return_to_list")}
+                      {t("button_return_to_list")}
                       </Button>
                       {" "}
                       </Link>{" "}
                       <Button color="info" size="sm" onClick={this.saveClick}>
-                      {t("button.save")}
+                      {t("button_save")}
                       </Button>
                       {" "}
                       </center>
@@ -266,7 +266,7 @@ NewForm = connect(
   { dispatchNewAdministrator: newAdministrator, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful},
 )(NewForm);
 
-export default  withRouter(translate('provider')(withStyles(style)(NewForm)));
+export default  withRouter(translate(withStyles(style)(NewForm)));
 
 
 

@@ -3,7 +3,7 @@ import React from "react";
 import ReactTable from "react-table";
 import matchSorter from 'match-sorter';
 import { connect } from "react-redux";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 import DragHandle from "@material-ui/icons/DragHandle";
 import Navigation from "@material-ui/icons/Navigation";
@@ -153,80 +153,80 @@ class IndexTable extends React.Component {
 
               columns={[
                 {
-                  Header: t("th.name"),
+                  Header: t("th_name"),
                   accessor: "name",
                   width: 150,   
                 },
                 {
-                  Header: t("th.question1"),
+                  Header: t("th_question1"),
                   accessor: "question1",
                   width: 50,
                   sortable: false,
                   filterable: false
                 },
                 {
-                  Header: t("th.question2"),
+                  Header: t("th_question2"),
                   accessor: "question2",
                   width: 50,
                   sortable: false,
                   filterable: false
                 },
                 {
-                  Header: t("th.question3"),
+                  Header: t("th_question3"),
                   accessor: "question3",
                   width: 50,
                   sortable: false,
                   filterable: false
                 },
                 {
-                  Header: t("th.question4"),
+                  Header: t("th_question4"),
                   accessor: "question4",
                   width: 50,
                   sortable: false,
                   filterable: false
                 },
                 {
-                  Header: t("th.question5"),
+                  Header: t("th_question5"),
                   accessor: "question5",
                   width: 50,
                   sortable: false,
                   filterable: false
                 },
                 {
-                  Header: t("th.question6"),
+                  Header: t("th_question6"),
                   accessor: "question6",
                   width: 50,
                   sortable: false,
                   filterable: false
                 },
                 {
-                  Header: t("th.question7"),
+                  Header: t("th_question7"),
                   accessor: "question7",
                   width: 50,
                   sortable: false,
                   filterable: false
                 },
                 {
-                  Header: t("th.question8"),
+                  Header: t("th_question8"),
                   accessor: "question8",
                   width: 50,
                   sortable: false,
                   filterable: false
                 },
                 {
-                  Header: t("th.question9"),
+                  Header: t("th_question9"),
                   accessor: "question9",
                   width: 50,
                   sortable: false,
                   filterable: false
                 },
                 {
-                  Header: t("th.ambassador"),
+                  Header: t("th_ambassador"),
                   accessor: "ambassador",
                   width: 150
                 },
                 {
-                  Header: t("th.group"),
+                  Header: t("th_group"),
                   accessor: "group",
                   width: 150
                 },
@@ -273,6 +273,6 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchGetReports: () => dispatch( getReports() )
 });
 
-const IndexTableComponent = translate('provider')(IndexTable);
+const IndexTableComponent = translate(IndexTable);
 export default connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent);
 

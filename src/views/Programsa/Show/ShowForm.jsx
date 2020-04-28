@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 // react component for creating dynamic tables
 import ReactTable from "react-table";
 import { connect } from "react-redux";
@@ -77,35 +77,35 @@ class ShowForm extends React.Component {
                   color="warning"
                   tabs={[
                     {
-                      tabButton: t("title.mision"),
+                      tabButton: t("title_mision"),
                       tabIcon: AccountBalance,
                       tabContent: (
                         <MisionTab />
                       )
                     },
                     {
-                      tabButton: t("title.generate_groups"),
+                      tabButton: t("title_generate_groups"),
                       tabIcon: SupervisedUserCircle,
                       tabContent: (
                         <GenerateGroupsTab />
                       )
                     },
                     {
-                      tabButton: t("title.rules"),
+                      tabButton: t("title_rules"),
                       tabIcon: ListAlt,
                       tabContent: (
                         <FacilitateGroupsTab />
                       )
                     },
                     {
-                      tabButton: t("title.graduate_groups"),
+                      tabButton: t("title_graduate_groups"),
                       tabIcon: School,
                       tabContent: (
                         <GraduateGroupsTab />
                       )
                     },
                     {
-                      tabButton: t("title.support_groups"),
+                      tabButton: t("title_support_groups"),
                       tabIcon: Airplay,
                       tabContent: (
                         <SupportGroupsTab />
@@ -127,7 +127,7 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchShowProgramsa: key => dispatch(getShowProgramsa(key)), 
 });
 
-const ShowFormComponent = translate('provider')(withStyles(style)(ShowForm));
+const ShowFormComponent = translate(withStyles(style)(ShowForm));
 export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(ShowFormComponent));
 
 

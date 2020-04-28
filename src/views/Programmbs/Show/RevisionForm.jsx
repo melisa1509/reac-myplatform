@@ -9,7 +9,7 @@ import LanguageSelect from "views/Select/LanguageSelect.jsx";
 import { loadFormProgrammbs } from "actions/programmbsActions.jsx";
 import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx';
 import CustomCheckboxRedux from 'components/CustomCheckbox/CustomCheckboxRedux.jsx';
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 
@@ -49,4 +49,4 @@ import { translate } from "react-translate";
   )(RevisionForm);
 
   
-  export default  translate('provider')(RevisionForm);
+  export default  translate(RevisionForm);

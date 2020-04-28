@@ -12,7 +12,7 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 import { withRouter } from 'react-router-dom';
 
@@ -77,7 +77,7 @@ class IndexTable extends React.Component {
                 color="info"
                 onClick={this.saveClick}
               >
-                {t('button.create_group')}
+                {t('button_create_group')}
               </Button>
             </Link>
           </div>
@@ -107,19 +107,19 @@ class IndexTable extends React.Component {
               loading={loading}
               columns={[
                 {
-                  Header: t("th.name"),
+                  Header: t("th_name"),
                   accessor: "name",
                 },
                 {
-                  Header: t("th.lastname"),
+                  Header: t("th_lastname"),
                   accessor: "last_name"
                 },
                 {
-                  Header: t("th.country"),
+                  Header: t("th_country"),
                   accessor: "country"
                 },
                 {
-                  Header: t("th.actions"),
+                  Header: t("th_actions"),
                   accessor: "actions",
                   sortable: false,
                   filterable: false
@@ -168,6 +168,6 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchGetAmbassadorList: () => dispatch(getAmbassadorList()),
 });
 
-const IndexTableComponent = translate('provider')(IndexTable);
+const IndexTableComponent = translate(IndexTable);
 export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent));
 

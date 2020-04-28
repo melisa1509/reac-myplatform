@@ -4,7 +4,7 @@ import React from "react";
 import ReactTable from "react-table";
 import matchSorter from 'match-sorter';
 import { connect } from "react-redux";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
 import { getCertificateList } from "actions/certificateActions.jsx";
 
@@ -70,7 +70,7 @@ class IndexTable extends React.Component {
      let MBSButton=false;
      let SAButton=false;
         if(prop.student.programsa !== undefined){
-          state=t("label.project_ambassador")+ " " + t(prop.student.programsa.state)
+          state=t("label_project_ambassador")+ " " + t(prop.student.programsa.state)
           if(prop.student.programsa.state == 'state.approved'){
             SAButton=true;
           }
@@ -80,13 +80,13 @@ class IndexTable extends React.Component {
           }
         }
         else if(prop.student.programmbs !== undefined){
-          state=t("label.project_mbs")+ " " + t(prop.student.programmbs.state)
+          state=t("label_project_mbs")+ " " + t(prop.student.programmbs.state)
           if(prop.student.programmbs.state == 'state.approved'){
             MBSButton=true;
           }
         }
         else {
-          state=t("label.project_mbs")+ " " + t("state.without_starting")
+          state=t("label_project_mbs")+ " " + t("state_without_starting")
         }
  
       return {
@@ -103,10 +103,10 @@ class IndexTable extends React.Component {
               href={"https://myplatform.interweavesolutions.org/certificate/mbs?id=" + prop.student.id}
               target="_blank"
             >
-              {t('button.certificate_mbs')}
+              {t('button_certificate_mbs')}
             </Button>
           :
-           t("label.not_available")
+           t("label_not_available")
           }      
           </div>
         ),
@@ -119,10 +119,10 @@ class IndexTable extends React.Component {
             href={"https://myplatform.interweavesolutions.org/certificate/ambassador?id=" + prop.student.id}
             target="_blank"
           >
-            {t('button.certificate_ambassador')}
+            {t('button_certificate_ambassador')}
           </Button>
           :
-            t("label.not_available")
+            t("label_not_available")
           }
       </div>
       )
@@ -152,20 +152,20 @@ class IndexTable extends React.Component {
               hover
               columns={[
                 {
-                  Header: t("th.name"),
+                  Header: t("th_name"),
                   accessor: "full_name",
                 },
                 {
-                  Header: t("th.status"),
+                  Header: t("th_status"),
                   accessor: "status",
                 },
                 {
-                  Header: t("th.certificate_mbs"),
+                  Header: t("th_certificate_mbs"),
                   accessor: "MBScertificate",
                   width: 250
                 },
                 {
-                  Header: t("th.certificate_ambassador"),
+                  Header: t("th_certificate_ambassador"),
                   accessor: "SAcertificate",
                   filterable: false,
                 
@@ -205,12 +205,12 @@ class IndexTable extends React.Component {
                       <center>
                       <Link to={"/certificate"}>
                         <Button color="default" size="sm">
-                        {t("button.return_to_list")}
+                        {t("button_return_to_list")}
                         </Button>
                         {" "}
                       </Link>{" "}
                       <Button color="warning" size="sm">
-                      {t("button.download_all_attendance_certificates")}
+                      {t("button_download_all_attendance_certificates")}
                       </Button>
                       {" "}
                       <Button
@@ -219,7 +219,7 @@ class IndexTable extends React.Component {
                         href={"https://myplatform.interweavesolutions.org/certificate/mbs/list?id=" + this.props.match.params.id}
                         target="_blank"
                       >
-                      {t("button.download_all_mbs_certificates")}
+                      {t("button_download_all_mbs_certificates")}
                       </Button>
                       {" "}
                       <Button
@@ -228,11 +228,11 @@ class IndexTable extends React.Component {
                         href={"https://myplatform.interweavesolutions.org/certificate/ambassador/list?id=" + this.props.match.params.id}
                         target="_blank"
                       >
-                      {t("button.download_all_ambassador_certificates")}
+                      {t("button_download_all_ambassador_certificates")}
                       </Button>
                       {" "}
                       <Button color="danger" size="sm">
-                      {t("button.approve_selected_certificates")}
+                      {t("button_approve_selected_certificates")}
                       </Button>
                       {" "}
                       </center>
@@ -252,6 +252,6 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchGetCertificateList: (key) => dispatch( getCertificateList(key))
 });
 
-const IndexTableComponent = translate('provider')(IndexTable);
+const IndexTableComponent = translate(IndexTable);
 export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent));
 

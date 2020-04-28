@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 // react component for creating dynamic tables
 import { connect } from "react-redux";
 import { updateAmbassadorSelect } from "actions/selectActions.jsx";
@@ -62,7 +62,7 @@ class ReportSelect extends React.Component {
                         htmlFor="simple-select"
                         className={classes.selectLabel}
                     >
-                        {t("label.ambassador")}
+                        {t("label_ambassador")}
                     </InputLabel>
                     <Select
                         MenuProps={{
@@ -85,7 +85,7 @@ class ReportSelect extends React.Component {
                             }}
                             value="-1"
                         >
-                            {t("label.chose_ambassador")}
+                            {t("label_chose_ambassador")}
                         </MenuItem>
                         <MenuItem
                             classes={{
@@ -93,7 +93,7 @@ class ReportSelect extends React.Component {
                             }}
                             value="ALL"
                         >
-                            {t("label.all_ambassadors")}
+                            {t("label_all_ambassadors")}
                         </MenuItem>
                         {
                             ambassador_country.map( (prop) => {
@@ -128,7 +128,7 @@ const mapDispatchToPropsActions = dispatch => ({
 
 });
 
-const ReportSelectComponent = translate('provider')(withStyles(style)(ReportSelect));
+const ReportSelectComponent = translate(withStyles(style)(ReportSelect));
 export default connect(mapStateToProps, mapDispatchToPropsActions)(ReportSelectComponent);
 
 

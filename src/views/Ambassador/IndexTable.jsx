@@ -17,7 +17,7 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 class IndexTable extends React.Component {
   constructor(props) {
@@ -136,26 +136,26 @@ class IndexTable extends React.Component {
               loading={loading}
               columns={[
                 {
-                  Header: t("th.name"),
+                  Header: t("th_name"),
                   accessor: "name",
                 },
                 {
-                  Header: t("th.username"),
+                  Header: t("th_username"),
                   accessor: "username",
                   resizable:true
                 },
                 {
-                  Header: t("th.country"),
+                  Header: t("th_country"),
                   accessor: "country",
                   width: 150,
                 },
                 {
-                  Header: t("th.code"),
+                  Header: t("th_code"),
                   accessor: "code",
                   width: 150,
                 },
                 {
-                  Header: t("th.actions"),
+                  Header: t("th_actions"),
                   accessor: "actions",
                   sortable: false,
                   filterable: false,
@@ -201,7 +201,7 @@ class IndexTable extends React.Component {
                 <center>
                 <Link to={"/ambassador/new"}>
                 <Button color="info" size="sm">
-                {t("button.create_new")}
+                {t("button_create_new")}
                 </Button>
                 {" "}
                 </Link>{" "}
@@ -222,6 +222,6 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchGetAmbassadorList: () => dispatch( getAmbassadorList() )
 });
 
-const IndexTableComponent = translate('provider')(IndexTable);
+const IndexTableComponent = translate(IndexTable);
 export default connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent);
 

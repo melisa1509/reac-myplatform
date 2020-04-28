@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 // react component for creating dynamic tables
 import { connect } from "react-redux";
 import { updateRoleSelect } from "actions/selectActions.jsx";
@@ -64,7 +64,7 @@ class RoleSelect extends React.Component {
                     <InputLabel
                         htmlFor="simple-select"
                     >
-                        <Success>{t("label.role")}</Success>
+                        <Success>{t("label_role")}</Success>
                     </InputLabel>
                     <Select
                         MenuProps={{
@@ -111,7 +111,7 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchUpdateRoleSelect: () => dispatch( updateRoleSelect() ), 
 });
 
-const RoleSelectComponent = translate('provider')(withStyles(style)(RoleSelect));
+const RoleSelectComponent = translate(withStyles(style)(RoleSelect));
 export default connect(mapStateToProps, mapDispatchToPropsActions)(RoleSelectComponent);
 
  

@@ -17,7 +17,7 @@ import ChangePasswordForm from 'views/Student/ChangePassword/ChangePasswordForm.
 
 import { getData } from "actions/actions.jsx";
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
 
 const styles = {
@@ -40,7 +40,7 @@ class ChangePasswordRep extends React.Component {
           <Card>
             <CardHeader color="info">
             <center>
-             <h4 className={classes.cardTitle}>{t("title.edit_password")}</h4>
+             <h4 className={classes.cardTitle}>{t("title_edit_password")}</h4>
              </center>
             </CardHeader>
             <CardBody>
@@ -63,5 +63,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const ChangePasswordRepComponent = translate('provider')(withStyles(styles)(ChangePasswordRep));
+const ChangePasswordRepComponent = translate(withStyles(styles)(ChangePasswordRep));
 export default withRouter(connect(null, mapDispatchToPropsActions)(ChangePasswordRepComponent));

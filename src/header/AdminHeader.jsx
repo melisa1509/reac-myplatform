@@ -28,7 +28,8 @@ class AdminHeader extends React.Component {
 
 
   render() {
-    const { classes, rol, ...rest } = this.props;
+    const { classes, ...rest } = this.props;
+    const rol = "ROLE_ADMIN";
     return (
         <Header
           absolute

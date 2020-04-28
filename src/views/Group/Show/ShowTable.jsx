@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 import { Link } from "react-router-dom";
 
 // react component for creating dynamic tables
@@ -74,7 +74,7 @@ class ShowTable extends React.Component {
                   { successful_delete ?      
                   <SnackbarContent
                     message={
-                      <center>{t("label.successful_delete")}</center>
+                      <center>{t("label_successful_delete")}</center>
                     }
                     close={false}
                     color="success"
@@ -85,13 +85,13 @@ class ShowTable extends React.Component {
               striped
               tableHead={[]}
               tableData={[
-                [<th>{t("label.name")}</th>,show_group.name],
-                [<th>{t("label.embassador_mentor")}</th>,show_group.embassador.first_name+ " "+ show_group.embassador.last_name,],
-                [<th>{t("label.start_date")}</th>,start_date],
-                [<th>{t("label.final_date")}</th>,final_date],
-                [<th>{t("label.number_students_enrolled")}</th>,show_group.number_students],
-                [<th>{t("label.modality")}</th>,t(show_group.modality)],
-                [<th>{t("label.program")}</th>,t(show_group.program)],
+                [<th>{t("label_name")}</th>,show_group.name],
+                [<th>{t("label_embassador_mentor")}</th>,show_group.embassador.first_name+ " "+ show_group.embassador.last_name,],
+                [<th>{t("label_start_date")}</th>,start_date],
+                [<th>{t("label_final_date")}</th>,final_date],
+                [<th>{t("label_number_students_enrolled")}</th>,show_group.number_students],
+                [<th>{t("label_modality")}</th>,show_group.modality === undefined ? "" : t(show_group.modality)],
+                [<th>{t("label_program")}</th>,show_group.program === undefined ? "" : t(show_group.program)],
               ]}
             />
             <br/>
@@ -100,18 +100,18 @@ class ShowTable extends React.Component {
                       <center>
                       <Link to={"/group"}>
                       <Button color="default" size="sm">
-                      {t("button.return_to_list")}
+                      {t("button_return_to_list")}
                       </Button>
                       {" "}
                       </Link>{" "}
                       <Link to={"/group/edit/" + show_group.id}>
                       <Button color="info" size="sm">
-                      {t("button.edit")}
+                      {t("button_edit")}
                       </Button>
                       {" "}
                       </Link>{" "}
                       <Button color="danger" size="sm" onClick={this.deleteClick}>
-                      {t("button.delete")}
+                      {t("button_delete")}
                       </Button>
                       {" "}
                       </center>
@@ -134,7 +134,7 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchDeleteGroup: (key, history) => dispatch(deleteGroup(key, history))
 });
 
-const ShowTableComponent = translate('provider')(withStyles(style)(ShowTable));
+const ShowTableComponent = translate(withStyles(style)(ShowTable));
 export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(ShowTableComponent));
 
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 import { Link } from "react-router-dom";
 
 // react component for creating dynamic tables
@@ -105,7 +105,7 @@ class NewForm extends React.Component {
                       { successfull_new ?      
                       <SnackbarContent
                         message={
-                          <center>{t("label.save_success")}</center>
+                          <center>{t("label_save_success")}</center>
                         }
                         color="success"
                       />
@@ -115,7 +115,7 @@ class NewForm extends React.Component {
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <Field
-                      labelText={t("label.name")+ " *"}
+                      labelText={t("label_name")+ " *"}
                       component={CustomInputRedux}
                       name="name"
                       success={this.state.groupnameState === "success"}
@@ -134,7 +134,7 @@ class NewForm extends React.Component {
               <GridContainer >
                 <GridItem xs={12} sm={12} md={6}>
                   <InputLabel className={classes.label}>
-                    <SuccessLabel>{t("label.start_classes")}</SuccessLabel>
+                    <SuccessLabel>{t("label_start_classes")}</SuccessLabel>
                   </InputLabel>
                     <Field
                       component={DateTimePicker}
@@ -145,7 +145,7 @@ class NewForm extends React.Component {
               <GridContainer >
                 <GridItem xs={12} sm={12} md={6}>
                   <InputLabel className={classes.label}>
-                    <SuccessLabel>{t("label.final_clases")}</SuccessLabel>
+                    <SuccessLabel>{t("label_final_clases")}</SuccessLabel>
                   </InputLabel>
                     <Field
                       component={DateTimePicker}
@@ -156,7 +156,7 @@ class NewForm extends React.Component {
               <GridContainer >
                 <GridItem xs={12} sm={12} md={6}>
                   <InputLabel className={classes.label}>
-                    <SuccessLabel>{t("label.graduation_date")}</SuccessLabel>
+                    <SuccessLabel>{t("label_graduation_date")}</SuccessLabel>
                   </InputLabel>
                     <Field
                       component={DateTimePicker}
@@ -185,7 +185,7 @@ class NewForm extends React.Component {
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <Field
-                      labelText={t("label.interweave_local")}
+                      labelText={t("label_interweave_local")}
                       component={CustomInputRedux}
                       name="interweave_local"
                       success={this.state.interweaveLocalState === "success"}
@@ -204,7 +204,7 @@ class NewForm extends React.Component {
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <Field
-                      labelText={t("label.authorization_code1")}
+                      labelText={t("label_authorization_code1")}
                       component={CustomInputRedux}
                       name="authorization_code"
                       success={this.state.authorizationCodeState === "success"}
@@ -233,7 +233,7 @@ class NewForm extends React.Component {
               </GridContainer>
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
-                      { errorRequired ? <Danger><h6 className={classes.infoText}>{t("label.require_fields")}</h6></Danger>: ""}
+                      { errorRequired ? <Danger><h6 className={classes.infoText}>{t("label_require_fields")}</h6></Danger>: ""}
                       { successRequired ? "" :  ""}
                   </GridItem>
               </GridContainer>
@@ -242,12 +242,12 @@ class NewForm extends React.Component {
                       <center>
                       <Link to={"/group"}>
                       <Button color="default" size="sm" onClick={this.deleteClick}>
-                      {t("button.return_to_list")}
+                      {t("button_return_to_list")}
                       </Button>
                       {" "}
                       </Link>{" "}
                       <Button color="info" size="sm" onClick={this.saveClick}>
-                      {t("button.save")}
+                      {t("button_save")}
                       </Button>
                       {" "}
                       </center>
@@ -276,7 +276,7 @@ NewForm = connect(
   { dispatchNewGroup: newGroup, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful},
 )(NewForm);
 
-export default  withRouter(translate('provider')(withStyles(style)(NewForm)));
+export default  withRouter(translate(withStyles(style)(NewForm)));
 
 
 

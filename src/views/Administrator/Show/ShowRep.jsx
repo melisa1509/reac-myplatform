@@ -15,7 +15,7 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import ShowTable from 'views/Administrator/Show/ShowTable.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
 
 const styles = {
@@ -38,7 +38,7 @@ class ShowRep extends React.Component {
           <Card>
             <CardHeader color="info">
             <center>
-             <h4 className={classes.cardTitle}>{t("title.show_admin")}</h4>
+             <h4 className={classes.cardTitle}>{t("title_show_admin")}</h4>
              </center>
             </CardHeader>
             <CardBody>
@@ -62,5 +62,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const ShowRepComponent = translate('provider')(withStyles(styles)(ShowRep));
+const ShowRepComponent = translate(withStyles(styles)(ShowRep));
 export default withRouter(connect(null, mapDispatchToPropsActions)(ShowRepComponent));

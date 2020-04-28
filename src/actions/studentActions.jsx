@@ -1,5 +1,5 @@
 import { STUDENT_LIST, SHOW_STUDENT, LOAD_FORM_STUDENT, DELETE_STUDENT, SUCCESSFUL_DELETE, EDIT_STUDENT, ERROR_EDIT_STUDENT, SUCCESSFULL_EDIT} from 'constants/actionTypes.jsx';
-import { EDIT_PASSWORD_STUDENT   } from 'constants/actionTypes';
+import { EDIT_PASSWORD_STUDENT, SUCCESSFULL_EDIT_CLEAN  } from 'constants/actionTypes';
 import { BASE_URL} from 'constants/urlTypes.jsx';
 
 export const getStudentList = key => {
@@ -19,6 +19,7 @@ export const showStudent = key => {
         .then(json => {
             dispatch ({ type: SHOW_STUDENT, payload: json.data });
             dispatch ({ type: LOAD_FORM_STUDENT, data: json.data });   
+            dispatch ({ type: SUCCESSFULL_EDIT_CLEAN })
         })
 
     }

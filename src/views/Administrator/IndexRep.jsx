@@ -16,7 +16,7 @@ import AdminTable from './AdminTable.jsx';
 import AdminLanguage from './AdminLanguageTable.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 const styles = {
@@ -39,7 +39,7 @@ class IndexRep extends React.Component {
         <GridItem xs={12} sm={12} md={12}>
           <Card>
             <CardHeader color="info">
-                <h4 className={classes.cardTitle}>{t("title.admin_list")}</h4>
+                <h4 className={classes.cardTitle}>{t("title_admin_list")}</h4>
             </CardHeader>
             <CardBody>
                 <AdminTable  />      
@@ -48,7 +48,7 @@ class IndexRep extends React.Component {
           <br/>
           <Card>
             <CardHeader color="info">
-                <h4 className={classes.cardTitle}>{t("title.language_admin_list")}</h4>
+                <h4 className={classes.cardTitle}>{t("title_language_admin_list")}</h4>
             </CardHeader>
             <CardBody>
                 <AdminLanguage  />      
@@ -68,5 +68,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const NewRepComponent = translate('provider')(withStyles(styles)(IndexRep));
+const NewRepComponent = translate(withStyles(styles)(IndexRep));
 export default connect(null, mapDispatchToPropsActions)(NewRepComponent);

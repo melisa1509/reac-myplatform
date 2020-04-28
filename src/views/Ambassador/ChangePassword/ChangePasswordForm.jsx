@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 // react component for creating dynamic tables
 
 import { connect } from "react-redux";
@@ -100,7 +100,7 @@ class ChangePasswordForm extends React.Component {
                       { successfull_edit ?      
                       <SnackbarContent
                         message={
-                          <center>{t("label.save_success")}</center>
+                          <center>{t("label_save_success")}</center>
                         }
                         close
                         color="success"
@@ -111,7 +111,7 @@ class ChangePasswordForm extends React.Component {
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
                     <CustomInput
-                     labelText={t("label.password")}
+                     labelText={t("label_password")}
                      success={this.state.ambassadorPasswordState === "success"}
                      error={this.state.ambassadorPasswordState === "error"}
                      id="ambassadorPassword"
@@ -130,7 +130,7 @@ class ChangePasswordForm extends React.Component {
               <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
                       <CustomInput
-                        labelText={t("label.repeat_password")}
+                        labelText={t("label_repeat_password")}
                         success={this.state.ambassadorRepeatPasswordState === "success"}
                         error={this.state.ambassadorRepeatPasswordState === "error"}
                         id="ambassadorRepeatPassword"
@@ -148,18 +148,18 @@ class ChangePasswordForm extends React.Component {
               </GridContainer>
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
-                      { errorRequired ? <Danger><h6 className={classes.infoText}>{t("label.require_fields")+ "*" }</h6></Danger>: ""}
+                      { errorRequired ? <Danger><h6 className={classes.infoText}>{t("label_require_fields")+ "*" }</h6></Danger>: ""}
                       { successRequired ? "" :  ""}
                   </GridItem>
                   <GridItem xs={12} sm={12} md={12}>
-                      { dismatch_password ? <Danger><h6 className={classes.infoText}>{t("label.dismatch_password1")}</h6></Danger>: ""}
+                      { dismatch_password ? <Danger><h6 className={classes.infoText}>{t("label_dismatch_password1")}</h6></Danger>: ""}
                   </GridItem>
               </GridContainer>
                 <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={8}>
                       <center>
                       <Button color="info" size="md" onClick={this.saveClick}>
-                      {t("button.save")}
+                      {t("button_save")}
                       </Button>
                       </center>
                   </GridItem>
@@ -186,6 +186,6 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchDismatchPassword:() => dispatch(dismatchPassword())
 });
 
-const ChangePasswordFormComponent = translate('provider')(withStyles(style)(ChangePasswordForm));
+const ChangePasswordFormComponent = translate(withStyles(style)(ChangePasswordForm));
 export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(ChangePasswordFormComponent));
 

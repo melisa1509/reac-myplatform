@@ -22,7 +22,7 @@ import RevisionForm from './RevisionForm.jsx';
 import RenderCell from './RenderCell.jsx';
 import CustomRenderCell from './CustomRenderCell.jsx';
 
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 const styles = {
@@ -81,19 +81,19 @@ class PaperworkTab extends React.Component {
     const optionsPaperwork2 = {
          value: programmbs.paperwork2,
          options:[
-            { label: t("label.paperwork2.option1") },
-            { label: t("label.paperwork2.option2") },
-            { label: t("label.paperwork2.option3") },
-            { label: t("label.paperwork2.option4") }
+            { label: t("label_paperwork2_option1") },
+            { label: t("label_paperwork2_option2") },
+            { label: t("label_paperwork2_option3") },
+            { label: t("label_paperwork2_option4") }
          ]
     }
 
     const optionsPaperwork3 = {
         value: programmbs.paperwork3,
         options:[
-           { label: t("label.paperwork3.option1") },
-           { label: t("label.paperwork3.option2") },
-           { label: t("label.paperwork3.option3") },
+           { label: t("label_paperwork3_option1") },
+           { label: t("label_paperwork3_option2") },
+           { label: t("label_paperwork3_option3") },
         ]
     }
 
@@ -141,7 +141,7 @@ class PaperworkTab extends React.Component {
 
     const initialCapitalPaperwork7 = [];
     const initialCapitalArray = Array.from(programmbs.paperwork7.p7_initial_capital === undefined ? [] : programmbs.paperwork7.p7_initial_capital);
-    initialCapitalArray.unshift(t("label.initial_capital"));
+    initialCapitalArray.unshift(t("label_initial_capital"));
     initialCapitalPaperwork7.push(initialCapitalArray);
     const widthColumsPaperwork7InitialCapital = ["28%","8%", "8%", "8%", "8%", "8%", "8%", "8%", "8%", "8%"];
 
@@ -159,7 +159,7 @@ class PaperworkTab extends React.Component {
 
     const incomePaperwork7 = [];
     const incomeArray = Array.from(programmbs.paperwork7.p7_income);
-    incomeArray.unshift(t("label.total_income"));
+    incomeArray.unshift(t("label_total_income"));
     incomePaperwork7.push(incomeArray);
 
     const arrayPaperwork8 = programmbs.paperwork8.p8_array;
@@ -176,17 +176,17 @@ class PaperworkTab extends React.Component {
 
     const expensesPaperwork8 = [];
     const expensesArray = Array.from(programmbs.paperwork8.p8_expenses);
-    expensesArray.unshift(t("label.total_expenses"));
+    expensesArray.unshift(t("label_total_expenses"));
     expensesPaperwork8.push(expensesArray);
 
     const earnings_losesPaperwork8 = [];
     const earnings_losesArray = Array.from(programmbs.paperwork8.p8_earnings_loses);
-    earnings_losesArray.unshift(t("label.earnings_loses"));
+    earnings_losesArray.unshift(t("label_earnings_loses"));
     earnings_losesPaperwork8.push(earnings_losesArray);
 
     const balancePaperwork8 = [];
     const balanceArray = Array.from(programmbs.paperwork8.p8_balance);
-    balanceArray.unshift(t("label.ending_balance"));
+    balanceArray.unshift(t("label_ending_balance"));
     balancePaperwork8.push(balanceArray);
 
   
@@ -194,10 +194,10 @@ class PaperworkTab extends React.Component {
     return (
         <Card >
           <CardBody>
-            <h3 className={classes.cardTitleCenter} >{t("title.paperwork")}</h3>
+            <h3 className={classes.cardTitleCenter} >{t("title_paperwork")}</h3>
             <br/>
             <SuccessBold>
-              {t("question.paperwork1")}
+              {t("question_paperwork1")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -205,38 +205,38 @@ class PaperworkTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.paperwork2")}
+              {t("question_paperwork2")}
             </SuccessBold>
             <br/>
             <CustomRadio data={optionsPaperwork2} />
             <br/>
             <SuccessBold>
-              {t("question.paperwork3")}
+              {t("question_paperwork3")}
             </SuccessBold>
             <br/>
             <CustomCheckbox data={optionsPaperwork3} />
             <br/>
-            <h3 className={classes.cardTitleCenter}>{t("title.paperwork4")}</h3>
-            <SuccessBold>{t("label.paperwork4")}</SuccessBold>
+            <h3 className={classes.cardTitleCenter}>{t("title_paperwork4")}</h3>
+            <SuccessBold>{t("label_paperwork4")}</SuccessBold>
             <br/>
             <table className={classes.borderSpacing} id="table_paperwork4">
               <thead>
                 <tr>
                   <th className={classes.thBackgroundColor + " "+ classes.tdTable + " "+ classes.verticalCenter } colSpan={5}>
-                    <h4>{t("title.paperwork4")}</h4>
+                    <h4>{t("title_paperwork4")}</h4>
                   </th>
                 </tr>
                 <tr>
-                  <th className={classes.textCenter + " "+ classes.tdTable + " "+ classes.verticalCenter } style={{ width: '15%' }}><h7 className="td-bold">{t("th.paperwork4_date")}</h7></th>
-                  <th className={classes.textCenter + " "+ classes.tdTable + " "+ classes.verticalCenter }><h7 className="td-bold">{t("th.paperwork4_description")}</h7></th>
-                  <th className={classes.textCenter + " "+ classes.tdTable + " "+ classes.verticalCenter }><h7 className="td-bold">{t("th.paperwork4_expenses")}</h7></th>
-                  <th className={classes.textCenter + " "+ classes.tdTable + " "+ classes.verticalCenter }><h7 className="td-bold">{t("th.paperwork4_income")}</h7></th>
-                  <th className={classes.textCenter + " "+ classes.tdTable + " "+ classes.verticalCenter }><h7 className="td-bold">{t("th.paperwork4_balance")}</h7></th>
+                  <th className={classes.textCenter + " "+ classes.tdTable + " "+ classes.verticalCenter } style={{ width: '15%' }}><h7 className="td-bold">{t("th_paperwork4_date")}</h7></th>
+                  <th className={classes.textCenter + " "+ classes.tdTable + " "+ classes.verticalCenter }><h7 className="td-bold">{t("th_paperwork4_description")}</h7></th>
+                  <th className={classes.textCenter + " "+ classes.tdTable + " "+ classes.verticalCenter }><h7 className="td-bold">{t("th_paperwork4_expenses")}</h7></th>
+                  <th className={classes.textCenter + " "+ classes.tdTable + " "+ classes.verticalCenter }><h7 className="td-bold">{t("th_paperwork4_income")}</h7></th>
+                  <th className={classes.textCenter + " "+ classes.tdTable + " "+ classes.verticalCenter }><h7 className="td-bold">{t("th_paperwork4_balance")}</h7></th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className={classes.tdBackgroundColor + " "+ classes.tdTable + " "+ classes.verticalCenter } colSpan={4}><h7 >{t("label.initial_capital")}</h7></td>
+                  <td className={classes.tdBackgroundColor + " "+ classes.tdTable + " "+ classes.verticalCenter } colSpan={4}><h7 >{t("label_initial_capital")}</h7></td>
                   <td className={classes.tdTable} style={{ width: '15%' }}>
                       <input type="text"  className={classes.inputTable} style={{ width: '100%' }} value={programmbs.paperwork4.p4_initial_capital} />
                   </td>
@@ -250,7 +250,7 @@ class PaperworkTab extends React.Component {
                 }
                 
                 <tr>
-                  <td className={classes.tdBackgroundColor + " "+ classes.tdTable + " "+ classes.verticalCenter } colSpan={4}><h7 >{t("label.ending_balance")}</h7></td>
+                  <td className={classes.tdBackgroundColor + " "+ classes.tdTable + " "+ classes.verticalCenter } colSpan={4}><h7 >{t("label_ending_balance")}</h7></td>
                   <td className={classes.tdTable} style={{ width: '15%' }}>
                       <input type="text"  className={classes.inputTable} style={{ width: '100%' }} value={programmbs.paperwork4.p4_balance} />
                   </td>
@@ -266,17 +266,17 @@ class PaperworkTab extends React.Component {
                   <thead>
                     <tr>
                       <th className={classes.thBackgroundColor + " "+ classes.tdTable + " "+ classes.verticalCenter } colSpan={2}>
-                        <h4 className="td-bold">{t("title.result_accounts")}</h4>
+                        <h4 className="td-bold">{t("title_result_accounts")}</h4>
                       </th>
                     </tr>
                     <tr>
-                      <td className={classes.tdBackgroundColor + " "+ classes.tdTable + " "+ classes.verticalCenter }><h7 className="td-bolder">{t("label.initial_capital")}</h7></td>
+                      <td className={classes.tdBackgroundColor + " "+ classes.tdTable + " "+ classes.verticalCenter }><h7 className="td-bolder">{t("label_initial_capital")}</h7></td>
                       <td className={classes.tdTable} style={{ width: '15%' }}>
                           <input type="text"  style={{ width: '100%' }}  className={classes.inputTable} value={programmbs.paperwork5.p5_initial_capital} />
                       </td>
                     </tr>
                     <tr>
-                    <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold  } colSpan={2}><h7>{t("label.income")}</h7></td>
+                    <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold  } colSpan={2}><h7>{t("label_income")}</h7></td>
                     </tr>
                   </thead>
                   <tbody>
@@ -288,13 +288,13 @@ class PaperworkTab extends React.Component {
                         })     
                     }
                     <tr>
-                      <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold + " "+ classes.textAlignRight } style={{ width: '70%' }}><h7 className="td-bold">{t("label.total_expenses")}</h7></td>
+                      <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold + " "+ classes.textAlignRight } style={{ width: '70%' }}><h7 className="td-bold">{t("label_total_expenses")}</h7></td>
                       <td className={classes.tdTable} style={{ width: '30%' }}>
                           <input type="text" className={classes.inputTable} style={{ width: '100%' }} value={programmbs.paperwork5.p5_income} />
                       </td>
                     </tr>
                 <tr>
-                <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold  } colSpan={2}><h7 className="td-bolder">{t("label.expenses")}</h7></td>
+                <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold  } colSpan={2}><h7 className="td-bolder">{t("label_expenses")}</h7></td>
                 </tr>
                   {
                     rowsPaperwork6.map((prop,key) => {
@@ -304,19 +304,19 @@ class PaperworkTab extends React.Component {
                     })     
                   }
                 <tr>
-                <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold + " "+ classes.textAlignRight } style={{ width: '70%' }}><h7 className="td-bold">{t("label.total_income")}</h7></td>
+                <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold + " "+ classes.textAlignRight } style={{ width: '70%' }}><h7 className="td-bold">{t("label_total_income")}</h7></td>
                 <td className={classes.tdTable} style={{ width: '30%' }}>
                       <input type="text" className={classes.inputTable} style={{ width: '100%' }} value={programmbs.paperwork6.p6_expenses} />
                   </td>
                 </tr>
                 <tr>
-                <td className={classes.tdBackgroundColor + " "+ classes.tdTable + " "+ classes.verticalCenter }><h7 className="td-bolder">{t("label.earnings_loses")}</h7></td>
+                <td className={classes.tdBackgroundColor + " "+ classes.tdTable + " "+ classes.verticalCenter }><h7 className="td-bolder">{t("label_earnings_loses")}</h7></td>
                 <td className={classes.tdTable} style={{ width: '30%' }}>
                 <input type="text" className={classes.inputTable} style={{ width: '100%' }} value={programmbs.paperwork6.p6_earnings_loses} />
                   </td>
                 </tr>
                 <tr>
-                  <td className={classes.tdBackgroundColor + " "+ classes.tdTable + " "+ classes.verticalCenter }><h7 className="td-bolder">{t("label.ending_balance")}</h7></td>
+                  <td className={classes.tdBackgroundColor + " "+ classes.tdTable + " "+ classes.verticalCenter }><h7 className="td-bolder">{t("label_ending_balance")}</h7></td>
                   <td className={classes.tdTable} style={{ width: '30%' }}>
                   <input type="text" className={classes.inputTable} style={{ width: '100%' }} value={programmbs.paperwork6.p6_balance} />
                   </td>
@@ -326,8 +326,8 @@ class PaperworkTab extends React.Component {
               </GridItem>
             </GridContainer>
             <br/>
-            <h3 className={classes.cardTitleCenter}>{t("label.paperwork3.option3")}</h3>
-            <SuccessBold>{t("label.paperwork7")}</SuccessBold>
+            <h3 className={classes.cardTitleCenter}>{t("label_paperwork3_option3")}</h3>
+            <SuccessBold>{t("label_paperwork7")}</SuccessBold>
             <br/>
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={12}>
@@ -335,7 +335,7 @@ class PaperworkTab extends React.Component {
                 <thead>
                   <tr>
                     <th className={classes.thBackgroundColor + " "+ classes.tdTable + " "+ classes.verticalCenter} colSpan={10}>
-                      <h4 className="td-bold">{t("label.paperwork3.option3")}</h4>
+                      <h4 className="td-bold">{t("label_paperwork3_option3")}</h4>
                     </th>
                   </tr>
                 </thead>
@@ -356,7 +356,7 @@ class PaperworkTab extends React.Component {
                     })     
                   }
                   <tr>
-                      <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold  } colSpan={10}><h7 className="td-bolder">{t("label.income")}</h7></td>
+                      <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold  } colSpan={10}><h7 className="td-bolder">{t("label_income")}</h7></td>
                   </tr>
                   {
                     rowsPaperwork7.map((prop,key) => {
@@ -373,7 +373,7 @@ class PaperworkTab extends React.Component {
                     })     
                   }
                   <tr>
-                      <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold  } colSpan={10}><h7 className="td-bolder">{t("label.expenses")}</h7></td>
+                      <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold  } colSpan={10}><h7 className="td-bolder">{t("label_expenses")}</h7></td>
                   </tr>
                   {
                     rowsPaperwork8.map((prop,key) => {
@@ -409,7 +409,7 @@ class PaperworkTab extends React.Component {
               </GridItem>
             </GridContainer>
             <br/>
-            <RevisionForm name="revisionpaperwork" labelText={t("label.revision_paperwork")+ " *"} />
+            <RevisionForm name="revisionpaperwork" labelText={t("label_revision_paperwork")+ " *"} />
             <br/>
             <Controls/>
           </CardBody>
@@ -431,5 +431,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const PaperworkTabComponent = translate('provider')(withStyles(styles)(PaperworkTab));
+const PaperworkTabComponent = translate(withStyles(styles)(PaperworkTab));
 export default connect(mapStateToProps, mapDispatchToPropsActions)(PaperworkTabComponent);

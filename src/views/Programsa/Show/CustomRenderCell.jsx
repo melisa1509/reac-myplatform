@@ -18,7 +18,7 @@ import MutedText from "components/Typography/Muted.jsx";
 import Controls from './Controls.jsx';
 import RevisionForm from './RevisionForm.jsx';
 
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 const styles = {
@@ -102,5 +102,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const CustomRenderCellComponent = translate('provider')(withStyles(styles)(CustomRenderCell));
+const CustomRenderCellComponent = translate(withStyles(styles)(CustomRenderCell));
 export default connect(mapStateToProps, mapDispatchToPropsActions)(CustomRenderCellComponent);

@@ -22,7 +22,7 @@ import RevisionForm from './RevisionForm.jsx';
 import RenderCell from './RenderCell.jsx';
 import CustomRenderCell from './CustomRenderCell.jsx';
 
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 const styles = {
@@ -80,19 +80,19 @@ class GenerateGroupsTab extends React.Component {
     const optionsGenerateGroups1 = {
          value: programsa.generate_groups1,
          options:[
-            { label: t("label.generateGroup1.option1") },
-            { label: t("label.generateGroup1.option2") },
-            { label: t("label.generateGroup1.option3") },
-            { label: t("label.generateGroup1.option4") }
+            { label: t("label_generateGroup1_option1") },
+            { label: t("label_generateGroup1_option2") },
+            { label: t("label_generateGroup1_option3") },
+            { label: t("label_generateGroup1_option4") }
          ]
     }
 
     const optionsGenerateGroups3 = {
         value: programsa.generate_groups3,
         options:[
-           { label: t("label.generateGroup3.option1") },
-           { label: t("label.generateGroup3.option2") },
-           { label: t("label.generateGroup3.option3") },
+           { label: t("label_generateGroup3_option1") },
+           { label: t("label_generateGroup3_option2") },
+           { label: t("label_generateGroup3_option3") },
         ]
     }
 
@@ -101,16 +101,16 @@ class GenerateGroupsTab extends React.Component {
     return (
         <Card >
           <CardBody>
-            <h3 className={classes.cardTitleCenter} >{t("title.generate_groups")}</h3>
+            <h3 className={classes.cardTitleCenter} >{t("title_generate_groups")}</h3>
             <br/>
             <SuccessBold>
-              {t("question.generateGroups1")}
+              {t("question_generateGroups1")}
             </SuccessBold>
             <br/>
             <CustomCheckbox data={optionsGenerateGroups1} />
             <br/>
             <SuccessBold>
-              {t("question.generateGroups2")}
+              {t("question_generateGroups2")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -118,13 +118,13 @@ class GenerateGroupsTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.generateGroups3")}
+              {t("question_generateGroups3")}
             </SuccessBold>
             <br/>
             <CustomCheckbox data={optionsGenerateGroups3} />
             <br/>
             <SuccessBold>
-              {t("question.generateGroups4")}
+              {t("question_generateGroups4")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -132,7 +132,7 @@ class GenerateGroupsTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.generateGroups5")}
+              {t("question_generateGroups5")}
             </SuccessBold>
             {
               programsa.generate_groups5.map((prop, key) => 
@@ -143,7 +143,7 @@ class GenerateGroupsTab extends React.Component {
             }
             <br/>
             <SuccessBold>
-              {t("question.generateGroups6")}
+              {t("question_generateGroups6")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -151,14 +151,14 @@ class GenerateGroupsTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.generateGroups7")}
+              {t("question_generateGroups7")}
             </SuccessBold>
             <br/>
             <MutedText>
               {programsa.generate_groups7}
             </MutedText>
             <br/>
-            <RevisionForm name="revisiongenerategroups" labelText={t("label.revision_generate_groups")} />
+            <RevisionForm name="revisiongenerategroups" labelText={t("label_revision_generate_groups")} />
             <br/>
             <Controls/>
           </CardBody>
@@ -180,5 +180,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const GenerateGroupsTabComponent = translate('provider')(withStyles(styles)(GenerateGroupsTab));
+const GenerateGroupsTabComponent = translate(withStyles(styles)(GenerateGroupsTab));
 export default connect(mapStateToProps, mapDispatchToPropsActions)(GenerateGroupsTabComponent);

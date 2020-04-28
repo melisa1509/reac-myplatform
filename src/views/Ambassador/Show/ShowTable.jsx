@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 import { Link } from "react-router-dom";
 
 // react component for creating dynamic tables
@@ -67,7 +67,7 @@ class ShowTable extends React.Component {
                   { successful_delete ?      
                   <SnackbarContent
                     message={
-                      <center>{t("label.successful_delete")}</center>
+                      <center>{t("label_successful_delete")}</center>
                     }
                     close={false}
                     color="success"
@@ -78,13 +78,13 @@ class ShowTable extends React.Component {
               striped
               tableHead={[]}
               tableData={[
-                [<th>{t("label.email")}</th>,show_ambassador.username],
-                [<th>{t("label.name")}</th>,show_ambassador.first_name],
-                [<th>{t("label.lastName")}</th>,show_ambassador.last_name],
-                [<th>{t("label.country")}</th>,show_ambassador.country],
-                [<th>{t("label.city")}</th>, show_ambassador.city],
-                [<th>{t("label.code")}</th>,  show_ambassador.code],
-                [<th>{t("label.whatsApp")}</th>, show_ambassador.whatsapp],
+                [<th>{t("label_email")}</th>,show_ambassador.username],
+                [<th>{t("label_name")}</th>,show_ambassador.first_name],
+                [<th>{t("label_lastName")}</th>,show_ambassador.last_name],
+                [<th>{t("label_country")}</th>,show_ambassador.country],
+                [<th>{t("label_city")}</th>, show_ambassador.city],
+                [<th>{t("label_code")}</th>,  show_ambassador.code],
+                [<th>{t("label_whatsApp")}</th>, show_ambassador.whatsapp],
               ]}
             />
             <br/>
@@ -93,24 +93,24 @@ class ShowTable extends React.Component {
                       <center>
                       <Link to={"/ambassador"}>
                       <Button color="default" size="sm">
-                      {t("button.return_to_list")}
+                      {t("button_return_to_list")}
                       </Button>
                       {" "}
                       </Link>{" "}
                       <Link to={"/ambassador/edit/" + show_ambassador.id}>
                       <Button color="info" size="sm">
-                      {t("button.edit")}
+                      {t("button_edit")}
                       </Button>
                       {" "}
                       </Link>{" "}
                       <Link to={"/ambassador/editpassword/" + show_ambassador.id}>
                       <Button color="warning" size="sm">
-                      {t("button.change_password")}
+                      {t("button_change_password")}
                       </Button>
                       {" "}
                       </Link>{" "}
                       <Button color="danger" size="sm" onClick={this.deleteClick}>
-                      {t("button.delete")}
+                      {t("button_delete")}
                       </Button>
                       {" "}
                       </center>
@@ -133,7 +133,7 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchDeleteAmbassador: (key, history) => dispatch(deleteAmbassador(key, history))
 });
 
-const ShowTableComponent = translate('provider')(withStyles(style)(ShowTable));
+const ShowTableComponent = translate(withStyles(style)(ShowTable));
 export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(ShowTableComponent));
 
 

@@ -1,8 +1,7 @@
 {
-    "locale":   "fr-mx",
-    "provider":   {
+    
         "button.login":                     "",
-        "button.add_row":                   "Ajouter une Ligne",
+        "add_row":                   "Ajouter une Ligne",
         "button.approved":                  "Approuver le projet",
         "button.approved_this_section":     "Approuvé Cette Section",
         "button.assing_mentor":             "",
@@ -406,11 +405,6 @@
         "question.support2":                 "2. Que devez-vous faire pour maintenir votre statut d'Ambassadeur qualifié?",
         "question.support3":                 "3. Pourquoi voulez-vous devenir un Ambassadeur du Succès?"
   
-    },
-    "buttons"     : {
-        "login" : " ejemplo",
-        "create_account" : "Registrate", 
-        "title_login": "Titulo Iniciar Sesión"
-    }
+   
 
 }

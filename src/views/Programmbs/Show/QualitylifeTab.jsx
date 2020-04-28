@@ -17,7 +17,7 @@ import Controls from './Controls.jsx';
 import RevisionForm from './RevisionForm.jsx';
 import {optionQualityLife} from './OptionQualityLife.jsx';
 
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 const styles = {
@@ -41,13 +41,14 @@ class ProcessTab extends React.Component {
   render() {
     const { classes, programmbs } = this.props;
     let { t } = this.props;
+    
     return (
         <Card>
           <CardBody>
-            <h3 className={classes.cardTitleCenter} >{t("title.quality_life")}</h3>
+            <h3 className={classes.cardTitleCenter} >{t("title_quality_life")}</h3>
             <br/>
             <SuccessBold>
-                {t("label.quality")}
+                {t("label_quality")}
             </SuccessBold>
             <br/>
             <GridContainer justify="center" className={classes.cardTitleCenter}>
@@ -339,7 +340,7 @@ class ProcessTab extends React.Component {
           <GridContainer className={classes.cardTitleCenter}>
               <GridItem xs={12} sm={12} md={12}>
                 <SuccessBold >
-                  {t("question.qualityp1")}
+                  {t("question_qualityp1")}
                 </SuccessBold>
               </GridItem>
           </GridContainer>
@@ -349,13 +350,13 @@ class ProcessTab extends React.Component {
                       {programmbs.quality_p1}
                     </MutedText>
                     <MutedText>
-                      {t(optionQualityLife(programmbs.quality_q1))}
+                      { programmbs.quality_q1 !== undefined ? "" : t(optionQualityLife(programmbs.quality_q1))}
                     </MutedText>
                 </GridItem>
           </GridContainer>
           <br/>
           <SuccessBold>
-            {t("question.qualityg1")}
+            {t("question_qualityg1")}
           </SuccessBold>
           <GridContainer >
                 <GridItem xs={12} sm={12} md={12}>
@@ -368,7 +369,7 @@ class ProcessTab extends React.Component {
           <GridContainer className={classes.cardTitleCenter}>
               <GridItem xs={12} sm={12} md={12}>
                 <SuccessBold >
-                  {t("question.qualityp2")}
+                  {t("question_qualityp2")}
                 </SuccessBold>
               </GridItem>
           </GridContainer>
@@ -378,13 +379,13 @@ class ProcessTab extends React.Component {
                       {programmbs.quality_p2}
                     </MutedText>
                     <MutedText>
-                      {t(optionQualityLife(programmbs.quality_q2))}
+                      {programmbs.quality_q2 !== undefined ? "" : t(optionQualityLife(programmbs.quality_q2))}
                     </MutedText>
                 </GridItem>
           </GridContainer>
           <br/>
           <SuccessBold>
-            {t("question.qualityg2")}
+            {t("question_qualityg2")}
           </SuccessBold>
           <GridContainer >
                 <GridItem xs={12} sm={12} md={12}>
@@ -397,7 +398,7 @@ class ProcessTab extends React.Component {
           <GridContainer className={classes.cardTitleCenter}>
               <GridItem xs={12} sm={12} md={12}>
                 <SuccessBold >
-                  {t("question.qualityp3")}
+                  {t("question_qualityp3")}
                 </SuccessBold>
               </GridItem>
           </GridContainer>
@@ -407,13 +408,13 @@ class ProcessTab extends React.Component {
                       {programmbs.quality_p3}
                     </MutedText>
                     <MutedText>
-                      {t(optionQualityLife(programmbs.quality_q3))}
+                      {programmbs.quality_q3 !== undefined ? "" : t(optionQualityLife(programmbs.quality_q3))}
                     </MutedText>
                 </GridItem>
           </GridContainer>
           <br/>
           <SuccessBold>
-            {t("question.qualityg3")}
+            {t("question_qualityg3")}
           </SuccessBold>
           <GridContainer >
                 <GridItem xs={12} sm={12} md={12}>
@@ -426,7 +427,7 @@ class ProcessTab extends React.Component {
           <GridContainer className={classes.cardTitleCenter}>
               <GridItem xs={12} sm={12} md={12}>
                 <SuccessBold >
-                  {t("question.qualityp4")}
+                  {t("question_qualityp4")}
                 </SuccessBold>
               </GridItem>
           </GridContainer>
@@ -436,13 +437,13 @@ class ProcessTab extends React.Component {
                       {programmbs.quality_p4}
                     </MutedText>
                     <MutedText>
-                      {t(optionQualityLife(programmbs.quality_q4))}
+                      {programmbs.quality_q4 !== undefined ? "" : t(optionQualityLife(programmbs.quality_q4))}
                     </MutedText>
                 </GridItem>
           </GridContainer>
           <br/>
           <SuccessBold>
-            {t("question.qualityg4")}
+            {t("question_qualityg4")}
           </SuccessBold>
           <GridContainer >
                 <GridItem xs={12} sm={12} md={12}>
@@ -455,7 +456,7 @@ class ProcessTab extends React.Component {
           <GridContainer className={classes.cardTitleCenter}>
               <GridItem xs={12} sm={12} md={12}>
                 <SuccessBold >
-                  {t("question.qualityp5")}
+                  {t("question_qualityp5")}
                 </SuccessBold>
               </GridItem>
           </GridContainer>
@@ -465,13 +466,13 @@ class ProcessTab extends React.Component {
                       {programmbs.quality_p5}
                     </MutedText>
                     <MutedText>
-                      {t(optionQualityLife(programmbs.quality_q5))}
+                      {programmbs.quality_q5 !== undefined ? "" : t(optionQualityLife(programmbs.quality_q5))}
                     </MutedText>
                 </GridItem>
           </GridContainer>
           <br/>
           <SuccessBold>
-            {t("question.qualityg5")}
+            {t("question_qualityg5")}
           </SuccessBold>
           <GridContainer >
                 <GridItem xs={12} sm={12} md={12}>
@@ -484,7 +485,7 @@ class ProcessTab extends React.Component {
           <GridContainer className={classes.cardTitleCenter}>
               <GridItem xs={12} sm={12} md={12}>
                 <SuccessBold >
-                  {t("question.qualityp6")}
+                  {t("question_qualityp6")}
                 </SuccessBold>
               </GridItem>
           </GridContainer>
@@ -494,13 +495,13 @@ class ProcessTab extends React.Component {
                       {programmbs.quality_p6}
                     </MutedText>
                     <MutedText>
-                      {t(optionQualityLife(programmbs.quality_q6))}
+                      {programmbs.quality_q6 !== undefined ? "" : t(optionQualityLife(programmbs.quality_q6))}
                     </MutedText>
                 </GridItem>
           </GridContainer>
           <br/>
           <SuccessBold>
-            {t("question.qualityg6")}
+            {t("question_qualityg6")}
           </SuccessBold>
           <GridContainer >
                 <GridItem xs={12} sm={12} md={12}>
@@ -513,7 +514,7 @@ class ProcessTab extends React.Component {
           <GridContainer className={classes.cardTitleCenter}>
               <GridItem xs={12} sm={12} md={12}>
                 <SuccessBold >
-                  {t("question.qualityp7")}
+                  {t("question_qualityp7")}
                 </SuccessBold>
               </GridItem>
           </GridContainer>
@@ -523,13 +524,13 @@ class ProcessTab extends React.Component {
                       {programmbs.quality_p7}
                     </MutedText>
                     <MutedText>
-                      {t(optionQualityLife(programmbs.quality_q7))}
+                      {programmbs.quality_q7 !== undefined ? "" : t(optionQualityLife(programmbs.quality_q7))}
                     </MutedText>
                 </GridItem>
           </GridContainer>
           <br/>
           <SuccessBold>
-            {t("question.qualityg7")}
+            {t("question_qualityg7")}
           </SuccessBold>
           <GridContainer >
                 <GridItem xs={12} sm={12} md={12}>
@@ -542,7 +543,7 @@ class ProcessTab extends React.Component {
           <GridContainer className={classes.cardTitleCenter}>
               <GridItem xs={12} sm={12} md={12}>
                 <SuccessBold >
-                  {t("question.qualityp8")}
+                  {t("question_qualityp8")}
                 </SuccessBold>
               </GridItem>
           </GridContainer>
@@ -552,13 +553,13 @@ class ProcessTab extends React.Component {
                       {programmbs.quality_p8}
                     </MutedText>
                     <MutedText>
-                      {t(optionQualityLife(programmbs.quality_q8))}
+                      {programmbs.quality_q8 !== undefined ? "" : t(optionQualityLife(programmbs.quality_q8))}
                     </MutedText>
                 </GridItem>
           </GridContainer>
           <br/>
           <SuccessBold>
-            {t("question.qualityg8")}
+            {t("question_qualityg8")}
           </SuccessBold>
           <GridContainer >
                 <GridItem xs={12} sm={12} md={12}>
@@ -568,7 +569,7 @@ class ProcessTab extends React.Component {
                 </GridItem>
           </GridContainer>
 
-            <RevisionForm name="revisionquality" labelText={t("label.revision_quality")+ " *"}/>
+            <RevisionForm name="revisionquality" labelText={t("label_revision_quality")+ " *"}/>
             <Controls/>
           </CardBody>
         </Card>
@@ -588,5 +589,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const ProcessTabComponent = translate('provider')(withStyles(styles)(ProcessTab));
+const ProcessTabComponent = translate(withStyles(styles)(ProcessTab));
 export default connect(mapStateToProps, mapDispatchToPropsActions)(ProcessTabComponent);
