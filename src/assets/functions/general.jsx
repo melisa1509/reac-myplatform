@@ -8,8 +8,3 @@ export const jsonToArray = (jsonValues) => {
     }
     return arrayValues;
 }
-
-export const activeLanguage = () => {
-    
-    return "es";
-}

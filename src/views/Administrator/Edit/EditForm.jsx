@@ -104,10 +104,10 @@ class EditForm extends React.Component {
         let { t } = this.props;
         const languages = {         
           options:[
-            { label: t("label.english"),    val: "language_grader[en]"  },
-            { label: t("label.spanish"),    val: "language_grader[es]"  },
-            { label: t("label.french"),     val: "language_grader[fr]"  },
-            { label: t("label.portugues") , val: "language_grader[pr]"  },
+            { label: t("label_english"),    val: "language_grader[en]"  },
+            { label: t("label_spanish"),    val: "language_grader[es]"  },
+            { label: t("label_french"),     val: "language_grader[fr]"  },
+            { label: t("label_portuguese") , val: "language_grader[pr]"  },
           ]
         }
         return (
@@ -162,7 +162,7 @@ class EditForm extends React.Component {
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <Field
-                      labelText={t("first_name")+ " *"}
+                      labelText={t("label_firstname")+ " *"}
                       component={CustomInputRedux}
                       name="first_name"
                       success={this.state.first_nameState === "success"}

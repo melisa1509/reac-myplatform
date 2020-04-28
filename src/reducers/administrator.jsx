@@ -14,11 +14,7 @@ const initialState = {
     language: "es",
     country:"AFG",
     roles:"ROLE_ADMIN"
-  },
-  edit_administrator:{
-    language_grader:{"es" :  true},
-    language: "es"
-  },
+  },  
   show_administrator: {
     role:"",
     language:"",
@@ -51,8 +47,14 @@ export const administratorReducer = (state = initialState, action) => {
             show_administrator: action.payload,
         });
       case LOAD_FORM_ADMINISTRATOR:
+        var admin = action.data;
+        var langs = {};
+        admin.language_grader.forEach(element => {
+          langs[element] = true;
+        });
+        admin.language_grader = langs;
         return Object.assign({}, state, {
-          data: action.data
+          data: admin
         }); 
       case EDIT_ADMINISTRATOR:
         return Object.assign({}, state, {

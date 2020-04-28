@@ -56,6 +56,11 @@ class AdminHeaderLinks extends React.Component {
               <Dashboard color="danger" className={classes.icons} /> {t("link_dashboard")}
             
           </Link>,
+          <Link to={'/admin'} className={classes.dropdownLink}>
+            
+              <Face color="danger" className={classes.icons} /> {t("link_admins")}
+        
+          </Link>,
           <Link to={'/profile'} className={classes.dropdownLink}>
             
                 <Person color="danger" className={classes.icons} /> {t("link_user_profile")}

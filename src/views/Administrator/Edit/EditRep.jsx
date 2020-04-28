@@ -32,14 +32,7 @@ class EditRep extends React.Component {
   render() {
     const { classes, show_administrator  } = this.props;
     let { t } = this.props;
-    let i= 0
-    let language=show_administrator.language_grader
-    for (i = 0; i < 10 ; i++) {
-      language[i]={"es" :  true, "fr" : true}
-    }
-    const initialValuesAdmin= {
-      roles: language
-    }
+   
     return (
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={8}>
@@ -50,7 +43,7 @@ class EditRep extends React.Component {
              </center>
             </CardHeader>
             <CardBody>
-                <EditForm initialValues={initialValuesAdmin}  />  
+                <EditForm />  
             </CardBody>
           </Card>
         </GridItem>
