@@ -65,8 +65,7 @@ class IndexTable extends React.Component {
     const data = ambassador_list.map((prop, key) => {
       return {
         id: key, 
-        name: prop.first_name,
-        last_name:prop.last_name,
+        name: prop.first_name + " " + prop.last_name,
         country:prop.country,
         actions: (
           // we've added some custom button actions
@@ -85,7 +84,7 @@ class IndexTable extends React.Component {
       };
     });
     return (
-      <GridContainer>
+      <GridContainer justify="center" >
         <GridItem xs={12}>
         <CustomInput
           inputProps={{
@@ -109,20 +108,18 @@ class IndexTable extends React.Component {
                 {
                   Header: t("th_name"),
                   accessor: "name",
-                },
-                {
-                  Header: t("th_lastname"),
-                  accessor: "last_name"
+                  width:200
                 },
                 {
                   Header: t("th_country"),
-                  accessor: "country"
+                  accessor: "country",
+                  width:200
                 },
                 {
                   Header: t("th_actions"),
                   accessor: "actions",
+                  width:150,
                   sortable: false,
-                  filterable: false
                 },
                 {
                   Header: "",
@@ -139,8 +136,7 @@ class IndexTable extends React.Component {
                   filterMethod: (filter, rows) => {
                     const result = matchSorter(rows, filter.value, {
                       keys: [
-                        "name",
-                        "last_name",
+                        "name"
                       ], threshold: matchSorter.rankings.WORD_STARTS_WITH
                     });
                     return result;

@@ -84,7 +84,7 @@ class NewForm extends React.Component {
         }
         if(this.state.groupnameState === "success" ){
         const reduxState = store.getState();
-        this.props.dispatchNewGroup();
+        this.props.dispatchNewGroup(this.props.history);
         this.props.dispatchSuccessRequiredFields();
         }
       }
@@ -94,7 +94,7 @@ class NewForm extends React.Component {
       }
       
     render() {
-        const { classes, successfull_new, errorRequired, successRequired } = this.props;
+        const { classes, successfull_new, errorRequired, successRequired, new_group } = this.props;
         let { t } = this.props;
         return (
           <GridContainer justify="center">
@@ -246,9 +246,11 @@ class NewForm extends React.Component {
                       </Button>
                       {" "}
                       </Link>{" "}
+                      <Link to={"/group/show/" + new_group.id}>
                       <Button color="info" size="sm" onClick={this.saveClick}>
                       {t("button_save")}
                       </Button>
+                      </Link>
                       {" "}
                       </center>
                   </GridItem>

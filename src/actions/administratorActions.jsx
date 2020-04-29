@@ -27,10 +27,10 @@ export const getAdminLanguageList = () => {
     }  
 }
 
-export const newAdministrator = ()=> {
+export const newAdministrator = (redirect)=> {
     return (dispatch, getState) => {
     const reduxState = getState();
-    
+
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
@@ -54,9 +54,7 @@ export const newAdministrator = ()=> {
         return fetch(BASE_URL + "/admin/new", requestOptions)
         .then(response => response.json())
         .then(json => {
-            console.log(json);
             dispatch ({ type: NEW_ADMINISTRATOR, payload: json.data });
-            dispatch ({ type: SUCCESSFULL_NEW}); 
         })
 
     }
