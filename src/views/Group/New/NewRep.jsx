@@ -32,8 +32,8 @@ class NewRep extends React.Component {
     const { classes, styles } = this.props;
     let { t } = this.props;
     const initialValuesGroup= {
-      modality:"option_modality1",
-      program:"option_program1",
+      modality:"option.modality1",
+      program:"option.program1",
       start_date:moment().format('YYYY-MMM-DD'),
       final_date:moment().format('YYYY-MMM-DD'),
       graduation_date:moment().format('YYYY-MMM-DD'),
