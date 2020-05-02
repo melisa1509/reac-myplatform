@@ -51,6 +51,43 @@ export const deleteStudent  = (key,redirect) => {
       });
   }
 }
+export const newStudent =() => {
+    return (dispatch,getState) => {
+
+        const reduxState = getState();
+      
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+      
+            var urlencoded = new URLSearchParams();
+            urlencoded.append("username", reduxState.form.studentform.values.username);
+            urlencoded.append("language",reduxState.form.studentform.values.language);
+            urlencoded.append("first_name",reduxState.form.studentform.values.first_name);
+            urlencoded.append("last_name",reduxState.form.studentform.values.last_name);
+            urlencoded.append("country",reduxState.form.studentform.values.country);
+            urlencoded.append("city",reduxState.form.studentform.values.city );
+            urlencoded.append("whatsapp",reduxState.form.studentform.values.whatsapp );
+            urlencoded.append("group",reduxState.form.studentform.values.id_group );
+      
+            var requestOptions = {
+              method: 'POST',
+              headers: myHeaders,
+              body: urlencoded,
+              redirect: 'follow'
+            }
+    
+        return fetch(BASE_URL + "/student/new?callback=foo", requestOptions)
+        .then(response => response.json())
+        .then(json => {
+            dispatch ({ type: EDIT_STUDENT, payload: json.data });  
+            dispatch ({ type: SUCCESSFULL_EDIT});  
+        })
+        .catch(json =>{
+            dispatch({type:ERROR_EDIT_STUDENT})
+        })
+      }
+};
+
 export const editStudent =() => {
     return (dispatch,getState) => {
 
@@ -87,7 +124,6 @@ export const editStudent =() => {
         })
       }
 };
-
 
 export const editPassword = (params,key) => {
     

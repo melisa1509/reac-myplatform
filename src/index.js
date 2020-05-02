@@ -12,6 +12,7 @@ import ReactTable from "views/Tables/ReactTables.jsx";
 import Age from 'views/Age/Age.jsx';
 import Login from 'views/Login/Login.jsx';
 import Student from 'views/Student/Index.jsx';
+import NewStudent from 'views/Student/New/New.jsx';
 import ShowStudent from 'views/Student/Show/Show.jsx';
 import EditStudent from 'views/Student/Edit/Edit.jsx';
 import StudentChangePassword  from 'views/Student/ChangePassword/ChangePassword.jsx';
@@ -79,6 +80,7 @@ ReactDOM.render(
       <Router history={hist}>
         <Switch>
           <Route path="/student" component={Student} exact />
+          <Route path="/student/new/:id" component={NewStudent} exact />
           <Route path="/student/show/:id" component={ShowStudent} exact />
           <Route path="/student/edit/:id" component={EditStudent} exact />
           <Route path="/student/editpassword/:id" component={StudentChangePassword} exact /> 

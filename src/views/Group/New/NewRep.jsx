@@ -15,6 +15,7 @@ import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import NewForm from 'views/Group/New/NewForm.jsx';
 
+import { showAmbassador } from 'actions/ambassadorActions.jsx';
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
@@ -27,9 +28,18 @@ const styles = {
   } 
 };
 class NewRep extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {       
+    };
+  }
+
+  componentWillMount(){
+    this.props.dispatchGetShowAmbassador(this.props.match.params.id);
+  }
   
   render() {
-    const { classes, styles } = this.props;
+    const { classes, show_ambassador } = this.props;
     let { t } = this.props;
     const initialValuesGroup= {
       modality:"option.modality1",
@@ -46,6 +56,7 @@ class NewRep extends React.Component {
             <CardHeader color="info">
             <center>
              <h4 className={classes.cardTitle}>{t("title_new_group")}</h4>
+             <p>{ show_ambassador.first_name + " " + show_ambassador.last_name }</p>
              </center>
             </CardHeader>
             <CardBody>
@@ -62,11 +73,15 @@ NewRep.propTypes = {
   classes: PropTypes.object,
 };
 
+const mapStateToProps = state => ({ 
+  show_ambassador: state.ambassadorReducer.show_ambassador, 
+});
+
 
 const mapDispatchToPropsActions = dispatch => ({
-
+  dispatchGetShowAmbassador: key => dispatch( showAmbassador(key) )
 });
 
 
 const NewRepComponent = translate(withStyles(styles)(NewRep));
-export default withRouter(connect(null, mapDispatchToPropsActions)(NewRepComponent));
+export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(NewRepComponent));

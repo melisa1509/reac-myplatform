@@ -18,6 +18,10 @@ const initialState = {
     last_name: "",
     country:"",
   },
+  new_student:{
+    language: "es",
+    country: "AFG"
+  }
 }
 
 export const studentReducer = (state = initialState, action) => {

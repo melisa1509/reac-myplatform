@@ -130,9 +130,10 @@ export const confirmGroup = (params, redirect)=> {
   var urlencoded = new URLSearchParams();
   var group = params.group;
   var student = params.student;
+  
   urlencoded.append("group", group.toString());
   urlencoded.append("student", student.toString());
-
+ 
   var requestOptions = {
     method: 'POST',
     headers: myHeaders,
@@ -140,7 +141,7 @@ export const confirmGroup = (params, redirect)=> {
     redirect: 'follow'
   };
   
-      return fetch("https://lms.interweavesolutions.org/student/confirmgroup?callback=foo", requestOptions)
+      return fetch(BASE_URL + "/student/confirmgroup?callback=foo", requestOptions)
       .then(response => response.json())
       .then(json => {
         dispatch(clearPending(params, redirect));
@@ -168,7 +169,7 @@ export const clearPending = (params, redirect)=> {
     redirect: 'follow'
   };
   
-      return fetch("https://lms.interweavesolutions.org/student/deletefutureambassador?callback=foo", requestOptions)
+      return fetch(BASE_URL + "/student/deletefutureambassador?callback=foo", requestOptions)
       .then(response => response.json())
       .then(json => {
         redirect.push('/dashboard'); 

@@ -75,7 +75,7 @@ class AmbassadorTable extends React.Component {
                 size="sm"
                 color="info"
               >
-                {t('label.ambassador')}
+                {t('label_ambassador')}
               </Button>
             </Link>
             

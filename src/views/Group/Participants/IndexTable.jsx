@@ -237,9 +237,11 @@ class IndexTable extends React.Component {
                       {t("button_export_list")}
                       </Button>
                       {" "}
+                      <Link to={"/student/new/" + this.props.match.params.id}>
                       <Button color="info" size="sm">
                       {t("button_create_new")}
                       </Button>
+                      </Link>
                       {" "}
                       </center>
                   </GridItem>

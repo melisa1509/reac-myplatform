@@ -54,9 +54,9 @@ export const newAdministrator = ()=> {
         return fetch(BASE_URL + "/admin/new", requestOptions)
         .then(response => response.json())
         .then(json => {
-            console.log(json);
             dispatch ({ type: NEW_ADMINISTRATOR, payload: json.data });
             dispatch ({ type: SUCCESSFULL_NEW}); 
+            showAdministrator(json.data.id);
         })
 
     }

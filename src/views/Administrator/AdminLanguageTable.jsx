@@ -73,7 +73,7 @@ class AdminLanguageTable extends React.Component {
         id: key, 
         name: prop.first_name + " " + prop.last_name,
         username:prop.username,
-        language:prop.language,
+        language:prop.language_grader.toString(),
         actions: (
           <div className="actions-left">
             <Link to={"/admin/show/" + prop.id}>
@@ -138,7 +138,7 @@ class AdminLanguageTable extends React.Component {
                   filterable: false
                 },
                 {
-                  Header: "Language Grader",
+                  Header: t("label_language_grader"),
                   accessor: "language",
                   sortable: false,
                   filterable: false

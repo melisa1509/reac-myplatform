@@ -20,7 +20,7 @@ class PruebaTable extends React.Component {
     };
   }
   componentDidMount(){
-      this.props.dispatchGetReportCountry();
+      this.props.dispatchGetReportCountry("ALL");
   }
   render() {
     const {report_country, loading} = this.props;
@@ -93,7 +93,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetReportCountry: () => dispatch( getReportCountry() )
+  dispatchGetReportCountry: key => dispatch( getReportCountry(key) )
 });
 
 const PruebaTableComponent = translate(PruebaTable);

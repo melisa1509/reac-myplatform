@@ -108,34 +108,50 @@ class MBSTable extends React.Component {
                 {
                   Header: t("th_plan"),
                   accessor: "plan",
+                  width: 97,
+                  sortable: false,
                 },
                 {
                   Header: t("th_product"),
                   accessor: "product",
+                  width: 97,
+                  sortable: false,
                 },
                 {
                   Header: t("th_process"),
                   accessor: "process",
+                  width: 97,
+                  sortable: false,
                 },
                 {
                   Header: t("th_price"),
                   accessor: "price",
+                  width: 97,
+                  sortable: false,
                 },
                 {
                   Header: t("th_promotion"),
                   accessor: "promotion",
+                  width: 97,
+                  sortable: false,
                 },
                 {
                   Header: t("th_paperwork"),
                   accessor: "paperwork",
+                  width: 97,
+                  sortable: false,
                 },
                 {
                   Header: t("th_quality"),
                   accessor: "quality",
+                  width: 97,
+                  sortable: false,
                 },
                 {
                   Header: t("th_service"),
                   accessor: "service",
+                  width: 97,
+                  sortable: false,
                 },
                 {
                   Header: "",
