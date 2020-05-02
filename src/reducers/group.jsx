@@ -7,6 +7,7 @@ import { GET_PROJECT_PROGRESS } from "constants/actionTypes";
 
 const initialState = { 
   show_group: {
+    id:"",
     embassador:[],
     name:"",
     data:[],
@@ -17,6 +18,9 @@ const initialState = {
     number_students:"",
     madality:"",
     program:""
+  },
+  new_group:{
+    id:""
   },
   group_list: [],
   progress_list:{

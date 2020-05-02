@@ -94,7 +94,7 @@ class NewForm extends React.Component {
       }
       
     render() {
-        const { classes, successfull_new, errorRequired, successRequired, new_administrator } = this.props;
+        const { classes, successfull_new, errorRequired, successRequired } = this.props;
         let { t } = this.props;
         let i = 0
         const languages = {         
@@ -240,7 +240,6 @@ class NewForm extends React.Component {
                       <Button color="info" size="sm" onClick={this.saveClick}>
                       {t("button_save")}
                       </Button>
-                      {" "}
                       </center>
                   </GridItem>
               </GridContainer>

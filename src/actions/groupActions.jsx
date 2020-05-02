@@ -62,7 +62,7 @@ export const editGroup = ()=> {
 export const newGroup = ()=> {
     return (dispatch, getState) => {
     const reduxState = getState();
-    
+
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
     
@@ -88,7 +88,7 @@ export const newGroup = ()=> {
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: NEW_GROUP, payload: json.data });
-            dispatch ({ type: SUCCESSFULL_NEW});  
+            dispatch ({ type: SUCCESSFULL_NEW});
         })
 
     }

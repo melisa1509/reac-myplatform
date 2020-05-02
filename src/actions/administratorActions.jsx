@@ -27,10 +27,10 @@ export const getAdminLanguageList = () => {
     }  
 }
 
-export const newAdministrator = ()=> {
+export const newAdministrator = (redirect)=> {
     return (dispatch, getState) => {
     const reduxState = getState();
-    
+
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
