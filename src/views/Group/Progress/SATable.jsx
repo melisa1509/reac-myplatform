@@ -67,14 +67,11 @@ class SATable extends React.Component {
       return {
         id: key, 
         name: prop.name,
-        plan:prop.plan,
-        product:prop.product,
-        process:prop.process,
-        price:prop.price,
-        promotion:prop.promotion,
-        paperwork:prop.paperwork,
-        quality:prop.quality,
-        service:prop.service,
+        mision: prop.mision,
+        generate:prop.generate,
+        facilitate:prop.facilitate,
+        graduate:prop.graduate,
+        support:prop.support     
       };
     });
     
@@ -104,38 +101,37 @@ class SATable extends React.Component {
                 {
                   Header: t("th_name"),
                   accessor: "name",
+                  sortable: false,
                 },
                 {
-                  Header: t("th_plan"),
-                  accessor: "plan",
+                  Header: t("title_mision"),
+                  accessor: "mision",
+                  width: 144,
+                  sortable: false,
                 },
                 {
-                  Header: t("th_product"),
-                  accessor: "product",
+                  Header: t("title_generate_groups"),
+                  accessor: "generate",
+                  width: 144,
+                  sortable: false,
                 },
                 {
-                  Header: t("th_process"),
-                  accessor: "process",
+                  Header: t("title_rules"),
+                  accessor: "facilitate",
+                  width: 144,
+                  sortable: false,
                 },
                 {
-                  Header: t("th_price"),
-                  accessor: "price",
+                  Header: t("title_graduate_groups"),
+                  accessor: "graduate",
+                  width: 144,
+                  sortable: false,
                 },
                 {
-                  Header: t("th_promotion"),
-                  accessor: "promotion",
-                },
-                {
-                  Header: t("th_paperwork"),
-                  accessor: "paperwork",
-                },
-                {
-                  Header: t("th_quality"),
-                  accessor: "quality",
-                },
-                {
-                  Header: t("th_service"),
-                  accessor: "service",
+                  Header: t("title_support_groups"),
+                  accessor: "support",
+                  width: 144,
+                  sortable: false,
                 },
                 {
                   Header: "",

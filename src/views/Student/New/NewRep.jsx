@@ -12,7 +12,7 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import EditForm from 'views/Group/Edit/EditForm.jsx';
+import NewForm from 'views/Student/New/NewForm.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
@@ -27,23 +27,28 @@ const styles = {
 };
 
 
-class EditRep extends React.Component {
+
+class NewRep extends React.Component {
   
   render() {
-    const { classes, show_ambassador } = this.props;
+    const { classes, styles } = this.props;
     let { t } = this.props;
+    const initialValueStudent= {      
+        id_group:this.props.match.params.id,
+        language: "en",
+        country: "AFG"
+    }
     return (
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={8}>
           <Card>
             <CardHeader color="info">
             <center>
-             <h4 className={classes.cardTitle}>{t("title_edit_group")}</h4>
-             { show_ambassador.first_name + " " + show_ambassador.last_name}
+             <h4 className={classes.cardTitle}>{t("title_new_student")}</h4>
              </center>
             </CardHeader>
             <CardBody>
-                <EditForm  />  
+                <NewForm initialValues={initialValueStudent} />  
             </CardBody>
           </Card>
         </GridItem>
@@ -52,18 +57,14 @@ class EditRep extends React.Component {
   }
 }
 
-EditRep.propTypes = {
+NewRep.propTypes = {
   classes: PropTypes.object,
 };
 
-
 const mapDispatchToPropsActions = dispatch => ({
-});
 
-const mapStateToProps = state => ({ 
-  show_ambassador: state.groupReducer.show_group.embassador, 
 });
 
 
-const EditRepComponent = translate(withStyles(styles)(EditRep));
-export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(EditRepComponent));
+const NewRepComponent = translate(withStyles(styles)(NewRep));
+export default withRouter(connect(null, mapDispatchToPropsActions)(NewRepComponent));

@@ -10,8 +10,8 @@ const initialState = {
   adminlanguage_list: [], 
   editError: false,
   new_administrator:{
-    language_grader:{"es" :  true},
-    language: "es",
+    language_grader:{},
+    language: "en",
     country:"AFG",
     roles:"ROLE_ADMIN"
   },  

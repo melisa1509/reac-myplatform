@@ -88,7 +88,7 @@ class ServiceTab extends React.Component {
               {t("question_service6")}
             </SuccessBold>
             <br/>
-            {programmbs.service6 ? 
+            {programmbs.service6  === "Error:4null" ? 
             <a
                 href={"https://myplatform.interweavesolutions.org/file/" + programmbs.service6}
                 target="_blank"

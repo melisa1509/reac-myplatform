@@ -80,6 +80,7 @@ class PromotionTab extends React.Component {
               {t("question_promotion5")}
             </SuccessBold>
             <br/>
+            {programmbs.promotion5 === "Error:4null" ?
             <a
                 href={"https://myplatform.interweavesolutions.org/file/" + programmbs.promotion5}
                 target="_blank"
@@ -87,6 +88,7 @@ class PromotionTab extends React.Component {
             >
                 {t("label_download_file")}
             </a>
+            :""}
             <br/>
             <RevisionForm name="revisionpromotion" labelText={t("label_revision_promotion")+ " *"} />
             <br/>

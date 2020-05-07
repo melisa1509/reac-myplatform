@@ -65,19 +65,23 @@ class IndexTable extends React.Component {
   render() {
     const { certificate_list } = this.props;
     let { t } = this.props;
+    console.log(certificate_list);
+    
     const data = certificate_list.map((prop, key) => {
      let state="";
      let MBSButton=false;
      let SAButton=false;
+        if(prop.student.programmbs !== undefined){
+          if(prop.student.programmbs.state == 'state.approved'){
+            MBSButton=true;
+          }
+        }
         if(prop.student.programsa !== undefined){
           state=t("label_project_ambassador")+ " " + t(prop.student.programsa.state)
           if(prop.student.programsa.state == 'state.approved'){
             SAButton=true;
           }
-          if(prop.student.programsa.state == 'state.approved' && prop.student.programmbs.state == 'state.approved'){
-            MBSButton=true;
-            SAButton=true;
-          }
+               
         }
         else if(prop.student.programmbs !== undefined){
           state=t("label_project_mbs")+ " " + t(prop.student.programmbs.state)

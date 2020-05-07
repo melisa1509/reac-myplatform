@@ -90,7 +90,7 @@ class ShowTable extends React.Component {
                 [<th>{t("label_lastName")}</th>,show_administrator.last_name],
                 [<th>{t("label_role")}</th>,roles],
                 [<th>{t("label_language")}</th>,show_administrator.language],
-                [<th>{t("label_language_grader")}</th>,show_administrator.language_grader],
+                [<th>{t("label_language_grader")}</th>,JSON.stringify(show_administrator.language_grader)],
                 [<th>{t("label_country")}</th>,show_administrator.country],
               ]}
             />
