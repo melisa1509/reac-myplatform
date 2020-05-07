@@ -59,10 +59,10 @@ export const editGroup = ()=> {
     }
 };
 
-export const newGroup = ()=> {
+export const newGroup = (redirect)=> {
     return (dispatch, getState) => {
     const reduxState = getState();
-
+    const key = reduxState.groupReducer.new_group.id
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
     
@@ -88,9 +88,7 @@ export const newGroup = ()=> {
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: NEW_GROUP, payload: json.data });
-            dispatch ({ type: SUCCESSFULL_NEW});
         })
-
     }
 };
 export const deleteGroup  = (key, redirect) => {

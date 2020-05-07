@@ -1,6 +1,6 @@
 import { ADMINISTRATOR_LIST, ADMINLANGUAGE_LIST } from 'constants/actionTypes';
 import { BASE_URL} from 'constants/urlTypes.jsx';
-import { NEW_ADMINISTRATOR, SUCCESSFULL_NEW, SUCCESSFULL_EDIT } from 'constants/actionTypes';
+import { NEW_ADMINISTRATOR, SUCCESSFULL_EDIT } from 'constants/actionTypes';
 import { SHOW_ADMINISTRATOR, LOAD_FORM_ADMINISTRATOR, EDIT_ADMINISTRATOR, ERROR_EDIT_ADMINISTRATOR } from 'constants/actionTypes';
 import { jsonToArray } from "assets/functions/general.jsx";
 import { EDIT_PASSWORD_ADMINISTRATOR } from 'constants/actionTypes';

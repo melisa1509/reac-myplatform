@@ -31,7 +31,6 @@ class Show extends React.Component {
   render() {
     const { classes, ...rest } = this.props;
     return (
-      <PerfectScrollbar>
       <div>
         <div
           className={classes.main}
@@ -51,7 +50,6 @@ class Show extends React.Component {
           <Footer blackFont />
         </div>
       </div>
-      </PerfectScrollbar>
     );
   }
 }

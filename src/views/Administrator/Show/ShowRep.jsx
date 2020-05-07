@@ -42,7 +42,7 @@ class ShowRep extends React.Component {
              </center>
             </CardHeader>
             <CardBody>
-                <ShowTable  />  
+                <ShowTable />  
             </CardBody>
           </Card>
         </GridItem>

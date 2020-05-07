@@ -108,7 +108,7 @@ class IndexTable extends React.Component {
                 {
                   Header: t("th_name"),
                   accessor: "name",
-                  width:200
+                  width:250
                 },
                 {
                   Header: t("th_country"),

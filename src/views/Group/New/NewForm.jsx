@@ -23,6 +23,7 @@ import DateTimePicker from 'components/DateTimePicker/DateTimePickerRedux.jsx';
 import { newGroup } from "actions/groupActions.jsx"; 
 import { errorRequiredFields } from "actions/generalActions.jsx";
 import { successRequiredFields } from "actions/generalActions.jsx";
+import { successfulNew } from "actions/generalActions.jsx";
 import { verifyChange } from "assets/validation/index.jsx";
 import { deleteSuccessful } from "actions/generalActions.jsx";
 import ModalitySelect from "views/Select/ModalitySelect.jsx";
@@ -84,7 +85,8 @@ class NewForm extends React.Component {
         }
         if(this.state.groupnameState === "success" ){
         const reduxState = store.getState();
-        this.props.dispatchNewGroup(this.props.history);
+        this.props.dispatchNewGroup();
+        this.props.dispatchSuccessfulNew(this.props.history);
         this.props.dispatchSuccessRequiredFields();
         }
       }
@@ -94,23 +96,13 @@ class NewForm extends React.Component {
       }
       
     render() {
-        const { classes, successfull_new, errorRequired, successRequired, new_group } = this.props;
+        const { classes, errorRequired, successRequired } = this.props;
         let { t } = this.props;
         return (
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={8}>
               <form>
               <GridContainer justify="center">
-                  <GridItem xs={12} sm={12} md={12}>
-                      { successfull_new ?      
-                      <SnackbarContent
-                        message={
-                          <center>{t("label_save_success")}</center>
-                        }
-                        color="success"
-                      />
-                      : ""}
-                  </GridItem>
               </GridContainer>
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
@@ -246,11 +238,9 @@ class NewForm extends React.Component {
                       </Button>
                       {" "}
                       </Link>{" "}
-                      <Link to={"/group/show/" + new_group.id}>
                       <Button color="info" size="sm" onClick={this.saveClick}>
                       {t("button_save")}
                       </Button>
-                      </Link>
                       {" "}
                       </center>
                   </GridItem>
@@ -275,7 +265,7 @@ NewForm = connect(
     successfull_new:state.generalReducer.successfull_new,
     new_group: state.groupReducer.new_group,
   }),
-  { dispatchNewGroup: newGroup, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful},
+  { dispatchNewGroup: newGroup, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful, dispatchSuccessfulNew: successfulNew },
 )(NewForm);
 
 export default  withRouter(translate(withStyles(style)(NewForm)));

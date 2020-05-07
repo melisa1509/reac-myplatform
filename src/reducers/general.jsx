@@ -9,7 +9,6 @@ const initialState = {
   errorRequired: false,
   successRequired: false,
   dismatch_password:false,
-  successfull_new:false,
   delete:false
 }
 //crear un 
@@ -45,7 +44,7 @@ export const generalReducer = (state = initialState, action) => {
           }); 
         case SUCCESSFULL_NEW:
           return Object.assign({}, state, {
-            successfull_new: true
+            successfull_new: action.payload
           });
         case SUCCESSFULL_EDIT_CLEAN:
           return Object.assign({}, state, {
