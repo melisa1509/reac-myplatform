@@ -79,7 +79,7 @@ class AdminTable extends React.Component {
             <Link to={"/admin/show/" + prop.id}>
               <Button
                 justIcon
-                round4
+                round
                 simple
                 color="info"
               >

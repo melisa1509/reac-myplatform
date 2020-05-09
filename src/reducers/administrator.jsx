@@ -16,7 +16,7 @@ const initialState = {
     roles:"ROLE_ADMIN"
   },  
   show_administrator: {
-    role:"",
+    roles:"",
     language:"",
     language_grader:[],
     first_name:"",

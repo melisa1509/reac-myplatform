@@ -2,7 +2,14 @@ import {  SUCCESSFULL_EDIT, ERROR_REQUIRED_FIELDS,SUCCESS_REQUIRED_FIELDS, SUCCE
 import { DISMATCH_PASSWORD, SUCCESSFULL_NEW,DELETE_SUCCESSFUL, UPDATE_FILE_NAME } from 'constants/actionTypes';
 
 export const successfulEdit =() => ({ type: SUCCESSFULL_EDIT})
-export const successfulNew =() => ({ type: SUCCESSFULL_NEW})
+export const successfulNew =(redirect) => {
+    return(dispatch, getState)=> { 
+    const reduxState = getState();
+    let key = reduxState.groupReducer.new_group.id
+    dispatch({ type: SUCCESSFULL_NEW})
+    redirect.push( "/group/show/"+ key);
+    }
+}
 export const deleteSuccessful=() => ({ type:DELETE_SUCCESSFUL})
 export const successfulDelete =() => ({ type: SUCCESSFUL_DELETE})
 export const errorRequiredFields =() => ({ type: ERROR_REQUIRED_FIELDS})

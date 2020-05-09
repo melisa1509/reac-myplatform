@@ -12,7 +12,7 @@ import Table from "components/Table/Table.jsx";
 import { getReportCountry } from "actions/reportActions.jsx";
 import { store } from "store";
 
-class PruebaTable extends React.Component {
+class CountryTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -96,6 +96,6 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchGetReportCountry: key => dispatch( getReportCountry(key) )
 });
 
-const PruebaTableComponent = translate(PruebaTable);
-export default connect(mapStateToProps, mapDispatchToPropsActions)(PruebaTableComponent);
+const CountryTableComponent = translate(CountryTable);
+export default connect(mapStateToProps, mapDispatchToPropsActions)(CountryTableComponent);
 

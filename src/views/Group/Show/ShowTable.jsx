@@ -70,17 +70,6 @@ class ShowTable extends React.Component {
         return (
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={8}>
-              <GridItem xs={12} sm={12} md={12}>
-                  { successful_delete ?      
-                  <SnackbarContent
-                    message={
-                      <center>{t("label_successful_delete")}</center>
-                    }
-                    close={false}
-                    color="success"
-                  />
-                  : ""}
-              </GridItem>
             <Table
               striped
               tableHead={[]}
