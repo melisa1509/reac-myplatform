@@ -41,6 +41,7 @@ export const editGroup = ()=> {
         urlencoded.append("program", reduxState.form.groupform.values.program);
         urlencoded.append("interweaveLocal", reduxState.form.groupform.values.interweave_local);
         urlencoded.append("authorizationCode", reduxState.form.groupform.values.authorization_code);
+        urlencoded.append("name_image", reduxState.form.groupform.values.name_image);
 
         var requestOptions = {
         method: 'PUT',
@@ -76,6 +77,7 @@ export const newGroup = (redirect)=> {
     urlencoded.append("graduationDate",reduxState.form.groupNewform.values.graduation_date);
     urlencoded.append("interweaveLocal",reduxState.form.groupNewform.values.interweave_local);
     urlencoded.append("authorizationCode",reduxState.form.groupNewform.values.authorization_code);
+    urlencoded.append("name_image", reduxState.form.groupNewform.values.name_image);
     
     var requestOptions = {
       method: 'POST',
