@@ -1,7 +1,7 @@
 import { ERROR_REQUIRED_FIELDS, SUCCESS_REQUIRED_FIELDS} from "constants/actionTypes";
 import { SUCCESSFULL_EDIT, SUCCESSFUL_DELETE  } from "constants/actionTypes";
 import { DISMATCH_PASSWORD, SUCCESSFULL_EDIT_CLEAN } from "constants/actionTypes";
-import { SUCCESSFULL_NEW, DELETE_SUCCESSFUL } from "constants/actionTypes";
+import { SUCCESSFULL_NEW, DELETE_SUCCESSFUL, UPDATE_FILE_NAME } from "constants/actionTypes";
 
 const initialState = { 
   successfull_edit: false,
@@ -51,7 +51,13 @@ export const generalReducer = (state = initialState, action) => {
           return Object.assign({}, state, {
             successfull_edit: false
           });
+        case UPDATE_FILE_NAME:
+          var element = "groupNewForm";
+          return Object.assign({}, state, {
+            enviando: element
+          });
         }
+        
      return state;
 }
   

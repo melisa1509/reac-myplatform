@@ -6,6 +6,10 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Field, reduxForm } from 'redux-form';
 import { store } from "store";
+import {ProgressBar} from 'react-bootstrap';
+import axios from 'axios';
+import CustomLinearProgress from "components/CustomLinearProgress/CustomLinearProgress.jsx";
+
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -27,6 +31,7 @@ import { verifyChange } from "assets/validation/index.jsx";
 import { deleteSuccessful } from "actions/generalActions.jsx";
 import ModalitySelect from "views/Select/ModalitySelect.jsx";
 import ProgramSelect from "views/Select/ProgramSelect.jsx";
+import FileUpload from "components/CustomUpload/FileUpload.jsx";
 
 // style for this view
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
@@ -61,41 +66,49 @@ class NewForm extends React.Component {
         this.state = {
             groupnameState: "success",
             interweaveLocalState: "success",
-            authorizationCodeState: "success"
+            authorizationCodeState: "success",
+            uploadPercentage: 0,
         };
         this.saveClick = this.saveClick.bind(this);
         this.deleteClick= this.deleteClick.bind(this);
-      }
+    }
+
+    updateFileName = (key) => {
+      this.props.change('name_image', key);
+    }
+
+    
      
-      saveClick() {
-        if (this.state.groupnameState === "") {
-          this.setState({ groupnameState: "error" });
-        }
-
-        if (this.state.interweaveLocalState === "") {
-          this.setState({ imterweaveLocalState: "error" });
-        }
-        if (this.state.authorizationCodeState === "") {
-          this.setState({ authorizationCodeState: "error" });
-        }
-        if(this.state.groupnameState === "error" || this.state.full_nameState === "error"){
-          const stateRedux = store.getState();
-          this.props.dispatchErrorRequiredFields();
-        }
-        if(this.state.groupnameState === "success" ){
-        const reduxState = store.getState();
-        this.props.dispatchNewGroup(this.props.history);
-        this.props.dispatchSuccessRequiredFields();
-        }
+    saveClick() {
+      if (this.state.groupnameState === "") {
+        this.setState({ groupnameState: "error" });
       }
 
-      deleteClick(){
-        this.props.dispatchDeleteSuccessful();
+      if (this.state.interweaveLocalState === "") {
+        this.setState({ imterweaveLocalState: "error" });
       }
+      if (this.state.authorizationCodeState === "") {
+        this.setState({ authorizationCodeState: "error" });
+      }
+      if(this.state.groupnameState === "error" || this.state.full_nameState === "error"){
+        const stateRedux = store.getState();
+        this.props.dispatchErrorRequiredFields();
+      }
+      if(this.state.groupnameState === "success" ){
+      const reduxState = store.getState();
+      this.props.dispatchNewGroup(this.props.history);
+      this.props.dispatchSuccessRequiredFields();
+      }
+    }
+
+    deleteClick(){
+      this.props.dispatchDeleteSuccessful();
+    }
       
     render() {
         const { classes, successfull_new, errorRequired, successRequired, new_group } = this.props;
         let { t } = this.props;
+        const {uploadPercentage} = this.state;
         return (
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={8}>
@@ -220,6 +233,22 @@ class NewForm extends React.Component {
                     />
                 </GridItem>
               </GridContainer>
+              <br/>              
+              <GridContainer>
+                  <GridItem xs={12} sm={12} md={12}> 
+                      <InputLabel className={classes.label}>
+                        <SuccessLabel>{t("label_name_image")}</SuccessLabel>
+                      </InputLabel>
+                      <Field
+                        component={FileUpload}
+                        name="name_image"
+                        changeFileName = {this.updateFileName}
+                        inputProps={{
+                          type: "file",
+                        }}
+                      />            
+                  </GridItem>
+              </GridContainer>
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <Field
@@ -255,6 +284,7 @@ class NewForm extends React.Component {
                       </center>
                   </GridItem>
               </GridContainer>
+              
               </form>
             </GridItem>
           </GridContainer>

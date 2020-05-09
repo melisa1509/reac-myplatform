@@ -2,7 +2,7 @@ import { GROUP_LIST } from "constants/actionTypes";
 import { SHOW_GROUP } from "constants/actionTypes";
 import { LOAD_FORM_GROUP } from "constants/actionTypes";
 import { EDIT_GROUP, NEW_GROUP, DELETE_GROUP } from "constants/actionTypes";
-import { GET_AMBASSADOR_ID } from "constants/actionTypes";
+import { UPDATE_FILE_NAME } from "constants/actionTypes";
 import { GET_PROJECT_PROGRESS } from "constants/actionTypes";
 
 const initialState = { 
@@ -62,6 +62,7 @@ export const groupReducer = (state = initialState, action) => {
           progress_list: action.payload,
           loading: false
         }); 
+      
     }
     return state;
 }
