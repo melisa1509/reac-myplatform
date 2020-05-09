@@ -4,7 +4,7 @@ import { NEW_ADMINISTRATOR, SUCCESSFULL_EDIT } from 'constants/actionTypes';
 import { SHOW_ADMINISTRATOR, LOAD_FORM_ADMINISTRATOR, EDIT_ADMINISTRATOR, ERROR_EDIT_ADMINISTRATOR } from 'constants/actionTypes';
 import { jsonToArray } from "assets/functions/general.jsx";
 import { EDIT_PASSWORD_ADMINISTRATOR } from 'constants/actionTypes';
-import { DELETE_ADMINISTRATOR , SUCCESSFUL_DELETE } from 'constants/actionTypes';
+import { DELETE_ADMINISTRATOR , SUCCESSFUL_DELETE} from 'constants/actionTypes';
 
 
 export const getAdministratorList = () => {
@@ -55,7 +55,6 @@ export const newAdministrator = (redirect)=> {
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: NEW_ADMINISTRATOR, payload: json.data });
-            dispatch ({ type: SUCCESSFULL_NEW}); 
             showAdministrator(json.data.id);
         })
 
