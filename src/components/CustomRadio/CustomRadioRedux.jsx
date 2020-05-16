@@ -63,79 +63,51 @@ class CustomRadioRedux extends React.Component {
     });
   }
   render() {
-    const { classes } = this.props;
+    const { classes, input, data } = this.props;
     return (
             <div>
-                <div>
-                    <FormControlLabel
-                    control={
-                        <Radio
-                        checked={this.state.selectedValue === "a"}
-                        onChange={this.handleChange}
-                        value="a"
-                        name="radio button demo"
-                        aria-label="A"
-                        icon={
-                            <FiberManualRecord
-                            className={classes.radioUnchecked}
+              {                  
+                  data.options.map((prop, key) => {
+                      return (
+                        <div
+                          className={
+                            classes.checkboxAndRadio + " " + classes.checkboxAndRadioHorizontal
+                          }
+                        >
+                            <FormControlLabel
+                            control={
+                                <Radio
+                                checked={input.value === prop.val}
+                                onChange={this.handleChange, input.onChange}
+                                value={prop.val}
+                                name="radio button demo"
+                                aria-label="A"
+                                icon={
+                                    <FiberManualRecord
+                                    className={classes.radioUnchecked}
+                                    />
+                                }
+                                checkedIcon={
+                                    <FiberManualRecord
+                                    className={classes.radioChecked}
+                                    />
+                                }
+                                classes={{
+                                    checked: classes.radio,
+                                    root: classes.radioRoot
+                                }}
+                                />
+                            }
+                            classes={{
+                                label: classes.label,
+                                root: classes.labelRoot
+                            }}
+                            label={prop.label}
                             />
-                        }
-                        checkedIcon={
-                            <FiberManualRecord
-                            className={classes.radioChecked}
-                            />
-                        }
-                        classes={{
-                            checked: classes.radio,
-                            root: classes.radioRoot
-                        }}
-                        />
-                    }
-                    classes={{
-                        label: classes.label,
-                        root: classes.labelRoot
-                    }}
-                    label="First Radio"
-                    />
-                </div>
-                <div
-                    className={
-                    classes.checkboxAndRadio +
-                    " " +
-                    classes.checkboxAndRadioHorizontal
-                    }
-                >
-                    <FormControlLabel
-                    control={
-                        <Radio
-                        checked={this.state.selectedValue === "b"}
-                        onChange={this.handleChange}
-                        value="b"
-                        name="radio button demo"
-                        aria-label="B"
-                        icon={
-                            <FiberManualRecord
-                            className={classes.radioUnchecked}
-                            />
-                        }
-                        checkedIcon={
-                            <FiberManualRecord
-                            className={classes.radioChecked}
-                            />
-                        }
-                        classes={{
-                            checked: classes.radio,
-                            root: classes.radioRoot
-                        }}
-                        />
-                    }
-                    classes={{
-                        label: classes.label,
-                        root: classes.labelRoot
-                    }}
-                    label="Second Radio"
-                    />
-                </div>
+                        </div>
+                      );
+                  })
+              }
             </div>
         );
     }

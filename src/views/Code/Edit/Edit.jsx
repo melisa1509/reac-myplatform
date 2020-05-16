@@ -30,6 +30,7 @@ class Edit extends React.Component {
     const { classes} = this.props;
     return (
       <div>
+        <AdminHeader/>
         <div
           className={classes.main}
           style={{

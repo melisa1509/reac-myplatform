@@ -33,6 +33,7 @@ class Show extends React.Component {
     return (
       <PerfectScrollbar>
       <div>
+      <AdminHeader/>
         <div
           className={classes.main}
           style={{
