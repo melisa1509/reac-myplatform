@@ -55,7 +55,6 @@ export const newAdministrator = (redirect)=> {
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: NEW_ADMINISTRATOR, payload: json.data });
-            dispatch ({ type: SUCCESSFULL_NEW}); 
             showAdministrator(json.data.id);
         })
 
