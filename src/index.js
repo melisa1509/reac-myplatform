@@ -26,6 +26,7 @@ import StudentGroup from 'views/Group/Participants/Index.jsx';
 import App from 'views/Age/App.jsx';
 import CourseNew from 'views/Course/New/New.jsx';
 import ProgramMbs from 'views/Programmbs/Show/Show.jsx';
+import NewProgramMbs from 'views/Programmbs/New/Show.jsx';
 import ProgramMbsFile from 'views/Programmbs/ShowFile/Show.jsx';
 import ProgramSa from 'views/Programsa/Show/Show.jsx';
 import User from 'views/User/Show/Show.jsx';
@@ -92,6 +93,7 @@ ReactDOM.render(
           <Route path="/app" component={App} />
           <Route path="/course/new" component={CourseNew} />
           <Route path="/programmbs/show/:id" component={ProgramMbs} />
+          <Route path="/programmbs/edit/:id" component={NewProgramMbs} />
           <Route path="/programmbs/showfile/:id" component={ProgramMbsFile} />
           <Route path="/programsa/show/:id" component={ProgramSa} />
           <Route path="/user/show/:id" component={User} exact /> 
