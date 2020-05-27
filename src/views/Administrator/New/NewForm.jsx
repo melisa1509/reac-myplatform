@@ -19,6 +19,7 @@ import Danger from "components/Typography/Danger.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx'; 
+import CustomRadioRedux from 'components/CustomRadio/CustomRadioRedux.jsx';
 import { newAdministrator } from "actions/administratorActions.jsx"; 
 import { errorRequiredFields } from "actions/generalActions.jsx";
 import { successRequiredFields } from "actions/generalActions.jsx";
@@ -102,7 +103,16 @@ class NewForm extends React.Component {
             { label: t("label_english"),    val: "language_grader[en]"  },
             { label: t("label_spanish"),    val: "language_grader[es]"  },
             { label: t("label_french"),     val: "language_grader[fr]"  },
-            { label: t("label_portugues") , val: "language_grader[pr]"  },
+            { label: t("label_portuguese") , val: "language_grader[pr]"  },
+          ]
+        }
+
+        const radios = {         
+          options:[
+            { label: t("label_english"),     val: "en"  },
+            { label: t("label_spanish"),     val: "es"  },
+            { label: t("label_french"),      val: "fr"  },
+            { label: t("label_portuguese") , val: "pr"  },
           ]
         }
  
@@ -221,6 +231,12 @@ class NewForm extends React.Component {
                       })
                   }
               </div>
+              <br/>
+              <Field
+                component={CustomRadioRedux}
+                name="radio"
+                data={radios}
+              />
               <br/>
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>

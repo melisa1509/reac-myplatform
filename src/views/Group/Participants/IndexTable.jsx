@@ -86,7 +86,7 @@ class IndexTable extends React.Component {
               idSa = prop.student.programsa.id;
               
         }
-        else if(prop.student.programmbs !== undefined){
+        if(prop.student.programmbs !== undefined){
               buttonMbs =  true;
               idMbs = prop.student.programmbs.id;
         }
@@ -97,7 +97,7 @@ class IndexTable extends React.Component {
         status:state,
         projects: (
           <div className="actions-left">
-            <Link to={buttonMbs ? "/programmbs/show/" + idMbs : "#"}>
+            <Link to={buttonMbs ? prop.student.programmbs.modality === "option.modality1" ? "/programmbs/showfile/" + idMbs : "/programmbs/show/" + idMbs: "#"}>
               <Button
                 size="sm"
                 color={buttonMbs ? "success" : "default" }

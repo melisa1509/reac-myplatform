@@ -1,4 +1,4 @@
-import { ERROR_SEND_REVISION_PROJECT, SUCCESSFULL_SEND_REVISION_PROJECT, SHOW_PROGRAMMBS, LOAD_FORM_PROGRAMMBS, SUCCESSFULL_EDIT_REVISION, ERROR_EDIT_REVISION, HIDE_REVISION_ALERT, SUCCESSFULL_APPROVE_PROJECT, ERROR_APPROVE_PROJECT } from 'constants/actionTypes.jsx';
+import { ADD_ROWN_P4, ERROR_SEND_REVISION_PROJECT, SUCCESSFULL_SEND_REVISION_PROJECT, SHOW_PROGRAMMBS, LOAD_FORM_PROGRAMMBS, SUCCESSFULL_EDIT_REVISION, ERROR_EDIT_REVISION, HIDE_REVISION_ALERT, SUCCESSFULL_APPROVE_PROJECT, ERROR_APPROVE_PROJECT } from 'constants/actionTypes.jsx';
 import { BASE_URL } from 'constants/urlTypes';
 
 export const getShowProgrammbs = key => {
@@ -126,6 +126,21 @@ export const sendRevisionProject = (redirect) => {
 }
 
 export const loadFormProgrammbs = data => ({ type: LOAD_FORM_PROGRAMMBS, data });
+
+export const addRownP4 = () => {
+    return (dispatch, getState) => {
+        const reduxState = getState();
+        const programmbs = reduxState.form.programmbs.values;
+        programmbs.id = "0999";
+        programmbs.paperwork4.p4_initial_capital = "ENTRAMOS SUPER";
+        let p4_array =[];
+        for (let index = 0; index < 20; index++) {
+            p4_array.push(programmbs.paperwork4.p4_array[index]);     
+        }
+        programmbs.paperwork4.p4_array = p4_array;
+        dispatch({ type: ADD_ROWN_P4, data: programmbs })
+    }
+}
 
 export const hideRevisionAlert = () => ({ type: HIDE_REVISION_ALERT })
 

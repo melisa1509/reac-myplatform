@@ -72,7 +72,7 @@ class MbsTable extends React.Component {
         group:prop.group.name,
         projects: (
           <div className="actions-left">
-            <Link to={prop.student.programmbs.modality === "option_modality1" ? "/programmbs/showfile/" + prop.student.programmbs.id : "/programmbs/show/" + prop.student.programmbs.id}>
+            <Link to={prop.student.programmbs.modality === "option.modality1" ? "/programmbs/showfile/" + prop.student.programmbs.id : "/programmbs/show/" + prop.student.programmbs.id}>
               <Button
                 size="sm"
                 color="success"

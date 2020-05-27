@@ -13,7 +13,8 @@ const initialState = {
     language_grader:{},
     language: "en",
     country:"AFG",
-    roles:"ROLE_ADMIN"
+    roles:"ROLE_ADMIN",
+    radio: "es"
   },  
   show_administrator: {
     roles:"",
