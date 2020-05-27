@@ -14,10 +14,12 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import AdminHeader from "views/Header/AdminHeader.jsx";
 import ShowRep from "./ShowRep.jsx";
+import NewForm from "views/Group/Participants/NewForm.jsx";
 import mainPageStyle from "assets/jss/material-kit-react/views/mainPage.jsx";
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 
 import { hideRevisionAlert, redirectDashboard } from "actions/programmbsActions.jsx";
+import { GroundOverlay } from "react-google-maps";
 
 const styles = {
     ...mainPageStyle,
@@ -44,7 +46,6 @@ class Show extends React.Component {
     const { classes, sendRevisionProjectSuccessfull, sendRevisionProjectError, editRevisionSuccessfull, editRevisionError, approveProjectError, approveProjectSuccessfull, t } = this.props;
     return (
         <div>
-          <AdminHeader/>
             {editRevisionSuccessfull ? 
               <SweetAlert
                   success
@@ -104,7 +105,7 @@ class Show extends React.Component {
             {approveProjectSuccessfull ? 
               <SweetAlert
                   success
-                  style={{ display: "block", marginTop: "-100px" }}
+                  style={{ display: "block", marginTop: "-200px" }}
                   onConfirm={() => this.redirectDashboard()}
                   onCancel={() => this.hideAlert()}
                   confirmBtnText={t("button_continue")}
@@ -113,6 +114,9 @@ class Show extends React.Component {
                   }
                   >
                   <h4>{t("label_success_approved")}</h4>
+                  <GridContainer>
+                  <NewForm/>
+                  </GridContainer>                  
               </SweetAlert>
             : ""}
             {approveProjectError ? 

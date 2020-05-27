@@ -1,10 +1,24 @@
-import {GROUP_LIST, GET_PROJECT_PROGRESS} from 'constants/actionTypes.jsx';
+import {GROUP_LIST, GET_PROJECT_PROGRESS, MBS_IMAGE_ALERT} from 'constants/actionTypes.jsx';
 import { LOAD_FORM_GROUP, SHOW_GROUP, EDIT_GROUP, SUCCESSFULL_EDIT, NEW_GROUP, DELETE_GROUP, SUCCESSFUL_DELETE, SUCCESSFULL_NEW} from 'constants/actionTypes';
 import { BASE_URL } from 'constants/urlTypes.jsx';
 
 export const getGroupList= () => {
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("id_ambassador", "71");
+        urlencoded.append("role", "ROLE_EMBASSADOR");
+
+        var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: urlencoded,
+        redirect: 'follow'
+        };
     return (dispatch) => {
-        return fetch( BASE_URL + "/group/?callback=foo")
+        return fetch( BASE_URL + "/group/?callback=foo", requestOptions)
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: GROUP_LIST, payload: json.data });
@@ -63,7 +77,6 @@ export const editGroup = ()=> {
 export const newGroup = (redirect)=> {
     return (dispatch, getState) => {
     const reduxState = getState();
-    const key = reduxState.groupReducer.new_group.id
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
     
@@ -90,6 +103,10 @@ export const newGroup = (redirect)=> {
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: NEW_GROUP, payload: json.data });
+            if(reduxState.groupReducer.new_group !== undefined){
+                const key = reduxState.groupReducer.new_group.id
+                redirect.push( "/group/show/"+ key +"?callback=foo");
+            }
         })
     }
 };
@@ -105,7 +122,6 @@ export const deleteGroup  = (key, redirect) => {
       .then(response => response.json())
       .then(json => {
           dispatch ({ type: DELETE_GROUP, payload: json.data });
-          dispatch ({ type: SUCCESSFUL_DELETE}); 
           redirect.push('/group');
       });
   }
@@ -120,3 +136,4 @@ export const getProjectProgress= (key) => {
         });
     }
 }
+export const uploadImageAlert = () => ({ type: MBS_IMAGE_ALERT })

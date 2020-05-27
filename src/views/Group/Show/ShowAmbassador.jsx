@@ -58,9 +58,9 @@ class ShowTable extends React.Component {
     }
 
     render() {
-        const { show_group} = this.props;
+        const { show_group, successful_delete } = this.props;
         let { t } = this.props;
-        let i = "";
+        let i = 0;
         let start_date=[];
         let final_date=[];
           for (i = 0; i < 10 ; i++) {

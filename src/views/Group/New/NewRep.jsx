@@ -14,6 +14,7 @@ import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import NewForm from 'views/Group/New/NewForm.jsx';
+import NewAmbassador from 'views/Group/New/NewAmbassador.jsx';
 
 import { showAmbassador } from 'actions/ambassadorActions.jsx';
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
@@ -39,15 +40,24 @@ class NewRep extends React.Component {
   }
   
   render() {
-    const { classes, show_ambassador } = this.props;
+    const { classes, show_ambassador, active_user } = this.props;
     let { t } = this.props;
+    let rol=false
+    let id=""
+      if(active_user.roles == "ROLE_EMBASSADOR"){
+        rol=true
+        id=active_user.id
+      }
+      else{
+        id=this.props.match.params.id
+      }
     const initialValuesGroup= {
       modality:"option.modality1",
       program:"option.program1",
       start_date:moment().format('YYYY-MMM-DD'),
       final_date:moment().format('YYYY-MMM-DD'),
       graduation_date:moment().format('YYYY-MMM-DD'),
-      id_ambassador:this.props.match.params.id,
+      id_ambassador:id,
     }
     return (
       <GridContainer justify="center">
@@ -60,7 +70,7 @@ class NewRep extends React.Component {
              </center>
             </CardHeader>
             <CardBody>
-                <NewForm initialValues={initialValuesGroup} />  
+                {rol ? <NewAmbassador initialValues={initialValuesGroup} /> : <NewForm initialValues={initialValuesGroup} /> }  
             </CardBody>
           </Card>
         </GridItem>
@@ -75,6 +85,7 @@ NewRep.propTypes = {
 
 const mapStateToProps = state => ({ 
   show_ambassador: state.ambassadorReducer.show_ambassador, 
+  active_user: state.loginReducer.active_user, 
 });
 
 

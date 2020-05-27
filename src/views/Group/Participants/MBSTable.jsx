@@ -183,18 +183,6 @@ class MBSTable extends React.Component {
               className="-striped -highlight"
           />
         </GridItem>
-          <GridContainer>
-            <GridItem xs={12} sm={12} md={12}>
-                <center>
-                <Link to={"/group"}>
-                <Button color="default" size="sm">
-                {t("button_return_to_list")}
-                </Button>
-                {" "}
-                </Link>{" "}
-                </center>
-            </GridItem>
-          </GridContainer>
       </GridContainer>
     );
   }

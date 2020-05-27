@@ -5,9 +5,11 @@ export const successfulEdit =() => ({ type: SUCCESSFULL_EDIT})
 export const successfulNew =(redirect) => {
     return(dispatch, getState)=> { 
     const reduxState = getState();
-    let key = reduxState.groupReducer.new_group.id
     dispatch({ type: SUCCESSFULL_NEW})
-    redirect.push( "/group/show/"+ key);
+    if(reduxState.groupReducer.new_group.id !== undefined){
+        const key = reduxState.groupReducer.new_group.id
+        redirect.push( "/group/show/"+ key);
+    }
     }
 }
 export const deleteSuccessful=() => ({ type:DELETE_SUCCESSFUL})

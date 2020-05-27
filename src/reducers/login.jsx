@@ -4,10 +4,11 @@ const initialState = {
 
   loginError: false,
   active_user: {
+    id:"9",
     first_name: "",
     last_name: "",
     language: "en",
-    roles: [""]
+    roles: ["ROLE_EMBASSADOR"]
   }
 
 }
