@@ -57,7 +57,7 @@ const style = {
 };
 
 
-class NewForm extends React.Component {
+class UploadForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -86,14 +86,14 @@ class NewForm extends React.Component {
               <form>          
               <GridContainer>
                   <GridItem xs={12} sm={12} md={12}> 
-                      <Field
-                        component={FileUpload}
-                        name="name_image"
-                        changeFileName = {this.updateFileName}
-                        inputProps={{
-                          type: "file",
-                        }}
-                      />            
+                    <Field
+                      component={FileUpload}
+                      name="name_image"
+                      changeFileName = {this.updateFileName}
+                      inputProps={{
+                        type: "file",
+                      }}
+                    />            
                   </GridItem>
               </GridContainer>   
               </form>
@@ -104,12 +104,12 @@ class NewForm extends React.Component {
     }
 }
 
-NewForm = reduxForm({
-  form: 'groupNewform', 
-})(NewForm);
+UploadForm = reduxForm({
+  form: 'uploadform', 
+})(UploadForm);
 
 
-NewForm = connect(
+UploadForm = connect(
   state => ({
     errorRequired:state.generalReducer.errorRequired,
     successRequired:state.generalReducer.successRequired,
@@ -117,9 +117,9 @@ NewForm = connect(
     new_group: state.groupReducer.new_group,
   }),
   { dispatchNewGroup: newGroup, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful, dispatchSuccessfulNew: successfulNew },
-)(NewForm);
+)(UploadForm);
 
-export default  withRouter(translate(withStyles(style)(NewForm)));
+export default  withRouter(translate(withStyles(style)(UploadForm)));
 
 
 

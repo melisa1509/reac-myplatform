@@ -19,6 +19,7 @@ import MBSTable from './MBSTable.jsx';
 import { getCertificateList } from "actions/certificateActions.jsx";
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
+import PreForm from "./PreForm.jsx";
 
 const styles = {
   cardIconTitle: {
@@ -53,7 +54,7 @@ class IndexRep extends React.Component {
                 <h4 className={classes.cardTitle}>{t("title_student_list")+" "+"/"+" "+t("title_project_progress_sa")}</h4>
             </CardHeader>
             <CardBody>
-              {rol ? <MBSTable  /> : "" }     
+              {rol ? <MBSTable /> : "" }     
             </CardBody>
           </Card>
         </GridItem>

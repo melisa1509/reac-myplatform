@@ -14,7 +14,6 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import AdminHeader from "views/Header/AdminHeader.jsx";
 import ShowRep from "./ShowRep.jsx";
-import NewForm from "views/Group/Participants/NewForm.jsx";
 import mainPageStyle from "assets/jss/material-kit-react/views/mainPage.jsx";
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 
@@ -113,10 +112,7 @@ class Show extends React.Component {
                       this.props.classes.button + " " + this.props.classes.success
                   }
                   >
-                  <h4>{t("label_success_approved")}</h4>
-                  <GridContainer>
-                  <NewForm/>
-                  </GridContainer>                  
+                  <h4>{t("label_success_approved")}</h4>                
               </SweetAlert>
             : ""}
             {approveProjectError ? 

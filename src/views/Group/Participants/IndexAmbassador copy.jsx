@@ -132,15 +132,18 @@ class IndexTable extends React.Component {
   render() {
     const { certificate_list, image_alert, pre_alert,post_alert, classes} = this.props;
     let { t } = this.props;
+    let id_student
+    const initialValuesPreEvaluation = {
+        id_student:id_student
+    };
     const data = certificate_list.map((prop, key) => {
-        let id=""
         let buttonMbs = false;
-        let name=false;
+        let name=""
         let evaluation=false;
         let actions=false;
         let project=false;
         if(prop.student.programmbs == undefined){
-          name =  prop.student.first_name
+          name = prop.student.first_name + " " + prop.student.last_name 
           evaluation = true
           actions = true
           project = true
@@ -162,7 +165,7 @@ class IndexTable extends React.Component {
           <div className="actions-left">
             {evaluation ?
               <Button
-                onClick={this.evaluationAlert, id=prop.student.id}
+                onClick={this.evaluationAlert}
                 size="sm"
                 color="default" 
               >
@@ -177,13 +180,12 @@ class IndexTable extends React.Component {
               >
                 {t('button_post_evaluation')}
               </Button>
-            : ""}
+            : false}
           </div>
         ),
         projects: (
           <div className="actions-left">
             {project ?
-            <Link to={"/group/uploadImage/" + prop.student.id}>
               <Button
                 onClick={this.imageAlert}
                 size="sm"
@@ -191,8 +193,7 @@ class IndexTable extends React.Component {
               >
                 {t('button_mbs')}
               </Button>
-            </Link>
-            : ""}
+            : false}
           </div>
         ),
         actions:(
@@ -228,7 +229,7 @@ class IndexTable extends React.Component {
               <Close />
             </Button>
             </Link>
-            </div>: actions=false}
+            </div>: false}
         </div>
       )
       };

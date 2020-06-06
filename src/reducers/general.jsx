@@ -2,6 +2,7 @@ import { ERROR_REQUIRED_FIELDS, SUCCESS_REQUIRED_FIELDS} from "constants/actionT
 import { SUCCESSFULL_EDIT, SUCCESSFUL_DELETE  } from "constants/actionTypes";
 import { DISMATCH_PASSWORD, SUCCESSFULL_EDIT_CLEAN } from "constants/actionTypes";
 import { SUCCESSFULL_NEW, DELETE_SUCCESSFUL, UPDATE_FILE_NAME } from "constants/actionTypes";
+import { DELETE_ALERT } from "constants/actionTypes";
 
 const initialState = { 
   successfull_edit: false,
@@ -56,7 +57,7 @@ export const generalReducer = (state = initialState, action) => {
             enviando: element
           });
         }
-        
+      
      return state;
 }
   

@@ -2,9 +2,9 @@ import { GROUP_LIST } from "constants/actionTypes";
 import { SHOW_GROUP } from "constants/actionTypes";
 import { LOAD_FORM_GROUP } from "constants/actionTypes";
 import { EDIT_GROUP, NEW_GROUP, DELETE_GROUP } from "constants/actionTypes";
-import { UPDATE_FILE_NAME } from "constants/actionTypes";
+import { UPLOAD_IMAGE } from "constants/actionTypes";
 import { GET_PROJECT_PROGRESS } from "constants/actionTypes";
-import { MBS_IMAGE_ALERT } from "constants/actionTypes";
+import { MBS_IMAGE_ALERT , DELETE_IMAGE_ALERT} from "constants/actionTypes";
 
 const initialState = { 
   show_group: {
@@ -29,9 +29,7 @@ const initialState = {
     progressSa:[]
   },
   loading: true,
-  image_alert:false,
-  pre_alert:false,
-  post_alert:false,
+  image_alert:false
 }
 
 export const groupReducer = (state = initialState, action) => {
@@ -69,9 +67,15 @@ export const groupReducer = (state = initialState, action) => {
       case MBS_IMAGE_ALERT:
         return Object.assign({}, state, {
           image_alert: true,
-          pre_alert: false,
-          post_alert:true,
-        });      
-    }
+        }); 
+      case UPLOAD_IMAGE:
+        return Object.assign({}, state, {
+          upload_image: action.payload,
+        });  
+      case DELETE_IMAGE_ALERT:
+        return Object.assign({}, state, {
+          image_alert: false,
+        });    
+  }
     return state;
 }

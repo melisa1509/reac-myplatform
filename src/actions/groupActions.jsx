@@ -1,5 +1,5 @@
-import {GROUP_LIST, GET_PROJECT_PROGRESS, MBS_IMAGE_ALERT} from 'constants/actionTypes.jsx';
-import { LOAD_FORM_GROUP, SHOW_GROUP, EDIT_GROUP, SUCCESSFULL_EDIT, NEW_GROUP, DELETE_GROUP, SUCCESSFUL_DELETE, SUCCESSFULL_NEW} from 'constants/actionTypes';
+import {GROUP_LIST, GET_PROJECT_PROGRESS, MBS_IMAGE_ALERT, UPLOAD_IMAGE, DELETE_IMAGE_ALERT} from 'constants/actionTypes.jsx';
+import { LOAD_FORM_GROUP, SHOW_GROUP, EDIT_GROUP, SUCCESSFULL_EDIT, NEW_GROUP, DELETE_GROUP} from 'constants/actionTypes';
 import { BASE_URL } from 'constants/urlTypes.jsx';
 
 export const getGroupList= () => {
@@ -137,3 +137,32 @@ export const getProjectProgress= (key) => {
     }
 }
 export const uploadImageAlert = () => ({ type: MBS_IMAGE_ALERT })
+
+export const uploadImage = ()=> {
+    return (dispatch, getState) => {
+    const reduxState = getState();
+
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+   
+    var urlencoded = new URLSearchParams();
+        urlencoded.append("id_student", "2467");
+        urlencoded.append("file_name", reduxState.form.uploadform.values.name_image);
+    
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: 'follow'
+    };
+    
+        return fetch(BASE_URL + "/programmbs/newfile", requestOptions)
+        .then(response => response.json())
+        .then(json => {
+            dispatch ({ type: UPLOAD_IMAGE, payload: json.data }); 
+        })
+
+    }
+};
+export const deleteImageAlert = () => ({ type: DELETE_IMAGE_ALERT })
