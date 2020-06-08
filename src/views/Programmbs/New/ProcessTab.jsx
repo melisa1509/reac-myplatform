@@ -56,7 +56,7 @@ class ProcessTab extends React.Component {
                   <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
                 </filter>
               </defs>
-              <rect x="" y="" width="180" height="100" stroke="#325457" stroke-width="3" fill="white" filter="url(#f1)" />
+              <rect x="" y="" width="180" height="100" stroke="#325457" strokeWidth="3" fill="white" filter="url(#f1)" />
               Sorry, your browser does not support inline SVG.
               <foreignObject x="10" y="10" width="160" height="160">
                   <div>
@@ -72,7 +72,7 @@ class ProcessTab extends React.Component {
                 </marker>
               </defs>
               <line x1="210" y1="50" x2="230" y2="50" stroke="#325457"
-              stroke-width="8" marker-end="url(#arrowhead1)" />
+              strokeWidth="8" markerEnd="url(#arrowhead1)" />
 
               <defs>
                 <filter id="f2" x="0" y="0" width="200%" height="200%">
@@ -82,11 +82,11 @@ class ProcessTab extends React.Component {
                   <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
                 </filter>
               </defs>
-              <rect x="300" y="" width="180" height="100" stroke="#325457" stroke-width="3" fill="white" filter="url(#f2)" />
+              <rect x="300" y="" width="180" height="100" stroke="#325457" strokeWidth="3" fill="white" filter="url(#f2)" />
               Sorry, your browser does not support inline SVG.
               <foreignObject x="310" y="10" width="160" height="160">
                   <div>
-                  		<textarea id="process2" name="process1" value={programmbs.process1[1]} className={classes.textareaProcess} rows="4" >proceso 2</textarea>
+                  		<textarea id="process2" name="process1" value={programmbs.process1[1]} className={classes.textareaProcess} rows="4" ></textarea>
                   </div>
               </foreignObject>
 
@@ -99,7 +99,7 @@ class ProcessTab extends React.Component {
                 </marker>
               </defs>
               <line x1="510" y1="50" x2="530" y2="50" stroke="#325457"
-              stroke-width="8" marker-end="url(#arrowhead2)" />
+              strokeWidth="8" markerEnd="url(#arrowhead2)" />
 
 
               <defs>
@@ -110,11 +110,11 @@ class ProcessTab extends React.Component {
                   <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
                 </filter>
               </defs>
-              <rect x="600" y="" width="180" height="100" stroke="#325457" stroke-width="3" fill="white" filter="url(#f3)" />
+              <rect x="600" y="" width="180" height="100" stroke="#325457" strokeWidth="3" fill="white" filter="url(#f3)" />
               Sorry, your browser does not support inline SVG.
               <foreignObject x="610" y="10" width="160" height="160">
                   <div>
-                  		<textarea id="process3" name="process1" value={programmbs.process1[2]} className={classes.textareaProcess} rows="4" >proceso 3</textarea>
+                  		<textarea id="process3" name="process1" value={programmbs.process1[2]} className={classes.textareaProcess} rows="4" ></textarea>
                   </div>
               </foreignObject>
 
@@ -126,7 +126,7 @@ class ProcessTab extends React.Component {
                 </marker>
               </defs>
               <line x1="690" y1="120" x2="690" y2="140" stroke="#325457"
-              stroke-width="8" marker-end="url(#arrowhead4)" />
+              strokeWidth="8" markerEnd="url(#arrowhead4)" />
 
 
               <defs>
@@ -137,11 +137,11 @@ class ProcessTab extends React.Component {
                   <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
                 </filter>
               </defs>
-              <rect x="600" y="200" width="180" height="100" stroke="#325457" stroke-width="3" fill="white" filter="url(#f4)" />
+              <rect x="600" y="200" width="180" height="100" stroke="#325457" strokeWidth="3" fill="white" filter="url(#f4)" />
               Sorry, your browser does not support inline SVG.
               <foreignObject x="610" y="210" width="160" height="160">
                   <div>
-                  		<textarea id="process4" name="process1" value={programmbs.process1[3]} className={classes.textareaProcess} rows="4" >proceso 4</textarea>
+                  		<textarea id="process4" name="process1" value={programmbs.process1[3]} className={classes.textareaProcess} rows="4" ></textarea>
                   </div>
               </foreignObject>
 
@@ -153,8 +153,8 @@ class ProcessTab extends React.Component {
                   <polygon points="10 0, 10 7, 5 3.5" fill="#325457" />
                 </marker>
               </defs>
-              <line x1="550" y1="240" x2="570" y2="240" stroke="#325457" stroke-width="8"
-               marker-start="url(#startarrow)" />
+              <line x1="550" y1="240" x2="570" y2="240" stroke="#325457" strokeWidth="8"
+               markerStart="url(#startarrow)" />
 
 
 
@@ -166,11 +166,11 @@ class ProcessTab extends React.Component {
                   <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
                 </filter>
               </defs>
-              <rect x="300" y="200" width="180" height="100" stroke="#325457" stroke-width="3" fill="white" filter="url(#f5)" />
+              <rect x="300" y="200" width="180" height="100" stroke="#325457" strokeWidth="3" fill="white" filter="url(#f5)" />
               Sorry, your browser does not support inline SVG.
               <foreignObject x="310" y="210" width="160" height="160">
                   <div>
-                  		<textarea id="process5" name="process1" value={programmbs.process1[4]} className={classes.textareaProcess} rows="4" >proceso5</textarea>
+                  		<textarea id="process5" name="process1" value={programmbs.process1[4]} className={classes.textareaProcess} rows="4" ></textarea>
                   </div>
               </foreignObject>
 
@@ -181,8 +181,8 @@ class ProcessTab extends React.Component {
                   <polygon points="10 0, 10 7, 5 3.5" fill="#325457" />
                 </marker>
               </defs>
-              <line x1="250" y1="240" x2="270" y2="240" stroke="#325457" stroke-width="8"
-               marker-start="url(#startarrow)" />
+              <line x1="250" y1="240" x2="270" y2="240" stroke="#325457" strokeWidth="8"
+               markerStart="url(#startarrow)" />
 
 
               <defs>
@@ -193,11 +193,11 @@ class ProcessTab extends React.Component {
                   <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
                 </filter>
               </defs>
-              <rect x="" y="200" width="180" height="100" stroke="#325457" stroke-width="3" fill="white" filter="url(#f6)" />
+              <rect x="" y="200" width="180" height="100" stroke="#325457" strokeWidth="3" fill="white" filter="url(#f6)" />
               Sorry, your browser does not support inline SVG.
               <foreignObject x="10" y="210" width="160" height="160">
                   <div>
-                  		<textarea id="process6" name="process1" value={programmbs.process1[5]} className={classes.textareaProcess} rows="4" >Proceso 6</textarea>
+                  		<textarea id="process6" name="process1" value={programmbs.process1[5]} className={classes.textareaProcess} rows="4" ></textarea>
                   </div>
               </foreignObject>
 

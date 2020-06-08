@@ -60,14 +60,14 @@ class CustomRenderCell extends React.Component {
                 data.map((prop, key) => {
                     if(key === 0){
                         return (
-                            <td className={ cellStyles}>
+                            <td className={ cellStyles} key={key}>
                                 {prop}
                             </td>
                         );
                     }
                     else{
                         return (
-                            <td className={ classes.tdTable + " "+ classes.verticalCenter } style={{ width: widthColums[key] }}>
+                            <td className={ classes.tdTable + " "+ classes.verticalCenter } style={{ width: widthColums[key] }} key={key}>
                                 <Field
                                 component={CustomInputTable}
                                 name={nameField + "[" + (key - 1) + "]]"}

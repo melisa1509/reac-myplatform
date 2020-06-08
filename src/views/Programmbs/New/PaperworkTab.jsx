@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 // react component for creating dynamic tables
 import { connect } from "react-redux";
 import CustomInputTable from 'components/CustomInput/CustomInputTable.jsx';
-import CustomInputForm from 'components/CustomInput/CustomInputForm.jsx';
+import Badge from "components/Badge/Badge.jsx";
 import { loadFormProgrammbs, addRownP4 } from "actions/programmbsActions.jsx";
-import { Field, FieldArray, reduxForm } from 'redux-form';
+import { Field, FieldArray, reduxForm, arrayPush, arrayPop } from 'redux-form';
 import Button from "components/CustomButtons/Button.jsx";
 
 // @material-ui/core components
@@ -16,6 +16,7 @@ import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
+import AddBox from "@material-ui/icons/AddBox";
 
 // core components
 import SuccessBold from "components/Typography/SuccessBold.jsx";
@@ -23,9 +24,11 @@ import MutedText from "components/Typography/Muted.jsx";
 import Controls from './Controls.jsx';
 import RevisionForm from './RevisionForm.jsx';
 import RenderCell from './RenderCell.jsx';
+import RenderCellTable from './RenderCellTable.jsx';
 import CustomRenderCell from './CustomRenderCell.jsx';
 
 import { translate } from 'react-switch-lang';
+import { AddCircle, RemoveCircle } from "@material-ui/icons";
 
 
 const styles = {
@@ -85,18 +88,90 @@ class PaperworkTab extends React.Component {
     };
   }
 
-  deleteClick = () => {
-    let p4_array = this.props.programmbs.paperwork4.p4_array;    
-    p4_array.push("", "", "", "", "");
-    //this.setState({p4_array_state : p4_array});
-    console.log(p4_array);
-    this.props.change('paperwork4.p4_array', p4_array);
+  addRownP4 = () => {    
+    this.props.pushArray('programmbs', "paperwork4[p4_array]", "");
+    this.props.pushArray('programmbs', "paperwork4[p4_array]", "");
+    this.props.pushArray('programmbs', "paperwork4[p4_array]", "");
+    this.props.pushArray('programmbs', "paperwork4[p4_array]", "");
+    this.props.pushArray('programmbs', "paperwork4[p4_array]", "");
   }
 
-  removeRowP4 = () => {
-    
-    this.setState({p4_array_state : this.state.p4_state});
-    this.props.loadAddRownP4();
+  removeRowP4 = () => {    
+    this.props.popArray('programmbs', "paperwork4[p4_array]");
+    this.props.popArray('programmbs', "paperwork4[p4_array]");
+    this.props.popArray('programmbs', "paperwork4[p4_array]");
+    this.props.popArray('programmbs', "paperwork4[p4_array]");
+    this.props.popArray('programmbs', "paperwork4[p4_array]");       
+  }
+
+  addRownP5 = () => {    
+    this.props.pushArray('programmbs', "paperwork5[p5_array]", "");
+    this.props.pushArray('programmbs', "paperwork5[p5_array]", "");
+  }
+
+  removeRowP5 = () => {    
+    this.props.popArray('programmbs', "paperwork5[p5_array]");
+    this.props.popArray('programmbs', "paperwork5[p5_array]");
+  }
+
+  addRownP6 = () => {    
+    this.props.pushArray('programmbs', "paperwork6[p6_array]", "");
+    this.props.pushArray('programmbs', "paperwork6[p6_array]", "");
+  }
+
+  removeRowP6 = () => {    
+    this.props.popArray('programmbs', "paperwork6[p6_array]");
+    this.props.popArray('programmbs', "paperwork6[p6_array]");
+  }
+
+  addRownP7 = () => {    
+    this.props.pushArray('programmbs', "paperwork7[p7_array]", "");
+    this.props.pushArray('programmbs', "paperwork7[p7_array]", "");
+    this.props.pushArray('programmbs', "paperwork7[p7_array]", "");
+    this.props.pushArray('programmbs', "paperwork7[p7_array]", "");
+    this.props.pushArray('programmbs', "paperwork7[p7_array]", "");
+    this.props.pushArray('programmbs', "paperwork7[p7_array]", "");
+    this.props.pushArray('programmbs', "paperwork7[p7_array]", "");
+    this.props.pushArray('programmbs', "paperwork7[p7_array]", "");
+    this.props.pushArray('programmbs', "paperwork7[p7_array]", "");
+    this.props.pushArray('programmbs', "paperwork7[p7_array]", "");
+  }
+
+  removeRowP7 = () => {    
+    this.props.popArray('programmbs', "paperwork7[p7_array]");
+    this.props.popArray('programmbs', "paperwork7[p7_array]");
+    this.props.popArray('programmbs', "paperwork7[p7_array]");
+    this.props.popArray('programmbs', "paperwork7[p7_array]");
+    this.props.popArray('programmbs', "paperwork7[p7_array]");
+    this.props.popArray('programmbs', "paperwork7[p7_array]");
+    this.props.popArray('programmbs', "paperwork7[p7_array]");
+    this.props.popArray('programmbs', "paperwork7[p7_array]");
+    this.props.popArray('programmbs', "paperwork7[p7_array]");
+    this.props.popArray('programmbs', "paperwork7[p7_array]");
+  }
+
+  addRownP8 = () => {    
+    this.props.pushArray('programmbs', "paperwork8[p8_array]", "");
+    this.props.pushArray('programmbs', "paperwork8[p8_array]", "");
+    this.props.pushArray('programmbs', "paperwork8[p8_array]", "");
+    this.props.pushArray('programmbs', "paperwork8[p8_array]", "");
+    this.props.pushArray('programmbs', "paperwork8[p8_array]", "");
+    this.props.pushArray('programmbs', "paperwork8[p8_array]", "");
+    this.props.pushArray('programmbs', "paperwork8[p8_array]", "");
+    this.props.pushArray('programmbs', "paperwork8[p8_array]", "");
+    this.props.pushArray('programmbs', "paperwork8[p8_array]", "");
+    this.props.pushArray('programmbs', "paperwork8[p8_array]", "");
+  }
+
+  removeRowP8 = () => {    
+    this.props.popArray('programmbs', "paperwork8[p8_array]");
+    this.props.popArray('programmbs', "paperwork8[p8_array]");
+    this.props.popArray('programmbs', "paperwork8[p8_array]");
+    this.props.popArray('programmbs', "paperwork8[p8_array]");
+    this.props.popArray('programmbs', "paperwork8[p8_array]");
+    this.props.popArray('programmbs', "paperwork8[p8_array]");
+    this.props.popArray('programmbs', "paperwork8[p8_array]");
+    this.props.popArray('programmbs', "paperwork8[p8_array]");
   }
   
   
@@ -137,14 +212,10 @@ class PaperworkTab extends React.Component {
     const numColumsPaperwork4 = arrayPaperwork4.length / 5;
     const rowsPaperwork4 = [];
     const widthColumsPaperwork4 = ["10%", "45%", "15%", "15%", "15%"];
-    let start = 0;
     let start4 = 0;
-    let end = 5;
     let end4 = 4;
     for (let index = 0; index <= numColumsPaperwork4; index++) {
       rowsPaperwork4.push({start: start4, end: end4});
-      start = start + 5;
-      end = end + 5;
       start4 = start4 + 5;
       end4 = end4 + 5;
     }
@@ -156,14 +227,15 @@ class PaperworkTab extends React.Component {
     })
     const numColumsPaperwork5 = arrayPaperwork5.length / 2;
     const rowsPaperwork5 = [];
-    const widthColumsPaperwork5 = ["70%", "30%"];
-    let startP5 = 0;
-    let endP5 = 2;
+    const widthColumsPaperwork5 = ["70%", "30%"];  
+    let start5 = 0;
+    let end5 = 1;
     for (let index = 0; index <= numColumsPaperwork5; index++) {
-      rowsPaperwork5.push(arrayPaperwork5.slice(startP5, endP5));
-      startP5 = startP5 + 2;
-      endP5 = endP5 + 2;
+      rowsPaperwork5.push({start: start5, end: end5});
+      start5 = start5 + 2;
+      end5 = end5 + 2;
     }
+
 
     const arrayPaperwork6 = programmbs.paperwork6.p6_array.map((prop, key) => {
       return(
@@ -173,13 +245,14 @@ class PaperworkTab extends React.Component {
     const numColumsPaperwork6 = arrayPaperwork6.length / 2;
     const rowsPaperwork6 = [];
     const widthColumsPaperwork6 = ["70%", "30%"];
-    let startP6 = 0;
-    let endP6 = 2;
+    let start6 = 0;
+    let end6 = 1;
     for (let index = 0; index <= numColumsPaperwork6; index++) {
-      rowsPaperwork6.push(arrayPaperwork6.slice(startP6, endP6));
-      startP6 = startP6 + 2;
-      endP6 = endP6 + 2;
+      rowsPaperwork6.push({start: start6, end: end6});
+      start6 = start6 + 2;
+      end6 = end6 + 2;
     }
+   
 
     const titlePaperwork7 = [];
     const titleArray = Array.from(programmbs.paperwork7.p7_title);
@@ -202,12 +275,12 @@ class PaperworkTab extends React.Component {
     const numColumsPaperwork7 = arrayPaperwork7.length / 10;
     const rowsPaperwork7 = [];
     const widthColumsPaperwork7 = ["28%","8%", "8%", "8%", "8%", "8%", "8%", "8%", "8%", "8%"];
-    let startP7 = 0;
-    let endP7 = 10;
+    let start7 = 0;
+    let end7 = 9;
     for (let index = 0; index <= numColumsPaperwork7; index++) {
-      rowsPaperwork7.push(arrayPaperwork7.slice(startP7, endP7));
-      startP7 = startP7 + 10;
-      endP7 = endP7 + 10;
+      rowsPaperwork7.push({start: start7, end: end7});
+      start7 = start7 + 10;
+      end7 = end7 + 10;
     }
 
     const incomePaperwork7 = [];
@@ -223,12 +296,12 @@ class PaperworkTab extends React.Component {
     const numColumsPaperwork8 = arrayPaperwork8.length / 10;
     const rowsPaperwork8 = [];
     const widthColumsPaperwork8 = ["28%","8%", "8%", "8%", "8%", "8%", "8%", "8%", "8%", "8%"];
-    let startP8 = 0;
-    let endP8 = 10;
+    let start8 = 0;
+    let end8 = 9;
     for (let index = 0; index <= numColumsPaperwork8; index++) {
-      rowsPaperwork8.push(arrayPaperwork8.slice(startP8, endP8));
-      startP8 = startP8 + 10;
-      endP8 = endP8 + 10;
+      rowsPaperwork8.push({start: start8, end: end8});
+      start8 = start8 + 10;
+      end8 = end8 + 10;
     }
 
     const expensesPaperwork8 = [];
@@ -246,28 +319,6 @@ class PaperworkTab extends React.Component {
     balanceArray.unshift(t("label_ending_balance"));
     balancePaperwork8.push(balanceArray);
 
-    const discounts = ({ fields, start, end }) => (
-      <tr >
-        {
-            fields.map((code, index) => {
-              return  index >= start && index <= end ?
-                <td>
-                    <Field
-                      name={code}
-                      type="text"
-                      component={CustomInputForm}
-                      label={console.log(code)}
-                      autoFocus
-                    />
-                </td> :
-                    ""                   
-            }
-            )
-        }        
-      </tr>
-    );
-
-  
     
     return (
         <Card >
@@ -305,37 +356,39 @@ class PaperworkTab extends React.Component {
                   </th>
                 </tr>
                 <tr>
-                  <th className={classes.textCenter + " "+ classes.tdTable + " "+ classes.verticalCenter } style={{ width: '15%' }}><h7 className="td-bold">{t("th_paperwork4_date")}</h7></th>
-                  <th className={classes.textCenter + " "+ classes.tdTable + " "+ classes.verticalCenter }><h7 className="td-bold">{t("th_paperwork4_description")}</h7></th>
-                  <th className={classes.textCenter + " "+ classes.tdTable + " "+ classes.verticalCenter }><h7 className="td-bold">{t("th_paperwork4_expenses")}</h7></th>
-                  <th className={classes.textCenter + " "+ classes.tdTable + " "+ classes.verticalCenter }><h7 className="td-bold">{t("th_paperwork4_income")}</h7></th>
-                  <th className={classes.textCenter + " "+ classes.tdTable + " "+ classes.verticalCenter }><h7 className="td-bold">{t("th_paperwork4_balance")}</h7></th>
+                  <th className={classes.textCenter + " "+ classes.tdTable + " "+ classes.verticalCenter } style={{ width: '15%' }}>{t("th_paperwork4_date")}</th>
+                  <th className={classes.textCenter + " "+ classes.tdTable + " "+ classes.verticalCenter }>{t("th_paperwork4_description")}</th>
+                  <th className={classes.textCenter + " "+ classes.tdTable + " "+ classes.verticalCenter }>{t("th_paperwork4_expenses")}</th>
+                  <th className={classes.textCenter + " "+ classes.tdTable + " "+ classes.verticalCenter }>{t("th_paperwork4_income")}</th>
+                  <th className={classes.textCenter + " "+ classes.tdTable + " "+ classes.verticalCenter }>{t("th_paperwork4_balance")}</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className={classes.tdBackgroundColor + " "+ classes.tdTable + " "+ classes.verticalCenter } colSpan={4}><h7 >{t("label_initial_capital")}</h7></td>
+                  <td className={classes.tdBackgroundColor + " "+ classes.tdTable + " "+ classes.verticalCenter } colSpan={4}>{t("label_initial_capital")}</td>
                   <td className={classes.tdTable} style={{ width: '15%' }}>
                       <Field component={CustomInputTable} name="paperwork4[p4_initial_capital]" />
                   </td>
                 </tr>
-                {
-                   rowsPaperwork4.map((prop) => {
-                     return(
-                      <FieldArray name="paperwork4[p4_array]" start={prop.start} end={prop.end} component={discounts} /> 
-                     )
-                   })     
+                {              
+                  
+                        <FieldArray name="paperwork4[p4_array]" numColums={5} component={RenderCellTable} widthColums={widthColumsPaperwork4} /> 
+                    
                 }
                 <tr>
-                <Button color="default" size="sm" onClick={this.deleteClick}>
-                      agregar fila
-                      </Button>
-                      <Button color="default" size="sm" onClick={this.removeRowP4}>
-                      eliminar fila
-                      </Button>
+                  <td colSpan={5}>
+                      <center>
+                        <Button simple color="tumblr" onClick={this.removeRowP4}>
+                          <RemoveCircle/>{t("button_remove_row")}
+                        </Button>
+                        <Button simple color="twitter" onClick={this.addRownP4}>
+                          <AddCircle/>{t("button_add_row")}
+                        </Button>                      
+                      </center>
+                  </td>                  
                 </tr>
                 <tr>
-                  <td className={classes.tdBackgroundColor + " "+ classes.tdTable + " "+ classes.verticalCenter } colSpan={4}><h7 >{t("label_ending_balance")}</h7></td>
+                  <td className={classes.tdBackgroundColor + " "+ classes.tdTable + " "+ classes.verticalCenter } colSpan={4}>{t("label_ending_balance")}</td>
                   <td className={classes.tdTable} style={{ width: '15%' }}>
                       <Field component={CustomInputTable} name="paperwork4[p4_balance]" />
                   </td>
@@ -355,53 +408,73 @@ class PaperworkTab extends React.Component {
                       </th>
                     </tr>
                     <tr>
-                      <td className={classes.tdBackgroundColor + " "+ classes.tdTable + " "+ classes.verticalCenter }><h7 className="td-bolder">{t("label_initial_capital")}</h7></td>
+                      <td className={classes.tdBackgroundColor + " "+ classes.tdTable + " "+ classes.verticalCenter }>{t("label_initial_capital")}</td>
                       <td className={classes.tdTable} style={{ width: '15%' }}>
                           <Field component={CustomInputTable} name="paperwork5[p5_initial_capital]" />
                       </td>
                     </tr>
                     <tr>
-                    <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold  } colSpan={2}><h7>{t("label_income")}</h7></td>
+                    <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold  } colSpan={2}>{t("label_income")}</td>
                     </tr>
                   </thead>
                   <tbody>
                     {
-                        rowsPaperwork5.map((prop,key) => {
-                          return(
-                                <RenderCell data={prop} widthColums={widthColumsPaperwork5} nameField="paperwork5[p5_array"/>
-                          )
-                        })     
+                        
+                            <FieldArray name="paperwork5[p5_array]" numColums={2} component={RenderCellTable} widthColums={widthColumsPaperwork5} /> 
+                          
                     }
                     <tr>
-                      <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold + " "+ classes.textAlignRight } style={{ width: '70%' }}><h7 className="td-bold">{t("label_total_expenses")}</h7></td>
+                      <td colSpan={2}>
+                          <center>
+                            <Button simple color="tumblr" onClick={this.removeRowP5}>
+                              <RemoveCircle/>{t("button_remove_row")}
+                            </Button>
+                            <Button simple color="twitter" onClick={this.addRownP5}>
+                              <AddCircle/>{t("button_add_row")}
+                            </Button>                      
+                          </center>
+                      </td>                  
+                    </tr>
+                    <tr>
+                      <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold + " "+ classes.textAlignRight } style={{ width: '70%' }}>{t("label_total_expenses")}</td>
                       <td className={classes.tdTable} style={{ width: '30%' }}>
                           <Field component={CustomInputTable} name="paperwork5[p5_income]" />
                       </td>
                     </tr>
                 <tr>
-                <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold  } colSpan={2}><h7 className="td-bolder">{t("label_expenses")}</h7></td>
+                <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold  } colSpan={2}>{t("label_expenses")}</td>
                 </tr>
                   {
-                    rowsPaperwork6.map((prop,key) => {
-                      return(
-                            <RenderCell data={prop} widthColums={widthColumsPaperwork6} nameField="paperwork6[p6_array"/> 
-                      )
-                    })     
+                    
+                        <FieldArray name="paperwork6[p6_array]" numColums={2} component={RenderCellTable} widthColums={widthColumsPaperwork6} /> 
+                       
                   }
                 <tr>
-                <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold + " "+ classes.textAlignRight } style={{ width: '70%' }}><h7 className="td-bold">{t("label_total_income")}</h7></td>
+                  <td colSpan={2}>
+                      <center>
+                        <Button simple color="tumblr" onClick={this.removeRowP6}>
+                          <RemoveCircle/>{t("button_remove_row")}
+                        </Button>
+                        <Button simple color="twitter" onClick={this.addRownP6}>
+                          <AddCircle/>{t("button_add_row")}
+                        </Button>                      
+                      </center>
+                  </td>                  
+                </tr>
+                <tr>
+                <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold + " "+ classes.textAlignRight } style={{ width: '70%' }}>{t("label_total_income")}</td>
                 <td className={classes.tdTable} style={{ width: '30%' }}>
                       <Field component={CustomInputTable} name="paperwork6[p6_expenses]" />
                   </td>
                 </tr>
                 <tr>
-                <td className={classes.tdBackgroundColor + " "+ classes.tdTable + " "+ classes.verticalCenter }><h7 className="td-bolder">{t("label_earnings_loses")}</h7></td>
+                <td className={classes.tdBackgroundColor + " "+ classes.tdTable + " "+ classes.verticalCenter }>{t("label_earnings_loses")}</td>
                 <td className={classes.tdTable} style={{ width: '30%' }}>
                 <Field component={CustomInputTable} name="paperwork6[p6_earnings_loses]" />
                   </td>
                 </tr>
                 <tr>
-                  <td className={classes.tdBackgroundColor + " "+ classes.tdTable + " "+ classes.verticalCenter }><h7 className="td-bolder">{t("label_ending_balance")}</h7></td>
+                  <td className={classes.tdBackgroundColor + " "+ classes.tdTable + " "+ classes.verticalCenter }>{t("label_ending_balance")}</td>
                   <td className={classes.tdTable} style={{ width: '30%' }}>
                   <Field component={CustomInputTable} name="paperwork6[p6_balance]" />
                   </td>
@@ -441,15 +514,25 @@ class PaperworkTab extends React.Component {
                     })     
                   }
                   <tr>
-                      <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold  } colSpan={10}><h7 className="td-bolder">{t("label_income")}</h7></td>
+                      <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold  } colSpan={10}>{t("label_income")}</td>
                   </tr>
                   {
-                    rowsPaperwork7.map((prop,key) => {
-                      return(
-                            <RenderCell data={prop} widthColums={widthColumsPaperwork7} nameField="paperwork7[p7_array"/>
-                      )
-                    })     
+                   
+                            <FieldArray name="paperwork7[p7_array]" numColums={10} component={RenderCellTable} widthColums={widthColumsPaperwork7} />
+                       
                   }
+                  <tr>
+                      <td colSpan={10}>
+                          <center>
+                            <Button simple color="tumblr" onClick={this.removeRowP7}>
+                              <RemoveCircle/>{t("button_remove_row")}
+                            </Button>
+                            <Button simple color="twitter" onClick={this.addRownP7}>
+                              <AddCircle/>{t("button_add_row")}
+                            </Button>                      
+                          </center>
+                      </td>                  
+                    </tr>
                   {
                     incomePaperwork7.map((prop,key) => {
                       return(
@@ -458,15 +541,25 @@ class PaperworkTab extends React.Component {
                     })     
                   }
                   <tr>
-                      <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold  } colSpan={10}><h7 className="td-bolder">{t("label_expenses")}</h7></td>
+                      <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold  } colSpan={10}>{t("label_expenses")}</td>
                   </tr>
                   {
-                    rowsPaperwork8.map((prop,key) => {
-                      return(
-                            <RenderCell data={prop} widthColums={widthColumsPaperwork7Title}  nameField="paperwork8[p8_array"/>
-                      )
-                    })     
+                    
+                        <FieldArray name="paperwork8[p8_array]" numColums={10} component={RenderCellTable} widthColums={widthColumsPaperwork8} />
+                       
                   }
+                  <tr>
+                      <td colSpan={10}>
+                          <center>
+                            <Button simple color="tumblr" onClick={this.removeRowP8}>
+                              <RemoveCircle/>{t("button_remove_row")}
+                            </Button>
+                            <Button simple color="twitter" onClick={this.addRownP8}>
+                              <AddCircle/>{t("button_add_row")}
+                            </Button>                      
+                          </center>
+                      </td>                  
+                    </tr>
                   {
                     expensesPaperwork8.map((prop,key) => {
                       return(
@@ -513,7 +606,7 @@ PaperworkTab = connect(
     initialValues: state.programmbsReducer.data, 
     programmbs: state.programmbsReducer.programmbs
   }),
-  { load: loadFormProgrammbs, loadAddRownP4:  addRownP4}, 
+  { load: loadFormProgrammbs, pushArray: arrayPush, popArray: arrayPop}, 
 )(PaperworkTab);
 
 
