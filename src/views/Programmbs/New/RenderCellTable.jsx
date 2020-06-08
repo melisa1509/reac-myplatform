@@ -53,41 +53,61 @@ const styles = {
 
 
 
-class RenderCell extends React.Component {
+class RenderCellTable extends React.Component {
 
   
   render() {
-    const { classes, widthColums, fields, start, end } = this.props;
+    const { classes, widthColums, fields, numColums } = this.props;      
+    const numColumsPaperwork4 = fields.length / numColums;
+    const rowsPaperwork4 = [];
+    let row = [];
+    let cons = 0;
+    for (let index = 0; index < numColumsPaperwork4; index++) {
+      row = [];
+      for (let i = 0; i < numColums; i++) {
+        row[i] = cons;    
+        cons++;    
+      }
+      rowsPaperwork4.push(row);     
+    }
+    const nameArray = fields.name.replace("]", "");
+    
     return (
-        <tr>
-            {
-                  
-                fields.map((prop, key) => {
-                    return (
-                        <td className={ classes.tdTable + " "+ classes.verticalCenter  } style={{ width: widthColums[key] }}>
-                            <Field
-                            component={CustomInputForm}
-                            name={prop}
-                            />
-                        </td>
-                    );                    
-                })
-            }
-        </tr>
+    <>
+      {
+          rowsPaperwork4.map((row, index) => (
+            <tr key={index}>
+              {
+                row.map((code, index) => (
+                  <td className={ classes.tdTable + " "+ classes.verticalCenter  } style={{ width: widthColums[index] }} key={code}>
+                    <Field
+                    component={CustomInputForm}
+                    name={nameArray + "["+ code + "]]"}
+                    key={code}
+                    />
+                  </td>
+                ))
+              }
+              
+            </tr>
+          ))
+          
+      }
+    </>
     );
   }
 }
 
-RenderCell = reduxForm({
+RenderCellTable = reduxForm({
   form: 'programmbs',
   enableReinitialize: true,
-})(RenderCell);
+})(RenderCellTable);
 
-RenderCell = connect(
+RenderCellTable = connect(
   state => ({
     initialValues: state.programmbsReducer.data, 
   }),
   {  }, 
-)(RenderCell);
+)(RenderCellTable);
 
-export default translate(withStyles(styles)(RenderCell));
+export default translate(withStyles(styles)(RenderCellTable));

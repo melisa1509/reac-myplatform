@@ -34,7 +34,6 @@ import PaperworkTab from './PaperworkTab.jsx';
 import QualitylifeTab from './QualitylifeTab.jsx';
 import ServiceTab from './ServiceTab.jsx';
 import HistoryTab from './HistoryTab.jsx';
-import PaperworkTab2 from './PaperworkTab2.jsx';
 
 
 // style for this view
@@ -125,7 +124,7 @@ class ShowForm extends React.Component {
                       tabButton: t("title_quality_life"),
                       tabIcon: AccessibityNew,
                       tabContent: (
-                        <PaperworkTab2 />
+                        <QualitylifeTab />
                       )
                     },
                     {

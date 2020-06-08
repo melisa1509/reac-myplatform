@@ -61,7 +61,7 @@ class RenderCell extends React.Component {
     return (
         <tr>
             {
-                data.map((prop, key) => {
+                data.map((prop, key) => { 
                     return (
                         <td className={ classes.tdTable + " "+ classes.verticalCenter  } style={{ width: widthColums[key] }}>
                             <Field
