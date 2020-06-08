@@ -68,7 +68,8 @@ class IndexTable extends React.Component {
     this.searchFilter = this.searchFilter.bind(this);
     this.imageAlert = this.imageAlert.bind(this);
     this.uploadImage = this.uploadImage.bind(this);
-    this.evaluationAlert = this.evaluationAlert.bind(this);
+    this.evaluationPreAlert = this.evaluationPreAlert.bind(this);
+    this.evaluationPostAlert = this.evaluationPostAlert.bind(this);
     this.evaluationPre = this.evaluationPre.bind(this);
     this.deleteAlert = this.deleteAlert.bind(this);
   }
@@ -110,8 +111,11 @@ class IndexTable extends React.Component {
   uploadImage(){
     this.props.dispatchUploadImage();
   }
-  evaluationAlert(){
+  evaluationPreAlert(){
     this.props.dispatchPreAlert();
+  }
+
+  evaluationPostAlert(){
     this.props.dispatchPostAlert();
   }
 
@@ -132,58 +136,49 @@ class IndexTable extends React.Component {
   render() {
     const { certificate_list, image_alert, pre_alert,post_alert, classes} = this.props;
     let { t } = this.props;
-    const data = certificate_list.map((prop, key) => {
-        let id=""
-        let buttonMbs = false;
-        let name=false;
-        let evaluation=false;
-        let actions=false;
-        let project=false;
-        if(prop.student.programmbs == undefined){
-          name =  prop.student.first_name
-          evaluation = true
-          actions = true
-          project = true
-        }
-        else if(prop.student.programmbs.modality == "option.modality1"){
-          name = prop.student.first_name + " " + prop.student.last_name 
-          evaluation = true
-          actions = true
-          project = true
+    let id_student=""
+    let approved = certificate_list.filter(prop => prop.student.programmbs == undefined || prop.student.programmbs.modality == "option.modality1" )
+    console.log(approved)
+    const data = approved.map((prop, key) => {
+      let buttonMbs = false;
+      let buttonEvaluationPre =false
+      let buttonEvaluationPost =false
 
+      if(prop.student.evaluation !== undefined){
+        buttonEvaluationPre =true
+          if(prop.student.evaluation.postquestion1 !== undefined){
+            buttonEvaluationPost =true
+          } 
+      }
+      if(prop.student.programmbs !== undefined){
           if(prop.student.programmbs.filestudent !== undefined){
             buttonMbs =  true
-          } 
-        }
+        } 
+      }
       return {
         id: key, 
-        full_name:name,
+        id_student:prop.student.id,
+        full_name:prop.student.first_name + " " + prop.student.last_name,
         evaluation:(
           <div className="actions-left">
-            {evaluation ?
               <Button
-                onClick={this.evaluationAlert, id=prop.student.id}
+                onClick={this.evaluationPreAlert}
                 size="sm"
-                color="default" 
+                color={buttonEvaluationPre==true ? "default" : "warning" }
               >
                 {t('button_pre_evaluation')}
               </Button>
-            : null}
-            {evaluation ?
               <Button
-                onClick={this.evaluationAlert}
+                onClick={this.evaluationPostAlert}
                 size="sm"
-                color="default" 
+                color={buttonEvaluationPost==true ? "default" : "warning" }
               >
                 {t('button_post_evaluation')}
               </Button>
-            : ""}
           </div>
         ),
         projects: (
           <div className="actions-left">
-            {project ?
-            <Link to={"/group/uploadImage/" + prop.student.id}>
               <Button
                 onClick={this.imageAlert}
                 size="sm"
@@ -191,13 +186,10 @@ class IndexTable extends React.Component {
               >
                 {t('button_mbs')}
               </Button>
-            </Link>
-            : ""}
           </div>
         ),
         actions:(
           <div className="actions-left">
-           {actions ? <div>
           <Link to={"/student/show/" + prop.student.id}>
             <Button
               justIcon
@@ -228,12 +220,13 @@ class IndexTable extends React.Component {
               <Close />
             </Button>
             </Link>
-            </div>: actions=false}
         </div>
       )
       };
     });
-    
+    const initialValuesid={
+      id_student:id_student
+    }
     return (
       <GridContainer>
         <GridItem xs={12}>
@@ -275,7 +268,7 @@ class IndexTable extends React.Component {
                   >
                   <h4>{t("title_pre_evaluation")}</h4>
                   <br/>
-                      <PreForm/>
+                      <PreForm initialValues={initialValuesid}/>
               </SweetAlert>
             : ""}
           {post_alert ? 
