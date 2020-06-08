@@ -44,6 +44,7 @@ import AmbassadorChangePassword  from 'views/Ambassador/ChangePassword/ChangePas
 import CertificateGroup from 'views/Certificate/Group/Index.jsx';
 import CertificateList from 'views/Certificate/Student/Index.jsx';
 import Dashboard from 'views/Dashboard/Index.jsx';
+import DashboardStudent from 'views/Dashboard/Student/Index.jsx';
 import AssignMentor from 'views/Dashboard/AssignMentor/Index.jsx';
 import ConfirmMentor from 'views/Dashboard/AssignMentor/Confirm.jsx';
 import ClearPendingDashboard from 'views/Dashboard/AssignMentor/Clear.jsx';
@@ -119,6 +120,7 @@ ReactDOM.render(
           <Route path="/certificate" component={CertificateGroup} exact /> 
           <Route path="/certificate/list/student/:id" component={CertificateList} exact /> 
           <Route path="/dashboard" component={Dashboard} exact />
+          <Route path="/dashboard/student" component={DashboardStudent} exact />
           <Route path="/dashboard/assignmentor/:student" component={AssignMentor} exact />
           <Route path="/dashboard/confirmmentor/:student/:group" component={ConfirmMentor} exact />
           <Route path="/dashboard/clearpending/:student" component={ClearPendingDashboard} exact />
