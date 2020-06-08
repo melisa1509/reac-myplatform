@@ -104,6 +104,7 @@ class MBSTable extends React.Component {
                 {
                   Header: t("th_name"),
                   accessor: "name",
+                  width:100
                 },
                 {
                   Header: t("th_plan"),

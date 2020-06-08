@@ -31,9 +31,7 @@ const style = {
       scrollBehavior: "smooth",
       alignItems: "left",
       justifyContent: "left",
-      
-      
-      
+      textAlign: "left"
     },
     infoText: {
       fontWeight: "500",
@@ -181,7 +179,7 @@ class PreForm extends React.Component {
                       component={CustomInputRedux}
                       name="id_student"
                       inputProps={{
-                        type: "hidden",
+                        type: "text",
                       }}
                     />
                 </GridItem>

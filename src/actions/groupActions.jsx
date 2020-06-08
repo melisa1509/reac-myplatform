@@ -3,13 +3,15 @@ import { LOAD_FORM_GROUP, SHOW_GROUP, EDIT_GROUP, SUCCESSFULL_EDIT, NEW_GROUP, D
 import { BASE_URL } from 'constants/urlTypes.jsx';
 
 export const getGroupList= () => {
+    return (dispatch, getState) => {
+    const reduxState = getState();
 
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
         var urlencoded = new URLSearchParams();
-        urlencoded.append("id_ambassador", "71");
-        urlencoded.append("role", "ROLE_EMBASSADOR");
+        urlencoded.append("id_ambassador", reduxState.loginReducer.active_user.id);
+        urlencoded.append("role",reduxState.loginReducer.active_user.roles[0]);
 
         var requestOptions = {
         method: 'POST',
@@ -17,7 +19,7 @@ export const getGroupList= () => {
         body: urlencoded,
         redirect: 'follow'
         };
-    return (dispatch) => {
+
         return fetch( BASE_URL + "/group/?callback=foo", requestOptions)
         .then(response => response.json())
         .then(json => {
