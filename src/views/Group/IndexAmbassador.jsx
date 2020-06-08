@@ -3,9 +3,13 @@ import PropTypes from "prop-types";
 // react component for creating dynamic tables
 import ReactTable from "react-table";
 import { connect } from "react-redux";
-import { getProjectProgress } from "actions/groupActions";
+import { getGroupList } from "actions/groupActions.jsx";
 import { Link } from "react-router-dom";
 
+// @material-ui/icons
+import Create from "@material-ui/icons/Create";
+import Visibility from "@material-ui/icons/Visibility";
+import Close from "@material-ui/icons/Close";
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
@@ -13,10 +17,9 @@ import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
 import { translate } from 'react-switch-lang';
-import { withRouter } from 'react-router-dom';
 
 
-class MBSTable extends React.Component {
+class IndexTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -55,26 +58,80 @@ class MBSTable extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatchGetProjectProgress(this.props.match.params.id);
+    this.props.dispatchGetGroupList();
   }
 
  
   render() {
-    const { progress_list, loading } = this.props;
+    const { group_list, loading, active_user } = this.props;
     let { t } = this.props;
             
-    const data = progress_list.progressMbs.map((prop, key) => {
+    const data = group_list.map((prop, key) => {
+      let i = 0;
+      let start_date=[];
+      for (i = 0; i < 10 ; i++) {
+         start_date[i]=prop.start_date[i]
+      }
       return {
         id: key, 
-        name: prop.name,
-        plan:prop.plan,
-        product:prop.product,
-        process:prop.process,
-        price:prop.price,
-        promotion:prop.promotion,
-        paperwork:prop.paperwork,
-        quality:prop.quality,
-        service:prop.service,
+        full_name: prop.name,
+        modality:prop.modality,
+        date:start_date,
+        projects: (
+          <div className="actions-left">
+            <Link to={"/group/student/" + prop.id}>
+              <Button
+                size="sm"
+                color="success"
+              >
+                {t('button_manage_students')}
+              </Button>
+            </Link>
+            {" "}
+            <Link to={"/group/progress/" + prop.id}>
+              <Button
+                size="sm"
+                color="info"
+              >
+                {t('button_project_progress')}
+              </Button>
+            </Link>
+          </div>
+        ),
+        actions: (
+          <div className="actions-left">
+            <Link to={"/group/show/" + prop.id}>
+              <Button
+                justIcon
+                round
+                simple
+                color="info"
+              >
+                <Visibility />
+              </Button>
+            </Link>{" "}
+            <Link to={"/group/edit/" + prop.id}>
+              <Button
+                justIcon
+                round
+                simple             
+                color="warning"
+              >
+                <Create />
+              </Button>
+            </Link>{" "}
+            <Link to={"/group/show/" + prop.id}>
+              <Button
+                justIcon
+                round
+                simple            
+                color="danger"
+              >
+                <Close />
+              </Button>
+            </Link>
+          </div>
+        )
       };
     });
     
@@ -103,55 +160,30 @@ class MBSTable extends React.Component {
               columns={[
                 {
                   Header: t("th_name"),
-                  accessor: "name",
+                  accessor: "full_name",
+                  sortable: false
                 },
                 {
-                  Header: t("th_plan"),
-                  accessor: "plan",
-                  width: 97,
-                  sortable: false,
+                  Header: t("th_modality"),
+                  accessor: "modality",
+                  sortable: false
                 },
                 {
-                  Header: t("th_product"),
-                  accessor: "product",
-                  width: 97,
+                  Header: t("th_start_classes"),
+                  accessor: "date",
                   sortable: false,
+                  filterable: false
                 },
                 {
-                  Header: t("th_process"),
-                  accessor: "process",
-                  width: 97,
+                  Header: t("th_actions"),
+                  accessor: "actions",
                   sortable: false,
+                  filterable: false
                 },
                 {
-                  Header: t("th_price"),
-                  accessor: "price",
-                  width: 97,
-                  sortable: false,
-                },
-                {
-                  Header: t("th_promotion"),
-                  accessor: "promotion",
-                  width: 97,
-                  sortable: false,
-                },
-                {
-                  Header: t("th_paperwork"),
-                  accessor: "paperwork",
-                  width: 97,
-                  sortable: false,
-                },
-                {
-                  Header: t("th_quality"),
-                  accessor: "quality",
-                  width: 97,
-                  sortable: false,
-                },
-                {
-                  Header: t("th_service"),
-                  accessor: "service",
-                  width: 97,
-                  sortable: false,
+                  Header: "",
+                  accessor: "projects",
+                  sortable: false
                 },
                 {
                   Header: "",
@@ -168,7 +200,8 @@ class MBSTable extends React.Component {
                   filterMethod: (filter, rows) => {
                     const result = matchSorter(rows, filter.value, {
                       keys: [
-                        "name"
+                        "full_name",
+                        "modality"
                       ], threshold: matchSorter.rankings.WORD_STARTS_WITH
                     });
                     return result;
@@ -177,7 +210,7 @@ class MBSTable extends React.Component {
                 }
               ]}
               key={data.length}
-              defaultPageSize={data.length < 10 ? data.length : 10 }
+              defaultPageSize={data.length < 10 ? data.length : 10}
               showPaginationTop={false}
               showPaginationBottom={true}
               className="-striped -highlight"
@@ -186,9 +219,9 @@ class MBSTable extends React.Component {
           <GridContainer>
             <GridItem xs={12} sm={12} md={12}>
                 <center>
-                <Link to={"/group"}>
-                <Button color="default" size="sm">
-                {t("button_return_to_list")}
+                <Link to={"/group/new/"+ active_user.id}>
+                <Button color="info" size="sm">
+                {t("button_create_new")}
                 </Button>
                 {" "}
                 </Link>{" "}
@@ -201,14 +234,15 @@ class MBSTable extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
-      progress_list: state.groupReducer.progress_list, 
+      group_list: state.groupReducer.group_list, 
+      active_user:state.loginReducer.active_user,
       loading: state.groupReducer.loading
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetProjectProgress: (key) => dispatch( getProjectProgress(key) )
+  dispatchGetGroupList: () => dispatch( getGroupList() )
 });
 
-const MBSTableComponent = translate(MBSTable);
-export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(MBSTableComponent));
+const IndexTableComponent = translate(IndexTable);
+export default connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent);
 

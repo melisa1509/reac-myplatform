@@ -54,7 +54,7 @@ const style = {
     },
     label:{
       color:"red",
-      fontSize:"20px"
+      fontSize:"30px"
     },
     ...customSelectStyle,
     ...validationFormsStyle
@@ -81,8 +81,9 @@ class NewForm extends React.Component {
     
      
     saveClick() {
-      if (this.state.groupnameState === "") {
+        if (this.state.groupnameState === "") {
         this.setState({ groupnameState: "error" });
+        }
         if (this.state.interweaveLocalState === "") {
           this.setState({ imterweaveLocalState: "error" });
         }
@@ -95,28 +96,10 @@ class NewForm extends React.Component {
         }
         if(this.state.groupnameState === "success" ){
         const reduxState = store.getState();
-        this.props.dispatchNewGroup();
-        this.props.dispatchSuccessfulNew(this.props.history);
+        this.props.dispatchNewGroup(this.props.history);
         this.props.dispatchSuccessRequiredFields();
         }
       }
-
-      if (this.state.interweaveLocalState === "") {
-        this.setState({ imterweaveLocalState: "error" });
-      }
-      if (this.state.authorizationCodeState === "") {
-        this.setState({ authorizationCodeState: "error" });
-      }
-      if(this.state.groupnameState === "error" || this.state.full_nameState === "error"){
-        const stateRedux = store.getState();
-        this.props.dispatchErrorRequiredFields();
-      }
-      if(this.state.groupnameState === "success" ){
-      const reduxState = store.getState();
-      this.props.dispatchNewGroup(this.props.history);
-      this.props.dispatchSuccessRequiredFields();
-      }
-    }
 
     deleteClick(){
       this.props.dispatchDeleteSuccessful();
@@ -125,7 +108,6 @@ class NewForm extends React.Component {
     render() {
         const { classes, errorRequired, successRequired } = this.props;
         let { t } = this.props;
-        const {uploadPercentage} = this.state;
         return (
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={8}>
@@ -224,7 +206,7 @@ class NewForm extends React.Component {
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <Field
-                      labelText={t("label_authorization_code1")}
+                      labelText={t("label_authorization_code")}
                       component={CustomInputRedux}
                       name="authorization_code"
                       success={this.state.authorizationCodeState === "success"}
@@ -244,7 +226,7 @@ class NewForm extends React.Component {
               <GridContainer>
                   <GridItem xs={12} sm={12} md={12}> 
                       <InputLabel className={classes.label}>
-                        <SuccessLabel>{t("label_name_image")}</SuccessLabel>
+                        <SuccessLabel className={classes.label}>{t("label_name_image")}</SuccessLabel>
                       </InputLabel>
                       <Field
                         component={FileUpload}

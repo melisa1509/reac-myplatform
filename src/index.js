@@ -22,6 +22,7 @@ import EditGroup from 'views/Group/Edit/Edit.jsx';
 import NewGroup from 'views/Group/New/New.jsx';
 import GroupAmbassadors from 'views/Group/New/ListAmbassador/Index.jsx';
 import ProjectProgress from 'views/Group/Progress/Index.jsx';
+import UploadImage from 'views/Group/Participants/Index.jsx';
 import StudentGroup from 'views/Group/Participants/Index.jsx';
 import App from 'views/Age/App.jsx';
 import CourseNew from 'views/Course/New/New.jsx';
@@ -109,6 +110,7 @@ ReactDOM.render(
           <Route path="/group/ambassador" component={GroupAmbassadors} exact /> 
           <Route path="/group/progress/:id" component={ProjectProgress} exact /> 
           <Route path="/group/student/:id" component={StudentGroup} exact /> 
+          <Route path="/group/uploadImage/:id" component={UploadImage} exact /> 
           <Route path="/ambassador" component={Ambassador} exact /> 
           <Route path="/ambassador/show/:id" component={ShowAmbassador} exact /> 
           <Route path="/ambassador/edit/:id" component={EditAmbassador} exact /> 

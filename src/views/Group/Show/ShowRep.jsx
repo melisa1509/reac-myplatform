@@ -13,6 +13,7 @@ import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import ShowTable from 'views/Group/Show/ShowTable.jsx';
+import ShowAmbassador from 'views/Group/Show/ShowAmbassador.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
@@ -30,7 +31,11 @@ const styles = {
 class ShowRep extends React.Component { 
 
   render() {
-    const { classes, styles } = this.props;
+    const { classes, styles, active_user } = this.props;
+    let rol=false
+    if(active_user.roles == "ROLE_EMBASSADOR"){
+      rol=true
+    }
     let { t } = this.props;
     return (
       <GridContainer justify="center">
@@ -42,7 +47,7 @@ class ShowRep extends React.Component {
              </center>
             </CardHeader>
             <CardBody>
-                <ShowTable  />  
+              {rol ? <ShowAmbassador  /> : <ShowTable  /> }
             </CardBody>
           </Card>
         </GridItem>
@@ -56,10 +61,13 @@ ShowRep.propTypes = {
 };
 
 //export default withStyles(styles)(ReactTables);
+const mapStateToProps = state => ({ 
+  active_user: state.loginReducer.active_user, 
+});
 
 const mapDispatchToPropsActions = dispatch => ({
 });
 
 
 const ShowRepComponent = translate(withStyles(styles)(ShowRep));
-export default withRouter(connect(null, mapDispatchToPropsActions)(ShowRepComponent));
+export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(ShowRepComponent));

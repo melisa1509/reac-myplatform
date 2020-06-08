@@ -86,7 +86,7 @@ class IndexTable extends React.Component {
                 size="sm"
                 color="success"
               >
-                {t('button_manage_participants')}
+                {t('button_manage_students')}
               </Button>
             </Link>
             {" "}
@@ -211,7 +211,8 @@ class IndexTable extends React.Component {
                   filterAll: true,
                 }
               ]}
-              defaultPageSize={10}
+              key={data.length}
+              defaultPageSize={data.length < 10 ? data.length : 10}
               showPaginationTop={false}
               showPaginationBottom={true}
               className="-striped -highlight"

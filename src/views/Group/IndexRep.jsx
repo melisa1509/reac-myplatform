@@ -13,6 +13,7 @@ import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import IndexTable from './IndexTable.jsx';
+import IndexAmbassador from './IndexAmbassador.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
@@ -31,8 +32,12 @@ class IndexRep extends React.Component {
  
 
   render() {
-    const { classes, styles } = this.props;
+    const { classes, styles, active_user } = this.props;
     let { t } = this.props;
+    let rol=false
+    if(active_user.roles == "ROLE_EMBASSADOR"){
+      rol=true
+    }
     const login = "es";
     return (
       <GridContainer justify="center">
@@ -42,7 +47,7 @@ class IndexRep extends React.Component {
                 <h4 className={classes.cardTitle}>{t("title_group_list")}</h4>
             </CardHeader>
             <CardBody>
-                <IndexTable  />      
+              {rol ? <IndexAmbassador  /> : <IndexTable  /> }
             </CardBody>
           </Card>
         </GridItem>
@@ -59,7 +64,9 @@ IndexRep.propTypes = {
 
 const mapDispatchToPropsActions = dispatch => ({
 });
-
+const mapStateToProps = state => ({ 
+  active_user: state.loginReducer.active_user, 
+});
 
 const NewRepComponent = translate(withStyles(styles)(IndexRep));
-export default connect(null, mapDispatchToPropsActions)(NewRepComponent);
+export default connect(mapStateToProps, mapDispatchToPropsActions)(NewRepComponent);

@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { translate } from 'react-switch-lang';
 import { Link } from "react-router-dom";
 
@@ -7,6 +6,10 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Field, reduxForm } from 'redux-form';
 import { store } from "store";
+import {ProgressBar} from 'react-bootstrap';
+import axios from 'axios';
+import CustomLinearProgress from "components/CustomLinearProgress/CustomLinearProgress.jsx";
+
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -21,10 +24,10 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx'; 
 import DateTimePicker from 'components/DateTimePicker/DateTimePickerRedux.jsx';
-import { showGroup } from "actions/groupActions.jsx";
-import { editGroup } from "actions/groupActions.jsx"; 
+import { newGroup } from "actions/groupActions.jsx"; 
 import { errorRequiredFields } from "actions/generalActions.jsx";
 import { successRequiredFields } from "actions/generalActions.jsx";
+import { successfulNew } from "actions/generalActions.jsx";
 import { verifyChange } from "assets/validation/index.jsx";
 import { deleteSuccessful } from "actions/generalActions.jsx";
 import ModalitySelect from "views/Select/ModalitySelect.jsx";
@@ -51,36 +54,35 @@ const style = {
     },
     label:{
       color:"red",
-      fontWeight: "500",
+      fontSize:"30px"
     },
     ...customSelectStyle,
     ...validationFormsStyle
 };
 
 
-class EditForm extends React.Component {
+class NewForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             groupnameState: "success",
-            full_nameState: "success",
             interweaveLocalState: "success",
-            authorizationCodeState: "success"
+            authorizationCodeState: "success",
+            uploadPercentage: 0,
         };
         this.saveClick = this.saveClick.bind(this);
-        this.deleteClick = this.deleteClick.bind(this);
-      }
+        this.deleteClick= this.deleteClick.bind(this);
+    }
 
-      updateFileName = (key) => {
-        this.props.change('name_image', key);
-      }
+    updateFileName = (key) => {
+      this.props.change('name_image', key);
+    }
+
+    
      
-      saveClick() {
+    saveClick() {
         if (this.state.groupnameState === "") {
-          this.setState({ groupnameState: "error" });
-        }
-        if (this.state.full_nameState === "") {
-          this.setState({ first_nameState: "error" });
+        this.setState({ groupnameState: "error" });
         }
         if (this.state.interweaveLocalState === "") {
           this.setState({ imterweaveLocalState: "error" });
@@ -92,53 +94,25 @@ class EditForm extends React.Component {
           const stateRedux = store.getState();
           this.props.dispatchErrorRequiredFields();
         }
-        if(this.state.groupnameState === "success" && this.state.full_nameState){
+        if(this.state.groupnameState === "success" ){
         const reduxState = store.getState();
-        this.props.dispatchEditGroup();
+        this.props.dispatchNewGroup(this.props.history);
         this.props.dispatchSuccessRequiredFields();
         }
       }
 
-      deleteClick(){
-        this.props.dispatchDeleteSuccessful();
-      }
-
-      componentDidMount() {
-        this.props.loadShowGroup(this.props.match.params.id);
-      }
+    deleteClick(){
+      this.props.dispatchDeleteSuccessful();
+    }
       
     render() {
-        const { classes, successfull_edit, editError, errorRequired, successRequired } = this.props;
+        const { classes, errorRequired, successRequired } = this.props;
         let { t } = this.props;
         return (
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={8}>
               <form>
               <GridContainer justify="center">
-                  <GridItem xs={12} sm={12} md={12}>
-                      { editError ?      
-                      <SnackbarContent
-                        message={
-                          <center>{t("label_update_error")}</center>
-                        }
-                        close
-                        color="danger"
-                      />
-                      : ""}
-                  </GridItem>
-              </GridContainer>
-              <GridContainer justify="center">
-                  <GridItem xs={12} sm={12} md={12}>
-                      { successfull_edit ?      
-                      <SnackbarContent
-                        message={
-                          <center>{t("label_save_success")}</center>
-                        }
-                        close
-                        color="success"
-                      />
-                      : ""}
-                  </GridItem>
               </GridContainer>
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
@@ -153,12 +127,12 @@ class EditForm extends React.Component {
                       }}
                       inputProps={{
                         onKeyUp: event => 
-                              verifyChange(event, "name", "length", 0, null, this),
+                              verifyChange(event, "groupname", "length", 0, null, this),
                         type: "text",
                       }}
                     />
                 </GridItem>
-              </GridContainer>              
+              </GridContainer>
               <GridContainer >
                 <GridItem xs={12} sm={12} md={6}>
                   <InputLabel className={classes.label}>
@@ -223,7 +197,7 @@ class EditForm extends React.Component {
                       }}
                       inputProps={{
                         onKeyUp: event => 
-                              verifyChange(event, "interweave_local", "length", 0, null, this),
+                              verifyChange(event, "interweaveLocal", "length", 0, null, this),
                         type: "text",
                       }}
                     />
@@ -248,10 +222,11 @@ class EditForm extends React.Component {
                     />
                 </GridItem>
               </GridContainer>
+              <br/>              
               <GridContainer>
                   <GridItem xs={12} sm={12} md={12}> 
                       <InputLabel className={classes.label}>
-                        <SuccessLabel>{t("label_name_image")}</SuccessLabel>
+                        <SuccessLabel className={classes.label}>{t("label_name_image")}</SuccessLabel>
                       </InputLabel>
                       <Field
                         component={FileUpload}
@@ -263,7 +238,17 @@ class EditForm extends React.Component {
                       />            
                   </GridItem>
               </GridContainer>
-              <br/>
+              <GridContainer >
+                <GridItem xs={12} sm={12} md={12}>
+                    <Field
+                      component={CustomInputRedux}
+                      name="id_ambassador"
+                      inputProps={{
+                        type: "hidden",
+                      }}
+                    />
+                </GridItem>
+              </GridContainer>
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
                       { errorRequired ? <Danger><h6 className={classes.infoText}>{t("label_require_fields")}</h6></Danger>: ""}
@@ -286,6 +271,7 @@ class EditForm extends React.Component {
                       </center>
                   </GridItem>
               </GridContainer>
+              
               </form>
             </GridItem>
           </GridContainer>
@@ -294,25 +280,22 @@ class EditForm extends React.Component {
     }
 }
 
-EditForm = reduxForm({
-  form: 'groupform', 
-  enableReinitialize: true
-})(EditForm);
+NewForm = reduxForm({
+  form: 'groupNewform', 
+})(NewForm);
 
 
-EditForm = connect(
+NewForm = connect(
   state => ({
-    initialValues: state.groupReducer.data,
     errorRequired:state.generalReducer.errorRequired,
     successRequired:state.generalReducer.successRequired,
-    edit_group: state.groupReducer.edit_group,
-    successfull_edit:state.generalReducer.successfull_edit,
-    show_group: state.groupReducer.show_group,
+    successfull_new:state.generalReducer.successfull_new,
+    new_group: state.groupReducer.new_group,
   }),
-  { loadShowGroup: showGroup, dispatchEditGroup: editGroup, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful},
-)(EditForm);
+  { dispatchNewGroup: newGroup, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful, dispatchSuccessfulNew: successfulNew },
+)(NewForm);
 
-export default  withRouter(translate(withStyles(style)(EditForm)));
+export default  withRouter(translate(withStyles(style)(NewForm)));
 
 
 

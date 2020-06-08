@@ -18,6 +18,7 @@ import mainPageStyle from "assets/jss/material-kit-react/views/mainPage.jsx";
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 
 import { hideRevisionAlert, redirectDashboard } from "actions/programmbsActions.jsx";
+import { GroundOverlay } from "react-google-maps";
 
 const styles = {
     ...mainPageStyle,
@@ -44,7 +45,6 @@ class Show extends React.Component {
     const { classes, sendRevisionProjectSuccessfull, sendRevisionProjectError, editRevisionSuccessfull, editRevisionError, approveProjectError, approveProjectSuccessfull, t } = this.props;
     return (
         <div>
-          <AdminHeader/>
             {editRevisionSuccessfull ? 
               <SweetAlert
                   success
@@ -104,7 +104,7 @@ class Show extends React.Component {
             {approveProjectSuccessfull ? 
               <SweetAlert
                   success
-                  style={{ display: "block", marginTop: "-100px" }}
+                  style={{ display: "block", marginTop: "-200px" }}
                   onConfirm={() => this.redirectDashboard()}
                   onCancel={() => this.hideAlert()}
                   confirmBtnText={t("button_continue")}
@@ -112,7 +112,7 @@ class Show extends React.Component {
                       this.props.classes.button + " " + this.props.classes.success
                   }
                   >
-                  <h4>{t("label_success_approved")}</h4>
+                  <h4>{t("label_success_approved")}</h4>                
               </SweetAlert>
             : ""}
             {approveProjectError ? 
