@@ -2,6 +2,7 @@ import { STUDENT_LIST, SHOW_STUDENT, LOAD_FORM_STUDENT } from "constants/actionT
 import { DELETE_STUDENT } from "constants/actionTypes";
 import { ERROR_EDIT_STUDENT } from "constants/actionTypes";
 import { EDIT_STUDENT } from "constants/actionTypes";
+import { NEW_STUDENT } from "constants/actionTypes";
 import { EDIT_PASSWORD_STUDENT } from "constants/actionTypes";
 
 const initialState = { 
@@ -20,7 +21,8 @@ const initialState = {
   },
   new_student:{
     language: "es",
-    country: "AFG"
+    country: "AFG",
+    id:""
   }
 }
 
@@ -55,6 +57,10 @@ export const studentReducer = (state = initialState, action) => {
           return Object.assign({}, state, {
             edit_student: action.payload
           }); 
+      case NEW_STUDENT:
+        return Object.assign({}, state, {
+          new_student: action.payload
+        }); 
       case ERROR_EDIT_STUDENT:
         return Object.assign({}, state, {
           editError: true

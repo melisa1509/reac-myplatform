@@ -56,6 +56,9 @@ import NewAdmin from 'views/Administrator/New/New.jsx';
 import ShowAdmin from 'views/Administrator/Show/Show.jsx';
 import EditAdmin from 'views/Administrator/Edit/Edit.jsx';
 import AdminPassword from 'views/Administrator/ChangePassword/ChangePassword.jsx';
+import Register from 'views/Register/Index.jsx';
+import RegisterStudent from 'views/Register/Participants/New.jsx';
+import RegisterEvaluation from 'views/Register/PreEvaluation/New.jsx';
 import { store } from 'store/index.jsx';
 
 import "assets/scss/material-dashboard-pro-react.scss?v=1.7.0";
@@ -131,6 +134,9 @@ ReactDOM.render(
           <Route path="/admin/show/:id" component={ShowAdmin} exact />
           <Route path="/admin/edit/:id" component={EditAdmin} exact />
           <Route path="/admin/editpassword/:id" component={AdminPassword} exact /> 
+          <Route path="/register" component={Register} exact /> 
+          <Route path="/register/new/:id" component={RegisterStudent} exact /> 
+          <Route path="/register/evaluation" component={RegisterEvaluation} exact /> 
           <Redirect from="/" to="/login" />
         </Switch>
       </Router>,

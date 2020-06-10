@@ -11,7 +11,7 @@ import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 
 
 import mainPageStyle from "assets/jss/material-kit-react/views/mainPage.jsx";
-import NewRep from 'views/Student/New/NewRep.jsx';
+import NewRep from 'views/Register/PreEvaluation/NewRep.jsx';
 import AdminHeader from "views/Header/AdminHeader.jsx";
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
@@ -44,7 +44,7 @@ class New extends React.Component {
         >
           <div className={classes.container}>
             <GridContainer justify="center">
-              <GridItem xs={12} sm={12} md={12}>
+              <GridItem xs={12} sm={12} md={8}>
                 <NewRep generalStyles={styles}/>
               </GridItem>
             </GridContainer>
