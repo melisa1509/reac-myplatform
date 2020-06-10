@@ -104,9 +104,44 @@ class AdminHeaderLinks extends React.Component {
 
         ]
       }
-      else if( roles.includes("ROLE_EMBASSADOR")) {
+      else if( roles.includes("ROLE_EMBASSADOR") || roles.includes("ROLE_STUDENT_EMBASSADOR") ) {
         links = [
-          
+          <Link to={'/dashboard'} className={classes.dropdownLink}>
+            
+              <Dashboard color="danger" className={classes.icons} /> {t("link_dashboard")}
+            
+          </Link>,        
+          <Link to={'/profile'} className={classes.dropdownLink}>
+            
+                <Person color="danger" className={classes.icons} /> {t("link_user_profile")}
+            
+          </Link>,
+          <Link to={'/group'} className={classes.dropdownLink}>
+            
+                <Stars color="danger" className={classes.icons} /> {t("link_groups")}
+            
+          </Link>,
+          <Link to={'/student'} className={classes.dropdownLink}>
+            
+                <HowToReg color="danger" className={classes.icons} /> {t("link_participants")}
+            
+          </Link>,        
+          <Link to={'/certificate'} className={classes.dropdownLink}>
+            
+                <School color="danger" className={classes.icons} /> {t("link_certificates")}
+            
+          </Link>,         
+          <Link to={'/report'} className={classes.dropdownLink}>
+            
+                <LibraryBooks color="danger" className={classes.icons} /> {t("link_reports")}
+            
+          </Link>,
+          <Link to={'/login'} className={classes.dropdownLink}>
+            
+                <Cancel color="danger" className={classes.icons} /> {t("link_logout")}
+            
+          </Link>,
+
         ]
       }
       else if( roles.includes("ROLE_STUDENT")) {

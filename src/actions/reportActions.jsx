@@ -16,7 +16,7 @@ export const getReports = () => {
             redirect: 'follow'
         };
     return (dispatch) => {
-        return fetch("https://lms.interweavesolutions.org/report/", requestOptions)
+        return fetch(BASE_URL + "/report/", requestOptions)
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: GET_REPORTS , payload: json.data});

@@ -122,13 +122,13 @@ class IndexTable extends React.Component {
                 {
                   Header: t("th_embassador_mentor"),
                   accessor: "AmbassadorMentor",
-                  width:150,
+                  width:250,
                   sortable: false
                 },
                 {
                   Header: t("th_group"),
                   accessor: "full_name",
-                  width:200,
+                  width:250,
                   sortable: false,
                 },
                 {
@@ -169,8 +169,7 @@ class IndexTable extends React.Component {
               ]}
               key={data.length}
               defaultPageSize={data.length < 10 ? data.length : 10}
-              showPaginationTop={false}
-              showPaginationBottom={true}
+              showPaginationBottom={false}
               className="-striped -highlight"
           />
         </GridItem>
