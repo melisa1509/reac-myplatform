@@ -70,6 +70,7 @@ class PreForm extends React.Component {
     saveClick(){
       this.props.dispatchEvaluationPre(this.props.history);
     }  
+    
     render() {
         const { classes, successfull_edit } = this.props;
         let { t } = this.props;  
