@@ -18,7 +18,7 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx'; 
 import { showStudent } from "actions/studentActions.jsx";
-import { newStudent } from "actions/studentActions.jsx"; 
+import { newStudent } from "actions/registerActions.jsx"; 
 import { errorRequiredFields } from "actions/generalActions.jsx";
 import { successRequiredFields } from "actions/generalActions.jsx";
 import { deleteSuccessful } from "actions/generalActions.jsx";
@@ -87,7 +87,7 @@ class NewForm extends React.Component {
         }
         if(this.state.usernameState === "success" && this.state.first_nameState === "success"&& this.state.last_nameState === "success"){
           const reduxState = store.getState();
-          this.props.dispatchNewStudent();
+          this.props.dispatchNewStudent(this.props.history);
           this.props.dispatchSuccessRequiredFields();
         }
       }
@@ -95,7 +95,7 @@ class NewForm extends React.Component {
       
 
     render() {
-        const { classes, successfull_edit, editError, errorRequired, successRequired, show_student} = this.props;
+        const { classes, editError, errorRequired, successRequired, new_student} = this.props;
         let { t } = this.props;
         return (
           <GridContainer justify="center">
@@ -110,19 +110,6 @@ class NewForm extends React.Component {
                         }
                         close
                         color="danger"
-                      />
-                      : ""}
-                  </GridItem>
-              </GridContainer>
-              <GridContainer justify="center">
-                  <GridItem xs={12} sm={12} md={12}>
-                      { successfull_edit ?  
-                      <SnackbarContent
-                        message={
-                          <center>{t("label_save_success")}</center>
-                        }
-                        close
-                        color="success"
                       />
                       : ""}
                   </GridItem>
@@ -256,14 +243,14 @@ class NewForm extends React.Component {
               <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
                       <center>
-                      <Link to={"/group/student/" + this.props.match.params.id}>
+                      <Link to={"/register"}>
                       <Button color="default" size="sm">
                       {t("button_return_to_list")}
                       </Button>
                       </Link>                     
                       {" "}
                       <Button color="info" size="sm" onClick={this.saveClick}>
-                      {t("button_save")}
+                      {t("button_send")}
                       </Button>
                       {" "}
                       </center>
@@ -278,7 +265,7 @@ class NewForm extends React.Component {
 }
 
 NewForm = reduxForm({
-  form: 'studentform', 
+  form: 'registerform', 
   enableReinitialize: true,
 })(NewForm);
 
@@ -287,10 +274,9 @@ NewForm = connect(
   state => ({
     errorRequired:state.generalReducer.errorRequired,
     successRequired:state.generalReducer.successRequired,
-    edit_student: state.studentReducer.edit_student,
     editError: state.studentReducer.editError,
     successfull_edit:state.generalReducer.successfull_edit,
-    show_student: state.studentReducer.show_student,
+    new_student: state.registerReducer.new_student, 
   }),
   { loadShowStudent: showStudent, dispatchNewStudent: newStudent, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful},
 )(NewForm);

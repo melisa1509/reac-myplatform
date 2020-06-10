@@ -15,6 +15,7 @@ import { reportReducer } from 'reducers/report.jsx';
 import { codeReducer } from 'reducers/code.jsx';
 import { administratorReducer } from 'reducers/administrator.jsx';
 import { evaluationReducer } from 'reducers/evaluation.jsx';
+import { registerReducer } from 'reducers/register.jsx';
 import { reducer as reduxFormReducer } from 'redux-form';
 
 export default combineReducers({
@@ -34,5 +35,6 @@ export default combineReducers({
     codeReducer,
     administratorReducer,
     evaluationReducer,
+    registerReducer,
     form: reduxFormReducer,
 })
