@@ -2,19 +2,21 @@ import React from "react";
 import PropTypes from "prop-types";
 // react component for creating dynamic tables
 import { connect } from "react-redux";
+import { Field, reduxForm } from 'redux-form';
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
+import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx';
 
 // core components
 import SuccessBold from "components/Typography/SuccessBold.jsx";
-import MutedText from "components/Typography/Muted.jsx";
 import Controls from './Controls.jsx';
-import RevisionForm from './RevisionForm.jsx';
+import { loadFormProgrammbs } from "actions/programmbsActions.jsx";
 
 import { translate } from 'react-switch-lang';
+import CustomTextarea from "components/CustomInput/CustomTextarea.jsx";
 
 
 const styles = {
@@ -60,7 +62,18 @@ class ProcessTab extends React.Component {
               Sorry, your browser does not support inline SVG.
               <foreignObject x="10" y="10" width="160" height="160">
                   <div>
-                  		<textarea id="process1" name="process1" value={programmbs.process1[0]} className={classes.textareaProcess} rows="4" ></textarea>
+                      <Field
+                        component={CustomTextarea}
+                        name="process1[0]"
+                        success
+                        formControlProps={{
+                          fullWidth: true
+                        }}
+                        inputProps={{
+                          multiline: true,
+                          rows: 4,
+                        }}
+                      />
                   </div>
               </foreignObject>
 
@@ -86,7 +99,18 @@ class ProcessTab extends React.Component {
               Sorry, your browser does not support inline SVG.
               <foreignObject x="310" y="10" width="160" height="160">
                   <div>
-                  		<textarea id="process2" name="process1" value={programmbs.process1[1]} className={classes.textareaProcess} rows="4" ></textarea>
+                      <Field
+                        component={CustomTextarea}
+                        name="process1[1]"
+                        success
+                        formControlProps={{
+                          fullWidth: true
+                        }}
+                        inputProps={{
+                          multiline: true,
+                          rows: 4,
+                        }}
+                      />
                   </div>
               </foreignObject>
 
@@ -114,7 +138,18 @@ class ProcessTab extends React.Component {
               Sorry, your browser does not support inline SVG.
               <foreignObject x="610" y="10" width="160" height="160">
                   <div>
-                  		<textarea id="process3" name="process1" value={programmbs.process1[2]} className={classes.textareaProcess} rows="4" ></textarea>
+                      <Field
+                        component={CustomTextarea}
+                        name="process1[2]"
+                        success
+                        formControlProps={{
+                          fullWidth: true
+                        }}
+                        inputProps={{
+                          multiline: true,
+                          rows: 4,
+                        }}
+                      />
                   </div>
               </foreignObject>
 
@@ -141,7 +176,18 @@ class ProcessTab extends React.Component {
               Sorry, your browser does not support inline SVG.
               <foreignObject x="610" y="210" width="160" height="160">
                   <div>
-                  		<textarea id="process4" name="process1" value={programmbs.process1[3]} className={classes.textareaProcess} rows="4" ></textarea>
+                      <Field
+                        component={CustomTextarea}
+                        name="process1[3]"
+                        success
+                        formControlProps={{
+                          fullWidth: true
+                        }}
+                        inputProps={{
+                          multiline: true,
+                          rows: 4,
+                        }}
+                      />
                   </div>
               </foreignObject>
 
@@ -170,7 +216,18 @@ class ProcessTab extends React.Component {
               Sorry, your browser does not support inline SVG.
               <foreignObject x="310" y="210" width="160" height="160">
                   <div>
-                  		<textarea id="process5" name="process1" value={programmbs.process1[4]} className={classes.textareaProcess} rows="4" ></textarea>
+                      <Field
+                        component={CustomTextarea}
+                        name="process1[4]"
+                        success
+                        formControlProps={{
+                          fullWidth: true
+                        }}
+                        inputProps={{
+                          multiline: true,
+                          rows: 4,
+                        }}
+                      />
                   </div>
               </foreignObject>
 
@@ -197,39 +254,68 @@ class ProcessTab extends React.Component {
               Sorry, your browser does not support inline SVG.
               <foreignObject x="10" y="210" width="160" height="160">
                   <div>
-                  		<textarea id="process6" name="process1" value={programmbs.process1[5]} className={classes.textareaProcess} rows="4" ></textarea>
+                      <Field
+                        component={CustomTextarea}
+                        name="process1[5]"
+                        success
+                        formControlProps={{
+                          fullWidth: true
+                        }}
+                        inputProps={{
+                          multiline: true,
+                          rows: 4,
+                        }}
+                      />
                   </div>
               </foreignObject>
-
-
-
             </svg>
             <br/>
+            <form>
+                <Field
+                  labelText={t("question_price2")}
+                  component={CustomInputRedux}
+                  name="price2"
+                  success
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    multiline: true,
+                    rows: 7,
+                  }}
+                />
+                <Field
+                  labelText={t("question_price3")}
+                  component={CustomInputRedux}
+                  name="price3"
+                  success
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    multiline: true,
+                    rows: 7,
+                  }}
+                />
+                <br/>
+                <Field
+                  labelText={t("question_price4")}
+                  component={CustomInputRedux}
+                  name="price4"
+                  success
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    multiline: true,
+                    rows: 7,
+                  }}
+                />
+                
+                <br/>               
+            </form>         
             <br/>
-            <SuccessBold>
-              {t("question_process2")}
-            </SuccessBold>
-            <br/>
-            <MutedText>
-              {programmbs.process2}
-            </MutedText>
-            <br/>
-            <SuccessBold>
-              {t("question_process3")}
-            </SuccessBold>
-            <br/>
-            <MutedText>
-              {programmbs.process3}
-            </MutedText>
-            <br/>
-            <SuccessBold>
-              {t("question_process4")}
-            </SuccessBold>
-            <br/>
-            <MutedText>
-              {programmbs.process4}
-            </MutedText>
-            <RevisionForm name="revisionprocess" labelText={t("label_revision_process")+ " *"}/>
+           
             <Controls/>
           </CardBody>
         </Card>
@@ -237,17 +323,18 @@ class ProcessTab extends React.Component {
   }
 }
 
-ProcessTab.propTypes = {
-  classes: PropTypes.object,
-};
-
-const mapStateToProps = state => ({ 
-  programmbs: state.programmbsReducer.programmbs
-});
-
-const mapDispatchToPropsActions = dispatch => ({
-});
+ProcessTab = reduxForm({
+  form: 'programmbs',
+  enableReinitialize: true,
+})(ProcessTab);
 
 
-const ProcessTabComponent = translate(withStyles(styles)(ProcessTab));
-export default connect(mapStateToProps, mapDispatchToPropsActions)(ProcessTabComponent);
+ProcessTab = connect(
+  state => ({
+    initialValues: state.programmbsReducer.data, 
+  }),
+  { load: loadFormProgrammbs }, 
+)(ProcessTab);
+
+
+export default translate(withStyles(styles)(ProcessTab));

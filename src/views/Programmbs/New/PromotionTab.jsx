@@ -2,95 +2,114 @@ import React from "react";
 import PropTypes from "prop-types";
 // react component for creating dynamic tables
 import { connect } from "react-redux";
-import cx from "classnames";
+import { Field, reduxForm } from 'redux-form';
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-import CustomInput from 'components/CustomInput/CustomInput.jsx';
+import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx';
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
+import InputLabel from "@material-ui/core/InputLabel";
+import SuccessLabel from "components/Typography/SuccessLabel.jsx";
+import FileUpload from "components/CustomUpload/FileUpload.jsx";
 
 // core components
-import SuccessBold from "components/Typography/SuccessBold.jsx";
-import MutedText from "components/Typography/Muted.jsx";
 import Controls from './Controls.jsx';
-import RevisionForm from './RevisionForm.jsx';
-import footerStyle from "assets/jss/material-dashboard-pro-react/components/footerStyle";
 
 import { translate } from 'react-switch-lang';
+import { loadFormProgrammbs } from "actions/programmbsActions.jsx";
 
 
 const styles = {
   cardTitleCenter:{
     textAlign: "center"
   }, 
-  ...footerStyle
 };
+
+
 
 
 class PromotionTab extends React.Component {
 
-  
+  updateFileName = (key) => {
+    this.props.change('promotion5', key);
+  }
+
   render() {
-    const { classes, programmbs, fluid, white } = this.props;
+    const { classes, programmbs } = this.props;
     let { t } = this.props;
-    var anchor =
-    classes.a +
-    cx({
-      [" " + classes.whiteColor]: white
-    });
     return (
         <Card >
           <CardBody>
             <h3 className={classes.cardTitleCenter} >{t("title_promotion")}</h3>
             <br/>
-            <SuccessBold>
-              {t("question_promotion1")}
-            </SuccessBold>
-            <br/>
-            <MutedText>
-              {programmbs.promotion1}
-            </MutedText>
-            <br/>
-            <SuccessBold>
-              {t("question_promotion2")}
-            </SuccessBold>
-            <br/>
-            <MutedText>
-              {programmbs.promotion2}
-            </MutedText>
-            <br/>
-            <SuccessBold>
-              {t("question_promotion3")}
-            </SuccessBold>
-            <br/>
-            <MutedText>
-              {programmbs.promotion3}
-            </MutedText>
-            <br/>
-            <SuccessBold>
-              {t("question_promotion4")}
-            </SuccessBold>
-            <br/>
-            <MutedText>
-              {programmbs.promotion4}
-            </MutedText>
-            <br/>
-            <SuccessBold>
-              {t("question_promotion5")}
-            </SuccessBold>
-            <br/>
-            {programmbs.promotion5 === "Error:4null" ?
-            <a
-                href={"https://myplatform.interweavesolutions.org/file/" + programmbs.promotion5}
-                target="_blank"
-                className={anchor}
-            >
-                {t("label_download_file")}
-            </a>
-            :""}
-            <br/>
-            <RevisionForm name="revisionpromotion" labelText={t("label_revision_promotion")+ " *"} />
+            <form>
+                <Field
+                  labelText={t("question_promotion1")}
+                  component={CustomInputRedux}
+                  name="promotion1"
+                  success
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    multiline: true,
+                    rows: 7,
+                  }}
+                />
+                <Field
+                  labelText={t("question_promotion2")}
+                  component={CustomInputRedux}
+                  name="promotion2"
+                  success
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    multiline: true,
+                    rows: 7,
+                  }}
+                />
+                <Field
+                  labelText={t("question_promotion3")}
+                  component={CustomInputRedux}
+                  name="promotion3"
+                  success
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    multiline: true,
+                    rows: 7,
+                  }}
+                />
+                <Field
+                  labelText={t("question_promotion4")}
+                  component={CustomInputRedux}
+                  name="promotion4"
+                  success
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    multiline: true,
+                    rows: 7,
+                  }}
+                />
+                <br/>
+                <InputLabel className={classes.label}>
+                    <SuccessLabel className={classes.label}>{t("question_promotion5")}</SuccessLabel>
+                </InputLabel>
+                <Field
+                  component={FileUpload}
+                  name="promotion5"
+                  changeFileName = {this.updateFileName}
+                  inputProps={{
+                    type: "file",
+                  }}
+                />                
+                <br/>               
+            </form>         
             <br/>
             <Controls/>
           </CardBody>
@@ -99,18 +118,18 @@ class PromotionTab extends React.Component {
   }
 }
 
-PromotionTab.propTypes = {
-  classes: PropTypes.object,
-};
-
-const mapStateToProps = state => ({ 
-  programmbs: state.programmbsReducer.programmbs
-});
-
-const mapDispatchToPropsActions = dispatch => ({
-  
-});
+PromotionTab = reduxForm({
+  form: 'programmbs',
+  enableReinitialize: true,
+})(PromotionTab);
 
 
-const PromotionTabComponent = translate(withStyles(styles)(PromotionTab));
-export default connect(mapStateToProps, mapDispatchToPropsActions)(PromotionTabComponent);
+PromotionTab = connect(
+  state => ({
+    initialValues: state.programmbsReducer.data, 
+  }),
+  { load: loadFormProgrammbs }, 
+)(PromotionTab);
+
+
+export default translate(withStyles(styles)(PromotionTab));

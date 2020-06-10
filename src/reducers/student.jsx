@@ -1,4 +1,4 @@
-import { STUDENT_LIST, SHOW_STUDENT, LOAD_FORM_STUDENT } from "constants/actionTypes";
+import { STUDENT_LIST, SHOW_STUDENT, LOAD_FORM_STUDENT, DASHBOARD_STUDENT } from "constants/actionTypes";
 import { DELETE_STUDENT } from "constants/actionTypes";
 import { ERROR_EDIT_STUDENT } from "constants/actionTypes";
 import { EDIT_STUDENT } from "constants/actionTypes";
@@ -21,7 +21,31 @@ const initialState = {
   new_student:{
     language: "es",
     country: "AFG"
-  }
+  },
+  dashboard_student:{    
+      progressMbs:{
+        state: "new",
+        plan:  "0%",
+        process: "0%",
+        product: "0%",
+        price: "0%",
+        promotion: "0%",
+        paperwork: "0%",
+        quality: "0%",
+        service: "0%"
+      },
+      progressSa:{
+        state: "new",
+        mision:  "0%",
+        generate: "0%",
+        facilitate: "0%",
+        graduate: "0%",
+        support: "0%",   
+        student_ambassador: false  
+      }
+
+  }    
+  
 }
 
 export const studentReducer = (state = initialState, action) => {
@@ -31,26 +55,22 @@ export const studentReducer = (state = initialState, action) => {
           student_list: action.payload,
           loading: false
         });
-    }
-    switch (action.type) {
+    
       case SHOW_STUDENT:
           return Object.assign({}, state, {
             show_student: action.payload
           });
-    }
-    switch (action.type) {
+    
       case LOAD_FORM_STUDENT:
         return Object.assign({}, state, {
           data: action.data
         });
-    }
-    switch (action.type) {
+    
       case DELETE_STUDENT:
           return Object.assign({}, state, {
             delete_student: action.payload
           }); 
-    }
-    switch (action.type) {
+    
       case EDIT_STUDENT:
           return Object.assign({}, state, {
             edit_student: action.payload
@@ -59,12 +79,16 @@ export const studentReducer = (state = initialState, action) => {
         return Object.assign({}, state, {
           editError: true
         })
-    }
-    switch (action.type) {
+    
       case EDIT_PASSWORD_STUDENT:
           return Object.assign({}, state, {
             edit_password: action.payload
           }); 
+
+      case DASHBOARD_STUDENT:
+        return Object.assign({}, state, {
+          dashboard_student: action.payload
+        }); 
     }
     return state;
 }

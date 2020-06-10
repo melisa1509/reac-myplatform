@@ -111,6 +111,11 @@ class AdminHeaderLinks extends React.Component {
       }
       else if( roles.includes("ROLE_STUDENT")) {
         links = [
+          <Link to={'/dashboard/student'} className={classes.dropdownLink}>
+            
+              <Dashboard color="danger" className={classes.icons} /> {t("link_dashboard")}
+            
+          </Link>,
           <Link to={'/profile'} className={classes.dropdownLink}>
             
                 <Person color="danger" className={classes.icons} /> {t("link_user_profile")}
