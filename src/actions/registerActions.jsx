@@ -47,7 +47,7 @@ export const evaluationPre = (redirect)=> {
 
    
     var urlencoded = new URLSearchParams();
-        urlencoded.append("id_student", "1787");
+        urlencoded.append("id_student", reduxState.form.preform.values.id_student);
         urlencoded.append("question1", reduxState.form.preform.values.question1);
         urlencoded.append("question2", reduxState.form.preform.values.question2);
         urlencoded.append("question3", reduxState.form.preform.values.question3);
