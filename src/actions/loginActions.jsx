@@ -40,7 +40,9 @@ export const getAuthenticacion = ( params, redirect ) => {
                             .done(function (response) {
                                 dispatch ({ type: SUCCESSFULL_AUTHENTICATION, payload: data });
                                 dispatch ({ type: SUCCESSFULL_ACTIVE_USER, payload: JSON.parse(response) });
-                                if(reduxState.loginReducer.active_user.roles.includes("ROLE_STUDENT") || reduxState.loginReducer.active_user.roles.includes("ROLE_STUDENT_EMBASSADOR")){
+                                const active_user = JSON.parse(response).data;
+
+                                if(active_user.roles.includes("ROLE_STUDENT") || active_user.roles.includes("ROLE_STUDENT_EMBASSADOR")){
                                     redirect.push('/dashboard/student');
                                 }
                                 else{
