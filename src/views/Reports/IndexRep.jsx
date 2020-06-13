@@ -24,6 +24,7 @@ import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
 
 import IndexTable from './IndexTable.jsx';
+import IndexAmbassadorTable from './IndexAmbassadorTable.jsx';
 import CountryTable from "./CountryTable.jsx";
 import AmbassadorTable from "./AmbassadorTable.jsx";
 import GlobalTable from "./GlobalTable.jsx";
@@ -41,8 +42,12 @@ const styles = {
 
 class IndexRep extends React.Component {
   render() {
-    const { classes, report_list } = this.props;
+    const { classes, report_list, active_user } = this.props;
     let { t } = this.props;
+    let rol=false
+    if(active_user.roles == "ROLE_EMBASSADOR"){
+      rol=true
+    }
     const initialValuesReport= {
       country:"label_all_country",
     }
@@ -134,11 +139,11 @@ class IndexRep extends React.Component {
               <Icon>equalizer</Icon>
               </CardIcon>
               <Muted>
-                <h4>{t("title_evaluation_statistics") + " " + t( "title_by_student")}</h4>
+                <h4>{rol ? t("title_evaluation_statistics"): t("title_evaluation_statistics") + " " + t( "title_by_student")}</h4>
               </Muted>
             </CardHeader>
             <CardBody>
-                <IndexTable  />      
+              {rol ? <IndexAmbassadorTable/> : <IndexTable  />  }        
             </CardBody>
           </Card>
         </GridItem>
@@ -155,6 +160,7 @@ IndexRep.propTypes = {
 
 const mapStateToProps = state => ({ 
   report_list: state.reportReducer.report_list,
+  active_user: state.loginReducer.active_user,
 });
 
 const mapDispatchToPropsActions = dispatch => ({

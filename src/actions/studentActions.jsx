@@ -1,5 +1,6 @@
 import { STUDENT_LIST, SHOW_STUDENT, LOAD_FORM_STUDENT, DELETE_STUDENT, SUCCESSFUL_DELETE, EDIT_STUDENT, ERROR_EDIT_STUDENT, SUCCESSFULL_EDIT} from 'constants/actionTypes.jsx';
-import { EDIT_PASSWORD_STUDENT, SUCCESSFULL_EDIT_CLEAN, DASHBOARD_STUDENT, NEW_STUDENT  } from 'constants/actionTypes';
+import { EDIT_PASSWORD_STUDENT, SUCCESSFULL_EDIT_CLEAN, DASHBOARD_STUDENT, NEW_STUDENT } from 'constants/actionTypes';
+import { GET_STUDENT_AMBASSADOR } from 'constants/actionTypes';
 import { BASE_URL} from 'constants/urlTypes.jsx';
 
 export const getStudentList = key => {
@@ -161,3 +162,29 @@ export const editPassword = (params,key) => {
       });
   }
 }
+export const getStudentAmbassadorList =() => {
+    return (dispatch,getState) => {
+
+        const reduxState = getState();
+      
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+      
+            var urlencoded = new URLSearchParams();
+            urlencoded.append("id_ambassador", reduxState.loginReducer.active_user.id);
+      
+            var requestOptions = {
+              method: 'POST',
+              headers: myHeaders,
+              body: urlencoded,
+              redirect: 'follow'
+            }
+    
+        return fetch(BASE_URL + "/student/ambassador/all", requestOptions)
+        .then(response => response.json())
+        .then(json => {
+            dispatch ({ type: GET_STUDENT_AMBASSADOR, payload: json.data });  
+        })
+      }
+};
+

@@ -4,9 +4,11 @@ import { ERROR_EDIT_STUDENT } from "constants/actionTypes";
 import { EDIT_STUDENT } from "constants/actionTypes";
 import { NEW_STUDENT } from "constants/actionTypes";
 import { EDIT_PASSWORD_STUDENT } from "constants/actionTypes";
+import { GET_STUDENT_AMBASSADOR } from "constants/actionTypes";
 
 const initialState = { 
   student_list: [], 
+  student_ambassador_list:[],
   loading: true,
   editError: false,
   show_student: {
@@ -94,6 +96,12 @@ export const studentReducer = (state = initialState, action) => {
       case DASHBOARD_STUDENT:
         return Object.assign({}, state, {
           dashboard_student: action.payload
+        }); 
+
+      case GET_STUDENT_AMBASSADOR:
+        return Object.assign({}, state, {
+          student_ambassador_list: action.payload,
+          loading: false
         }); 
     }
     return state;
