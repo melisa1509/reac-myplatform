@@ -1,4 +1,4 @@
-import {  STUDENT_MBS_LIST, STUDENT_AMBASSADOR_LIST, FUTURE_AMBASSADOR_LIST } from 'constants/actionTypes.jsx';
+import {  STUDENT_MBS_LIST, STUDENT_AMBASSADOR_LIST, FUTURE_AMBASSADOR_LIST, AMBASSADOR_STUDENT_LIST } from 'constants/actionTypes.jsx';
 import { BASE_URL} from 'constants/urlTypes.jsx';
 
 export const getAdminStudentMbsList =() => {
@@ -73,6 +73,7 @@ export const getStudentAmbassadorList =() => {
           urlencoded.append("role", reduxState.loginReducer.active_user.roles[0]);
           urlencoded.append("language", reduxState.loginReducer.active_user.language_grader);
           urlencoded.append("state", "state.revision");
+          urlencoded.append("id_ambassador",  reduxState.loginReducer.active_user.id);
     
           var requestOptions = {
             method: 'POST',
@@ -177,4 +178,34 @@ export const clearPending = (params, redirect)=> {
 
   }
   
+};
+
+export const getAmbassadorStudentList =() => {
+  return (dispatch,getState) => {
+
+      const reduxState = getState();
+    
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+    
+          var urlencoded = new URLSearchParams();
+          urlencoded.append("role", reduxState.loginReducer.active_user.roles[0]);
+          urlencoded.append("ambassador",  reduxState.loginReducer.active_user.id);
+          urlencoded.append("state", "state.correction");
+    
+          var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: urlencoded,
+            redirect: 'follow'
+          }
+  
+      return fetch( BASE_URL + "/student/ambassador?callback=foo", requestOptions)
+      .then(response => response.json())
+      .then(json => {
+          dispatch ({ type: AMBASSADOR_STUDENT_LIST, payload: json.data });  
+      })
+      .catch(json =>{
+      })
+    }
 };

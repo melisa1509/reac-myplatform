@@ -2,20 +2,22 @@ import { GET_REPORTS, GET_REPORT_COUNTRY, GET_AMBASSADOR_COUNTRY, GET_REPORT_AMB
 import { BASE_URL } from 'constants/urlTypes.jsx';
 
 export const getReports = () => {
-
+    return (dispatch,getState) => {
+        const reduxState = getState();
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
             var urlencoded = new URLSearchParams();
-            urlencoded.append("role", "ROLE_ADMIN");
+            urlencoded.append("role",reduxState.loginReducer.active_user.roles[0]);
+            urlencoded.append("id", reduxState.loginReducer.active_user.id);
 
             var requestOptions = {
             method: 'POST',
             headers: myHeaders,
             body: urlencoded,
             redirect: 'follow'
-        };
-    return (dispatch) => {
+            };
+
         return fetch(BASE_URL + "/report/", requestOptions)
         .then(response => response.json())
         .then(json => {

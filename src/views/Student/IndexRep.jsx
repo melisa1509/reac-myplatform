@@ -16,6 +16,7 @@ import IndexTable from './IndexTable.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
+import AmbassadorTable from "./AmbassadorTable.jsx";
 
 
 const styles = {
@@ -31,8 +32,12 @@ class IndexRep extends React.Component {
  
 
   render() {
-    const { classes, styles } = this.props;
+    const { classes, styles, active_user } = this.props;
     let { t } = this.props;
+    let rol=false
+    if(active_user.roles == "ROLE_EMBASSADOR"){
+      rol=true
+    }
     const login = "es";
     return (
       <GridContainer justify="center">
@@ -42,7 +47,7 @@ class IndexRep extends React.Component {
                 <h4 className={classes.cardTitle}>{t("title_student_list")}</h4>
             </CardHeader>
             <CardBody>
-                <IndexTable  />      
+                {rol ? <AmbassadorTable/> : <IndexTable  />  }          
             </CardBody>
           </Card>
         </GridItem>
@@ -56,10 +61,13 @@ IndexRep.propTypes = {
 };
 
 //export default withStyles(styles)(ReactTables);
+const mapStateToProps = state => ({ 
+  active_user: state.loginReducer.active_user,
+});
 
 const mapDispatchToPropsActions = dispatch => ({
 });
 
 
 const NewRepComponent = translate(withStyles(styles)(IndexRep));
-export default connect(null, mapDispatchToPropsActions)(NewRepComponent);
+export default connect(mapStateToProps, mapDispatchToPropsActions)(NewRepComponent);

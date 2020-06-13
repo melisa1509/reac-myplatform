@@ -15,7 +15,7 @@ import matchSorter from 'match-sorter';
 import { translate } from 'react-switch-lang';
 
 
-class IndexTable extends React.Component {
+class AmbassadorTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -72,7 +72,7 @@ class IndexTable extends React.Component {
         id: key, 
         full_name: prop.name,
         date:start_date,
-        AmbassadorMentor: prop.embassador.first_name + " " + prop.embassador.last_name,
+        modality:prop.modality,
         projects: (
           <div className="actions-left">
             <Link to={"/certificate/list/student/"+ prop.id}>
@@ -115,19 +115,23 @@ class IndexTable extends React.Component {
                 {
                   Header: t("th_name"),
                   accessor: "full_name",
+                  width:300
                 },
                 {
-                  Header: t("th_embassador_mentor"),
-                  accessor: "AmbassadorMentor",
+                  Header: t("th_modality"),
+                  accessor: "modality",
+                  width:200
                 },
                 {
                   Header: t("th_start_classes"),
                   accessor: "date",
+                  width:200,
                   filterable: false
                 },
                 {
-                  Header: "",
+                  Header: t("th_actions"),
                   accessor: "projects",
+                  width:200,
                   sortable: false
                 },
                 {
@@ -146,7 +150,6 @@ class IndexTable extends React.Component {
                     const result = matchSorter(rows, filter.value, {
                       keys: [
                         "full_name",
-                        "AmbassadorMentor"
                       ], threshold: matchSorter.rankings.WORD_STARTS_WITH
                     });
                     return result;
@@ -154,7 +157,8 @@ class IndexTable extends React.Component {
                   filterAll: true,
                 }
               ]}
-              defaultPageSize={10}
+              key={data.length}
+              defaultPageSize={data.length < 10 ? data.length : 10}
               showPaginationTop={false}
               showPaginationBottom={true}
               className="-striped -highlight"
@@ -174,6 +178,6 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchGetGroupList: () => dispatch( getGroupList() )
 });
 
-const IndexTableComponent = translate(IndexTable);
-export default connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent);
+const AmbassadorTableComponent = translate(AmbassadorTable);
+export default connect(mapStateToProps, mapDispatchToPropsActions)(AmbassadorTableComponent);
 

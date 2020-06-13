@@ -63,8 +63,13 @@ class IndexTable extends React.Component {
 
  
   render() {
-    const { certificate_list } = this.props;
+    const { certificate_list, active_user } = this.props;
     let { t } = this.props;
+    let rol=false
+    if(active_user.roles == "ROLE_EMBASSADOR"){
+      rol=true
+    }
+
     console.log(certificate_list);
     
     const data = certificate_list.map((prop, key) => {
@@ -171,6 +176,7 @@ class IndexTable extends React.Component {
                 {
                   Header: t("th_certificate_ambassador"),
                   accessor: "SAcertificate",
+                  width: 300,
                   filterable: false,
                 
                 },
@@ -183,7 +189,7 @@ class IndexTable extends React.Component {
 
                   getProps: () => {
                     return {
-                      style: { padding: "20px"}
+                      style: {height: "40px"}
                     }
                   },
                   filterMethod: (filter, rows) => {
@@ -235,9 +241,10 @@ class IndexTable extends React.Component {
                       {t("button_download_all_ambassador_certificates")}
                       </Button>
                       {" "}
+                      {rol ? "" : 
                       <Button color="danger" size="sm">
                       {t("button_approve_selected_certificates")}
-                      </Button>
+                      </Button>}
                       {" "}
                       </center>
                   </GridItem>
@@ -250,6 +257,7 @@ class IndexTable extends React.Component {
 
 const mapStateToProps = state => ({ 
       certificate_list: state.certificateReducer.certificate_list, 
+      active_user: state.loginReducer.active_user,
 });
 
 const mapDispatchToPropsActions = dispatch => ({

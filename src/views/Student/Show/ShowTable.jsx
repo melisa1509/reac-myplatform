@@ -81,7 +81,7 @@ class ShowTable extends React.Component {
                 [<th>{t("label_lastName")}</th>,show_student.last_name],
                 [<th>{t("label_country")}</th>,show_student.country],
                 [<th>{t("label_city")}</th>, show_student.city],
-                [<th>{t("label_whatsApp")}</th>, show_student.whatsapp],
+                [<th>{t("label_whatsapp")}</th>, show_student.whatsapp],
                 [<th>{t("label_language")}</th>,  show_student.language],
               ]}
             />
