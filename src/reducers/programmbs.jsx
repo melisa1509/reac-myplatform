@@ -13,7 +13,7 @@ const initialState = {
     product5: "",
     product6: "",
     product7: "",
-    process1: [],
+    process1: [" "],
     process2: "",
     process3: "",
     process4: "",
@@ -29,11 +29,11 @@ const initialState = {
     paperwork1: "",
     paperwork2: "",
     paperwork3: [],
-    paperwork4: {p4_initial_capital: "", p4_expenses: "", p4_income: "", p4_balance: "", p4_array: []},
-    paperwork5: {p5_income: "", p5_array: []},
-    paperwork6: {p6_expenses: "", p6_earnings_loses: "", p6_balance: "", p6_array: []},
-    paperwork7: {p7_title: [], p7_income: [], p7_array: []},
-    paperwork8: {p8_balance: [], p8_expenses: [], p8_earnings_loses: [], p8_array: []},
+    paperwork4: {p4_initial_capital: "", p4_expenses: "", p4_income: "", p4_balance: "", p4_array: ["","","","","","","","","",""]},
+    paperwork5: {p5_income: "", p5_array: ["","","",""]},
+    paperwork6: {p6_expenses: "", p6_earnings_loses: "", p6_balance: "", p6_array: ["","","",""]},
+    paperwork7: {p7_initial_capital: ["","","","","","","","",""], p7_title: ["","","","","","","","",""], p7_income: ["","","","","","","","",""], p7_array: ["","","","","","","","","",""]},
+    paperwork8: {p8_balance: ["","","","","","","","",""], p8_expenses: ["","","","","","","","",""], p8_earnings_loses: ["","","","","","","","",""], p8_array: ["","","","","","","","","",""]},
     quality_p1: "",
     quality_p2: "",
     quality_p3: "",
@@ -139,9 +139,16 @@ export const programmbsReducer = (state = initialState, action) => {
         });
 
       case LOAD_FORM_PROGRAMMBS:
-        return Object.assign({}, state, {
-          data: action.data
+        var programmbs = action.data;
+        var options = {};
+        programmbs.paperwork3.forEach(element => {
+          options[element] = true;
         });
+        programmbs.paperwork3 = options;
+        return Object.assign({}, state, {
+          data: programmbs
+        });
+        
 
       case ERROR_EDIT_REVISION:
         return Object.assign({}, state, {

@@ -39,6 +39,7 @@ import { translate } from 'react-switch-lang';
  
   RevisionForm = connect(
     state => ({
+      initialValues: state.programmbsReducer.data, 
     }),
     { load: loadFormProgrammbs }, 
   )(RevisionForm);

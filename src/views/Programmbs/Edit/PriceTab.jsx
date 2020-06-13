@@ -24,7 +24,7 @@ const styles = {
 };
 
 
-class ProductTab extends React.Component {
+class PriceTab extends React.Component {
 
   
   render() {
@@ -33,13 +33,13 @@ class ProductTab extends React.Component {
     return (
         <Card >
           <CardBody>
-            <h3 className={classes.cardTitleCenter} >{t("title_product")}</h3>
+            <h3 className={classes.cardTitleCenter} >{t("title_price")}</h3>
             <br/>
             <form>
                 <Field
-                  labelText={t("question_product1")}
+                  labelText={t("question_price1")}
                   component={CustomInputRedux}
-                  name="product1"
+                  name="price1"
                   success
                   formControlProps={{
                     fullWidth: true
@@ -51,9 +51,9 @@ class ProductTab extends React.Component {
                 />
                 <br/>
                 <Field
-                  labelText={t("question_product2")}
+                  labelText={t("question_price2")}
                   component={CustomInputRedux}
-                  name="product2"
+                  name="price2"
                   success
                   formControlProps={{
                     fullWidth: true
@@ -64,23 +64,9 @@ class ProductTab extends React.Component {
                   }}
                 />
                 <Field
-                  labelText={t("question_product3")}
+                  labelText={t("question_price3")}
                   component={CustomInputRedux}
-                  name="product3"
-                  success
-                  formControlProps={{
-                    fullWidth: true
-                  }}
-                  inputProps={{
-                    multiline: true,
-                    rows: 7,
-                  }}
-                />
-                <br/>
-                <Field
-                  labelText={t("question_product4")}
-                  component={CustomInputRedux}
-                  name="product4"
+                  name="price3"
                   success
                   formControlProps={{
                     fullWidth: true
@@ -91,9 +77,9 @@ class ProductTab extends React.Component {
                   }}
                 />
                 <Field
-                  labelText={t("question_product5")}
+                  labelText={t("question_price4")}
                   component={CustomInputRedux}
-                  name="product5"
+                  name="price4"
                   success
                   formControlProps={{
                     fullWidth: true
@@ -102,34 +88,7 @@ class ProductTab extends React.Component {
                     multiline: true,
                     rows: 7,
                   }}
-                />
-                <br/>
-                <Field
-                  labelText={t("question_product6")}
-                  component={CustomInputRedux}
-                  name="product6"
-                  success
-                  formControlProps={{
-                    fullWidth: true
-                  }}
-                  inputProps={{
-                    multiline: true,
-                    rows: 7,
-                  }}
-                />
-                <Field
-                  labelText={t("question_product7")}
-                  component={CustomInputRedux}
-                  name="product7"
-                  success
-                  formControlProps={{
-                    fullWidth: true
-                  }}
-                  inputProps={{
-                    multiline: true,
-                    rows: 7,
-                  }}
-                />
+                />                
                 <br/>               
             </form>         
             <br/>
@@ -140,17 +99,18 @@ class ProductTab extends React.Component {
   }
 }
 
-ProductTab = reduxForm({
+PriceTab = reduxForm({
   form: 'programmbs',
   enableReinitialize: true,
-})(ProductTab);
+})(PriceTab);
 
 
-ProductTab = connect(
+PriceTab = connect(
   state => ({
+    initialValues: state.programmbsReducer.data, 
   }),
   { load: loadFormProgrammbs }, 
-)(ProductTab);
+)(PriceTab);
 
 
-export default translate(withStyles(styles)(ProductTab));
+export default translate(withStyles(styles)(PriceTab));

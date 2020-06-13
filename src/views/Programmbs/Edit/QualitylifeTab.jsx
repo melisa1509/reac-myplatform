@@ -685,6 +685,7 @@ QualitylifeTab = reduxForm({
 
 QualitylifeTab = connect(
   state => ({
+    initialValues: state.programmbsReducer.data,
     programmbs: state.programmbsReducer.programmbs,
     form_programmbs: state.form.programmbs
   }),

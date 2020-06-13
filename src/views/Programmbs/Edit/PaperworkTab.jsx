@@ -340,7 +340,8 @@ class PaperworkTab extends React.Component {
     return (
         <Card >
           <CardBody>
-            <h3 className={classes.cardTitleCenter} >{t("title_paperwork")}</h3>            
+            <h3 className={classes.cardTitleCenter} >{t("title_paperwork")}</h3>
+            
             <br/>
               <Field
                   labelText={t("question_paperwork1")}

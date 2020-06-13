@@ -2,13 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 // react component for creating dynamic tables
 import { connect } from "react-redux";
-import CustomInputTable from 'components/CustomInput/CustomInputTable.jsx';
 import { Field, reduxForm } from 'redux-form';
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
+import CustomInputTable from 'components/CustomInput/CustomInputTable.jsx';
 import { loadFormProgrammbs } from "actions/programmbsActions.jsx";
-
 import { translate } from 'react-switch-lang';
 
 
@@ -44,32 +43,39 @@ const styles = {
     border: "0px",
     color: "#495057",
     paddingLeft: "10px"
-  },
-  horizontalRight: {
-    textAlign: "right",
-  },
+  }
 };
 
 
 
 
-class RenderCell extends React.Component {
+class CustomRenderCell extends React.Component {
 
   
   render() {
-    const { classes, data, widthColums, nameField } = this.props;
+    const { classes, data, widthColums, cellStyles, nameField } = this.props;
     return (
         <tr>
             {
-                data.map((prop, key) => { 
-                    return (
-                        <td className={ classes.tdTable + " "+ classes.verticalCenter  } style={{ width: widthColums[key] }}>
-                            <Field
-                            component={CustomInputTable}
-                            name={nameField + "[" + prop.key + "]]"}
-                            />
-                        </td>
-                    );
+                data.map((prop, key) => {
+                    if(key === 0){
+                        return (
+                            <td className={ cellStyles} key={key}>
+                                {prop}
+                            </td>
+                        );
+                    }
+                    else{
+                        return (
+                            <td className={ classes.tdTable + " "+ classes.verticalCenter } style={{ width: widthColums[key] }} key={key}>
+                                <Field
+                                component={CustomInputTable}
+                                name={nameField + "[" + (key - 1) + "]]"}
+                                />
+                            </td>
+                        );
+                    }
+                    
                     
                 })
             }
@@ -78,17 +84,18 @@ class RenderCell extends React.Component {
   }
 }
 
-RenderCell = reduxForm({
+CustomRenderCell = reduxForm({
   form: 'programmbs',
   enableReinitialize: true,
-})(RenderCell);
+})(CustomRenderCell);
 
 
-RenderCell = connect(
+CustomRenderCell = connect(
   state => ({
+    initialValues: state.programmbsReducer.data, 
   }),
   {  }, 
-)(RenderCell);
+)(CustomRenderCell);
 
 
-export default translate(withStyles(styles)(RenderCell));
+export default translate(withStyles(styles)(CustomRenderCell));

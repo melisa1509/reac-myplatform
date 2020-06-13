@@ -91,7 +91,7 @@ class CountrySelect extends React.Component {
                             }}
                             value="-1"
                         >
-                            {t("label_chose_country")}
+                            {t("label_choose_country")}
                         </MenuItem>
                         {
                             country_list.map( (country, key ) => {

@@ -28,6 +28,7 @@ import App from 'views/Age/App.jsx';
 import CourseNew from 'views/Course/New/New.jsx';
 import ProgramMbs from 'views/Programmbs/Show/Show.jsx';
 import NewProgramMbs from 'views/Programmbs/New/Show.jsx';
+import EditProgramMbs from 'views/Programmbs/Edit/Show.jsx';
 import ProgramMbsFile from 'views/Programmbs/ShowFile/Show.jsx';
 import ProgramSa from 'views/Programsa/Show/Show.jsx';
 import User from 'views/User/Show/Show.jsx';
@@ -88,7 +89,7 @@ ReactDOM.render(
           <Route path="/student" component={Student} exact />
           <Route path="/student/new/:id" component={NewStudent} exact />
           <Route path="/student/show/:id" component={ShowStudent} exact />
-          <Route path="/student/edit/:id" component={EditStudent} exact />
+          <Route path="/student/edit/:id/:active" component={EditStudent} exact />
           <Route path="/student/editpassword/:id" component={StudentChangePassword} exact /> 
           <Route path="/rtl" component={RtlLayout} />
           <Route path="/auth" component={AuthLayout} />
@@ -97,8 +98,9 @@ ReactDOM.render(
           <Route path="/login" component={Login} />
           <Route path="/app" component={App} />
           <Route path="/course/new" component={CourseNew} />
+          <Route path="/programmbs/new" component={NewProgramMbs} />
           <Route path="/programmbs/show/:id" component={ProgramMbs} />
-          <Route path="/programmbs/edit/:id" component={NewProgramMbs} />
+          <Route path="/programmbs/edit/:id" component={EditProgramMbs} />
           <Route path="/programmbs/showfile/:id" component={ProgramMbsFile} />
           <Route path="/programsa/show/:id" component={ProgramSa} />
           <Route path="/user/show/:id" component={User} exact /> 

@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { translate } from 'react-switch-lang';
 // react component for creating dynamic tables
 import { connect } from "react-redux";
-import { updateLanguageSelect } from "actions/selectActions.jsx";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -26,7 +25,7 @@ const style = {
 };
 
 
-class LanguageSelect extends React.Component {
+class Quality1Select extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -46,7 +45,6 @@ class LanguageSelect extends React.Component {
     }
     handleSimple = event => {
         this.setState({ [event.target.name]: event.target.value });
-        this.props.dispatchUpdateLanguageSelect(event.target.value);
     };
     handleChange = name => event => {
         this.setState({ [name]: event.target.checked });
@@ -65,7 +63,7 @@ class LanguageSelect extends React.Component {
                     <InputLabel
                         htmlFor="simple-select"
                     >
-                        <Success>{t("label_language")}</Success>
+                        <Success>{t("label_satisfaction_level")}</Success>
                     </InputLabel>
                     <Select
                         MenuProps={{
@@ -81,50 +79,51 @@ class LanguageSelect extends React.Component {
                             id: "simple-select"
                         }}
                     >
+                        
                         <MenuItem
-                            disabled
                             classes={{
-                                root: classes.selectMenuItem
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected
                             }}
-                            value="-1"
+                            value="303,132"
                         >
-                            {t("label_choose_language")}
+                            {t("option_quality1")}
                         </MenuItem>
                         <MenuItem
                             classes={{
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                             }}
-                            value="en"
+                            value="338,97"
                         >
-                            {t("label_english")}
+                            {t("option_quality2")}
                         </MenuItem>
                         <MenuItem
                             classes={{
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                             }}
-                            value="es"
+                            value="353,82"
                         >
-                            {t("label_spanish")}
+                            {t("option_quality3")}
                         </MenuItem>
                         <MenuItem
                             classes={{
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                             }}
-                            value="fr"
+                            value="367,68"
                         >
-                            {t("label_french")}
+                            {t("option_quality4")}
                         </MenuItem>
                         <MenuItem
                             classes={{
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                             }}
-                            value="pr"
+                            value="381,54"
                         >
-                            {t("label_portuguese")}
+                            {t("option_quality5")}
                         </MenuItem>
                     </Select>
                 </FormControl>
@@ -136,11 +135,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchUpdateLanguageSelect: key => dispatch( updateLanguageSelect(key) ), 
 });
 
-const LanguageSelectComponent = translate(withStyles(style)(LanguageSelect));
-export default connect(mapStateToProps, mapDispatchToPropsActions)(LanguageSelectComponent);
+const Quality1SelectComponent = translate(withStyles(style)(Quality1Select));
+export default connect(mapStateToProps, mapDispatchToPropsActions)(Quality1SelectComponent);
 
 
 

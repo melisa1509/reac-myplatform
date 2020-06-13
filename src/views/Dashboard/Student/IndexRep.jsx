@@ -15,8 +15,10 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import IndexTable from './IndexTable.jsx';
 import IndexTableSa from './IndexTableSa.jsx';
 
+
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
+import { dashboardStudent } from "actions/studentActions.jsx";
 
 
 const styles = {
@@ -30,6 +32,9 @@ const styles = {
 
 class IndexRep extends React.Component {
  
+  componentDidMount() {
+    this.props.dispatchDashboardStudent();    
+  }
 
   render() {
     const { classes, styles, dashboard_student } = this.props;
@@ -82,6 +87,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToPropsActions = dispatch => ({
+  dispatchDashboardStudent: () => dispatch( dashboardStudent() ) 
 });
 
 const IndexRepComponent = translate(withStyles(styles)(IndexRep));

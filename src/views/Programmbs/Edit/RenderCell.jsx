@@ -86,6 +86,7 @@ RenderCell = reduxForm({
 
 RenderCell = connect(
   state => ({
+    initialValues: state.programmbsReducer.data, 
   }),
   {  }, 
 )(RenderCell);

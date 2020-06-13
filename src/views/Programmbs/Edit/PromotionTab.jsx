@@ -9,6 +9,9 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx';
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
+import InputLabel from "@material-ui/core/InputLabel";
+import SuccessLabel from "components/Typography/SuccessLabel.jsx";
+import FileUpload from "components/CustomUpload/FileUpload.jsx";
 
 // core components
 import Controls from './Controls.jsx';
@@ -24,22 +27,66 @@ const styles = {
 };
 
 
-class ProductTab extends React.Component {
 
-  
+
+class PromotionTab extends React.Component {
+
+  updateFileName = (key) => {
+    this.props.change('promotion5', key);
+  }
+
   render() {
     const { classes, programmbs } = this.props;
     let { t } = this.props;
     return (
         <Card >
           <CardBody>
-            <h3 className={classes.cardTitleCenter} >{t("title_product")}</h3>
+            <h3 className={classes.cardTitleCenter} >{t("title_promotion")}</h3>
             <br/>
             <form>
                 <Field
-                  labelText={t("question_product1")}
+                  labelText={t("question_promotion1")}
                   component={CustomInputRedux}
-                  name="product1"
+                  name="promotion1"
+                  success
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    multiline: true,
+                    rows: 7,
+                  }}
+                />
+                <Field
+                  labelText={t("question_promotion2")}
+                  component={CustomInputRedux}
+                  name="promotion2"
+                  success
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    multiline: true,
+                    rows: 7,
+                  }}
+                />
+                <Field
+                  labelText={t("question_promotion3")}
+                  component={CustomInputRedux}
+                  name="promotion3"
+                  success
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    multiline: true,
+                    rows: 7,
+                  }}
+                />
+                <Field
+                  labelText={t("question_promotion4")}
+                  component={CustomInputRedux}
+                  name="promotion4"
                   success
                   formControlProps={{
                     fullWidth: true
@@ -50,86 +97,17 @@ class ProductTab extends React.Component {
                   }}
                 />
                 <br/>
+                <InputLabel className={classes.label}>
+                    <SuccessLabel className={classes.label}>{t("question_promotion5")}</SuccessLabel>
+                </InputLabel>
                 <Field
-                  labelText={t("question_product2")}
-                  component={CustomInputRedux}
-                  name="product2"
-                  success
-                  formControlProps={{
-                    fullWidth: true
-                  }}
+                  component={FileUpload}
+                  name="promotion5"
+                  changeFileName = {this.updateFileName}
                   inputProps={{
-                    multiline: true,
-                    rows: 7,
+                    type: "file",
                   }}
-                />
-                <Field
-                  labelText={t("question_product3")}
-                  component={CustomInputRedux}
-                  name="product3"
-                  success
-                  formControlProps={{
-                    fullWidth: true
-                  }}
-                  inputProps={{
-                    multiline: true,
-                    rows: 7,
-                  }}
-                />
-                <br/>
-                <Field
-                  labelText={t("question_product4")}
-                  component={CustomInputRedux}
-                  name="product4"
-                  success
-                  formControlProps={{
-                    fullWidth: true
-                  }}
-                  inputProps={{
-                    multiline: true,
-                    rows: 7,
-                  }}
-                />
-                <Field
-                  labelText={t("question_product5")}
-                  component={CustomInputRedux}
-                  name="product5"
-                  success
-                  formControlProps={{
-                    fullWidth: true
-                  }}
-                  inputProps={{
-                    multiline: true,
-                    rows: 7,
-                  }}
-                />
-                <br/>
-                <Field
-                  labelText={t("question_product6")}
-                  component={CustomInputRedux}
-                  name="product6"
-                  success
-                  formControlProps={{
-                    fullWidth: true
-                  }}
-                  inputProps={{
-                    multiline: true,
-                    rows: 7,
-                  }}
-                />
-                <Field
-                  labelText={t("question_product7")}
-                  component={CustomInputRedux}
-                  name="product7"
-                  success
-                  formControlProps={{
-                    fullWidth: true
-                  }}
-                  inputProps={{
-                    multiline: true,
-                    rows: 7,
-                  }}
-                />
+                />                
                 <br/>               
             </form>         
             <br/>
@@ -140,17 +118,18 @@ class ProductTab extends React.Component {
   }
 }
 
-ProductTab = reduxForm({
+PromotionTab = reduxForm({
   form: 'programmbs',
   enableReinitialize: true,
-})(ProductTab);
+})(PromotionTab);
 
 
-ProductTab = connect(
+PromotionTab = connect(
   state => ({
+    initialValues: state.programmbsReducer.data, 
   }),
   { load: loadFormProgrammbs }, 
-)(ProductTab);
+)(PromotionTab);
 
 
-export default translate(withStyles(styles)(ProductTab));
+export default translate(withStyles(styles)(PromotionTab));

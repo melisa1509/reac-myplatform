@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 // react component for creating dynamic tables
 import { connect } from "react-redux";
 import { getAmbassadorList } from "actions/ambassadorActions.jsx";
-import { dashboardStudent } from "actions/studentActions.jsx";
+
 import { translate } from 'react-switch-lang';
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { Link } from "react-router-dom";
@@ -43,10 +43,7 @@ class IndexTable extends React.Component {
 
   
 
-  componentDidMount() {
-    this.props.dispatchDashboardStudent();
-    
-  }
+  
  
   render() {
     const { classes, dashboard_student } = this.props;
@@ -55,7 +52,7 @@ class IndexTable extends React.Component {
     return (
       <GridContainer>
         <GridItem xs={6} sm={6} md={3} lg={3}>
-        <Link to={dashboard_student.progressMbs.state === "new" ? "/programmbs/new/1" : "/programmbs/edit/1"} className={classes.dropdownLink}>
+        <Link to={dashboard_student.progressMbs.state === "new" ? "/programmbs/new" : "/programmbs/edit/" + dashboard_student.progressMbs.id} className={classes.dropdownLink}>
           <Card>
             <CardHeader color="warning" stats icon>
               <CardIcon color="warning">
@@ -69,7 +66,7 @@ class IndexTable extends React.Component {
           </Link>
         </GridItem>
         <GridItem xs={6} sm={6} md={3} lg={3}>
-        <Link to={dashboard_student.progressMbs.state === "new" ? "/programmbs/new/2" : "/programmbs/edit/2"} className={classes.dropdownLink}>
+        <Link to={dashboard_student.progressMbs.state === "new" ? "/programmbs/new" : "/programmbs/edit/2"} className={classes.dropdownLink}>
           <Card>
             <CardHeader color="success" stats icon>
               <CardIcon color="success">
@@ -83,7 +80,7 @@ class IndexTable extends React.Component {
           </Link>
         </GridItem>
         <GridItem xs={6} sm={6} md={3} lg={3}>
-        <Link to={dashboard_student.progressMbs.state === "new" ? "/programmbs/new/3" : "/programmbs/edit/3"} className={classes.dropdownLink}>
+        <Link to={dashboard_student.progressMbs.state === "new" ? "/programmbs/new" : "/programmbs/edit/3"} className={classes.dropdownLink}>
           <Card>
             <CardHeader color="danger" stats icon>
               <CardIcon color="danger">
@@ -97,7 +94,7 @@ class IndexTable extends React.Component {
           </Link>
         </GridItem>
         <GridItem xs={6} sm={6} md={3} lg={3}>
-        <Link to={dashboard_student.progressMbs.state === "new" ? "/programmbs/new/4" : "/programmbs/edit/4"} className={classes.dropdownLink}>
+        <Link to={dashboard_student.progressMbs.state === "new" ? "/programmbs/new" : "/programmbs/edit/4"} className={classes.dropdownLink}>
           <Card>
             <CardHeader color="info" stats icon>
               <CardIcon color="info">
@@ -111,7 +108,7 @@ class IndexTable extends React.Component {
           </Link>
         </GridItem>
         <GridItem xs={6} sm={6} md={3} lg={3}>
-          <Link to={dashboard_student.progressMbs.state === "new" ? "/programmbs/new/5" : "/programmbs/edit/5"} className={classes.dropdownLink}>
+          <Link to={dashboard_student.progressMbs.state === "new" ? "/programmbs/new" : "/programmbs/edit/5"} className={classes.dropdownLink}>
           <Card>
             <CardHeader color="danger" stats icon>
               <CardIcon color="danger">
@@ -125,7 +122,7 @@ class IndexTable extends React.Component {
           </Link>
         </GridItem>
         <GridItem xs={6} sm={6} md={3} lg={3}>
-        <Link to={dashboard_student.progressMbs.state === "new" ? "/programmbs/new/6" : "/programmbs/edit/6"} className={classes.dropdownLink}>
+        <Link to={dashboard_student.progressMbs.state === "new" ? "/programmbs/new" : "/programmbs/edit/6"} className={classes.dropdownLink}>
           <Card>
             <CardHeader color="info" stats icon>
               <CardIcon color="info">
@@ -139,7 +136,7 @@ class IndexTable extends React.Component {
           </Link>
         </GridItem>
         <GridItem xs={6} sm={6} md={3} lg={3}>
-        <Link to={dashboard_student.progressMbs.state === "new" ? "/programmbs/new/7" : "/programmbs/edit/7"} className={classes.dropdownLink}>
+        <Link to={dashboard_student.progressMbs.state === "new" ? "/programmbs/new" : "/programmbs/edit/7"} className={classes.dropdownLink}>
           <Card>
             <CardHeader color="warning" stats icon>
               <CardIcon color="warning">
@@ -152,7 +149,7 @@ class IndexTable extends React.Component {
           </Link>
         </GridItem>
         <GridItem xs={6} sm={6} md={3} lg={3}>
-        <Link to={dashboard_student.progressMbs.state === "new" ? "/programmbs/new/8" : "/programmbs/edit/8"} className={classes.dropdownLink}>
+        <Link to={dashboard_student.progressMbs.state === "new" ? "/programmbs/new" : "/programmbs/edit/8"} className={classes.dropdownLink}>
           <Card>
             <CardHeader color="success" stats icon>
               <CardIcon color="success">
@@ -175,7 +172,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchDashboardStudent: () => dispatch( dashboardStudent() ),  
+   
 });
 
 const IndexTableComponent = translate(withStyles(styles)(IndexTable));

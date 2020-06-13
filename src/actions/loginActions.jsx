@@ -19,6 +19,7 @@ export const getAuthenticacion = ( params, redirect ) => {
     }
     
     return (dispatch, getState ) => {
+        const reduxState = getState();
 
         return $.ajax(settings)
                 .done(function (data) {
@@ -39,7 +40,13 @@ export const getAuthenticacion = ( params, redirect ) => {
                             .done(function (response) {
                                 dispatch ({ type: SUCCESSFULL_AUTHENTICATION, payload: data });
                                 dispatch ({ type: SUCCESSFULL_ACTIVE_USER, payload: JSON.parse(response) });
-                                redirect.push('/dashboard');
+                                if(reduxState.loginReducer.active_user.roles.includes("ROLE_STUDENT") || reduxState.loginReducer.active_user.roles.includes("ROLE_STUDENT_EMBASSADOR")){
+                                    redirect.push('/dashboard/student');
+                                }
+                                else{
+                                    redirect.push('/dashboard');
+                                }
+                                
                             })
                             .fail(function (response){
                                 redirect.push('/login');

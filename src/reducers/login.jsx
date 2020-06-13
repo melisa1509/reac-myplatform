@@ -4,11 +4,11 @@ const initialState = {
 
   loginError: false,
   active_user: {
-    id:"9",
+    id:"117",
     first_name: "",
     last_name: "",
     language: "en",
-    roles: ["ROLE_ADMIN"]
+    roles: ["ROLE_STUDENT"]
   }
 
 }
