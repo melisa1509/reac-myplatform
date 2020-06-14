@@ -161,29 +161,34 @@ class IndexTable extends React.Component {
                 {
                   Header: t("th_name"),
                   accessor: "full_name",
+                  width:300,
                   sortable: false
                 },
                 {
                   Header: t("th_modality"),
                   accessor: "modality",
+                  width:150,
                   sortable: false
                 },
                 {
                   Header: t("th_start_classes"),
                   accessor: "date",
+                  width:150,
                   sortable: false,
                   filterable: false
                 },
                 {
                   Header: t("th_actions"),
                   accessor: "actions",
+                  width:150,
                   sortable: false,
                   filterable: false
                 },
                 {
                   Header: "",
                   accessor: "projects",
-                  sortable: false
+                  sortable: false,
+                  width:300,
                 },
                 {
                   Header: "",
@@ -194,7 +199,7 @@ class IndexTable extends React.Component {
                   
                   getProps: () => {
                     return {
-                      style: { padding: "0px"}
+                      style: {}
                     }
                   },
                   filterMethod: (filter, rows) => {

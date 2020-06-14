@@ -53,6 +53,7 @@ class IndexRep extends React.Component {
             </CardBody>
           </Card>
           <br/>
+          {rol ? "" :
           <Card>
             <CardHeader color="info">
                 <h4 className={classes.cardTitle}>{t("title_student_list_ambassador_revision")}</h4>
@@ -61,6 +62,7 @@ class IndexRep extends React.Component {
                 <AmbassadorTable  />      
             </CardBody>
           </Card>
+          }
           <br/>
           {rol ? "" :
           <Card>

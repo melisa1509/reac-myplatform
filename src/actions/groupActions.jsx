@@ -138,7 +138,8 @@ export const getProjectProgress= (key) => {
         });
     }
 }
-export const uploadImageAlert = () => ({ type: MBS_IMAGE_ALERT })
+
+export const uploadImageAlert = (key) => ({ type: MBS_IMAGE_ALERT, payload:key })
 
 export const uploadImage = ()=> {
     return (dispatch, getState) => {
@@ -149,7 +150,7 @@ export const uploadImage = ()=> {
 
    
     var urlencoded = new URLSearchParams();
-        urlencoded.append("id_student", "2467");
+        urlencoded.append("id_student",  reduxState.groupReducer.id_student);
         urlencoded.append("file_name", reduxState.form.uploadform.values.name_image);
     
     var requestOptions = {

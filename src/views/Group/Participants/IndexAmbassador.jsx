@@ -8,14 +8,15 @@ import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
 import { getCertificateList } from "actions/certificateActions.jsx";
 import { uploadImageAlert } from "actions/groupActions.jsx";
-import { preAlert } from "actions/evaluationActions.jsx";
-import { postAlert } from "actions/evaluationActions.jsx";
+import { showEvaluationPre } from "actions/evaluationActions.jsx";
+import { showEvaluationPost } from "actions/evaluationActions.jsx";
 import { evaluationPre } from "actions/evaluationActions.jsx";
 import { evaluationPost } from "actions/evaluationActions.jsx";
 import { deleteAlert } from "actions/evaluationActions.jsx";
 import { deleteImageAlert } from "actions/groupActions.jsx";
 import { deleteSuccessful } from "actions/generalActions.jsx";
 import { uploadImage } from "actions/groupActions.jsx";
+import SnackbarContent from "components/Snackbar/SnackbarContent";
 
 import SweetAlert from "react-bootstrap-sweetalert";
 import UploadForm from './UploadForm.jsx';
@@ -35,6 +36,7 @@ import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 import { Link } from "react-router-dom";
+import { showEvaluation } from "actions/evaluationActions.jsx";
 
 
 const styles = {
@@ -104,19 +106,19 @@ class IndexTable extends React.Component {
     this.props.dispatchGetCertificateList(this.props.match.params.id);
   }
 
-  imageAlert(){
-    this.props.dispatchUploadImageAlert();
+  imageAlert(key){
+    this.props.dispatchUploadImageAlert(key);
   }
   
   uploadImage(){
     this.props.dispatchUploadImage();
   }
-  evaluationPreAlert(){
-    this.props.dispatchPreAlert();
+  evaluationPreAlert(key){
+    this.props.dispatchShowEvaluationPre(key);
   }
 
-  evaluationPostAlert(){
-    this.props.dispatchPostAlert();
+  evaluationPostAlert(key){
+    this.props.dispatchShowEvaluationPost(key);
   }
 
   evaluationPre(){
@@ -134,11 +136,10 @@ class IndexTable extends React.Component {
   }
  
   render() {
-    const { certificate_list, image_alert, pre_alert,post_alert, classes} = this.props;
+    const { certificate_list, image_alert, pre_alert,post_alert, successfull_edit, classes} = this.props;
     let { t } = this.props;
     let id_student=""
     let approved = certificate_list.filter(prop => prop.student.programmbs == undefined || prop.student.programmbs.modality == "option.modality1" )
-    console.log(approved)
     const data = approved.map((prop, key) => {
       let buttonMbs = false;
       let buttonEvaluationPre =false
@@ -157,19 +158,18 @@ class IndexTable extends React.Component {
       }
       return {
         id: key, 
-        id_student:prop.student.id,
         full_name:prop.student.first_name + " " + prop.student.last_name,
         evaluation:(
           <div className="actions-left">
               <Button
-                onClick={this.evaluationPreAlert}
+                onClick={() => this.evaluationPreAlert(prop.student.id)}
                 size="sm"
                 color={buttonEvaluationPre==true ? "default" : "warning" }
               >
                 {t('button_pre_evaluation')}
               </Button>
               <Button
-                onClick={this.evaluationPostAlert}
+                onClick={()=> this.evaluationPostAlert(prop.student.id)}
                 size="sm"
                 color={buttonEvaluationPost==true ? "default" : "warning" }
               >
@@ -180,7 +180,7 @@ class IndexTable extends React.Component {
         projects: (
           <div className="actions-left">
               <Button
-                onClick={this.imageAlert}
+                onClick={() => this.imageAlert(prop.student.id)}
                 size="sm"
                 color={buttonMbs==true ? "default" : "warning" }
               >
@@ -224,9 +224,6 @@ class IndexTable extends React.Component {
       )
       };
     });
-    const initialValuesid={
-      id_student:id_student
-    }
     return (
       <GridContainer>
         <GridItem xs={12}>
@@ -268,7 +265,18 @@ class IndexTable extends React.Component {
                   >
                   <h4>{t("title_pre_evaluation")}</h4>
                   <br/>
-                      <PreForm initialValues={initialValuesid}/>
+                      <PreForm/>
+                  <GridItem xs={12} sm={12} md={12}>
+                    { successfull_edit ?      
+                      <SnackbarContent
+                        message={
+                          <center>{t("label_save_success")}</center>
+                        }
+                        close
+                        color="success"
+                      />
+                    : ""}
+                  </GridItem>
               </SweetAlert>
             : ""}
           {post_alert ? 
@@ -289,6 +297,17 @@ class IndexTable extends React.Component {
                 <h4>{t("title_post_evaluation")}</h4>
                 <br/>
                     <PostForm/>
+                <GridItem xs={12} sm={12} md={12}>
+                    { successfull_edit ?      
+                      <SnackbarContent
+                        message={
+                          <center>{t("label_save_success")}</center>
+                        }
+                        close
+                        color="success"
+                      />
+                    : ""}
+                </GridItem>
             </SweetAlert>
           : ""}
         <CustomInput
@@ -388,19 +407,21 @@ class IndexTable extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
+      initialValues: state.evaluationReducer.data,
       certificate_list: state.certificateReducer.certificate_list, 
       image_alert: state.groupReducer.image_alert,
       pre_alert: state.evaluationReducer.pre_alert,
       post_alert: state.evaluationReducer.post_alert,
       active_user: state.loginReducer.active_user,
+      successfull_edit:state.generalReducer.successfull_edit,
 });
 
 const mapDispatchToPropsActions = dispatch => ({
   dispatchGetCertificateList: (key) => dispatch( getCertificateList(key)),
-  dispatchUploadImageAlert: () => dispatch( uploadImageAlert()),
+  dispatchUploadImageAlert: (key) => dispatch( uploadImageAlert(key)),
   dispatchUploadImage: () => dispatch( uploadImage()),
-  dispatchPreAlert: () => dispatch( preAlert()),
-  dispatchPostAlert: () => dispatch( postAlert()),
+  dispatchShowEvaluationPre: (key) => dispatch( showEvaluationPre(key)),
+  dispatchShowEvaluationPost: (key) => dispatch(showEvaluationPost(key)),
   dispatchEvaluationPre: () => dispatch(evaluationPre()),
   dispatchEvaluationPost: () => dispatch(evaluationPost()),
   dispatchDeleteAlert:()=> dispatch(deleteAlert()),

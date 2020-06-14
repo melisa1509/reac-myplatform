@@ -173,30 +173,6 @@ class PreForm extends React.Component {
                     />          
                   </GridItem> 
                 </GridContainer>
-                <GridContainer >
-                <GridItem xs={12} sm={12} md={12}>
-                    <Field
-                      component={CustomInputRedux}
-                      name="id_student"
-                      inputProps={{
-                        type: "text",
-                      }}
-                    />
-                </GridItem>
-              </GridContainer>
-              <GridContainer justify="center">
-                  <GridItem xs={12} sm={12} md={12}>
-                      { successfull_edit ?      
-                      <SnackbarContent
-                        message={
-                          <center>{t("label_save_success")}</center>
-                        }
-                        close
-                        color="success"
-                      />
-                      : ""}
-                  </GridItem>
-              </GridContainer>
               </div>
             </GridItem>
           </GridContainer>
@@ -207,13 +183,15 @@ class PreForm extends React.Component {
 
 PreForm = reduxForm({
   form: 'preform', 
+  enableReinitialize: true
 })(PreForm);
 
 
 PreForm = connect(
   state => ({
+    initialValues: state.evaluationReducer.data,
+    initialValues: state.evaluationReducer.evaluation_pre,
     evaluation_pre: state.evaluationReducer.evaluation_pre,
-    successfull_edit:state.generalReducer.successfull_edit,
   }),
   { },
 )(PreForm);

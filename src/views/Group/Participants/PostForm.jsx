@@ -204,17 +204,6 @@ class PostForm extends React.Component {
                     />          
                   </GridItem> 
                 </GridContainer>
-                <GridItem xs={12} sm={12} md={12}>
-                      { successfull_edit ?      
-                      <SnackbarContent
-                        message={
-                          <center>{t("label_save_success")}</center>
-                        }
-                        close
-                        color="success"
-                      />
-                      : ""}
-                  </GridItem>
               </div>
             </GridItem>
           </GridContainer>
@@ -225,13 +214,15 @@ class PostForm extends React.Component {
 
 PostForm = reduxForm({
   form: 'postform', 
+  enableReinitialize: true
 })(PostForm);
 
 
 PostForm = connect(
   state => ({
-    evaluation_pre: state.evaluationReducer.evaluation_pre,
-    successfull_edit:state.generalReducer.successfull_edit,
+    initialValues: state.evaluationReducer.data,
+    initialValues: state.evaluationReducer.evaluation_post,
+    evaluation_post: state.evaluationReducer.evaluation_post,
   }),
   { dispatchNewGroup: newGroup},
 )(PostForm);

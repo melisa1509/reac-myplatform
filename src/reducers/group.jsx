@@ -40,9 +40,9 @@ export const groupReducer = (state = initialState, action) => {
           loading: false
         });
       case SHOW_GROUP:
-          return Object.assign({}, state, {
-            show_group: action.payload
-          });
+        return Object.assign({}, state, {
+          show_group: action.payload
+        });
       case LOAD_FORM_GROUP:
         return Object.assign({}, state, {
           data: action.data
@@ -66,7 +66,8 @@ export const groupReducer = (state = initialState, action) => {
         }); 
       case MBS_IMAGE_ALERT:
         return Object.assign({}, state, {
-          image_alert: true,
+          id_student: action.payload,
+          image_alert:true,
         }); 
       case UPLOAD_IMAGE:
         return Object.assign({}, state, {

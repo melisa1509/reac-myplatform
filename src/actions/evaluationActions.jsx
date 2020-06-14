@@ -1,6 +1,8 @@
 import { EVALUATION_PRE, SUCCESSFULL_EDIT, DELETE_ALERT, EVALUATION_POST, POST_ALERT} from 'constants/actionTypes';
 import { BASE_URL} from 'constants/urlTypes.jsx';
 import { PRE_ALERT } from 'constants/actionTypes';
+import { SHOW_EVALUATION } from 'constants/actionTypes';
+import { LOAD_FORM_EVALUATION } from 'constants/actionTypes';
 
 export const evaluationPre = ()=> {
     return (dispatch, getState) => {
@@ -11,7 +13,7 @@ export const evaluationPre = ()=> {
 
    
     var urlencoded = new URLSearchParams();
-        urlencoded.append("id_student", "1787");
+        urlencoded.append("id_student", reduxState.evaluationReducer.id_student);
         urlencoded.append("question1", reduxState.form.preform.values.question1);
         urlencoded.append("question2", reduxState.form.preform.values.question2);
         urlencoded.append("question3", reduxState.form.preform.values.question3);
@@ -45,7 +47,7 @@ export const evaluationPost = ()=> {
 
    
     var urlencoded = new URLSearchParams();
-        urlencoded.append("id_student", "2467");
+        urlencoded.append("id_student", reduxState.evaluationReducer.id_student);
         urlencoded.append("postquestion1", reduxState.form.postform.values.postquestion1);
         urlencoded.append("postquestion2", reduxState.form.postform.values.postquestion2);
         urlencoded.append("postquestion3", reduxState.form.postform.values.postquestion3);
@@ -72,6 +74,33 @@ export const evaluationPost = ()=> {
 
     }
 };
+
+export const showEvaluationPre = key => {
+    return (dispatch) => {
+        return fetch( BASE_URL + "/evaluation/show/"+ key +"?callback=foo")
+        .then(response => response.json())
+        .then(json => {
+            dispatch ({ type: SHOW_EVALUATION, payload: json.data });
+            dispatch ({ type: LOAD_FORM_EVALUATION, data: json.data });
+            dispatch ({ type: PRE_ALERT, payload:key });   
+        })
+
+    }
+};
+
+export const showEvaluationPost = key => {
+    return (dispatch) => {
+        return fetch( BASE_URL + "/evaluation/show/"+ key +"?callback=foo")
+        .then(response => response.json())
+        .then(json => {
+            dispatch ({ type: SHOW_EVALUATION, payload: json.data });
+            dispatch ({ type: LOAD_FORM_EVALUATION, data: json.data });
+            dispatch ({ type: POST_ALERT, payload:key });   
+        })
+
+    }
+};
+
 export const preAlert = () => ({ type: PRE_ALERT })
 export const postAlert = () => ({ type: POST_ALERT })
 export const deleteAlert=() => ({ type:DELETE_ALERT})
