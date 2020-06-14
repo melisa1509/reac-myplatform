@@ -4,7 +4,7 @@ import { translate } from 'react-switch-lang';
 // react component for creating dynamic tables
 import ReactTable from "react-table";
 import { connect } from "react-redux";
-import { getShowProgrammbs } from "actions/programmbsActions.jsx";
+
 import { store } from "store";
 
 
@@ -64,20 +64,18 @@ const style = {
 
 
 
-class ShowForm extends React.Component {
+class ShowForm extends React.Component { 
 
-    componentDidMount() {
-      this.props.dispatchShowProgrammbs(this.props.match.params.id);
-    }
+    
 
 
     render() {
-        const { classes, programmbs } = this.props;
+        const { classes, programmbs, active } = this.props;
         let { t } = this.props;
         return (
           <NavPills
                   color="warning"
-                  active={this.props.match.params.active === undefined ? 0 : this.props.match.params.active}
+                  active={active}
                   tabs={[
                     {
                       tabButton: t("title_plan"),
@@ -159,7 +157,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchShowProgrammbs: key => dispatch(getShowProgrammbs(key)), 
+  
 });
 
 const ShowFormComponent = translate(withStyles(style)(ShowForm));

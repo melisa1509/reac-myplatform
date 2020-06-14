@@ -29,6 +29,14 @@ import CourseNew from 'views/Course/New/New.jsx';
 import ProgramMbs from 'views/Programmbs/Show/Show.jsx';
 import NewProgramMbs from 'views/Programmbs/New/Show.jsx';
 import EditProgramMbs from 'views/Programmbs/Edit/Show.jsx';
+import EditPlanProgramMbs from 'views/Programmbs/Edit/EditPlan.jsx';
+import EditProductProgramMbs from 'views/Programmbs/Edit/EditProduct.jsx';
+import EditProcessProgramMbs from 'views/Programmbs/Edit/EditProcess.jsx';
+import EditPriceProgramMbs from 'views/Programmbs/Edit/EditPrice.jsx';
+import EditPromotionProgramMbs from 'views/Programmbs/Edit/EditPromotion.jsx';
+import EditPaperworkProgramMbs from 'views/Programmbs/Edit/EditPaperwork.jsx';
+import EditQualityProgramMbs from 'views/Programmbs/Edit/EditQuality.jsx';
+import EditServiceProgramMbs from 'views/Programmbs/Edit/EditService.jsx';
 import ProgramMbsFile from 'views/Programmbs/ShowFile/Show.jsx';
 import ProgramSa from 'views/Programsa/Show/Show.jsx';
 import User from 'views/User/Show/Show.jsx';
@@ -98,9 +106,17 @@ ReactDOM.render(
           <Route path="/login" component={Login} />
           <Route path="/app" component={App} />
           <Route path="/course/new" component={CourseNew} />
-          <Route path="/programmbs/new" component={NewProgramMbs} />
-          <Route path="/programmbs/show/:id" component={ProgramMbs} />
-          <Route path="/programmbs/edit/:id" component={EditProgramMbs} />
+          <Route path="/programmbs/new" component={NewProgramMbs} exact/>
+          <Route path="/programmbs/show/:id" component={ProgramMbs} exact/>
+          <Route path="/programmbs/edit/:id" component={EditProgramMbs} exact/>
+          <Route path="/programmbs/edit/plan/:id" component={EditPlanProgramMbs} exact/>
+          <Route path="/programmbs/edit/product/:id" component={EditProductProgramMbs} exact/>
+          <Route path="/programmbs/edit/process/:id" component={EditProcessProgramMbs} exact/>
+          <Route path="/programmbs/edit/price/:id" component={EditPriceProgramMbs} exact/>
+          <Route path="/programmbs/edit/promotion/:id" component={EditPromotionProgramMbs} exact/>
+          <Route path="/programmbs/edit/paperwork/:id" component={EditPaperworkProgramMbs} exact/>
+          <Route path="/programmbs/edit/quality/:id" component={EditQualityProgramMbs} exact/>
+          <Route path="/programmbs/edit/service/:id" component={EditServiceProgramMbs} exact/>
           <Route path="/programmbs/showfile/:id" component={ProgramMbsFile} />
           <Route path="/programsa/show/:id" component={ProgramSa} />
           <Route path="/user/show/:id" component={User} exact /> 

@@ -41,13 +41,6 @@ class IndexTableSa extends React.Component {
     };
   }
 
-  
-
-  componentDidMount() {
-    this.props.dispatchDashboardStudent();
-    
-  }
- 
   render() {
     const { classes, dashboard_student } = this.props;
     let { t } = this.props;         
