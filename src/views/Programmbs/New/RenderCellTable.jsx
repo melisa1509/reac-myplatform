@@ -105,7 +105,6 @@ RenderCellTable = reduxForm({
 
 RenderCellTable = connect(
   state => ({
-    initialValues: state.programmbsReducer.data, 
   }),
   {  }, 
 )(RenderCellTable);

@@ -12,7 +12,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
-import { editProgrammbs, approveProject, sendRevisionProject } from "actions/programmbsActions.jsx";
+import { newProgrammbs, approveProject, sendRevisionProject } from "actions/programmbsActions.jsx";
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 
 import { translate } from 'react-switch-lang';
@@ -45,7 +45,7 @@ class Controls extends React.Component {
   }
 
   handleSave(){
-    this.props.dispatchEditProgrammbs(this.props.history);
+    this.props.dispatchNewProgrammbs(this.props.history);
   }
 
   handleApproveProject(){
@@ -99,7 +99,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchEditProgrammbs: param => dispatch( editProgrammbs(param) ), 
+  dispatchNewProgrammbs: param => dispatch( newProgrammbs(param) ), 
   dispatchApproveProject: param => dispatch( approveProject(param)),
   dispatchSendRevisionProject: param => dispatch( sendRevisionProject(param))
 });

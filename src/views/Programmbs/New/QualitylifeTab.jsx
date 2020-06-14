@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 // react component for creating dynamic tables
 import { connect } from "react-redux";
+import { Field, reduxForm } from 'redux-form';
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -16,8 +17,18 @@ import MutedText from "components/Typography/Muted.jsx";
 import Controls from './Controls.jsx';
 import RevisionForm from './RevisionForm.jsx';
 import {optionQualityLife} from './OptionQualityLife.jsx';
+import { loadFormProgrammbs } from "actions/programmbsActions.jsx";
 
 import { translate } from 'react-switch-lang';
+import Quality1Select from "views/Select/Quality1Select.jsx";
+import Quality2Select from "views/Select/Quality2Select.jsx";
+import Quality3Select from "views/Select/Quality3Select.jsx";
+import Quality4Select from "views/Select/Quality4Select.jsx";
+import Quality5Select from "views/Select/Quality5Select.jsx";
+import Quality6Select from "views/Select/Quality6Select.jsx";
+import Quality7Select from "views/Select/Quality7Select.jsx";
+import Quality8Select from "views/Select/Quality8Select.jsx";
+import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx';
 
 
 const styles = {
@@ -36,10 +47,10 @@ const styles = {
 };
 
 
-class ProcessTab extends React.Component {
+class QualitylifeTab extends React.Component {
 
   render() {
-    const { classes, programmbs } = this.props;
+    const { classes, programmbs, form_programmbs } = this.props;
     let { t } = this.props;
     
     return (
@@ -54,7 +65,7 @@ class ProcessTab extends React.Component {
             <GridContainer justify="center" className={classes.cardTitleCenter}>
                 <GridItem xs={12} sm={12} md={12}>
                   <svg width={550} height={30}>
-                    <text id="qualityP1Text" x={230} y={16} fill="black" fontSize={15} fontWeight="bold" >{programmbs.quality_p1}</text>
+                    <text id="qualityP1Text" x={230} y={16} fill="black" fontSize={15} fontWeight="bold" >{(form_programmbs.values !== undefined ? form_programmbs.values.quality_p1 : "")}</text>
                   </svg>
                 
               <svg width={650} height={350}>
@@ -319,253 +330,341 @@ class ProcessTab extends React.Component {
                       stroke: '#325457'
                     }} />
                 <text x={167} y={57} fill="#21393c" fontSize={8} fontWeight="bold">5</text>
-                <polygon id="red_line" points={programmbs.quality_q1 + " "+ programmbs.quality_q2 + " "+ programmbs.quality_q3 + " "+ programmbs.quality_q4 + " "+ programmbs.quality_q5 + " "+ programmbs.quality_q6 + " "+ programmbs.quality_q7 + " "+ programmbs.quality_q8} style={{
+                <polygon id="red_line" points={(form_programmbs.values !== undefined ? form_programmbs.values.quality_q1 : "") + " "+ (form_programmbs.values !== undefined ? form_programmbs.values.quality_q2 : "") + " "+ (form_programmbs.values !== undefined ? form_programmbs.values.quality_q3 : "") + " "+ (form_programmbs.values !== undefined ? form_programmbs.values.quality_q4 : "") + " "+ (form_programmbs.values !== undefined ? form_programmbs.values.quality_q5 : "") + " "+ (form_programmbs.values !== undefined ? form_programmbs.values.quality_q6 : "") + " "+ (form_programmbs.values !== undefined ? form_programmbs.values.quality_q7 : "") + " "+ (form_programmbs.values !== undefined ? form_programmbs.values.quality_q8 : "")} style={{
                       fill: 'none',
                       stroke: 'red',
                       strokeWidth: 3,
                       fillRule: 'evenodd'
                     }} />
-                <text id="qualityP4Text" x={424} y={266} fill="black" fontSize={14} fontWeight="bold">{programmbs.quality_p4}</text>
-                <text id="qualityP3Text" x={454} y={159} fill="black" fontSize={14} fontWeight="bold">{programmbs.quality_p3}</text>
-                <text id="qualityP2Text" x={424} y={52} fill="black" fontSize={14} fontWeight="bold">{programmbs.quality_p2}</text>
-                <text id="qualityP6Text" x={30} y={266} fill="black" fontSize={14} fontWeight="bold">{programmbs.quality_p6}</text>
-                <text id="qualityP7Text" x={0} y={159} fill="black" fontSize={14} fontWeight="bold">{programmbs.quality_p7}</text>
-                <text id="qualityP8Text" x={30} y={52} fill="black" fontSize={14} fontWeight="bold">{programmbs.quality_p8}</text>
-                <text id="qualityP5Text" x={230} y={342} fill="black" fontSize={14} fontWeight="bold">{programmbs.quality_p5}</text>
+                <text id="qualityP4Text" x={424} y={266} fill="black" fontSize={14} fontWeight="bold">{(form_programmbs.values !== undefined ? form_programmbs.values.quality_p4 : "")}</text>
+                <text id="qualityP3Text" x={454} y={159} fill="black" fontSize={14} fontWeight="bold">{(form_programmbs.values !== undefined ? form_programmbs.values.quality_p3 : "")}</text>
+                <text id="qualityP2Text" x={424} y={52} fill="black" fontSize={14} fontWeight="bold">{(form_programmbs.values !== undefined ? form_programmbs.values.quality_p2 : "")}</text>
+                <text id="qualityP6Text" x={30} y={266} fill="black" fontSize={14} fontWeight="bold">{(form_programmbs.values !== undefined ? form_programmbs.values.quality_p6 : "")}</text>
+                <text id="qualityP7Text" x={0} y={159} fill="black" fontSize={14} fontWeight="bold">{(form_programmbs.values !== undefined ? form_programmbs.values.quality_p7 : "")}</text>
+                <text id="qualityP8Text" x={30} y={52} fill="black" fontSize={14} fontWeight="bold">{(form_programmbs.values !== undefined ? form_programmbs.values.quality_p8 : "")}</text>
+                <text id="qualityP5Text" x={230} y={342} fill="black" fontSize={14} fontWeight="bold">{(form_programmbs.values !== undefined ? form_programmbs.values.quality_p5 : "")}</text>
               </svg>
            
               </GridItem>
           </GridContainer>
           <br/>
           <GridContainer className={classes.cardTitleCenter}>
-              <GridItem xs={12} sm={12} md={12}>
-                <SuccessBold >
-                  {t("question_qualityp1")}
-                </SuccessBold>
+              <GridItem xs={12} sm={12} md={6}>
+                  <Field
+                    labelText={t("question_qualityp1")}
+                    component={CustomInputRedux}
+                    name="quality_p1"
+                    success
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    inputProps={{
+                      type: "text"
+                    }}
+                  />
+              </GridItem>
+              <GridItem xs={12} sm={12} md={6}>
+                  <Field
+                    component={Quality1Select}
+                    name="quality_q1"
+                  />
               </GridItem>
           </GridContainer>
           <GridContainer >
                 <GridItem xs={12} sm={12} md={12}>
-                    <MutedText>
-                      {programmbs.quality_p1}
-                    </MutedText>
-                    <MutedText>
-                      { programmbs.quality_q1 !== undefined ? "" : t(optionQualityLife(programmbs.quality_q1))}
-                    </MutedText>
-                </GridItem>
-          </GridContainer>
-          <br/>
-          <SuccessBold>
-            {t("question_qualityg1")}
-          </SuccessBold>
-          <GridContainer >
-                <GridItem xs={12} sm={12} md={12}>
-                    <MutedText>
-                      {programmbs.quality_g1}
-                    </MutedText>
+                <Field
+                  labelText={t("question_qualityg1")}
+                  component={CustomInputRedux}
+                  name="quality_g1"
+                  success
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    multiline: true,
+                    rows: 3,
+                  }}
+                />
                 </GridItem>
           </GridContainer>
           <br/>
           <GridContainer className={classes.cardTitleCenter}>
-              <GridItem xs={12} sm={12} md={12}>
-                <SuccessBold >
-                  {t("question_qualityp2")}
-                </SuccessBold>
+              <GridItem xs={12} sm={12} md={6}>
+                  <Field
+                    labelText={t("question_qualityp2")}
+                    component={CustomInputRedux}
+                    name="quality_p2"
+                    success
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    inputProps={{
+                      type: "text"
+                    }}
+                  />
+              </GridItem>
+              <GridItem xs={12} sm={12} md={6}>
+                  <Field
+                    component={Quality2Select}
+                    name="quality_q2"
+                  />
               </GridItem>
           </GridContainer>
           <GridContainer >
                 <GridItem xs={12} sm={12} md={12}>
-                    <MutedText>
-                      {programmbs.quality_p2}
-                    </MutedText>
-                    <MutedText>
-                      {programmbs.quality_q2 !== undefined ? "" : t(optionQualityLife(programmbs.quality_q2))}
-                    </MutedText>
-                </GridItem>
-          </GridContainer>
-          <br/>
-          <SuccessBold>
-            {t("question_qualityg2")}
-          </SuccessBold>
-          <GridContainer >
-                <GridItem xs={12} sm={12} md={12}>
-                    <MutedText>
-                      {programmbs.quality_g3}
-                    </MutedText>
+                <Field
+                  labelText={t("question_qualityg2")}
+                  component={CustomInputRedux}
+                  name="quality_g2"
+                  success
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    multiline: true,
+                    rows: 3,
+                  }}
+                />
                 </GridItem>
           </GridContainer>
           <br/>
           <GridContainer className={classes.cardTitleCenter}>
-              <GridItem xs={12} sm={12} md={12}>
-                <SuccessBold >
-                  {t("question_qualityp3")}
-                </SuccessBold>
+              <GridItem xs={12} sm={12} md={6}>
+                  <Field
+                    labelText={t("question_qualityp3")}
+                    component={CustomInputRedux}
+                    name="quality_p3"
+                    success
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    inputProps={{
+                      type: "text"
+                    }}
+                  />
+              </GridItem>
+              <GridItem xs={12} sm={12} md={6}>
+                  <Field
+                    component={Quality3Select}
+                    name="quality_q3"
+                  />
               </GridItem>
           </GridContainer>
           <GridContainer >
                 <GridItem xs={12} sm={12} md={12}>
-                    <MutedText>
-                      {programmbs.quality_p3}
-                    </MutedText>
-                    <MutedText>
-                      {programmbs.quality_q3 !== undefined ? "" : t(optionQualityLife(programmbs.quality_q3))}
-                    </MutedText>
-                </GridItem>
-          </GridContainer>
-          <br/>
-          <SuccessBold>
-            {t("question_qualityg3")}
-          </SuccessBold>
-          <GridContainer >
-                <GridItem xs={12} sm={12} md={12}>
-                    <MutedText>
-                      {programmbs.quality_g3}
-                    </MutedText>
+                <Field
+                  labelText={t("question_qualityg3")}
+                  component={CustomInputRedux}
+                  name="quality_g3"
+                  success
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    multiline: true,
+                    rows: 3,
+                  }}
+                />
                 </GridItem>
           </GridContainer>
           <br/>
           <GridContainer className={classes.cardTitleCenter}>
-              <GridItem xs={12} sm={12} md={12}>
-                <SuccessBold >
-                  {t("question_qualityp4")}
-                </SuccessBold>
+              <GridItem xs={12} sm={12} md={6}>
+                  <Field
+                    labelText={t("question_qualityp4")}
+                    component={CustomInputRedux}
+                    name="quality_p4"
+                    success
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    inputProps={{
+                      type: "text"
+                    }}
+                  />
+              </GridItem>
+              <GridItem xs={12} sm={12} md={6}>
+                  <Field
+                    component={Quality4Select}
+                    name="quality_q4"
+                  />
               </GridItem>
           </GridContainer>
           <GridContainer >
                 <GridItem xs={12} sm={12} md={12}>
-                    <MutedText>
-                      {programmbs.quality_p4}
-                    </MutedText>
-                    <MutedText>
-                      {programmbs.quality_q4 !== undefined ? "" : t(optionQualityLife(programmbs.quality_q4))}
-                    </MutedText>
-                </GridItem>
-          </GridContainer>
-          <br/>
-          <SuccessBold>
-            {t("question_qualityg4")}
-          </SuccessBold>
-          <GridContainer >
-                <GridItem xs={12} sm={12} md={12}>
-                    <MutedText>
-                      {programmbs.quality_g4}
-                    </MutedText>
+                <Field
+                  labelText={t("question_qualityg4")}
+                  component={CustomInputRedux}
+                  name="quality_g4"
+                  success
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    multiline: true,
+                    rows: 3,
+                  }}
+                />
                 </GridItem>
           </GridContainer>
           <br/>
           <GridContainer className={classes.cardTitleCenter}>
-              <GridItem xs={12} sm={12} md={12}>
-                <SuccessBold >
-                  {t("question_qualityp5")}
-                </SuccessBold>
+              <GridItem xs={12} sm={12} md={6}>
+                  <Field
+                    labelText={t("question_qualityp5")}
+                    component={CustomInputRedux}
+                    name="quality_p5"
+                    success
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    inputProps={{
+                      type: "text"
+                    }}
+                  />
+              </GridItem>
+              <GridItem xs={12} sm={12} md={6}>
+                  <Field
+                    component={Quality5Select}
+                    name="quality_q5"
+                  />
               </GridItem>
           </GridContainer>
           <GridContainer >
                 <GridItem xs={12} sm={12} md={12}>
-                    <MutedText>
-                      {programmbs.quality_p5}
-                    </MutedText>
-                    <MutedText>
-                      {programmbs.quality_q5 !== undefined ? "" : t(optionQualityLife(programmbs.quality_q5))}
-                    </MutedText>
-                </GridItem>
-          </GridContainer>
-          <br/>
-          <SuccessBold>
-            {t("question_qualityg5")}
-          </SuccessBold>
-          <GridContainer >
-                <GridItem xs={12} sm={12} md={12}>
-                    <MutedText>
-                      {programmbs.quality_g5}
-                    </MutedText>
+                <Field
+                  labelText={t("question_qualityg5")}
+                  component={CustomInputRedux}
+                  name="quality_g5"
+                  success
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    multiline: true,
+                    rows: 3,
+                  }}
+                />
                 </GridItem>
           </GridContainer>
           <br/>
           <GridContainer className={classes.cardTitleCenter}>
-              <GridItem xs={12} sm={12} md={12}>
-                <SuccessBold >
-                  {t("question_qualityp6")}
-                </SuccessBold>
+              <GridItem xs={12} sm={12} md={6}>
+                  <Field
+                    labelText={t("question_qualityp6")}
+                    component={CustomInputRedux}
+                    name="quality_p6"
+                    success
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    inputProps={{
+                      type: "text"
+                    }}
+                  />
+              </GridItem>
+              <GridItem xs={12} sm={12} md={6}>
+                  <Field
+                    component={Quality6Select}
+                    name="quality_q6"
+                  />
               </GridItem>
           </GridContainer>
           <GridContainer >
                 <GridItem xs={12} sm={12} md={12}>
-                    <MutedText>
-                      {programmbs.quality_p6}
-                    </MutedText>
-                    <MutedText>
-                      {programmbs.quality_q6 !== undefined ? "" : t(optionQualityLife(programmbs.quality_q6))}
-                    </MutedText>
-                </GridItem>
-          </GridContainer>
-          <br/>
-          <SuccessBold>
-            {t("question_qualityg6")}
-          </SuccessBold>
-          <GridContainer >
-                <GridItem xs={12} sm={12} md={12}>
-                    <MutedText>
-                      {programmbs.quality_g6}
-                    </MutedText>
+                <Field
+                  labelText={t("question_qualityg6")}
+                  component={CustomInputRedux}
+                  name="quality_g6"
+                  success
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    multiline: true,
+                    rows: 3,
+                  }}
+                />
                 </GridItem>
           </GridContainer>
           <br/>
           <GridContainer className={classes.cardTitleCenter}>
-              <GridItem xs={12} sm={12} md={12}>
-                <SuccessBold >
-                  {t("question_qualityp7")}
-                </SuccessBold>
+              <GridItem xs={12} sm={12} md={6}>
+                  <Field
+                    labelText={t("question_qualityp7")}
+                    component={CustomInputRedux}
+                    name="quality_p7"
+                    success
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    inputProps={{
+                      type: "text"
+                    }}
+                  />
+              </GridItem>
+              <GridItem xs={12} sm={12} md={6}>
+                  <Field
+                    component={Quality7Select}
+                    name="quality_q7"
+                  />
               </GridItem>
           </GridContainer>
           <GridContainer >
                 <GridItem xs={12} sm={12} md={12}>
-                    <MutedText>
-                      {programmbs.quality_p7}
-                    </MutedText>
-                    <MutedText>
-                      {programmbs.quality_q7 !== undefined ? "" : t(optionQualityLife(programmbs.quality_q7))}
-                    </MutedText>
-                </GridItem>
-          </GridContainer>
-          <br/>
-          <SuccessBold>
-            {t("question_qualityg7")}
-          </SuccessBold>
-          <GridContainer >
-                <GridItem xs={12} sm={12} md={12}>
-                    <MutedText>
-                      {programmbs.quality_g7}
-                    </MutedText>
+                <Field
+                  labelText={t("question_qualityg7")}
+                  component={CustomInputRedux}
+                  name="quality_g7"
+                  success
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    multiline: true,
+                    rows: 3,
+                  }}
+                />
                 </GridItem>
           </GridContainer>
           <br/>
           <GridContainer className={classes.cardTitleCenter}>
-              <GridItem xs={12} sm={12} md={12}>
-                <SuccessBold >
-                  {t("question_qualityp8")}
-                </SuccessBold>
+              <GridItem xs={12} sm={12} md={6}>
+                  <Field
+                    labelText={t("question_qualityp8")}
+                    component={CustomInputRedux}
+                    name="quality_p8"
+                    success
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    inputProps={{
+                      type: "text"
+                    }}
+                  />
+              </GridItem>
+              <GridItem xs={12} sm={12} md={6}>
+                  <Field
+                    component={Quality8Select}
+                    name="quality_q8"
+                  />
               </GridItem>
           </GridContainer>
           <GridContainer >
                 <GridItem xs={12} sm={12} md={12}>
-                    <MutedText>
-                      {programmbs.quality_p8}
-                    </MutedText>
-                    <MutedText>
-                      {programmbs.quality_q8 !== undefined ? "" : t(optionQualityLife(programmbs.quality_q8))}
-                    </MutedText>
-                </GridItem>
-          </GridContainer>
-          <br/>
-          <SuccessBold>
-            {t("question_qualityg8")}
-          </SuccessBold>
-          <GridContainer >
-                <GridItem xs={12} sm={12} md={12}>
-                    <MutedText>
-                      {programmbs.qualityg8}
-                    </MutedText>
+                <Field
+                  labelText={t("question_qualityg8")}
+                  component={CustomInputRedux}
+                  name="qualityg8"
+                  success
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    multiline: true,
+                    rows: 3,
+                  }}
+                />
                 </GridItem>
           </GridContainer>
 
@@ -577,17 +676,19 @@ class ProcessTab extends React.Component {
   }
 }
 
-ProcessTab.propTypes = {
-  classes: PropTypes.object,
-};
-
-const mapStateToProps = state => ({ 
-  programmbs: state.programmbsReducer.programmbs
-});
-
-const mapDispatchToPropsActions = dispatch => ({
-});
+QualitylifeTab = reduxForm({
+  form: 'programmbs',
+  enableReinitialize: true,
+})(QualitylifeTab);
 
 
-const ProcessTabComponent = translate(withStyles(styles)(ProcessTab));
-export default connect(mapStateToProps, mapDispatchToPropsActions)(ProcessTabComponent);
+QualitylifeTab = connect(
+  state => ({
+    programmbs: state.programmbsReducer.programmbs,
+    form_programmbs: state.form.programmbs
+  }),
+  { load: loadFormProgrammbs }, 
+)(QualitylifeTab);
+
+
+export default translate(withStyles(styles)(QualitylifeTab));

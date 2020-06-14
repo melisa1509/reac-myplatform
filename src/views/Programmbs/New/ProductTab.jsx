@@ -148,7 +148,6 @@ ProductTab = reduxForm({
 
 ProductTab = connect(
   state => ({
-    initialValues: state.programmbsReducer.data, 
   }),
   { load: loadFormProgrammbs }, 
 )(ProductTab);

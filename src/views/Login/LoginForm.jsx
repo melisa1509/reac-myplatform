@@ -27,6 +27,7 @@ import { getStudentList } from "actions/studentActions.jsx";
 import { getAdminStudentMbsList } from "actions/dashboardActions.jsx";
 import { getAmbassadorList } from "actions/ambassadorActions";
 import { getReports } from "actions/reportActions.jsx";
+import { store } from 'store/index.jsx';
 
 
 
@@ -194,7 +195,11 @@ class LoginForm extends React.Component {
       }
 
       componentWillUnmount(){
-        this.props.dispatchGetReports();
+        const state = store.getState();
+        if(state.loginReducer.active_user.roles.includes("ROLE_ADMIN")  || state.loginReducer.active_user.roles.includes("ROLE_LANGUAGE_ADMIN")){
+          this.props.dispatchGetReports();
+        }
+        
       }
 
 

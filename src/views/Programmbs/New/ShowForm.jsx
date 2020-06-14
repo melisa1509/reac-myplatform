@@ -66,9 +66,7 @@ const style = {
 
 class ShowForm extends React.Component {
 
-    componentDidMount() {
-      this.props.dispatchShowProgrammbs(this.props.match.params.id);
-    }
+   
 
 
     render() {
@@ -153,8 +151,7 @@ class ShowForm extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
-      programmbs: state.programmbsReducer.programmbs,
-      
+      programmbs: state.programmbsReducer.programmbs,      
 });
 
 const mapDispatchToPropsActions = dispatch => ({

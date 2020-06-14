@@ -107,7 +107,6 @@ PriceTab = reduxForm({
 
 PriceTab = connect(
   state => ({
-    initialValues: state.programmbsReducer.data, 
   }),
   { load: loadFormProgrammbs }, 
 )(PriceTab);

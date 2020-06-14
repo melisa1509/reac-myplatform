@@ -45,7 +45,6 @@ function CustomTextarea({...props }) {
     value
   } = props;
 
-  console.log(classes);
 
   const labelClasses = classNames({
     [" " + classes.labelRootError]: error,

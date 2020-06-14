@@ -88,7 +88,7 @@ class LanguageSelect extends React.Component {
                             }}
                             value="-1"
                         >
-                            {t("label_chose_language")}
+                            {t("label_choose_language")}
                         </MenuItem>
                         <MenuItem
                             classes={{

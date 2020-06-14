@@ -10,13 +10,13 @@ import Button from "components/CustomButtons/Button.jsx";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-import CustomRadio from 'components/CustomRadio/CustomRadio.jsx';
-import CustomCheckbox from 'components/CustomCheckbox/CustomCheckbox.jsx';
+import CustomRadioRedux from 'components/CustomRadio/CustomRadioRedux.jsx';
+import CustomCheckbox from 'components/CustomCheckbox/CustomCheckboxRedux.jsx';
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
-import AddBox from "@material-ui/icons/AddBox";
+import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx';
 
 // core components
 import SuccessBold from "components/Typography/SuccessBold.jsx";
@@ -182,20 +182,37 @@ class PaperworkTab extends React.Component {
     const optionsPaperwork2 = {
          value: programmbs.paperwork2,
          options:[
-            { label: t("label_paperwork2_option1") },
-            { label: t("label_paperwork2_option2") },
-            { label: t("label_paperwork2_option3") },
-            { label: t("label_paperwork2_option4") }
+            { label: t("label_paperwork2_option1"), val: "option1" },
+            { label: t("label_paperwork2_option2"), val: "option2" },
+            { label: t("label_paperwork2_option3"), val: "option3" },
+            { label: t("label_paperwork2_option4"), val: "option4" }
          ]
     }
 
     const optionsPaperwork3 = {
-        value: programmbs.paperwork3,
         options:[
-           { label: t("label_paperwork3_option1") },
-           { label: t("label_paperwork3_option2") },
-           { label: t("label_paperwork3_option3") },
+           { label: t("label_paperwork3_option1"), val: "paperwork3[option1]" },
+           { label: t("label_paperwork3_option2"), val: "paperwork3[option2]" },
+           { label: t("label_paperwork3_option3"), val: "paperwork3[option3]" },
         ]
+    }
+
+    const languages = {         
+      options:[
+        { label: t("label_english"),    val: "language_grader[en]"  },
+        { label: t("label_spanish"),    val: "language_grader[es]"  },
+        { label: t("label_french"),     val: "language_grader[fr]"  },
+        { label: t("label_portuguese") , val: "language_grader[pr]"  },
+      ]
+    }
+
+    const radios = {         
+      options:[
+        { label: t("label_english"),     val: "en"  },
+        { label: t("label_spanish"),     val: "es"  },
+        { label: t("label_french"),      val: "fr"  },
+        { label: t("label_portuguese") , val: "pr"  },
+      ]
     }
     
     let p4_array_state = this.state.p4_array_state;
@@ -323,27 +340,50 @@ class PaperworkTab extends React.Component {
     return (
         <Card >
           <CardBody>
-            <h3 className={classes.cardTitleCenter} >{t("title_paperwork")}</h3>
+            <h3 className={classes.cardTitleCenter} >{t("title_paperwork")}</h3>            
             <br/>
-            <SuccessBold>
-              {t("question_paperwork1")}
-            </SuccessBold>
-            <br/>
-            <MutedText>
-              {programmbs.paperwork1}
-            </MutedText>
+              <Field
+                  labelText={t("question_paperwork1")}
+                  component={CustomInputRedux}
+                  name="paperwork1"
+                  success
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    multiline: true,
+                    rows: 7,
+                  }}
+              />
             <br/>
             <SuccessBold>
               {t("question_paperwork2")}
             </SuccessBold>
             <br/>
-            <CustomRadio data={optionsPaperwork2} />
+            <Field
+                component={CustomRadioRedux}
+                name="paperwork2"
+                data={optionsPaperwork2}
+              />
             <br/>
             <SuccessBold>
               {t("question_paperwork3")}
             </SuccessBold>
             <br/>
-            <CustomCheckbox data={optionsPaperwork3} />
+            <div>      
+                  {
+                      optionsPaperwork3.options.map((prop, key) => {
+                       
+                          return (
+                            <Field
+                              component={CustomCheckbox}
+                              name={prop.val}
+                              label={prop.label}                             
+                            />
+                            );
+                      })
+                  }
+              </div>
             <br/>
             <h3 className={classes.cardTitleCenter}>{t("title_paperwork4")}</h3>
             <SuccessBold>{t("label_paperwork4")}</SuccessBold>

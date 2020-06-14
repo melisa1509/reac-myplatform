@@ -126,7 +126,6 @@ PromotionTab = reduxForm({
 
 PromotionTab = connect(
   state => ({
-    initialValues: state.programmbsReducer.data, 
   }),
   { load: loadFormProgrammbs }, 
 )(PromotionTab);

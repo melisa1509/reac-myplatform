@@ -331,7 +331,6 @@ ProcessTab = reduxForm({
 
 ProcessTab = connect(
   state => ({
-    initialValues: state.programmbsReducer.data, 
   }),
   { load: loadFormProgrammbs }, 
 )(ProcessTab);

@@ -10,7 +10,6 @@ const initialState = {
     language: "en",
     roles: [""]
   }
-
 }
 
 export const loginReducer = (state = initialState, action) => {

@@ -81,7 +81,6 @@ PlanTab = reduxForm({
 
 PlanTab = connect(
   state => ({
-    initialValues: state.programmbsReducer.data, 
   }),
   { load: loadFormProgrammbs }, 
 )(PlanTab);

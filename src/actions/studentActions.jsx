@@ -4,7 +4,8 @@ import { GET_STUDENT_AMBASSADOR } from 'constants/actionTypes';
 import { BASE_URL} from 'constants/urlTypes.jsx';
 
 export const getStudentList = key => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const reduxState = getState();
         return fetch(BASE_URL + "/student/?callback=foo")
         .then(response => response.json())
         .then(json => {
