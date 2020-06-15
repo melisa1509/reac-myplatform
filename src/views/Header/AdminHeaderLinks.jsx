@@ -163,7 +163,7 @@ class AdminHeaderLinks extends React.Component {
           </Link>,         
           <Link to={'/dashboard/student'} className={classes.dropdownLink}>
             
-                <LibraryBooks color="danger" className={classes.icons} /> {t("link_program_sa")}
+                <LibraryBooks color="danger" className={classes.icons} /> {t("link_program_ambassador")}
             
           </Link>,
           <Link to={'/login'} className={classes.dropdownLink}>

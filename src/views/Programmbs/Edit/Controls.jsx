@@ -62,26 +62,14 @@ class Controls extends React.Component {
     let { t } = this.props;
     return (
       <GridContainer justify="center">
-        <GridItem xs={12} sm={12} md={12}>
-            <GridContainer justify="center">
-                <Button color="warning" size="sm" onClick={this.loginClick}>
-                    {t("button_approve_this_section")}
-                </Button>
-            </GridContainer>
+        <GridItem xs={12} sm={12} md={12}>            
             <GridContainer justify="center" className={ classes.verticalSpace }>
                 <Button color="info" size="sm" onClick={this.handleSave}>
                     {t("button_save")}
-                </Button>
+                </Button>                
                 {" "}
-                <Button color="danger" size="sm" onClick={this.handleSendRevisionProject}>
-                    {t("button_send_correction")}
-                </Button>
-                <Button color="defaul" size="sm" onClick={this.loginClick}>
-                    {t("button_certificate_attendance")}
-                </Button>
-                {" "}
-                <Button color="success" size="sm" onClick={this.handleApproveProject}>
-                    {t("button_approved")}
+                <Button color="success" size="sm" >
+                    {t("button_send_revision")}
                 </Button>
                 
             </GridContainer>

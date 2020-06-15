@@ -43,6 +43,7 @@ class Popups extends React.Component {
     const { classes, sendRevisionProjectSuccessfull, sendRevisionProjectError, editRevisionSuccessfull, editRevisionError, approveProjectError, approveProjectSuccessfull, t } = this.props;
     return (
         <>
+            <AdminHeader/>
             {editRevisionSuccessfull ? 
               <SweetAlert
                   success
