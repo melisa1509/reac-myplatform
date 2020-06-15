@@ -1,5 +1,6 @@
 import { GET_REPORTS } from "constants/actionTypes";
 import { GET_REPORT_COUNTRY, GET_AMBASSADOR_COUNTRY, GET_REPORT_AMBASSADOR } from "constants/actionTypes";
+import { AMBASSADOR_REPORT } from "constants/actionTypes";
 
 const initialState = { 
   report_list:{
@@ -15,6 +16,7 @@ const initialState = {
   report_country:[],
   ambassador_country:[],
   report_ambassador:[],
+  embassadorReport:[],
   loading: true,
 }
 export const reportReducer = (state = initialState, action) => {
@@ -35,6 +37,10 @@ export const reportReducer = (state = initialState, action) => {
       case GET_REPORT_AMBASSADOR:
         return Object.assign({}, state, {
           report_ambassador: action.payload,
+        });
+      case AMBASSADOR_REPORT:
+        return Object.assign({}, state, {
+          embassadorReport: action.payload,
         });
     }
     return state;

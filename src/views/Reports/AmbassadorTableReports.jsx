@@ -9,7 +9,7 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Table from "components/Table/Table.jsx";
 import AmbassadorSelect from "views/Select/AmbassadorSelect.jsx";
-import { getReportAmbassador } from "actions/reportActions.jsx";
+import { AmbassadorReport } from "actions/reportActions.jsx";
 
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
 import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
@@ -19,7 +19,7 @@ const style = {
     ...validationFormsStyle
 };
 
-class PorcentageATable extends React.Component {
+class AmbassadorTableReports extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,93 +27,46 @@ class PorcentageATable extends React.Component {
     };
   }
   componentDidMount(){
-    this.props.dispatchGetReportAmbassador();
+    this.props.dispatchAmbassadorReport();
   }
   render() {
-    const {report_ambassador, selected_ambassador, report_country} = this.props;
+    const {embassadorReport} = this.props;
     let { t } = this.props;
-    let question=[]
-    let studentPre=[]
-    let students=[]
-    let percentagePre=[]
-    let percentage=[]
 
-    if (selected_ambassador == "ALL"){
-      question = report_country.map((prop)=>{
-        let TableData=[]
-        return(
-          TableData=[[t(prop.question)]]
-        );
-      });
-
-      studentPre  = report_country.map((prop)=>{
-        let TableData=[]
-        return(
-          TableData=[prop.studentsPre]
-        );
-      });
-
-      students  = report_country.map((prop)=>{
-        let TableData=[]
-        return(
-          TableData=[prop.students]
-        );
-      });
-
-      percentagePre  = report_country.map((prop)=>{
-        let TableData=[]
-        return(
-          TableData=[prop.percentagePre +"%"]
-        );
-      });
-
-      percentage = report_country.map((prop)=>{
-        let TableData=[]
-        return(
-          TableData=[prop.percentage +"%" ]
-        );
-      });
-    }
-  else {
-    question = report_ambassador.map((prop)=>{
+    const question = embassadorReport.map((prop)=>{
       let TableData=[]
       return(
         TableData=[[t(prop.question)]]
       );
     });
-    studentPre  = report_ambassador.map((prop)=>{
+    const studentPre  = embassadorReport.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.studentsPre]
       );
     });
-    students  = report_ambassador.map((prop)=>{
+    const students  = embassadorReport.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.students]
       );
     });
-    percentagePre  = report_ambassador.map((prop)=>{
+    const percentagePre  = embassadorReport.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.percentagePre +"%"]
       );
     });
-    percentage = report_ambassador.map((prop)=>{
+    const percentage = embassadorReport.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.percentage +"%" ]
       );
     });
-  }
+
     return (
       <GridContainer justify="center">
         <GridItem xs={8}>
-          <GridContainer justify="center">
-            <GridItem xs={4}>
-              <AmbassadorSelect/> 
-            </GridItem> 
-          </GridContainer>
         <br/> 
           <Table
               tableData={[
@@ -136,17 +89,15 @@ class PorcentageATable extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
-      initialValues: state.selectReducer.selected_ambassador,
       report_country: state.reportReducer.report_country,
-      report_list: state.reportReducer.report_list,
-      report_ambassador: state.reportReducer.report_ambassador,
+      embassadorReport: state.reportReducer.embassadorReport,
       selected_ambassador: state.selectReducer.selected_ambassador
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetReportAmbassador: () => dispatch( getReportAmbassador() )
+  dispatchAmbassadorReport: (key) => dispatch( AmbassadorReport(key) )
 });
 
-const PorcentageATableComponent = translate(withStyles(style)(PorcentageATable));
-export default connect(mapStateToProps, mapDispatchToPropsActions)(PorcentageATableComponent);
+const AmbassadorTableReportsComponent = translate(withStyles(style)(AmbassadorTableReports));
+export default connect(mapStateToProps, mapDispatchToPropsActions)(AmbassadorTableReportsComponent);
 

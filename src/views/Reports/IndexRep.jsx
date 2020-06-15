@@ -22,12 +22,14 @@ import dashboardStyle from "assets/jss/material-dashboard-pro-react/views/dashbo
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
+import { getReports } from "actions/reportActions.jsx";
 
 import IndexTable from './IndexTable.jsx';
 import IndexAmbassadorTable from './IndexAmbassadorTable.jsx';
 import CountryTable from "./CountryTable.jsx";
 import AmbassadorTable from "./AmbassadorTable.jsx";
 import GlobalTable from "./GlobalTable.jsx";
+import AmbassadorTableReports from "./AmbassadorTableReports.jsx";
 
 
 const styles = {
@@ -38,7 +40,6 @@ const styles = {
   },
     ...dashboardStyle,
 };
-
 
 class IndexRep extends React.Component {
   render() {
@@ -101,7 +102,7 @@ class IndexRep extends React.Component {
               </Muted>
             </CardHeader>
             <CardBody>
-                <GlobalTable />      
+              <GlobalTable/>
             </CardBody>
           </Card>
           <br/>
@@ -115,7 +116,7 @@ class IndexRep extends React.Component {
               </Muted>
             </CardHeader>
             <CardBody>
-                {rol ? " ":<CountryTable initialValues={initialValuesReport}/> }     
+                {rol ? <AmbassadorTableReports/> : <CountryTable initialValues={initialValuesReport}/> }     
             </CardBody>
           </Card>
           <br/>
@@ -145,7 +146,7 @@ class IndexRep extends React.Component {
               </Muted>
             </CardHeader>
             <CardBody>
-              {rol ? <IndexAmbassadorTable/> : <IndexTable  />  }        
+              {rol ? <IndexAmbassadorTable/>: <IndexTable  />  }        
             </CardBody>
           </Card>
         </GridItem>
@@ -166,6 +167,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToPropsActions = dispatch => ({
+  dispatchGetReports: () => dispatch( getReports() )
 });
 
 

@@ -1,5 +1,6 @@
 import { GET_REPORTS, GET_REPORT_COUNTRY, GET_AMBASSADOR_COUNTRY, GET_REPORT_AMBASSADOR } from 'constants/actionTypes.jsx';
 import { BASE_URL } from 'constants/urlTypes.jsx';
+import { AMBASSADOR_REPORT } from 'constants/actionTypes';
 
 export const getReports = () => {
     return (dispatch,getState) => {
@@ -52,6 +53,18 @@ export const getReportAmbassador= (key) => {
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: GET_REPORT_AMBASSADOR, payload: json.data });
+        });
+    }
+}
+
+export const AmbassadorReport= () => {
+    return (dispatch,getState) => {
+        const reduxState = getState();
+        const key = reduxState.loginReducer.active_user.id
+        return fetch( BASE_URL + "/report/ambassador/"+ key +"?callback=foo")
+        .then(response => response.json())
+        .then(json => {
+            dispatch ({ type: AMBASSADOR_REPORT, payload: json.data });
         });
     }
 }

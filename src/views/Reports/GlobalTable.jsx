@@ -67,7 +67,10 @@ class GlobalTable extends React.Component {
   saveClick() {
     CountryEntire=true
   }
- 
+  
+  componentDidMount() {
+    this.props.dispatchGetReports();
+  }
   render() {
     const { report_list} = this.props;
     let { t } = this.props;
