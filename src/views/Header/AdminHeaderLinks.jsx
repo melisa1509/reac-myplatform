@@ -156,6 +156,21 @@ class AdminHeaderLinks extends React.Component {
                 <Person color="danger" className={classes.icons} /> {t("link_user_profile")}
             
           </Link>,
+          <Link to={'/dashboard/student'} className={classes.dropdownLink}>
+            
+          <School color="danger" className={classes.icons} /> {t("link_program_mbs")}
+      
+          </Link>,         
+          <Link to={'/dashboard/student'} className={classes.dropdownLink}>
+            
+                <LibraryBooks color="danger" className={classes.icons} /> {t("link_program_sa")}
+            
+          </Link>,
+          <Link to={'/login'} className={classes.dropdownLink}>
+            
+                <Cancel color="danger" className={classes.icons} /> {t("link_logout")}
+            
+          </Link>,
         ]
       }
       else {

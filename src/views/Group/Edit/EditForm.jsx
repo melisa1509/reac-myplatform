@@ -31,6 +31,7 @@ import { deleteSuccessful } from "actions/generalActions.jsx";
 import ModalitySelect from "views/Select/ModalitySelect.jsx";
 import ProgramSelect from "views/Select/ProgramSelect.jsx";
 import FileUpload from "components/CustomUpload/FileUpload.jsx";
+import CustomRadioRedux from 'components/CustomRadio/CustomRadioRedux.jsx';
 
 // style for this view
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
@@ -111,6 +112,14 @@ class EditForm extends React.Component {
     render() {
         const { classes, successfull_edit, editError, errorRequired, successRequired } = this.props;
         let { t } = this.props;
+        const custom_certificate_options = {         
+          options:[
+            { label: t("label_custom_certificate_option1"),      val: "1" },
+            { label: t("label_custom_certificate_option2"),      val: "2"  },
+            { label: t("label_custom_certificate_option3"),      val: "3"  },
+            { label: t("label_custom_certificate_option4"),      val: "4"  },
+          ]
+        }
         return (
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={8}>
@@ -211,79 +220,71 @@ class EditForm extends React.Component {
                     />
                   </GridItem>
               </GridContainer>
-              <GridContainer >
-                  <GridItem xs={12} sm={12} md={12}>
-                    <Field
-                      labelText={t("label_interweave_local")}
-                      component={CustomInputRedux}
-                      name="interweave_local"
-                      success={this.state.interweaveLocalState === "success"}
-                      error={this.state.interweaveLocalState === "error"}
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        onKeyUp: event => 
-                              verifyChange(event, "interweave_local", "length", 0, null, this),
-                        type: "text",
-                      }}
-                    />
-                </GridItem>
-              </GridContainer>
-              <GridContainer >
-                  <GridItem xs={12} sm={12} md={12}>
-                    <Field
-                      labelText={t("label_authorization_code")}
-                      component={CustomInputRedux}
-                      name="authorization_code"
-                      success={this.state.authorizationCodeState === "success"}
-                      error={this.state.authorizationCodeState === "error"}
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        onKeyUp: event => 
-                              verifyChange(event, "authorizationCode", "length", 0, null, this),
-                        type: "text",
-                      }}
-                    />
-                </GridItem>
-              </GridContainer>
-              <GridContainer>
-                  <GridItem xs={12} sm={12} md={12}> 
-                      <InputLabel className={classes.label}>
-                        <SuccessLabel>{t("label_name_image")}</SuccessLabel>
-                      </InputLabel>
-                      <Field
-                        component={FileUpload}
-                        name="name_image"
-                        changeFileName = {this.updateFileName}
-                        inputProps={{
-                          type: "file",
-                        }}
-                      />            
-                  </GridItem>
-              </GridContainer>
               <br/>
               <GridContainer>
-                  <GridItem xs={12} sm={12} md={12}>
+                  <GridItem xs={12} sm={12} md={11}>
                     <Accordion
-                        active={0}
+                        active={-1}
                         collapses={[
                           {
-                            title: "Collapsible group Item #1",
+                            title: t("label_custom_certificate_options"),
                             content:
-                              "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS."
-                          },
-                          {
-                            title: "Collapsible group Item #2",
-                            content:
-                              "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS."
-                          },
-                          {
-                            title: "Collapsible group Item #3",
-                            content:
-                              "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS."
+                                  <GridContainer >
+                                      <GridItem xs={12} sm={12} md={9}>
+                                        <Field
+                                          labelText={t("label_interweave_local")}
+                                          component={CustomInputRedux}
+                                          name="interweave_local"
+                                          success={this.state.interweaveLocalState === "success"}
+                                          error={this.state.interweaveLocalState === "error"}
+                                          formControlProps={{
+                                            fullWidth: true
+                                          }}
+                                          inputProps={{
+                                            onKeyUp: event => 
+                                                  verifyChange(event, "interweave_local", "length", 0, null, this),
+                                            type: "text",
+                                          }}
+                                        />
+                                    </GridItem>
+                                    <GridItem xs={12} sm={12} md={9}>
+                                      <Field
+                                        labelText={t("label_authorization_code")}
+                                        component={CustomInputRedux}
+                                        name="authorization_code"
+                                        success={this.state.authorizationCodeState === "success"}
+                                        error={this.state.authorizationCodeState === "error"}
+                                        formControlProps={{
+                                          fullWidth: true
+                                        }}
+                                        inputProps={{
+                                          onKeyUp: event => 
+                                                verifyChange(event, "authorizationCode", "length", 0, null, this),
+                                          type: "text",
+                                        }}
+                                      />
+                                    </GridItem>
+                                    <GridItem xs={12} sm={12} md={12}> 
+                                      <InputLabel className={classes.label}>
+                                        <SuccessLabel>{t("label_name_image")}</SuccessLabel>
+                                      </InputLabel>
+                                      <Field
+                                        component={FileUpload}
+                                        name="name_image"
+                                        changeFileName = {this.updateFileName}
+                                        inputProps={{
+                                          type: "file",
+                                        }}
+                                      />            
+                                    </GridItem>
+                                    <GridItem xs={12} sm={12} md={12}>
+                                      <Field
+                                        component={CustomRadioRedux}
+                                        name="number_students_graduated"
+                                        data={custom_certificate_options}
+                                      />
+                                    </GridItem>
+                                  </GridContainer>
                           }
                         ]}
                     />

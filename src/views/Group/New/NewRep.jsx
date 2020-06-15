@@ -58,6 +58,7 @@ class NewRep extends React.Component {
       final_date:moment().format('YYYY-MMM-DD'),
       graduation_date:moment().format('YYYY-MMM-DD'),
       id_ambassador:id,
+      number_students_graduated:"1"
     }
     return (
       <GridContainer justify="center">

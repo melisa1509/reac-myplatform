@@ -109,7 +109,7 @@ class IndexTable extends React.Component {
             <Button
               size="sm"
               color="info"
-              href={"https://myplatform.interweavesolutions.org/certificate/mbs?id=" + prop.student.id}
+              href={"https://api.interweavesolutions.org/certificate/mbs/student/" + prop.student.id}
               target="_blank"
             >
               {t('button_certificate_mbs')}
@@ -125,7 +125,7 @@ class IndexTable extends React.Component {
           <Button
             size="sm"
             color="success"
-            href={"https://myplatform.interweavesolutions.org/certificate/ambassador?id=" + prop.student.id}
+            href={"https://api.interweavesolutions.org/certificate/ambassador/student/" + prop.student.id}
             target="_blank"
           >
             {t('button_certificate_ambassador')}
@@ -226,7 +226,7 @@ class IndexTable extends React.Component {
                       <Button
                         color="info"
                         size="sm"
-                        href={"https://myplatform.interweavesolutions.org/certificate/mbs/list?id=" + this.props.match.params.id}
+                        href={"https://api.interweavesolutions.org/certificate/mbs/list/" + this.props.match.params.id}
                         target="_blank"
                       >
                       {t("button_download_all_mbs_certificates")}
@@ -235,7 +235,7 @@ class IndexTable extends React.Component {
                       <Button
                         color="success"
                         size="sm"
-                        href={"https://myplatform.interweavesolutions.org/certificate/ambassador/list?id=" + this.props.match.params.id}
+                        href={"https://api.interweavesolutions.org/certificate/ambassador/list/" + this.props.match.params.id}
                         target="_blank"
                       >
                       {t("button_download_all_ambassador_certificates")}
