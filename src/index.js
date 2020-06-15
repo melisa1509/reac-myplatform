@@ -97,7 +97,7 @@ ReactDOM.render(
           <Route path="/student" component={Student} exact />
           <Route path="/student/new/:id" component={NewStudent} exact />
           <Route path="/student/show/:id" component={ShowStudent} exact />
-          <Route path="/student/edit/:id/:active" component={EditStudent} exact />
+          <Route path="/student/edit/:id" component={EditStudent} exact />
           <Route path="/student/editpassword/:id" component={StudentChangePassword} exact /> 
           <Route path="/rtl" component={RtlLayout} />
           <Route path="/auth" component={AuthLayout} />
