@@ -9,7 +9,7 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Table from "components/Table/Table.jsx";
 import AmbassadorSelect from "views/Select/AmbassadorSelect.jsx";
-import { AmbassadorReport } from "actions/reportActions.jsx";
+import { getReportAmbassador } from "actions/reportActions.jsx";
 
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
 import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
@@ -27,37 +27,37 @@ class AmbassadorTableReports extends React.Component {
     };
   }
   componentDidMount(){
-    this.props.dispatchAmbassadorReport();
+    this.props.dispatchGetReportAmbassador();
   }
   render() {
-    const {embassadorReport} = this.props;
+    const {report_ambassador} = this.props;
     let { t } = this.props;
 
-    const question = embassadorReport.map((prop)=>{
+    const question = report_ambassador.map((prop)=>{
       let TableData=[]
       return(
         TableData=[[t(prop.question)]]
       );
     });
-    const studentPre  = embassadorReport.map((prop)=>{
+    const studentPre  = report_ambassador.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.studentsPre]
       );
     });
-    const students  = embassadorReport.map((prop)=>{
+    const students  = report_ambassador.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.students]
       );
     });
-    const percentagePre  = embassadorReport.map((prop)=>{
+    const percentagePre  = report_ambassador.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.percentagePre +"%"]
       );
     });
-    const percentage = embassadorReport.map((prop)=>{
+    const percentage = report_ambassador.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.percentage +"%" ]
@@ -90,12 +90,11 @@ class AmbassadorTableReports extends React.Component {
 
 const mapStateToProps = state => ({ 
       report_country: state.reportReducer.report_country,
-      embassadorReport: state.reportReducer.embassadorReport,
-      selected_ambassador: state.selectReducer.selected_ambassador
+      report_ambassador: state.reportReducer.report_ambassador,
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchAmbassadorReport: (key) => dispatch( AmbassadorReport(key) )
+  dispatchGetReportAmbassador: () => dispatch( getReportAmbassador() )
 });
 
 const AmbassadorTableReportsComponent = translate(withStyles(style)(AmbassadorTableReports));

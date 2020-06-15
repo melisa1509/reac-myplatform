@@ -16,7 +16,6 @@ const initialState = {
   report_country:[],
   ambassador_country:[],
   report_ambassador:[],
-  embassadorReport:[],
   loading: true,
 }
 export const reportReducer = (state = initialState, action) => {
@@ -37,10 +36,6 @@ export const reportReducer = (state = initialState, action) => {
       case GET_REPORT_AMBASSADOR:
         return Object.assign({}, state, {
           report_ambassador: action.payload,
-        });
-      case AMBASSADOR_REPORT:
-        return Object.assign({}, state, {
-          embassadorReport: action.payload,
         });
     }
     return state;

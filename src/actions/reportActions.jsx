@@ -48,7 +48,11 @@ export const getAmbassadorCountry= (key) => {
 }
 
 export const getReportAmbassador= (key) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const reduxState = getState();
+        if(reduxState.loginReducer.active_user.roles[0] == "ROLE_EMBASSADOR"){
+         key=reduxState.loginReducer.active_user.id
+        }
         return fetch( BASE_URL + "/report/ambassador/"+ key +"?callback=foo")
         .then(response => response.json())
         .then(json => {
@@ -57,14 +61,3 @@ export const getReportAmbassador= (key) => {
     }
 }
 
-export const AmbassadorReport= () => {
-    return (dispatch,getState) => {
-        const reduxState = getState();
-        const key = reduxState.loginReducer.active_user.id
-        return fetch( BASE_URL + "/report/ambassador/"+ key +"?callback=foo")
-        .then(response => response.json())
-        .then(json => {
-            dispatch ({ type: AMBASSADOR_REPORT, payload: json.data });
-        });
-    }
-}
