@@ -12,6 +12,7 @@ import { store } from "store";
 import withStyles from "@material-ui/core/styles/withStyles";
 import InputLabel from "@material-ui/core/InputLabel";
 import SuccessLabel from "components/Typography/SuccessLabel.jsx";
+import Accordion from "components/Accordion/Accordion.jsx";
 
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -261,6 +262,31 @@ class EditForm extends React.Component {
                           type: "file",
                         }}
                       />            
+                  </GridItem>
+              </GridContainer>
+              <br/>
+              <GridContainer>
+                  <GridItem xs={12} sm={12} md={12}>
+                    <Accordion
+                        active={0}
+                        collapses={[
+                          {
+                            title: "Collapsible group Item #1",
+                            content:
+                              "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS."
+                          },
+                          {
+                            title: "Collapsible group Item #2",
+                            content:
+                              "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS."
+                          },
+                          {
+                            title: "Collapsible group Item #3",
+                            content:
+                              "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS."
+                          }
+                        ]}
+                    />
                   </GridItem>
               </GridContainer>
               <br/>

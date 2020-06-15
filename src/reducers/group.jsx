@@ -44,8 +44,16 @@ export const groupReducer = (state = initialState, action) => {
           show_group: action.payload
         });
       case LOAD_FORM_GROUP:
+        const group = action.data;
+        if(group.number_students_graduated !== undefined){
+          group.number_students_graduated = group.number_students_graduated.toString();
+        }
+        else{
+          group.number_students_graduated = "1";
+        }
+        
         return Object.assign({}, state, {
-          data: action.data
+          data: group
         });
       case EDIT_GROUP:
           return Object.assign({}, state, {
