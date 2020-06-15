@@ -31,7 +31,7 @@ const styles = {
 
 class IndexRep extends React.Component {  
   render() {
-    const { classes,active_user} = this.props;
+    const { classes,active_user, group_list} = this.props;
     let { t } = this.props;
     let rol=false
     if(active_user.roles == "ROLE_EMBASSADOR"){
@@ -42,16 +42,18 @@ class IndexRep extends React.Component {
         <GridItem xs={12} sm={12} md={12}>
           <Card>
             <CardHeader color="info">
-                <h4 className={classes.cardTitle}>{t("title_student_list")}</h4>
+                { rol ? <h4 className={classes.cardTitle}>{t("title_student_list") +" "+ t("title_paper_documentation")}</h4> :<h4 className={classes.cardTitle}>{t("title_student_list")}</h4>}
             </CardHeader>
             <CardBody>
                 {rol ? <IndexAmbassador  /> : <IndexTable  /> }   
             </CardBody>
           </Card>
           <br/>
+          
           <Card>
             <CardHeader color="info">
-                <h4 className={classes.cardTitle}>{t("title_student_list")+" "+"/"+" "+t("title_project_progress_sa")}</h4>
+                { rol ? <h4 className={classes.cardTitle}>{t("title_student_list")+" "+t("title_online_documentation")+" "+"/"+" "+t("title_project_progress_mbs")}</h4>
+                :<h4 className={classes.cardTitle}>{t("title_student_list")+" "+"/"+" "+t("title_project_progress_sa")}</h4>}
             </CardHeader>
             <CardBody>
               {rol ? <MBSTable /> : "" }     
@@ -69,6 +71,7 @@ IndexRep.propTypes = {
 
 const mapStateToProps = state => ({ 
   active_user: state.loginReducer.active_user,
+  group_list: state.groupReducer.group_list, 
   certificate_list: state.certificateReducer.certificate_list, 
 });
 

@@ -18,7 +18,7 @@ import FutureAmbassadorTable from './FutureAmbassadorTable.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
-import Ambassador from "./EmbassadorTable.jsx";
+import EmbassadorTable from "./EmbassadorTable.jsx";
 
 
 const styles = {
@@ -49,7 +49,7 @@ class IndexRep extends React.Component {
                 <h4 className={classes.cardTitle}>{t("title_student_list_revision")}</h4>
             </CardHeader>
             <CardBody>
-                {rol ? <Ambassador/> : <MbsTable /> }  
+                {rol ? <EmbassadorTable/> : <MbsTable /> }  
             </CardBody>
           </Card>
           <br/>

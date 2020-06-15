@@ -111,14 +111,15 @@ class IndexRep extends React.Component {
                 <Icon>dns</Icon>
               </CardIcon>
               <Muted>
-                <h4>{t("title_number_people_improvement") + " " + t( "title_by_country")}</h4>
+                {rol ? <h4>{t("title_number_people_improvement")}</h4> :<h4>{t("title_number_people_improvement") + " " + t( "title_by_country")}</h4> }
               </Muted>
             </CardHeader>
             <CardBody>
-                <CountryTable initialValues={initialValuesReport}/>      
+                {rol ? " ":<CountryTable initialValues={initialValuesReport}/> }     
             </CardBody>
           </Card>
           <br/>
+          {rol? " " :
           <Card>
             <CardHeader icon >
               <CardIcon color="warning">
@@ -132,6 +133,7 @@ class IndexRep extends React.Component {
                 <AmbassadorTable/>      
             </CardBody>
           </Card>
+          }
           <br/>
           <Card>
             <CardHeader icon >

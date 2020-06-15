@@ -28,8 +28,6 @@ export const loginReducer = (state = initialState, action) => {
             return Object.assign({}, state, {
               active_user: action.payload.data
             });
-
-    }
-    
+    }   
     return state;
 }
