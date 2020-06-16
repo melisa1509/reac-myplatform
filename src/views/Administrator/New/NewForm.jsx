@@ -231,12 +231,7 @@ class NewForm extends React.Component {
                       })
                   }
               </div>
-              <br/>
-              <Field
-                component={CustomRadioRedux}
-                name="radio"
-                data={radios}
-              />
+              
               <br/>
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
