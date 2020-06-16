@@ -63,7 +63,7 @@ class Quality3Select extends React.Component {
                     <InputLabel
                         htmlFor="simple-select"
                     >
-                        <Success>{t("label_chose_satisfaction_level")}</Success>
+                        <Success>{t("label_satisfaction_level")}</Success>
                     </InputLabel>
                     <Select
                         MenuProps={{

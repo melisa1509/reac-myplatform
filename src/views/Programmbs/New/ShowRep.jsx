@@ -43,7 +43,6 @@ class ShowRep extends React.Component {
         <GridItem xs={12} sm={12} md={12}>
             <CardHeader color="info" >
                 <h4 className={classes.cardTitleCenter}>{t("title_program_mbs")}</h4>
-                <p className={classes.cardCategory}>{ programmbs.student.first_name + " " + programmbs.student.last_name + " / " + programmbs.student.studentgroup.group.name + " / " + programmbs.student.studentgroup.group.embassador.first_name + "  " + programmbs.student.studentgroup.group.embassador.last_name} </p> 
             </CardHeader>
             <CardBody>
                 <ShowForm  />      
@@ -59,7 +58,8 @@ ShowRep.propTypes = {
 };
 
 const mapStateToProps = state => ({ 
-  programmbs: state.programmbsReducer.programmbs
+  programmbs: state.programmbsReducer.programmbs,
+  active_user: state.loginReducer.active_user
 });
 
 const mapDispatchToPropsActions = dispatch => ({
