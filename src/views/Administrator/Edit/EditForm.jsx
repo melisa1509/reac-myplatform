@@ -288,7 +288,7 @@ EditForm = connect(
     successRequired:state.generalReducer.successRequired,
     edit_administrator: state.administratorReducer.edit_administrator,
     editError: state.administratorReducer.editError,
-    successfull_edit:state.generalReducer.successfull_edit,
+    successfull_edit:state.administratorReducer.successfull_edit,
     show_administrator: state.administratorReducer.show_administrator,
     data: state.administratorReducer.data,
   }),

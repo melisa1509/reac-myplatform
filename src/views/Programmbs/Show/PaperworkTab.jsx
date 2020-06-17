@@ -89,7 +89,7 @@ class PaperworkTab extends React.Component {
     }
 
     const optionsPaperwork3 = {
-        value: programmbs.paperwork3,
+        value: programmbs.paperwork9,
         options:[
            { label: t("label_paperwork3_option1") },
            { label: t("label_paperwork3_option2") },

@@ -45,6 +45,7 @@ class Show extends React.Component {
     const { classes, sendRevisionProjectSuccessfull, sendRevisionProjectError, editRevisionSuccessfull, editRevisionError, approveProjectError, approveProjectSuccessfull, t } = this.props;
     return (
         <div>
+          <AdminHeader/>
             {editRevisionSuccessfull ? 
               <SweetAlert
                   success

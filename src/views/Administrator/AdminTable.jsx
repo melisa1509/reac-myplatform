@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 // @material-ui/icons
 import Create from "@material-ui/icons/Create";
 import Visibility from "@material-ui/icons/Visibility";
+import Close from "@material-ui/icons/Close";
 
 
 // core components
@@ -94,6 +95,16 @@ class AdminTable extends React.Component {
                 color="warning"
               >
                 <Create />
+              </Button>
+            </Link>{" "}
+            <Link to={"/admin/show/" + prop.id}>
+              <Button
+                justIcon
+                round
+                simple            
+                color="danger"
+              >
+                <Close />
               </Button>
             </Link>{" "}
           </div>

@@ -9,12 +9,14 @@ const initialState = {
   administrator_list: [],
   adminlanguage_list: [], 
   editError: false,
+  successfull_edit: false,
+  successfull_new: false,
   new_administrator:{
     language_grader:{},
     language: "en",
     country:"AFG",
     roles:"ROLE_ADMIN",
-    radio: "es"
+    radio: "es",    
   },  
   show_administrator: {
     roles:"",
@@ -42,6 +44,7 @@ export const administratorReducer = (state = initialState, action) => {
       case NEW_ADMINISTRATOR:
         return Object.assign({}, state, {
             new_administrator: action.payload,
+            successfull_new: true
         });
       case SHOW_ADMINISTRATOR:
         return Object.assign({}, state, {
@@ -59,7 +62,8 @@ export const administratorReducer = (state = initialState, action) => {
         }); 
       case EDIT_ADMINISTRATOR:
         return Object.assign({}, state, {
-            edit_administrator: action.payload
+            edit_administrator: action.payload,
+            successfull_edit: true
         }); 
       case ERROR_EDIT_ADMINISTRATOR:
         return Object.assign({}, state, {

@@ -39,7 +39,7 @@ class EditRep extends React.Component {
           <Card>
             <CardHeader color="info">
             <center>
-             <h4 className={classes.cardTitle}>{t("title_edit_ambassador")}</h4>
+             <h4 className={classes.cardTitle}>{t("title_edit_admin")}</h4>
              </center>
             </CardHeader>
             <CardBody>

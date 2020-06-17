@@ -127,8 +127,12 @@ const initialState = {
 export const programmbsReducer = (state = initialState, action) => {
     switch (action.type) {
       case SHOW_PROGRAMMBS:
+        var programmbs = action.payload;
+        if(programmbs !== undefined){
+          programmbs.paperwork9 = programmbs.paperwork3;
+        }        
         return Object.assign({}, state, {
-          programmbs: action.payload
+          programmbs: programmbs,
         });
 
       case UPDATE_REVISION_PROGRAMMBS:
@@ -140,6 +144,7 @@ export const programmbsReducer = (state = initialState, action) => {
 
       case LOAD_FORM_PROGRAMMBS:
         var programmbs = action.data;
+        programmbs.paperwork9 = programmbs.paperwork3;
         var options = {};
         programmbs.paperwork3.forEach(element => {
           options[element] = true;
