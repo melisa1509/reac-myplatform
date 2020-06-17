@@ -271,7 +271,7 @@ NewForm = connect(
   state => ({
     errorRequired:state.generalReducer.errorRequired,
     successRequired:state.generalReducer.successRequired,
-    successfull_new:state.generalReducer.successfull_new,
+    successfull_new:state.administratorReducer.successfull_new,
     new_administrator: state.administratorReducer.new_administrator,
     initialValues: state.administratorReducer.new_administrator
   }),

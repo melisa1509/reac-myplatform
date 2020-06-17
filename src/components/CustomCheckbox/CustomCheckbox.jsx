@@ -29,7 +29,7 @@ class CustomCheckbox extends React.Component {
                         <FormControlLabel
                             control={
                             <Checkbox
-                                checked={data.value.includes("option" + nOption) }
+                                checked={data.value === undefined ? false: data.value.includes("option" + nOption) }
                                 checkedIcon={
                                 <Check className={classes.checkedIcon} />
                                 }
