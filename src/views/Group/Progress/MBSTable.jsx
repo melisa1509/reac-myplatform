@@ -162,7 +162,7 @@ class MBSTable extends React.Component {
                   
                   getProps: () => {
                     return {
-                      style: { padding: "0px"}
+                      style: { height:"30px"}
                     }
                   },
                   filterMethod: (filter, rows) => {
