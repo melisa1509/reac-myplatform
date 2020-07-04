@@ -8,7 +8,7 @@ const initialState = {
     first_name: "",
     last_name: "",
     language: "en",
-    roles: [""]
+    roles: ["ROLE_ADMIN"]
   }
 }
 

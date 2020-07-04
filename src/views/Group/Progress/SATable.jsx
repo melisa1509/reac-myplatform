@@ -101,12 +101,13 @@ class SATable extends React.Component {
                 {
                   Header: t("th_name"),
                   accessor: "name",
+                  width: 180,
                   sortable: false,
                 },
                 {
                   Header: t("title_mision"),
                   accessor: "mision",
-                  width: 144,
+                  width: 120,
                   sortable: false,
                 },
                 {
@@ -141,7 +142,8 @@ class SATable extends React.Component {
                   sortable: false,
                   
                   getProps: () => {
-                    return {
+                    return { 
+                      style: { height:"30px"}
                     }
                   },
                   filterMethod: (filter, rows) => {

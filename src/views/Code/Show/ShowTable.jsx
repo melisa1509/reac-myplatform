@@ -76,7 +76,7 @@ class ShowTable extends React.Component {
               striped
               tableHead={[]}
               tableData={[
-                [<th>{t("label_name")}</th>,<p>{show_code.name}</p>],
+                [<th>{t("label_name")}</th>,<p>{t(show_code.country)}</p>],
                 [<th>{t("label_code")}</th>,show_code.country],
                 [<th>{t("label_program")}</th>,show_code.program],
                 [<th>{t("label_number")}</th>,show_code.number],
