@@ -197,23 +197,7 @@ class PaperworkTab extends React.Component {
         ]
     }
 
-    const languages = {         
-      options:[
-        { label: t("label_english"),    val: "language_grader[en]"  },
-        { label: t("label_spanish"),    val: "language_grader[es]"  },
-        { label: t("label_french"),     val: "language_grader[fr]"  },
-        { label: t("label_portuguese") , val: "language_grader[pr]"  },
-      ]
-    }
-
-    const radios = {         
-      options:[
-        { label: t("label_english"),     val: "en"  },
-        { label: t("label_spanish"),     val: "es"  },
-        { label: t("label_french"),      val: "fr"  },
-        { label: t("label_portuguese") , val: "pr"  },
-      ]
-    }
+    
     
     let p4_array_state = this.state.p4_array_state;
     if(this.state.p4_array_state === "initialState"){

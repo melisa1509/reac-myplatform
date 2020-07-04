@@ -39,6 +39,13 @@ import EditQualityProgramMbs from 'views/Programmbs/Edit/EditQuality.jsx';
 import EditServiceProgramMbs from 'views/Programmbs/Edit/EditService.jsx';
 import ProgramMbsFile from 'views/Programmbs/ShowFile/Show.jsx';
 import ProgramSa from 'views/Programsa/Show/Show.jsx';
+import NewProgramSa from 'views/Programsa/New/Show.jsx';
+import EditProgramSa from 'views/Programsa/Edit/Show.jsx';
+import EditMisionProgramSa from 'views/Programsa/Edit/EditMision.jsx';
+import EditGenerateProgramSa from 'views/Programsa/Edit/EditGenerate.jsx';
+import EditFacilitateProgramSa from 'views/Programsa/Edit/EditFacilitate.jsx';
+import EditGraduateProgramSa from 'views/Programsa/Edit/EditGraduate.jsx';
+import EditSupportProgramSa from 'views/Programsa/Edit/EditSupport.jsx';
 import User from 'views/User/Show/Show.jsx';
 import UserEdit  from 'views/User/Edit/Edit.jsx';
 import UserChangePassword  from 'views/User/ChangePassword/ChangePassword.jsx';
@@ -117,8 +124,15 @@ ReactDOM.render(
           <Route path="/programmbs/edit/paperwork/:id" component={EditPaperworkProgramMbs} exact/>
           <Route path="/programmbs/edit/quality/:id" component={EditQualityProgramMbs} exact/>
           <Route path="/programmbs/edit/service/:id" component={EditServiceProgramMbs} exact/>
-          <Route path="/programmbs/showfile/:id" component={ProgramMbsFile} />
-          <Route path="/programsa/show/:id" component={ProgramSa} />
+          <Route path="/programmbs/showfile/:id" component={ProgramMbsFile} exact/>
+          <Route path="/programsa/show/:id" component={ProgramSa} exact/>
+          <Route path="/programsa/new" component={NewProgramSa} exact/>
+          <Route path="/programsa/edit/:id" component={EditProgramSa} exact/>
+          <Route path="/programsa/edit/mision/:id" component={EditMisionProgramSa} exact/>
+          <Route path="/programsa/edit/generate/:id" component={EditGenerateProgramSa} exact/>
+          <Route path="/programsa/edit/facilitate/:id" component={EditFacilitateProgramSa} exact/>
+          <Route path="/programsa/edit/graduate/:id" component={EditGraduateProgramSa} exact/>
+          <Route path="/programsa/edit/support/:id" component={EditSupportProgramSa} exact/>
           <Route path="/user/show/:id" component={User} exact /> 
           <Route path="/user/edit/:id" component={UserEdit} exact /> 
           <Route path="/user/editpassword/:id" component={UserChangePassword} exact /> 

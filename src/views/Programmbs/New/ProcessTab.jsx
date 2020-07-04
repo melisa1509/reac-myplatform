@@ -274,7 +274,7 @@ class ProcessTab extends React.Component {
                 <Field
                   labelText={t("question_price2")}
                   component={CustomInputRedux}
-                  name="price2"
+                  name="process2"
                   success
                   formControlProps={{
                     fullWidth: true
@@ -287,7 +287,7 @@ class ProcessTab extends React.Component {
                 <Field
                   labelText={t("question_price3")}
                   component={CustomInputRedux}
-                  name="price3"
+                  name="process3"
                   success
                   formControlProps={{
                     fullWidth: true
@@ -301,7 +301,7 @@ class ProcessTab extends React.Component {
                 <Field
                   labelText={t("question_price4")}
                   component={CustomInputRedux}
-                  name="price4"
+                  name="process4"
                   success
                   formControlProps={{
                     fullWidth: true
@@ -331,6 +331,7 @@ ProcessTab = reduxForm({
 
 ProcessTab = connect(
   state => ({
+    initialValues: state.programmbsReducer.data, 
   }),
   { load: loadFormProgrammbs }, 
 )(ProcessTab);

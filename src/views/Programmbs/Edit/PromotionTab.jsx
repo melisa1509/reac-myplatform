@@ -12,6 +12,7 @@ import CardBody from "components/Card/CardBody.jsx";
 import InputLabel from "@material-ui/core/InputLabel";
 import SuccessLabel from "components/Typography/SuccessLabel.jsx";
 import FileUpload from "components/CustomUpload/FileUpload.jsx";
+import Primary from "components/Typography/Primary.jsx";
 
 // core components
 import Controls from './Controls.jsx';
@@ -109,7 +110,16 @@ class PromotionTab extends React.Component {
                   }}
                 />                
                 <br/>               
-            </form>         
+            </form>
+            { programmbs.revisionpromotion !== undefined ?
+              <div>
+                <br/>
+                <br/>
+                <Primary> { t("label_correction_comments")+ " *" } </Primary>
+                <p>{programmbs.revisionpromotion}</p>                
+              </div>
+              :""
+            }         
             <br/>
             <Controls/>
           </CardBody>
@@ -126,7 +136,8 @@ PromotionTab = reduxForm({
 
 PromotionTab = connect(
   state => ({
-    initialValues: state.programmbsReducer.data, 
+    initialValues: state.programmbsReducer.data,
+    programmbs: state.programmbsReducer.programmbs 
   }),
   { load: loadFormProgrammbs }, 
 )(PromotionTab);

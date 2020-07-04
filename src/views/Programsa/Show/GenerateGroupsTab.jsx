@@ -78,7 +78,7 @@ class GenerateGroupsTab extends React.Component {
     const { classes, programsa } = this.props;
     let { t } = this.props;
     const optionsGenerateGroups1 = {
-         value: programsa.generate_groups1,
+         value: programsa.generate_groups10,
          options:[
             { label: t("label_generateGroup1_option1") },
             { label: t("label_generateGroup1_option2") },
@@ -88,7 +88,7 @@ class GenerateGroupsTab extends React.Component {
     }
 
     const optionsGenerateGroups3 = {
-        value: programsa.generate_groups3,
+        value: programsa.generate_groups13,
         options:[
            { label: t("label_generateGroup3_option1") },
            { label: t("label_generateGroup3_option2") },

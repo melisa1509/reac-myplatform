@@ -11,6 +11,7 @@ import Controls from './Controls.jsx';
 
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
+import Primary from "components/Typography/Primary.jsx";
 
 // core components
 import { translate } from 'react-switch-lang';
@@ -64,7 +65,16 @@ class PlanTab extends React.Component {
                     rows: 7,
                   }}
                 />
-            </form>           
+            </form>
+            { programmbs.revisionplan !== undefined ?
+              <div>
+                <br/>
+                <br/>
+                <Primary> { t("label_correction_comments")+ " *" } </Primary>
+                <p>{programmbs.revisionplan}</p>                
+              </div>
+              :""
+            }           
             <br/>           
             <Controls/>
           </CardBody>
@@ -82,6 +92,7 @@ PlanTab = reduxForm({
 PlanTab = connect(
   state => ({
     initialValues: state.programmbsReducer.data, 
+    programmbs: state.programmbsReducer.programmbs
   }),
   { load: loadFormProgrammbs }, 
 )(PlanTab);

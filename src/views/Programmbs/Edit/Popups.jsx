@@ -16,7 +16,7 @@ import AdminHeader from "views/Header/AdminHeader.jsx";
 import mainPageStyle from "assets/jss/material-kit-react/views/mainPage.jsx";
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 
-import { hideRevisionAlert, redirectDashboard } from "actions/programmbsActions.jsx";
+import { hideRevisionAlert, redirectDashboard, sendProject } from "actions/programmbsActions.jsx";
 
 const styles = {
     ...mainPageStyle,
@@ -38,6 +38,9 @@ class Popups extends React.Component {
   }
   redirectDashboard(){
     this.props.dispatchRedirectDashboard(this.props.history);
+  }
+  handleSendProject(){
+    this.props.dispatchSendProject(this.props.history);
   }
   render() {
     const { classes, sendRevisionProjectSuccessfull, sendRevisionProjectError, editRevisionSuccessfull, editRevisionError, approveProjectError, approveProjectSuccessfull, t } = this.props;
@@ -76,14 +79,14 @@ class Popups extends React.Component {
               <SweetAlert
                   success
                   style={{ display: "block", marginTop: "-100px" }}
-                  onConfirm={() => this.redirectDashboard()}
+                  onConfirm={() => this.handleSendProject()}
                   onCancel={() => this.hideAlert()}
-                  confirmBtnText={t("button_continue")}
+                  confirmBtnText={t("label_send_for_revision")}
                   confirmBtnCssClass={
                       this.props.classes.button + " " + this.props.classes.success
                   }
                   >
-                  <h4>{t("label_revision_sent_successfully")}</h4>
+                  <h4>{t("label_save_success_revision")}</h4>
               </SweetAlert>
             : ""}
             {sendRevisionProjectError ? 
@@ -153,7 +156,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToPropsActions = dispatch => ({
   dispatchHideRevisionAlert: () => dispatch( hideRevisionAlert() ),
-  dispatchRedirectDashboard: param => dispatch( redirectDashboard(param) )
+  dispatchRedirectDashboard: param => dispatch( redirectDashboard(param) ),
+  dispatchSendProject: param => dispatch( sendProject(param)),
 });
 
 const PopupsComponent = translate(withStyles(styles)(Popups));

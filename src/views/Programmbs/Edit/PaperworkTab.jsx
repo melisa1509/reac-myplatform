@@ -20,10 +20,8 @@ import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx';
 
 // core components
 import SuccessBold from "components/Typography/SuccessBold.jsx";
-import MutedText from "components/Typography/Muted.jsx";
+import Primary from "components/Typography/Primary.jsx";
 import Controls from './Controls.jsx';
-import RevisionForm from './RevisionForm.jsx';
-import RenderCell from './RenderCell.jsx';
 import RenderCellTable from './RenderCellTable.jsx';
 import CustomRenderCell from './CustomRenderCell.jsx';
 
@@ -626,9 +624,16 @@ class PaperworkTab extends React.Component {
                   </tbody>
                 </table>
               </GridItem>
-            </GridContainer>
-            <br/>
-            <RevisionForm name="revisionpaperwork" labelText={t("label_revision_paperwork")+ " *"} />
+            </GridContainer>            
+            { programmbs.revisionpaperwork !== undefined ?
+              <div>
+                <br/>
+                <br/>
+                <Primary> { t("label_correction_comments")+ " *" } </Primary>
+                <p>{programmbs.revisionpaperwork}</p>                
+              </div>
+              :""
+            }
             <br/>
             <Controls/>
           </CardBody>

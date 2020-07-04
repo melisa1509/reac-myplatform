@@ -1,4 +1,4 @@
-import { SUCCESSFULL_AUTHENTICATION, FAILED_AUTHENTICATION, SUCCESSFULL_ACTIVE_USER} from "constants/actionTypes";
+import { SUCCESSFULL_AUTHENTICATION, FAILED_AUTHENTICATION, SUCCESSFULL_ACTIVE_USER, LOGOUT_USER} from "constants/actionTypes";
 
 const initialState = { 
 
@@ -28,6 +28,11 @@ export const loginReducer = (state = initialState, action) => {
             return Object.assign({}, state, {
               active_user: action.payload.data
             });
+
+        case LOGOUT_USER:
+          return Object.assign({}, state, {
+            token: undefined
+          });
     }   
     return state;
 }

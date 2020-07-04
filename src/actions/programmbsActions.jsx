@@ -65,68 +65,7 @@ export const newProgrammbs = (redirect) => {
 
         var urlencoded = new URLSearchParams();
         urlencoded.append("id_student", reduxState.loginReducer.active_user.id);
-        urlencoded.append("plan1", reduxState.form.programmbs.values.plan1 !== undefined ? reduxState.form.programmbs.values.plan1 : "");
-        urlencoded.append("plan2", reduxState.form.programmbs.values.plan2 !== undefined ? reduxState.form.programmbs.values.plan2 : "");
-        urlencoded.append("product1", reduxState.form.programmbs.values.product1 !== undefined ? reduxState.form.programmbs.values.product1 : "");
-        urlencoded.append("product2", reduxState.form.programmbs.values.product2 !== undefined ? reduxState.form.programmbs.values.product2 : "");
-        urlencoded.append("product3", reduxState.form.programmbs.values.product3 !== undefined ? reduxState.form.programmbs.values.product3 : "");
-        urlencoded.append("product4", reduxState.form.programmbs.values.product4 !== undefined ? reduxState.form.programmbs.values.product4 : "");
-        urlencoded.append("product5", reduxState.form.programmbs.values.product5 !== undefined ? reduxState.form.programmbs.values.product5 : "");
-        urlencoded.append("product6", reduxState.form.programmbs.values.product6 !== undefined ? reduxState.form.programmbs.values.product6 : "");
-        urlencoded.append("product7", reduxState.form.programmbs.values.product7 !== undefined ? reduxState.form.programmbs.values.product7 : "");
-        urlencoded.append("price1", reduxState.form.programmbs.values.price1 !== undefined ? reduxState.form.programmbs.values.price1 : "");
-        urlencoded.append("price2", reduxState.form.programmbs.values.price2 !== undefined ? reduxState.form.programmbs.values.price2 : "");
-        urlencoded.append("price3", reduxState.form.programmbs.values.price3 !== undefined ? reduxState.form.programmbs.values.price3 : "");
-        urlencoded.append("price4", reduxState.form.programmbs.values.price4 !== undefined ? reduxState.form.programmbs.values.price4 : "");
-        urlencoded.append("promotion1", reduxState.form.programmbs.values.promotion1 !== undefined ? reduxState.form.programmbs.values.promotion1 : "");
-        urlencoded.append("promotion2", reduxState.form.programmbs.values.promotion2 !== undefined ? reduxState.form.programmbs.values.promotion2 : "");
-        urlencoded.append("promotion3", reduxState.form.programmbs.values.promotion3 !== undefined ? reduxState.form.programmbs.values.promotion3 : "");
-        urlencoded.append("promotion4", reduxState.form.programmbs.values.promotion4 !== undefined ? reduxState.form.programmbs.values.promotion4 : "");
-        urlencoded.append("promotion5", reduxState.form.programmbs.values.promotion5 !== undefined ? reduxState.form.programmbs.values.promotion5 : "");
-        urlencoded.append("process1", reduxState.form.programmbs.values.process1 !== undefined ? reduxState.form.programmbs.values.process1 : "");
-        urlencoded.append("process2", reduxState.form.programmbs.values.process2 !== undefined ? reduxState.form.programmbs.values.process2 : "");
-        urlencoded.append("process3", reduxState.form.programmbs.values.process3 !== undefined ? reduxState.form.programmbs.values.process3 : "");
-        urlencoded.append("process4", reduxState.form.programmbs.values.process4 !== undefined ? reduxState.form.programmbs.values.process4 : "");
-        urlencoded.append("paperwork1", reduxState.form.programmbs.values.paperwork1 !== undefined ? reduxState.form.programmbs.values.paperwork1 : "");
-        urlencoded.append("paperwork2", reduxState.form.programmbs.values.paperwork2 !== undefined ? reduxState.form.programmbs.values.paperwork2 : "");
-        urlencoded.append("paperwork3", jsonToArray(reduxState.form.programmbs.values.paperwork3));
-        urlencoded.append("paperwork4", reduxState.form.programmbs.values.paperwork4 !== undefined ? JSON.stringify(reduxState.form.programmbs.values.paperwork4) : "");
-        urlencoded.append("paperwork5", reduxState.form.programmbs.values.paperwork5 !== undefined ? JSON.stringify(reduxState.form.programmbs.values.paperwork5) : "");
-        urlencoded.append("paperwork6", reduxState.form.programmbs.values.paperwork6 !== undefined ? JSON.stringify(reduxState.form.programmbs.values.paperwork6) : "");
-        urlencoded.append("paperwork7", reduxState.form.programmbs.values.paperwork7 !== undefined ? JSON.stringify(reduxState.form.programmbs.values.paperwork7) : "");
-        urlencoded.append("paperwork8", reduxState.form.programmbs.values.paperwork8 !== undefined ? JSON.stringify(reduxState.form.programmbs.values.paperwork8) : "");
-        urlencoded.append("quality_p1", reduxState.form.programmbs.values.quality_p1 !== undefined ? reduxState.form.programmbs.values.quality_p1 : "");
-        urlencoded.append("quality_p2", reduxState.form.programmbs.values.quality_p2 !== undefined ? reduxState.form.programmbs.values.quality_p2 : "");
-        urlencoded.append("quality_p3", reduxState.form.programmbs.values.quality_p3 !== undefined ? reduxState.form.programmbs.values.quality_p3 : "");
-        urlencoded.append("quality_p4", reduxState.form.programmbs.values.quality_p4 !== undefined ? reduxState.form.programmbs.values.quality_p4 : "");
-        urlencoded.append("quality_p5", reduxState.form.programmbs.values.quality_p5 !== undefined ? reduxState.form.programmbs.values.quality_p5 : "");
-        urlencoded.append("quality_p6", reduxState.form.programmbs.values.quality_p6 !== undefined ? reduxState.form.programmbs.values.quality_p6 : "");
-        urlencoded.append("quality_p7", reduxState.form.programmbs.values.quality_p7 !== undefined ? reduxState.form.programmbs.values.quality_p7 : "");
-        urlencoded.append("quality_p8", reduxState.form.programmbs.values.quality_p8 !== undefined ? reduxState.form.programmbs.values.quality_p8 : "");
-        urlencoded.append("quality_q1", reduxState.form.programmbs.values.quality_q1 !== undefined ? reduxState.form.programmbs.values.quality_q1 : "");
-        urlencoded.append("quality_q2", reduxState.form.programmbs.values.quality_q2 !== undefined ? reduxState.form.programmbs.values.quality_q2 : "");
-        urlencoded.append("quality_q3", reduxState.form.programmbs.values.quality_q3 !== undefined ? reduxState.form.programmbs.values.quality_q3 : "");
-        urlencoded.append("quality_q4", reduxState.form.programmbs.values.quality_q4 !== undefined ? reduxState.form.programmbs.values.quality_q4 : "");
-        urlencoded.append("quality_q5", reduxState.form.programmbs.values.quality_q5 !== undefined ? reduxState.form.programmbs.values.quality_q5 : "");
-        urlencoded.append("quality_q6", reduxState.form.programmbs.values.quality_q6 !== undefined ? reduxState.form.programmbs.values.quality_q6 : "");
-        urlencoded.append("quality_q7", reduxState.form.programmbs.values.quality_q7 !== undefined ? reduxState.form.programmbs.values.quality_q7 : "");
-        urlencoded.append("quality_q8", reduxState.form.programmbs.values.quality_q8 !== undefined ? reduxState.form.programmbs.values.quality_q8 : "");
-        urlencoded.append("quality_g1", reduxState.form.programmbs.values.quality_g1 !== undefined ? reduxState.form.programmbs.values.quality_g1 : "");
-        urlencoded.append("quality_g2", reduxState.form.programmbs.values.quality_g2 !== undefined ? reduxState.form.programmbs.values.quality_g2 : "");
-        urlencoded.append("quality_g3", reduxState.form.programmbs.values.quality_g3 !== undefined ? reduxState.form.programmbs.values.quality_g3 : "");
-        urlencoded.append("quality_g4", reduxState.form.programmbs.values.quality_g4 !== undefined ? reduxState.form.programmbs.values.quality_g4 : "");
-        urlencoded.append("quality_g5", reduxState.form.programmbs.values.quality_g5 !== undefined ? reduxState.form.programmbs.values.quality_g5 : "");
-        urlencoded.append("quality_g6", reduxState.form.programmbs.values.quality_g6 !== undefined ? reduxState.form.programmbs.values.quality_g6 : "");
-        urlencoded.append("quality_g7", reduxState.form.programmbs.values.quality_g7 !== undefined ? reduxState.form.programmbs.values.quality_g7 : "");
-        urlencoded.append("qualityg8", reduxState.form.programmbs.values.qualityg8 !== undefined ? reduxState.form.programmbs.values.qualityg8 : "");
-        urlencoded.append("service1", reduxState.form.programmbs.values.service1 !== undefined ? reduxState.form.programmbs.values.service1 : "");
-        urlencoded.append("service2", reduxState.form.programmbs.values.service2 !== undefined ? reduxState.form.programmbs.values.service2 : "");
-        urlencoded.append("service3", reduxState.form.programmbs.values.service3 !== undefined ? reduxState.form.programmbs.values.service3 : "");
-        urlencoded.append("service4", reduxState.form.programmbs.values.service4 !== undefined ? reduxState.form.programmbs.values.service4 : "");
-        urlencoded.append("service5", reduxState.form.programmbs.values.service5 !== undefined ? reduxState.form.programmbs.values.service5 : "");
-        urlencoded.append("service6", reduxState.form.programmbs.values.service6 !== undefined ? reduxState.form.programmbs.values.service6 : "");
-        urlencoded.append("history1", reduxState.form.programmbs.values.history1 !== undefined ? reduxState.form.programmbs.values.history1 : "");
-        urlencoded.append("history2", reduxState.form.programmbs.values.history2 !== undefined ? reduxState.form.programmbs.values.history2 : "");
+        getValuesForm(urlencoded,reduxState);
 
         var requestOptions = {
             method: 'POST',
@@ -159,68 +98,7 @@ export const editProgrammbs = (redirect) => {
 
 
         var urlencoded = new URLSearchParams();
-        urlencoded.append("plan1", reduxState.form.programmbs.values.plan1 !== undefined ? reduxState.form.programmbs.values.plan1 : "");
-        urlencoded.append("plan2", reduxState.form.programmbs.values.plan2 !== undefined ? reduxState.form.programmbs.values.plan2 : "");
-        urlencoded.append("product1", reduxState.form.programmbs.values.product1 !== undefined ? reduxState.form.programmbs.values.product1 : "");
-        urlencoded.append("product2", reduxState.form.programmbs.values.product2 !== undefined ? reduxState.form.programmbs.values.product2 : "");
-        urlencoded.append("product3", reduxState.form.programmbs.values.product3 !== undefined ? reduxState.form.programmbs.values.product3 : "");
-        urlencoded.append("product4", reduxState.form.programmbs.values.product4 !== undefined ? reduxState.form.programmbs.values.product4 : "");
-        urlencoded.append("product5", reduxState.form.programmbs.values.product5 !== undefined ? reduxState.form.programmbs.values.product5 : "");
-        urlencoded.append("product6", reduxState.form.programmbs.values.product6 !== undefined ? reduxState.form.programmbs.values.product6 : "");
-        urlencoded.append("product7", reduxState.form.programmbs.values.product7 !== undefined ? reduxState.form.programmbs.values.product7 : "");
-        urlencoded.append("price1", reduxState.form.programmbs.values.price1 !== undefined ? reduxState.form.programmbs.values.price1 : "");
-        urlencoded.append("price2", reduxState.form.programmbs.values.price2 !== undefined ? reduxState.form.programmbs.values.price2 : "");
-        urlencoded.append("price3", reduxState.form.programmbs.values.price3 !== undefined ? reduxState.form.programmbs.values.price3 : "");
-        urlencoded.append("price4", reduxState.form.programmbs.values.price4 !== undefined ? reduxState.form.programmbs.values.price4 : "");
-        urlencoded.append("promotion1", reduxState.form.programmbs.values.promotion1 !== undefined ? reduxState.form.programmbs.values.promotion1 : "");
-        urlencoded.append("promotion2", reduxState.form.programmbs.values.promotion2 !== undefined ? reduxState.form.programmbs.values.promotion2 : "");
-        urlencoded.append("promotion3", reduxState.form.programmbs.values.promotion3 !== undefined ? reduxState.form.programmbs.values.promotion3 : "");
-        urlencoded.append("promotion4", reduxState.form.programmbs.values.promotion4 !== undefined ? reduxState.form.programmbs.values.promotion4 : "");
-        urlencoded.append("promotion5", reduxState.form.programmbs.values.promotion5 !== undefined ? reduxState.form.programmbs.values.promotion5 : "");
-        urlencoded.append("process1", reduxState.form.programmbs.values.process1 !== undefined ? reduxState.form.programmbs.values.process1 : "");
-        urlencoded.append("process2", reduxState.form.programmbs.values.process2 !== undefined ? reduxState.form.programmbs.values.process2 : "");
-        urlencoded.append("process3", reduxState.form.programmbs.values.process3 !== undefined ? reduxState.form.programmbs.values.process3 : "");
-        urlencoded.append("process4", reduxState.form.programmbs.values.process4 !== undefined ? reduxState.form.programmbs.values.process4 : "");
-        urlencoded.append("paperwork1", reduxState.form.programmbs.values.paperwork1 !== undefined ? reduxState.form.programmbs.values.paperwork1 : "");
-        urlencoded.append("paperwork2", reduxState.form.programmbs.values.paperwork2 !== undefined ? reduxState.form.programmbs.values.paperwork2 : "");
-        urlencoded.append("paperwork3", jsonToArray(reduxState.form.programmbs.values.paperwork3));
-        urlencoded.append("paperwork4", reduxState.form.programmbs.values.paperwork4 !== undefined ? JSON.stringify(reduxState.form.programmbs.values.paperwork4) : "");
-        urlencoded.append("paperwork5", reduxState.form.programmbs.values.paperwork5 !== undefined ? JSON.stringify(reduxState.form.programmbs.values.paperwork5) : "");
-        urlencoded.append("paperwork6", reduxState.form.programmbs.values.paperwork6 !== undefined ? JSON.stringify(reduxState.form.programmbs.values.paperwork6) : "");
-        urlencoded.append("paperwork7", reduxState.form.programmbs.values.paperwork7 !== undefined ? JSON.stringify(reduxState.form.programmbs.values.paperwork7) : "");
-        urlencoded.append("paperwork8", reduxState.form.programmbs.values.paperwork8 !== undefined ? JSON.stringify(reduxState.form.programmbs.values.paperwork8) : "");
-        urlencoded.append("quality_p1", reduxState.form.programmbs.values.quality_p1 !== undefined ? reduxState.form.programmbs.values.quality_p1 : "");
-        urlencoded.append("quality_p2", reduxState.form.programmbs.values.quality_p2 !== undefined ? reduxState.form.programmbs.values.quality_p2 : "");
-        urlencoded.append("quality_p3", reduxState.form.programmbs.values.quality_p3 !== undefined ? reduxState.form.programmbs.values.quality_p3 : "");
-        urlencoded.append("quality_p4", reduxState.form.programmbs.values.quality_p4 !== undefined ? reduxState.form.programmbs.values.quality_p4 : "");
-        urlencoded.append("quality_p5", reduxState.form.programmbs.values.quality_p5 !== undefined ? reduxState.form.programmbs.values.quality_p5 : "");
-        urlencoded.append("quality_p6", reduxState.form.programmbs.values.quality_p6 !== undefined ? reduxState.form.programmbs.values.quality_p6 : "");
-        urlencoded.append("quality_p7", reduxState.form.programmbs.values.quality_p7 !== undefined ? reduxState.form.programmbs.values.quality_p7 : "");
-        urlencoded.append("quality_p8", reduxState.form.programmbs.values.quality_p8 !== undefined ? reduxState.form.programmbs.values.quality_p8 : "");
-        urlencoded.append("quality_q1", reduxState.form.programmbs.values.quality_q1 !== undefined ? reduxState.form.programmbs.values.quality_q1 : "");
-        urlencoded.append("quality_q2", reduxState.form.programmbs.values.quality_q2 !== undefined ? reduxState.form.programmbs.values.quality_q2 : "");
-        urlencoded.append("quality_q3", reduxState.form.programmbs.values.quality_q3 !== undefined ? reduxState.form.programmbs.values.quality_q3 : "");
-        urlencoded.append("quality_q4", reduxState.form.programmbs.values.quality_q4 !== undefined ? reduxState.form.programmbs.values.quality_q4 : "");
-        urlencoded.append("quality_q5", reduxState.form.programmbs.values.quality_q5 !== undefined ? reduxState.form.programmbs.values.quality_q5 : "");
-        urlencoded.append("quality_q6", reduxState.form.programmbs.values.quality_q6 !== undefined ? reduxState.form.programmbs.values.quality_q6 : "");
-        urlencoded.append("quality_q7", reduxState.form.programmbs.values.quality_q7 !== undefined ? reduxState.form.programmbs.values.quality_q7 : "");
-        urlencoded.append("quality_q8", reduxState.form.programmbs.values.quality_q8 !== undefined ? reduxState.form.programmbs.values.quality_q8 : "");
-        urlencoded.append("quality_g1", reduxState.form.programmbs.values.quality_g1 !== undefined ? reduxState.form.programmbs.values.quality_g1 : "");
-        urlencoded.append("quality_g2", reduxState.form.programmbs.values.quality_g2 !== undefined ? reduxState.form.programmbs.values.quality_g2 : "");
-        urlencoded.append("quality_g3", reduxState.form.programmbs.values.quality_g3 !== undefined ? reduxState.form.programmbs.values.quality_g3 : "");
-        urlencoded.append("quality_g4", reduxState.form.programmbs.values.quality_g4 !== undefined ? reduxState.form.programmbs.values.quality_g4 : "");
-        urlencoded.append("quality_g5", reduxState.form.programmbs.values.quality_g5 !== undefined ? reduxState.form.programmbs.values.quality_g5 : "");
-        urlencoded.append("quality_g6", reduxState.form.programmbs.values.quality_g6 !== undefined ? reduxState.form.programmbs.values.quality_g6 : "");
-        urlencoded.append("quality_g7", reduxState.form.programmbs.values.quality_g7 !== undefined ? reduxState.form.programmbs.values.quality_g7 : "");
-        urlencoded.append("qualityg8", reduxState.form.programmbs.values.qualityg8 !== undefined ? reduxState.form.programmbs.values.qualityg8 : "");
-        urlencoded.append("service1", reduxState.form.programmbs.values.service1 !== undefined ? reduxState.form.programmbs.values.service1 : "");
-        urlencoded.append("service2", reduxState.form.programmbs.values.service2 !== undefined ? reduxState.form.programmbs.values.service2 : "");
-        urlencoded.append("service3", reduxState.form.programmbs.values.service3 !== undefined ? reduxState.form.programmbs.values.service3 : "");
-        urlencoded.append("service4", reduxState.form.programmbs.values.service4 !== undefined ? reduxState.form.programmbs.values.service4 : "");
-        urlencoded.append("service5", reduxState.form.programmbs.values.service5 !== undefined ? reduxState.form.programmbs.values.service5 : "");
-        urlencoded.append("service6", reduxState.form.programmbs.values.service6 !== undefined ? reduxState.form.programmbs.values.service6 : "");
-        urlencoded.append("history1", reduxState.form.programmbs.values.history1 !== undefined ? reduxState.form.programmbs.values.history1 : "");
-        urlencoded.append("history2", reduxState.form.programmbs.values.history2 !== undefined ? reduxState.form.programmbs.values.history2 : "");
+        getValuesForm(urlencoded,reduxState);
 
         var requestOptions = {
             method: 'PUT',
@@ -236,6 +114,73 @@ export const editProgrammbs = (redirect) => {
         })
         .catch(json =>{
             dispatch({type:ERROR_EDIT_REVISION})
+        });
+
+    }
+    
+}
+
+export const sendProject = (redirect) => {
+    return (dispatch, getState) => {
+
+        const reduxState = getState();
+        const key = reduxState.form.programmbs.values.id;
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("id", key);        
+
+        var requestOptions = {
+            method: 'PUT',
+            headers: myHeaders,
+            body: urlencoded,
+            redirect: 'follow'
+        };
+
+        
+        return fetch( BASE_URL + "/programmbs/revision?callback=foo", requestOptions)
+        .then(response => response.json())
+        .then(json => {
+            redirect.push('/dashboard/student');
+        })
+        .catch(json =>{
+            dispatch({type:ERROR_SEND_REVISION_PROJECT})
+        });
+
+    }
+    
+}
+
+export const saveProject = (redirect) => {
+    return (dispatch, getState) => {
+
+        const reduxState = getState();
+        const key = reduxState.form.programmbs.values.id;
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("id_student", reduxState.loginReducer.active_user.id);
+        getValuesForm(urlencoded,reduxState);
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: urlencoded,
+            redirect: 'follow'
+        };
+
+        return fetch( BASE_URL + "/programmbs/new?callback=foo", requestOptions)
+        .then(response => response.json())
+        .then(json => {
+            dispatch({type:SUCCESSFULL_SEND_REVISION_PROJECT})
+        })
+        .catch(json =>{
+            dispatch({type:ERROR_SEND_REVISION_PROJECT})
         });
 
     }
@@ -317,20 +262,6 @@ export const sendRevisionProject = (redirect) => {
 
 export const loadFormProgrammbs = data => ({ type: LOAD_FORM_PROGRAMMBS, data });
 
-export const addRownP4 = () => {
-    return (dispatch, getState) => {
-        const reduxState = getState();
-        const programmbs = reduxState.form.programmbs.values;
-        programmbs.id = "0999";
-        programmbs.paperwork4.p4_initial_capital = "ENTRAMOS SUPER";
-        let p4_array =[];
-        for (let index = 0; index < 20; index++) {
-            p4_array.push(programmbs.paperwork4.p4_array[index]);     
-        }
-        programmbs.paperwork4.p4_array = p4_array;
-        dispatch({ type: ADD_ROWN_P4, data: programmbs })
-    }
-}
 
 export const hideRevisionAlert = () => ({ type: HIDE_REVISION_ALERT })
 
@@ -339,4 +270,69 @@ export const redirectDashboard = redirect => {
         dispatch({ type: HIDE_REVISION_ALERT })
         return redirect.push('/dashboard');
     }
+}
+
+const getValuesForm =  (urlencoded, reduxState) =>{
+        urlencoded.append("plan1", reduxState.form.programmbs.values.plan1 !== undefined ? reduxState.form.programmbs.values.plan1 : "");
+        urlencoded.append("plan2", reduxState.form.programmbs.values.plan2 !== undefined ? reduxState.form.programmbs.values.plan2 : "");
+        urlencoded.append("product1", reduxState.form.programmbs.values.product1 !== undefined ? reduxState.form.programmbs.values.product1 : "");
+        urlencoded.append("product2", reduxState.form.programmbs.values.product2 !== undefined ? reduxState.form.programmbs.values.product2 : "");
+        urlencoded.append("product3", reduxState.form.programmbs.values.product3 !== undefined ? reduxState.form.programmbs.values.product3 : "");
+        urlencoded.append("product4", reduxState.form.programmbs.values.product4 !== undefined ? reduxState.form.programmbs.values.product4 : "");
+        urlencoded.append("product5", reduxState.form.programmbs.values.product5 !== undefined ? reduxState.form.programmbs.values.product5 : "");
+        urlencoded.append("product6", reduxState.form.programmbs.values.product6 !== undefined ? reduxState.form.programmbs.values.product6 : "");
+        urlencoded.append("product7", reduxState.form.programmbs.values.product7 !== undefined ? reduxState.form.programmbs.values.product7 : "");
+        urlencoded.append("price1", reduxState.form.programmbs.values.price1 !== undefined ? reduxState.form.programmbs.values.price1 : "");
+        urlencoded.append("price2", reduxState.form.programmbs.values.price2 !== undefined ? reduxState.form.programmbs.values.price2 : "");
+        urlencoded.append("price3", reduxState.form.programmbs.values.price3 !== undefined ? reduxState.form.programmbs.values.price3 : "");
+        urlencoded.append("price4", reduxState.form.programmbs.values.price4 !== undefined ? reduxState.form.programmbs.values.price4 : "");
+        urlencoded.append("promotion1", reduxState.form.programmbs.values.promotion1 !== undefined ? reduxState.form.programmbs.values.promotion1 : "");
+        urlencoded.append("promotion2", reduxState.form.programmbs.values.promotion2 !== undefined ? reduxState.form.programmbs.values.promotion2 : "");
+        urlencoded.append("promotion3", reduxState.form.programmbs.values.promotion3 !== undefined ? reduxState.form.programmbs.values.promotion3 : "");
+        urlencoded.append("promotion4", reduxState.form.programmbs.values.promotion4 !== undefined ? reduxState.form.programmbs.values.promotion4 : "");
+        urlencoded.append("promotion5", reduxState.form.programmbs.values.promotion5 !== undefined ? reduxState.form.programmbs.values.promotion5 : "");
+        urlencoded.append("process1", reduxState.form.programmbs.values.process1 !== undefined ? reduxState.form.programmbs.values.process1 : "");
+        urlencoded.append("process2", reduxState.form.programmbs.values.process2 !== undefined ? reduxState.form.programmbs.values.process2 : "");
+        urlencoded.append("process3", reduxState.form.programmbs.values.process3 !== undefined ? reduxState.form.programmbs.values.process3 : "");
+        urlencoded.append("process4", reduxState.form.programmbs.values.process4 !== undefined ? reduxState.form.programmbs.values.process4 : "");
+        urlencoded.append("paperwork1", reduxState.form.programmbs.values.paperwork1 !== undefined ? reduxState.form.programmbs.values.paperwork1 : "");
+        urlencoded.append("paperwork2", reduxState.form.programmbs.values.paperwork2 !== undefined ? reduxState.form.programmbs.values.paperwork2 : "");
+        urlencoded.append("paperwork3", jsonToArray(reduxState.form.programmbs.values.paperwork3));
+        urlencoded.append("paperwork4", reduxState.form.programmbs.values.paperwork4 !== undefined ? JSON.stringify(reduxState.form.programmbs.values.paperwork4) : "");
+        urlencoded.append("paperwork5", reduxState.form.programmbs.values.paperwork5 !== undefined ? JSON.stringify(reduxState.form.programmbs.values.paperwork5) : "");
+        urlencoded.append("paperwork6", reduxState.form.programmbs.values.paperwork6 !== undefined ? JSON.stringify(reduxState.form.programmbs.values.paperwork6) : "");
+        urlencoded.append("paperwork7", reduxState.form.programmbs.values.paperwork7 !== undefined ? JSON.stringify(reduxState.form.programmbs.values.paperwork7) : "");
+        urlencoded.append("paperwork8", reduxState.form.programmbs.values.paperwork8 !== undefined ? JSON.stringify(reduxState.form.programmbs.values.paperwork8) : "");
+        urlencoded.append("quality_p1", reduxState.form.programmbs.values.quality_p1 !== undefined ? reduxState.form.programmbs.values.quality_p1 : "");
+        urlencoded.append("quality_p2", reduxState.form.programmbs.values.quality_p2 !== undefined ? reduxState.form.programmbs.values.quality_p2 : "");
+        urlencoded.append("quality_p3", reduxState.form.programmbs.values.quality_p3 !== undefined ? reduxState.form.programmbs.values.quality_p3 : "");
+        urlencoded.append("quality_p4", reduxState.form.programmbs.values.quality_p4 !== undefined ? reduxState.form.programmbs.values.quality_p4 : "");
+        urlencoded.append("quality_p5", reduxState.form.programmbs.values.quality_p5 !== undefined ? reduxState.form.programmbs.values.quality_p5 : "");
+        urlencoded.append("quality_p6", reduxState.form.programmbs.values.quality_p6 !== undefined ? reduxState.form.programmbs.values.quality_p6 : "");
+        urlencoded.append("quality_p7", reduxState.form.programmbs.values.quality_p7 !== undefined ? reduxState.form.programmbs.values.quality_p7 : "");
+        urlencoded.append("quality_p8", reduxState.form.programmbs.values.quality_p8 !== undefined ? reduxState.form.programmbs.values.quality_p8 : "");
+        urlencoded.append("quality_q1", reduxState.form.programmbs.values.quality_q1 !== undefined ? reduxState.form.programmbs.values.quality_q1 : "");
+        urlencoded.append("quality_q2", reduxState.form.programmbs.values.quality_q2 !== undefined ? reduxState.form.programmbs.values.quality_q2 : "");
+        urlencoded.append("quality_q3", reduxState.form.programmbs.values.quality_q3 !== undefined ? reduxState.form.programmbs.values.quality_q3 : "");
+        urlencoded.append("quality_q4", reduxState.form.programmbs.values.quality_q4 !== undefined ? reduxState.form.programmbs.values.quality_q4 : "");
+        urlencoded.append("quality_q5", reduxState.form.programmbs.values.quality_q5 !== undefined ? reduxState.form.programmbs.values.quality_q5 : "");
+        urlencoded.append("quality_q6", reduxState.form.programmbs.values.quality_q6 !== undefined ? reduxState.form.programmbs.values.quality_q6 : "");
+        urlencoded.append("quality_q7", reduxState.form.programmbs.values.quality_q7 !== undefined ? reduxState.form.programmbs.values.quality_q7 : "");
+        urlencoded.append("quality_q8", reduxState.form.programmbs.values.quality_q8 !== undefined ? reduxState.form.programmbs.values.quality_q8 : "");
+        urlencoded.append("quality_g1", reduxState.form.programmbs.values.quality_g1 !== undefined ? reduxState.form.programmbs.values.quality_g1 : "");
+        urlencoded.append("quality_g2", reduxState.form.programmbs.values.quality_g2 !== undefined ? reduxState.form.programmbs.values.quality_g2 : "");
+        urlencoded.append("quality_g3", reduxState.form.programmbs.values.quality_g3 !== undefined ? reduxState.form.programmbs.values.quality_g3 : "");
+        urlencoded.append("quality_g4", reduxState.form.programmbs.values.quality_g4 !== undefined ? reduxState.form.programmbs.values.quality_g4 : "");
+        urlencoded.append("quality_g5", reduxState.form.programmbs.values.quality_g5 !== undefined ? reduxState.form.programmbs.values.quality_g5 : "");
+        urlencoded.append("quality_g6", reduxState.form.programmbs.values.quality_g6 !== undefined ? reduxState.form.programmbs.values.quality_g6 : "");
+        urlencoded.append("quality_g7", reduxState.form.programmbs.values.quality_g7 !== undefined ? reduxState.form.programmbs.values.quality_g7 : "");
+        urlencoded.append("qualityg8", reduxState.form.programmbs.values.qualityg8 !== undefined ? reduxState.form.programmbs.values.qualityg8 : "");
+        urlencoded.append("service1", reduxState.form.programmbs.values.service1 !== undefined ? reduxState.form.programmbs.values.service1 : "");
+        urlencoded.append("service2", reduxState.form.programmbs.values.service2 !== undefined ? reduxState.form.programmbs.values.service2 : "");
+        urlencoded.append("service3", reduxState.form.programmbs.values.service3 !== undefined ? reduxState.form.programmbs.values.service3 : "");
+        urlencoded.append("service4", reduxState.form.programmbs.values.service4 !== undefined ? reduxState.form.programmbs.values.service4 : "");
+        urlencoded.append("service5", reduxState.form.programmbs.values.service5 !== undefined ? reduxState.form.programmbs.values.service5 : "");
+        urlencoded.append("service6", reduxState.form.programmbs.values.service6 !== undefined ? reduxState.form.programmbs.values.service6 : "");
+        urlencoded.append("history1", reduxState.form.programmbs.values.history1 !== undefined ? reduxState.form.programmbs.values.history1 : "");
+        urlencoded.append("history2", reduxState.form.programmbs.values.history2 !== undefined ? reduxState.form.programmbs.values.history2 : "");
 }

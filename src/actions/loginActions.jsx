@@ -2,6 +2,8 @@ import { SUCCESSFULL_AUTHENTICATION, FAILED_AUTHENTICATION, SUCCESSFULL_ACTIVE_U
 import $ from 'jquery';
 import { BASE_URL } from 'constants/urlTypes';
 import { setLanguage } from 'react-switch-lang';
+import { LOGOUT_USER } from 'constants/actionTypes';
+import { resetState } from "actions/actions.jsx";
 
 
 export const getAuthenticacion = ( params, redirect ) => {
@@ -89,6 +91,15 @@ export const getActiveUser = ( redirect ) => {
                 .fail(function (response){
                     redirect.push('/login');
                 });
+    }
+    
+}
+
+export const logoutUser = ( redirect ) => {
+    return (dispatch ) => {        
+            dispatch ({ type: LOGOUT_USER });  
+            resetState();          
+            redirect.push('/login');            
     }
     
 }
