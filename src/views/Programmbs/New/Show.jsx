@@ -17,7 +17,7 @@ import ShowRep from "./ShowRep.jsx";
 import mainPageStyle from "assets/jss/material-kit-react/views/mainPage.jsx";
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 
-import { hideRevisionAlert, redirectDashboard } from "actions/programmbsActions.jsx";
+import { hideRevisionAlert, redirectDashboard,  sendProject } from "actions/programmbsActions.jsx";
 
 const styles = {
     ...mainPageStyle,
@@ -31,7 +31,7 @@ class Show extends React.Component {
     this.state = {
      
     };
-    
+    this.handleSendProject = this.handleSendProject.bind(this);
   }
   
   hideAlert() {
@@ -39,6 +39,9 @@ class Show extends React.Component {
   }
   redirectDashboard(){
     this.props.dispatchRedirectDashboard(this.props.history);
+  }
+  handleSendProject(){
+    this.props.dispatchSendProject(this.props.history);
   }
   render() {
     const { classes, sendRevisionProjectSuccessfull, sendRevisionProjectError, editRevisionSuccessfull, editRevisionError, approveProjectError, approveProjectSuccessfull, t } = this.props;
@@ -77,14 +80,14 @@ class Show extends React.Component {
               <SweetAlert
                   success
                   style={{ display: "block", marginTop: "-100px" }}
-                  onConfirm={() => this.redirectDashboard()}
+                  onConfirm={() => this.handleSendProject()}
                   onCancel={() => this.hideAlert()}
-                  confirmBtnText={t("button_continue")}
+                  confirmBtnText={t("label_send_for_revision")}
                   confirmBtnCssClass={
                       this.props.classes.button + " " + this.props.classes.success
                   }
                   >
-                  <h4>{t("label_revision_sent_successfully")}</h4>
+                  <h4>{t("label_save_success_revision")}</h4>
               </SweetAlert>
             : ""}
             {sendRevisionProjectError ? 
@@ -101,34 +104,7 @@ class Show extends React.Component {
                   <h4>{t("label_save_error")}</h4>
               </SweetAlert>
             : ""}
-            {approveProjectSuccessfull ? 
-              <SweetAlert
-                  success
-                  style={{ display: "block", marginTop: "-100px" }}
-                  onConfirm={() => this.redirectDashboard()}
-                  onCancel={() => this.hideAlert()}
-                  confirmBtnText={t("button_continue")}
-                  confirmBtnCssClass={
-                      this.props.classes.button + " " + this.props.classes.success
-                  }
-                  >
-                  <h4>{t("label_success_approved")}</h4>
-              </SweetAlert>
-            : ""}
-            {approveProjectError ? 
-              <SweetAlert
-                  warning
-                  style={{ display: "block", marginTop: "-100px" }}
-                  onConfirm={() => this.hideAlert()}
-                  onCancel={() => this.hideAlert()}
-                  confirmBtnText={t("button_continue")}
-                  confirmBtnCssClass={
-                      this.props.classes.button + " " + this.props.classes.success
-                  }
-                  >
-                  <h4>{t("label_save_error")}</h4>
-              </SweetAlert>
-            : ""}
+            
             
         <div
           className={classes.main}
@@ -169,7 +145,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToPropsActions = dispatch => ({
   dispatchHideRevisionAlert: () => dispatch( hideRevisionAlert() ),
-  dispatchRedirectDashboard: param => dispatch( redirectDashboard(param) )
+  dispatchRedirectDashboard: param => dispatch( redirectDashboard(param) ),
+  dispatchSendProject: param => dispatch( sendProject(param)),
 });
 
 const ShowComponent = translate(withStyles(styles)(Show));

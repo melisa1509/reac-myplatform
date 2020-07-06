@@ -9,6 +9,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx';
+import Primary from "components/Typography/Primary.jsx";
 
 // core components
 import SuccessBold from "components/Typography/SuccessBold.jsx";
@@ -274,7 +275,7 @@ class ProcessTab extends React.Component {
                 <Field
                   labelText={t("question_price2")}
                   component={CustomInputRedux}
-                  name="price2"
+                  name="process2"
                   success
                   formControlProps={{
                     fullWidth: true
@@ -287,7 +288,7 @@ class ProcessTab extends React.Component {
                 <Field
                   labelText={t("question_price3")}
                   component={CustomInputRedux}
-                  name="price3"
+                  name="process3"
                   success
                   formControlProps={{
                     fullWidth: true
@@ -301,7 +302,7 @@ class ProcessTab extends React.Component {
                 <Field
                   labelText={t("question_price4")}
                   component={CustomInputRedux}
-                  name="price4"
+                  name="process4"
                   success
                   formControlProps={{
                     fullWidth: true
@@ -313,7 +314,16 @@ class ProcessTab extends React.Component {
                 />
                 
                 <br/>               
-            </form>         
+            </form>
+            { programmbs.revisionprocess !== undefined ?
+              <div>
+                <br/>
+                <br/>
+                <Primary> { t("label_correction_comments")+ " *" } </Primary>
+                <p>{programmbs.revisionprocess}</p>                
+              </div>
+              :""
+            }         
             <br/>
            
             <Controls/>
@@ -332,6 +342,7 @@ ProcessTab = reduxForm({
 ProcessTab = connect(
   state => ({
     initialValues: state.programmbsReducer.data, 
+    programmbs: state.programmbsReducer.programmbs
   }),
   { load: loadFormProgrammbs }, 
 )(ProcessTab);

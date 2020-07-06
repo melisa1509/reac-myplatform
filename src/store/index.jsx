@@ -1,6 +1,7 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import { forbiddenWordsMiddleware } from 'middleware/Index.jsx';
 import { loadState, saveState } from "actions/actions.jsx";
+import throttle from 'lodash.throttle';
 import indexReducer from 'reducers/index.jsx';
 import thunk from 'redux-thunk';
 

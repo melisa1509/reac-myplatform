@@ -19,7 +19,7 @@ import CustomDropdown from "components/CustomDropdown/CustomDropdown.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 
 import headerLinksStyle from "assets/jss/material-kit-react/components/headerLinksStyle.jsx";
-import { getActiveUser } from "actions/loginActions.jsx";
+import { getActiveUser, logoutUser } from "actions/loginActions.jsx";
 
 import en from 'assets/translate/en.json';
 import fr from 'assets/translate/fr.json';
@@ -36,13 +36,17 @@ setTranslations({ en, fr, es, pr });
 class AdminHeaderLinks extends React.Component {
   constructor(props) {
       super(props);
-      this.state = {
-        
-      };      
+      this.state = {        
+      };    
+      this.logoutUser= this.logoutUser.bind(this);  
   }
 
   componentWillMount(){
     this.props.dispatchGetActiveUser(this.props.history);    
+  }
+
+  logoutUser(){
+    this.props.dispatchLogoutUser(this.props.history);
   }
 
   render() {
@@ -96,7 +100,7 @@ class AdminHeaderLinks extends React.Component {
                 <LibraryBooks color="danger" className={classes.icons} /> {t("link_reports")}
             
           </Link>,
-          <Link to={'/login'} className={classes.dropdownLink}>
+          <Link onClick={this.logoutUser} className={classes.dropdownLink}>
             
                 <Cancel color="danger" className={classes.icons} /> {t("link_logout")}
             
@@ -104,7 +108,7 @@ class AdminHeaderLinks extends React.Component {
 
         ]
       }
-      else if( roles.includes("ROLE_EMBASSADOR") || roles.includes("ROLE_STUDENT_EMBASSADOR") ) {
+      else if( roles.includes("ROLE_EMBASSADOR")) {
         links = [
           <Link to={'/dashboard'} className={classes.dropdownLink}>
             
@@ -136,7 +140,47 @@ class AdminHeaderLinks extends React.Component {
                 <LibraryBooks color="danger" className={classes.icons} /> {t("link_reports")}
             
           </Link>,
-          <Link to={'/login'} className={classes.dropdownLink}>
+          <Link onClick={this.logoutUser} className={classes.dropdownLink}>
+            
+                <Cancel color="danger" className={classes.icons} /> {t("link_logout")}
+            
+          </Link>,
+
+        ]
+      }
+      else if(roles.includes("ROLE_STUDENT_EMBASSADOR") ) {
+        links = [
+          <Link to={'/dashboard/student'} className={classes.dropdownLink}>
+            
+              <Dashboard color="danger" className={classes.icons} /> {t("link_dashboard")}
+            
+          </Link>,        
+          <Link to={'/profile'} className={classes.dropdownLink}>
+            
+                <Person color="danger" className={classes.icons} /> {t("link_user_profile")}
+            
+          </Link>,
+          <Link to={'/dashboard/student'} className={classes.dropdownLink}>
+            
+          <School color="danger" className={classes.icons} /> {t("link_program_mbs")}
+      
+          </Link>,         
+          <Link to={'/dashboard/student'} className={classes.dropdownLink}>
+            
+                <LibraryBooks color="danger" className={classes.icons} /> {t("link_program_ambassador")}
+            
+          </Link>,
+          <Link to={'/group'} className={classes.dropdownLink}>
+            
+                <Stars color="danger" className={classes.icons} /> {t("link_groups")}
+            
+          </Link>,
+          <Link to={'/student'} className={classes.dropdownLink}>
+            
+                <HowToReg color="danger" className={classes.icons} /> {t("link_participants")}
+            
+          </Link>,    
+          <Link onClick={this.logoutUser} className={classes.dropdownLink}>
             
                 <Cancel color="danger" className={classes.icons} /> {t("link_logout")}
             
@@ -166,7 +210,7 @@ class AdminHeaderLinks extends React.Component {
                 <LibraryBooks color="danger" className={classes.icons} /> {t("link_program_ambassador")}
             
           </Link>,
-          <Link to={'/login'} className={classes.dropdownLink}>
+          <Link onClick={this.logoutUser} className={classes.dropdownLink}>
             
                 <Cancel color="danger" className={classes.icons} /> {t("link_logout")}
             
@@ -220,7 +264,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetActiveUser: redirect => dispatch( getActiveUser(redirect) )
+  dispatchGetActiveUser: redirect => dispatch( getActiveUser(redirect)),
+  dispatchLogoutUser: redirect => dispatch( logoutUser(redirect))
 });
 
 const LoginFormComponent = translate(withStyles(headerLinksStyle)(AdminHeaderLinks));

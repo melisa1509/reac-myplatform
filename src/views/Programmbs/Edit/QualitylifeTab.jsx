@@ -13,7 +13,7 @@ import CardBody from "components/Card/CardBody.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import SuccessBold from "components/Typography/SuccessBold.jsx";
-import MutedText from "components/Typography/Muted.jsx";
+import Primary from "components/Typography/Primary.jsx";
 import Controls from './Controls.jsx';
 import RevisionForm from './RevisionForm.jsx';
 import {optionQualityLife} from './OptionQualityLife.jsx';
@@ -669,7 +669,16 @@ class QualitylifeTab extends React.Component {
                 </GridItem>
           </GridContainer>
 
-            <RevisionForm name="revisionquality" labelText={t("label_revision_quality")+ " *"}/>
+          { programmbs.revisionplan !== undefined ?
+              <div>
+                <br/>
+                <br/>
+                <Primary> { t("label_correction_comments")+ " *" } </Primary>
+                <p>{programmbs.revisionplan}</p>                
+              </div>
+              :""
+            }
+            <br/>
             <Controls/>
           </CardBody>
         </Card>

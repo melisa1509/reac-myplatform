@@ -9,6 +9,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx';
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
+import Primary from "components/Typography/Primary.jsx";
 
 // core components
 import Controls from './Controls.jsx';
@@ -90,7 +91,16 @@ class PriceTab extends React.Component {
                   }}
                 />                
                 <br/>               
-            </form>         
+            </form>
+            { programmbs.revisionprice !== undefined ?
+              <div>
+                <br/>
+                <br/>
+                <Primary> { t("label_correction_comments")+ " *" } </Primary>
+                <p>{programmbs.revisionprice}</p>                
+              </div>
+              :""
+            }         
             <br/>
             <Controls/>
           </CardBody>
@@ -108,6 +118,7 @@ PriceTab = reduxForm({
 PriceTab = connect(
   state => ({
     initialValues: state.programmbsReducer.data, 
+    programmbs: state.programmbsReducer.programmbs
   }),
   { load: loadFormProgrammbs }, 
 )(PriceTab);

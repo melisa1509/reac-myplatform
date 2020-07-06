@@ -12,7 +12,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
-import { editProgrammbs, approveProject, sendRevisionProject } from "actions/programmbsActions.jsx";
+import { editProgrammbs, saveProject } from "actions/programmbsActions.jsx";
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 
 import { translate } from 'react-switch-lang';
@@ -39,21 +39,16 @@ class Controls extends React.Component {
     this.state = {
       
     };
-    this.handleSave = this.handleSave.bind(this);
-    this.handleApproveProject = this.handleApproveProject.bind(this);
-    this.handleSendRevisionProject = this.handleSendRevisionProject.bind(this);
+    this.handleSave = this.handleSave.bind(this);    
+    this.handleSaveProject = this.handleSaveProject.bind(this);
   }
 
   handleSave(){
     this.props.dispatchEditProgrammbs(this.props.history);
-  }
+  }  
 
-  handleApproveProject(){
-    this.props.dispatchApproveProject(this.props.history);
-  }
-
-  handleSendRevisionProject(){
-    this.props.dispatchSendRevisionProject(this.props.history);
+  handleSaveProject(){
+    this.props.dispatchSaveProject(this.props.history);
   }
  
 
@@ -68,7 +63,7 @@ class Controls extends React.Component {
                     {t("button_save")}
                 </Button>                
                 {" "}
-                <Button color="success" size="sm" >
+                <Button color="success" size="sm" onClick={this.handleSaveProject}>
                     {t("button_send_revision")}
                 </Button>
                 
@@ -87,9 +82,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchEditProgrammbs: param => dispatch( editProgrammbs(param) ), 
-  dispatchApproveProject: param => dispatch( approveProject(param)),
-  dispatchSendRevisionProject: param => dispatch( sendRevisionProject(param))
+  dispatchEditProgrammbs: param => dispatch( editProgrammbs(param) ),   
+  dispatchSaveProject: param => dispatch( saveProject(param)),
 });
 
 

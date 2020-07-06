@@ -12,6 +12,7 @@ import CardBody from "components/Card/CardBody.jsx";
 import InputLabel from "@material-ui/core/InputLabel";
 import SuccessLabel from "components/Typography/SuccessLabel.jsx";
 import FileUpload from "components/CustomUpload/FileUpload.jsx";
+import Primary from "components/Typography/Primary.jsx";
 
 // core components
 import Controls from './Controls.jsx';
@@ -123,7 +124,16 @@ class ServiceTab extends React.Component {
                   }}
                 />                
                 <br/>               
-            </form>         
+            </form>
+            { programmbs.revisionservice !== undefined ?
+              <div>
+                <br/>
+                <br/>
+                <Primary> { t("label_correction_comments")+ " *" } </Primary>
+                <p>{programmbs.revisionservice}</p>                
+              </div>
+              :""
+            }         
             <br/>
             <Controls/>
           </CardBody>
@@ -140,7 +150,8 @@ ServiceTab = reduxForm({
 
 ServiceTab = connect(
   state => ({
-    initialValues: state.programmbsReducer.data, 
+    initialValues: state.programmbsReducer.data,
+    programmbs: state.programmbsReducer.programmbs 
   }),
   { load: loadFormProgrammbs }, 
 )(ServiceTab);

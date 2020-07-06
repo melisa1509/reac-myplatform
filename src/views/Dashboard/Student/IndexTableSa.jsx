@@ -48,7 +48,7 @@ class IndexTableSa extends React.Component {
     return (
       <GridContainer>
         <GridItem xs={6} sm={6} md={3} lg={3}>
-        <Link to={dashboard_student.progressSa.state === "new" ? "/programsa/new/1" : "/programsa/edit/1"} className={classes.dropdownLink}>
+        <Link to={dashboard_student.progressSa.state === "new" ? "/programsa/new" : "/programsa/edit/mision/" + dashboard_student.progressSa.id} className={classes.dropdownLink} >
           <Card>
             <CardHeader color="warning" stats icon>
               <CardIcon color="warning">
@@ -62,7 +62,7 @@ class IndexTableSa extends React.Component {
           </Link>
         </GridItem>
         <GridItem xs={6} sm={6} md={3} lg={3}>
-        <Link to={dashboard_student.progressSa.state === "new" ? "/programsa/new/2" : "/programsa/edit/2"} className={classes.dropdownLink}>
+        <Link to={dashboard_student.progressSa.state === "new" ? "/programsa/new" : "/programsa/edit/generate/" + dashboard_student.progressSa.id} className={classes.dropdownLink} >
           <Card>
             <CardHeader color="success" stats icon>
               <CardIcon color="success">
@@ -75,7 +75,7 @@ class IndexTableSa extends React.Component {
           </Link>
         </GridItem>
         <GridItem xs={6} sm={6} md={3} lg={3}>
-        <Link to={dashboard_student.progressSa.state === "new" ? "/programsa/new/3" : "/programsa/edit/3"} className={classes.dropdownLink}>
+        <Link to={dashboard_student.progressSa.state === "new" ? "/programsa/new" : "/programsa/edit/facilitate/" + dashboard_student.progressSa.id} className={classes.dropdownLink} >
           <Card>
             <CardHeader color="danger" stats icon>
               <CardIcon color="danger">
@@ -88,7 +88,7 @@ class IndexTableSa extends React.Component {
           </Link>
         </GridItem>
         <GridItem xs={6} sm={6} md={3} lg={3}>
-        <Link to={dashboard_student.progressSa.state === "new" ? "/programsa/new/4" : "/programsa/edit/4"} className={classes.dropdownLink}>
+        <Link to={dashboard_student.progressSa.state === "new" ? "/programsa/new" : "/programsa/edit/graduate/" + dashboard_student.progressSa.id} className={classes.dropdownLink} >
           <Card>
             <CardHeader color="info" stats icon>
               <CardIcon color="info">
@@ -101,7 +101,7 @@ class IndexTableSa extends React.Component {
           </Link>
         </GridItem>
         <GridItem xs={6} sm={6} md={3} lg={3}>
-          <Link to={dashboard_student.progressSa.state === "new" ? "/programsa/new/5" : "/programsa/edit/5"} className={classes.dropdownLink}>
+        <Link to={dashboard_student.progressSa.state === "new" ? "/programsa/new" : "/programsa/edit/support/" + dashboard_student.progressSa.id} className={classes.dropdownLink} >
           <Card>
             <CardHeader color="danger" stats icon>
               <CardIcon color="danger">
