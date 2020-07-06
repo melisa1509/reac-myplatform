@@ -13,6 +13,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import InputLabel from "@material-ui/core/InputLabel";
 import SuccessLabel from "components/Typography/SuccessLabel.jsx";
 import Accordion from "components/Accordion/Accordion.jsx";
+import SweetAlert from "react-bootstrap-sweetalert";
 
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -34,6 +35,7 @@ import FileUpload from "components/CustomUpload/FileUpload.jsx";
 import CustomRadioRedux from 'components/CustomRadio/CustomRadioRedux.jsx';
 
 // style for this view
+import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
 import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
 import { withRouter } from 'react-router-dom';
@@ -56,7 +58,8 @@ const style = {
       fontWeight: "500",
     },
     ...customSelectStyle,
-    ...validationFormsStyle
+    ...validationFormsStyle,
+    ...sweetAlertStyle
 };
 
 
@@ -141,13 +144,17 @@ class EditForm extends React.Component {
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
                       { successfull_edit ?      
-                      <SnackbarContent
-                        message={
-                          <center>{t("label_save_success")}</center>
+                      <SweetAlert
+                        success
+                        title={t("label_save_success")}
+                        style={{ display: "block", marginTop: "-100px", close:true }}
+                        onConfirm={() => this.deleteClick()}
+                        confirmBtnCssClass={
+                          this.props.classes.button + " " + this.props.classes.success
                         }
-                        close
-                        color="success"
-                      />
+                        confirmBtnText={t("button_continue")}
+                      >
+                      </SweetAlert> 
                       : ""}
                   </GridItem>
               </GridContainer>

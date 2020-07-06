@@ -18,16 +18,21 @@ import Danger from "components/Typography/Danger.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx'; 
+import SweetAlert from "react-bootstrap-sweetalert";
+
 import { showCode } from "actions/codeActions.jsx";
 import { editCode} from "actions/codeActions.jsx"; 
 import { errorRequiredFields } from "actions/generalActions.jsx";
 import { successRequiredFields } from "actions/generalActions.jsx";
 import { verifyChange } from "assets/validation/index.jsx";
+import { deleteSuccessful } from "actions/generalActions.jsx";
+import { withRouter } from 'react-router-dom';
 
 // style for this view
+import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
 import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
-import { withRouter } from 'react-router-dom';
+
 
 const style = {
     infoText: {
@@ -46,7 +51,8 @@ const style = {
       color:"red"
     },
     ...customSelectStyle,
-    ...validationFormsStyle
+    ...validationFormsStyle,
+    ...sweetAlertStyle
 };
 
 
@@ -90,6 +96,10 @@ class EditForm extends React.Component {
       componentDidMount() {
         this.props.loadShowCode(this.props.match.params.id);
       }
+
+      deleteClick(){
+        this.props.dispatchDeleteSuccessful();
+      }
       
     render() {
         const { classes, successfull_edit, editError, errorRequired, successRequired } = this.props;
@@ -114,13 +124,17 @@ class EditForm extends React.Component {
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
                       { successfull_edit ?      
-                      <SnackbarContent
-                        message={
-                          <center>{t("label_save_success")}</center>
+                      <SweetAlert
+                        success
+                        title={t("label_save_success")}
+                        style={{ display: "block", marginTop: "-100px", close:true }}
+                        onConfirm={() => this.deleteClick()}
+                        confirmBtnCssClass={
+                          this.props.classes.button + " " + this.props.classes.success
                         }
-                        close
-                        color="success"
-                      />
+                        confirmBtnText={t("button_continue")}
+                       >
+                      </SweetAlert> 
                       : ""}
                   </GridItem>
               </GridContainer>
@@ -246,7 +260,7 @@ EditForm = connect(
     successfull_edit:state.generalReducer.successfull_edit,
     show_code: state.codeReducer.show_code,
   }),
-  { loadShowCode: showCode, dispatchEditCode: editCode, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields},
+  { loadShowCode: showCode, dispatchEditCode: editCode, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful},
 )(EditForm);
 
 export default  withRouter(translate(withStyles(style)(EditForm)));

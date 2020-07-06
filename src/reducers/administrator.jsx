@@ -63,7 +63,6 @@ export const administratorReducer = (state = initialState, action) => {
       case EDIT_ADMINISTRATOR:
         return Object.assign({}, state, {
             edit_administrator: action.payload,
-            successfull_edit: true
         }); 
       case ERROR_EDIT_ADMINISTRATOR:
         return Object.assign({}, state, {

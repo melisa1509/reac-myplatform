@@ -10,16 +10,18 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
-import SnackbarContent from "components/Snackbar/SnackbarContent";
 import GridItem from "components/Grid/GridItem.jsx";
+import SweetAlert from "react-bootstrap-sweetalert";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx'; 
 import Danger from "components/Typography/Danger.jsx";
 // style for this view
+import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
 import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
 
 import { verifyChange, compare } from "assets/validation/index.jsx";
+import { deleteSuccessful } from "actions/generalActions.jsx";
 import { editPassword } from "actions/administratorActions.jsx";
 import { errorRequiredFields } from "actions/generalActions.jsx";
 import { successRequiredFields } from "actions/generalActions.jsx";
@@ -40,7 +42,8 @@ const style = {
       marginTop: "20px"
     },
     ...customSelectStyle,
-    ...validationFormsStyle
+    ...validationFormsStyle,
+    ...sweetAlertStyle
 };
 
 
@@ -88,7 +91,11 @@ class ChangePasswordForm extends React.Component {
           this.props.dispatchSuccessRequiredFields();
         }
       }
-      
+    
+    deleteClick(){
+      this.props.dispatchDeleteSuccessful();
+    }
+
     render() {
         const { errorRequired, successRequired, classes, successfull_edit, dismatch_password} = this.props;
         let { t } = this.props;
@@ -98,13 +105,17 @@ class ChangePasswordForm extends React.Component {
             <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
                       { successfull_edit ?      
-                      <SnackbarContent
-                        message={
-                          <center>{t("label_save_success")}</center>
-                        }
-                        close
-                        color="success"
-                      />
+                       <SweetAlert
+                       success
+                       title={t("label_save_success")}
+                       style={{ display: "block", marginTop: "-100px", close:true }}
+                       onConfirm={() => this.deleteClick()}
+                       confirmBtnCssClass={
+                           this.props.classes.button + " " + this.props.classes.success
+                       }
+                       confirmBtnText={t("button_continue")}
+                       >
+                    </SweetAlert> 
                       : ""}
                   </GridItem>
               </GridContainer>
@@ -183,7 +194,8 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchEditPassword: (params,key) => dispatch(editPassword(params,key)),
   dispatchErrorRequiredFields:() => dispatch(errorRequiredFields()),
   dispatchSuccessRequiredFields:() => dispatch(successRequiredFields()),
-  dispatchDismatchPassword:() => dispatch(dismatchPassword())
+  dispatchDismatchPassword:() => dispatch(dismatchPassword()),
+  dispatchDeleteSuccessful: () => dispatch(deleteSuccessful())
 });
 
 const ChangePasswordFormComponent = translate(withStyles(style)(ChangePasswordForm));
