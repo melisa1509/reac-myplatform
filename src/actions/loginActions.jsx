@@ -1,10 +1,7 @@
-import { SUCCESSFULL_AUTHENTICATION, FAILED_AUTHENTICATION, SUCCESSFULL_ACTIVE_USER } from 'constants/actionTypes.jsx';
+import { SUCCESSFULL_AUTHENTICATION, FAILED_AUTHENTICATION, SUCCESSFULL_ACTIVE_USER, LOGOUT_USER, CLEAN_AUTHENTICATION } from 'constants/actionTypes.jsx';
 import $ from 'jquery';
 import { BASE_URL } from 'constants/urlTypes';
 import { setLanguage } from 'react-switch-lang';
-import { LOGOUT_USER } from 'constants/actionTypes';
-import { resetState } from "actions/actions.jsx";
-
 
 export const getAuthenticacion = ( params, redirect ) => {
     var settings = {
@@ -22,6 +19,7 @@ export const getAuthenticacion = ( params, redirect ) => {
     
     return (dispatch, getState ) => {
         const reduxState = getState();
+        dispatch ({ type: CLEAN_AUTHENTICATION });
 
         return $.ajax(settings)
                 .done(function (data) {
@@ -98,7 +96,6 @@ export const getActiveUser = ( redirect ) => {
 export const logoutUser = ( redirect ) => {
     return (dispatch ) => {        
             dispatch ({ type: LOGOUT_USER });  
-            resetState();          
             redirect.push('/login');            
     }
     

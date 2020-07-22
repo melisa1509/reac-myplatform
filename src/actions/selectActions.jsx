@@ -35,7 +35,6 @@ export const updateProgramSelect = params => {
 }
 
 export const updateQuality1Select = params => {
-    alert();
     return (dispatch) => {
             dispatch ({ type: UPDATE_QUALITY1_SELECT, payload: params });
     }   
