@@ -170,7 +170,6 @@
         "label_project_approved":            "!! Felicitaciones !! Su proyecto ha sido aprobado.",
         "label_repeat_password":             "Confirme la contraseña",
         "label_forgot_password":             "¿ Olvido su contraseña ?",
-        "label_chech_your_email":            "Un mensaje con el enlace para cambiar su contraseña ha sido enviado a su correo. Recuerde revisar su carpeta de correo no deseado, es posible que el mensaje haya llegado a esta carpeta.",
         "label_new_password":                "Nueva Contraseña",
         "label_username_does_not_exist":     "No existe ningún usuario asociado a esta cuenta de correo. Por favor contacte con el administrador.",
         "label_program":                     "Pograma",

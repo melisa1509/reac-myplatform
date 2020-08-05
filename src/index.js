@@ -76,6 +76,8 @@ import AdminPassword from 'views/Administrator/ChangePassword/ChangePassword.jsx
 import Register from 'views/Register/Index.jsx';
 import RegisterStudent from 'views/Register/Participants/New.jsx';
 import RegisterEvaluation from 'views/Register/PreEvaluation/New.jsx';
+import newPassword from 'views/User/NewPassword/ChangePassword.jsx';
+import UserNewPassword  from 'views/User/NewPassword/ChangePassword/ChangePassword.jsx';
 import { store } from 'store/index.jsx';
 
 import "assets/scss/material-dashboard-pro-react.scss?v=1.7.0";
@@ -171,6 +173,8 @@ ReactDOM.render(
           <Route path="/register" component={Register} exact /> 
           <Route path="/register/new/:id" component={RegisterStudent} exact /> 
           <Route path="/register/evaluation" component={RegisterEvaluation} exact /> 
+          <Route path="/password" component={newPassword} exact /> 
+          <Route path="/user/newpassword/:id" component={UserNewPassword} exact /> 
           <Redirect from="/" to="/login" />
         </Switch>
       </Router>,

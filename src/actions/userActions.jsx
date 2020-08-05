@@ -1,5 +1,6 @@
 import { SHOW_USER, LOAD_FORM_USER, EDIT_USER, ERROR_EDIT_USER, SUCCESSFULL_EDIT, DELETE_USER, EDIT_PASSWORD_USER, SUCCESSFUL_DELETE} from 'constants/actionTypes.jsx';
 import { BASE_URL} from 'constants/urlTypes.jsx';
+import { NEW_PASSWORD, ERROR_GMAIL} from 'constants/actionTypes';
 
 
 export const showUser = key => {
@@ -99,3 +100,28 @@ export const deleteUser  = (key) => {
       });
   }
 }
+
+export const newPassword =() => {
+    return (dispatch,getState) => {
+
+        const reduxState = getState();
+      
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+      
+            var urlencoded = new URLSearchParams();
+            urlencoded.append("username", reduxState.form.passwordform.values.username);
+            var requestOptions = {
+              method: 'POST',
+              headers: myHeaders,
+              body: urlencoded,
+              redirect: 'follow'
+            }
+    
+        return fetch(BASE_URL + "/user/reset_password", requestOptions)
+        .then(response => response.json())
+        .then(json => {
+            dispatch ({ type: NEW_PASSWORD, payload: json.data });  
+        })
+      }
+};

@@ -145,7 +145,6 @@ class EditForm extends React.Component {
                       { successfull_edit ?  
                       <SweetAlert
                         success
-                        title={t("label_save_success")}
                         style={{ display: "block", marginTop: "-100px", close:true }}
                         onConfirm={() => this.deleteClick()}
                         confirmBtnCssClass={
@@ -153,6 +152,7 @@ class EditForm extends React.Component {
                         }
                         confirmBtnText={t("button_continue")}
                         >
+                        <h4>{t("label_save_success")}</h4>
                       </SweetAlert>     
                       : ""}
                   </GridItem>

@@ -68,6 +68,7 @@ class ChangePasswordForm extends React.Component {
             develop: false
         };
         this.saveClick = this.saveClick.bind(this);
+        this.deleteClick = this.deleteClick.bind(this);
       }
       
       saveClick() {
@@ -96,6 +97,10 @@ class ChangePasswordForm extends React.Component {
         }
       }
       
+    deleteClick(){
+      this.props.dispatchDeleteSuccessful();
+    }
+
     render() {
         const { errorRequired, successRequired, classes, successfull_edit, dismatch_password} = this.props;
         let { t } = this.props;
@@ -107,7 +112,6 @@ class ChangePasswordForm extends React.Component {
                       { successfull_edit ?      
                        <SweetAlert
                        success
-                       title={t("label_save_success")}
                        style={{ display: "block", marginTop: "-100px", close:true }}
                        onConfirm={() => this.deleteClick()}
                        confirmBtnCssClass={
@@ -115,6 +119,7 @@ class ChangePasswordForm extends React.Component {
                        }
                        confirmBtnText={t("button_continue")}
                        >
+                        <h4>{t("label_save_success")}</h4>
                      </SweetAlert>  
                       : ""}
                   </GridItem>
