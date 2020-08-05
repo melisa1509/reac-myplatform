@@ -116,14 +116,14 @@ class ShowForm extends React.Component {
                     {
                       tabButton: t("title_paperwork"),
                       tabIcon: FileCopy,
-                      tabContent: (
+                      tabContent: programmbs.paperwork4.p4_array === undefined ? "" : (
                         <PaperworkTab />
                       )
                     },
                     {
                       tabButton: t("title_quality_life"),
                       tabIcon: AccessibityNew,
-                      tabContent: (
+                      tabContent: programmbs.paperwork4.p4_array === undefined ? "" : (
                         <QualitylifeTab />
                       )
                     },

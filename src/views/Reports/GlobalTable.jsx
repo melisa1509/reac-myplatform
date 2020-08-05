@@ -42,7 +42,7 @@ const mg_flag = require("assets/img/flags/MG.png");
 
 var mapData = {
   BO: (230, 3),
-  BR: 550,
+  BR: (550,300,450),
   CA: 120,
   DE: 1300,
   FR: 540,

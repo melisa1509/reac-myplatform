@@ -32,7 +32,7 @@ class IndexRep extends React.Component {
  
 
   render() {
-    const { classes, styles } = this.props;
+    const { classes, progress_list } = this.props;
     let { t } = this.props;
     const login = "es";
     return (
@@ -47,14 +47,17 @@ class IndexRep extends React.Component {
             </CardBody>
           </Card>
           <br/>
-          <Card>
-            <CardHeader color="info">
-                <h4 className={classes.cardTitle}>{t("title_student_list")+" "+"/"+" "+t("title_project_progress_sa")}</h4>
-            </CardHeader>
-            <CardBody>
-                <SATable  />      
-            </CardBody>
-          </Card>
+          { progress_list.progressSa.length !== 0 ?          
+            <Card>
+              <CardHeader color="info">
+                  <h4 className={classes.cardTitle}>{t("title_student_list")+" "+"/"+" "+t("title_project_progress_sa")}</h4>
+              </CardHeader>
+              <CardBody>
+                  <SATable  />      
+              </CardBody>
+            </Card>
+            :<></>
+          }
         </GridItem>
       </GridContainer>
     );
@@ -65,11 +68,13 @@ IndexRep.propTypes = {
   classes: PropTypes.object,
 };
 
-//export default withStyles(styles)(ReactTables);
+const mapStateToProps = state => ({ 
+  progress_list: state.groupReducer.progress_list, 
+});
 
 const mapDispatchToPropsActions = dispatch => ({
 });
 
 
 const NewRepComponent = translate(withStyles(styles)(IndexRep));
-export default connect(null, mapDispatchToPropsActions)(NewRepComponent);
+export default connect(mapStateToProps, mapDispatchToPropsActions)(NewRepComponent);
