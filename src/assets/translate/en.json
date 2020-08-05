@@ -24,7 +24,7 @@
     "button_download_report":           "Download Report",
     "button_download_all_attendance_certificates": "Download All Attendance Certificates",
     "button_hide_all_list":              "Hide All List",
-    "button_manage_students":            "Manage Students",
+    "button_manage_students":            "Manage Participants",
     "button_manage_participants":        "Manage Participants",
     "button_mbs" :                       "Mbs",
     "button_pre_evaluation":             "Pre Evaluation",
@@ -74,6 +74,7 @@
     "label_french":                     "French",
     "label_language":                   "Language",
     "label_name":                       "Name",
+    "label_name_image":                 "Logo Image",
     "label_save":                       "Save",
     "label_whatsApp":                   "WhatsApp",
     "label_email":                      "Email",
@@ -246,6 +247,7 @@
     "label_save_error":                  "An error has occurred. Reload the page, type something and try saving again. If the problem persists, contact the administrator.",
 
     "link_administrator":               "Administrator",
+    "link_ambassador":                  "Ambassador",
     "link_admins":                      "Administrators",
     "link_certificates":                "Certificates",
     "link_dashboard":                   "Dashboard",
@@ -257,32 +259,13 @@
     "link_program_ambassador":          "Success Ambassador",
     "link_reports":                     "Reports",
     "link_username":                    "Email address",
+    "link_student":                     "Student",
     "link_user_profile":                "User Profile",
     "link_ambassadors":                 "Ambassadors",
     "link_codes":                       "Codes",
     "link_success_story":               "Success Story",
     "link_generate_groups_question1":   "https://www.interweavesolutions.org/media-gallery/",
-    "link_generate_groups_question3":   "https://www.interweavesolutions.org/success-ambassador-resources/",
-
-    "option_quality5":                    "5. I am very happy with this area of â€‹â€‹my life.",
-    "option_quality4":                    "4. Normally, I am happy with the area of my life.",
-    "option_quality3":                    "3. Sometimes I am happy with this area of my life.",
-    "option_quality2":                    "2. Sometimes I am not happy with this area of my life.",
-    "option_quality1":                    "1. I am not happy with this area of my life.",
-    "option_modality1":                   "Face to face",
-    "option_modality2":                   "On line",
-    "option_program1":                    "Master of Business in the Streets",
-    "option_program2":                    "Success Ambassador",
-    "option_program3":                    "MBS and Success Ambassador",
-
-    "state_without_starting":           "not started",
-    "state_project_mbs":                "MBS project",
-    "state_development":                "in progress",
-    "state_correction":                 "correction pending",
-    "state_approved":                   "approved",
-    "state_revision":                   "under review",
-    "state_draft":                      "Draft",
-    "state_publish":                    "Publish",
+    "link_generate_groups_question3":   "https://www.interweavesolutions.org/success-ambassador-resources/",        
 
     "title_student_list":               "List of Participants",
     "title_interweave_academy":         "Interweave Academy",
@@ -329,7 +312,7 @@
     "title_user_profile":               "User Profile", 
     "title_welcome_mbs":                "Welcome to Success! in Business",
     "title_new_admin":                  "New Administrator", 
-    "title_student_list_revision":      "Participant Revisions Ready",
+    "title_student_list_revision":      "MBS Revisions Ready",
     "title_student_list_ambassador":    "Ambassador Revisions Ready", 
     "title_admin_list":                 "List of Administrators",
     "title_edit_student":               "Edit Student", 
@@ -758,6 +741,30 @@
     "YEM": "Yemen",
     "ZAF": "South Africa",
     "ZMB": "Zambia",
-    "ZWE": "Zimbabwe"
+    "ZWE": "Zimbabwe",    
+
+    "state":{  
+        "without_starting":           "not started",
+        "project_mbs":                "MBS project",
+        "development":                "in progress",
+        "correction":                 "correction pending",
+        "approved":                   "approved",
+        "revision":                   "under review",
+        "draft":                      "Draft",
+        "publish":                    "Publish"    
+    }, 
+
+    "option":{
+        "quality5":                    "5. I am very happy with this area of â€‹â€‹my life.",
+        "quality4":                    "4. Normally, I am happy with the area of my life.",
+        "quality3":                    "3. Sometimes I am happy with this area of my life.",
+        "quality2":                    "2. Sometimes I am not happy with this area of my life.",
+        "quality1":                    "1. I am not happy with this area of my life.",
+        "modality1":                   "Face to face",
+        "modality2":                   "On line",
+        "program1":                    "Master of Business in the Streets",
+        "program2":                    "Success Ambassador",
+        "program3":                    "MBS and Success Ambassador"
+    }
 
 }

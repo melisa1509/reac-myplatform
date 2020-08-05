@@ -47,18 +47,7 @@ class IndexRep extends React.Component {
             <CardBody>
                 {rol ? <IndexAmbassador  /> : <IndexTable  /> }   
             </CardBody>
-          </Card>
-          <br/>
-          
-          <Card>
-            <CardHeader color="info">
-                { rol ? <h4 className={classes.cardTitle}>{t("title_student_list")+" "+t("title_online_documentation")+" "+"/"+" "+t("title_project_progress_mbs")}</h4>
-                :<h4 className={classes.cardTitle}>{t("title_student_list")+" "+"/"+" "+t("title_project_progress_sa")}</h4>}
-            </CardHeader>
-            <CardBody>
-              {rol ? <MBSTable /> : "" }     
-            </CardBody>
-          </Card>
+          </Card>          
         </GridItem>
       </GridContainer>
     );

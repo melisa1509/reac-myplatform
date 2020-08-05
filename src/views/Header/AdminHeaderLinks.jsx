@@ -52,8 +52,10 @@ class AdminHeaderLinks extends React.Component {
   render() {
       const { classes, t, active_user } = this.props;
       let links = '';
+      let link_menu = "";
       let roles = active_user.roles === undefined ? [] : active_user.roles;
       if( roles.includes("ROLE_ADMIN")  || roles.includes("ROLE_LANGUAGE_ADMIN") ) {
+        link_menu = "link_administrator";
         links = [
           <Link to={'/dashboard'} className={classes.dropdownLink}>
             
@@ -109,6 +111,7 @@ class AdminHeaderLinks extends React.Component {
         ]
       }
       else if( roles.includes("ROLE_EMBASSADOR")) {
+        link_menu = "link_ambassador";
         links = [
           <Link to={'/dashboard'} className={classes.dropdownLink}>
             
@@ -149,6 +152,7 @@ class AdminHeaderLinks extends React.Component {
         ]
       }
       else if(roles.includes("ROLE_STUDENT_EMBASSADOR") ) {
+        link_menu = "link_student";
         links = [
           <Link to={'/dashboard/student'} className={classes.dropdownLink}>
             
@@ -189,6 +193,7 @@ class AdminHeaderLinks extends React.Component {
         ]
       }
       else if( roles.includes("ROLE_STUDENT")) {
+        link_menu = "link_student";
         links = [
           <Link to={'/dashboard/student'} className={classes.dropdownLink}>
             
@@ -218,6 +223,7 @@ class AdminHeaderLinks extends React.Component {
         ]
       }
       else {
+        link_menu = "link_student";
         links=[];
       }
       
@@ -225,17 +231,15 @@ class AdminHeaderLinks extends React.Component {
       return (
         <List className={classes.list}>
           <ListItem className={classes.listItem}>
-            <Button
-              color="transparent"          
-              className={classes.navLink}
-            >
-             <Face color="danger" className={classes.icons} /> { active_user.first_name + " " + active_user.last_name } | 
-            </Button>
+            <Link to={'/profile'} className={classes.navLink}>
+                 
+                        <Face color="danger" className={classes.icons} /> { active_user.first_name + " " + active_user.last_name } | 
+            </Link>
           </ListItem>
           <ListItem className={classes.listItem}>
             <CustomDropdown
               noLiPadding
-              buttonText={t("link_administrator")}
+              buttonText={t(link_menu)}
               buttonProps={{
                 className: classes.navLink,
                 color: "transparent"
