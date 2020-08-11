@@ -166,6 +166,7 @@ export const uploadImage = ()=> {
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: UPLOAD_IMAGE, payload: json.data }); 
+            dispatch ({ type: SUCCESSFULL_EDIT});
         })
 
     }

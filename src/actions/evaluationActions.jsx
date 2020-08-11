@@ -1,8 +1,8 @@
 import { EVALUATION_PRE, SUCCESSFULL_EDIT, DELETE_ALERT, EVALUATION_POST, POST_ALERT} from 'constants/actionTypes';
 import { BASE_URL} from 'constants/urlTypes.jsx';
 import { PRE_ALERT } from 'constants/actionTypes';
-import { SHOW_EVALUATION } from 'constants/actionTypes';
-import { LOAD_FORM_EVALUATION } from 'constants/actionTypes';
+import { SHOW_EVALUATION, REDIRECT_GROUP} from 'constants/actionTypes';
+import { LOAD_FORM_EVALUATION, GET_CERTIFICATE_LIST } from 'constants/actionTypes';
 
 export const evaluationPre = ()=> {
     return (dispatch, getState) => {
@@ -33,7 +33,7 @@ export const evaluationPre = ()=> {
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: EVALUATION_PRE, payload: json.data });
-            dispatch ({ type: SUCCESSFULL_EDIT});  
+            dispatch ({ type: SUCCESSFULL_EDIT});   
         })
 
     }
@@ -104,3 +104,11 @@ export const showEvaluationPost = key => {
 export const preAlert = () => ({ type: PRE_ALERT })
 export const postAlert = () => ({ type: POST_ALERT })
 export const deleteAlert=() => ({ type:DELETE_ALERT})
+
+export const groupListRedirect =  redirect  => {
+    return (dispatch ) => {        
+        dispatch ({ type: REDIRECT_GROUP });  
+        return redirect.push('/group');            
+    }
+}
+
