@@ -271,7 +271,7 @@ class PaperworkTab extends React.Component {
 
     const titlePaperwork7 = [];
     const titleArray = Array.from(programmbs.paperwork7.p7_title);
-    titleArray.unshift(" ");
+    titleArray.unshift(t("label_month"));
     titlePaperwork7.push(titleArray);
     const widthColumsPaperwork7Title = ["28%","8%", "8%", "8%", "8%", "8%", "8%", "8%", "8%", "8%"];
 
@@ -475,7 +475,7 @@ class PaperworkTab extends React.Component {
                       </td>                  
                     </tr>
                     <tr>
-                      <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold + " "+ classes.textAlignRight } style={{ width: '70%' }}>{t("label_total_expenses")}</td>
+                      <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold + " "+ classes.textAlignRight } style={{ width: '70%' }}>{t("label_total_income")}</td>
                       <td className={classes.tdTable} style={{ width: '30%' }}>
                           <Field component={CustomInputTable} name="paperwork5[p5_income]" />
                       </td>
@@ -501,7 +501,7 @@ class PaperworkTab extends React.Component {
                   </td>                  
                 </tr>
                 <tr>
-                <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold + " "+ classes.textAlignRight } style={{ width: '70%' }}>{t("label_total_income")}</td>
+                <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold + " "+ classes.textAlignRight } style={{ width: '70%' }}>{t("label_total_expenses")}</td>
                 <td className={classes.tdTable} style={{ width: '30%' }}>
                       <Field component={CustomInputTable} name="paperwork6[p6_expenses]" />
                   </td>

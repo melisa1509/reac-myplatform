@@ -30,7 +30,7 @@ import { successRequiredFields } from "actions/generalActions.jsx";
 import { verifyChange } from "assets/validation/index.jsx";
 import { deleteSuccessful } from "actions/generalActions.jsx";
 import ModalitySelect from "views/Select/ModalitySelect.jsx";
-import ProgramSelect from "views/Select/ProgramSelect.jsx";
+import ProgramAmbassadorSelect from "views/Select/ProgramAmbassadorSelect.jsx";
 import FileUpload from "components/CustomUpload/FileUpload.jsx";
 import CustomRadioRedux from 'components/CustomRadio/CustomRadioRedux.jsx';
 
@@ -224,7 +224,7 @@ class EditForm extends React.Component {
                     <Field
                       name="program"
                       formName="programmbs"
-                      component={ProgramSelect}
+                      component={ProgramAmbassadorSelect}
                     />
                   </GridItem>
               </GridContainer>              

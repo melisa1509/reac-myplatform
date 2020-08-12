@@ -17,8 +17,6 @@ import ShowRep from "./ShowRep.jsx";
 import Popups from "./Popups.jsx";
 import mainPageStyle from "assets/jss/material-kit-react/views/mainPage.jsx";
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
-
-import { hideRevisionAlert, redirectDashboard } from "actions/programmbsActions.jsx";
 import { getShowProgrammbs } from "actions/programmbsActions.jsx";
 
 const styles = {
@@ -37,14 +35,13 @@ class Edit extends React.Component {
   }
   
   
-  componentWillMount() {
-    this.props.dispatchShowProgrammbs(this.props.match.params.id);
+  componentWillMount() {    
+    this.props.dispatchShowProgrammbs(this.props.match.params.id);    
   }
   render() {
     const { classes } = this.props;
     return (
-        <div>
-            
+        <div>            
         <Popups/>
         <div
           className={classes.main}
@@ -78,7 +75,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToPropsActions = dispatch => ({ 
-  dispatchShowProgrammbs: key => dispatch(getShowProgrammbs(key)),
+  dispatchShowProgrammbs: key => dispatch(getShowProgrammbs(key)),  
 });
 
 const EditComponent = translate(withStyles(styles)(Edit));

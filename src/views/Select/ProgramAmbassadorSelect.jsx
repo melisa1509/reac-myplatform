@@ -98,25 +98,7 @@ class ProgramSelect extends React.Component {
                             value="option.program1"
                         >
                             {t("option.program1")}
-                        </MenuItem>
-                        <MenuItem
-                            classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                            }}
-                            value="option.program2"
-                        >
-                            {t("option.program2")}
-                        </MenuItem>
-                        <MenuItem
-                            classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                            }}
-                            value="option.program3"
-                        >
-                            {t("option.program3")}
-                        </MenuItem>
+                        </MenuItem>                                                
                     </Select>
                 </FormControl>
         );

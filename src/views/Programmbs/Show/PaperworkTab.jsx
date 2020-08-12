@@ -135,7 +135,7 @@ class PaperworkTab extends React.Component {
 
     const titlePaperwork7 = [];
     const titleArray = Array.from(programmbs.paperwork7.p7_title);
-    titleArray.unshift(" ");
+    titleArray.unshift(t("label_month"));
     titlePaperwork7.push(titleArray);
     const widthColumsPaperwork7Title = ["28%","8%", "8%", "8%", "8%", "8%", "8%", "8%", "8%", "8%"];
 
@@ -288,7 +288,7 @@ class PaperworkTab extends React.Component {
                         })     
                     }
                     <tr>
-                      <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold + " "+ classes.textAlignRight } style={{ width: '70%' }}><h7 className="td-bold">{t("label_total_expenses")}</h7></td>
+                      <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold + " "+ classes.textAlignRight } style={{ width: '70%' }}><h7 className="td-bold">{t("label_total_income")}</h7></td>
                       <td className={classes.tdTable} style={{ width: '30%' }}>
                           <input type="text" className={classes.inputTable} style={{ width: '100%' }} value={programmbs.paperwork5.p5_income} />
                       </td>
@@ -304,7 +304,7 @@ class PaperworkTab extends React.Component {
                     })     
                   }
                 <tr>
-                <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold + " "+ classes.textAlignRight } style={{ width: '70%' }}><h7 className="td-bold">{t("label_total_income")}</h7></td>
+                <td className={classes.tdTable + " "+ classes.verticalCenter + " "+ classes.tdBold + " "+ classes.textAlignRight } style={{ width: '70%' }}><h7 className="td-bold">{t("label_total_expenses")}</h7></td>
                 <td className={classes.tdTable} style={{ width: '30%' }}>
                       <input type="text" className={classes.inputTable} style={{ width: '100%' }} value={programmbs.paperwork6.p6_expenses} />
                   </td>

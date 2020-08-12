@@ -273,7 +273,7 @@ class ProcessTab extends React.Component {
             <br/>
             <form>
                 <Field
-                  labelText={t("question_price2")}
+                  labelText={t("question_process2")}
                   component={CustomInputRedux}
                   name="process2"
                   success
@@ -286,7 +286,7 @@ class ProcessTab extends React.Component {
                   }}
                 />
                 <Field
-                  labelText={t("question_price3")}
+                  labelText={t("question_process3")}
                   component={CustomInputRedux}
                   name="process3"
                   success
@@ -300,7 +300,7 @@ class ProcessTab extends React.Component {
                 />
                 <br/>
                 <Field
-                  labelText={t("question_price4")}
+                  labelText={t("question_process4")}
                   component={CustomInputRedux}
                   name="process4"
                   success

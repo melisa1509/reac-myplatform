@@ -67,10 +67,8 @@ const style = {
 class ShowForm extends React.Component { 
 
     
-
-
     render() {
-        const { classes, programmbs, active } = this.props;
+        const { classes, programmbs, progressmbs, active_tab, active } = this.props;
         let { t } = this.props;
         return (
           <NavPills
@@ -78,72 +76,104 @@ class ShowForm extends React.Component {
                   active={active}
                   tabs={[
                     {
-                      tabButton: t("title_plan"),
+                      tabButton: (
+                        <div>
+                          {t("title_plan")}<div>{progressmbs.plan}</div>
+                        </div>
+                      ),
                       tabIcon: AccountBalance,
                       tabContent: (
                         <PlanTab />
                       )
                     },
                     {
-                      tabButton: t("title_product"),
+                      tabButton: (
+                        <div>
+                          {t("title_product")}<div>{progressmbs.product}</div>
+                        </div>
+                      ),
                       tabIcon: Domain,
                       tabContent: (
                         <ProductTab />
                       )
                     },
                     {
-                      tabButton: t("title_process"),
+                      tabButton: (
+                        <div>
+                          {t("title_process")}<div>{progressmbs.process}</div>
+                        </div>
+                      ),
                       tabIcon: Timeline,
                       tabContent: (
                         <ProcessTab />
                       )
                     },
                     {
-                      tabButton: t("title_price"),
+                      tabButton: (
+                        <div>
+                          {t("title_price")}<div>{progressmbs.price}</div>
+                        </div>
+                      ),
                       tabIcon: MonetizationOn,
                       tabContent: (
                         <PriceTab />
                       )
                     },
                     {
-                      tabButton: t("title_promotion"),
+                      tabButton: (
+                        <div>
+                          {t("title_promotion")}<div>{progressmbs.promotion}</div>
+                        </div>
+                      ),
                       tabIcon: RecordVoiceOver,
                       tabContent: (
                         <PromotionTab />
                       )
                     },
                     {
-                      tabButton: t("title_paperwork"),
+                      tabButton: (
+                        <div>
+                          {t("title_paperwork")}<div>{progressmbs.paperwork}</div>
+                        </div>
+                      ),
                       tabIcon: FileCopy,
                       tabContent: (
                         <PaperworkTab />
                       )
                     },
                     {
-                      tabButton: t("title_quality_life"),
+                      tabButton: (
+                        <div>
+                          {t("title_quality_life")}<div>{progressmbs.quality}</div>
+                        </div>
+                      ),
                       tabIcon: AccessibityNew,
                       tabContent: (
                         <QualitylifeTab />
                       )
                     },
                     {
-                      tabButton: t("title_service"),
+                      tabButton: (
+                        <div>
+                          {t("title_service")}<div>{progressmbs.service}</div>
+                        </div>
+                      ),
                       tabIcon: PanTool,
                       tabContent: (
                         <ServiceTab />
                       )
                     },
                     {
-                      tabButton: t("title_history"),
+                      tabButton: (
+                        <div>
+                          {t("title_history")}<div>{"*"}</div>
+                        </div>
+                      ),
                       tabIcon: Face,
                       tabContent: (
                         <HistoryTab />
                       )
-                    }
-
-
-
-                    
+                    }                    
                   ]}
                 />
                 
@@ -153,7 +183,8 @@ class ShowForm extends React.Component {
 
 const mapStateToProps = state => ({ 
       programmbs: state.programmbsReducer.programmbs,
-      
+      progressmbs: state.studentReducer.dashboard_student.progressMbs,
+      active_tab: state.programmbsReducer.active_tab      
 });
 
 const mapDispatchToPropsActions = dispatch => ({

@@ -75,7 +75,7 @@ class IndexTable extends React.Component {
       return {
         id: key, 
         full_name: prop.name,
-        modality:prop.modality,
+        modality: t(prop.modality),
         date:start_date,
         projects: (
           <div className="actions-left">

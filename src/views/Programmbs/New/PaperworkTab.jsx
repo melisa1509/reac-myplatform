@@ -257,7 +257,7 @@ class PaperworkTab extends React.Component {
 
     const titlePaperwork7 = [];
     const titleArray = Array.from(programmbs.paperwork7.p7_title);
-    titleArray.unshift(" ");
+    titleArray.unshift(t("label_month"));
     titlePaperwork7.push(titleArray);
     const widthColumsPaperwork7Title = ["28%","8%", "8%", "8%", "8%", "8%", "8%", "8%", "8%", "8%"];
 
