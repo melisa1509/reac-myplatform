@@ -1,6 +1,6 @@
 import { STUDENT_LIST, SHOW_STUDENT, LOAD_FORM_STUDENT, DELETE_STUDENT, SUCCESSFUL_DELETE, EDIT_STUDENT, ERROR_EDIT_STUDENT, SUCCESSFULL_EDIT} from 'constants/actionTypes.jsx';
 import { EDIT_PASSWORD_STUDENT, SUCCESSFULL_EDIT_CLEAN, DASHBOARD_STUDENT, NEW_STUDENT } from 'constants/actionTypes';
-import { GET_STUDENT_AMBASSADOR } from 'constants/actionTypes';
+import { GET_STUDENT_AMBASSADOR, SUCCESSFULL_NEW } from 'constants/actionTypes';
 import { BASE_URL} from 'constants/urlTypes.jsx';
 
 export const getStudentList = key => {
@@ -60,7 +60,6 @@ export const deleteStudent  = (key,redirect) => {
       .then(response => response.json())
       .then(json => {
           dispatch ({ type: DELETE_STUDENT, payload: json.data });
-          dispatch ({ type: SUCCESSFUL_DELETE}); 
           redirect.push('/student');
       });
   }
@@ -93,8 +92,7 @@ export const newStudent =() => {
         return fetch(BASE_URL + "/student/new?callback=foo", requestOptions)
         .then(response => response.json())
         .then(json => {
-            dispatch ({ type: NEW_STUDENT, payload: json.data });  
-            dispatch ({ type: SUCCESSFULL_EDIT});  
+            dispatch ({ type: NEW_STUDENT, payload: json.data });   
         })
         .catch(json =>{
             dispatch({type:ERROR_EDIT_STUDENT})
@@ -188,4 +186,13 @@ export const getStudentAmbassadorList =() => {
         })
       }
 };
+
+export const showStudentRedirect =  (redirect)  => {
+    return (dispatch, getState ) => {        
+        const reduxState = getState();
+        const key = reduxState.studentReducer.new_student.id
+        dispatch ({ type: SUCCESSFULL_NEW });  
+        return redirect.push( '/student/show/'+ key);
+    }
+}
 

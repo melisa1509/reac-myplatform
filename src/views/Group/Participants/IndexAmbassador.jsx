@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 // react component for creating dynamic tables
 
 import ReactTable from "react-table";
@@ -12,11 +13,11 @@ import { showEvaluationPre } from "actions/evaluationActions.jsx";
 import { showEvaluationPost } from "actions/evaluationActions.jsx";
 import { evaluationPre } from "actions/evaluationActions.jsx";
 import { evaluationPost } from "actions/evaluationActions.jsx";
+import { groupListRedirect} from "actions/generalActions.jsx";
 import { deleteAlert } from "actions/evaluationActions.jsx";
 import { deleteImageAlert } from "actions/groupActions.jsx";
 import { deleteSuccessful } from "actions/generalActions.jsx";
 import { uploadImage } from "actions/groupActions.jsx";
-import SnackbarContent from "components/Snackbar/SnackbarContent";
 
 import SweetAlert from "react-bootstrap-sweetalert";
 import UploadForm from './UploadForm.jsx';
@@ -36,8 +37,6 @@ import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 import { Link } from "react-router-dom";
-import { showEvaluation } from "actions/evaluationActions.jsx";
-
 
 const styles = {
   scroll: {
@@ -128,11 +127,15 @@ class IndexTable extends React.Component {
   evaluationPost(){
     this.props.dispatchEvaluationPost();
   }
+  deleteClick(){
+    this.props.dispatchDeleteSuccessful();
+  }
 
   deleteAlert(){
     this.props.dispatchDeleteAlert();
     this.props.dispatchDeleteSuccessful();
     this.props.dispatchDeleteImageAlert();
+    this.props.dispatchGetCertificateList(this.props.match.params.id);
   }
  
   render() {
@@ -246,35 +249,54 @@ class IndexTable extends React.Component {
                   <Warning>{t("label_compress_file")}</Warning>
                   <br/>
                   <UploadForm/>
+                  <GridItem xs={12} sm={12} md={12}>
+                    { successfull_edit ?      
+                      <SweetAlert
+                      success
+                      style={{ display: "block", marginTop: "-100px", close:true }}
+                      onConfirm={() => this.deleteClick()}
+                      confirmBtnCssClass={
+                        this.props.classes.button + " " + this.props.classes.success
+                      }
+                      confirmBtnText={t("button_continue")}
+                      >
+                      <h4>{t("label_save_success")}</h4>
+                    </SweetAlert>  
+                    : ""}
+                  </GridItem>
               </SweetAlert>
             : ""}
              {pre_alert ? 
               <SweetAlert
-                  style={{ display: "block", marginTop: "-300px", close:true}}
-                  onConfirm={() => this.evaluationPre()}
-                  onCancel={() => this.deleteAlert()}
-                  confirmBtnCssClass={
-                      this.props.classes.button + " " + this.props.classes.success 
-                  }
-                  cancelBtnCssClass={
-                    this.props.classes.button + " " + this.props.classes.default
-                  }
-                  confirmBtnText={t("button_save")}
-                  cancelBtnText={t("button_close")}
-                  showCancel
-                  >
+                style={{ display: "block", marginTop: "-300px", close:true}}
+                onConfirm={() => this.evaluationPre()}
+                onCancel={() => this.deleteAlert()}
+                confirmBtnCssClass={
+                    this.props.classes.button + " " + this.props.classes.success 
+                }
+                cancelBtnCssClass={
+                  this.props.classes.button + " " + this.props.classes.default
+                }
+                confirmBtnText={t("button_save")}
+                cancelBtnText={t("button_close")}
+                showCancel
+              >
                   <h4>{t("title_pre_evaluation")}</h4>
                   <br/>
                       <PreForm/>
                   <GridItem xs={12} sm={12} md={12}>
                     { successfull_edit ?      
-                      <SnackbarContent
-                        message={
-                          <center>{t("label_save_success")}</center>
-                        }
-                        close
-                        color="success"
-                      />
+                      <SweetAlert
+                      success
+                      style={{ display: "block", marginTop: "-100px", close:true }}
+                      onConfirm={() => this.deleteClick()}
+                      confirmBtnCssClass={
+                        this.props.classes.button + " " + this.props.classes.success
+                      }
+                      confirmBtnText={t("button_continue")}
+                      >
+                      <h4>{t("label_save_success")}</h4>
+                    </SweetAlert>  
                     : ""}
                   </GridItem>
               </SweetAlert>
@@ -298,14 +320,18 @@ class IndexTable extends React.Component {
                 <br/>
                     <PostForm/>
                 <GridItem xs={12} sm={12} md={12}>
-                    { successfull_edit ?      
-                      <SnackbarContent
-                        message={
-                          <center>{t("label_save_success")}</center>
+                    { successfull_edit ?  
+                      <SweetAlert
+                        success
+                        style={{ display: "block", marginTop: "-100px", close:true }}
+                        onConfirm={() => this.deleteClick()}
+                        confirmBtnCssClass={
+                          this.props.classes.button + " " + this.props.classes.success
                         }
-                        close
-                        color="success"
-                      />
+                        confirmBtnText={t("button_continue")}
+                        >
+                        <h4>{t("label_save_success")}</h4>
+                      </SweetAlert>     
                     : ""}
                 </GridItem>
             </SweetAlert>
@@ -406,6 +432,12 @@ class IndexTable extends React.Component {
   }
 }
 
+IndexTable.propTypes = {
+  classes: PropTypes.object
+};
+
+
+
 const mapStateToProps = state => ({ 
       initialValues: state.evaluationReducer.data,
       certificate_list: state.certificateReducer.certificate_list, 
@@ -426,7 +458,8 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchEvaluationPost: () => dispatch(evaluationPost()),
   dispatchDeleteAlert:()=> dispatch(deleteAlert()),
   dispatchDeleteSuccessful: () => dispatch(deleteSuccessful()),
-  dispatchDeleteImageAlert:() => dispatch(deleteImageAlert())
+  dispatchDeleteImageAlert: () => dispatch(deleteImageAlert()),
+  dispatchDeleteSuccessful: ()=> dispatch(deleteSuccessful()),
 });
 
 const IndexTableComponent = translate(withStyles(styles)(IndexTable));

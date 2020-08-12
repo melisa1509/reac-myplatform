@@ -1,6 +1,7 @@
 import { EVALUATION_PRE, PRE_ALERT, DELETE_ALERT, POST_ALERT, EVALUATION_POST } from "constants/actionTypes";
 import { SHOW_EVALUATION } from "constants/actionTypes";
 import { LOAD_FORM_EVALUATION } from "constants/actionTypes";
+import { REDIRECT_GROUP } from "constants/actionTypes";
 
 
 const initialState = { 
@@ -12,7 +13,7 @@ const initialState = {
    question1:"option1"
   },
   evaluation_pre:{
-    question1:"option1",
+    question1:"option2",
     question2:"option1",
     question3:"option1",
     question4:"option1",
@@ -72,6 +73,10 @@ export const evaluationReducer = (state = initialState, action) => {
             delete_alert:true,
             pre_alert: false,
             post_alert: false,
+        });
+      case REDIRECT_GROUP:
+        return Object.assign({}, state, {
+          redirect_group: true,
         });
     }     
     return state;

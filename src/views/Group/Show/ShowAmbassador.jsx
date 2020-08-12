@@ -11,7 +11,6 @@ import { deleteGroup } from "actions/groupActions.jsx";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 // core components
-import SnackbarContent from "components/Snackbar/SnackbarContent";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";

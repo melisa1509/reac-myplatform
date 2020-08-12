@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { translate } from 'react-switch-lang';
 import { Link } from "react-router-dom";
 
@@ -19,8 +20,8 @@ import Danger from "components/Typography/Danger.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx'; 
-import CustomRadioRedux from 'components/CustomRadio/CustomRadioRedux.jsx';
 import { newAdministrator } from "actions/administratorActions.jsx"; 
+import { showAdminRedirect  } from "actions/administratorActions.jsx";
 import { errorRequiredFields } from "actions/generalActions.jsx";
 import { successRequiredFields } from "actions/generalActions.jsx";
 import { verifyChange } from "assets/validation/index.jsx";
@@ -66,6 +67,7 @@ class NewForm extends React.Component {
         };
         this.saveClick = this.saveClick.bind(this);
         this.deleteClick= this.deleteClick.bind(this);
+        this.redirectAdmin=this.redirectAdmin.bind(this);
       }
      
       saveClick() {
@@ -87,12 +89,17 @@ class NewForm extends React.Component {
         const reduxState = store.getState();
         this.props.dispatchNewAdministrator();
         this.props.dispatchSuccessRequiredFields();
+        setTimeout(this.redirectAdmin, 2000);
         }
       }
 
       deleteClick(){
         this.props.dispatchDeleteSuccessful();
       }
+
+      redirectAdmin(){
+        this.props.dispatchShowAdminRedirect(this.props.history)
+      }  
       
     render() {
         const { classes, successfull_new, errorRequired, successRequired } = this.props;
@@ -121,16 +128,6 @@ class NewForm extends React.Component {
             <GridItem xs={12} sm={12} md={8}>
               <form>
               <GridContainer justify="center">
-                  <GridItem xs={12} sm={12} md={12}>
-                      { successfull_new ?      
-                      <SnackbarContent
-                        message={
-                          <center>{t("label_save_success")}</center>
-                        }
-                        color="success"
-                      />
-                      : ""}
-                  </GridItem>
               </GridContainer>
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
@@ -241,17 +238,17 @@ class NewForm extends React.Component {
               </GridContainer>
               <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
-                      <center>
+                  <div className={classes.center}>
                       <Link to={"/admin"}>
                       <Button color="default" size="sm" onClick={this.deleteClick}>
                       {t("button_return_to_list")}
                       </Button>
                       {" "}
                       </Link>{" "}
-                      <Button color="info" size="sm" onClick={this.saveClick}>
+                      <Button color="info" size="sm" onClick={this.saveClick.bind(this)}>
                       {t("button_save")}
                       </Button>
-                      </center>
+                    </div>
                   </GridItem>
               </GridContainer>
               </form>
@@ -261,6 +258,9 @@ class NewForm extends React.Component {
         );
     }
 }
+NewForm.propTypes = {
+  classes: PropTypes.object
+};
 
 NewForm = reduxForm({
   form: 'adminNewform', 
@@ -275,7 +275,7 @@ NewForm = connect(
     new_administrator: state.administratorReducer.new_administrator,
     initialValues: state.administratorReducer.new_administrator
   }),
-  { dispatchNewAdministrator: newAdministrator, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful},
+  { dispatchNewAdministrator: newAdministrator, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful,  dispatchShowAdminRedirect: showAdminRedirect},
 )(NewForm);
 
 export default  withRouter(translate(withStyles(style)(NewForm)));

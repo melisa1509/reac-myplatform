@@ -246,7 +246,7 @@
     "label_ending_balance":              "Ending Cash Balance",
     "label_update_error":                "Update Error, please contact whith Admin",
     "label_save_error":                  "An error has occurred. Reload the page, type something and try saving again. If the problem persists, contact the administrator.",
-
+    
     "link_administrator":               "Administrator",
     "link_ambassador":                  "Ambassador",
     "link_admins":                      "Administrators",

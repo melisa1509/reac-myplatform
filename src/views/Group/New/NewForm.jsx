@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { translate } from 'react-switch-lang';
 import { Link } from "react-router-dom";
 
@@ -15,7 +16,6 @@ import Accordion from "components/Accordion/Accordion.jsx";
 
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
-import SnackbarContent from "components/Snackbar/SnackbarContent";
 import Danger from "components/Typography/Danger.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
@@ -24,7 +24,7 @@ import DateTimePicker from 'components/DateTimePicker/DateTimePickerRedux.jsx';
 import { newGroup } from "actions/groupActions.jsx"; 
 import { errorRequiredFields } from "actions/generalActions.jsx";
 import { successRequiredFields } from "actions/generalActions.jsx";
-import { successfulNew } from "actions/generalActions.jsx";
+import { showGroupRedirect  } from "actions/groupActions.jsx";
 import { verifyChange } from "assets/validation/index.jsx";
 import { deleteSuccessful } from "actions/generalActions.jsx";
 import ModalitySelect from "views/Select/ModalitySelect.jsx";
@@ -63,21 +63,19 @@ class NewForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            groupnameState: "success",
             interweaveLocalState: "success",
             authorizationCodeState: "success",
             uploadPercentage: 0,
         };
         this.saveClick = this.saveClick.bind(this);
         this.deleteClick= this.deleteClick.bind(this);
+        this.redirectGroup=this.redirectGroup.bind(this);
     }
 
     updateFileName = (key) => {
       this.props.change('name_image', key);
     }
 
-    
-     
     saveClick() {
         if (this.state.groupnameState === "") {
         this.setState({ groupnameState: "error" });
@@ -90,19 +88,24 @@ class NewForm extends React.Component {
         }
         if(this.state.groupnameState === "error" || this.state.full_nameState === "error"){
           const stateRedux = store.getState();
-          this.props.dispatchErrorRequiredFields();
+          this.props.dispatchErrorRequiredFields()
         }
         if(this.state.groupnameState === "success" ){
         const reduxState = store.getState();
-        this.props.dispatchNewGroup(this.props.history);
+        this.props.dispatchNewGroup();
         this.props.dispatchSuccessRequiredFields();
+        setTimeout(this.redirectGroup, 1000);
         }
       }
 
     deleteClick(){
       this.props.dispatchDeleteSuccessful();
     }
-      
+
+    redirectGroup(){
+      this.props.dispatchShowGroupRedirect(this.props.history)
+    }
+    
     render() {
         const { classes, errorRequired, successRequired } = this.props;
         let { t } = this.props;
@@ -279,18 +282,18 @@ class NewForm extends React.Component {
               </GridContainer>
               <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
-                      <center>
+                  <div className={classes.center}>
                       <Link to={"/group"}>
                       <Button color="default" size="sm" onClick={this.deleteClick}>
                       {t("button_return_to_list")}
                       </Button>
                       {" "}
                       </Link>{" "}
-                      <Button color="info" size="sm" onClick={this.saveClick}>
+                      <Button color="info" size="sm" onClick={this.saveClick.bind(this)}>
                       {t("button_save")}
                       </Button>
                       {" "}
-                      </center>
+                  </div>
                   </GridItem>
               </GridContainer>
               
@@ -301,6 +304,10 @@ class NewForm extends React.Component {
         );
     }
 }
+
+NewForm.propTypes = {
+  classes: PropTypes.object
+};
 
 NewForm = reduxForm({
   form: 'groupNewform', 
@@ -314,7 +321,7 @@ NewForm = connect(
     successfull_new:state.generalReducer.successfull_new,
     new_group: state.groupReducer.new_group,
   }),
-  { dispatchNewGroup: newGroup, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful, dispatchSuccessfulNew: successfulNew },
+  { dispatchNewGroup: newGroup, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful, dispatchShowGroupRedirect: showGroupRedirect },
 )(NewForm);
 
 export default  withRouter(translate(withStyles(style)(NewForm)));

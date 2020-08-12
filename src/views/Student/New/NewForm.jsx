@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { translate } from 'react-switch-lang';
 import { Link } from "react-router-dom";
 
@@ -22,6 +23,7 @@ import { newStudent } from "actions/studentActions.jsx";
 import { errorRequiredFields } from "actions/generalActions.jsx";
 import { successRequiredFields } from "actions/generalActions.jsx";
 import { deleteSuccessful } from "actions/generalActions.jsx";
+import { showStudentRedirect  } from "actions/studentActions.jsx";
 import { verifyChange } from "assets/validation/index.jsx";
 import LanguageSelect from "views/Select/LanguageSelect.jsx";
 import CountrySelect from "views/Select/CountrySelect.jsx";
@@ -63,6 +65,8 @@ class NewForm extends React.Component {
             whatsappState: ""
         };
         this.saveClick = this.saveClick.bind(this);
+        this.deleteClick= this.deleteClick.bind(this);
+        this.redirectStudent=this.redirectStudent.bind(this);
       }
      
       saveClick() {
@@ -89,10 +93,19 @@ class NewForm extends React.Component {
           const reduxState = store.getState();
           this.props.dispatchNewStudent();
           this.props.dispatchSuccessRequiredFields();
+          setTimeout(this.redirectStudent, 1000);
         }
       }
 
       
+    deleteClick(){
+      this.props.dispatchDeleteSuccessful();
+    }
+
+    redirectStudent(){
+      this.props.dispatchShowStudentRedirect(this.props.history)
+    }
+    
 
     render() {
         const { classes, successfull_edit, editError, errorRequired, successRequired, show_student} = this.props;
@@ -255,18 +268,18 @@ class NewForm extends React.Component {
               </GridContainer>
               <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
-                      <center>
+                  <div className={classes.center}>
                       <Link to={"/group/student/" + this.props.match.params.id}>
-                      <Button color="default" size="sm">
+                      <Button color="default" size="sm" onClick={this.deleteClick}>
                       {t("button_return_to_list")}
                       </Button>
                       </Link>                     
                       {" "}
-                      <Button color="info" size="sm" onClick={this.saveClick}>
+                      <Button color="info" size="sm" onClick={this.saveClick.bind(this)}>
                       {t("button_save")}
                       </Button>
                       {" "}
-                      </center>
+                    </div>
                   </GridItem>
               </GridContainer>
               </form>
@@ -276,6 +289,9 @@ class NewForm extends React.Component {
         );
     }
 }
+NewForm.propTypes = {
+  classes: PropTypes.object
+};
 
 NewForm = reduxForm({
   form: 'studentform', 
@@ -292,7 +308,7 @@ NewForm = connect(
     successfull_edit:state.generalReducer.successfull_edit,
     show_student: state.studentReducer.show_student,
   }),
-  { loadShowStudent: showStudent, dispatchNewStudent: newStudent, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful},
+  { loadShowStudent: showStudent, dispatchNewStudent: newStudent, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful, dispatchShowStudentRedirect: showStudentRedirect},
 )(NewForm);
 
 export default  withRouter(translate(withStyles(style)(NewForm)));

@@ -19,3 +19,5 @@ export const successRequiredFields =() => ({ type: SUCCESS_REQUIRED_FIELDS})
 export const dismatchPassword =() => ({ type: DISMATCH_PASSWORD})
 export const updateFileName = (key) => ({ type: UPDATE_FILE_NAME, payload: key})
 
+
+
