@@ -11,12 +11,15 @@ const initialState = {
   editError: false,
   successfull_edit: false,
   successfull_new: false,
+  data:{
+    lenguage_grader:{},
+  },
   new_administrator:{
+    id:"",
     language_grader:{},
     language: "en",
     country:"AFG",
     roles:"ROLE_ADMIN",
-    radio: "es",    
   },  
   show_administrator: {
     roles:"",

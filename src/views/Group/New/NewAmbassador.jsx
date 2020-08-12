@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { translate } from 'react-switch-lang';
 import { Link } from "react-router-dom";
 
@@ -24,7 +25,7 @@ import DateTimePicker from 'components/DateTimePicker/DateTimePickerRedux.jsx';
 import { newGroup } from "actions/groupActions.jsx"; 
 import { errorRequiredFields } from "actions/generalActions.jsx";
 import { successRequiredFields } from "actions/generalActions.jsx";
-import { successfulNew } from "actions/generalActions.jsx";
+import { showGroupRedirect  } from "actions/groupActions.jsx";
 import { verifyChange } from "assets/validation/index.jsx";
 import { deleteSuccessful } from "actions/generalActions.jsx";
 import ModalitySelect from "views/Select/ModalitySelect.jsx";
@@ -70,6 +71,7 @@ class NewForm extends React.Component {
         };
         this.saveClick = this.saveClick.bind(this);
         this.deleteClick= this.deleteClick.bind(this);
+        this.redirectGroup=this.redirectGroup.bind(this);
     }
 
     updateFileName = (key) => {
@@ -94,13 +96,18 @@ class NewForm extends React.Component {
         }
         if(this.state.groupnameState === "success" ){
         const reduxState = store.getState();
-        this.props.dispatchNewGroup(this.props.history);
+        this.props.dispatchNewGroup();
         this.props.dispatchSuccessRequiredFields();
+        setTimeout(this.redirectGroup, 1000);
         }
       }
 
     deleteClick(){
       this.props.dispatchDeleteSuccessful();
+    }
+
+    redirectGroup(){
+      this.props.dispatchShowGroupRedirect(this.props.history)
     }
       
     render() {
@@ -279,18 +286,18 @@ class NewForm extends React.Component {
               </GridContainer>
               <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
-                      <center>
+                    <div className={classes.center}>
                       <Link to={"/group"}>
                       <Button color="default" size="sm" onClick={this.deleteClick}>
                       {t("button_return_to_list")}
                       </Button>
                       {" "}
                       </Link>{" "}
-                      <Button color="info" size="sm" onClick={this.saveClick}>
+                      <Button color="info" size="sm" onClick={this.saveClick.bind(this)}>
                       {t("button_save")}
                       </Button>
                       {" "}
-                      </center>
+                    </div>
                   </GridItem>
               </GridContainer>
               
@@ -301,6 +308,9 @@ class NewForm extends React.Component {
         );
     }
 }
+NewForm.propTypes = {
+  classes: PropTypes.object
+};
 
 NewForm = reduxForm({
   form: 'groupNewform', 
@@ -314,7 +324,7 @@ NewForm = connect(
     successfull_new:state.generalReducer.successfull_new,
     new_group: state.groupReducer.new_group,
   }),
-  { dispatchNewGroup: newGroup, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful, dispatchSuccessfulNew: successfulNew },
+  { dispatchNewGroup: newGroup, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful, dispatchShowGroupRedirect: showGroupRedirect },
 )(NewForm);
 
 export default  withRouter(translate(withStyles(style)(NewForm)));

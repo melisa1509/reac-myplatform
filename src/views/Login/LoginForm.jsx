@@ -282,13 +282,13 @@ class LoginForm extends React.Component {
               </GridContainer>
               <div className={classes.justifyContentCenter}>
                     <a href="/password">
-                      <center>¿Olvido su contraseña?</center>
+                        <center>{t("label_forgot_password")}</center>
                     </a>
                   </div>
                   <div>
                     <center>
-                      <span>¿No tienes una Cuenta? </span>
-                        <a href="/register"> Registrarse</a>
+                      <span>{t("label_dont_have_account")} </span>
+                        <a href="/register">{t("button_sign_up")}</a>
                       <span>
                       {"\n"}
                       </span>

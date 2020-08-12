@@ -55,7 +55,6 @@ export const newAdministrator = (redirect)=> {
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: NEW_ADMINISTRATOR, payload: json.data });
-            showAdministrator(json.data.id);
         })
 
     }
@@ -154,4 +153,13 @@ export const deleteAdministrator  = (key,redirect) => {
           redirect.push('/admin');
       });
   }
+}
+
+export const showAdminRedirect =  (redirect)  => {
+    return (dispatch, getState ) => {        
+        const reduxState = getState();
+        const key = reduxState.administratorReducer.new_administrator.id
+        dispatch ({ type: SUCCESSFULL_NEW });  
+        return redirect.push( '/admin/show/'+ key);
+    }
 }

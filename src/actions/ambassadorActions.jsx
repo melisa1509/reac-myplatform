@@ -2,7 +2,7 @@ import { AMBASSADOR_LIST, SHOW_AMBASSADOR, LOAD_FORM_AMBASSADOR } from 'constant
 import { EDIT_AMBASSADOR, ERROR_EDIT_AMBASSADOR, SUCCESSFULL_EDIT } from 'constants/actionTypes';
 import { NEW_AMBASSADOR } from 'constants/actionTypes';
 import { EDIT_PASSWORD_AMBASSADOR } from 'constants/actionTypes';
-import { DELETE_AMBASSADOR, SUCCESSFUL_DELETE } from 'constants/actionTypes';
+import { DELETE_AMBASSADOR, SUCCESSFUL_DELETE, SUCCESSFULL_NEW } from 'constants/actionTypes';
 import { BASE_URL} from 'constants/urlTypes.jsx';
 
 export const getAmbassadorList = () => {
@@ -142,4 +142,14 @@ export const deleteAmbassador  = (key,redirect) => {
           redirect.push('/ambassador');
       });
   }
+}
+
+
+export const showAmbassadorRedirect =  (redirect)  => {
+    return (dispatch, getState ) => {        
+        const reduxState = getState();
+        const key = reduxState.admbassadorReducer.new_ambassador.id
+        dispatch ({ type: SUCCESSFULL_NEW });  
+        return redirect.push( '/ambassador/show/'+ key);
+    }
 }
