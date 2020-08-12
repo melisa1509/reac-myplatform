@@ -7,6 +7,7 @@ import { DELETE_ALERT } from "constants/actionTypes";
 const initialState = { 
   successfull_edit: false,
   successful_delete: false,
+  successful_new: false,
   errorRequired: false,
   successRequired: false,
   dismatch_password:false,
@@ -45,7 +46,7 @@ export const generalReducer = (state = initialState, action) => {
           }); 
         case SUCCESSFULL_NEW:
           return Object.assign({}, state, {
-            successfull_new: action.payload
+            successfull_new: true
           });
         case SUCCESSFULL_EDIT_CLEAN:
           return Object.assign({}, state, {

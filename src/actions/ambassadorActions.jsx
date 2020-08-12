@@ -1,6 +1,6 @@
 import { AMBASSADOR_LIST, SHOW_AMBASSADOR, LOAD_FORM_AMBASSADOR } from 'constants/actionTypes.jsx';
 import { EDIT_AMBASSADOR, ERROR_EDIT_AMBASSADOR, SUCCESSFULL_EDIT } from 'constants/actionTypes';
-import { NEW_AMBASSADOR } from 'constants/actionTypes';
+import { NEW_AMBASSADOR, SUCCESSFULL_REDIRECT} from 'constants/actionTypes';
 import { EDIT_PASSWORD_AMBASSADOR } from 'constants/actionTypes';
 import { DELETE_AMBASSADOR, SUCCESSFUL_DELETE, SUCCESSFULL_NEW } from 'constants/actionTypes';
 import { BASE_URL} from 'constants/urlTypes.jsx';
@@ -96,6 +96,7 @@ export const newAmbassador = ()=> {
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: NEW_AMBASSADOR, payload: json.data });
+            dispatch ({ type: SUCCESSFULL_NEW }); 
         })
 
     }
@@ -148,8 +149,8 @@ export const deleteAmbassador  = (key,redirect) => {
 export const showAmbassadorRedirect =  (redirect)  => {
     return (dispatch, getState ) => {        
         const reduxState = getState();
-        const key = reduxState.admbassadorReducer.new_ambassador.id
-        dispatch ({ type: SUCCESSFULL_NEW });  
+        const key = reduxState.ambassadorReducer.new_ambassador.id
+        dispatch ({ type: SUCCESSFULL_REDIRECT });  
         return redirect.push( '/ambassador/show/'+ key);
     }
 }

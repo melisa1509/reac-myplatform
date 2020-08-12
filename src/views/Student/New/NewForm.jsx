@@ -93,7 +93,7 @@ class NewForm extends React.Component {
           const reduxState = store.getState();
           this.props.dispatchNewStudent();
           this.props.dispatchSuccessRequiredFields();
-          setTimeout(this.redirectStudent, 1000);
+          setTimeout(this.redirectStudent, 1500);
         }
       }
 

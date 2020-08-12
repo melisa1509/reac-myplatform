@@ -13,12 +13,12 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
-import SnackbarContent from "components/Snackbar/SnackbarContent";
+import SweetAlert from "react-bootstrap-sweetalert";
 import Danger from "components/Typography/Danger.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx'; 
-import { showAmbassador } from "actions/ambassadorActions.jsx";
+import { showAmbassadorRedirect  } from "actions/ambassadorActions.jsx";
 import { newAmbassador } from "actions/ambassadorActions.jsx"; 
 import { errorRequiredFields } from "actions/generalActions.jsx";
 import { successRequiredFields } from "actions/generalActions.jsx";
@@ -27,6 +27,7 @@ import LanguageSelect from "views/Select/LanguageSelect.jsx";
 import CountrySelect from "views/Select/CountrySelect.jsx";
 
 // style for this view
+import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
 import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
 import { withRouter } from 'react-router-dom';
@@ -48,7 +49,8 @@ const style = {
       color:"red"
     },
     ...customSelectStyle,
-    ...validationFormsStyle
+    ...validationFormsStyle,
+    ...sweetAlertStyle
 };
 
 
@@ -65,6 +67,7 @@ class NewForm extends React.Component {
             passwordState:"success"
         };
         this.saveClick = this.saveClick.bind(this);
+        this.deleteClick= this.deleteClick.bind(this);
       }
      
       saveClick() {
@@ -100,11 +103,12 @@ class NewForm extends React.Component {
         }
       }
      
-      componentDidMount() {
+      deleteClick() {
+        this.props.dispatchShowAmbassadorRedirect(this.props.history)
       }
       
     render() {
-        const { classes, successfull_edit, errorRequired, successRequired } = this.props;
+        const { classes, successfull_new, errorRequired, successRequired } = this.props;
         let { t } = this.props;
         return (
           <GridContainer justify="center">
@@ -114,14 +118,18 @@ class NewForm extends React.Component {
               </GridContainer>
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
-                      { successfull_edit ?      
-                      <SnackbarContent
-                        message={
-                          <center>{t("label_save_success")}</center>
-                        }
-                        close
-                        color="success"
-                      />
+                      { successfull_new ?      
+                        <SweetAlert
+                          success
+                          style={{ display: "block", marginTop: "-100px", close:true }}
+                          onConfirm={() => this.deleteClick()}
+                          confirmBtnCssClass={
+                              this.props.classes.button + " " + this.props.classes.success
+                          }
+                          confirmBtnText={t("button_continue")}
+                          >
+                          <h4>{t("label_save_success")}</h4>
+                        </SweetAlert> 
                       : ""}
                   </GridItem>
               </GridContainer>
@@ -166,7 +174,7 @@ class NewForm extends React.Component {
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <Field
-                      labelText={t("label_lastname")+ " *"}
+                      labelText={t("label_lastName")+ " *"}
                       component={CustomInputRedux}
                       name="last_name"
                       success={this.state.last_nameState === "success"}
@@ -316,9 +324,9 @@ NewForm = connect(
     errorRequired:state.generalReducer.errorRequired,
     successRequired:state.generalReducer.successRequired,
     new_ambassador: state.ambassadorReducer.new_ambassador,
-    successfull_edit:state.generalReducer.successfull_edit,
+    successfull_new:state.generalReducer.successfull_new,
   }),
-  { dispatchNewAmbassador: newAmbassador, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields},
+  { dispatchNewAmbassador: newAmbassador, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchShowAmbassadorRedirect: showAmbassadorRedirect},
 )(NewForm);
 
 export default  withRouter(translate(withStyles(style)(NewForm)));
