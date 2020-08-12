@@ -12,7 +12,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
-import { editProgrammbs, saveProject } from "actions/programmbsActions.jsx";
+import { editProgrammbs, saveProject, activeTab } from "actions/programmbsActions.jsx";
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 
 import { translate } from 'react-switch-lang';
@@ -41,6 +41,7 @@ class Controls extends React.Component {
     };
     this.handleSave = this.handleSave.bind(this);    
     this.handleSaveProject = this.handleSaveProject.bind(this);
+    this.handleNext = this.handleNext.bind(this);
   }
 
   handleSave(){
@@ -50,10 +51,15 @@ class Controls extends React.Component {
   handleSaveProject(){
     this.props.dispatchSaveProject(this.props.history);
   }
+
+  handleNext(){
+    this.props.dispatchActiveTab(3);
+  }
  
 
   render() {
-    const { classes, programmbs } = this.props;
+    const { classes, progressmbs } = this.props;
+    let state = progressmbs === undefined ? false : progressmbs.complete;
     let { t } = this.props;
     return (
       <GridContainer justify="center">
@@ -63,9 +69,12 @@ class Controls extends React.Component {
                     {t("button_save")}
                 </Button>                
                 {" "}
+                {state === "true"? 
                 <Button color="success" size="sm" onClick={this.handleSaveProject}>
                     {t("button_send_revision")}
                 </Button>
+                : ""
+                }              
                 
             </GridContainer>
         </GridItem>
@@ -79,11 +88,13 @@ Controls.propTypes = {
 };
 
 const mapStateToProps = state => ({ 
+  progressmbs: state.studentReducer.dashboard_student.progressMbs
 });
 
 const mapDispatchToPropsActions = dispatch => ({
   dispatchEditProgrammbs: param => dispatch( editProgrammbs(param) ),   
   dispatchSaveProject: param => dispatch( saveProject(param)),
+  dispatchActiveTab: key => dispatch(activeTab(key))
 });
 
 

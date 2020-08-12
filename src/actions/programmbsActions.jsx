@@ -1,6 +1,8 @@
 import { ADD_ROWN_P4, ERROR_SEND_REVISION_PROJECT, SUCCESSFULL_SEND_REVISION_PROJECT, SHOW_PROGRAMMBS, LOAD_FORM_PROGRAMMBS, SUCCESSFULL_EDIT_REVISION, ERROR_EDIT_REVISION, HIDE_REVISION_ALERT, SUCCESSFULL_APPROVE_PROJECT, ERROR_APPROVE_PROJECT } from 'constants/actionTypes.jsx';
 import { BASE_URL } from 'constants/urlTypes';
 import { jsonToArray } from "assets/functions/general.jsx";
+import { dashboardStudent } from "actions/studentActions.jsx";
+import { ACTIVE_TAB } from 'constants/actionTypes';
 
 export const getShowProgrammbs = key => {
     return (dispatch) => {
@@ -111,6 +113,7 @@ export const editProgrammbs = (redirect) => {
         .then(response => response.json())
         .then(json => {
             dispatch({type:SUCCESSFULL_EDIT_REVISION})
+            dispatch(dashboardStudent())
         })
         .catch(json =>{
             dispatch({type:ERROR_EDIT_REVISION})
@@ -260,9 +263,8 @@ export const sendRevisionProject = (redirect) => {
     
 }
 
+export const activeTab = key => ({ type: ACTIVE_TAB, key: key });
 export const loadFormProgrammbs = data => ({ type: LOAD_FORM_PROGRAMMBS, data });
-
-
 export const hideRevisionAlert = () => ({ type: HIDE_REVISION_ALERT })
 
 export const redirectDashboard = redirect => { 

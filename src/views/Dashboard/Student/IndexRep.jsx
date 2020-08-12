@@ -14,6 +14,7 @@ import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import IndexTable from './IndexTable.jsx';
 import IndexTableSa from './IndexTableSa.jsx';
+import Danger from "components/Typography/Danger.jsx";
 
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
@@ -47,8 +48,9 @@ class IndexRep extends React.Component {
             <CardHeader color="info">
                 <h4 className={classes.cardTitle}>{t("title_progress_dashboard")}</h4>
             </CardHeader>
-            <CardBody>
+            <CardBody>                
                 <center><h3 className={classes.cardTitleCenter} >{t("title_program_mbs")}</h3></center>
+                {dashboard_student.progressMbs.submitted === "state.revision" ? <center><Danger><h5 className={classes.infoText}>{t("label_success_revision")}</h5></Danger></center>: ""}
                 <p>{t("label_program_mbs_starting")}</p>
                 <br/>
                 <IndexTable  />      
@@ -57,14 +59,15 @@ class IndexRep extends React.Component {
         </GridItem>
         <br/>
         {
-          dashboard_student.progressSa.student_ambassador === false ? 
+          dashboard_student.progressSa.student_ambassador === true ? 
           <GridItem xs={12} sm={12} md={11}>
             <Card>
               <CardHeader color="success">
                   <h4 className={classes.cardTitle}>{t("title_progress_dashboard")}</h4>
-              </CardHeader>
+              </CardHeader> 
               <CardBody>
                   <center><h3 className={classes.cardTitleCenter} >{t("title_program_sa")}</h3></center>
+                  {dashboard_student.progressSa.submitted === "state.revision" ? <center><Danger><h5 className={classes.infoText}>{t("label_success_revision")}</h5></Danger></center>: ""}
                   <p>{t("label_program_sa_starting")}</p>
                   <br/>
                   <IndexTableSa  />      

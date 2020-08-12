@@ -58,7 +58,8 @@ class Controls extends React.Component {
  
 
   render() {
-    const { classes, programmbs } = this.props;
+    const { classes, progressmbs } = this.props;
+    let state = progressmbs === undefined ? false : progressmbs.complete;
     let { t } = this.props;
     return (
       <GridContainer justify="center">
@@ -68,9 +69,12 @@ class Controls extends React.Component {
                     {t("button_save")}
                 </Button>                
                 {" "}
+                {state === "true"? 
                 <Button color="success" size="sm" onClick={this.handleSaveProject}>
                     {t("button_send_revision")}
                 </Button>
+                : ""
+                }
                 
             </GridContainer>
         </GridItem>
@@ -84,6 +88,7 @@ Controls.propTypes = {
 };
 
 const mapStateToProps = state => ({ 
+  progressmbs: state.studentReducer.dashboard_student.progressMbs
 });
 
 const mapDispatchToPropsActions = dispatch => ({

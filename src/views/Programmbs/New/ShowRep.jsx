@@ -36,13 +36,14 @@ class ShowRep extends React.Component {
  
 
   render() {
-    const { classes, programmbs } = this.props;
+    const { classes, active_user } = this.props;
     let { t } = this.props;
     return (
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={12}>
             <CardHeader color="info" >
                 <h4 className={classes.cardTitleCenter}>{t("title_program_mbs")}</h4>
+                <p className={classes.cardCategory}>{ active_user.first_name + " " + active_user.last_name + " / " + active_user.studentgroup.group.name + " / " + active_user.studentgroup.group.embassador.first_name + "  " + active_user.studentgroup.group.embassador.last_name} </p> 
             </CardHeader>
             <CardBody>
                 <ShowForm  />      

@@ -1,7 +1,6 @@
 import { SHOW_PROGRAMMBS, UPDATE_REVISION_PROGRAMMBS, ERROR_EDIT_REVISION, SUCCESSFULL_EDIT_REVISION, SUCCESSFULL_APPROVE_PROJECT, ERROR_APPROVE_PROJECT } from "constants/actionTypes";
 import { LOAD_FORM_PROGRAMMBS } from "constants/actionTypes";
-import { HIDE_REVISION_ALERT, ERROR_SEND_REVISION_PROJECT, SUCCESSFULL_SEND_REVISION_PROJECT, } from "constants/actionTypes";
-import { ADD_ROWN_P4 } from "constants/actionTypes";
+import { HIDE_REVISION_ALERT, ERROR_SEND_REVISION_PROJECT, SUCCESSFULL_SEND_REVISION_PROJECT, ACTIVE_TAB } from "constants/actionTypes";
 
 const initialState = { 
   programmbs:{
@@ -119,7 +118,7 @@ const initialState = {
   approveProjectError: false,
   approveProjectSuccessfull: false,
   sendRevisionProjectError: false,
-  sendRevisionProjectSuccessfull: false
+  sendRevisionProjectSuccessfull: false,
 }
 
 
@@ -195,9 +194,9 @@ export const programmbsReducer = (state = initialState, action) => {
           sendRevisionProjectSuccessfull: false
         });
 
-      case ADD_ROWN_P4:
+      case ACTIVE_TAB:
         return Object.assign({}, state, {
-          data: state.data
+          active_tab: action.key
         });
     }
 
