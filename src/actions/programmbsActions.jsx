@@ -80,6 +80,7 @@ export const newProgrammbs = (redirect) => {
         .then(response => response.json())
         .then(json => {
             dispatch({type:SUCCESSFULL_EDIT_REVISION})
+            dispatch(dashboardStudent())
         })
         .catch(json =>{
             dispatch({type:ERROR_EDIT_REVISION})

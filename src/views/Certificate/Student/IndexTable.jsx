@@ -65,17 +65,26 @@ class IndexTable extends React.Component {
   render() {
     const { certificate_list, active_user } = this.props;
     let { t } = this.props;
-    let rol=false
+    let rol=false;  
+
     if(active_user.roles == "ROLE_EMBASSADOR"){
       rol=true
     }
-
-    console.log(certificate_list);
     
+       
     const data = certificate_list.map((prop, key) => {
      let state="";
      let MBSButton=false;
      let SAButton=false;
+     let labelButton = t('button_certificate_mbs');
+     let linkCertificate = "https://api.interweavesolutions.org/certificate/mbs/student/";
+     
+        if (prop.group !== undefined){
+          if(prop.group.program === "option.program4"){
+            labelButton =  t('button_certificate_mbs_jr');
+            linkCertificate = "https://api.interweavesolutions.org/certificate/mbsjr/student/";
+          }          
+        }
         if(prop.student.programmbs !== undefined){
           if(prop.student.programmbs.state == 'state.approved'){
             MBSButton=true;
@@ -109,10 +118,10 @@ class IndexTable extends React.Component {
             <Button
               size="sm"
               color="info"
-              href={"https://api.interweavesolutions.org/certificate/mbs/student/" + prop.student.id}
+              href={linkCertificate + prop.student.id}
               target="_blank"
             >
-              {t('button_certificate_mbs')}
+              {labelButton}
             </Button>
           :
            t("label_not_available")

@@ -36,13 +36,13 @@ class ShowRep extends React.Component {
  
 
   render() {
-    const { classes, programmbs, active} = this.props;
+    const { classes, programmbs, active, active_user} = this.props;
     let { t } = this.props;
     return (
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={12}>
             <CardHeader color="info" >
-                <h4 className={classes.cardTitleCenter}>{t("title_program_mbs")}</h4>
+                <h4 className={classes.cardTitleCenter}>{ active_user.studentgroup.group.program === "option.program1" ? t("title_program_mbs") : t("title_program_mbs_junior")}</h4>
                 <p className={classes.cardCategory}>{ programmbs.student.first_name + " " + programmbs.student.last_name + " / " + programmbs.student.studentgroup.group.name + " / " + programmbs.student.studentgroup.group.embassador.first_name + "  " + programmbs.student.studentgroup.group.embassador.last_name} </p> 
             </CardHeader>
             <CardBody>
@@ -59,7 +59,8 @@ ShowRep.propTypes = {
 };
 
 const mapStateToProps = state => ({ 
-  programmbs: state.programmbsReducer.programmbs
+  programmbs: state.programmbsReducer.programmbs,
+  active_user: state.loginReducer.active_user
 });
 
 const mapDispatchToPropsActions = dispatch => ({

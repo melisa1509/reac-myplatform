@@ -21,7 +21,7 @@ import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/
 import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
 
 import { verifyChange } from "assets/validation/index.jsx";
-import { getAuthenticacion } from "actions/loginActions";
+import { getAuthenticacion, cleanState } from "actions/loginActions";
 import { getGroupList } from "actions/groupActions.jsx";
 import { getStudentList } from "actions/studentActions.jsx";
 import { getAdminStudentMbsList } from "actions/dashboardActions.jsx";
@@ -186,10 +186,11 @@ class LoginForm extends React.Component {
 
       componentDidMount() {
         //Initialize Resources
-        this.props.dispatchGetStudentList();
-        this.props.dispatchGetGroupList();
-        this.props.dispatchGetStudentMbsList();
-        this.props.dispatchGetAmbassadorList();
+        this.props.dispatchGetCleanState();
+        //this.props.dispatchGetStudentList();
+        //this.props.dispatchGetGroupList();
+        //this.props.dispatchGetStudentMbsList();
+        //this.props.dispatchGetAmbassadorList();
         document.addEventListener("keydown", this.escFunction, false);
         
       }
@@ -320,7 +321,8 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchGetStudentList: () => dispatch( getStudentList() ),
   dispatchGetStudentMbsList: () => dispatch( getAdminStudentMbsList() ),
   dispatchGetAmbassadorList: () => dispatch( getAmbassadorList()),
-  dispatchGetReports: () => dispatch( getReports() )
+  dispatchGetReports: () => dispatch( getReports() ),
+  dispatchGetCleanState: () => dispatch (cleanState())
     
 });
 

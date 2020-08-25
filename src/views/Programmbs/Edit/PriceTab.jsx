@@ -29,7 +29,7 @@ class PriceTab extends React.Component {
 
   
   render() {
-    const { classes, programmbs } = this.props;
+    const { classes, programmbs, active_user } = this.props;
     let { t } = this.props;
     return (
         <Card >
@@ -52,7 +52,7 @@ class PriceTab extends React.Component {
                 />
                 <br/>
                 <Field
-                  labelText={t("question_price2")}
+                  labelText={active_user.studentgroup.group.program === "option.program1" ? t("question_price2") : t("question_price2_junior")}
                   component={CustomInputRedux}
                   name="price2"
                   success
@@ -118,7 +118,8 @@ PriceTab = reduxForm({
 PriceTab = connect(
   state => ({
     initialValues: state.programmbsReducer.data, 
-    programmbs: state.programmbsReducer.programmbs
+    programmbs: state.programmbsReducer.programmbs,
+    active_user: state.loginReducer.active_user
   }),
   { load: loadFormProgrammbs }, 
 )(PriceTab);

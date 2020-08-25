@@ -29,7 +29,7 @@ class PlanTab extends React.Component {
 
   
   render() {
-    const { classes, programmbs } = this.props;
+    const { classes, active_user } = this.props;
     let { t } = this.props;
     return (
         <Card >
@@ -38,7 +38,7 @@ class PlanTab extends React.Component {
             <br/>
             <form>
                 <Field
-                  labelText={t("question_plan1")}
+                  labelText={active_user.studentgroup.group.program === "option.program1" ? t("question_plan1") : t("question_plan1_junior")}
                   component={CustomInputRedux}
                   name="plan1"
                   success
@@ -52,7 +52,7 @@ class PlanTab extends React.Component {
                 />
                 <br/>
                 <Field
-                  labelText={t("question_plan2")}
+                  labelText={active_user.studentgroup.group.program === "option.program1" ? t("question_plan2") : t("question_plan2_junior")}
                   component={CustomInputRedux}
                   name="plan2"
                   success
@@ -81,6 +81,7 @@ PlanTab = reduxForm({
 
 PlanTab = connect(
   state => ({
+    active_user: state.loginReducer.active_user
   }),
   { load: loadFormProgrammbs }, 
 )(PlanTab);
