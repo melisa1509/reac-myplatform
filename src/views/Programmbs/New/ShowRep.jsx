@@ -42,7 +42,7 @@ class ShowRep extends React.Component {
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={12}>
             <CardHeader color="info" >
-                <h4 className={classes.cardTitleCenter}>{t("title_program_mbs")}</h4>
+                <h4 className={classes.cardTitleCenter}>{ active_user.studentgroup.group.program === "option.program1" ? t("title_program_mbs") : t("title_program_mbs_junior")}</h4>
                 <p className={classes.cardCategory}>{ active_user.first_name + " " + active_user.last_name + " / " + active_user.studentgroup.group.name + " / " + active_user.studentgroup.group.embassador.first_name + "  " + active_user.studentgroup.group.embassador.last_name} </p> 
             </CardHeader>
             <CardBody>

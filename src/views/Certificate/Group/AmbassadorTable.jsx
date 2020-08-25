@@ -72,7 +72,7 @@ class AmbassadorTable extends React.Component {
         id: key, 
         full_name: prop.name,
         date:start_date,
-        modality:prop.modality,
+        modality: t(prop.modality),
         projects: (
           <div className="actions-left">
             <Link to={"/certificate/list/student/"+ prop.id}>

@@ -10,7 +10,7 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Table from "components/Table/Table.jsx";
 import Button from "components/CustomButtons/Button.jsx";
-import { getReports } from "actions/reportActions.jsx";
+import { getReports, getReportGlobalMap } from "actions/reportActions.jsx";
 
 const bo_flag = require("assets/img/flags/BO.png");
 const de_flag = require("assets/img/flags/DE.png");
@@ -41,17 +41,18 @@ const us_flag = require("assets/img/flags/US.png");
 const mg_flag = require("assets/img/flags/MG.png");
 
 var mapData = {
-  BO: (230, 3),
-  BR: (550,300,450),
+  BO: 3,
+  BR: '500 ,6 ,5',
   CA: 120,
-  DE: 1300,
+  DE: 130,
   FR: 540,
   GB: 690,
   GE: 200,
   IN: 200,
-  RO: 600,
+  RO: 60,
   RU: 300,
-  US: 2920
+  US: 292,
+  CO: 0
 };
 var CountryEntire=false
 
@@ -70,10 +71,17 @@ class GlobalTable extends React.Component {
   
   componentDidMount() {
     this.props.dispatchGetReports();
+    this.props.dispatchGetReportGlobalMap();
   }
   render() {
-    const { report_list} = this.props;
+    const { report_list, global_map} = this.props;
     let { t } = this.props;
+    let vector_map = {};
+    if(global_map !== undefined){
+      vector_map = global_map.numCountries
+    }
+   
+    console.log(vector_map);
     const country = report_list.topNumbers.map((prop)=>{
       let TableData=new Array()
       return(
@@ -344,7 +352,7 @@ class GlobalTable extends React.Component {
             containerStyle={{
               width: "100%",
               height: "290px"
-            }}
+            }} 
             containerClassName="map"
             regionStyle={{
               initial: {
@@ -358,12 +366,15 @@ class GlobalTable extends React.Component {
             series={{
               regions: [
                 {
-                  values: mapData,
-                  scale: ["#37606f", "#8aa9b4"],
+                  values: vector_map,
+                  scale: ["#A4BDC6", "#153845"],
                   normalizeFunction: "polynomial"
                 }
               ]
             }}
+            onRegionTipShow = {function(e, el, code){
+              el.html(el.html()+' ('+vector_map[code]+')')} 
+            }
           />
         </GridItem>
         <GridContainer>
@@ -454,16 +465,19 @@ class GlobalTable extends React.Component {
                 "stroke-width": 0,
                 "stroke-opacity": 0
               }
-            }}
+            }} 
             series={{
               regions: [
                 {
-                  values: mapData,
-                  scale: ["#37606f", "#8aa9b4"],
+                  values: vector_map,
+                  scale: ["#A4BDC6", "#153845"],
                   normalizeFunction: "polynomial"
                 }
               ]
-            }}
+            }}            
+            onRegionTipShow = {function(e, el, code){
+              el.html(el.html()+' ('+vector_map[code]+')')} 
+            }
           />
         </GridItem>
         <GridContainer>
@@ -482,11 +496,13 @@ class GlobalTable extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
-      report_list: state.reportReducer.report_list,
+    report_list: state.reportReducer.report_list,
+    global_map: state.reportReducer.report_global_map
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetReports: () => dispatch( getReports() )
+  dispatchGetReports: () => dispatch( getReports() ),
+  dispatchGetReportGlobalMap: () => dispatch( getReportGlobalMap() )
 });
 
 const GlobalTableComponent = translate(GlobalTable);

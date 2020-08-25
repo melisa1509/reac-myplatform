@@ -69,7 +69,7 @@ class Controls extends React.Component {
                     {t("button_save")}
                 </Button>                
                 {" "}
-                {state === "true"? 
+                {state? 
                 <Button color="success" size="sm" onClick={this.handleSaveProject}>
                     {t("button_send_revision")}
                 </Button>

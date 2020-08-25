@@ -75,9 +75,9 @@ class MbsTable extends React.Component {
             <Link to={prop.student.programmbs.modality === "option.modality1" ? "/programmbs/showfile/" + prop.student.programmbs.id : "/programmbs/show/" + prop.student.programmbs.id}>
               <Button
                 size="sm"
-                color="success"
+                color={prop.group.program === "option.program4" ? t('warning') : t('success')}
               >
-                {t('button_mbs')}
+                {prop.group.program === "option.program4" ? t('button_mbs_jr') : t('button_mbs')}
               </Button>
             </Link>
             

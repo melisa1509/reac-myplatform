@@ -75,6 +75,17 @@ class IndexTable extends React.Component {
       let buttonSa = false;
       let idMbs = "";
       let idSa = "";
+      let labelButton = t('button_mbs');
+      let colorButton = "success";
+
+      if (prop.studentgroup !== undefined){
+        if(prop.studentgroup.group !== undefined){
+          if(prop.studentgroup.group.program === "option.program4"){
+            labelButton =  t('button_mbs_jr');
+            colorButton =  "warning";
+          }          
+        }        
+      }
       if (prop.programsa !== undefined) {
             projectState = t("label_project_ambassador") + " " +  t(prop.programsa.state);
             buttonSa =  true;
@@ -91,7 +102,7 @@ class IndexTable extends React.Component {
       if(prop.programmbs !== undefined){
         buttonMbs =  true;
         idMbs = prop.programmbs.id;
-      }
+      }      
 
       var groups = (prop.studentgroup !== undefined ? prop.studentgroup.group.name : "") + (prop.studentambassadorgroup !== undefined ? " / " + prop.studentambassadorgroup.group.name : "");
       return {
@@ -104,9 +115,9 @@ class IndexTable extends React.Component {
             <Link to={buttonMbs ? prop.programmbs.modality === "option.modality1" ? "/programmbs/showfile/" + idMbs : "/programmbs/show/" + idMbs : "#"}>
               <Button
                 size="sm"
-                color={buttonMbs ? "success" : "default" }
+                color={buttonMbs ? colorButton : "default" }
               >
-                {t('button_mbs')}
+                { labelButton }
               </Button>
             </Link>
             {" "}

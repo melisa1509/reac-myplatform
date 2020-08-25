@@ -101,4 +101,4 @@ export const logoutUser = ( redirect ) => {
     
 }
 
-
+export const cleanState = () => ({ type: LOGOUT_USER })

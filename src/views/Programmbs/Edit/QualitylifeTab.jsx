@@ -52,7 +52,6 @@ class QualitylifeTab extends React.Component {
   render() {
     const { classes, programmbs, form_programmbs } = this.props;
     let { t } = this.props;
-    console.log(this.props);
     
     return (
         <Card>

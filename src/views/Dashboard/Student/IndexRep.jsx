@@ -38,7 +38,7 @@ class IndexRep extends React.Component {
   }
 
   render() {
-    const { classes, styles, dashboard_student } = this.props;
+    const { classes, active_user, dashboard_student } = this.props;
     let { t } = this.props;
     const login = "es";
     return (
@@ -49,7 +49,7 @@ class IndexRep extends React.Component {
                 <h4 className={classes.cardTitle}>{t("title_progress_dashboard")}</h4>
             </CardHeader>
             <CardBody>                
-                <center><h3 className={classes.cardTitleCenter} >{t("title_program_mbs")}</h3></center>
+                <center><h3 className={classes.cardTitleCenter} >{ active_user.studentgroup.group.program === "option.program1" ? t("title_program_mbs") : t("title_program_mbs_junior")}</h3></center>
                 {dashboard_student.progressMbs.submitted === "state.revision" ? <center><Danger><h5 className={classes.infoText}>{t("label_success_revision")}</h5></Danger></center>: ""}
                 <p>{t("label_program_mbs_starting")}</p>
                 <br/>
@@ -86,7 +86,8 @@ IndexRep.propTypes = {
 };
 
 const mapStateToProps = state => ({ 
-  dashboard_student: state.studentReducer.dashboard_student
+  dashboard_student: state.studentReducer.dashboard_student,
+  active_user: state.loginReducer.active_user
 });
 
 const mapDispatchToPropsActions = dispatch => ({

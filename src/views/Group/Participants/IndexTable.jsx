@@ -67,29 +67,38 @@ class IndexTable extends React.Component {
     const { certificate_list } = this.props;
     let { t } = this.props;
     const data = certificate_list.map((prop, key) => {
-     let state="";
-        if(prop.student.programsa !== undefined){
-          state=t("label_project_ambassador")+ " " + t(prop.student.programsa.state)
-        }
-        else if(prop.student.programmbs !== undefined){
-          state=t("label_project_mbs")+ " " + t(prop.student.programmbs.state)
-        }
-        else {
-          state=t("label_project_mbs")+ " " + t("state_without_starting")
-        }
-        let buttonMbs = false;
-        let buttonSa = false;
-        let idMbs = "";
-        let idSa = "";
-        if (prop.student.programsa !== undefined) {
-              buttonSa =  true;
-              idSa = prop.student.programsa.id;
-              
-        }
-        if(prop.student.programmbs !== undefined){
-              buttonMbs =  true;
-              idMbs = prop.student.programmbs.id;
-        }
+    let state="";
+    let labelButton = t('button_mbs');
+    let colorButton = "success";
+
+    if (prop.group !== undefined){
+        if(prop.group.program === "option.program4"){
+          labelButton =  t('button_mbs_jr');
+          colorButton =  "warning";
+        }          
+    }
+    if(prop.student.programsa !== undefined){
+      state=t("label_project_ambassador")+ " " + t(prop.student.programsa.state)
+    }
+    else if(prop.student.programmbs !== undefined){
+      state=t("label_project_mbs")+ " " + t(prop.student.programmbs.state)
+    }
+    else {
+      state=t("label_project_mbs")+ " " + t("state_without_starting")
+    }
+    let buttonMbs = false;
+    let buttonSa = false;
+    let idMbs = "";
+    let idSa = "";
+    if (prop.student.programsa !== undefined) {
+          buttonSa =  true;
+          idSa = prop.student.programsa.id;
+          
+    }
+    if(prop.student.programmbs !== undefined){
+          buttonMbs =  true;
+          idMbs = prop.student.programmbs.id;
+    }
        
       return {
         id: key, 
@@ -100,9 +109,9 @@ class IndexTable extends React.Component {
             <Link to={buttonMbs ? prop.student.programmbs.modality === "option.modality1" ? "/programmbs/showfile/" + idMbs : "/programmbs/show/" + idMbs: "#"}>
               <Button
                 size="sm"
-                color={buttonMbs ? "success" : "default" }
+                color={buttonMbs ? colorButton : "default" }
               >
-                {t('button_mbs')}
+                {labelButton}
               </Button>
             </Link>
             {" "}
