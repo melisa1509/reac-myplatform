@@ -13,7 +13,6 @@ import { showEvaluationPre } from "actions/evaluationActions.jsx";
 import { showEvaluationPost } from "actions/evaluationActions.jsx";
 import { evaluationPre } from "actions/evaluationActions.jsx";
 import { evaluationPost } from "actions/evaluationActions.jsx";
-import { groupListRedirect} from "actions/generalActions.jsx";
 import { deleteAlert } from "actions/evaluationActions.jsx";
 import { deleteImageAlert } from "actions/groupActions.jsx";
 import { deleteSuccessful } from "actions/generalActions.jsx";

@@ -1,6 +1,6 @@
 import { STUDENT_LIST, SHOW_STUDENT, LOAD_FORM_STUDENT, DELETE_STUDENT, SUCCESSFUL_DELETE, EDIT_STUDENT, ERROR_EDIT_STUDENT, SUCCESSFULL_EDIT} from 'constants/actionTypes.jsx';
 import { EDIT_PASSWORD_STUDENT, SUCCESSFULL_EDIT_CLEAN, DASHBOARD_STUDENT, NEW_STUDENT } from 'constants/actionTypes';
-import { GET_STUDENT_AMBASSADOR, SUCCESSFULL_NEW } from 'constants/actionTypes';
+import { GET_STUDENT_AMBASSADOR, SUCCESSFULL_NEW, EVALUATION_PRE} from 'constants/actionTypes';
 import { BASE_URL} from 'constants/urlTypes.jsx';
 
 export const getStudentList = key => {
@@ -196,3 +196,37 @@ export const showStudentRedirect =  (redirect)  => {
     }
 }
 
+export const evaluationPre = ()=> {
+    return (dispatch, getState) => {
+    const reduxState = getState();
+
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+   
+    var urlencoded = new URLSearchParams();
+        urlencoded.append("id_student", reduxState.loginReducer.active_user.id);
+        urlencoded.append("question1", reduxState.form.preform.values.question1);
+        urlencoded.append("question2", reduxState.form.preform.values.question2);
+        urlencoded.append("question3", reduxState.form.preform.values.question3);
+        urlencoded.append("question4", reduxState.form.preform.values.question4);
+        urlencoded.append("question5", reduxState.form.preform.values.question5);
+        urlencoded.append("question6", reduxState.form.preform.values.question6);
+        urlencoded.append("question7", reduxState.form.preform.values.question7);
+    
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: 'follow'
+    };
+    
+        return fetch(BASE_URL + "/evaluation/pre", requestOptions)
+        .then(response => response.json())
+        .then(json => {
+            dispatch ({ type: EVALUATION_PRE, payload: json.data });
+            dispatch ({ type: SUCCESSFULL_EDIT});   
+        })
+
+    }
+};

@@ -15,6 +15,7 @@ import Student from 'views/Student/Index.jsx';
 import NewStudent from 'views/Student/New/New.jsx';
 import ShowStudent from 'views/Student/Show/Show.jsx';
 import EditStudent from 'views/Student/Edit/Edit.jsx';
+import PreStudent from 'views/Student/PreEvaluation/New.jsx';
 import StudentChangePassword  from 'views/Student/ChangePassword/ChangePassword.jsx';
 import Group from 'views/Group/Index.jsx';
 import ShowGroup from 'views/Group/Show/Show.jsx';
@@ -107,6 +108,7 @@ ReactDOM.render(
           <Route path="/student/new/:id" component={NewStudent} exact />
           <Route path="/student/show/:id" component={ShowStudent} exact />
           <Route path="/student/edit/:id" component={EditStudent} exact />
+          <Route path="/student/preForm" component={PreStudent} exact />
           <Route path="/student/editpassword/:id" component={StudentChangePassword} exact /> 
           <Route path="/rtl" component={RtlLayout} />
           <Route path="/auth" component={AuthLayout} />
