@@ -26,6 +26,8 @@ class IndexTable extends React.Component {
     this.state = {
       filtered: [],
       filterAll: '',
+      showPagination: false,
+      pageSize: 0
       
     };
     this.filterAll = this.filterAll.bind(this);
@@ -42,8 +44,14 @@ class IndexTable extends React.Component {
       this.setState({ filtered });
   }
 
-  filterAll(e) {
+  filterAll(e) {    
     const { value } = e.target;
+    if(value.length > 1){
+      this.setState({showPagination: true, pageSize:10 })
+    }
+    else{
+      this.setState({showPagination: false, pageSize:0 })
+    }
     const filterAll = value;
     const filtered = [{ id: 'all', value: filterAll }];
     this.setState({ filterAll, filtered });
@@ -51,7 +59,7 @@ class IndexTable extends React.Component {
 
   searchFilter(e){
     const { value } = e.target;
-    if(value.length > 1){
+    if(value.length > 1){      
       this.props.dispatchDataRequested();
       this.props.dispatchSetData(value);
     }
@@ -71,7 +79,7 @@ class IndexTable extends React.Component {
         id: key, 
         id_group:prop.id,
         full_name: prop.name,
-        modality:prop.modality,
+        modality:t(prop.modality),
         AmbassadorMentor: prop.embassador.first_name + " " + prop.embassador.last_name,
         actions: (
           <div className="actions-left">
@@ -128,19 +136,19 @@ class IndexTable extends React.Component {
                 {
                   Header: t("th_group"),
                   accessor: "full_name",
-                  width:250,
+                  width:270,
                   sortable: false,
                 },
                 {
                   Header: t("th_modality"),
                   accessor: "modality",
-                  width:150,
+                  width:130,
                   sortable: false
                 },
                 {
                   Header: t("th_actions"),
                   accessor: "actions",
-                  width:150,
+                  width:130,
                   sortable: false,
                   filterable: false
                 },
@@ -168,8 +176,8 @@ class IndexTable extends React.Component {
                 }
               ]}
               key={data.length}
-              defaultPageSize={data.length < 10 ? data.length : 10}
-              showPaginationBottom={false}
+              pageSize={this.state.pageSize}
+              showPaginationBottom={this.state.showPagination}
               className="-striped -highlight"
           />
         </GridItem>

@@ -67,7 +67,9 @@ const style = {
 class ShowForm extends React.Component {
 
    
-
+    componentWillMount(){
+      alert(this.props.match.params.id);
+    }
 
     render() {
         const { classes, programmbs, progressmbs } = this.props;
