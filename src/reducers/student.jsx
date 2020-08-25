@@ -4,13 +4,22 @@ import { ERROR_EDIT_STUDENT } from "constants/actionTypes";
 import { EDIT_STUDENT } from "constants/actionTypes";
 import { NEW_STUDENT } from "constants/actionTypes";
 import { EDIT_PASSWORD_STUDENT } from "constants/actionTypes";
-import { GET_STUDENT_AMBASSADOR } from "constants/actionTypes";
+import { GET_STUDENT_AMBASSADOR, EVALUATION_PRE } from "constants/actionTypes";
 
 const initialState = { 
   student_list: [], 
   student_ambassador_list:[],
   loading: true,
   editError: false,
+  evaluation_pre:{
+    question1:"option2",
+    question2:"option1",
+    question3:"option1",
+    question4:"option1",
+    question5:"option1",
+    question6:"option1",
+    question7:"option1"
+  },
   show_student: {
     id:"",
     email:"",
@@ -103,6 +112,10 @@ export const studentReducer = (state = initialState, action) => {
           student_ambassador_list: action.payload,
           loading: false
         }); 
+      case EVALUATION_PRE:
+        return Object.assign({}, state, {
+          evaluation_pre: action.payload,
+        });
     }
     return state;
 }
