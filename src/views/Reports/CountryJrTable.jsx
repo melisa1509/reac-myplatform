@@ -25,31 +25,31 @@ class CountryTable extends React.Component {
   render() {
     const {report_country, loading} = this.props;
     let { t } = this.props;
-    const question = report_country.MBS.map((prop)=>{
+    const question = report_country.JR.map((prop)=>{
       let TableData=[]
       return(
         TableData=[[t(prop.question)]]
       );
     });
-    const studentPre  = report_country.MBS.map((prop)=>{
+    const studentPre  = report_country.JR.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.studentsPre]
       );
     });
-    const students  = report_country.MBS.map((prop)=>{
+    const students  = report_country.JR.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.students]
       );
     });
-    const percentagePre  = report_country.MBS.map((prop)=>{
+    const percentagePre  = report_country.JR.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.percentagePre +"%"]
       );
     });
-    const percentage = report_country.MBS.map((prop)=>{
+    const percentage = report_country.JR.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.percentage +"%" ]

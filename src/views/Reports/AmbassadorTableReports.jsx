@@ -33,31 +33,31 @@ class AmbassadorTableReports extends React.Component {
     const {report_ambassador} = this.props;
     let { t } = this.props;
 
-    const question = report_ambassador.map((prop)=>{
+    const question = report_ambassador.MBS.map((prop)=>{
       let TableData=[]
       return(
         TableData=[[t(prop.question)]]
       );
     });
-    const studentPre  = report_ambassador.map((prop)=>{
+    const studentPre  = report_ambassador.MBS.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.studentsPre]
       );
     });
-    const students  = report_ambassador.map((prop)=>{
+    const students  = report_ambassador.MBS.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.students]
       );
     });
-    const percentagePre  = report_ambassador.map((prop)=>{
+    const percentagePre  = report_ambassador.MBS.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.percentagePre +"%"]
       );
     });
-    const percentage = report_ambassador.map((prop)=>{
+    const percentage = report_ambassador.MBS.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.percentage +"%" ]

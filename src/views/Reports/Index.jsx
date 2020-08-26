@@ -23,7 +23,7 @@ class Index extends React.Component {
     const { classes, ...rest } = this.props;
     return (
       <div>
-        
+        <AdminHeader/>
         <div
           className={classes.main}
           style={{

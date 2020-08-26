@@ -39,35 +39,35 @@ class PorcentageATable extends React.Component {
     let percentage=[]
 
     if (selected_ambassador == "ALL"){
-      question = report_country.map((prop)=>{
+      question = report_country.MBS.map((prop)=>{
         let TableData=[]
         return(
           TableData=[[t(prop.question)]]
         );
       });
 
-      studentPre  = report_country.map((prop)=>{
+      studentPre  = report_country.MBS.map((prop)=>{
         let TableData=[]
         return(
           TableData=[prop.studentsPre]
         );
       });
 
-      students  = report_country.map((prop)=>{
+      students  = report_country.MBS.map((prop)=>{
         let TableData=[]
         return(
           TableData=[prop.students]
         );
       });
 
-      percentagePre  = report_country.map((prop)=>{
+      percentagePre  = report_country.MBS.map((prop)=>{
         let TableData=[]
         return(
           TableData=[prop.percentagePre +"%"]
         );
       });
 
-      percentage = report_country.map((prop)=>{
+      percentage = report_country.MBS.map((prop)=>{
         let TableData=[]
         return(
           TableData=[prop.percentage +"%" ]
@@ -75,31 +75,31 @@ class PorcentageATable extends React.Component {
       });
     }
   else {
-    question = report_ambassador.map((prop)=>{
+    question = report_ambassador.MBS.map((prop)=>{
       let TableData=[]
       return(
         TableData=[[t(prop.question)]]
       );
     });
-    studentPre  = report_ambassador.map((prop)=>{
+    studentPre  = report_ambassador.MBS.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.studentsPre]
       );
     });
-    students  = report_ambassador.map((prop)=>{
+    students  = report_ambassador.MBS.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.students]
       );
     });
-    percentagePre  = report_ambassador.map((prop)=>{
+    percentagePre  = report_ambassador.MBS.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.percentagePre +"%"]
       );
     });
-    percentage = report_ambassador.map((prop)=>{
+    percentage = report_ambassador.MBS.map((prop)=>{
       let TableData=[]
       return(
         TableData=[prop.percentage +"%" ]

@@ -14,6 +14,7 @@ import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import IndexTable from './IndexTable.jsx';
 import CodeSATable from './CodeSATable.jsx';
+import CodeJrTable from './CodeJrTable.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
@@ -52,6 +53,15 @@ class IndexRep extends React.Component {
             </CardHeader>
             <CardBody>
                 <CodeSATable  />      
+            </CardBody>
+          </Card>
+          <br/>
+          <Card>
+            <CardHeader color="info">
+                <h4 className={classes.cardTitle}>{t("title_code_list_jr")}</h4>
+            </CardHeader>
+            <CardBody>
+                <CodeJrTable  />      
             </CardBody>
           </Card>
         </GridItem>
