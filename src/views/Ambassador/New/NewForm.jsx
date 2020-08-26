@@ -23,6 +23,7 @@ import { newAmbassador } from "actions/ambassadorActions.jsx";
 import { errorRequiredFields } from "actions/generalActions.jsx";
 import { successRequiredFields } from "actions/generalActions.jsx";
 import { verifyChange } from "assets/validation/index.jsx";
+import { deleteSuccessful } from "actions/generalActions.jsx";
 import LanguageSelect from "views/Select/LanguageSelect.jsx";
 import CountrySelect from "views/Select/CountrySelect.jsx";
 
@@ -105,6 +106,7 @@ class NewForm extends React.Component {
      
       deleteClick() {
         this.props.dispatchShowAmbassadorRedirect(this.props.history)
+        this.props.dispatchDeleteSuccessful();
       }
       
     render() {
@@ -326,7 +328,7 @@ NewForm = connect(
     new_ambassador: state.ambassadorReducer.new_ambassador,
     successfull_new:state.generalReducer.successfull_new,
   }),
-  { dispatchNewAmbassador: newAmbassador, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchShowAmbassadorRedirect: showAmbassadorRedirect},
+  { dispatchNewAmbassador: newAmbassador, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchShowAmbassadorRedirect: showAmbassadorRedirect, dispatchDeleteSuccessful: deleteSuccessful},
 )(NewForm);
 
 export default  withRouter(translate(withStyles(style)(NewForm)));

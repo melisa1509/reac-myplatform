@@ -5,6 +5,7 @@ import { SHOW_ADMINISTRATOR, LOAD_FORM_ADMINISTRATOR, EDIT_ADMINISTRATOR, ERROR_
 import { jsonToArray } from "assets/functions/general.jsx";
 import { EDIT_PASSWORD_ADMINISTRATOR } from 'constants/actionTypes';
 import { DELETE_ADMINISTRATOR , SUCCESSFUL_DELETE, SUCCESSFULL_NEW } from 'constants/actionTypes';
+import { SUCCESSFULL_REDIRECT } from 'constants/actionTypes';
 
 
 export const getAdministratorList = () => {
@@ -55,6 +56,7 @@ export const newAdministrator = (redirect)=> {
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: NEW_ADMINISTRATOR, payload: json.data });
+            dispatch ({ type: SUCCESSFULL_NEW }); 
         })
 
     }
@@ -159,7 +161,7 @@ export const showAdminRedirect =  (redirect)  => {
     return (dispatch, getState ) => {        
         const reduxState = getState();
         const key = reduxState.administratorReducer.new_administrator.id
-        dispatch ({ type: SUCCESSFULL_NEW });  
+        dispatch ({ type: SUCCESSFULL_REDIRECT });  
         return redirect.push( '/admin/show/'+ key);
     }
 }

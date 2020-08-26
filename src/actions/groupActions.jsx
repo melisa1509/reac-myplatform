@@ -1,6 +1,7 @@
 import {GROUP_LIST, GET_PROJECT_PROGRESS, MBS_IMAGE_ALERT, UPLOAD_IMAGE, DELETE_IMAGE_ALERT} from 'constants/actionTypes.jsx';
 import { LOAD_FORM_GROUP, SHOW_GROUP, EDIT_GROUP, SUCCESSFULL_EDIT, NEW_GROUP, DELETE_GROUP, SUCCESSFULL_NEW} from 'constants/actionTypes';
 import { BASE_URL } from 'constants/urlTypes.jsx';
+import { SUCCESSFULL_REDIRECT } from 'constants/actionTypes';
 
 export const getGroupList= () => {
     return (dispatch, getState) => {
@@ -107,6 +108,7 @@ export const newGroup = ()=> {
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: NEW_GROUP, payload: json.data });
+            dispatch ({ type: SUCCESSFULL_NEW });  
         })
     }
 };
@@ -173,7 +175,7 @@ export const showGroupRedirect =  (redirect)  => {
     return (dispatch, getState ) => {        
         const reduxState = getState();
         const key = reduxState.groupReducer.new_group.id
-        dispatch ({ type: SUCCESSFULL_NEW });  
+        dispatch ({ type: SUCCESSFULL_REDIRECT });  
         return redirect.push( '/group/show/'+ key);
     }
 }

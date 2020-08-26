@@ -9,20 +9,20 @@ import { Field, reduxForm } from 'redux-form';
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import InputLabel from "@material-ui/core/InputLabel";
+import Success from "components/Typography/Success.jsx";
 
 // core components
-import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx'; 
 import CustomRadioRedux from 'components/CustomRadio/CustomRadioRedux.jsx';
-import Button from "components/CustomButtons/Button.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
-import SweetAlert from "react-bootstrap-sweetalert";
+
+import { newGroup } from "actions/groupActions.jsx"; 
 
 // style for this view
-import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
+import SnackbarContent from "components/Snackbar/SnackbarContent";
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
-import { evaluationPre } from "actions/studentActions.jsx";
 import { deleteSuccessful } from "actions/generalActions.jsx";
+import { evaluationPost } from "actions/studentActions.jsx";
 import { withRouter } from 'react-router-dom';
 
 const style = {
@@ -30,7 +30,7 @@ const style = {
       overflowY: "auto",
       overflowX: "hidden",
       display: "block",
-      width: "450px",
+      width: "460px",
       height: "400px",
       scrollBehavior: "smooth",
       alignItems: "left",
@@ -39,7 +39,7 @@ const style = {
     },
     infoText: {
       fontWeight: "500",
-      textAlign: "center"
+      textAlign: "left"
     },
     inputAdornmentIcon: {
       color: "#555"
@@ -53,12 +53,11 @@ const style = {
       fontWeight: "500",
       color:"success",
     },
-    ...validationFormsStyle,
-    ...sweetAlertStyle
+    ...validationFormsStyle
 };
 
 
-class PreForm extends React.Component {
+class PostForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -67,17 +66,20 @@ class PreForm extends React.Component {
             authorizationCodeState: "success",
             uploadPercentage: 0,
         };
-      this.saveClick = this.saveClick.bind(this);
-      this.deleteClick = this.deleteClick.bind(this);
+        this.saveClick = this.saveClick.bind(this);
     }
 
+    updateFileName = (key) => {
+      this.props.change('name_image', key);
+    }
+  
+    saveClick() {
+      this.props.dispatchEvaluationPost();
+    }
     deleteClick(){
       this.props.dispatchDeleteSuccessful();
     }
-    saveClick(){
-      this.props.dispatchEvaluationPre();
-    }  
-    
+
     render() {
         const { classes, successfull_edit } = this.props;
         let { t } = this.props;  
@@ -89,25 +91,25 @@ class PreForm extends React.Component {
             { label: t("label_evaluation_question2_option4"),     val: "option4"  },
           ]
         }
-        const option = {         
+        const option1 = {         
           options:[
             { label: t("label_evaluation_question1_option1"),     val: "option1"  },
             { label: t("label_evaluation_question1_option2"),     val: "option2"  },
           ]
         }
         return (
-          <GridContainer justify="center">
-            <GridItem xs={12} sm={12} md={10}>
-              <div>       
+          <GridContainer justify="left">
+            <GridItem xs={12} sm={12} md={12}>
+              <div className={classes.scroll}>       
                 <GridContainer>
                   <GridItem xs={12} sm={12} md={12}> 
                     <InputLabel className={classes.label}>
-                       {t("question_evaluation_question1")}
+                      {t("question_evaluation_question1")}
                     </InputLabel>
                     <Field
                       component={CustomRadioRedux}
-                      name="question1"
-                      data={option}
+                      name="postquestion1"
+                      data={option1}
                     />          
                   </GridItem>
                 </GridContainer>
@@ -118,7 +120,7 @@ class PreForm extends React.Component {
                     </InputLabel>
                     <Field
                       component={CustomRadioRedux}
-                      name="question2"
+                      name="postquestion2"
                       data={radios}
                     />          
                   </GridItem>
@@ -130,7 +132,7 @@ class PreForm extends React.Component {
                     </InputLabel>
                     <Field
                       component={CustomRadioRedux}
-                      name="question3"
+                      name="postquestion3"
                       data={radios}
                     />          
                   </GridItem>
@@ -142,7 +144,7 @@ class PreForm extends React.Component {
                     </InputLabel>
                     <Field
                       component={CustomRadioRedux}
-                      name="question4"
+                      name="postquestion4"
                       data={radios}
                     />          
                   </GridItem> 
@@ -154,7 +156,7 @@ class PreForm extends React.Component {
                     </InputLabel>
                     <Field
                       component={CustomRadioRedux}
-                      name="question5"
+                      name="postquestion5"
                       data={radios}
                     />          
                   </GridItem> 
@@ -166,7 +168,7 @@ class PreForm extends React.Component {
                     </InputLabel>
                     <Field
                       component={CustomRadioRedux}
-                      name="question6"
+                      name="postquestion6"
                       data={radios}
                     />          
                   </GridItem> 
@@ -178,12 +180,36 @@ class PreForm extends React.Component {
                     </InputLabel>
                     <Field
                       component={CustomRadioRedux}
-                      name="question7"
+                      name="postquestion7"
                       data={radios}
                     />          
                   </GridItem> 
                 </GridContainer>
-              <GridContainer justify="center">
+                <GridContainer>
+                  <GridItem xs={12} sm={12} md={12}> 
+                    <InputLabel className={classes.label}>
+                        {t("question_evaluation_question8")}
+                    </InputLabel>
+                    <Field
+                      component={CustomRadioRedux}
+                      name="postquestion8"
+                      data={radios}
+                    />          
+                  </GridItem> 
+                </GridContainer>
+                <GridContainer>
+                  <GridItem xs={12} sm={12} md={12}> 
+                    <InputLabel className={classes.label}>
+                        {t("question_evaluation_question9")}
+                    </InputLabel>
+                    <Field
+                      component={CustomRadioRedux}
+                      name="postquestion9"
+                      data={radios}
+                    />          
+                  </GridItem> 
+                </GridContainer>
+                <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
                       { successfull_edit ?      
                       <SweetAlert
@@ -199,38 +225,44 @@ class PreForm extends React.Component {
                     </SweetAlert> 
                       : ""}
                   </GridItem>
-              </GridContainer>
-              </div>
-            </GridItem>
-            <GridContainer>
+                </GridContainer>
+                </div>
+                </GridItem>
+                <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
-                      <center>
-                      <Button color="info" size="sm" onClick={this.saveClick}>
-                      {t("button_send")}
-                      </Button>
-                      {" "}
-                      </center>
+                    <center>
+                    <Button color="info" size="sm" onClick={this.saveClick}>
+                    {t("button_send")}
+                    </Button>
+                    {" "}
+                    </center>
                   </GridItem>
               </GridContainer>
           </GridContainer>
+                
         );
     }
 }
 
-PreForm = reduxForm({
-  form: 'preform', 
-})(PreForm);
+PostForm = reduxForm({
+  form: 'postform', 
+  enableReinitialize: true
+})(PostForm);
 
 
-PreForm = connect(
+PostForm = connect(
   state => ({
-    evaluation_pre: state.registerReducer.evaluation_pre,
-    successfull_edit:state.generalReducer.successfull_edit,
+    initialValues: state.evaluationReducer.data,
+    initialValues: state.studentReducer.evaluation_post,
+    evaluation_post: state.evaluationReducer.evaluation_post,
   }),
-  {dispatchEvaluationPre: evaluationPre,  dispatchDeleteSuccessful: deleteSuccessful},
-)(PreForm);
+  { dispatchEvaluationPost: evaluationPost, dispatchDeleteSuccessful: deleteSuccessful},
+)(PostForm);
 
-export default  withRouter(translate(withStyles(style)(PreForm)));
+export default  withRouter(translate(withStyles(style)(PostForm)));
+
+
+
 
 
 
