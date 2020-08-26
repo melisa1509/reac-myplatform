@@ -82,22 +82,28 @@ class GlobalTable extends React.Component {
     }
    
     console.log(vector_map);
-    const country = report_list.topNumbers.map((prop)=>{
+    const country = global_map.topNumbers.map((prop)=>{
       let TableData=new Array()
       return(
         TableData=prop.country
       );
     });
-    const mbs = report_list.topNumbers.map((prop)=>{
+    const mbs = global_map.topNumbers.map((prop)=>{
       let TableData=new Array()
       return(
         TableData=prop.mbs
       );
     });
-    const sa = report_list.topNumbers.map((prop)=>{
+    const sa = global_map.topNumbers.map((prop)=>{
       let TableData=new Array()
       return(
         TableData=prop.sa
+      );
+    });
+    const jr = global_map.topNumbers.map((prop)=>{
+      let TableData=new Array()
+      return(
+        TableData=prop.jr
       );
     });
 
@@ -129,49 +135,57 @@ class GlobalTable extends React.Component {
                 <img src={bo_flag} alt="bo_flag" key={"flag"} />,
                 country[0],
                 mbs[0],
-                sa[0]
+                sa[0],
+                jr[0]
               ],
               [
                 <img src={de_flag} alt="us_flag" key={"flag"} />,
                 country[1],
                 mbs[1],
-                sa[1]
+                sa[1],
+                jr[1]
               ],
               [
                 <img src={co_flag} alt="co_flag" key={"flag"} />,
                 country[2],
                 mbs[2],
-                sa[2]
+                sa[2],
+                jr[2],
               ],
               [
                 <img src={bj_flag} alt="bj_flag" key={"flag"} />,
                 country[3],
                 mbs[3],
-                sa[3]
+                sa[3],
+                jr[3]
               ],
               [
                 <img src={cd_flag} alt="cd_flag" key={"flag"} />,
                 country[4],
                 mbs[4],
-                sa[4]
+                sa[4],
+                jr[4]
               ],
               [
                 <img src={cm_flag} alt="cm_flag" key={"flag"} />,
                 country[5],
                 mbs[5],
-                sa[5]
+                sa[5],
+                jr[5]
               ],
               [
                 <img src={hn_flag} alt="hn_flag" key={"flag"} />,
                 country[6],
                 mbs[6],
-                sa[6]
+                sa[6],
+                jr[6]
               ],
               [
                 <img src={ng_flag} alt="ng_flag" key={"flag"} />,
                 country[7],
                 mbs[7],
-                sa[7]
+                sa[7],
+                jr[7]
               ],
               [
                 <img src={cl_flag} alt="cl_flag" key={"flag"} />,
@@ -400,49 +414,57 @@ class GlobalTable extends React.Component {
                 <img src={bo_flag} alt="bo_flag" key={"flag"} />,
                 country[0],
                 mbs[0],
-                sa[0]
+                sa[0],
+                jr[0]
               ],
               [
                 <img src={de_flag} alt="us_flag" key={"flag"} />,
                 country[1],
                 mbs[1],
-                sa[1]
+                sa[1],
+                jr[1]
               ],
               [
                 <img src={co_flag} alt="co_flag" key={"flag"} />,
                 country[2],
                 mbs[2],
-                sa[2]
+                sa[2],
+                jr[2]
               ],
               [
                 <img src={bj_flag} alt="bj_flag" key={"flag"} />,
                 country[3],
                 mbs[3],
-                sa[3]
+                sa[3],
+                jr[3]
               ],
               [
                 <img src={cd_flag} alt="cd_flag" key={"flag"} />,
                 country[4],
                 mbs[4],
-                sa[4]
+                sa[4],
+                jr[4]
               ],
               [
                 <img src={cm_flag} alt="cm_flag" key={"flag"} />,
                 country[5],
                 mbs[5],
-                sa[5]
+                sa[5],
+                jr[5]
               ],
               [
                 <img src={hn_flag} alt="hn_flag" key={"flag"} />,
                 country[6],
                 mbs[6],
-                sa[6]
+                sa[6],
+                jr[6]
               ],
               [
                 <img src={ng_flag} alt="ng_flag" key={"flag"} />,
                 country[7],
                 mbs[7],
-                sa[7]
+                sa[7],
+                jr[7]
               ]
             ]}
           />

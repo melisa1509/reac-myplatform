@@ -4,7 +4,8 @@ import { DELETE_CODE } from "constants/actionTypes";
 const initialState = { 
   code_list:{
     codesMbs:[],
-    codesSa:[]
+    codesSa:[],
+    codesJr:[]
   },
   show_code:{
    name:"",

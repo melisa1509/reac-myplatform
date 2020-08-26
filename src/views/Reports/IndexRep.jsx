@@ -23,10 +23,12 @@ import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
 import { getReports } from "actions/reportActions.jsx";
+import { globalNumbers } from "actions/reportActions.jsx";
 
 import IndexTable from './IndexTable.jsx';
 import IndexAmbassadorTable from './IndexAmbassadorTable.jsx';
 import CountryTable from "./CountryTable.jsx";
+import CountryJrTable from "./CountryJrTable.jsx";
 import AmbassadorTable from "./AmbassadorTable.jsx";
 import GlobalTable from "./GlobalTable.jsx";
 import AmbassadorTableReports from "./AmbassadorTableReports.jsx";
@@ -42,8 +44,12 @@ const styles = {
 };
 
 class IndexRep extends React.Component {
+
+  componentDidMount(){
+    this.props.dispatchGlobalNumbers();
+}
   render() {
-    const { classes, report_list, active_user } = this.props;
+    const { classes, report_list, active_user, global_numbers } = this.props;
     let { t } = this.props;
     let rol=false
     if(active_user.roles == "ROLE_EMBASSADOR"){
@@ -56,36 +62,53 @@ class IndexRep extends React.Component {
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={12}>
         <GridContainer>
-          <GridItem xs={6} sm={6} md={6} lg={6}>
+          <GridItem xs={4} sm={6} md={6} lg={4}>
           <Card>
             <CardHeader color="warning" stats icon>
               <CardIcon color="warning">
                 <Icon>supervisor_account</Icon>
               </CardIcon>
                 <p className={classes.cardCategory}>{t("label_student_graduated_mbs")}</p>
-                <Muted><h3>{report_list.studentsMbs}</h3></Muted>
+                <Muted><h3>{global_numbers.global_mbs}</h3></Muted>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
                 <DateRange />
-                {report_list.dateRange}
+                {global_numbers.date_range}
               </div>
             </CardFooter> 
           </Card>
           </GridItem>
-          <GridItem xs={6} sm={6} md={6} lg={6}>
+          <GridItem xs={4} sm={6} md={6} lg={4}>
           <Card>
             <CardHeader color="info" stats icon>
               <CardIcon color="info">
                 <Icon>person_outline</Icon>
               </CardIcon>
               <p className={classes.cardCategory}>{t("label_student_graduated_sa")}</p>
-              <Muted><h3>{report_list.studentsAmbassador}</h3></Muted>
+              <Muted><h3>{global_numbers.global_sa}</h3></Muted>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
                 <DateRange />
-                {report_list.dateRange}
+                {global_numbers.date_range}
+              </div>
+            </CardFooter>  
+          </Card>
+          </GridItem>
+          <GridItem xs={4} sm={6} md={6} lg={4}>
+          <Card>
+            <CardHeader color="success" stats icon>
+              <CardIcon color="success">
+                <Icon>people</Icon>
+              </CardIcon>
+              <p className={classes.cardCategory}>{t("label_student_graduated_jr")}</p>
+              <Muted><h3>{global_numbers.global_mbs_junior}</h3></Muted>
+            </CardHeader>
+            <CardFooter stats>
+              <div className={classes.stats}>
+                <DateRange />
+                {global_numbers.date_range}
               </div>
             </CardFooter>  
           </Card>
@@ -117,6 +140,20 @@ class IndexRep extends React.Component {
             </CardHeader>
             <CardBody>
                 {rol ? <AmbassadorTableReports/> : <CountryTable initialValues={initialValuesReport}/> }     
+            </CardBody>
+          </Card>
+          <br/>
+          <Card>
+            <CardHeader icon >
+              <CardIcon color="info">
+                <Icon>dns</Icon>
+              </CardIcon>
+              <Muted>
+                {rol ? <h4>{t("title_number_people_improvement")}</h4> :<h4>{t("title_number_people_improvement") + " " + t( "title_by_country")}</h4> }
+              </Muted>
+            </CardHeader>
+            <CardBody>
+                {rol ? <AmbassadorTableReports/> : <CountryJrTable initialValues={initialValuesReport}/> }     
             </CardBody>
           </Card>
           <br/>
@@ -164,10 +201,13 @@ IndexRep.propTypes = {
 const mapStateToProps = state => ({ 
   report_list: state.reportReducer.report_list,
   active_user: state.loginReducer.active_user,
+  global_numbers: state.reportReducer.global_numbers,
+
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetReports: () => dispatch( getReports() )
+  dispatchGetReports: () => dispatch( getReports() ),
+  dispatchGlobalNumbers: () => dispatch( globalNumbers() )
 });
 
 
