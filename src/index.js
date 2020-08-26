@@ -118,6 +118,7 @@ ReactDOM.render(
           <Route path="/app" component={App} />
           <Route path="/course/new" component={CourseNew} />
           <Route path="/programmbs/new" component={NewProgramMbs} exact/>
+          <Route path="/programmbs/new/:id" component={NewProgramMbs} exact/>
           <Route path="/programmbs/show/:id" component={ProgramMbs} exact/>
           <Route path="/programmbs/edit/:id" component={EditProgramMbs} exact/>
           <Route path="/programmbs/edit/plan/:id" component={EditPlanProgramMbs} exact/>
