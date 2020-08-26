@@ -36,7 +36,7 @@ class ShowRep extends React.Component {
  
 
   render() {
-    const { classes, active_user } = this.props;
+    const { classes, active_user, active } = this.props;
     let { t } = this.props;
     return (
       <GridContainer justify="center">
@@ -46,7 +46,7 @@ class ShowRep extends React.Component {
                 <p className={classes.cardCategory}>{ active_user.first_name + " " + active_user.last_name + " / " + active_user.studentgroup.group.name + " / " + active_user.studentgroup.group.embassador.first_name + "  " + active_user.studentgroup.group.embassador.last_name} </p> 
             </CardHeader>
             <CardBody>
-                <ShowForm  />      
+                <ShowForm  active={active}/>      
             </CardBody>
         </GridItem>
       </GridContainer>

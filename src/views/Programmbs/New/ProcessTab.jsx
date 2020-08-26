@@ -13,6 +13,7 @@ import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx';
 // core components
 import SuccessBold from "components/Typography/SuccessBold.jsx";
 import Controls from './Controls.jsx';
+import ControlNavigation from './ControlNavigation.jsx';
 import { loadFormProgrammbs } from "actions/programmbsActions.jsx";
 
 import { translate } from 'react-switch-lang';
@@ -317,6 +318,7 @@ class ProcessTab extends React.Component {
             <br/>
            
             <Controls/>
+            <ControlNavigation previous={"product"} next={"price"} />
           </CardBody>
         </Card>
     );

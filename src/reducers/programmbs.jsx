@@ -119,6 +119,7 @@ const initialState = {
   approveProjectSuccessfull: false,
   sendRevisionProjectError: false,
   sendRevisionProjectSuccessfull: false,
+  activeTab:0
 }
 
 
@@ -196,7 +197,7 @@ export const programmbsReducer = (state = initialState, action) => {
 
       case ACTIVE_TAB:
         return Object.assign({}, state, {
-          active_tab: action.key
+          activeTab: action.key
         });
     }
 

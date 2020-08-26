@@ -15,6 +15,7 @@ import CardBody from "components/Card/CardBody.jsx";
 import SuccessBold from "components/Typography/SuccessBold.jsx";
 import MutedText from "components/Typography/Muted.jsx";
 import Controls from './Controls.jsx';
+import ControlNavigation from './ControlNavigation.jsx';
 import RevisionForm from './RevisionForm.jsx';
 
 import { translate } from 'react-switch-lang';
@@ -73,6 +74,7 @@ class PriceTab extends React.Component {
             <RevisionForm name="revisionprice" labelText={t("label_revision_price")+ " *"} />
             <br/>
             <Controls/>
+            <ControlNavigation previous={"process"} next={"promotion"} />
           </CardBody>
         </Card>
     );

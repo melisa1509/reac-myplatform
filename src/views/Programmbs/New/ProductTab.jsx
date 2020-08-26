@@ -12,6 +12,7 @@ import CardBody from "components/Card/CardBody.jsx";
 
 // core components
 import Controls from './Controls.jsx';
+import ControlNavigation from './ControlNavigation.jsx';
 
 import { translate } from 'react-switch-lang';
 import { loadFormProgrammbs } from "actions/programmbsActions.jsx";
@@ -134,6 +135,7 @@ class ProductTab extends React.Component {
             </form>         
             <br/>
             <Controls/>
+            <ControlNavigation previous={"plan"} next={"process"} />
           </CardBody>
         </Card>
     );

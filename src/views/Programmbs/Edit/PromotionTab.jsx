@@ -16,6 +16,7 @@ import Primary from "components/Typography/Primary.jsx";
 
 // core components
 import Controls from './Controls.jsx';
+import ControlNavigation from './ControlNavigation.jsx';
 
 import { translate } from 'react-switch-lang';
 import { loadFormProgrammbs } from "actions/programmbsActions.jsx";
@@ -122,6 +123,7 @@ class PromotionTab extends React.Component {
             }         
             <br/>
             <Controls/>
+            <ControlNavigation previous={"price"} next={"paperwork"} />
           </CardBody>
         </Card>
     );

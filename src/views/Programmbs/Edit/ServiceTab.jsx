@@ -16,6 +16,7 @@ import Primary from "components/Typography/Primary.jsx";
 
 // core components
 import Controls from './Controls.jsx';
+import ControlNavigation from './ControlNavigation.jsx';
 
 import { translate } from 'react-switch-lang';
 import { loadFormProgrammbs } from "actions/programmbsActions.jsx";
@@ -136,6 +137,7 @@ class ServiceTab extends React.Component {
             }         
             <br/>
             <Controls/>
+            <ControlNavigation previous={"quality"} next={"history"} />
           </CardBody>
         </Card>
     );

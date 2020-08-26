@@ -2,6 +2,10 @@ import { SUCCESSFULL_AUTHENTICATION, FAILED_AUTHENTICATION, SUCCESSFULL_ACTIVE_U
 import $ from 'jquery';
 import { BASE_URL } from 'constants/urlTypes';
 import { setLanguage } from 'react-switch-lang';
+import { getGroupList } from "actions/groupActions.jsx";
+import { getStudentList } from "actions/studentActions.jsx";
+import { getAdminStudentMbsList } from "actions/dashboardActions.jsx";
+import { getAmbassadorList } from "actions/ambassadorActions";
 
 export const getAuthenticacion = ( params, redirect ) => {
     var settings = {
@@ -44,6 +48,13 @@ export const getAuthenticacion = ( params, redirect ) => {
 
                                 if(active_user.roles.includes("ROLE_STUDENT") || active_user.roles.includes("ROLE_STUDENT_EMBASSADOR")){
                                     redirect.push('/dashboard/student');
+                                }
+                                else if(active_user.roles.includes("ROLE_LANGUAGE_ADMIN") || active_user.roles.includes("ROLE_ADMIN")){
+                                    dispatch( getAdminStudentMbsList());
+                                    dispatch( getAmbassadorList());
+                                    dispatch( getGroupList());
+                                    dispatch( getStudentList());                                    
+                                    redirect.push('/dashboard');
                                 }
                                 else{
                                     redirect.push('/dashboard');

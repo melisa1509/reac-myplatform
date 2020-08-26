@@ -15,6 +15,7 @@ import GridItem from "components/Grid/GridItem.jsx";
 import SuccessBold from "components/Typography/SuccessBold.jsx";
 import Primary from "components/Typography/Primary.jsx";
 import Controls from './Controls.jsx';
+import ControlNavigation from './ControlNavigation.jsx';
 import RevisionForm from './RevisionForm.jsx';
 import {optionQualityLife} from './OptionQualityLife.jsx';
 import { loadFormProgrammbs } from "actions/programmbsActions.jsx";
@@ -679,6 +680,7 @@ class QualitylifeTab extends React.Component {
             }
             <br/>
             <Controls/>
+            <ControlNavigation previous={"paperwork"} next={"service"} />
           </CardBody>
         </Card>
     );

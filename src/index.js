@@ -29,6 +29,24 @@ import App from 'views/Age/App.jsx';
 import CourseNew from 'views/Course/New/New.jsx';
 import ProgramMbs from 'views/Programmbs/Show/Show.jsx';
 import NewProgramMbs from 'views/Programmbs/New/Show.jsx';
+import NewPlanProgramMbs from 'views/Programmbs/New/NewPlan.jsx';
+import NewProductProgramMbs from 'views/Programmbs/New/NewProduct.jsx';
+import NewProcessProgramMbs from 'views/Programmbs/New/NewProcess.jsx';
+import NewPriceProgramMbs from 'views/Programmbs/New/NewPrice.jsx';
+import NewPromotionProgramMbs from 'views/Programmbs/New/NewPromotion.jsx';
+import NewPaperworkProgramMbs from 'views/Programmbs/New/NewPaperwork.jsx';
+import NewQualityProgramMbs from 'views/Programmbs/New/NewQuality.jsx';
+import NewServiceProgramMbs from 'views/Programmbs/New/NewService.jsx';
+import NewHistoryProgramMbs from 'views/Programmbs/New/NewHistory.jsx';
+import ShowPlanProgramMbs from 'views/Programmbs/Show/ShowPlan.jsx';
+import ShowProductProgramMbs from 'views/Programmbs/Show/ShowProduct.jsx';
+import ShowProcessProgramMbs from 'views/Programmbs/Show/ShowProcess.jsx';
+import ShowPriceProgramMbs from 'views/Programmbs/Show/ShowPrice.jsx';
+import ShowPromotionProgramMbs from 'views/Programmbs/Show/ShowPromotion.jsx';
+import ShowPaperworkProgramMbs from 'views/Programmbs/Show/ShowPaperwork.jsx';
+import ShowQualityProgramMbs from 'views/Programmbs/Show/ShowQuality.jsx';
+import ShowServiceProgramMbs from 'views/Programmbs/Show/ShowService.jsx';
+import ShowHistoryProgramMbs from 'views/Programmbs/Show/ShowHistory.jsx';
 import EditProgramMbs from 'views/Programmbs/Edit/Show.jsx';
 import EditPlanProgramMbs from 'views/Programmbs/Edit/EditPlan.jsx';
 import EditProductProgramMbs from 'views/Programmbs/Edit/EditProduct.jsx';
@@ -38,6 +56,7 @@ import EditPromotionProgramMbs from 'views/Programmbs/Edit/EditPromotion.jsx';
 import EditPaperworkProgramMbs from 'views/Programmbs/Edit/EditPaperwork.jsx';
 import EditQualityProgramMbs from 'views/Programmbs/Edit/EditQuality.jsx';
 import EditServiceProgramMbs from 'views/Programmbs/Edit/EditService.jsx';
+import EditHistoryProgramMbs from 'views/Programmbs/Edit/EditHistory.jsx';
 import ProgramMbsFile from 'views/Programmbs/ShowFile/Show.jsx';
 import ProgramSa from 'views/Programsa/Show/Show.jsx';
 import NewProgramSa from 'views/Programsa/New/Show.jsx';
@@ -118,8 +137,25 @@ ReactDOM.render(
           <Route path="/app" component={App} />
           <Route path="/course/new" component={CourseNew} />
           <Route path="/programmbs/new" component={NewProgramMbs} exact/>
-          <Route path="/programmbs/new/:id" component={NewProgramMbs} exact/>
+          <Route path="/programmbs/new/plan/:id" component={NewPlanProgramMbs} exact/>
+          <Route path="/programmbs/new/product/:id" component={NewProductProgramMbs} exact/>
+          <Route path="/programmbs/new/process/:id" component={NewProcessProgramMbs} exact/>
+          <Route path="/programmbs/new/price/:id" component={NewPriceProgramMbs} exact/>
+          <Route path="/programmbs/new/promotion/:id" component={NewPromotionProgramMbs} exact/>
+          <Route path="/programmbs/new/paperwork/:id" component={NewPaperworkProgramMbs} exact/>
+          <Route path="/programmbs/new/quality/:id" component={NewQualityProgramMbs} exact/>
+          <Route path="/programmbs/new/service/:id" component={NewServiceProgramMbs} exact/>
+          <Route path="/programmbs/new/history/:id" component={NewHistoryProgramMbs} exact/>
           <Route path="/programmbs/show/:id" component={ProgramMbs} exact/>
+          <Route path="/programmbs/show/plan/:id" component={ShowPlanProgramMbs} exact/>
+          <Route path="/programmbs/show/product/:id" component={ShowProductProgramMbs} exact/>
+          <Route path="/programmbs/show/process/:id" component={ShowProcessProgramMbs} exact/>
+          <Route path="/programmbs/show/price/:id" component={ShowPriceProgramMbs} exact/>
+          <Route path="/programmbs/show/promotion/:id" component={ShowPromotionProgramMbs} exact/>
+          <Route path="/programmbs/show/paperwork/:id" component={ShowPaperworkProgramMbs} exact/>
+          <Route path="/programmbs/show/quality/:id" component={ShowQualityProgramMbs} exact/>
+          <Route path="/programmbs/show/service/:id" component={ShowServiceProgramMbs} exact/>
+          <Route path="/programmbs/show/history/:id" component={ShowHistoryProgramMbs} exact/>
           <Route path="/programmbs/edit/:id" component={EditProgramMbs} exact/>
           <Route path="/programmbs/edit/plan/:id" component={EditPlanProgramMbs} exact/>
           <Route path="/programmbs/edit/product/:id" component={EditProductProgramMbs} exact/>
@@ -129,6 +165,7 @@ ReactDOM.render(
           <Route path="/programmbs/edit/paperwork/:id" component={EditPaperworkProgramMbs} exact/>
           <Route path="/programmbs/edit/quality/:id" component={EditQualityProgramMbs} exact/>
           <Route path="/programmbs/edit/service/:id" component={EditServiceProgramMbs} exact/>
+          <Route path="/programmbs/edit/history/:id" component={EditHistoryProgramMbs} exact/>
           <Route path="/programmbs/showfile/:id" component={ProgramMbsFile} exact/>
           <Route path="/programsa/show/:id" component={ProgramSa} exact/>
           <Route path="/programsa/new" component={NewProgramSa} exact/>

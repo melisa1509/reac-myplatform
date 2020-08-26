@@ -15,6 +15,7 @@ import GridItem from "components/Grid/GridItem.jsx";
 import SuccessBold from "components/Typography/SuccessBold.jsx";
 import MutedText from "components/Typography/Muted.jsx";
 import Controls from './Controls.jsx';
+import ControlNavigation from './ControlNavigation.jsx';
 import RevisionForm from './RevisionForm.jsx';
 import {optionQualityLife} from './OptionQualityLife.jsx';
 import { loadFormProgrammbs } from "actions/programmbsActions.jsx";
@@ -670,6 +671,7 @@ class QualitylifeTab extends React.Component {
 
             <RevisionForm name="revisionquality" labelText={t("label_revision_quality")+ " *"}/>
             <Controls/>
+            <ControlNavigation previous={"paperwork"} next={"service"} />
           </CardBody>
         </Card>
     );

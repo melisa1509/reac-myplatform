@@ -18,6 +18,7 @@ import GridItem from "components/Grid/GridItem.jsx";
 import SuccessBold from "components/Typography/SuccessBold.jsx";
 import MutedText from "components/Typography/Muted.jsx";
 import Controls from './Controls.jsx';
+import ControlNavigation from './ControlNavigation.jsx';
 import RevisionForm from './RevisionForm.jsx';
 import RenderCell from './RenderCell.jsx';
 import CustomRenderCell from './CustomRenderCell.jsx';
@@ -412,6 +413,7 @@ class PaperworkTab extends React.Component {
             <RevisionForm name="revisionpaperwork" labelText={t("label_revision_paperwork")+ " *"} />
             <br/>
             <Controls/>
+            <ControlNavigation previous={"promotion"} next={"quality"} />
           </CardBody>
         </Card>
     );
