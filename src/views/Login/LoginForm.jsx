@@ -186,20 +186,15 @@ class LoginForm extends React.Component {
 
       componentDidMount() {
         //Initialize Resources
-        this.props.dispatchGetCleanState();
-        //this.props.dispatchGetStudentList();
-        //this.props.dispatchGetGroupList();
-        //this.props.dispatchGetStudentMbsList();
-        //this.props.dispatchGetAmbassadorList();
-        document.addEventListener("keydown", this.escFunction, false);
-        
+        this.props.dispatchGetCleanState();      
+        document.addEventListener("keydown", this.escFunction, false);        
       }
 
       componentWillUnmount(){
         const state = store.getState();
-        if(state.loginReducer.active_user.roles.includes("ROLE_ADMIN")  || state.loginReducer.active_user.roles.includes("ROLE_LANGUAGE_ADMIN")){
-          this.props.dispatchGetReports();
-        }
+        //if(state.loginReducer.active_user.roles.includes("ROLE_ADMIN")  || state.loginReducer.active_user.roles.includes("ROLE_LANGUAGE_ADMIN")){
+          //this.props.dispatchGetReports();
+        //}
         
       }
 
@@ -316,11 +311,7 @@ const mapStateToProps = state => (
 );
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetAuthenticacion: (params, history) => dispatch( getAuthenticacion(params, history) ),
-  dispatchGetGroupList: () => dispatch( getGroupList() ),
-  dispatchGetStudentList: () => dispatch( getStudentList() ),
-  dispatchGetStudentMbsList: () => dispatch( getAdminStudentMbsList() ),
-  dispatchGetAmbassadorList: () => dispatch( getAmbassadorList()),
+  dispatchGetAuthenticacion: (params, history) => dispatch( getAuthenticacion(params, history) ),  
   dispatchGetReports: () => dispatch( getReports() ),
   dispatchGetCleanState: () => dispatch (cleanState())
     

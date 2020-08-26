@@ -104,25 +104,7 @@ class Show extends React.Component {
                   >
                   <h4>{t("label_save_error")}</h4>
               </SweetAlert>
-            : ""}
-            
-            
-        <div
-          className={classes.main}
-          style={{
-            backgroundSize: "cover",
-            backgroundPosition: "top center",
-            backgroundColor: "#eee"
-          }}
-        >
-          <div className={classes.containerHeader} >
-            <GridContainer justify="center">
-              <GridItem xs={12} sm={12} md={12}>
-                <ShowRep active={this.state.activeTab}/>
-              </GridItem>
-            </GridContainer>
-          </div>
-        </div>
+            : ""}  
       </div>
     
     );

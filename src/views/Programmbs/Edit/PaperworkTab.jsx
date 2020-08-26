@@ -22,6 +22,7 @@ import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx';
 import SuccessBold from "components/Typography/SuccessBold.jsx";
 import Primary from "components/Typography/Primary.jsx";
 import Controls from './Controls.jsx';
+import ControlNavigation from './ControlNavigation.jsx';
 import RenderCellTable from './RenderCellTable.jsx';
 import CustomRenderCell from './CustomRenderCell.jsx';
 
@@ -636,6 +637,7 @@ class PaperworkTab extends React.Component {
             }
             <br/>
             <Controls/>
+            <ControlNavigation previous={"promotion"} next={"quality"} />
           </CardBody>
         </Card>
     );

@@ -72,11 +72,12 @@ class ShowForm extends React.Component {
 
 
     render() {
-        const { classes, programmbs } = this.props;
+        const { classes, programmbs, active } = this.props;
         let { t } = this.props;
         return (
           <NavPills
                   color="warning"
+                  active={active}
                   tabs={[
                     {
                       tabButton: t("title_plan"),

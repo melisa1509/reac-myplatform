@@ -8,6 +8,7 @@ import { Field, reduxForm } from 'redux-form';
 import withStyles from "@material-ui/core/styles/withStyles";
 import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx';
 import Controls from './Controls.jsx';
+import ControlNavigation from './ControlNavigation.jsx';
 
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
@@ -67,6 +68,7 @@ class PlanTab extends React.Component {
             </form>           
             <br/>           
             <Controls/>
+            <ControlNavigation previous={"plan"} next={"product"} />
           </CardBody>
         </Card>
     );

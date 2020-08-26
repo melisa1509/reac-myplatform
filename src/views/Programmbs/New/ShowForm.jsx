@@ -67,16 +67,13 @@ const style = {
 class ShowForm extends React.Component {
 
    
-    componentWillMount(){
-      alert(this.props.match.params.id);
-    }
-
-    render() {
-        const { classes, programmbs, progressmbs } = this.props;
+     render() {
+        const { classes, programmbs, progressmbs, activeTab } = this.props;
         let { t } = this.props;
         return (
           <NavPills
                   color="warning"
+                  active={activeTab}
                   tabs={[
                     {
                       tabButton: (
@@ -187,6 +184,7 @@ class ShowForm extends React.Component {
 const mapStateToProps = state => ({ 
       programmbs: state.programmbsReducer.programmbs,     
       progressmbs: state.studentReducer.dashboard_student.progressMbs, 
+      activeTab: state.programmbsReducer.activeTab
 });
 
 const mapDispatchToPropsActions = dispatch => ({

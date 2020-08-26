@@ -13,6 +13,7 @@ import Primary from "components/Typography/Primary.jsx";
 
 // core components
 import Controls from './Controls.jsx';
+import ControlNavigation from './ControlNavigation.jsx';
 
 import { translate } from 'react-switch-lang';
 import { loadFormProgrammbs } from "actions/programmbsActions.jsx";
@@ -141,9 +142,10 @@ class ProductTab extends React.Component {
                 <p>{programmbs.revisionproduct}</p>                
               </div>
               :""
-            }         
+            }        
             <br/>
-            <Controls/>
+            <Controls />
+            <ControlNavigation previous={"plan"} next={"process"} />
           </CardBody>
         </Card>
     );

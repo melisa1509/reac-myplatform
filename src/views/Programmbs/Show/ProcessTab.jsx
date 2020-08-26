@@ -12,6 +12,7 @@ import CardBody from "components/Card/CardBody.jsx";
 import SuccessBold from "components/Typography/SuccessBold.jsx";
 import MutedText from "components/Typography/Muted.jsx";
 import Controls from './Controls.jsx';
+import ControlNavigation from './ControlNavigation.jsx';
 import RevisionForm from './RevisionForm.jsx';
 
 import { translate } from 'react-switch-lang';

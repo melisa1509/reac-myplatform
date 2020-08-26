@@ -60,6 +60,9 @@
     "button_clean_pending_list":         "Clear from Pending",
     "button_approve_selected_certificates":  "Approved Selected Certificates",
     "button_clear":                      "Clear",
+    "button_previous":                   "Previous",
+    "button_next":                       "Next",
+
 
     "label_choose_language":            "Choose Language",
     "label_successful_delete":          "Successful Delete",   
