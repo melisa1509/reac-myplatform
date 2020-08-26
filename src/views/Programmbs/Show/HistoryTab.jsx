@@ -14,7 +14,7 @@ import CardBody from "components/Card/CardBody.jsx";
 import SuccessBold from "components/Typography/SuccessBold.jsx";
 import MutedText from "components/Typography/Muted.jsx";
 import Controls from './Controls.jsx';
-import RevisionForm from './RevisionForm.jsx';
+import ControlNavigation from './ControlNavigation.jsx';
 import footerStyle from "assets/jss/material-dashboard-pro-react/components/footerStyle";
 
 import { translate } from 'react-switch-lang';
@@ -75,6 +75,7 @@ class HistoryTab extends React.Component {
             </MutedText>
             <br/>
             <Controls/>
+            <ControlNavigation previous={"service"} next={"plan"} />
           </CardBody>
         </Card>
     );

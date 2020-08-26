@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 
 import AuthLayout from "layouts/Auth.jsx";
 import RtlLayout from "layouts/RTL.jsx";
-import AdminLayout from "layouts/Admin.jsx";
+import AmbassadorStudent from 'views/AmbassadorStudent/Index.jsx';
 import ReactTable from "views/Tables/ReactTables.jsx";
 import Age from 'views/Age/Age.jsx';
 import Login from 'views/Login/Login.jsx';
@@ -123,6 +123,7 @@ ReactDOM.render(
   <Provider store={store}>
       <Router history={hist}>
         <Switch>
+          <Route path="/ambassadorstudent" component={AmbassadorStudent} exact />
           <Route path="/student" component={Student} exact />
           <Route path="/student/new/:id" component={NewStudent} exact />
           <Route path="/student/show/:id" component={ShowStudent} exact />

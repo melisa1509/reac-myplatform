@@ -232,6 +232,7 @@ class ProcessTab extends React.Component {
             </MutedText>
             <RevisionForm name="revisionprocess" labelText={t("label_revision_process")+ " *"}/>
             <Controls/>
+            <ControlNavigation previous={"product"} next={"price"} />
           </CardBody>
         </Card>
     );
