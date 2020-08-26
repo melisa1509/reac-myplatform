@@ -15,7 +15,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import SuccessBold from "components/Typography/SuccessBold.jsx";
 import CustomCheckbox from 'components/CustomCheckbox/CustomCheckboxRedux.jsx';
 import GridContainer from "components/Grid/GridContainer.jsx";
-import SnackbarContent from "components/Snackbar/SnackbarContent";
+import SweetAlert from "react-bootstrap-sweetalert";
 import Danger from "components/Typography/Danger.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
@@ -31,6 +31,7 @@ import LanguageSelect from "views/Select/LanguageSelect.jsx";
 import RoleSelect from "views/Select/RoleSelect.jsx";
 
 // style for this view
+import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
 import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
 import { withRouter } from 'react-router-dom';
@@ -53,7 +54,8 @@ const style = {
       fontSize:"20px"
     },
     ...customSelectStyle,
-    ...validationFormsStyle
+    ...validationFormsStyle, 
+    ...sweetAlertStyle
 };
 
 
@@ -67,7 +69,6 @@ class NewForm extends React.Component {
         };
         this.saveClick = this.saveClick.bind(this);
         this.deleteClick= this.deleteClick.bind(this);
-        this.redirectAdmin=this.redirectAdmin.bind(this);
       }
      
       saveClick() {
@@ -89,17 +90,13 @@ class NewForm extends React.Component {
         const reduxState = store.getState();
         this.props.dispatchNewAdministrator();
         this.props.dispatchSuccessRequiredFields();
-        setTimeout(this.redirectAdmin, 2000);
         }
       }
 
       deleteClick(){
+        this.props.dispatchShowAdminRedirect(this.props.history)
         this.props.dispatchDeleteSuccessful();
       }
-
-      redirectAdmin(){
-        this.props.dispatchShowAdminRedirect(this.props.history)
-      }  
       
     render() {
         const { classes, successfull_new, errorRequired, successRequired } = this.props;
@@ -128,6 +125,23 @@ class NewForm extends React.Component {
             <GridItem xs={12} sm={12} md={8}>
               <form>
               <GridContainer justify="center">
+              </GridContainer>
+              <GridContainer justify="center">
+                  <GridItem xs={12} sm={12} md={12}>
+                      { successfull_new ?      
+                        <SweetAlert
+                          success
+                          style={{ display: "block", marginTop: "-100px", close:true }}
+                          onConfirm={() => this.deleteClick()}
+                          confirmBtnCssClass={
+                              this.props.classes.button + " " + this.props.classes.success
+                          }
+                          confirmBtnText={t("button_continue")}
+                          >
+                          <h4>{t("label_save_success")}</h4>
+                        </SweetAlert> 
+                      : ""}
+                  </GridItem>
               </GridContainer>
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
@@ -240,7 +254,7 @@ class NewForm extends React.Component {
                   <GridItem xs={12} sm={12} md={12}>
                   <div className={classes.center}>
                       <Link to={"/admin"}>
-                      <Button color="default" size="sm" onClick={this.deleteClick}>
+                      <Button color="default" size="sm" >
                       {t("button_return_to_list")}
                       </Button>
                       {" "}
@@ -271,7 +285,7 @@ NewForm = connect(
   state => ({
     errorRequired:state.generalReducer.errorRequired,
     successRequired:state.generalReducer.successRequired,
-    successfull_new:state.administratorReducer.successfull_new,
+    successfull_new:state.generalReducer.successfull_new,
     new_administrator: state.administratorReducer.new_administrator,
     initialValues: state.administratorReducer.new_administrator
   }),

@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
 
 // @material-ui/icons
-import { Apps, Message, Face, Dashboard, HowToReg, SupervisorAccount, TrackChanges, LibraryBooks, Person, Stars, School, Cancel } from "@material-ui/icons";
+import { Apps, Message, Face, Dashboard, HowToReg, SupervisorAccount, TrackChanges, LibraryBooks, Person, Stars, School, Cancel, contactPage } from "@material-ui/icons";
 
 // core components
 import CustomDropdown from "components/CustomDropdown/CustomDropdown.jsx";

@@ -18,6 +18,7 @@ import Accordion from "components/Accordion/Accordion.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import Danger from "components/Typography/Danger.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
+import SweetAlert from "react-bootstrap-sweetalert";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx'; 
 import DateTimePicker from 'components/DateTimePicker/DateTimePickerRedux.jsx';
@@ -33,6 +34,7 @@ import FileUpload from "components/CustomUpload/FileUpload.jsx";
 import CustomRadioRedux from 'components/CustomRadio/CustomRadioRedux.jsx';
 
 // style for this view
+import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
 import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
 import { withRouter } from 'react-router-dom';
@@ -55,7 +57,8 @@ const style = {
       fontSize:"30px"
     },
     ...customSelectStyle,
-    ...validationFormsStyle
+    ...validationFormsStyle,
+    ...sweetAlertStyle
 };
 
 
@@ -69,7 +72,6 @@ class NewForm extends React.Component {
         };
         this.saveClick = this.saveClick.bind(this);
         this.deleteClick= this.deleteClick.bind(this);
-        this.redirectGroup=this.redirectGroup.bind(this);
     }
 
     updateFileName = (key) => {
@@ -94,20 +96,17 @@ class NewForm extends React.Component {
         const reduxState = store.getState();
         this.props.dispatchNewGroup();
         this.props.dispatchSuccessRequiredFields();
-        setTimeout(this.redirectGroup, 1000);
         }
       }
 
     deleteClick(){
+      this.props.dispatchShowGroupRedirect(this.props.history)
       this.props.dispatchDeleteSuccessful();
     }
 
-    redirectGroup(){
-      this.props.dispatchShowGroupRedirect(this.props.history)
-    }
     
     render() {
-        const { classes, errorRequired, successRequired } = this.props;
+        const { classes, errorRequired, successRequired, successfull_new } = this.props;
         let { t } = this.props;
         const custom_certificate_options = {         
           options:[
@@ -122,6 +121,21 @@ class NewForm extends React.Component {
             <GridItem xs={12} sm={12} md={8}>
               <form>
               <GridContainer justify="center">
+                  <GridItem xs={12} sm={12} md={12}>
+                      { successfull_new ?      
+                        <SweetAlert
+                          success
+                          style={{ display: "block", marginTop: "-100px", close:true }}
+                          onConfirm={() => this.deleteClick()}
+                          confirmBtnCssClass={
+                              this.props.classes.button + " " + this.props.classes.success
+                          }
+                          confirmBtnText={t("button_continue")}
+                          >
+                          <h4>{t("label_save_success")}</h4>
+                        </SweetAlert> 
+                      : ""}
+                  </GridItem>
               </GridContainer>
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
@@ -284,7 +298,7 @@ class NewForm extends React.Component {
                   <GridItem xs={12} sm={12} md={12}>
                   <div className={classes.center}>
                       <Link to={"/group"}>
-                      <Button color="default" size="sm" onClick={this.deleteClick}>
+                      <Button color="default" size="sm">
                       {t("button_return_to_list")}
                       </Button>
                       {" "}
