@@ -30,6 +30,8 @@ import IndexAmbassadorTable from './IndexAmbassadorTable.jsx';
 import CountryTable from "./CountryTable.jsx";
 import CountryJrTable from "./CountryJrTable.jsx";
 import AmbassadorTable from "./AmbassadorTable.jsx";
+import AmbaJRTable from "./AmbaJRTable.jsx";
+import AmbaJRTableReports from "./AmbaJRTableReports.jsx";
 import GlobalTable from "./GlobalTable.jsx";
 import AmbassadorTableReports from "./AmbassadorTableReports.jsx";
 
@@ -135,7 +137,7 @@ class IndexRep extends React.Component {
                 <Icon>dns</Icon>
               </CardIcon>
               <Muted>
-                {rol ? <h4>{t("title_number_people_improvement")}</h4> :<h4>{t("title_number_people_improvement") + " " + t( "title_by_country")}</h4> }
+                {rol ? <h4>{t("title_number_people_improvement")}</h4> :<h4>{t("title_number_people_improvement") + " " + t( "title_by_country") + " "+ "MBS Students"}</h4> }
               </Muted>
             </CardHeader>
             <CardBody>
@@ -145,15 +147,15 @@ class IndexRep extends React.Component {
           <br/>
           <Card>
             <CardHeader icon >
-              <CardIcon color="info">
+              <CardIcon color="success">
                 <Icon>dns</Icon>
               </CardIcon>
               <Muted>
-                {rol ? <h4>{t("title_number_people_improvement")}</h4> :<h4>{t("title_number_people_improvement") + " " + t( "title_by_country")}</h4> }
+                {rol ? <h4>{t("title_number_people_improvement")}</h4> :<h4>{t("title_number_people_improvement") + " " + t( "title_by_country")+" "+ "MBS Junior Students"}</h4> }
               </Muted>
             </CardHeader>
             <CardBody>
-                {rol ? <AmbassadorTableReports/> : <CountryJrTable initialValues={initialValuesReport}/> }     
+                {rol ? <AmbaJRTableReports/> : <CountryJrTable initialValues={initialValuesReport}/> }     
             </CardBody>
           </Card>
           <br/>
@@ -169,6 +171,21 @@ class IndexRep extends React.Component {
             </CardHeader>
             <CardBody>
                 <AmbassadorTable/>      
+            </CardBody>
+          </Card>
+          }
+          {rol? " " :
+          <Card>
+            <CardHeader icon >
+              <CardIcon color="warning">
+                <Icon>rss_feed</Icon>
+              </CardIcon>
+              <Muted>
+                <h4>{t("title_number_people_improvement") + " " + t( "title_by_ambassador")}</h4>
+              </Muted>
+            </CardHeader>
+            <CardBody>
+                <AmbaJRTable/>      
             </CardBody>
           </Card>
           }
