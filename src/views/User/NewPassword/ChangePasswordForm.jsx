@@ -58,8 +58,14 @@ class ChangePasswordForm extends React.Component {
         };
         this.saveClick = this.saveClick.bind(this);
         this.deleteClick = this.deleteClick.bind(this);
+        this.escFunction = this.escFunction.bind(this);
       }
-     
+      handleSimple = event => {
+          this.setState({ [event.target.name]: event.target.value });
+       };
+      handleChange = name => event => {
+          this.setState({ [name]: event.target.checked });
+        };
       
       saveClick() {
         if (this.state.usernameState === "") {
@@ -76,10 +82,30 @@ class ChangePasswordForm extends React.Component {
         }
       }
 
+      componentDidMount() {
+        document.addEventListener("keydown", this.escFunction, false);        
+      }
+
       deleteClick(){
         this.props.dispatchDeleteSuccessful();
       }
-    
+       
+      escFunction(event) {
+        if(event.keyCode === 13) {
+          if (this.state.usernameState === "") {
+            this.setState({ usernameState: "error" });
+          }
+          if(this.state.usernameState === "error"){
+            const stateRedux = store.getState();
+            this.props.dispatchErrorRequiredFields();
+          }
+          if(this.state.usernameState === "success" ){
+          const reduxState = store.getState();
+          this.props.dispatchNewPassword();
+          this.props.dispatchSuccessRequiredFields();
+          }
+        }
+      }
       
     render() {
         const { classes, successfull_edit,errorRequired, successRequired, errorGmail, correctGmail} = this.props;
