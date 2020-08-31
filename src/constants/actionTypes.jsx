@@ -35,6 +35,7 @@ export const LOAD_FORM_PROGRAMSA="LOAD_FORM_PROGRAMSA";
 
 // Constants of Student
 export const STUDENT_LIST="STUDENT_LIST";
+export const MBS_STUDENT_LIST="MBS_STUDENT_LIST";
 export const SHOW_STUDENT="SHOW_STUDENT";
 export const LOAD_FORM_STUDENT="LOAD_FORM_STUDENT";
 export const EDIT_STUDENT="EDIT_STUDENT";

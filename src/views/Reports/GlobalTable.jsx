@@ -41,18 +41,7 @@ const us_flag = require("assets/img/flags/US.png");
 const mg_flag = require("assets/img/flags/MG.png");
 
 var mapData = {
-  BO: 3,
-  BR: '500 ,6 ,5',
-  CA: 120,
-  DE: 130,
-  FR: 540,
-  GB: 690,
-  GE: 200,
-  IN: 200,
-  RO: 60,
-  RU: 300,
-  US: 292,
-  CO: 0
+  CA: 0
 };
 var CountryEntire=false
 
@@ -69,19 +58,19 @@ class GlobalTable extends React.Component {
     CountryEntire=true
   }
   
-  componentDidMount() {
-    this.props.dispatchGetReports();
+  componentWillMount() {
     this.props.dispatchGetReportGlobalMap();
   }
   render() {
     const { report_list, global_map} = this.props;
     let { t } = this.props;
-    let vector_map = {};
+    let vector_map = mapData;
     if(global_map !== undefined){
-      vector_map = global_map.numCountries
+      if(global_map.numCountries !== undefined){
+        vector_map = global_map.numCountries
+      }
     }
-   
-    console.log(vector_map);
+
     const country = global_map.topNumbers.map((prop)=>{
       let TableData=new Array()
       return(

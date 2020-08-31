@@ -83,6 +83,8 @@ import Dashboard from 'views/Dashboard/Index.jsx';
 import DashboardStudent from 'views/Dashboard/Student/Index.jsx';
 import AssignMentor from 'views/Dashboard/AssignMentor/Index.jsx';
 import ConfirmMentor from 'views/Dashboard/AssignMentor/Confirm.jsx';
+import AmbassadorStudentAssignMentor from 'views/AmbassadorStudent/AssignMentor/Index.jsx';
+import AmbassadorStudentConfirmMentor from 'views/AmbassadorStudent/AssignMentor/Confirm.jsx';
 import ClearPendingDashboard from 'views/Dashboard/AssignMentor/Clear.jsx';
 import Reports from 'views/Reports/Index.jsx';
 import ListCode from 'views/Code/Index.jsx';
@@ -202,6 +204,8 @@ ReactDOM.render(
           <Route path="/dashboard/assignmentor/:student" component={AssignMentor} exact />
           <Route path="/dashboard/confirmmentor/:student/:group" component={ConfirmMentor} exact />
           <Route path="/dashboard/clearpending/:student" component={ClearPendingDashboard} exact />
+          <Route path="/ambassadorstudent/assignmentor/:student" component={AmbassadorStudentAssignMentor} exact />
+          <Route path="/ambassadorstudent/confirmmentor/:student/:group" component={AmbassadorStudentConfirmMentor} exact />
           <Route path="/report" component={Reports} exact />
           <Route path="/code" component={ListCode} exact />
           <Route path="/code/show/:id" component={ShowCode} exact />

@@ -85,7 +85,7 @@ class IndexTable extends React.Component {
         AmbassadorMentor: prop.embassador.first_name + " " + prop.embassador.last_name,
         projects: (
           <div className="actions-left">
-            <Link to={"/dashboard/confirmmentor/"+ student_id + "/" + prop.id }>
+            <Link to={"/ambassadorstudent/confirmmentor/"+ student_id + "/" + prop.id }>
               <Button
                 size="sm"
                 color="info"

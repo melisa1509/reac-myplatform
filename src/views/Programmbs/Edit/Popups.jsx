@@ -43,22 +43,31 @@ class Popups extends React.Component {
     this.props.dispatchSendProject(this.props.history);
   }
   render() {
-    const { classes, sendRevisionProjectSuccessfull, sendRevisionProjectError, editRevisionSuccessfull, editRevisionError, approveProjectError, approveProjectSuccessfull, t } = this.props;
+    const { classes, progressmbs, sendRevisionProjectSuccessfull, sendRevisionProjectError, editRevisionSuccessfull, editRevisionError, approveProjectError, approveProjectSuccessfull, t } = this.props;
+    let state = progressmbs === undefined ? false : progressmbs.complete;
     return (
         <>
             <AdminHeader/>
             {editRevisionSuccessfull ? 
               <SweetAlert
                   success
+                  showCancel={state ? true : false}
                   style={{ display: "block", marginTop: "-100px" }}
-                  onConfirm={() => this.hideAlert()}
+                  onConfirm={state ? () => this.handleSendProject() : () => this.hideAlert()}
                   onCancel={() => this.hideAlert()}
-                  confirmBtnText={t("button_continue")}
+                  confirmBtnText={ state ? t("button_send_revision") : t("button_continue")}
+                  cancelBtnText={t("button_continue_editing")}
                   confirmBtnCssClass={
                       this.props.classes.button + " " + this.props.classes.success
                   }
-                  >
-                  <h4>{t("label_save_success_revision")}</h4>
+                  cancelBtnCssClass={
+                      this.props.classes.button + " " + this.props.classes.info
+                  }
+                  >                  
+                  { state ?
+                    <h4>{t("label_project_complete")}</h4>:
+                    <h4>{t("label_save_success_revision")}</h4>
+                  }
               </SweetAlert>
             : ""}
             {editRevisionError ? 
@@ -81,7 +90,7 @@ class Popups extends React.Component {
                   style={{ display: "block", marginTop: "-100px" }}
                   onConfirm={() => this.handleSendProject()}
                   onCancel={() => this.hideAlert()}
-                  confirmBtnText={t("label_send_for_revision")}
+                  confirmBtnText={t("button_send_revision")}
                   confirmBtnCssClass={
                       this.props.classes.button + " " + this.props.classes.success
                   }
@@ -150,7 +159,8 @@ const mapStateToProps = state => ({
   approveProjectError: state.programmbsReducer.approveProjectError,
   approveProjectSuccessfull: state.programmbsReducer.approveProjectSuccessfull,
   sendRevisionProjectError: state.programmbsReducer.sendRevisionProjectError,
-  sendRevisionProjectSuccessfull: state.programmbsReducer.sendRevisionProjectSuccessfull
+  sendRevisionProjectSuccessfull: state.programmbsReducer.sendRevisionProjectSuccessfull,
+  progressmbs: state.studentReducer.dashboard_student.progressMbs
     
 });
 

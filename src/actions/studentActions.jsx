@@ -1,6 +1,6 @@
 import { STUDENT_LIST, SHOW_STUDENT, LOAD_FORM_STUDENT, DELETE_STUDENT, SUCCESSFUL_DELETE, EDIT_STUDENT, ERROR_EDIT_STUDENT, SUCCESSFULL_EDIT} from 'constants/actionTypes.jsx';
 import { EDIT_PASSWORD_STUDENT, SUCCESSFULL_EDIT_CLEAN, DASHBOARD_STUDENT, NEW_STUDENT } from 'constants/actionTypes';
-import { GET_STUDENT_AMBASSADOR, SUCCESSFULL_NEW, EVALUATION_PRE, EVALUATION_POST} from 'constants/actionTypes';
+import { GET_STUDENT_AMBASSADOR, SUCCESSFULL_NEW, EVALUATION_PRE, EVALUATION_POST, MBS_STUDENT_LIST} from 'constants/actionTypes';
 import { BASE_URL} from 'constants/urlTypes.jsx';
 
 export const getStudentList = key => {
@@ -10,6 +10,17 @@ export const getStudentList = key => {
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: STUDENT_LIST, payload: json.data });
+        });
+    }  
+}
+
+export const getMbsStudentList = key => {
+    return (dispatch, getState) => {
+        const reduxState = getState();
+        return fetch(BASE_URL + "/student/mbs/?callback=foo")
+        .then(response => response.json())
+        .then(json => {
+            dispatch ({ type: MBS_STUDENT_LIST, payload: json.data });
         });
     }  
 }

@@ -1,5 +1,6 @@
 import { NEW_STUDENT, SUCCESSFULL_EDIT, EVALUATION_PRE, ERROR_EDIT_STUDENT  } from 'constants/actionTypes';
 import { BASE_URL} from 'constants/urlTypes.jsx';
+import { showGroup } from "actions/groupActions.jsx";
 
 export const newStudent =(redirect) => {
     return (dispatch,getState) => {
@@ -30,6 +31,7 @@ export const newStudent =(redirect) => {
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: NEW_STUDENT, payload: json.data });  
+            dispatch ( showGroup(reduxState.form.registerform.values.id_group));
             redirect.push("/register/evaluation");
         })
         .catch(json =>{

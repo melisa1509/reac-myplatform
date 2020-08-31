@@ -10,7 +10,7 @@ import GridItem from "components/Grid/GridItem.jsx";
 
 
 import mainPageStyle from "assets/jss/material-kit-react/views/mainPage.jsx";
-import ConfirmRep from 'views/Dashboard/AssignMentor/ConfirmRep.jsx';
+import ConfirmRep from 'views/AmbassadorStudent/AssignMentor/ConfirmRep.jsx';
 import AdminHeader from "views/Header/AdminHeader.jsx";
 
 

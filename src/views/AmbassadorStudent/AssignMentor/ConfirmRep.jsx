@@ -13,7 +13,7 @@ import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import ConfirmTable from 'views/Dashboard/AssignMentor/ConfirmTable.jsx';
+import ConfirmTable from 'views/AmbassadorStudent/AssignMentor/ConfirmTable.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';

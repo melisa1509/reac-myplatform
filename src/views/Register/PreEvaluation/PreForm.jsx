@@ -72,7 +72,7 @@ class PreForm extends React.Component {
     }  
     
     render() {
-        const { classes, successfull_edit } = this.props;
+        const { classes, successfull_edit, group } = this.props;
         let { t } = this.props;  
         const radios = {         
           options:[
@@ -95,7 +95,7 @@ class PreForm extends React.Component {
                 <GridContainer>
                   <GridItem xs={12} sm={12} md={12}> 
                     <InputLabel className={classes.label}>
-                       {t("question_evaluation_question1")}
+                       {group.program === "option.program4" ? t("question_jr_evaluation_question1") : t("question_evaluation_question1")}
                     </InputLabel>
                     <Field
                       component={CustomRadioRedux}
@@ -107,7 +107,7 @@ class PreForm extends React.Component {
                 <GridContainer>
                   <GridItem xs={12} sm={12} md={12}> 
                     <InputLabel className={classes.label}>
-                       {t("question_evaluation_question2")}
+                    {group.program === "option.program4" ? t("question_jr_evaluation_question2") : t("question_evaluation_question2")}
                     </InputLabel>
                     <Field
                       component={CustomRadioRedux}
@@ -119,7 +119,7 @@ class PreForm extends React.Component {
                 <GridContainer>
                   <GridItem xs={12} sm={12} md={12}> 
                     <InputLabel className={classes.label}>
-                       {t("question_evaluation_question3")}
+                    {group.program === "option.program4" ? t("question_jr_evaluation_question3") : t("question_evaluation_question3")}
                     </InputLabel>
                     <Field
                       component={CustomRadioRedux}
@@ -131,7 +131,7 @@ class PreForm extends React.Component {
                 <GridContainer>
                   <GridItem xs={12} sm={12} md={12}> 
                     <InputLabel className={classes.label}>
-                        {t("question_evaluation_question4")}
+                    {group.program === "option.program4" ? t("question_jr_evaluation_question4") : t("question_evaluation_question4")}
                     </InputLabel>
                     <Field
                       component={CustomRadioRedux}
@@ -143,7 +143,7 @@ class PreForm extends React.Component {
                 <GridContainer>
                   <GridItem xs={12} sm={12} md={12}> 
                     <InputLabel className={classes.label}>
-                        {t("question_evaluation_question5")}
+                    {group.program === "option.program4" ? t("question_jr_evaluation_question5") : t("question_evaluation_question5")}
                     </InputLabel>
                     <Field
                       component={CustomRadioRedux}
@@ -155,7 +155,7 @@ class PreForm extends React.Component {
                 <GridContainer>
                   <GridItem xs={12} sm={12} md={12}> 
                     <InputLabel className={classes.label}>
-                        {t("question_evaluation_question6")}
+                    {group.program === "option.program4" ? t("question_jr_evaluation_question6") : t("question_evaluation_question6")}
                     </InputLabel>
                     <Field
                       component={CustomRadioRedux}
@@ -167,7 +167,7 @@ class PreForm extends React.Component {
                 <GridContainer>
                   <GridItem xs={12} sm={12} md={12}> 
                     <InputLabel className={classes.label}>
-                        {t("question_evaluation_question7")}
+                    {group.program === "option.program4" ? t("question_jr_evaluation_question7") : t("question_evaluation_question7")}
                     </InputLabel>
                     <Field
                       component={CustomRadioRedux}
@@ -226,6 +226,7 @@ PreForm = connect(
   state => ({
     evaluation_pre: state.registerReducer.evaluation_pre,
     successfull_edit:state.generalReducer.successfull_edit,
+    group:state.groupReducer.show_group
   }),
   {dispatchEvaluationPre: evaluationPre },
 )(PreForm);

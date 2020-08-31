@@ -4,11 +4,12 @@ import { ERROR_EDIT_STUDENT } from "constants/actionTypes";
 import { EDIT_STUDENT } from "constants/actionTypes";
 import { NEW_STUDENT } from "constants/actionTypes";
 import { EDIT_PASSWORD_STUDENT } from "constants/actionTypes";
-import { GET_STUDENT_AMBASSADOR, EVALUATION_PRE, EVALUATION_POST } from "constants/actionTypes";
+import { GET_STUDENT_AMBASSADOR, EVALUATION_PRE, EVALUATION_POST, MBS_STUDENT_LIST } from "constants/actionTypes";
 
 const initialState = { 
   student_list: [], 
   student_ambassador_list:[],
+  mbs_student_list:[],
   loading: true,
   editError: false,
   evaluation_pre:{
@@ -77,6 +78,12 @@ export const studentReducer = (state = initialState, action) => {
       case STUDENT_LIST:
         return Object.assign({}, state, {
           student_list: action.payload,
+          loading: false
+        });
+
+      case MBS_STUDENT_LIST:
+        return Object.assign({}, state, {
+          mbs_student_list: action.payload,
           loading: false
         });
     

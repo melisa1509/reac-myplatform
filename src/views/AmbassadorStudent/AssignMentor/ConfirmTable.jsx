@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { showUser } from "actions/userActions.jsx";
 import { showGroup } from "actions/groupActions.jsx";
-import { confirmGroup } from 'actions/dashboardActions.jsx';
+import { confirmGroupAmbassadorStudent } from 'actions/dashboardActions.jsx';
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -54,7 +54,7 @@ class ConfirmTable extends React.Component {
         group: this.props.match.params.group,
         student: this.props.match.params.student
       }
-      this.props.dispatchConfirmGroup(params, this.props.history );
+      this.props.dispatchConfirmGroupAmbassadorStudent(params, this.props.history );
     }
    
     componentDidMount() {
@@ -82,7 +82,7 @@ class ConfirmTable extends React.Component {
              <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
                       <center>
-                      <Link to={"/dashboard/assignmentor/" + this.props.match.params.student}>
+                      <Link to={"/ambassadorstudent/assignmentor/" + this.props.match.params.student}>
                       <Button color="defautl" size="sm">
                       {t("button_return_to_list")}
                       </Button>
@@ -109,7 +109,7 @@ const mapStateToProps = state => ({
 const mapDispatchToPropsActions = dispatch => ({
   dispatchShowUser: key => dispatch(showUser(key)), 
   dispatchShowGroup: key => dispatch(showGroup(key)),
-  dispatchConfirmGroup: (params, history ) => dispatch(confirmGroup(params, history))
+  dispatchConfirmGroupAmbassadorStudent: (params, history ) => dispatch(confirmGroupAmbassadorStudent(params, history))
 });
 
 const ConfirmTableComponent = translate(withStyles(style)(ConfirmTable));

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 // react component for creating dynamic tables
 import ReactTable from "react-table";
 import { connect } from "react-redux";
-import { getStudentList } from "actions/studentActions.jsx";
+import { getMbsStudentList } from "actions/studentActions.jsx";
 import { Link } from "react-router-dom";
 
 // @material-ui/icons
@@ -61,7 +61,7 @@ class IndexTable extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatchGetStudentList();
+    this.props.dispatchGetMbsStudentList();
   }
 
  
@@ -112,31 +112,19 @@ class IndexTable extends React.Component {
         state: projectState,
         projects: (
           <div className="actions-left">
-            <Link to={"/dashboard/assignmentor/" + prop.id }>
+            <Link to={"/ambassadorstudent/assignmentor/" + prop.id }>
               <Button
                 size="sm"
                 color="warning"
               >
                 {t('button_assing_mentor')}
               </Button>
-            </Link>
-            {" "}
-            <Link to={"/dashboard/clearpending/" + prop.id }>
-              <Button
-                size="sm"
-                color="danger"
-              >
-                {t('button_clear')}
-              </Button>
-            </Link>
-            
+            </Link>           
           </div>
         )
       };
     });
-    
-    
-    
+  
     return (
       <GridContainer>
         <GridItem xs={12}>
@@ -216,12 +204,12 @@ class IndexTable extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
-      student_list: state.studentReducer.student_list, 
+      student_list: state.studentReducer.mbs_student_list, 
       loading: state.studentReducer.loading
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetStudentList: key => dispatch( getStudentList(key) )
+  dispatchGetMbsStudentList: key => dispatch( getMbsStudentList(key) )
 });
 
 const IndexTableComponent = translate(IndexTable);

@@ -82,6 +82,11 @@ class AdminHeaderLinks extends React.Component {
                 <HowToReg color="danger" className={classes.icons} /> {t("link_participants")}
             
           </Link>,
+          <Link to={'/ambassadorstudent'} className={classes.dropdownLink}>
+            
+                <Group color="danger" className={classes.icons} /> {t("link_ambassador_student")}
+                        
+          </Link>,
           <Link to={'/ambassador'} className={classes.dropdownLink}>
             
                 <SupervisorAccount color="danger" className={classes.icons} /> {t("link_ambassadors")}
@@ -132,12 +137,7 @@ class AdminHeaderLinks extends React.Component {
             
                 <HowToReg color="danger" className={classes.icons} /> {t("link_participants")}
             
-          </Link>,   
-          <Link to={'/ambassadorstudent'} className={classes.dropdownLink}>
-            
-                <Group color="danger" className={classes.icons} /> {t("link_ambassador_student")}
-                  
-          </Link>,     
+          </Link>,      
           <Link to={'/certificate'} className={classes.dropdownLink}>
             
                 <School color="danger" className={classes.icons} /> {t("link_certificates")}
@@ -214,17 +214,7 @@ class AdminHeaderLinks extends React.Component {
             
           <School color="danger" className={classes.icons} /> {t("link_program_mbs")}
       
-          </Link>,         
-          <Link to={'/dashboard/student'} className={classes.dropdownLink}>
-            
-                <LibraryBooks color="danger" className={classes.icons} /> {t("link_program_ambassador")}
-            
-          </Link>,
-          <Link to={'/student/preForm'} className={classes.dropdownLink}>
-            
-                 <LibraryBooks color="danger" className={classes.icons} /> {t("link_evaluations")}
-    
-          </Link>,
+          </Link>,       
           <Link onClick={this.logoutUser} className={classes.dropdownLink}>
             
                 <Cancel color="danger" className={classes.icons} /> {t("link_logout")}
