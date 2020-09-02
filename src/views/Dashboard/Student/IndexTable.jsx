@@ -45,7 +45,7 @@ class IndexTable extends React.Component {
   
  
   render() {
-    const { classes, dashboard_student } = this.props;
+    const { classes, dashboard_student, active_user } = this.props;
     let { t } = this.props;        
     
       
@@ -169,7 +169,8 @@ class IndexTable extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
-      dashboard_student: state.studentReducer.dashboard_student
+      dashboard_student: state.studentReducer.dashboard_student,
+      active_user: state.loginReducer.active_user
 });
 
 const mapDispatchToPropsActions = dispatch => ({
