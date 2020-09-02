@@ -145,20 +145,6 @@ class IndexRep extends React.Component {
             </CardBody>
           </Card>
           <br/>
-          <Card>
-            <CardHeader icon >
-              <CardIcon color="success">
-                <Icon>dns</Icon>
-              </CardIcon>
-              <Muted>
-                {rol ? <h4>{t("title_number_people_improvement")}</h4> :<h4>{t("title_number_people_improvement") + " " + t( "title_by_country")+" "+ "MBS Junior Students"}</h4> }
-              </Muted>
-            </CardHeader>
-            <CardBody>
-                {rol ? <AmbaJRTableReports/> : <CountryJrTable initialValues={initialValuesReport}/> }     
-            </CardBody>
-          </Card>
-          <br/>
           {rol? " " :
           <Card>
             <CardHeader icon >
@@ -173,7 +159,22 @@ class IndexRep extends React.Component {
                 <AmbassadorTable/>      
             </CardBody>
           </Card>
-          }
+          }          
+          <br/>
+          <Card>
+            <CardHeader icon >
+              <CardIcon color="success">
+                <Icon>dns</Icon>
+              </CardIcon>
+              <Muted>
+                {rol ? <h4>{t("title_number_people_improvement")}</h4> :<h4>{t("title_number_people_improvement") + " " + t( "title_by_country")+" "+ "MBS Junior Students"}</h4> }
+              </Muted>
+            </CardHeader>
+            <CardBody>
+                {rol ? <AmbaJRTableReports/> : <CountryJrTable initialValues={initialValuesReport}/> }     
+            </CardBody>
+          </Card>
+          <br/>
           {rol? " " :
           <Card>
             <CardHeader icon >

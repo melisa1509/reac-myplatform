@@ -6,10 +6,6 @@ import { connect } from "react-redux";
 import { getMbsStudentList } from "actions/studentActions.jsx";
 import { Link } from "react-router-dom";
 
-// @material-ui/icons
-import Create from "@material-ui/icons/Create";
-import Visibility from "@material-ui/icons/Visibility";
-import Close from "@material-ui/icons/Close";
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";

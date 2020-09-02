@@ -13,6 +13,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import Danger from "components/Typography/Danger.jsx";
+import Info from "components/Typography/Info.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx'; 
@@ -55,10 +56,11 @@ class ChangePasswordForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+          username: "",
+          usernameState: ""
         };
         this.saveClick = this.saveClick.bind(this);
         this.deleteClick = this.deleteClick.bind(this);
-        this.escFunction = this.escFunction.bind(this);
       }
       handleSimple = event => {
           this.setState({ [event.target.name]: event.target.value });
@@ -72,40 +74,20 @@ class ChangePasswordForm extends React.Component {
           this.setState({ usernameState: "error" });
         }
         if(this.state.usernameState === "error"){
-          const stateRedux = store.getState();
           this.props.dispatchErrorRequiredFields();
         }
         if(this.state.usernameState === "success" ){
-        const reduxState = store.getState();
         this.props.dispatchNewPassword();
         this.props.dispatchSuccessRequiredFields();
         }
       }
 
-      componentDidMount() {
-        document.addEventListener("keydown", this.escFunction, false);        
-      }
 
       deleteClick(){
         this.props.dispatchDeleteSuccessful();
       }
        
-      escFunction(event) {
-        if(event.keyCode === 13) {
-          if (this.state.usernameState === "") {
-            this.setState({ usernameState: "error" });
-          }
-          if(this.state.usernameState === "error"){
-            const stateRedux = store.getState();
-            this.props.dispatchErrorRequiredFields();
-          }
-          if(this.state.usernameState === "success" ){
-          const reduxState = store.getState();
-          this.props.dispatchNewPassword();
-          this.props.dispatchSuccessRequiredFields();
-          }
-        }
-      }
+      
       
     render() {
         const { classes, successfull_edit,errorRequired, successRequired, errorGmail, correctGmail} = this.props;
@@ -155,12 +137,18 @@ class ChangePasswordForm extends React.Component {
                   { errorRequired ? <Danger><h6 className={classes.infoText}>{t("label_require_fields")+ "*" }</h6></Danger>: ""}
                   { successRequired ? "" :  ""}
                   { errorGmail? <Danger><h6 className={classes.infoText}>{t("label_username_does_not_exist")}</h6></Danger>: ""}
-                  { correctGmail? <Danger><h6 className={classes.infoText}>{t("label_check_your_email")}</h6></Danger>: ""}
+                  { correctGmail? <Info><h6 className={classes.infoText}>{t("label_check_your_email")}</h6></Info>: ""}
                 </GridItem>
               </GridContainer>
               <GridContainer>
                 <GridItem xs={12} sm={12} md={12}>
                   <center>
+                  <Link to={"/login"}>
+                      <Button color="default" size="sm">
+                      {t("button_return")}
+                      </Button>
+                      {" "}
+                  </Link>{" "}
                   <Button color="success" size="sm" onClick={this.saveClick}>
                   {t("button_send")}
                   </Button>

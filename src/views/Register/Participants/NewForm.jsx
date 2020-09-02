@@ -60,7 +60,8 @@ class NewForm extends React.Component {
             first_nameState: "",
             last_nameState: "",
             cityState: "",
-            whatsappState: ""
+            whatsappState: "",
+            password: ""
         };
         this.saveClick = this.saveClick.bind(this);
       }
@@ -80,6 +81,9 @@ class NewForm extends React.Component {
         }
         if (this.state.whatsappState === "") {
           this.setState({ whatsappState: "error" });
+        }
+        if (this.state.passowordState === "") {
+          this.setState({ passwordState: "error" });
         }
         if(this.state.usernameState === "error" || this.state.first_nameState === "error" || this.state.last_nameState === "error"){
           const stateRedux = store.getState();
@@ -129,6 +133,25 @@ class NewForm extends React.Component {
                         onKeyUp: event => 
                               verifyChange(event, "username", "length", 0, null, this),
                         type: "text",
+                      }}
+                    />
+                </GridItem>
+              </GridContainer>
+              <GridContainer >
+                  <GridItem xs={12} sm={12} md={12}>
+                    <Field
+                      labelText={t("label_password")+ " *"}
+                      component={CustomInputRedux}
+                      name="password"
+                      success={this.state.passwordState === "success"}
+                      error={this.state.passwordState === "error"}
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        onKeyUp: event => 
+                              verifyChange(event, "password", "length", 0, null, this),
+                        type: "password",
                       }}
                     />
                 </GridItem>

@@ -17,6 +17,7 @@ import SnackbarContent from "components/Snackbar/SnackbarContent";
 import SweetAlert from "react-bootstrap-sweetalert";
 import Danger from "components/Typography/Danger.jsx";
 
+
 // style for this view
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
@@ -98,7 +99,7 @@ class ChangePasswordForm extends React.Component {
       }
       
     deleteClick(){
-      this.props.dispatchDeleteSuccessful();
+      this.props.dispatchDeleteSuccessful(this.props.history);
     }
 
     render() {
@@ -168,7 +169,7 @@ class ChangePasswordForm extends React.Component {
                       { successRequired ? "" :  ""}
                   </GridItem>
                   <GridItem xs={12} sm={12} md={12}>
-                      { dismatch_password ? <Danger><h6 className={classes.infoText}>{t("label_dismatch_password1")}</h6></Danger>: ""}
+                      { dismatch_password ? <center><Danger><h6 className={classes.infoText}>{t("label_dismatch_password")}</h6></Danger></center>: ""}
                   </GridItem>
               </GridContainer>
                 <GridContainer justify="center">
@@ -200,7 +201,7 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchErrorRequiredFields:() => dispatch(errorRequiredFields()),
   dispatchSuccessRequiredFields:() => dispatch(successRequiredFields()),
   dispatchDismatchPassword:() => dispatch(dismatchPassword()),
-  dispatchDeleteSuccessful: () => dispatch(deleteSuccessful())
+  dispatchDeleteSuccessful: (key) => dispatch(deleteSuccessful(key))
 });
 
 const ChangePasswordFormComponent = translate(withStyles(style)(ChangePasswordForm));

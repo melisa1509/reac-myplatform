@@ -2,8 +2,8 @@ import { SUCCESSFULL_AUTHENTICATION, FAILED_AUTHENTICATION, SUCCESSFULL_ACTIVE_U
 import $ from 'jquery';
 import { BASE_URL } from 'constants/urlTypes';
 import { setLanguage } from 'react-switch-lang';
-import { getGroupList } from "actions/groupActions.jsx";
-import { getStudentList } from "actions/studentActions.jsx";
+import { getGroupList, getGroupProgram } from "actions/groupActions.jsx";
+import { getStudentList, getMbsStudentList } from "actions/studentActions.jsx";
 import { getAdminStudentMbsList } from "actions/dashboardActions.jsx";
 import { getAmbassadorList } from "actions/ambassadorActions";
 
@@ -53,7 +53,9 @@ export const getAuthenticacion = ( params, redirect ) => {
                                     dispatch( getAdminStudentMbsList());
                                     dispatch( getAmbassadorList());
                                     dispatch( getGroupList());
-                                    dispatch( getStudentList());                                    
+                                    dispatch( getStudentList());  
+                                    dispatch( getGroupProgram());
+                                    dispatch( getMbsStudentList());                                  
                                     redirect.push('/dashboard');
                                 }
                                 else{

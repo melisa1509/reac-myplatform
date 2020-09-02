@@ -140,15 +140,15 @@ ReactDOM.render(
           <Route path="/app" component={App} />
           <Route path="/course/new" component={CourseNew} />
           <Route path="/programmbs/new" component={NewProgramMbs} exact/>
-          <Route path="/programmbs/new/plan/:id" component={NewPlanProgramMbs} exact/>
-          <Route path="/programmbs/new/product/:id" component={NewProductProgramMbs} exact/>
-          <Route path="/programmbs/new/process/:id" component={NewProcessProgramMbs} exact/>
-          <Route path="/programmbs/new/price/:id" component={NewPriceProgramMbs} exact/>
-          <Route path="/programmbs/new/promotion/:id" component={NewPromotionProgramMbs} exact/>
-          <Route path="/programmbs/new/paperwork/:id" component={NewPaperworkProgramMbs} exact/>
-          <Route path="/programmbs/new/quality/:id" component={NewQualityProgramMbs} exact/>
-          <Route path="/programmbs/new/service/:id" component={NewServiceProgramMbs} exact/>
-          <Route path="/programmbs/new/history/:id" component={NewHistoryProgramMbs} exact/>
+          <Route path="/programmbs/new/plan" component={NewPlanProgramMbs} exact/>
+          <Route path="/programmbs/new/product" component={NewProductProgramMbs} exact/>
+          <Route path="/programmbs/new/process" component={NewProcessProgramMbs} exact/>
+          <Route path="/programmbs/new/price" component={NewPriceProgramMbs} exact/>
+          <Route path="/programmbs/new/promotion" component={NewPromotionProgramMbs} exact/>
+          <Route path="/programmbs/new/paperwork" component={NewPaperworkProgramMbs} exact/>
+          <Route path="/programmbs/new/quality" component={NewQualityProgramMbs} exact/>
+          <Route path="/programmbs/new/service" component={NewServiceProgramMbs} exact/>
+          <Route path="/programmbs/new/history" component={NewHistoryProgramMbs} exact/>
           <Route path="/programmbs/show/:id" component={ProgramMbs} exact/>
           <Route path="/programmbs/show/plan/:id" component={ShowPlanProgramMbs} exact/>
           <Route path="/programmbs/show/product/:id" component={ShowProductProgramMbs} exact/>

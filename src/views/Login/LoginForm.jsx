@@ -22,10 +22,6 @@ import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSel
 
 import { verifyChange } from "assets/validation/index.jsx";
 import { getAuthenticacion, cleanState } from "actions/loginActions";
-import { getGroupList } from "actions/groupActions.jsx";
-import { getStudentList } from "actions/studentActions.jsx";
-import { getAdminStudentMbsList } from "actions/dashboardActions.jsx";
-import { getAmbassadorList } from "actions/ambassadorActions";
 import { getReports } from "actions/reportActions.jsx";
 import { store } from 'store/index.jsx';
 
@@ -185,17 +181,8 @@ class LoginForm extends React.Component {
       }
 
       componentDidMount() {
-        //Initialize Resources
         this.props.dispatchGetCleanState();      
         document.addEventListener("keydown", this.escFunction, false);        
-      }
-
-      componentWillUnmount(){
-        const state = store.getState();
-        //if(state.loginReducer.active_user.roles.includes("ROLE_ADMIN")  || state.loginReducer.active_user.roles.includes("ROLE_LANGUAGE_ADMIN")){
-          //this.props.dispatchGetReports();
-        //}
-        
       }
 
 

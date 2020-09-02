@@ -67,11 +67,7 @@ class PostForm extends React.Component {
             uploadPercentage: 0,
         };
         this.saveClick = this.saveClick.bind(this);
-    }
-
-    updateFileName = (key) => {
-      this.props.change('name_image', key);
-    }
+    }   
   
     saveClick() {
       this.props.dispatchEvaluationPost();
@@ -104,7 +100,7 @@ class PostForm extends React.Component {
                 <GridContainer>
                   <GridItem xs={12} sm={12} md={12}> 
                     <InputLabel className={classes.label}>
-                      {t("question_evaluation_question1")}
+                    { active_user.studentgroup.group.program === "option.program4" ? t("question_jr_evaluation_question1") : t("question_evaluation_question1")}
                     </InputLabel>
                     <Field
                       component={CustomRadioRedux}
@@ -116,7 +112,7 @@ class PostForm extends React.Component {
                 <GridContainer>
                   <GridItem xs={12} sm={12} md={12}> 
                     <InputLabel className={classes.label}>
-                       {t("question_evaluation_question2")}
+                    { active_user.studentgroup.group.program === "option.program4" ? t("question_jr_evaluation_question2") : t("question_evaluation_question2")}
                     </InputLabel>
                     <Field
                       component={CustomRadioRedux}
@@ -128,7 +124,7 @@ class PostForm extends React.Component {
                 <GridContainer>
                   <GridItem xs={12} sm={12} md={12}> 
                     <InputLabel className={classes.label}>
-                       {t("question_evaluation_question3")}
+                    { active_user.studentgroup.group.program === "option.program4" ? t("question_jr_evaluation_question3") : t("question_evaluation_question3")}
                     </InputLabel>
                     <Field
                       component={CustomRadioRedux}
@@ -140,7 +136,7 @@ class PostForm extends React.Component {
                 <GridContainer>
                   <GridItem xs={12} sm={12} md={12}> 
                     <InputLabel className={classes.label}>
-                        {t("question_evaluation_question4")}
+                    { active_user.studentgroup.group.program === "option.program4" ? t("question_jr_evaluation_question4") : t("question_evaluation_question4")}
                     </InputLabel>
                     <Field
                       component={CustomRadioRedux}
@@ -152,7 +148,7 @@ class PostForm extends React.Component {
                 <GridContainer>
                   <GridItem xs={12} sm={12} md={12}> 
                     <InputLabel className={classes.label}>
-                        {t("question_evaluation_question5")}
+                    { active_user.studentgroup.group.program === "option.program4" ? t("question_jr_evaluation_question5") : t("question_evaluation_question5")}
                     </InputLabel>
                     <Field
                       component={CustomRadioRedux}
@@ -164,7 +160,7 @@ class PostForm extends React.Component {
                 <GridContainer>
                   <GridItem xs={12} sm={12} md={12}> 
                     <InputLabel className={classes.label}>
-                        {t("question_evaluation_question6")}
+                    { active_user.studentgroup.group.program === "option.program4" ? t("question_jr_evaluation_question6") : t("question_evaluation_question6")}
                     </InputLabel>
                     <Field
                       component={CustomRadioRedux}
@@ -176,7 +172,7 @@ class PostForm extends React.Component {
                 <GridContainer>
                   <GridItem xs={12} sm={12} md={12}> 
                     <InputLabel className={classes.label}>
-                        {t("question_evaluation_question7")}
+                    { active_user.studentgroup.group.program === "option.program4" ? t("question_jr_evaluation_question7") : t("question_evaluation_question7")}
                     </InputLabel>
                     <Field
                       component={CustomRadioRedux}
@@ -188,7 +184,7 @@ class PostForm extends React.Component {
                 <GridContainer>
                   <GridItem xs={12} sm={12} md={12}> 
                     <InputLabel className={classes.label}>
-                        {t("question_evaluation_question8")}
+                    { active_user.studentgroup.group.program === "option.program4" ? t("question_jr_evaluation_question8") : t("question_evaluation_question8")}
                     </InputLabel>
                     <Field
                       component={CustomRadioRedux}
@@ -200,7 +196,7 @@ class PostForm extends React.Component {
                 <GridContainer>
                   <GridItem xs={12} sm={12} md={12}> 
                     <InputLabel className={classes.label}>
-                        {t("question_evaluation_question9")}
+                    { active_user.studentgroup.group.program === "option.program4" ? t("question_jr_evaluation_question9") : t("question_evaluation_question9")}
                     </InputLabel>
                     <Field
                       component={CustomRadioRedux}
@@ -255,6 +251,7 @@ PostForm = connect(
     initialValues: state.evaluationReducer.data,
     initialValues: state.studentReducer.evaluation_post,
     evaluation_post: state.evaluationReducer.evaluation_post,
+    active_user: state.loginReducer.active_user
   }),
   { dispatchEvaluationPost: evaluationPost, dispatchDeleteSuccessful: deleteSuccessful},
 )(PostForm);

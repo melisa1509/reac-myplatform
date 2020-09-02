@@ -44,7 +44,7 @@ class ControlNavigation extends React.Component {
         <GridContainer justify="center">
             <GridItem xs={3} sm={3} md={3}>            
                     <center>
-                        <Link to={"/programmbs/new/" + previous +"/" + dashboard_student.progressMbs.id}>
+                        <Link to={"/programmbs/new/" + previous}>
                             <Button color="default" fullWidth >
                                 {t("button_previous")}
                             </Button>  
@@ -54,7 +54,7 @@ class ControlNavigation extends React.Component {
             <GridItem xs={6} sm={6} md={6}></GridItem>
             <GridItem xs={3} sm={3} md={3}>            
                     <center>
-                        <Link to={"/programmbs/new/" + next + "/" + dashboard_student.progressMbs.id}>
+                        <Link to={"/programmbs/new/" + next}>
                             <Button color="rose" fullWidth >
                                 {t("button_next")}
                             </Button>  

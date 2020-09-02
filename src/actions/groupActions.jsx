@@ -1,5 +1,5 @@
 import {GROUP_LIST, GET_PROJECT_PROGRESS, MBS_IMAGE_ALERT, UPLOAD_IMAGE, DELETE_IMAGE_ALERT} from 'constants/actionTypes.jsx';
-import { LOAD_FORM_GROUP, SHOW_GROUP, EDIT_GROUP, SUCCESSFULL_EDIT, NEW_GROUP, DELETE_GROUP, SUCCESSFULL_NEW} from 'constants/actionTypes';
+import { LOAD_FORM_GROUP, SHOW_GROUP, EDIT_GROUP, SUCCESSFULL_EDIT, NEW_GROUP, DELETE_GROUP, SUCCESSFULL_NEW, GROUP_PROGRAM} from 'constants/actionTypes';
 import { BASE_URL } from 'constants/urlTypes.jsx';
 import { SUCCESSFULL_REDIRECT } from 'constants/actionTypes';
 
@@ -25,6 +25,31 @@ export const getGroupList= () => {
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: GROUP_LIST, payload: json.data });
+        });
+    }
+}
+
+export const getGroupProgram= () => {
+    return (dispatch, getState) => {
+    const reduxState = getState();
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("program", "option.program2");
+
+        var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: urlencoded,
+        redirect: 'follow'
+        };
+
+        return fetch( BASE_URL + "/group/program/?callback=foo", requestOptions)
+        .then(response => response.json())
+        .then(json => {
+            dispatch ({ type: GROUP_PROGRAM, payload: json.data });
         });
     }
 }

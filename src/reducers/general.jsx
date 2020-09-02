@@ -38,7 +38,8 @@ export const generalReducer = (state = initialState, action) => {
           return Object.assign({}, state, {
             delete: true,
             successfull_edit: false,
-            successfull_new: false
+            successfull_new: false,
+            dismatch_password: false
           });
         case DISMATCH_PASSWORD:
           return Object.assign({}, state, {

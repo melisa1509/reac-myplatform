@@ -12,6 +12,7 @@ export const newStudent =(redirect) => {
       
             var urlencoded = new URLSearchParams();
             urlencoded.append("username", reduxState.form.registerform.values.username);
+            urlencoded.append("password", reduxState.form.registerform.values.password);
             urlencoded.append("language",reduxState.form.registerform.values.language);
             urlencoded.append("first_name",reduxState.form.registerform.values.first_name);
             urlencoded.append("last_name",reduxState.form.registerform.values.last_name);

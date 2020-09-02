@@ -108,7 +108,7 @@ class PorcentageATable extends React.Component {
   }
     return (
       <GridContainer justify="center">
-        <GridItem xs={8}>
+        <GridItem xs={10}>
           <GridContainer justify="center">
             <GridItem xs={4}>
               <AmbassadorSelect/> 

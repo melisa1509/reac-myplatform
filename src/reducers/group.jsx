@@ -1,7 +1,7 @@
 import { GROUP_LIST } from "constants/actionTypes";
 import { SHOW_GROUP } from "constants/actionTypes";
 import { LOAD_FORM_GROUP } from "constants/actionTypes";
-import { EDIT_GROUP, NEW_GROUP, DELETE_GROUP } from "constants/actionTypes";
+import { EDIT_GROUP, NEW_GROUP, DELETE_GROUP, GROUP_PROGRAM } from "constants/actionTypes";
 import { UPLOAD_IMAGE } from "constants/actionTypes";
 import { GET_PROJECT_PROGRESS } from "constants/actionTypes";
 import { MBS_IMAGE_ALERT , DELETE_IMAGE_ALERT} from "constants/actionTypes";
@@ -24,6 +24,7 @@ const initialState = {
     id:""
   },
   group_list: [],
+  group_program: [],
   progress_list:{
     progressMbs:[],
     progressSa:[]
@@ -37,6 +38,11 @@ export const groupReducer = (state = initialState, action) => {
       case GROUP_LIST:
         return Object.assign({}, state, {
           group_list: action.payload,
+          loading: false
+        });
+      case GROUP_PROGRAM:
+        return Object.assign({}, state, {
+          group_program: action.payload,
           loading: false
         });
       case SHOW_GROUP:

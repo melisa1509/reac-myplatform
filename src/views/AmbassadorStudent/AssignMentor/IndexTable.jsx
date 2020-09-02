@@ -3,13 +3,9 @@ import PropTypes from "prop-types";
 // react component for creating dynamic tables
 import ReactTable from "react-table";
 import { connect } from "react-redux";
-import { getGroupList } from "actions/groupActions.jsx";
+import { getGroupProgram } from "actions/groupActions.jsx";
 import { Link } from "react-router-dom";
 
-// @material-ui/icons
-import Create from "@material-ui/icons/Create";
-import Visibility from "@material-ui/icons/Visibility";
-import Close from "@material-ui/icons/Close";
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
@@ -61,18 +57,18 @@ class IndexTable extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatchGetGroupList();
+    this.props.dispatchGetGroupProgram();
     
   }
 
  
   render() {
-    const { group_list, loading } = this.props;
+    const { group_program, loading } = this.props;
     let { t } = this.props;
     const student_id = this.props.match.params.student;
     
             
-    const data = group_list.map((prop, key) => {
+    const data = group_program.map((prop, key) => {
       let i = 0;
       let start_date=[];
       for (i = 0; i < 10 ; i++) {
@@ -189,12 +185,12 @@ class IndexTable extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
-      group_list: state.groupReducer.group_list, 
+      group_program: state.groupReducer.group_program, 
       loading: state.groupReducer.loading
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetGroupList: () => dispatch( getGroupList() )
+  dispatchGetGroupProgram: () => dispatch( getGroupProgram() )
 });
 
 const IndexTableComponent = translate(IndexTable);
