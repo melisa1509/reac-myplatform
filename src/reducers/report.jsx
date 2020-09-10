@@ -19,7 +19,8 @@ const initialState = {
   },
   ambassador_country:[],
   report_ambassador:{
-    MBS:[]
+    MBS:[],
+    JR:[]
   },
   global_numbers:[],
   report_global_map:{
