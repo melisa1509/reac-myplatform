@@ -70,7 +70,7 @@ class PostForm extends React.Component {
     }   
   
     saveClick() {
-      this.props.dispatchEvaluationPost();
+      this.props.dispatchEvaluationPost(this.props.history);
     }
     deleteClick(){
       this.props.dispatchDeleteSuccessful();

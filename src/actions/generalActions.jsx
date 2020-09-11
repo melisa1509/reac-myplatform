@@ -1,5 +1,6 @@
 import {  SUCCESSFULL_EDIT, ERROR_REQUIRED_FIELDS,SUCCESS_REQUIRED_FIELDS, SUCCESSFUL_DELETE} from 'constants/actionTypes.jsx';
 import { DISMATCH_PASSWORD, SUCCESSFULL_NEW,DELETE_SUCCESSFUL, UPDATE_FILE_NAME } from 'constants/actionTypes';
+import { SUCCESSFULL_ACTIVE_USER } from 'constants/actionTypes';
 
 export const successfulEdit =() => ({ type: SUCCESSFULL_EDIT})
 export const successfulNew =(redirect) => {
@@ -13,8 +14,12 @@ export const successfulNew =(redirect) => {
     } 
 }
 export const deleteSuccessful=(redirect) => {
-    return(dispatch)=> { 
+    return(dispatch, getState)=> { 
+        const reduxState = getState();
         dispatch({ type: DELETE_SUCCESSFUL})
+        if(reduxState.loginReducer.active_user.roles[0] == "ROLE_STUDENT"){
+            redirect.push( "/dashboard/student");
+        }
     }
 }
 export const successfulDelete =() => ({ type: SUCCESSFUL_DELETE})
