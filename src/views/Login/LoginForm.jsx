@@ -207,10 +207,7 @@ class LoginForm extends React.Component {
 
     render() {
         const { classes, styles, loginError } = this.props;
-        let { t } = this.props;
-        const login = "es";
-
-        
+        let { t } = this.props;       
         
         return (
           <GridContainer justify="center">

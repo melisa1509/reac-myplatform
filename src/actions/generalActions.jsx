@@ -15,7 +15,6 @@ export const successfulNew =(redirect) => {
 export const deleteSuccessful=(redirect) => {
     return(dispatch)=> { 
         dispatch({ type: DELETE_SUCCESSFUL})
-            redirect.push( "/login");
     }
 }
 export const successfulDelete =() => ({ type: SUCCESSFUL_DELETE})
