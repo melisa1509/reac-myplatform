@@ -70,14 +70,14 @@ class PostForm extends React.Component {
     }   
   
     saveClick() {
-      this.props.dispatchEvaluationPost();
+      this.props.dispatchEvaluationPost(this.props.history);
     }
     deleteClick(){
       this.props.dispatchDeleteSuccessful();
     }
 
     render() {
-        const { classes, successfull_edit } = this.props;
+        const { classes, successfull_edit, active_user } = this.props;
         let { t } = this.props;  
         const radios = {         
           options:[

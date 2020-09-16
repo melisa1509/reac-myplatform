@@ -72,7 +72,7 @@ class PreForm extends React.Component {
     }
 
     deleteClick(){
-      this.props.dispatchDeleteSuccessful();
+      this.props.dispatchDeleteSuccessful(this.props.history);
     }
     saveClick(){
       this.props.dispatchEvaluationPre();
