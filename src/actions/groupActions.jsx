@@ -46,7 +46,7 @@ export const getGroupProgram= () => {
         redirect: 'follow'
         };
 
-        return fetch( BASE_URL + "/group/program/?callback=foo", requestOptions)
+        return fetch( BASE_URL + "/group/program", requestOptions)
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: GROUP_PROGRAM, payload: json.data });

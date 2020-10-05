@@ -73,7 +73,6 @@ class NewForm extends React.Component {
         };
         this.saveClick = this.saveClick.bind(this);
         this.deleteClick= this.deleteClick.bind(this);
-        this.redirectGroup=this.redirectGroup.bind(this);
     }
 
     updateFileName = (key) => {

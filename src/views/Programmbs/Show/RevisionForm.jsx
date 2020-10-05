@@ -30,6 +30,13 @@ import { translate } from 'react-switch-lang';
                 rows: 5,
               }}
             />
+            <Field
+              component={CustomInputRedux}
+              name="id"             
+              inputProps={{
+                type: "hidden",
+              }}
+            />
       </form>
     );
   };

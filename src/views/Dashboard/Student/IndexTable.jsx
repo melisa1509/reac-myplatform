@@ -53,7 +53,7 @@ class IndexTable extends React.Component {
     return (
       <GridContainer>
         <GridItem xs={6} sm={6} md={3} lg={3}>
-        <Link to={dashboard_student.progressMbs.state === "new" ? "/programmbs/new/plan" : "/programmbs/edit/plan/" + dashboard_student.progressMbs.id} className={classes.dropdownLink} >
+        <Link to={active_user.evaluation === undefined ? "/student/preevaluation" : (dashboard_student.progressMbs.state === "new" ? "/programmbs/new/plan" : "/programmbs/edit/plan/" + dashboard_student.progressMbs.id)} className={classes.dropdownLink} >
           <Card>
             <CardHeader color="warning" stats icon>
               <CardIcon color="warning">
@@ -67,7 +67,7 @@ class IndexTable extends React.Component {
           </Link>
         </GridItem>
         <GridItem xs={6} sm={6} md={3} lg={3}>
-        <Link to={dashboard_student.progressMbs.state === "new" ? "/programmbs/new/product" : "/programmbs/edit/product/" + dashboard_student.progressMbs.id} className={classes.dropdownLink} >
+        <Link to={active_user.evaluation === undefined ? "/student/preevaluation" : (dashboard_student.progressMbs.state === "new" ? "/programmbs/new/product" : "/programmbs/edit/product/" + dashboard_student.progressMbs.id)} className={classes.dropdownLink} >
           <Card>
             <CardHeader color="success" stats icon>
               <CardIcon color="success">
@@ -81,7 +81,7 @@ class IndexTable extends React.Component {
           </Link>
         </GridItem>
         <GridItem xs={6} sm={6} md={3} lg={3}>
-        <Link to={dashboard_student.progressMbs.state === "new" ? "/programmbs/new/process" : "/programmbs/edit/process/" + dashboard_student.progressMbs.id} className={classes.dropdownLink} >
+        <Link to={active_user.evaluation === undefined ? "/student/preevaluation" : (dashboard_student.progressMbs.state === "new" ? "/programmbs/new/process" : "/programmbs/edit/process/" + dashboard_student.progressMbs.id)} className={classes.dropdownLink} >
           <Card>
             <CardHeader color="danger" stats icon>
               <CardIcon color="danger">
@@ -95,7 +95,7 @@ class IndexTable extends React.Component {
           </Link>
         </GridItem>
         <GridItem xs={6} sm={6} md={3} lg={3}>
-        <Link to={dashboard_student.progressMbs.state === "new" ? "/programmbs/new/price" : "/programmbs/edit/price/" + dashboard_student.progressMbs.id} className={classes.dropdownLink} >
+        <Link to={active_user.evaluation === undefined ? "/student/preevaluation" : (dashboard_student.progressMbs.state === "new" ? "/programmbs/new/price" : "/programmbs/edit/price/" + dashboard_student.progressMbs.id)} className={classes.dropdownLink} >
           <Card>
             <CardHeader color="info" stats icon>
               <CardIcon color="info">
@@ -109,7 +109,7 @@ class IndexTable extends React.Component {
           </Link>
         </GridItem>
         <GridItem xs={6} sm={6} md={3} lg={3}>
-        <Link to={dashboard_student.progressMbs.state === "new" ? "/programmbs/new/promotion" : "/programmbs/edit/promotion/" + dashboard_student.progressMbs.id} className={classes.dropdownLink} >
+        <Link to={active_user.evaluation === undefined ? "/student/preevaluation" : (dashboard_student.progressMbs.state === "new" ? "/programmbs/new/promotion" : "/programmbs/edit/promotion/" + dashboard_student.progressMbs.id)} className={classes.dropdownLink} >
           <Card>
             <CardHeader color="danger" stats icon>
               <CardIcon color="danger">
@@ -123,7 +123,7 @@ class IndexTable extends React.Component {
           </Link>
         </GridItem>
         <GridItem xs={6} sm={6} md={3} lg={3}>
-        <Link to={dashboard_student.progressMbs.state === "new" ? "/programmbs/new/paperwork" : "/programmbs/edit/paperwork/" + dashboard_student.progressMbs.id} className={classes.dropdownLink} >
+        <Link to={active_user.evaluation === undefined ? "/student/preevaluation" : (dashboard_student.progressMbs.state === "new" ? "/programmbs/new/paperwork" : "/programmbs/edit/paperwork/" + dashboard_student.progressMbs.id)} className={classes.dropdownLink} >
           <Card>
             <CardHeader color="info" stats icon>
               <CardIcon color="info">
@@ -137,7 +137,7 @@ class IndexTable extends React.Component {
           </Link>
         </GridItem>
         <GridItem xs={6} sm={6} md={3} lg={3}>
-        <Link to={dashboard_student.progressMbs.state === "new" ? "/programmbs/new/quality" : "/programmbs/edit/quality/" + dashboard_student.progressMbs.id} className={classes.dropdownLink} >
+        <Link to={active_user.evaluation === undefined ? "/student/preevaluation" : (dashboard_student.progressMbs.state === "new" ? "/programmbs/new/quality" : "/programmbs/edit/quality/" + dashboard_student.progressMbs.id)} className={classes.dropdownLink} >
           <Card>
             <CardHeader color="warning" stats icon>
               <CardIcon color="warning">
@@ -150,7 +150,7 @@ class IndexTable extends React.Component {
           </Link>
         </GridItem>
         <GridItem xs={6} sm={6} md={3} lg={3}>
-        <Link to={dashboard_student.progressMbs.state === "new" ? "/programmbs/new/service" : "/programmbs/edit/service/" + dashboard_student.progressMbs.id} className={classes.dropdownLink} >
+        <Link to={active_user.evaluation === undefined ? "/student/preevaluation" : (dashboard_student.progressMbs.state === "new" ? "/programmbs/new/service" : "/programmbs/edit/service/" + dashboard_student.progressMbs.id)} className={classes.dropdownLink} >
           <Card>
             <CardHeader color="success" stats icon>
               <CardIcon color="success">

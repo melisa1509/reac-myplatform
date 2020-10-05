@@ -22,7 +22,7 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
 import { evaluationPre } from "actions/studentActions.jsx";
-import { deleteSuccessful } from "actions/generalActions.jsx";
+import { successPreEvaluation } from "actions/programmbsActions.jsx";
 import { withRouter } from 'react-router-dom';
 
 const style = {
@@ -75,7 +75,7 @@ class PreForm extends React.Component {
       this.props.dispatchDeleteSuccessful(this.props.history);
     }
     saveClick(){
-      this.props.dispatchEvaluationPre();
+      this.props.dispatchEvaluationPre(this.props.history);
     }  
     
     render() {
@@ -228,7 +228,7 @@ PreForm = connect(
     successfull_edit:state.generalReducer.successfull_edit,
     active_user: state.loginReducer.active_user
   }),
-  {dispatchEvaluationPre: evaluationPre,  dispatchDeleteSuccessful: deleteSuccessful},
+  {dispatchEvaluationPre: evaluationPre,  dispatchDeleteSuccessful: successPreEvaluation},
 )(PreForm);
 
 export default  withRouter(translate(withStyles(style)(PreForm)));

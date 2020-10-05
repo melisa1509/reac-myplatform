@@ -734,6 +734,31 @@
         "YEM": "Yemen",
         "ZAF": "South Africa",
         "ZMB": "Zambia",
-        "ZWE": "Zimbabwe"
+        "ZWE": "Zimbabwe",
+
+        "state":{  
+                "without_starting":           "sin comenzar",
+                "project_mbs":                "Proyecto Mbs",
+                "development":                "en desarrollo",
+                "correction":                 "en corrección",
+                "approved":                   "approved",
+                "revision":                   "en revisíon",
+                "draft":                      "Borrador",
+                "publish":                    "Publicar"    
+            }, 
+        
+            "option":{
+                "quality5":                  "5. Estoy muy feliz con éste área de mi vida.",
+                "quality4":                  "4. Generalmente soy Feliz.",
+                "quality3":                  "3. De vez en cuando estoy Feliz.",
+                "quality2":                  "2. A veces no estoy feliz.",
+                "quality1":                  "1. No estoy feliz con este área.",
+                "modality1":                 "Presencial",
+                "modality2":                 "En Línea",
+                "program1":                  "Maestría de Negocios",
+                "program2":                  "Embajador de Éxito",
+                "program3":                  "Maestría + Embajador"
+            }
+
 
 }

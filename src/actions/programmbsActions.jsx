@@ -275,6 +275,12 @@ export const redirectDashboard = redirect => {
     }
 }
 
+export const successPreEvaluation = (redirect) => {
+    return (dispatch, getState) => {      
+        redirect.push("/programmbs/new/plan");       
+    }    
+}
+
 const getValuesForm =  (urlencoded, reduxState) =>{
         urlencoded.append("plan1", reduxState.form.programmbs.values.plan1 !== undefined ? reduxState.form.programmbs.values.plan1 : "");
         urlencoded.append("plan2", reduxState.form.programmbs.values.plan2 !== undefined ? reduxState.form.programmbs.values.plan2 : "");

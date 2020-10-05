@@ -170,7 +170,7 @@ class IndexTable extends React.Component {
           <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
                       <center>
-                      <Link to={"/dashboard"}>
+                      <Link to={"/ambassadorstudent"}>
                       <Button color="defautl" size="sm">
                       {t("button_return_to_list")}
                       </Button>

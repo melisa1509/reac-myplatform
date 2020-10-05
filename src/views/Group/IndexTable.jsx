@@ -163,12 +163,12 @@ class IndexTable extends React.Component {
                 {
                   Header: t("th_name"),
                   accessor: "full_name",
-                  sortable: false
+                  sortable: true
                 },
                 {
                   Header: t("th_embassador_mentor"),
                   accessor: "AmbassadorMentor",
-                  sortable: false
+                  sortable: true
                 },
                 {
                   Header: t("th_start_classes"),
