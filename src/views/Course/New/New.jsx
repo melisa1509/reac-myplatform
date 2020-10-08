@@ -36,7 +36,6 @@ class New extends React.Component {
     return (
       <PerfectScrollbar>
       <div>
-        <AdminHeader {...rest}/>
         <div
           className={classes.main}
           style={{

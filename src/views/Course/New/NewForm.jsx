@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { translate } from 'react-switch-lang';
+
 // react component for creating dynamic tables
-import ReactTable from "react-table";
 import { connect } from "react-redux";
 import { newCourse } from "actions/courseActions.jsx";
 import { store } from "store";
+import { Editor } from '@tinymce/tinymce-react';
 
 
 // @material-ui/core components
@@ -205,70 +206,26 @@ class NewForm extends React.Component {
         
         return (
           <GridContainer justify="center">
-            <GridItem xs={12} sm={12} md={10}>
-              <GridContainer >
-                  <GridItem xs={12} sm={12} md={9}>
-                      <CustomInput
-                          success={this.state.courseNameState === "success"}
-                          error={this.state.courseNameState === "error"}
-                          labelText={t("label_name")+ " *"}
-                          id="courseName"
-                          formControlProps={{
-                              fullWidth: true
-                          }}
-                          inputProps={{
-                              onChange: event =>
-                              verifyChange(event, "courseName", "length", 0, null, this),
-                              type: "text",
-                          }}
-                      />
-                  </GridItem>
-              </GridContainer>
-              <GridContainer>
-                  <GridItem xs={12} sm={12} md={12}>
-                      <CustomInput
-                        success={this.state.courseDescriptionState === "success"}
-                        error={this.state.courseDescriptionState === "error"}
-                        labelText={t("label_description")+ " *"}
-                        id="courseDescription"
-                        formControlProps={{
-                          fullWidth: true
-                        }}
-                        inputProps={{
-                          onChange: event =>
-                              verifyChange(event, "courseDescription", "length", 0, null, this),
-                          multiline: true,
-                          rows: 5
-                        }}
-                      />
-                  </GridItem>
-              </GridContainer>
-              <GridContainer>
-                  <GridItem xs={12} sm={12} md={4}>
-                      <LanguageSelect />
-                  </GridItem>
-              </GridContainer>
-              <GridContainer>
-                  <GridItem xs={12} sm={12} md={4}>
-                      <StateSelect />
-                  </GridItem>
-              </GridContainer>
-              <GridContainer>
-                  <GridItem xs={12} sm={12} md={9}>
-                      <div className={classes.formCategory}>
-                          <small>*</small> {t("label_require_fields")}
-                      </div>
-                  </GridItem>
-              </GridContainer>
+            <GridItem xs={12} sm={12} md={12}>
               <GridContainer justify="center">
-                  <GridItem xs={12} sm={12} md={8}>
-                      <Button color="default" size="sm" onClick={this.loginClick}>
-                          Return to list
-                      </Button>
-                      {" "}
-                      <Button color="success" size="sm" onClick={this.saveClick}>
-                          Save
-                      </Button>
+                  <GridItem xs={12} sm={12} md={12}>
+                  <Editor
+                    initialValue="<p>This is the initial content of the editor</p>"
+                    init={{
+                      height: 500,
+                      menubar: 'file edit view insert format tools table help',
+                      plugins: 'print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons',
+                      toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+                      toolbar_sticky: true,
+                      autosave_ask_before_unload: true,
+                      autosave_interval: '30s',
+                      autosave_prefix: '{path}{query}-{id}-',
+                      autosave_restore_when_empty: false,
+                      autosave_retention: '2m',
+                      image_advtab: true,
+                    }}
+                    onEditorChange={this.handleEditorChange}
+                  />
                   </GridItem>
               </GridContainer>
             </GridItem>

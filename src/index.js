@@ -100,6 +100,7 @@ import RegisterStudent from 'views/Register/Participants/New.jsx';
 import RegisterEvaluation from 'views/Register/PreEvaluation/New.jsx';
 import newPassword from 'views/User/NewPassword/ChangePassword.jsx';
 import UserNewPassword  from 'views/User/NewPassword/ChangePassword/ChangePassword.jsx';
+import NewCourse from 'views/Course/New/New.jsx';
 import { store } from 'store/index.jsx';
 
 import "assets/scss/material-dashboard-pro-react.scss?v=1.7.0";
@@ -211,6 +212,7 @@ ReactDOM.render(
           <Route path="/code" component={ListCode} exact />
           <Route path="/code/show/:id" component={ShowCode} exact />
           <Route path="/code/edit/:id" component={EditCode} exact />
+          <Route path="/course/new" component={NewCourse} exact />
           <Route path="/admin" component={ListAdmin} exact />
           <Route path="/admin/new" component={NewAdmin} exact />
           <Route path="/admin/show/:id" component={ShowAdmin} exact />
