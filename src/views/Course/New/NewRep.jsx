@@ -54,7 +54,7 @@ class NewRep extends React.Component {
     const login = "es";
     return (
       <GridContainer justify="center">
-        <GridItem xs={12} sm={12} md={6}>
+        <GridItem xs={12} sm={12} md={12}>
           <Card>
             <CardHeader color="info">
              <h4 className={classes.cardTitle}>{t("title_new_course")}</h4>
