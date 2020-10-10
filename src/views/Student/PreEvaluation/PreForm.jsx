@@ -30,7 +30,7 @@ const style = {
       overflowY: "auto",
       overflowX: "hidden",
       display: "block",
-      width: "450px",
+      width: "460px",
       height: "400px",
       scrollBehavior: "smooth",
       alignItems: "left",

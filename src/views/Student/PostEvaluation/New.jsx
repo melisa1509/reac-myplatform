@@ -11,7 +11,7 @@ import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 
 
 import mainPageStyle from "assets/jss/material-kit-react/views/mainPage.jsx";
-import NewRep from 'views/Student/PreEvaluation/NewRep.jsx';
+import NewRep from 'views/Student/PostEvaluation/NewRep.jsx';
 import AdminHeader from "views/Header/AdminHeader.jsx";
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
