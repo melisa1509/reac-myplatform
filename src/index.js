@@ -129,13 +129,8 @@ import AdminPassword from 'views/Administrator/ChangePassword/ChangePassword.jsx
 import Register from 'views/Register/Index.jsx';
 import RegisterStudent from 'views/Register/Participants/New.jsx';
 import RegisterEvaluation from 'views/Register/PreEvaluation/New.jsx';
-<<<<<<< HEAD
 
-=======
-import newPassword from 'views/User/NewPassword/ChangePassword.jsx';
-import UserNewPassword  from 'views/User/NewPassword/ChangePassword/ChangePassword.jsx';
 import NewCourse from 'views/Course/New/New.jsx';
->>>>>>> a09a4d23c98baebe99686ba033d316ddd22e31aa
 import { store } from 'store/index.jsx';
 
 import "assets/scss/material-dashboard-pro-react.scss?v=1.7.0";
