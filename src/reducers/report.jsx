@@ -22,7 +22,9 @@ const initialState = {
     MBS:[],
     JR:[]
   },
-  global_numbers:[],
+  global_numbers:{
+    global_groups: 0
+  },
   report_global_map:{
     topNumbers:[],
     vectorMap:[]
