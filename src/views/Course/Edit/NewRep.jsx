@@ -9,11 +9,13 @@ import withStyles from "@material-ui/core/styles/withStyles";
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
+import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import NewForm from '../New/NewForm.jsx';
+import NewForm from 'views/Course/New/NewForm.jsx';
 
+import { getData } from "actions/actions.jsx";
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
@@ -25,26 +27,40 @@ const styles = {
     marginBottom: "0px"
   } 
 };
-const initialValuesAmbassador= {
-  language:"en",
-  country:"AFG",
-}
+
+
 class NewRep extends React.Component {
   
+
+  handleUpdateClick = () => {
+   
+    this.props.dispatchSetData();
+    
+  }
+
+  handleUpdateClickSuccess = () => {
+    this.props.dispatchSetData();
+  }
+
+  componentDidMount() {
+    // calling the new action creator
+    this.props.dispatchSetData();
+  }
+
+
   render() {
     const { classes, styles } = this.props;
     let { t } = this.props;
+    const login = "es";
     return (
       <GridContainer justify="center">
-        <GridItem xs={12} sm={12} md={8}>
+        <GridItem xs={12} sm={12} md={12}>
           <Card>
             <CardHeader color="info">
-            <center>
-             <h4 className={classes.cardTitle}>{t("title_new_ambassador")}</h4>
-             </center>
+             <h4 className={classes.cardTitle}>{t("title_new_course")}</h4>
             </CardHeader>
             <CardBody>
-                <NewForm initialValues={initialValuesAmbassador} />  
+                <NewForm  />      
             </CardBody>
           </Card>
         </GridItem>
@@ -57,14 +73,12 @@ NewRep.propTypes = {
   classes: PropTypes.object,
 };
 
-
-const mapDispatchToProps = state => ({
-});
+//export default withStyles(styles)(ReactTables);
 
 const mapDispatchToPropsActions = dispatch => ({
-
+  dispatchSetData: () => dispatch( getData() )
 });
 
 
 const NewRepComponent = translate(withStyles(styles)(NewRep));
-export default withRouter(connect(null, mapDispatchToPropsActions, mapDispatchToProps)(NewRepComponent));
+export default withRouter(connect(null, mapDispatchToPropsActions)(NewRepComponent));

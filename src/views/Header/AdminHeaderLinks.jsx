@@ -25,12 +25,13 @@ import en from 'assets/translate/en.json';
 import fr from 'assets/translate/fr.json';
 import es from 'assets/translate/es.json';
 import pr from 'assets/translate/pr.json';
+import pt from 'assets/translate/pr.json';
 import {
   setTranslations,
   setDefaultLanguage,
 } from 'react-switch-lang';
 
-setTranslations({ en, fr, es, pr });
+setTranslations({ en, fr, es, pr, pt });
 
 
 class AdminHeaderLinks extends React.Component {
@@ -169,11 +170,7 @@ class AdminHeaderLinks extends React.Component {
                 <Person color="danger" className={classes.icons} /> {t("link_user_profile")}
             
           </Link>,
-          <Link to={'/dashboard/student'} className={classes.dropdownLink}>
-            
-          <School color="danger" className={classes.icons} /> {t("link_program_mbs")}
-      
-          </Link>,         
+         
           <Link to={'/dashboard/student'} className={classes.dropdownLink}>
             
                 <LibraryBooks color="danger" className={classes.icons} /> {t("link_program_ambassador")}
@@ -188,7 +185,12 @@ class AdminHeaderLinks extends React.Component {
             
                 <HowToReg color="danger" className={classes.icons} /> {t("link_participants")}
             
-          </Link>,    
+          </Link>,   
+          <Link to={'/certificate'} className={classes.dropdownLink}>
+            
+              <HowToReg color="danger" className={classes.icons} /> {t("link_certificates")}
+          
+          </Link>, 
           <Link onClick={this.logoutUser} className={classes.dropdownLink}>
             
                 <Cancel color="danger" className={classes.icons} /> {t("link_logout")}
@@ -214,12 +216,7 @@ class AdminHeaderLinks extends React.Component {
             
             <School color="danger" className={classes.icons} /> {t("link_program_mbs")}
       
-          </Link>,  
-          <Link to={'/student/postevaluation'} className={classes.dropdownLink}>
-            
-            <School color="danger" className={classes.icons} /> {t("link_program_mbs")}
-      
-          </Link>, 
+          </Link>,          
           <Link onClick={this.logoutUser} className={classes.dropdownLink}>
             
                 <Cancel color="danger" className={classes.icons} /> {t("link_logout")}

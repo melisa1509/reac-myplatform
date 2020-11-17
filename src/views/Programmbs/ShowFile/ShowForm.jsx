@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { translate } from 'react-switch-lang';
+import { BASE_URL } from 'constants/urlTypes';
 // react component for creating dynamic tables
 import ReactTable from "react-table";
 import { connect } from "react-redux";
@@ -86,11 +87,11 @@ class ShowForm extends React.Component {
                   <p>{ moment(programmbs.upload_date_student).format('MMM/DD/YYYY  HH:mm')  }</p>
                   <p className={classes.right}>
                     <a
-                      href={"https://myplatform.interweavesolutions.org/file/" + programmbs.filestudent}
+                      href={BASE_URL +  "/web/file/"  + programmbs.filestudent}
                       target="_blank"
                     >
-                      {t("label_download_file")}
-                    </a>{" "}
+                        {t("label_download_file")}
+                    </a>
                   </p>
               </center>
               <RevisionForm name="revisionplan" labelText={t("label_corrections")} />

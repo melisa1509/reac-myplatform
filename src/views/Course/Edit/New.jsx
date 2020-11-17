@@ -7,10 +7,13 @@ import PerfectScrollbarStyle from 'react-perfect-scrollbar/dist/css/styles.css';
 import Footer from "views/Footer/Footer.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
+import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
+
 
 import mainPageStyle from "assets/jss/material-kit-react/views/mainPage.jsx";
-import NewRep from '../New/NewRep.jsx';
+import NewRep from "./NewRep.jsx";
 import AdminHeader from "views/Header/AdminHeader.jsx";
+import PerfectScrollbar from 'react-perfect-scrollbar';
 
 
 const styles = {
@@ -21,13 +24,17 @@ const styles = {
 class New extends React.Component {
   constructor(props) {
     super(props);
+    // we use this to make the card to appear after the page has been rendered
     this.state = {
+
     };
   }
+
 
   render() {
     const { classes, ...rest } = this.props;
     return (
+      <PerfectScrollbar>
       <div>
         <div
           className={classes.main}
@@ -47,6 +54,7 @@ class New extends React.Component {
           <Footer blackFont />
         </div>
       </div>
+      </PerfectScrollbar>
     );
   }
 }

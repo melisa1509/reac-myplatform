@@ -12,6 +12,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 
 // core components
 import CustomRadioRedux from 'components/CustomRadio/CustomRadioRedux.jsx';
+import CustomRadioReduxDisabled from 'components/CustomRadio/CustomRadioReduxDisabled.jsx';
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import SweetAlert from "react-bootstrap-sweetalert";
@@ -21,8 +22,8 @@ import Button from "components/CustomButtons/Button.jsx";
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
 import styles from "assets/jss/material-dashboard-pro-react/customCheckboxRadioSwitch.jsx";
 import { deleteSuccessful } from "actions/generalActions.jsx";
-import { evaluationPost } from "actions/studentActions.jsx";
 import { withRouter } from 'react-router-dom';
+import { sendProject, evaluationPost  } from "actions/programmbsActions.jsx";
 
 const style = {
     scroll: {
@@ -76,8 +77,12 @@ class PostForm extends React.Component {
       this.props.dispatchDeleteSuccessful();
     }
 
+    handleSendProject(){
+      this.props.dispatchSendProject(this.props.history);
+    }
+
     render() {
-        const { classes, successfull_edit, active_user } = this.props;
+        const { classes, sendRevisionProjectSuccessfull, active_user } = this.props;
         let { t } = this.props;  
           
         const radios = {         
@@ -106,9 +111,7 @@ class PostForm extends React.Component {
                     <GridContainer>
                     <GridItem xs={3} sm={3} md={6}>     
                       <Field
-                        className={classes.disabledCustomRadioRedux}
-                        disabled={true}
-                        component={CustomRadioRedux}
+                        component={CustomRadioReduxDisabled}
                         name="question1"
                         data={option1}
                       />      
@@ -131,7 +134,7 @@ class PostForm extends React.Component {
                     <GridContainer>
                     <GridItem xs={3} sm={3} md={6}> 
                       <Field
-                          component={CustomRadioRedux}
+                          component={CustomRadioReduxDisabled}
                           name="question2"
                           data={radios}
                        /> 
@@ -154,7 +157,7 @@ class PostForm extends React.Component {
                     <GridContainer>
                     <GridItem xs={3} sm={3} md={6}> 
                       <Field
-                          component={CustomRadioRedux}
+                          component={CustomRadioReduxDisabled}
                           name="question3"
                           data={radios}
                        /> 
@@ -178,7 +181,7 @@ class PostForm extends React.Component {
                     <GridContainer>
                       <GridItem xs={3} sm={3} md={6}> 
                       <Field
-                          component={CustomRadioRedux}
+                          component={CustomRadioReduxDisabled}
                           name="question4"
                           data={radios}
                        /> 
@@ -202,7 +205,7 @@ class PostForm extends React.Component {
                       <GridItem xs={3} sm={3} md={6}>
                       <Field
                         disabled
-                        component={CustomRadioRedux}
+                        component={CustomRadioReduxDisabled}
                         name="question5"
                         data={radios}
                       /> 
@@ -225,7 +228,7 @@ class PostForm extends React.Component {
                     <GridContainer>
                     <GridItem xs={3} sm={3} md={6}>
                     <Field
-                      component={CustomRadioRedux}
+                      component={CustomRadioReduxDisabled}
                       name="question6"
                       data={radios}
                     />
@@ -248,7 +251,7 @@ class PostForm extends React.Component {
                     <GridContainer>
                     <GridItem xs={3} sm={3} md={6}>
                     <Field
-                      component={CustomRadioRedux}
+                      component={CustomRadioReduxDisabled}
                       name="question7"
                       data={radios}
                     /> 
@@ -289,11 +292,11 @@ class PostForm extends React.Component {
                 </GridContainer>
                 <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
-                      { successfull_edit ?      
+                      { sendRevisionProjectSuccessfull ?      
                       <SweetAlert
                       success
-                      style={{ display: "block", marginTop: "-100px", close:true }}
-                      onConfirm={() => this.deleteClick()}
+                      style={{ display: "block", marginTop: "-100px" }}
+                      onConfirm={() => this.handleSendProject()}
                       confirmBtnCssClass={
                         this.props.classes.button + " " + this.props.classes.success
                       }
@@ -301,6 +304,7 @@ class PostForm extends React.Component {
                       >
                       <h4>{t("label_save_success")}</h4>
                     </SweetAlert> 
+                    
                       : ""}
                   </GridItem>
                 </GridContainer>
@@ -331,9 +335,10 @@ PostForm = reduxForm({
 PostForm = connect(
   state => ({
     evaluation_post: state.evaluationReducer.evaluation_post,
-    active_user: state.loginReducer.active_user
+    active_user: state.loginReducer.active_user,
+    sendRevisionProjectSuccessfull: state.programmbsReducer.sendRevisionProjectSuccessfull
   }),
-  { dispatchEvaluationPost: evaluationPost, dispatchDeleteSuccessful: deleteSuccessful},
+  { dispatchEvaluationPost: evaluationPost, dispatchDeleteSuccessful: deleteSuccessful, dispatchSendProject: sendProject },
 )(PostForm);
 
 export default  withRouter(translate(withStyles(style)(PostForm)));

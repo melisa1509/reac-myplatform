@@ -610,9 +610,7 @@ class PaperworkTab extends React.Component {
                   </tbody>
                 </table>
               </GridItem>
-            </GridContainer>
-            <br/>
-            <RevisionForm name="revisionpaperwork" labelText={t("label_revision_paperwork")+ " *"} />
+            </GridContainer>          
             <br/>
             <Controls/>
             <ControlNavigation previous={"promotion"} next={"quality"} />
