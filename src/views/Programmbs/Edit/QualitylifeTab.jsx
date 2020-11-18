@@ -66,7 +66,7 @@ class QualitylifeTab extends React.Component {
             <GridContainer justify="center" className={classes.cardTitleCenter}>
                 <GridItem xs={12} sm={12} md={12}>
                   <svg width={550} height={30}>
-                    <text id="qualityP1Text" x={230} y={16} fill="black" fontSize={15} fontWeight="bold" >{(form_programmbs.values !== undefined ? form_programmbs.values.quality_p1 : "")}</text>
+                    <text id="qualityP1Text" x={230} y={16} fill="black" fontSize={15} fontWeight="bold" >{(form_programmbs !== undefined ? ( form_programmbs.values !== undefined ?  form_programmbs.values.quality_p1 : "" )  : "")}</text>
                   </svg>
                 
               <svg width={650} height={350}>
@@ -331,19 +331,19 @@ class QualitylifeTab extends React.Component {
                       stroke: '#325457'
                     }} />
                 <text x={167} y={57} fill="#21393c" fontSize={8} fontWeight="bold">5</text>
-                <polygon id="red_line" points={(form_programmbs.values !== undefined ? form_programmbs.values.quality_q1 : "") + " "+ (form_programmbs.values !== undefined ? form_programmbs.values.quality_q2 : "") + " "+ (form_programmbs.values !== undefined ? form_programmbs.values.quality_q3 : "") + " "+ (form_programmbs.values !== undefined ? form_programmbs.values.quality_q4 : "") + " "+ (form_programmbs.values !== undefined ? form_programmbs.values.quality_q5 : "") + " "+ (form_programmbs.values !== undefined ? form_programmbs.values.quality_q6 : "") + " "+ (form_programmbs.values !== undefined ? form_programmbs.values.quality_q7 : "") + " "+ (form_programmbs.values !== undefined ? form_programmbs.values.quality_q8 : "")} style={{
+                <polygon id="red_line" points={(form_programmbs !== undefined ? ( form_programmbs.values !== undefined ? form_programmbs.values.quality_q1 : "") : "") + " "+ (form_programmbs !== undefined ? ( form_programmbs.values !== undefined ? form_programmbs.values.quality_q2 : "") : "") + " "+ (form_programmbs !== undefined ? ( form_programmbs.values !== undefined ? form_programmbs.values.quality_q3 : "") : "") + " "+ (form_programmbs !== undefined ? ( form_programmbs.values !== undefined ? form_programmbs.values.quality_q4 : "") : "") + " "+ (form_programmbs !== undefined ? ( form_programmbs.values !== undefined ? form_programmbs.values.quality_q5 : "") : "") + " "+ (form_programmbs !== undefined ? ( form_programmbs.values !== undefined ? form_programmbs.values.quality_q6 : "") : "") + " "+ (form_programmbs !== undefined ? ( form_programmbs.values !== undefined ? form_programmbs.values.quality_q7 : "") : "") + " "+ (form_programmbs !== undefined ? ( form_programmbs.values !== undefined ? form_programmbs.values.quality_q8 : "") : "")} style={{
                       fill: 'none',
                       stroke: 'red',
                       strokeWidth: 3,
                       fillRule: 'evenodd'
                     }} />
-                <text id="qualityP4Text" x={424} y={266} fill="black" fontSize={14} fontWeight="bold">{(form_programmbs.values !== undefined ? form_programmbs.values.quality_p4 : "")}</text>
-                <text id="qualityP3Text" x={454} y={159} fill="black" fontSize={14} fontWeight="bold">{(form_programmbs.values !== undefined ? form_programmbs.values.quality_p3 : "")}</text>
-                <text id="qualityP2Text" x={424} y={52} fill="black" fontSize={14} fontWeight="bold">{(form_programmbs.values !== undefined ? form_programmbs.values.quality_p2 : "")}</text>
-                <text id="qualityP6Text" x={30} y={266} fill="black" fontSize={14} fontWeight="bold">{(form_programmbs.values !== undefined ? form_programmbs.values.quality_p6 : "")}</text>
-                <text id="qualityP7Text" x={0} y={159} fill="black" fontSize={14} fontWeight="bold">{(form_programmbs.values !== undefined ? form_programmbs.values.quality_p7 : "")}</text>
-                <text id="qualityP8Text" x={30} y={52} fill="black" fontSize={14} fontWeight="bold">{(form_programmbs.values !== undefined ? form_programmbs.values.quality_p8 : "")}</text>
-                <text id="qualityP5Text" x={230} y={342} fill="black" fontSize={14} fontWeight="bold">{(form_programmbs.values !== undefined ? form_programmbs.values.quality_p5 : "")}</text>
+                <text id="qualityP4Text" x={424} y={266} fill="black" fontSize={14} fontWeight="bold">{(form_programmbs !== undefined ? ( form_programmbs.values !== undefined ? form_programmbs.values.quality_p4 : "") : "")}</text>
+                <text id="qualityP3Text" x={454} y={159} fill="black" fontSize={14} fontWeight="bold">{(form_programmbs !== undefined ? ( form_programmbs.values !== undefined ? form_programmbs.values.quality_p3 : "") : "")}</text>
+                <text id="qualityP2Text" x={424} y={52} fill="black" fontSize={14} fontWeight="bold">{(form_programmbs !== undefined ? ( form_programmbs.values !== undefined ? form_programmbs.values.quality_p2 : "") : "")}</text>
+                <text id="qualityP6Text" x={30} y={266} fill="black" fontSize={14} fontWeight="bold">{(form_programmbs !== undefined ? ( form_programmbs.values !== undefined ? form_programmbs.values.quality_p6 : "") : "")}</text>
+                <text id="qualityP7Text" x={0} y={159} fill="black" fontSize={14} fontWeight="bold">{(form_programmbs !== undefined ? ( form_programmbs.values !== undefined ? form_programmbs.values.quality_p7 : "") : "")}</text>
+                <text id="qualityP8Text" x={30} y={52} fill="black" fontSize={14} fontWeight="bold">{(form_programmbs !== undefined ? ( form_programmbs.values !== undefined ? form_programmbs.values.quality_p8 : "") : "")}</text>
+                <text id="qualityP5Text" x={230} y={342} fill="black" fontSize={14} fontWeight="bold">{(form_programmbs !== undefined ? ( form_programmbs.values !== undefined ? form_programmbs.values.quality_p5 : "") : "")}</text>
               </svg>
            
               </GridItem>

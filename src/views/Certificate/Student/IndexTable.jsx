@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
 import { getCertificateList } from "actions/certificateActions.jsx";
+import { showGroup } from "actions/groupActions.jsx";
 
 import Checkbox from "@material-ui/core/Checkbox";
 import Check from "@material-ui/icons/Check";
@@ -59,15 +60,16 @@ class IndexTable extends React.Component {
 
   componentDidMount() {
     this.props.dispatchGetCertificateList(this.props.match.params.id);
+    this.props.dispatchShowGroup(this.props.match.params.id);
   }
 
  
   render() {
-    const { certificate_list, active_user } = this.props;
+    const { certificate_list, active_user, show_group } = this.props;
     let { t } = this.props;
     let rol=false;  
 
-    if(active_user.roles == "ROLE_EMBASSADOR"){
+    if(active_user.roles == "ROLE_EMBASSADOR" || active_user.roles == "ROLE_STUDENT_EMBASSADOR"){
       rol=true
     }
     
@@ -82,7 +84,7 @@ class IndexTable extends React.Component {
         if (prop.group !== undefined){
           if(prop.group.program === "option.program4"){
             labelButton =  t('button_certificate_mbs_jr');
-            linkCertificate = "https://api.interweavesolutions.org/certificate/mbsjr/student/";
+            linkCertificate = "https://api.interweavesolutions.org/certificate/jr/student/";
           }          
         }
         if(prop.student.programmbs !== undefined){
@@ -235,7 +237,7 @@ class IndexTable extends React.Component {
                       <Button
                         color="info"
                         size="sm"
-                        href={"https://api.interweavesolutions.org/certificate/mbs/list/" + this.props.match.params.id}
+                        href={"https://api.interweavesolutions.org/certificate/" + ( show_group.program === "option.program4" ? "jr" : "mbs" ) +  "/list/" + this.props.match.params.id}
                         target="_blank"
                       >
                       {t("button_download_all_mbs_certificates")}
@@ -267,10 +269,12 @@ class IndexTable extends React.Component {
 const mapStateToProps = state => ({ 
       certificate_list: state.certificateReducer.certificate_list, 
       active_user: state.loginReducer.active_user,
+      show_group: state.groupReducer.show_group
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetCertificateList: (key) => dispatch( getCertificateList(key))
+  dispatchGetCertificateList: (key) => dispatch( getCertificateList(key)),                 
+  dispatchShowGroup: (key) => dispatch( showGroup(key))
 });
 
 const IndexTableComponent = translate(IndexTable);

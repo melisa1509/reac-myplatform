@@ -9,12 +9,13 @@ import withStyles from "@material-ui/core/styles/withStyles";
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
+import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import ShowTable from 'views/Group/Show/ShowTable.jsx';
-import ShowAmbassador from 'views/Group/Show/ShowAmbassador.jsx';
+import NewForm from 'views/Course/New/NewForm.jsx';
 
+import { getData } from "actions/actions.jsx";
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
@@ -28,26 +29,38 @@ const styles = {
 };
 
 
-class ShowRep extends React.Component { 
+class NewRep extends React.Component {
+  
+
+  handleUpdateClick = () => {
+   
+    this.props.dispatchSetData();
+    
+  }
+
+  handleUpdateClickSuccess = () => {
+    this.props.dispatchSetData();
+  }
+
+  componentDidMount() {
+    // calling the new action creator
+    this.props.dispatchSetData();
+  }
+
 
   render() {
-    const { classes, styles, active_user } = this.props;
-    let rol=false
-    if(active_user.roles == "ROLE_EMBASSADOR" || active_user.roles == "ROLE_STUDENT_EMBASSADOR"){
-      rol=true
-    }
+    const { classes, styles } = this.props;
     let { t } = this.props;
+    const login = "es";
     return (
       <GridContainer justify="center">
-        <GridItem xs={12} sm={12} md={9}>
+        <GridItem xs={12} sm={12} md={12}>
           <Card>
             <CardHeader color="info">
-            <center>
-             <h4 className={classes.cardTitle}>{t("title_show_group")}</h4>
-             </center>
+             <h4 className={classes.cardTitle}>{t("title_new_course")}</h4>
             </CardHeader>
             <CardBody>
-              {rol ? <ShowAmbassador  /> : <ShowTable  /> }
+                <NewForm  />      
             </CardBody>
           </Card>
         </GridItem>
@@ -56,18 +69,16 @@ class ShowRep extends React.Component {
   }
 }
 
-ShowRep.propTypes = {
+NewRep.propTypes = {
   classes: PropTypes.object,
 };
 
 //export default withStyles(styles)(ReactTables);
-const mapStateToProps = state => ({ 
-  active_user: state.loginReducer.active_user, 
-});
 
 const mapDispatchToPropsActions = dispatch => ({
+  dispatchSetData: () => dispatch( getData() )
 });
 
 
-const ShowRepComponent = translate(withStyles(styles)(ShowRep));
-export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(ShowRepComponent));
+const NewRepComponent = translate(withStyles(styles)(NewRep));
+export default withRouter(connect(null, mapDispatchToPropsActions)(NewRepComponent));

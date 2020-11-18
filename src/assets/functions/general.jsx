@@ -8,3 +8,9 @@ export const jsonToArray = (jsonValues) => {
     }
     return arrayValues;
 }
+
+export const adjustDate = value => {
+    let date = new Date(value)
+    date.setMinutes(date.getMinutes() + date.getTimezoneOffset())
+    return date;
+}

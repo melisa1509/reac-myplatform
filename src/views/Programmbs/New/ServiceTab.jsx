@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 // react component for creating dynamic tables
 import { connect } from "react-redux";
 import { Field, reduxForm } from 'redux-form';
+import { BASE_URL } from 'constants/urlTypes';
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -111,7 +112,6 @@ class ServiceTab extends React.Component {
                     rows: 7,
                   }}
                 />
-                <br/>
                 <InputLabel className={classes.label}>
                     <SuccessLabel className={classes.label}>{t("question_service6")}</SuccessLabel>
                 </InputLabel>

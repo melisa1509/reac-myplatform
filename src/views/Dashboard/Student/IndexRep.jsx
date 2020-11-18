@@ -49,8 +49,10 @@ class IndexRep extends React.Component {
                 <h4 className={classes.cardTitle}>{t("title_progress_dashboard")}</h4>
             </CardHeader>
             <CardBody>                
-                <center><h3 className={classes.cardTitleCenter} >{ active_user.studentgroup.group.program === "option.program1" ? t("title_program_mbs") : t("title_program_mbs_junior")}</h3></center>
+                <center><h3 className={classes.cardTitleCenter} >{ active_user.studentgroup.group.program === "option.program4" ? t("title_program_mbs_junior") : t("title_program_mbs")}</h3></center>
                 {dashboard_student.progressMbs.submitted === "state.revision" ? <center><Danger><h5 className={classes.infoText}>{t("label_success_revision")}</h5></Danger></center>: ""}
+                {dashboard_student.progressMbs.submitted === "state.approved" ? <center><Danger><h5 className={classes.infoText}>{t("message_approved_project")}</h5></Danger></center>: ""}
+                
                 <p>{t("label_program_mbs_starting")}</p>
                 <br/>
                 <IndexTable  />      
@@ -70,7 +72,7 @@ class IndexRep extends React.Component {
                   {dashboard_student.progressSa.submitted === "state.revision" ? <center><Danger><h5 className={classes.infoText}>{t("label_success_revision")}</h5></Danger></center>: ""}
                   <p>{t("label_program_sa_starting")}</p>
                   <br/>
-                  <IndexTableSa  />      
+                  {dashboard_student.progressMbs.submitted !== "state.approved" ? <center><Danger><h5 className={classes.infoText}>{t("label_restricted_access")}</h5></Danger></center>: <IndexTableSa  />}
               </CardBody>
             </Card>          
           </GridItem>

@@ -24,8 +24,8 @@
         "button_delete":                    "Eliminar",
         "button_download_report":           "Descargar Reporte",
         "button_download_all_attendance_certificates": "Descargar Certificados de Participación",
-        "button_download_all_mbs_certificates": "Download all MBS Certificates",
-        "button_download_all_ambassador_certificates": "Download all Success Ambassador Certificates",
+        "button_download_all_mbs_certificates": "Descargar todos los certificados Mbs",
+        "button_download_all_ambassador_certificates": "Descargar todos los certificados de Embajador de Éxito",
         "button_hide_all_list":              "Ocultar lista Completa",
         "button_manage_students":            "Estudiantes",
         "button_mbs" :                       "Mbs",
@@ -33,6 +33,7 @@
         "button_post_evaluation":            "Post",
         "button_project_progress":           "Progreso Proyectos",
         "button_return_to_list":             "Regresar al Listado",
+        "button_return":                     "Regresar",
         "button_register":                   "Registrarme",
         "button_remove_row":                 "Eliminar Fila",
         "button_save":                       "Guardar",
@@ -50,6 +51,7 @@
         "button_create_group":               "Crear nuevo Grupo",
         
 
+        "label_month":                      "Mes",
         "label_lastName":                   "Apellido",
         "label_email":                      "Correo",
         "label_chose_language":             "Elegir idioma",
@@ -114,7 +116,7 @@
         "label_paperwork2_option1":          "Papel y Lapiz",
         "label_paperwork2_option2":          "Hoja de Calculo",
         "label_paperwork2_option3":          "Aplicación Movil",
-        "label_paperwork2_option4":          "All of the above are ways that you can keep records and paperwork in your business.",
+        "label_paperwork2_option4":          "Todas las opciones anteriores.",
         "label_paperwork3_option1":          "Registro de Ingresos y Gastos",
         "label_paperwork3_option2":          "Registro de Pérdidas y Ganancias ",
         "label_paperwork3_option3":          "Registro de Flujo de Caja",
@@ -203,6 +205,7 @@
    
         "link_admins":                      "Administradores",
         "link_administrator":               "Administration",
+        "link_ambassador_student":          "Avanzar a Estudiante Embajador",
         "link_certificates":                "Certificados",
         "link_dashboard":                   "Dashboard",
         "link_groups":                      "Grupos",
@@ -214,9 +217,12 @@
         "link_reports":                     "Reportes",
         "link_username":                    "Usuario",
         "link_user_profile":                "Perfil de Usuario",
+        "link_student":                     "Estudiante",
         "link_ambassadors":                 "Embajadores",
+        "link_ambassador":                  "Embajador",
         "link_codes":                       "Codigo",
         "link_success_story":               "Historias de Éxito",
+        "link_success_stories":             "Historias de Éxito",
         "link_generate_groups_question1":   "https://interweavesolutions.org/galeria-de-medios",
         "link_generate_groups_question3":   "https://interweavesolutions.org/recursos-embajadores",
   
@@ -269,6 +275,7 @@
         "title_project_manager":            "Project Manager", 
         "title_program_use_mbs":            "Como usar este Programa",
         "title_program_mbs":                "Maestria de Negocios en la calle",
+        "title_program_mbs_junior":         "Maestria de Negocios en la calle Junior",
         "title_pre_evaluation":             "Formulario de Pre Evaluación",
         "title_quality_life":               "Calidad de Vida", 
         "title_wheel_quality_life":         "Rueda de Calidad de Vida",
@@ -757,7 +764,8 @@
                 "modality2":                 "En Línea",
                 "program1":                  "Maestría de Negocios",
                 "program2":                  "Embajador de Éxito",
-                "program3":                  "Maestría + Embajador"
+                "program3":                  "Maestría + Embajador",
+                "program4":                  "Maestría de Negocios Junior"
             }
 
 

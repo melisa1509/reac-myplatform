@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 // react component for creating dynamic tables
 import { connect } from "react-redux";
 import { Field, reduxForm } from 'redux-form';
+import { BASE_URL } from 'constants/urlTypes';
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -67,7 +68,7 @@ class HistoryTab extends React.Component {
                 <br/>
                 <InputLabel className={classes.label}>
                     <SuccessLabel className={classes.label}>{t("question_history2")}</SuccessLabel>
-                </InputLabel>
+                </InputLabel>                
                 <Field
                   component={FileUpload}
                   name="history2"
@@ -111,7 +112,8 @@ HistoryTab = reduxForm({
 HistoryTab = connect(
   state => ({
     initialValues: state.programmbsReducer.data, 
-    form_programmbs: state.form.programmbs
+    form_programmbs: state.form.programmbs,
+    programmbs: state.programmbsReducer.programmbs
   }),
   { load: loadFormProgrammbs }, 
 )(HistoryTab);
