@@ -45,7 +45,7 @@ import UploadImage from 'views/Group/Participants/Index.jsx';
 import StudentGroup from 'views/Group/Participants/Index.jsx';
 
 //Course
-import CourseNew from 'views/Course/New/New.jsx';
+//import CourseNew from 'views/Course/New/New.jsx';
 
 //Programmbs
 import ProgramMbs from 'views/Programmbs/Show/Show.jsx';
@@ -129,8 +129,12 @@ import AdminPassword from 'views/Administrator/ChangePassword/ChangePassword.jsx
 import Register from 'views/Register/Index.jsx';
 import RegisterStudent from 'views/Register/Participants/New.jsx';
 import RegisterEvaluation from 'views/Register/PreEvaluation/New.jsx';
+<<<<<<< HEAD
+//import NewCourse from 'views/Course/New/New.jsx';
+=======
 
 import NewCourse from 'views/Course/New/New.jsx';
+>>>>>>> 5604c7690916c60c6bb381bca429bcb6cb92878c
 import { store } from 'store/index.jsx';
 
 import "assets/scss/material-dashboard-pro-react.scss?v=1.7.0";
@@ -169,7 +173,6 @@ ReactDOM.render(
           <Route path="/student/preevaluation" component={PreEvaluationStudent} exact />
           <Route path="/student/postevaluation" component={PostEvaluationStudent} exact />
           <Route path="/student/editpassword/:id" component={StudentChangePassword} exact /> 
-          <Route path="/course/new" component={CourseNew} />
           <Route path="/programmbs/new" component={NewProgramMbs} exact/>
           <Route path="/programmbs/new/plan" component={NewPlanProgramMbs} exact/>
           <Route path="/programmbs/new/product" component={NewProductProgramMbs} exact/>
@@ -243,7 +246,6 @@ ReactDOM.render(
           <Route path="/code" component={ListCode} exact />
           <Route path="/code/show/:id" component={ShowCode} exact />
           <Route path="/code/edit/:id" component={EditCode} exact />
-          <Route path="/course/new" component={NewCourse} exact />
           <Route path="/admin" component={ListAdmin} exact />
           <Route path="/admin/new" component={NewAdmin} exact />
           <Route path="/admin/show/:id" component={ShowAdmin} exact />
