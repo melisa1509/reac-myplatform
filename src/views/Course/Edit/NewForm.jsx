@@ -26,6 +26,7 @@ import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSel
 import { verifyChange } from "assets/validation/index.jsx";
 import { createBrowserHistory } from "history";
 import { withRouter } from 'react-router-dom';
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 
 const history = createBrowserHistory();
@@ -48,6 +49,43 @@ const style = {
     ...validationFormsStyle
 };
 
+// fake data generator
+const getItems = count =>
+  Array.from({ length: count }, (v, k) => k).map(k => ({
+    id: `item-${k}`,
+    content: `item ${k}`
+  }));
+
+// a little function to help us with reordering the result
+const reorder = (list, startIndex, endIndex) => {
+  const result = Array.from(list);
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
+
+  return result;
+};
+
+const grid = 8;
+
+const getItemStyle = (isDragging, draggableStyle) => ({
+  // some basic styles to make the items look a bit nicer
+  userSelect: "none",
+  padding: grid * 2,
+  margin: `0 0 ${grid}px 0`,
+
+  // change background colour if dragging
+  background: isDragging ? "lightgreen" : "grey",
+
+  // styles we need to apply on draggables
+  ...draggableStyle
+});
+
+const getListStyle = isDraggingOver => ({
+  background: isDraggingOver ? "lightblue" : "lightgrey",
+  padding: grid,
+  width: 250
+});
+
 
 
 
@@ -55,138 +93,28 @@ class NewForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            // register form
-            registerEmail: "",
-            registerEmailState: "",
-            registerPassword: "",
-            registerPasswordState: "",
-            registerConfirmPassword: "",
-            registerConfirmPasswordState: "",
-            registerCheckbox: false,
-            registerCheckboxState: "",
-            // login form
-            loginEmail: "",
-            loginEmailState: "",
-            loginPassword: "",
-            loginPasswordState: "",
-            name: "",
-            nameState: "",
-            // type validation
-            required: "",
-            requiredState: "",
-            typeEmail: "",
-            typeEmailState: "",
-            number: "",
-            numberState: "",
-            url: "",
-            urlState: "",
-            equalTo: "",
-            whichEqualTo: "",
-            equalToState: "",
-            // range validation
-            minLength: "",
-            minLengthState: "",
-            maxLength: "",
-            maxLengthState: "",
-            range: "",
-            rangeState: "",
-            minValue: "",
-            minValueState: "",
-            maxValue: "",
-            maxValueState: "",
-
-            courseName:"",
-            courseNameState:"",
-            courseDescription:"",
-            courseDescriptionState:"",
-
-            // Select
-            simpleSelect: "",
-            desgin: false,
-            code: false,
-            develop: false
+          items: getItems(10)
         };
-        this.registerClick = this.registerClick.bind(this);
-        this.loginClick = this.loginClick.bind(this);
-        this.saveClick = this.saveClick.bind(this);
-        this.rangeClick = this.rangeClick.bind(this);
+        this.onDragEnd = this.onDragEnd.bind(this);
+       
       }
      
-      registerClick() {
-        if (this.state.registerEmailState === "") {
-          this.setState({ registerEmailState: "error" });
+      onDragEnd(result) {
+        // dropped outside the list
+        if (!result.destination) {
+          return;
         }
-        if (this.state.registerPasswordState === "") {
-          this.setState({ registerPasswordState: "error" });
-        }
-        if (this.state.registerConfirmPasswordState === "") {
-          this.setState({ registerConfirmPasswordState: "error" });
-        }
-        if (this.state.registerCheckboxState === "") {
-          this.setState({ registerCheckboxState: "error" });
-        }
+    
+        const items = reorder(
+          this.state.items,
+          result.source.index,
+          result.destination.index
+        );
+    
+        this.setState({
+          items
+        });
       }
-      loginClick() {
-        if (this.state.loginEmailState === "") {
-          this.setState({ loginEmailState: "error" });
-        }
-        if (this.state.loginPasswordState === "") {
-          this.setState({ loginPasswordState: "error" });
-        }
-        if (this.state.nameState === "") {
-          this.setState({ nameState: "error" });
-        }
-      }
-      saveClick() {
-        if (this.state.courseNameState === "") {
-          this.setState({ courseNameState: "error" });
-        }
-        if (this.state.courseDescriptionState === "") {
-          this.setState({ courseDescriptionState: "error" });
-        }
-        if(this.state.courseNameState === "success" && this.state.courseDescriptionState === "success"){
-          const params = {
-            courseName: this.state.courseName,
-            courseDescription: this.state.courseDescription,
-            courseLanguage: "En",
-            courseState: "state_draft",
-            redirect: this.props.history,
-          }
-          const stateRedux = store.getState();
-        this.props.dispatchNewCourse(params);
-        //this.props.history.push("/age");
-        }
-      }
-
-      rangeClick() {
-        if (this.state.minLengthState === "") {
-          this.setState({ minLengthState: "error" });
-        }
-        if (this.state.maxLengthState === "") {
-          this.setState({ maxLengthState: "error" });
-        }
-        if (this.state.rangeState === "") {
-          this.setState({ rangeState: "error" });
-        }
-        if (this.state.minValueState === "") {
-          this.setState({ minValueState: "error" });
-        }
-        if (this.state.maxValueState === "") {
-          this.setState({ maxValueState: "error" });
-        }
-      }
-    sendState() {
-        return this.state;
-    }
-    handleSimple = event => {
-        this.setState({ [event.target.name]: event.target.value });
-    };
-    handleChange = name => event => {
-        this.setState({ [name]: event.target.checked });
-    };
-    isValidated() {
-        return true;
-    }
 
     componentWillUnmount() {
       localStorage.setItem('someSavedState', JSON.stringify(this.state))
@@ -209,23 +137,36 @@ class NewForm extends React.Component {
             <GridItem xs={12} sm={12} md={12}>
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
-                  <Editor
-                    initialValue="<p>This is the initial content of the editor</p>"
-                    init={{
-                      height: 500,
-                      menubar: 'file edit view insert format tools table help',
-                      plugins: 'print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons',
-                      toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
-                      toolbar_sticky: true,
-                      autosave_ask_before_unload: true,
-                      autosave_interval: '30s',
-                      autosave_prefix: '{path}{query}-{id}-',
-                      autosave_restore_when_empty: false,
-                      autosave_retention: '2m',
-                      image_advtab: true,
-                    }}
-                    onEditorChange={this.handleEditorChange}
-                  />
+                  <DragDropContext onDragEnd={this.onDragEnd}>
+                        <Droppable droppableId="droppable">
+                          {(provided, snapshot) => (
+                            <div
+                              {...provided.droppableProps}
+                              ref={provided.innerRef}
+                              style={getListStyle(snapshot.isDraggingOver)}
+                            >
+                              {this.state.items.map((item, index) => (
+                                <Draggable key={item.id} draggableId={item.id} index={index}>
+                                  {(provided, snapshot) => (
+                                    <div
+                                      ref={provided.innerRef}
+                                      {...provided.draggableProps}
+                                      {...provided.dragHandleProps}
+                                      style={getItemStyle(
+                                        snapshot.isDragging,
+                                        provided.draggableProps.style
+                                      )}
+                                    >
+                                      {item.content}
+                                    </div>
+                                  )}
+                                </Draggable>
+                              ))}
+                              {provided.placeholder}
+                            </div>
+                          )}
+                        </Droppable>
+                      </DragDropContext>
                   </GridItem>
               </GridContainer>
             </GridItem>

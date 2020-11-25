@@ -34,7 +34,6 @@ class New extends React.Component {
   render() {
     const { classes, ...rest } = this.props;
     return (
-      <PerfectScrollbar>
       <div>
         <div
           className={classes.main}
@@ -54,7 +53,6 @@ class New extends React.Component {
           <Footer blackFont />
         </div>
       </div>
-      </PerfectScrollbar>
     );
   }
 }

@@ -17,6 +17,8 @@ import SATable from './SATable.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
+import { withRouter } from 'react-router-dom';
+import { getProjectProgress } from "actions/groupActions";
 
 
 const styles = {
@@ -30,6 +32,9 @@ const styles = {
 
 class IndexRep extends React.Component {
  
+  componentDidMount() {
+    this.props.dispatchGetProjectProgress(this.props.match.params.id);
+  }
 
   render() {
     const { classes, progress_list } = this.props;
@@ -73,8 +78,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToPropsActions = dispatch => ({
+  dispatchGetProjectProgress: (key) => dispatch( getProjectProgress(key) )
 });
 
 
 const NewRepComponent = translate(withStyles(styles)(IndexRep));
-export default connect(mapStateToProps, mapDispatchToPropsActions)(NewRepComponent);
+export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(NewRepComponent));

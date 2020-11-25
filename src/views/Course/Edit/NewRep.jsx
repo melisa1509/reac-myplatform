@@ -13,7 +13,7 @@ import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import NewForm from 'views/Course/New/NewForm.jsx';
+import NewForm from 'views/Course/Edit/NewForm.jsx';
 
 import { getData } from "actions/actions.jsx";
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";

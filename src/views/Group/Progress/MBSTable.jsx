@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 // react component for creating dynamic tables
 import ReactTable from "react-table";
 import { connect } from "react-redux";
-import { getProjectProgress } from "actions/groupActions";
 import { Link } from "react-router-dom";
 
 // core components
@@ -54,21 +53,18 @@ class MBSTable extends React.Component {
     
   }
 
-  componentDidMount() {
-    this.props.dispatchGetProjectProgress(this.props.match.params.id);
-  }
-
+ 
  
   render() {
-    const { progress_list, loading } = this.props;
-    let { t } = this.props;
+    const {  loading, progress_list } = this.props;
+    let { t } = this.props;    
             
     const data = progress_list.progressMbs.map((prop, key) => {
       return {
         id: key, 
         name: prop.name,
         plan:prop.plan,
-        product:prop.product,
+        product:prop.product, 
         process:prop.process,
         price:prop.price,
         promotion:prop.promotion,
@@ -206,7 +202,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetProjectProgress: (key) => dispatch( getProjectProgress(key) )
 });
 
 const MBSTableComponent = translate(MBSTable);
