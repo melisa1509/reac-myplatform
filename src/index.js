@@ -129,12 +129,8 @@ import AdminPassword from 'views/Administrator/ChangePassword/ChangePassword.jsx
 import Register from 'views/Register/Index.jsx';
 import RegisterStudent from 'views/Register/Participants/New.jsx';
 import RegisterEvaluation from 'views/Register/PreEvaluation/New.jsx';
-<<<<<<< HEAD
 //import NewCourse from 'views/Course/New/New.jsx';
-=======
-
 import NewCourse from 'views/Course/New/New.jsx';
->>>>>>> 5604c7690916c60c6bb381bca429bcb6cb92878c
 import { store } from 'store/index.jsx';
 
 import "assets/scss/material-dashboard-pro-react.scss?v=1.7.0";
