@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 // react component for creating dynamic tables
 import ReactTable from "react-table";
 import { connect } from "react-redux";
-import { getProjectProgress } from "actions/groupActions";
 import { Link } from "react-router-dom";
 
 // core components
@@ -54,9 +53,6 @@ class SATable extends React.Component {
     
   }
 
-  componentDidMount() {
-    this.props.dispatchGetProjectProgress(this.props.match.params.id);
-  }
 
  
   render() {
@@ -187,7 +183,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetProjectProgress: (key) => dispatch( getProjectProgress(key) )
 });
 
 const SATableComponent = translate(SATable);
