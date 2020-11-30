@@ -244,6 +244,7 @@ ReactDOM.render(
           <Route path="/code/show/:id" component={ShowCode} exact />
           <Route path="/code/edit/:id" component={EditCode} exact />
           <Route path="/course/edit" component={EditCourse} exact />
+          <Route path="/course/new" component={NewCourse} exact />
           <Route path="/admin" component={ListAdmin} exact />
           <Route path="/admin/new" component={NewAdmin} exact />
           <Route path="/admin/show/:id" component={ShowAdmin} exact />

@@ -1,53 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { translate } from 'react-switch-lang';
-
-// react component for creating dynamic tables
-import { connect } from "react-redux";
-import { newCourse } from "actions/courseActions.jsx";
-import { store } from "store";
-import { Editor } from '@tinymce/tinymce-react';
-
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-
-// core components
-import GridContainer from "components/Grid/GridContainer.jsx";
-import GridItem from "components/Grid/GridItem.jsx";
-import Button from "components/CustomButtons/Button.jsx";
-import CustomInput from 'components/CustomInput/CustomInput.jsx';
-import LanguageSelect from "views/Select/LanguageSelect.jsx";
-import StateSelect from "views/Select/StateSelect.jsx";
-// style for this view
-import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
-import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
-
-import { verifyChange } from "assets/validation/index.jsx";
-import { createBrowserHistory } from "history";
-import { withRouter } from 'react-router-dom';
+import FormControl from "@material-ui/core/FormControl";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 
-const history = createBrowserHistory();
-
-const style = {
-    infoText: {
-      fontWeight: "300",
-      margin: "10px 0 30px",
-      textAlign: "center"
-    },
-    inputAdornmentIcon: {
-      color: "#555"
-    },
-    choiche: {
-      textAlign: "center",
-      cursor: "pointer",
-      marginTop: "20px"
-    },
-    ...customSelectStyle,
-    ...validationFormsStyle
-};
+import extendedFormsStyle from "assets/jss/material-dashboard-pro-react/views/extendedFormsStyle.jsx";
 
 // fake data generator
 const getItems = count =>
@@ -86,10 +46,8 @@ const getListStyle = isDraggingOver => ({
   width: 250
 });
 
+class DragAndDrop extends React.Component {
 
-
-
-class NewForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -97,49 +55,32 @@ class NewForm extends React.Component {
         };
         this.onDragEnd = this.onDragEnd.bind(this);
        
-      }
+    }
      
-      onDragEnd(result) {
+    onDragEnd(result) {
         // dropped outside the list
         if (!result.destination) {
-          return;
+            return;
         }
-    
+
         const items = reorder(
-          this.state.items,
-          result.source.index,
-          result.destination.index
-        );
+            this.state.items,
+            result.source.index,
+            result.destination.index
+        );                                                                                                                                                                                                                                                                                      
 
         console.log(items);
-    
+
         this.setState({
-          items
+            items
         });
-      }
-
-    componentWillUnmount() {
-      localStorage.setItem('someSavedState', JSON.stringify(this.state))
     }
-
-    componentWillMount() {
-      const rehydrate = JSON.parse(localStorage.getItem('someSavedState'))
-      this.setState(rehydrate)
-    }
-
-
-    render() {
-        const { classes, styles } = this.props;
-        let { t } = this.props;
-        const login = "es";
-        
-        
-        return (
-          <GridContainer justify="center">
-            <GridItem xs={12} sm={12} md={12}>
-              <GridContainer justify="center">
-                  <GridItem xs={12} sm={12} md={12}>
-                  <DragDropContext onDragEnd={this.onDragEnd}>
+  
+  render() {
+    const { input, placeholder } = this.props;
+    return (
+      
+                <DragDropContext  name={input.name}>
                         <Droppable droppableId="droppable">
                           {(provided, snapshot) => (
                             <div
@@ -169,25 +110,12 @@ class NewForm extends React.Component {
                           )}
                         </Droppable>
                       </DragDropContext>
-                  </GridItem>
-              </GridContainer>
-            </GridItem>
-          </GridContainer>
-                
-        );
-    }
+    );
+  }
 }
 
-const mapStateToProps = state => ({ 
-      
-});
+DragAndDrop.propTypes = {
+  classes: PropTypes.object
+};
 
-const mapDispatchToPropsActions = dispatch => ({
-  dispatchNewCourse: params => dispatch(newCourse(params)), 
-});
-
-const NewFormComponent = translate(withStyles(style)(NewForm));
-export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(NewFormComponent));
-
-
-
+export default withStyles(extendedFormsStyle)(DragAndDrop);

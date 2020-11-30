@@ -33,6 +33,7 @@ import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweet
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
 import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
 import { withRouter } from 'react-router-dom';
+import DragAndDrop from "components/DragAndDrop/DragAndDrop";
 
 const style = {
     infoText: {
@@ -117,83 +118,19 @@ class NewForm extends React.Component {
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={12}>
               <form>
-              <GridContainer justify="center">
-              </GridContainer>
-              <GridContainer justify="center">
-                  <GridItem xs={12} sm={12} md={12}>
-                      { successfull_new ?      
-                        <SweetAlert
-                          success
-                          style={{ display: "block", marginTop: "-100px", close:true }}
-                          onConfirm={() => this.deleteClick()}
-                          confirmBtnCssClass={
-                              this.props.classes.button + " " + this.props.classes.success
-                          }
-                          confirmBtnText={t("button_continue")}
-                          >
-                          <h4>{t("label_save_success")}</h4>
-                        </SweetAlert> 
-                      : ""}
-                  </GridItem>
-              </GridContainer>
-              <GridContainer >
-                  <GridItem xs={12} sm={12} md={12}>
-                    <Field
-                      labelText={t("label_username")+ " *"}
-                      component={TextEditor}
-                      name="username"
-                  
-                    />
-                </GridItem>
-              </GridContainer>
+             
+              
              
               <GridContainer >
                   <GridItem xs={12} sm={12} md={7}>
                     <Field
-                      name="country"
-                      formName="programmbs"
-                      component={CountrySelect}
+                      name="list2"
+                      component={DragAndDrop}
                     />
                   </GridItem>
               </GridContainer>
-              <GridContainer >
-                  <GridItem xs={12} sm={12} md={9}>
-                    <Field
-                      labelText={t("label_city")+ " *"}
-                      component={CustomInputRedux}
-                      name="city"
-                      success={this.state.cityState === "success"}
-                      error={this.state.cityState === "error"}
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        onKeyUp: event => 
-                              verifyChange(event, "city", "length", 0, null, this),
-                        type: "text",
-                      }}
-                    />
-                </GridItem>
-              </GridContainer>
-              <GridContainer >
-                  <GridItem xs={12} sm={12} md={9}>
-                    <Field
-                      labelText={t("label_whatsapp")+ " *"}
-                      component={CustomInputRedux}
-                      name="whatsapp"
-                      success={this.state.whatsappState === "success"}
-                      error={this.state.whatsappState === "error"}
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        onKeyUp: event => 
-                              verifyChange(event, "whatsapp", "length", 0, null, this),
-                        type: "text",
-                      }}
-                    />
-                </GridItem>
-              </GridContainer>
+             
+            
               <GridContainer >
                   <GridItem xs={12} sm={12} md={9}>
                     <Field
