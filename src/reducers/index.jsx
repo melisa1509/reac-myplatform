@@ -16,6 +16,7 @@ import { codeReducer } from 'reducers/code.jsx';
 import { administratorReducer } from 'reducers/administrator.jsx';
 import { evaluationReducer } from 'reducers/evaluation.jsx';
 import { registerReducer } from 'reducers/register.jsx';
+import { courseReducer } from 'reducers/course.jsx';
 import { reducer as reduxFormReducer } from 'redux-form';
 import { LOGOUT_USER } from 'constants/actionTypes';
 
@@ -37,6 +38,7 @@ const manageReducer =  combineReducers({
     administratorReducer,
     evaluationReducer,
     registerReducer,
+    courseReducer,
     form: reduxFormReducer,
 })
 

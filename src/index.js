@@ -130,8 +130,9 @@ import Register from 'views/Register/Index.jsx';
 import RegisterStudent from 'views/Register/Participants/New.jsx';
 import RegisterEvaluation from 'views/Register/PreEvaluation/New.jsx';
 
+//Course
 import NewCourse from 'views/Course/New/New.jsx';
-import EditCourse from 'views/Course/Edit/New.jsx';
+import ListCourse from 'views/Course/Index.jsx';
 import { store } from 'store/index.jsx';
 
 import "assets/scss/material-dashboard-pro-react.scss?v=1.7.0";
@@ -243,8 +244,8 @@ ReactDOM.render(
           <Route path="/code" component={ListCode} exact />
           <Route path="/code/show/:id" component={ShowCode} exact />
           <Route path="/code/edit/:id" component={EditCode} exact />
-          <Route path="/course/edit" component={EditCourse} exact />
           <Route path="/course/new" component={NewCourse} exact />
+          <Route path="/course" component={ListCourse} exact />
           <Route path="/admin" component={ListAdmin} exact />
           <Route path="/admin/new" component={NewAdmin} exact />
           <Route path="/admin/show/:id" component={ShowAdmin} exact />
