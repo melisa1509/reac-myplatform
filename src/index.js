@@ -12,6 +12,7 @@ import EditStudent from 'views/Student/Edit/Edit.jsx';
 import PreEvaluationStudent from 'views/Student/PreEvaluation/New.jsx';
 import PostEvaluationStudent from 'views/Student/PostEvaluation/New.jsx';
 import StudentChangePassword  from 'views/Student/ChangePassword/ChangePassword.jsx';
+import SuccessStory  from 'views/History/Index.jsx';
 
 //Ambassador
 import Ambassador from 'views/Ambassador/Index.jsx'
@@ -136,6 +137,7 @@ import ListCourse from 'views/Course/Index.jsx';
 import { store } from 'store/index.jsx';
 
 import "assets/scss/material-dashboard-pro-react.scss?v=1.7.0";
+import Success from "components/Typography/Success";
 
 const hist = createBrowserHistory();
 
@@ -253,7 +255,8 @@ ReactDOM.render(
           <Route path="/admin/editpassword/:id" component={AdminPassword} exact /> 
           <Route path="/register" component={Register} exact /> 
           <Route path="/register/new/:id" component={RegisterStudent} exact /> 
-          <Route path="/register/evaluation" component={RegisterEvaluation} exact /> 
+          <Route path="/register/evaluation" component={RegisterEvaluation} exact />
+          <Route path="/student/successStory/list" component={SuccessStory} exact /> 
           <Route path="/password" component={newPassword} exact /> 
           <Redirect from="/" to="/login" />
         </Switch>

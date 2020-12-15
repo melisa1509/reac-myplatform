@@ -384,7 +384,8 @@ class GlobalTable extends React.Component {
                 <img src={mg_flag} alt="mg_flag" key={"flag"} />,
                 country[35],
                 mbs[35],
-                sa[35]
+                sa[35],
+                jr[35]
               ],
             ]}
           />

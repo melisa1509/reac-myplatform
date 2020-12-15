@@ -97,6 +97,11 @@ class AdminHeaderLinks extends React.Component {
                 <School color="danger" className={classes.icons} /> {t("link_certificates")}
             
           </Link>,
+          <Link to={'/student/successStory/list'} className={classes.dropdownLink}>
+            
+                <School color="danger" className={classes.icons} /> {t("link_success_story")}
+ 
+          </Link>, 
           <Link to={'/code'} className={classes.dropdownLink}>
             
                 <TrackChanges color="danger" className={classes.icons} /> {t("link_codes")}
@@ -142,7 +147,12 @@ class AdminHeaderLinks extends React.Component {
             
                 <School color="danger" className={classes.icons} /> {t("link_certificates")}
             
-          </Link>,         
+          </Link>,      
+           <Link to={'/student/successStory/list'} className={classes.dropdownLink}>
+            
+                <School color="danger" className={classes.icons} /> {t("link_success_story")}
+       
+          </Link>,    
           <Link to={'/report'} className={classes.dropdownLink}>
             
                 <LibraryBooks color="danger" className={classes.icons} /> {t("link_reports")}
