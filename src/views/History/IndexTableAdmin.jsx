@@ -4,13 +4,9 @@ import PropTypes from "prop-types";
 // react component for creating dynamic tables
 import ReactTable from "react-table";
 import { connect } from "react-redux";
-import { getAmbassadorList } from "actions/ambassadorActions.jsx";
+import { successStory  } from "actions/studentActions.jsx";
 import { Link } from "react-router-dom";
 
-// @material-ui/icons
-import Create from "@material-ui/icons/Create";
-import Visibility from "@material-ui/icons/Visibility";
-import Close from "@material-ui/icons/Close";
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
@@ -19,7 +15,7 @@ import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
 import { translate } from 'react-switch-lang';
 
-class IndexTable extends React.Component {
+class IndexTableAdmin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -59,51 +55,28 @@ class IndexTable extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatchGetAmbassadorList();
+    this.props.dispatchSuccessStory();
   }
  
   render() {
-    const { ambassador_list, loading } = this.props;
+    const { success_story, loading } = this.props;
     let { t } = this.props;
             
-    const data = ambassador_list.map((prop, key) => {
+    const data = success_story.map((prop, key) => {
       return {
         id: key, 
-        name: prop.first_name + " " + prop.last_name ,
-        username:prop.username,
-        country:prop.country,
-        code:prop.code,
+        name: prop.student.first_name + " " + prop.student.last_name ,
+        nameAmbassador:prop.group.embassador.first_name + " " + prop.group.embassador.last_name ,
+        group:prop.group.name,
         actions: (
           // we've added some custom button actions
           <div className="actions-left">
-            <Link to={"/ambassador/show/" + prop.id}>
+            <Link to={"/programmbs/show/history/" + prop.student.id}>
               <Button
-                justIcon
-                round4
-                simple
+                size="sm"
                 color="info"
               >
-                <Visibility />
-              </Button>
-            </Link>{" "}
-            <Link to={"/ambassador/edit/" + prop.id}>
-              <Button
-                justIcon
-                round
-                simple            
-                color="warning"
-              >
-                <Create />
-              </Button>
-            </Link>{" "}
-            <Link to={"/ambassador/show/" + prop.id}>
-              <Button
-                justIcon
-                round
-                simple            
-                color="danger"
-              >
-                <Close />
+                 {t('button_story')}
               </Button>
             </Link>{" "}
           </div>
@@ -140,19 +113,14 @@ class IndexTable extends React.Component {
                   accessor: "name",
                 },
                 {
-                  Header: t("th_username"),
-                  accessor: "username",
+                  Header: t("th_group"),
+                  accessor: "group",
                   resizable:true
                 },
                 {
-                  Header: t("th_country"),
-                  accessor: "country",
-                  width: 150,
-                },
-                {
-                  Header: t("th_code"),
-                  accessor: "code",
-                  width: 150,
+                  Header: t("th_ambassador"),
+                  accessor: "nameAmbassador",
+                  resizable:true
                 },
                 {
                   Header: t("th_actions"),
@@ -197,32 +165,20 @@ class IndexTable extends React.Component {
               className="-striped -highlight"
           />
         </GridItem>
-          <GridContainer>
-            <GridItem xs={12} sm={12} md={12}>
-                <center>
-                <Link to={"/ambassador/new"}>
-                <Button color="info" size="sm">
-                {t("button_create_new")}
-                </Button>
-                {" "}
-                </Link>{" "}
-                </center>
-            </GridItem>
-          </GridContainer>
       </GridContainer>
     );
   }
 }
 
 const mapStateToProps = state => ({ 
-      ambassador_list: state.ambassadorReducer.ambassador_list, 
-      loading: state.ambassadorReducer.loading
+      success_story: state.studentReducer.success_story, 
+      loading: state.studentReducer.loading
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetAmbassadorList: () => dispatch( getAmbassadorList() )
+  dispatchSuccessStory: () => dispatch( successStory() )
 });
 
-const IndexTableComponent = translate(IndexTable);
-export default connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent);
+const IndexTableAdminComponent = translate(IndexTableAdmin);
+export default connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableAdminComponent);
 

@@ -7,11 +7,9 @@ import PerfectScrollbarStyle from 'react-perfect-scrollbar/dist/css/styles.css';
 import Footer from "views/Footer/Footer.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
-import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
-
 
 import mainPageStyle from "assets/jss/material-kit-react/views/mainPage.jsx";
-import NewRep from "./NewRep.jsx";
+import IndexRep from "./IndexRep.jsx";
 import AdminHeader from "views/Header/AdminHeader.jsx";
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
@@ -21,20 +19,13 @@ const styles = {
   ...PerfectScrollbarStyle
 };
 
-class New extends React.Component {
-  constructor(props) {
-    super(props);
-    // we use this to make the card to appear after the page has been rendered
-    this.state = {
-
-    };
-  }
-
-
+class Index extends React.Component {
+  
   render() {
     const { classes, ...rest } = this.props;
     return (
       <div>
+        <AdminHeader/>
         <div
           className={classes.main}
           style={{
@@ -46,7 +37,7 @@ class New extends React.Component {
           <div className={classes.container}>
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={12}>
-                <NewRep generalStyles={styles}/>
+                <IndexRep generalStyles={styles}/>
               </GridItem>
             </GridContainer>
           </div>
@@ -57,4 +48,4 @@ class New extends React.Component {
   }
 }
 
-export default withStyles(styles)(New);
+export default withStyles(styles)(Index);

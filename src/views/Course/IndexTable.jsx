@@ -1,10 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 // react component for creating dynamic tables
 import ReactTable from "react-table";
 import { connect } from "react-redux";
-import { getAmbassadorList } from "actions/ambassadorActions.jsx";
+import { getCourseList } from "actions/courseActions.jsx";
 import { Link } from "react-router-dom";
 
 // @material-ui/icons
@@ -18,6 +17,7 @@ import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
 import { translate } from 'react-switch-lang';
+
 
 class IndexTable extends React.Component {
   constructor(props) {
@@ -59,24 +59,23 @@ class IndexTable extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatchGetAmbassadorList();
+    this.props.dispatchGetCourseList();
   }
+
  
   render() {
-    const { ambassador_list, loading } = this.props;
+    const { course_list, loading } = this.props;
     let { t } = this.props;
             
-    const data = ambassador_list.map((prop, key) => {
+    const data = course_list.map((prop, key) => {
+        
       return {
         id: key, 
-        name: prop.first_name + " " + prop.last_name ,
-        username:prop.username,
-        country:prop.country,
-        code:prop.code,
+        name: prop.name,
+        state: prop.state,
         actions: (
-          // we've added some custom button actions
           <div className="actions-left">
-            <Link to={"/ambassador/show/" + prop.id}>
+            <Link to={"/course/show/" + prop.id}>
               <Button
                 justIcon
                 round4
@@ -86,7 +85,7 @@ class IndexTable extends React.Component {
                 <Visibility />
               </Button>
             </Link>{" "}
-            <Link to={"/ambassador/edit/" + prop.id}>
+            <Link to={"/course/edit/" + prop.id}>
               <Button
                 justIcon
                 round
@@ -96,7 +95,7 @@ class IndexTable extends React.Component {
                 <Create />
               </Button>
             </Link>{" "}
-            <Link to={"/ambassador/show/" + prop.id}>
+            <Link to={"/course/show/" + prop.id}>
               <Button
                 justIcon
                 round
@@ -134,25 +133,15 @@ class IndexTable extends React.Component {
               defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value}
               data={data}
               loading={loading}
+
               columns={[
                 {
-                  Header: t("th_name"),
-                  accessor: "name",
+                  Header: t("label_name"),
+                  accessor: "name"
                 },
                 {
-                  Header: t("th_username"),
-                  accessor: "username",
-                  resizable:true
-                },
-                {
-                  Header: t("th_country"),
-                  accessor: "country",
-                  width: 150,
-                },
-                {
-                  Header: t("th_code"),
-                  accessor: "code",
-                  width: 150,
+                  Header: t("label_state"),
+                  accessor: "state"
                 },
                 {
                   Header: t("th_actions"),
@@ -162,11 +151,6 @@ class IndexTable extends React.Component {
                   width: 150,
                 },
                 {
-                  // NOTE - this is a "filter all" DUMMY column
-                  // you can't HIDE it because then it wont FILTER
-                  // but it has a size of ZERO with no RESIZE and the
-                  // FILTER component is NULL (it adds a little to the front)
-                  // You culd possibly move it to the end
                   Header: "",
                   id: 'all',
                   width: 0,
@@ -175,14 +159,14 @@ class IndexTable extends React.Component {
                   
                   getProps: () => {
                     return {
-                      style: { padding: "5px"}
+                      //style: { padding: "5px"}
                     }
                   },
                   filterMethod: (filter, rows) => {
                     const result = matchSorter(rows, filter.value, {
                       keys: [
                         "name",
-                        "username",
+                        "state"
                       ], threshold: matchSorter.rankings.WORD_STARTS_WITH
                     });
                     return result;
@@ -200,7 +184,7 @@ class IndexTable extends React.Component {
           <GridContainer>
             <GridItem xs={12} sm={12} md={12}>
                 <center>
-                <Link to={"/ambassador/new"}>
+                <Link to={"/course/new"}>
                 <Button color="info" size="sm">
                 {t("button_create_new")}
                 </Button>
@@ -215,12 +199,12 @@ class IndexTable extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
-      ambassador_list: state.ambassadorReducer.ambassador_list, 
-      loading: state.ambassadorReducer.loading
+      course_list: state.courseReducer.course_list, 
+      loading: state.courseReducer.loading
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetAmbassadorList: () => dispatch( getAmbassadorList() )
+  dispatchGetCourseList: key => dispatch( getCourseList(key) )
 });
 
 const IndexTableComponent = translate(IndexTable);
