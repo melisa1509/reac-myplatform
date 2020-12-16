@@ -52,10 +52,20 @@ class GlobalTable extends React.Component {
     
     };
     this.saveClick = this.saveClick.bind(this);
+    this.saveMaps = this.saveMaps.bind(this);
   }
 
   saveClick() {
-    CountryEntire=true
+    if(CountryEntire==false){
+      CountryEntire=true
+      this.props.dispatchGetReportGlobalMap();
+    } 
+  }
+  saveMaps() {
+    if(CountryEntire==true){
+      CountryEntire=false
+      this.props.dispatchGetReportGlobalMap();
+    } 
   }
   
   componentWillMount() {
@@ -64,13 +74,12 @@ class GlobalTable extends React.Component {
   render() {
     const { report_list, global_map} = this.props;
     let { t } = this.props;
-    let vector_map = mapData;
+    let vector_map = mapData; 
     if(global_map !== undefined){
       if(global_map.numCountries !== undefined){
         vector_map = global_map.numCountries
       }
     }
-
     const country = global_map.topNumbers.map((prop)=>{
       let TableData=new Array()
       return(
@@ -96,23 +105,29 @@ class GlobalTable extends React.Component {
       );
     });
 
-    if(CountryEntire == true){
-      const country = report_list.topNumbers2.map((prop)=>{
+  if(CountryEntire == true){
+      const country = global_map.topNumbers.map((prop)=>{
         let TableData=new Array()
         return(
           TableData=prop.country
         );
       });
-      const mbs = report_list.topNumbers2.map((prop)=>{
+      const mbs = global_map.topNumbers.map((prop)=>{
         let TableData=new Array()
         return(
           TableData=prop.mbs
         );
       });
-      const sa = report_list.topNumbers2.map((prop)=>{
+      const sa = global_map.topNumbers.map((prop)=>{
         let TableData=new Array()
         return(
           TableData=prop.sa
+        );
+      });
+      const jr = global_map.topNumbers.map((prop)=>{
+        let TableData=new Array()
+        return(
+          TableData=prop.jr
         );
       });
      return (
@@ -128,7 +143,7 @@ class GlobalTable extends React.Component {
                 jr[0]
               ],
               [
-                <img src={de_flag} alt="us_flag" key={"flag"} />,
+                <img src={bj_flag} alt="us_flag" key={"flag"} />,
                 country[1],
                 mbs[1],
                 sa[1],
@@ -142,7 +157,7 @@ class GlobalTable extends React.Component {
                 jr[2],
               ],
               [
-                <img src={bj_flag} alt="bj_flag" key={"flag"} />,
+                <img src={co_flag} alt="bj_flag" key={"flag"} />,
                 country[3],
                 mbs[3],
                 sa[3],
@@ -180,169 +195,197 @@ class GlobalTable extends React.Component {
                 <img src={cl_flag} alt="cl_flag" key={"flag"} />,
                 country[8],
                 mbs[8],
-                sa[8]
+                sa[8],
+                jr[8]
               ],
               [
-                <img src={lr_flag} alt="lr_flag" key={"flag"} />,
+                <img src={mx_flag} alt="lr_flag" key={"flag"} />,
                 country[9],
                 mbs[9],
-                sa[9]
+                sa[9],
+                jr[9]
               ],
               [
-                <img src={mx_flag} alt="mx_flag" key={"flag"} />,
+                <img src={lr_flag} alt="mx_flag" key={"flag"} />,
                 country[10],
                 mbs[10],
-                sa[10]
+                sa[10],
+                jr[10]
               ],
               [
                 <img src={et_flag} alt="et_flag" key={"flag"} />,
                 country[11],
                 mbs[11],
-                sa[11]
+                sa[11],
+                jr[11]
               ],
               [
                 <img src={cg_flag} alt="cg_flag" key={"flag"} />,
                 country[12],
                 mbs[12],
-                sa[12]
+                sa[12],
+                jr[12]
               ],
               [
                 <img src={tg_flag} alt="tg_flag" key={"flag"} />,
                 country[13],
                 mbs[13],
-                sa[13]
+                sa[13],
+                jr[13]
               ],
               [
                 <img src={ml_flag} alt="ml_flag" key={"flag"} />,
                 country[14],
                 mbs[14],
-                sa[14]
+                sa[14],
+                jr[14]
               ],
               [
                 <img src={ug_flag} alt="ug_flag" key={"flag"} />,
                 country[15],
                 mbs[15],
-                sa[15]
+                sa[15],
+                jr[15]
               ],  
               [
                 <img src={pe_flag} alt="pe_flag" key={"flag"} />,
                 country[16],
                 mbs[16],
-                sa[16]
+                sa[16],
+                jr[16]
               ],
               [
                 <img src={mx_flag} alt="mx_flag" key={"flag"} />,
                 country[17],
                 mbs[17],
-                sa[17]
+                sa[17],
+                jr[17]
               ],
               [
                 <img src={ht_flag} alt="ht_flag" key={"flag"} />,
                 country[18],
                 mbs[18],
-                sa[18]
+                sa[18],
+                jr[18]
               ],
               [
                 <img src={py_flag} alt="py_flag" key={"flag"} />,
                 country[19],
                 mbs[19],
-                sa[19]
+                sa[19],
+                jr[19]
               ],
               [
                 <img src={gt_flag} alt="gt_flag" key={"flag"} />,
                 country[20],
                 mbs[20],
-                sa[20]
+                sa[20],
+                jr[20]
               ],
               [
                 <img src={in_flag} alt="in_flag" key={"flag"} />,
                 country[21],
                 mbs[21],
-                sa[21]
+                sa[21],
+                jr[21]
               ],
               [
                 <img src={mx_flag} alt="mx_flag" key={"flag"} />,
                 country[22],
                 mbs[22],
-                sa[22]
+                sa[22],
+                jr[22]
               ],
               [
                 <img src={ar_flag} alt="ar_flag" key={"flag"} />,
                 country[23],
                 mbs[23],
-                sa[23]
+                sa[23],
+                jr[23]
               ],
               [
                 <img src={mx_flag} alt="mx_flag" key={"flag"} />,
                 country[24],
                 mbs[24],
-                sa[24]
+                sa[24],
+                jr[24]
               ],
               [
                 <img src={pt_flag} alt="pt_flag" key={"flag"} />,
                 country[25],
                 mbs[25],
-                sa[25]
+                sa[25],
+                jr[25]
               ],
               [
                 <img src={mx_flag} alt="mx_flag" key={"flag"} />,
                 country[26],
                 mbs[26],
-                sa[26]
+                sa[26],
+                jr[26]
               ],
               [
                 <img src={mx_flag} alt="mx_flag" key={"flag"} />,
                 country[27],
                 mbs[27],
-                sa[27]
+                sa[27],
+                jr[27]
               ],
               [
                 <img src={mx_flag} alt="mx_flag" key={"flag"} />,
                 country[28],
                 mbs[28],
-                sa[28]
+                sa[28],
+                jr[28]
               ],
               [
                 <img src={mx_flag} alt="mx_flag" key={"flag"} />,
                 country[29],
                 mbs[29],
-                sa[29]
+                sa[29],
+                jr[29]
               ],
               [
-                <img src={br_flag} alt="br_flag" key={"flag"} />,
+                <img src={us_flag} alt="br_flag" key={"flag"} />,
                 country[30],
                 mbs[30],
-                sa[30]
+                sa[30],
+                jr[30]
               ],
               [
-                <img src={mx_flag} alt="mx_flag" key={"flag"} />,
+                <img src={br_flag} alt="mx_flag" key={"flag"} />,
                 country[31],
                 mbs[31],
-                sa[31]
+                sa[31],
+                jr[31]
               ],
               [
                 <img src={br_flag} alt="br_flag" key={"flag"} />,
                 country[32],
                 mbs[32],
-                sa[32]
+                sa[32],
+                jr[32]
               ],
               [
                 <img src={tr_flag} alt="tr_flag" key={"flag"} />,
                 country[33],
                 mbs[33],
-                sa[33]
+                sa[33],
+                jr[33]
               ],
               [
                 <img src={us_flag} alt="us_flag" key={"flag"} />,
                 country[34],
                 mbs[34],
-                sa[34]
+                sa[34],
+                jr[34]
               ],
               [
                 <img src={mg_flag} alt="mg_flag" key={"flag"} />,
                 country[35],
                 mbs[35],
-                sa[35]
+                sa[35],
+                jr[35]
               ],
             ]}
           />
@@ -383,7 +426,7 @@ class GlobalTable extends React.Component {
         <GridContainer>
             <GridItem xs={12} sm={12} md={12}>
                 <center>
-                <Button color="default" size="sm" onClick={this.saveClick}>
+                <Button color="default" size="sm" onClick={this.saveMaps}>
                 {t("button_hide_all_list")}
                 </Button>
                 {" "}
@@ -391,9 +434,8 @@ class GlobalTable extends React.Component {
             </GridItem>
         </GridContainer>
       </GridContainer>
-    );
-     
-    }
+    )};
+    if(CountryEntire == false){
     return (
       <GridContainer justify="space-between">
         <GridItem xs={12} sm={12} md={5}>
@@ -407,7 +449,7 @@ class GlobalTable extends React.Component {
                 jr[0]
               ],
               [
-                <img src={de_flag} alt="us_flag" key={"flag"} />,
+                <img src={bj_flag} alt="us_flag" key={"flag"} />,
                 country[1],
                 mbs[1],
                 sa[1],
@@ -421,7 +463,7 @@ class GlobalTable extends React.Component {
                 jr[2]
               ],
               [
-                <img src={bj_flag} alt="bj_flag" key={"flag"} />,
+                <img src={co_flag} alt="bj_flag" key={"flag"} />,
                 country[3],
                 mbs[3],
                 sa[3],
@@ -502,7 +544,7 @@ class GlobalTable extends React.Component {
             </GridItem>
         </GridContainer>
       </GridContainer>
-    );
+    )};
   }
 }
 

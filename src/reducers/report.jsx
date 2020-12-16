@@ -3,12 +3,12 @@ import { GET_REPORT_COUNTRY, GET_AMBASSADOR_COUNTRY, GET_REPORT_AMBASSADOR, GET_
 import { GET_GLOBAL_NUMBERS } from "constants/actionTypes";
 
 const initialState = { 
-  report_list:{
-      evaluations:[],
+  report_list:{ 
       studentsMbs:[],
       topNumbers:[],
       topNumbers2:[],
       statistics:[],
+      evaluations:[],
       vectorMap:{
         BO:""
       }

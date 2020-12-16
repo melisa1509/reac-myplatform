@@ -93,11 +93,11 @@ class NewForm extends React.Component {
         if (this.state.passwordState === "") {
           this.setState({ passwordState: "error" });
         }
-        if(this.state.usernameState === "error" || this.state.first_nameState === "error" || this.state.last_nameState === "error"){
+        if(this.state.usernameState === "error" || this.state.first_nameState === "error" || this.state.last_nameState === "error" || this.state.cityState === "error" || this.state.whatsappState === "error"){
           const stateRedux = store.getState();
           this.props.dispatchErrorRequiredFields();
         }
-        if(this.state.usernameState === "success" && this.state.first_nameState === "success"&& this.state.last_nameState === "success"){
+        if(this.state.usernameState === "success" && this.state.first_nameState === "success"&& this.state.last_nameState === "success"&& this.state.cityState === "success"&& this.state.whatsappState === "success"){
         const reduxState = store.getState();
         this.props.dispatchNewAmbassador();
         this.props.dispatchSuccessRequiredFields();

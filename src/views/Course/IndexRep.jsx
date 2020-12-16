@@ -9,16 +9,13 @@ import withStyles from "@material-ui/core/styles/withStyles";
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
-import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import NewForm from 'views/Course/Edit/NewForm.jsx';
+import IndexTable from './IndexTable.jsx';
 
-import { getData } from "actions/actions.jsx";
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
-import { withRouter } from 'react-router-dom';
 
 const styles = {
   cardIconTitle: {
@@ -29,38 +26,26 @@ const styles = {
 };
 
 
-class NewRep extends React.Component {
-  
-
-  handleUpdateClick = () => {
-   
-    this.props.dispatchSetData();
-    
-  }
-
-  handleUpdateClickSuccess = () => {
-    this.props.dispatchSetData();
-  }
-
-  componentDidMount() {
-    // calling the new action creator
-    this.props.dispatchSetData();
-  }
-
+class IndexRep extends React.Component {
+ 
 
   render() {
-    const { classes, styles } = this.props;
+    const { classes, styles, active_user } = this.props;
     let { t } = this.props;
+    let rol=false
+    if(active_user.roles == "ROLE_EMBASSADOR" || active_user.roles == "ROLE_STUDENT_EMBASSADOR"){
+      rol=true
+    }
     const login = "es";
     return (
       <GridContainer justify="center">
-        <GridItem xs={12} sm={12} md={12}>
+        <GridItem xs={12} sm={8} md={10}>
           <Card>
             <CardHeader color="info">
-             <h4 className={classes.cardTitle}>{t("title_new_course")}</h4>
+                <h4 className={classes.cardTitle}>{t("title_course_list")}</h4>
             </CardHeader>
             <CardBody>
-                <NewForm  />      
+               <IndexTable  />     
             </CardBody>
           </Card>
         </GridItem>
@@ -69,16 +54,18 @@ class NewRep extends React.Component {
   }
 }
 
-NewRep.propTypes = {
+IndexRep.propTypes = {
   classes: PropTypes.object,
 };
 
 //export default withStyles(styles)(ReactTables);
+const mapStateToProps = state => ({ 
+  active_user: state.loginReducer.active_user,
+});
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchSetData: () => dispatch( getData() )
 });
 
 
-const NewRepComponent = translate(withStyles(styles)(NewRep));
-export default withRouter(connect(null, mapDispatchToPropsActions)(NewRepComponent));
+const NewRepComponent = translate(withStyles(styles)(IndexRep));
+export default connect(mapStateToProps, mapDispatchToPropsActions)(NewRepComponent);
