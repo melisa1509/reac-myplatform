@@ -1,6 +1,6 @@
 import { GET_REPORTS, GET_REPORT_COUNTRY, GET_AMBASSADOR_COUNTRY, GET_REPORT_AMBASSADOR, GET_REPORT_GLOBAL_MAP } from 'constants/actionTypes.jsx';
 import { BASE_URL } from 'constants/urlTypes.jsx';
-import { AMBASSADOR_REPORT, GET_GLOBAL_NUMBERS} from 'constants/actionTypes';
+import { AMBASSADOR_STATISTICS, GET_GLOBAL_NUMBERS} from 'constants/actionTypes';
 
 export const getReports = () => {
     return (dispatch,getState) => {
@@ -98,3 +98,13 @@ export const globalNumbers =() => {
         })
       }
 };
+
+export const getAmbassadorStatistics= (key) => {
+    return (dispatch) => {
+        return fetch( BASE_URL + "/report/listambassadorstatistics")
+        .then(response => response.json())
+        .then(json => {
+            dispatch ({ type: AMBASSADOR_STATISTICS, payload: json.data });
+        });
+    }
+}

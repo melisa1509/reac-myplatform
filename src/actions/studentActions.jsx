@@ -173,16 +173,22 @@ export const editPassword = (params,key) => {
       });
   }
 }
-export const getStudentAmbassadorList =() => {
+export const getStudentAmbassadorList =(key) => {
     return (dispatch,getState) => {
 
+        var id ="";
         const reduxState = getState();
-      
+        if(reduxState.loginReducer.active_user.roles[0]=="ROLE_AMBASSADOR"){
+          id=reduxState.loginReducer.active_user.id;
+        }
+        else if(reduxState.loginReducer.active_user.roles[0]=="ROLE_ADMIN") {
+          id=key
+        }
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
       
             var urlencoded = new URLSearchParams();
-            urlencoded.append("id_ambassador", reduxState.loginReducer.active_user.id);
+            urlencoded.append("id_ambassador", id);
       
             var requestOptions = {
               method: 'POST',

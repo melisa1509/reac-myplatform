@@ -112,6 +112,11 @@ class AdminHeaderLinks extends React.Component {
                 <LibraryBooks color="danger" className={classes.icons} /> {t("link_reports")}
             
           </Link>,
+          <Link to={'/report/ambassadorstatistics'} className={classes.dropdownLink}>
+            
+            <LibraryBooks color="danger" className={classes.icons} /> {t("link_reports_ambassador")}
+      
+          </Link>,
           <Link onClick={this.logoutUser} className={classes.dropdownLink}>
             
                 <Cancel color="danger" className={classes.icons} /> {t("link_logout")}

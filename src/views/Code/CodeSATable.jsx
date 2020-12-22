@@ -95,7 +95,7 @@ class CodeSATable extends React.Component {
     });
     return (
       <GridContainer justify="center">
-        <GridItem xs={10}>
+        <GridItem xs={12}>
         <CustomInput
           inputProps={{
             placeholder: "Search",
@@ -161,7 +161,8 @@ class CodeSATable extends React.Component {
                   filterAll: true,
                 }
               ]}
-              defaultPageSize={10}
+              key={data.length}
+              defaultPageSize={data.length < 10 ? data.length : 10}
               showPaginationTop={false}
               showPaginationBottom={true}
               className="-striped -highlight"

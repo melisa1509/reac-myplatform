@@ -74,11 +74,6 @@ class Language extends React.Component {
             <img src={Frances} height="20px" alt="..." />  {t(  "label_french")}
           
           </Link>,
-          <Link to={'/login'} className={classes.dropdownLink}>
-            
-            <img src={Ingles} height="20px" alt="..." />  {t(  "label_english")}
-        
-          </Link>,
         ]
       return (
         <List className={classes.list}>
@@ -87,13 +82,12 @@ class Language extends React.Component {
           <ListItem className={classes.listItem}>
             <CustomDropdown
               noLiPadding
-              buttonText={t(link_menu)}
+              buttonText={<span><img src={Ingles} alt="..."/>{t("label_english")}</span>}
               buttonProps={{
                 className: classes.navLink,
                 color: "info"
               }}
               hoverColor="info"
-              buttonIcon={Apps}
               dropdownList={links}
             />
           </ListItem>

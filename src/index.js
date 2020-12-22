@@ -27,6 +27,8 @@ import AmbassadorStudentConfirmMentor from 'views/AmbassadorStudent/AssignMentor
 //general
 import ReactTable from "views/Tables/ReactTables.jsx";
 import Reports from 'views/Reports/Index.jsx';
+import ReportsAmbassadorStatistics from 'views/Reports/Ambassador/Index.jsx';
+import ReportsOptions from 'views/Reports/Options/Index.jsx';
 import AuthLayout from "layouts/Auth.jsx";
 import RtlLayout from "layouts/RTL.jsx";
 
@@ -242,7 +244,6 @@ ReactDOM.render(
           <Route path="/dashboard/clearpending/:student" component={ClearPendingDashboard} exact />
           <Route path="/ambassadorstudent/assignmentor/:student" component={AmbassadorStudentAssignMentor} exact />
           <Route path="/ambassadorstudent/confirmmentor/:student/:group" component={AmbassadorStudentConfirmMentor} exact />
-          <Route path="/report" component={Reports} exact />
           <Route path="/code" component={ListCode} exact />
           <Route path="/code/show/:id" component={ShowCode} exact />
           <Route path="/code/edit/:id" component={EditCode} exact />
@@ -253,6 +254,9 @@ ReactDOM.render(
           <Route path="/admin/show/:id" component={ShowAdmin} exact />
           <Route path="/admin/edit/:id" component={EditAdmin} exact />
           <Route path="/admin/editpassword/:id" component={AdminPassword} exact /> 
+          <Route path="/report" component={Reports} exact />
+          <Route path="/report/ambassadorstatistics" component={ReportsAmbassadorStatistics} exact />
+          <Route path="/report/options/:id" component={ReportsOptions} exact />
           <Route path="/register" component={Register} exact /> 
           <Route path="/register/new/:id" component={RegisterStudent} exact /> 
           <Route path="/register/evaluation" component={RegisterEvaluation} exact />
