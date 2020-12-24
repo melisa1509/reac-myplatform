@@ -1,5 +1,5 @@
 import { GET_REPORTS } from "constants/actionTypes";
-import { AMBASSADOR_STATISTICS } from "constants/actionTypes";
+import { AMBASSADOR_STATISTICS,AMBASSADOR_GROUP_REPORTS } from "constants/actionTypes";
 import { GET_REPORT_COUNTRY, GET_AMBASSADOR_COUNTRY, GET_REPORT_AMBASSADOR, GET_REPORT_GLOBAL_MAP } from "constants/actionTypes";
 import { GET_GLOBAL_NUMBERS } from "constants/actionTypes";
 
@@ -20,6 +20,7 @@ const initialState = {
   },
   ambassador_country:[],
   ambassador_statistics:[],
+  report_group_list:[],
   report_ambassador:{
     MBS:[],
     JR:[]
@@ -64,6 +65,11 @@ export const reportReducer = (state = initialState, action) => {
       case AMBASSADOR_STATISTICS:
         return Object.assign({}, state, {
           ambassador_statistics: action.payload,
+          loading: false 
+        });
+      case AMBASSADOR_GROUP_REPORTS:
+        return Object.assign({}, state, {
+          report_group_list: action.payload,
           loading: false 
         });
     }

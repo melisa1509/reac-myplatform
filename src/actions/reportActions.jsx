@@ -1,6 +1,6 @@
 import { GET_REPORTS, GET_REPORT_COUNTRY, GET_AMBASSADOR_COUNTRY, GET_REPORT_AMBASSADOR, GET_REPORT_GLOBAL_MAP } from 'constants/actionTypes.jsx';
 import { BASE_URL } from 'constants/urlTypes.jsx';
-import { AMBASSADOR_STATISTICS, GET_GLOBAL_NUMBERS} from 'constants/actionTypes';
+import { AMBASSADOR_STATISTICS, GET_GLOBAL_NUMBERS, AMBASSADOR_GROUP_REPORTS} from 'constants/actionTypes';
 
 export const getReports = () => {
     return (dispatch,getState) => {
@@ -105,6 +105,32 @@ export const getAmbassadorStatistics= (key) => {
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: AMBASSADOR_STATISTICS, payload: json.data });
+        });
+    }
+}
+
+export const reportsGroupList= (key) => {
+    return (dispatch, getState) => {
+    const reduxState = getState();
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("id_ambassador", key);
+        urlencoded.append("role","ROLE_EMBASSADOR");
+
+        var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: urlencoded,
+        redirect: 'follow'
+        };
+
+        return fetch( BASE_URL + "/group/?callback=foo", requestOptions)
+        .then(response => response.json())
+        .then(json => {
+            dispatch ({ type: AMBASSADOR_GROUP_REPORTS, payload: json.data });
         });
     }
 }

@@ -7,22 +7,16 @@ import { getAmbassadorStatistics } from "actions/reportActions.jsx";
 import { translate } from 'react-switch-lang';
 import { Link } from "react-router-dom";
 
-// @material-ui/icons
-import Create from "@material-ui/icons/Create";
-import Visibility from "@material-ui/icons/Visibility";
-import Close from "@material-ui/icons/Close";
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "components/CustomButtons/Button.jsx";
-import CustomInput from 'components/CustomInput/CustomInput.jsx';
-import matchSorter from 'match-sorter';
 import Participants from "views/Reports/Options/Participants/AmbassadorTable.jsx";
-import NavPills from "components/NavPills/NavPills.jsx";
+import Groups from "views/Reports/Options/Groups/IndexAmbassador.jsx";
 
 import Face from "@material-ui/icons/Face";
-import Chat from "@material-ui/icons/Chat";
+import Group from "@material-ui/icons/Group";
 import Build from "@material-ui/icons/Build";
 // core components
 import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
@@ -79,13 +73,18 @@ class IndexTable extends React.Component {
   
 
   render() {
-    const { ambassador_statistics, loading,classes } = this.props;
+    const { student_ambassador_list, loading,classes } = this.props;
     let { t } = this.props;
+    var name
+    const data = student_ambassador_list.map((prop, key) => {
+     name= prop.studentgroup.group.embassador.first_name + " " + prop.studentgroup.group.embassador.last_name
+    })
     return (
     <GridContainer justify="center">
       <GridItem xs={12} sm={12} md={12}>
       <div>
       <CustomTabs
+        title= {t("link_reports") +" "+ " / " + " " + name}
         headerColor="info"
         tabs={[
           {
@@ -98,18 +97,11 @@ class IndexTable extends React.Component {
             )
           },
           {
-            tabName: "Messages",
-            tabIcon: Chat,
+            tabName: t("link_groups"),
+            tabIcon: Group,
             tabContent: (
               <p className={classes.textCenter}>
-                I think that’s a responsibility that I have, to push
-                possibilities, to show people, this is the level that
-                things could be at. I will be the leader of a company
-                that ends up being worth billions of dollars, because
-                I got the answers. I understand culture. I am the
-                nucleus. I think that’s a responsibility that I have,
-                to push possibilities, to show people, this is the
-                level that things could be at.
+                <Groups/>
               </p>
             )
           },
@@ -128,7 +120,7 @@ class IndexTable extends React.Component {
                 the nucleus.
               </p>
             )
-          }
+          },
         ]}
       />
     </div>
@@ -140,6 +132,7 @@ class IndexTable extends React.Component {
   
 
 const mapStateToProps = state => ({ 
+      student_ambassador_list: state.studentReducer.student_ambassador_list,
       ambassador_statistics: state.reportReducer.ambassador_statistics, 
       loading: state.reportReducer.loading
 });
