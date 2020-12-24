@@ -6,10 +6,6 @@ import { connect } from "react-redux";
 import { getAmbassadorStatistics } from "actions/reportActions.jsx";
 import { Link } from "react-router-dom";
 
-// @material-ui/icons
-import Create from "@material-ui/icons/Create";
-import Visibility from "@material-ui/icons/Visibility";
-import Close from "@material-ui/icons/Close";
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
@@ -18,8 +14,7 @@ import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
 import { translate } from 'react-switch-lang';
 
-
-
+const name_ambassador= ""
 
 class IndexTable extends React.Component {
   constructor(props) {
@@ -63,8 +58,7 @@ class IndexTable extends React.Component {
   componentDidMount() {
     this.props.dispatchGetAmbassadorStatistics();
   }
-
- 
+  
   render() {
     const { ambassador_statistics, loading } = this.props;
     let { t } = this.props;

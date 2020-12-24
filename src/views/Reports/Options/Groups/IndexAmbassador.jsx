@@ -64,7 +64,7 @@ class IndexTable extends React.Component {
 
  
   render() {
-    const { report_group_list, loading, active_user } = this.props;
+    const { report_group_list, loading} = this.props;
     let { t } = this.props;
             
     const data = report_group_list.map((prop, key) => {

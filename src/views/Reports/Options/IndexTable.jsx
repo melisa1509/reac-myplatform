@@ -1,23 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
 // react component for creating dynamic tables
-import ReactTable from "react-table";
 import { connect } from "react-redux";
 import { getAmbassadorStatistics } from "actions/reportActions.jsx";
 import { translate } from 'react-switch-lang';
-import { Link } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import withStyles from "@material-ui/core/styles/withStyles";
+
 import Button from "components/CustomButtons/Button.jsx";
 import Participants from "views/Reports/Options/Participants/AmbassadorTable.jsx";
 import Groups from "views/Reports/Options/Groups/IndexAmbassador.jsx";
+import IndexAmbassadorTable from 'views/Reports/IndexAmbassadorTable.jsx';
 
 import Face from "@material-ui/icons/Face";
 import Group from "@material-ui/icons/Group";
-import Build from "@material-ui/icons/Build";
+import Equalizer from "@material-ui/icons/Equalizer";
 // core components
 import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
 
@@ -73,11 +74,13 @@ class IndexTable extends React.Component {
   
 
   render() {
-    const { student_ambassador_list, loading,classes } = this.props;
+    const { student_ambassador_list,ambassador_statistics,classes } = this.props;
     let { t } = this.props;
     var name
-    const data = student_ambassador_list.map((prop, key) => {
-     name= prop.studentgroup.group.embassador.first_name + " " + prop.studentgroup.group.embassador.last_name
+    const name_ambassador= ambassador_statistics.map((prop, key) => {
+      if(this.props.match.params.id==prop.id){
+        name= prop.first_name + " " + prop.last_name
+      }
     })
     return (
     <GridContainer justify="center">
@@ -106,18 +109,11 @@ class IndexTable extends React.Component {
             )
           },
           {
-            tabName: "Settings",
-            tabIcon: Build,
+            tabName: t("th_evaluation"),
+            tabIcon: Equalizer,
             tabContent: (
               <p className={classes.textCenter}>
-                think that’s a responsibility that I have, to push
-                possibilities, to show people, this is the level that
-                things could be at. So when you get something that has
-                the name Kanye West on it, it’s supposed to be pushing
-                the furthest possibilities. I will be the leader of a
-                company that ends up being worth billions of dollars,
-                because I got the answers. I understand culture. I am
-                the nucleus.
+                <IndexAmbassadorTable/>
               </p>
             )
           },
@@ -132,6 +128,7 @@ class IndexTable extends React.Component {
   
 
 const mapStateToProps = state => ({ 
+      name_ambassador:state.reportReducer.name_ambassador,
       student_ambassador_list: state.studentReducer.student_ambassador_list,
       ambassador_statistics: state.reportReducer.ambassador_statistics, 
       loading: state.reportReducer.loading
@@ -142,5 +139,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 const IndexTableComponent = translate(withStyles(styles)(IndexTable));
-export default connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent);
+export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent));
 

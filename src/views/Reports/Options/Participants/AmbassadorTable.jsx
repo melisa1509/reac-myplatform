@@ -15,8 +15,6 @@ import matchSorter from 'match-sorter';
 import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
 
-
-
 class AmbassadorTable extends React.Component {
   constructor(props) {
     super(props);

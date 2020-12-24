@@ -178,7 +178,7 @@ export const getStudentAmbassadorList =(key) => {
 
         var id ="";
         const reduxState = getState();
-        if(reduxState.loginReducer.active_user.roles[0]=="ROLE_AMBASSADOR"){
+        if(reduxState.loginReducer.active_user.roles[0]=="ROLE_EMBASSADOR"){
           id=reduxState.loginReducer.active_user.id;
         }
         else if(reduxState.loginReducer.active_user.roles[0]=="ROLE_ADMIN") {
