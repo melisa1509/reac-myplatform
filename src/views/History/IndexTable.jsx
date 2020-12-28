@@ -70,10 +70,10 @@ class IndexTable extends React.Component {
         actions: (
           // we've added some custom button actions
           <div className="actions-left">
-            <Link to={"/programmbs/show/history/" + prop.student.id}>
+            <Link to={"/programmbs/show/history/" + prop.student.programmbs.id}>
               <Button
                 size="sm"
-                color="info"
+                color="success"
               >
                  {t('button_story')}
               </Button>

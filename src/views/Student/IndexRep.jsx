@@ -32,7 +32,7 @@ class IndexRep extends React.Component {
  
 
   render() {
-    const { classes, styles, active_user } = this.props;
+    const { classes, active_user } = this.props;
     let { t } = this.props;
     let rol=false
     if(active_user.roles == "ROLE_EMBASSADOR" || active_user.roles == "ROLE_STUDENT_EMBASSADOR"){
@@ -47,7 +47,7 @@ class IndexRep extends React.Component {
                 <h4 className={classes.cardTitle}>{t("title_student_list")}</h4>
             </CardHeader>
             <CardBody>
-                {rol ? <AmbassadorTable/> : <IndexTable  />  }          
+                {rol ? <AmbassadorTable/> : <IndexTable /> }          
             </CardBody>
           </Card>
         </GridItem>

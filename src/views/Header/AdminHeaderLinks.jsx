@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
 
 // @material-ui/icons
-import { Apps, Message, Face, Dashboard, HowToReg, SupervisorAccount, TrackChanges, LibraryBooks, Person, Stars, School, Cancel, Group } from "@material-ui/icons";
+import { Apps, Message, Face, Dashboard, HowToReg, SupervisorAccount, TrackChanges, LibraryBooks, Person, Stars, School, Cancel, Group, Class, Description } from "@material-ui/icons";
 
 // core components
 import CustomDropdown from "components/CustomDropdown/CustomDropdown.jsx";
@@ -114,7 +114,7 @@ class AdminHeaderLinks extends React.Component {
           </Link>,
           <Link to={'/report/ambassadorstatistics'} className={classes.dropdownLink}>
             
-            <LibraryBooks color="danger" className={classes.icons} /> {t("link_reports_ambassador")}
+                <Description color="danger" className={classes.icons} /> {t("link_reports_ambassador")}
       
           </Link>,
           <Link onClick={this.logoutUser} className={classes.dropdownLink}>

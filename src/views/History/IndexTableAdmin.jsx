@@ -69,12 +69,11 @@ class IndexTableAdmin extends React.Component {
         nameAmbassador:prop.group.embassador.first_name + " " + prop.group.embassador.last_name ,
         group:prop.group.name,
         actions: (
-          // we've added some custom button actions
           <div className="actions-left">
-            <Link to={"/programmbs/show/history/" + prop.student.id}>
+            <Link to={"/programmbs/show/history/" + prop.student.programmbs.id}>
               <Button
                 size="sm"
-                color="info"
+                color="success"
               >
                  {t('button_story')}
               </Button>
@@ -130,11 +129,6 @@ class IndexTableAdmin extends React.Component {
                   width: 150,
                 },
                 {
-                  // NOTE - this is a "filter all" DUMMY column
-                  // you can't HIDE it because then it wont FILTER
-                  // but it has a size of ZERO with no RESIZE and the
-                  // FILTER component is NULL (it adds a little to the front)
-                  // You culd possibly move it to the end
                   Header: "",
                   id: 'all',
                   width: 0,
