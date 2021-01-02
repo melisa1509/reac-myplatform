@@ -15,10 +15,6 @@ import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import LoginForm from './LoginForm.jsx';
 import Logo from "assets/img/logo_interweave.png";
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
@@ -48,11 +44,7 @@ class LoginRep extends React.Component {
     const { classes, styles } = this.props;
     let { t } = this.props;
     return (
-<<<<<<< Updated upstream
       <GridContainer justify="center">
-=======
-      <GridContainer justify="center">        
->>>>>>> Stashed changes
         <GridContainer justify="center">
           <GridItem>
             <img src={Logo} height="90px" alt="..." />
