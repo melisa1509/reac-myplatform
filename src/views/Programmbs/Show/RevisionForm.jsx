@@ -9,13 +9,12 @@ import LanguageSelect from "views/Select/LanguageSelect.jsx";
 import { loadFormProgrammbs } from "actions/programmbsActions.jsx";
 import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx';
 import CustomCheckboxRedux from 'components/CustomCheckbox/CustomCheckboxRedux.jsx';
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 
   let RevisionForm = props => {
     const { handleSubmit, load, t, name, labelText } = props;
-    console.log(props);
     return (
       <form onSubmit={handleSubmit}>
             <Field
@@ -31,23 +30,30 @@ import { translate } from "react-translate";
                 rows: 5,
               }}
             />
+            <Field
+              component={CustomInputRedux}
+              name="id"             
+              inputProps={{
+                type: "hidden",
+              }}
+            />
       </form>
     );
   };
   
   // Decorate with reduxForm(). It will read the initialValues prop provided by connect()
   RevisionForm = reduxForm({
-    form: 'programmbs', // a unique identifier for this form
+    form: 'programmbs',
+    enableReinitialize: true,
   })(RevisionForm);
 
  
-  // You have to connect() to any reducers that you wish to connect to yourself
   RevisionForm = connect(
     state => ({
-      initialValues: state.programmbsReducer.data, // pull initial values from account reducer
+      initialValues: state.programmbsReducer.data, 
     }),
-    { load: loadFormProgrammbs }, // bind account loading action creator
+    { load: loadFormProgrammbs }, 
   )(RevisionForm);
 
   
-  export default  translate('provider')(RevisionForm);
+  export default  translate(RevisionForm);

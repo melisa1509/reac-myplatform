@@ -70,6 +70,11 @@ const typographyStyle = {
   successBoldText: {
     color: successColor[0],
     fontWeight: "400"
+  },
+  successLabelText: {
+    color: successColor[0],
+    fontWeight: "400",
+    fontSize: "10px"
   }
 };
 

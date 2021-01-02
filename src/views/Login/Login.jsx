@@ -10,26 +10,20 @@ import GridItem from "components/Grid/GridItem.jsx";
 
 import mainPageStyle from "assets/jss/material-kit-react/views/mainPage.jsx";
 import LoginRep from "./LoginRep.jsx";
-<<<<<<< Updated upstream
-import AdminHeader from "views/Header/AdminHeader.jsx";
-import PerfectScrollbar from 'react-perfect-scrollbar';
-=======
+
 import LanguageNavbar from "components/LanguageNavBar/LanguageNavbar.jsx";
 import { setDefaultLanguage} from 'react-switch-lang';
->>>>>>> Stashed changes
 
 
 const styles = {
   ...mainPageStyle,
   ...PerfectScrollbarStyle
 };
-
-<<<<<<< Updated upstream
-=======
-
 setDefaultLanguage('en');
 
->>>>>>> Stashed changes
+var userLang = navigator.language || navigator.userLanguage; 
+var lang = userLang.split("-");
+
 class Login extends React.Component {
   constructor(props) {
     super(props);

@@ -12,9 +12,10 @@ import CardBody from "components/Card/CardBody.jsx";
 import SuccessBold from "components/Typography/SuccessBold.jsx";
 import MutedText from "components/Typography/Muted.jsx";
 import Controls from './Controls.jsx';
+import ControlNavigation from './ControlNavigation.jsx';
 import RevisionForm from './RevisionForm.jsx';
 
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 const styles = {
@@ -38,14 +39,13 @@ class ProcessTab extends React.Component {
   render() {
     const { classes, programmbs } = this.props;
     let { t } = this.props;
-    console.log(programmbs.process1);
     return (
         <Card>
           <CardBody>
-            <h3 className={classes.cardTitleCenter} >{t("title.process")}</h3>
+            <h3 className={classes.cardTitleCenter} >{t("title_process")}</h3>
             <br/>
             <SuccessBold>
-                {t("question.process1")}
+                {t("question_process1")}
             </SuccessBold>
             <br/>
           <svg height="350" width="100%">
@@ -208,7 +208,7 @@ class ProcessTab extends React.Component {
             <br/>
             <br/>
             <SuccessBold>
-              {t("question.process2")}
+              {t("question_process2")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -216,7 +216,7 @@ class ProcessTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.process3")}
+              {t("question_process3")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -224,14 +224,15 @@ class ProcessTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.process4")}
+              {t("question_process4")}
             </SuccessBold>
             <br/>
             <MutedText>
               {programmbs.process4}
             </MutedText>
-            <RevisionForm name="revisionprocess" />
+            <RevisionForm name="revisionprocess" labelText={t("label_revision_process")+ " *"}/>
             <Controls/>
+            <ControlNavigation previous={"product"} next={"price"} />
           </CardBody>
         </Card>
     );
@@ -250,5 +251,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const ProcessTabComponent = translate('provider')(withStyles(styles)(ProcessTab));
+const ProcessTabComponent = translate(withStyles(styles)(ProcessTab));
 export default connect(mapStateToProps, mapDispatchToPropsActions)(ProcessTabComponent);

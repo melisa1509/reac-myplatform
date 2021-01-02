@@ -83,7 +83,7 @@ class ImageUpload extends React.Component {
             <Button {...addButtonProps} onClick={() => this.handleClick()}>
               {avatar ? "Add Photo" : "Select image"}
             </Button>
-          ) : (
+          ) : ( 
             <span>
               <Button {...changeButtonProps} onClick={() => this.handleClick()}>
                 Change

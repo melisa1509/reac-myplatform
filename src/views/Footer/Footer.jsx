@@ -48,7 +48,7 @@ function Footer({ ...props }) {
         
         <p className={classes.right}>
           &copy; {1900 + new Date().getYear()}{" "}
-          Learn Management System{" "}
+          Learning Management System{" "}
           <a
             href="https://interweavesolutions.org"
             className={anchor}

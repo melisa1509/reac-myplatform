@@ -1,40 +1,136 @@
 import React from "react";
+import PropTypes from "prop-types";
+// react component used to create sweet alerts
+import SweetAlert from "react-bootstrap-sweetalert";
+
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-import PerfectScrollbarStyle from 'react-perfect-scrollbar/dist/css/styles.css';
+import { withRouter } from 'react-router-dom';
+import { connect } from "react-redux";
 
 // core components
-import Footer from "views/Footer/Footer.jsx";
+import { translate } from 'react-switch-lang';
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
-
-
-import mainPageStyle from "assets/jss/material-kit-react/views/mainPage.jsx";
-import ShowRep from "./ShowRep.jsx";
 import AdminHeader from "views/Header/AdminHeader.jsx";
-import PerfectScrollbar from 'react-perfect-scrollbar';
+import ShowRep from "./ShowRep.jsx";
+import mainPageStyle from "assets/jss/material-kit-react/views/mainPage.jsx";
+import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 
+import { hideRevisionAlert, redirectDashboard } from "actions/programmbsActions.jsx";
+import { GroundOverlay } from "react-google-maps";
 
 const styles = {
-  ...mainPageStyle,
-  ...PerfectScrollbarStyle
-};
+    ...mainPageStyle,
+    ...sweetAlertStyle
+  };
+
 
 class Show extends React.Component {
   constructor(props) {
     super(props);
-    // we use this to make the card to appear after the page has been rendered
     this.state = {
-
+     
     };
+    
   }
-
-
+  
+  hideAlert() {
+    this.props.dispatchHideRevisionAlert();
+  }
+  redirectDashboard(){
+    this.props.dispatchRedirectDashboard(this.props.history);
+  }
   render() {
-    const { classes, ...rest } = this.props;
+    const { classes, sendRevisionProjectSuccessfull, sendRevisionProjectError, editRevisionSuccessfull, editRevisionError, approveProjectError, approveProjectSuccessfull, t } = this.props;
     return (
-      <PerfectScrollbar>
-      <div>
+        <div>
+          <AdminHeader/>
+            {editRevisionSuccessfull ? 
+              <SweetAlert
+                  success
+                  style={{ display: "block", marginTop: "-100px" }}
+                  onConfirm={() => this.hideAlert()}
+                  onCancel={() => this.hideAlert()}
+                  confirmBtnText={t("button_continue")}
+                  confirmBtnCssClass={
+                      this.props.classes.button + " " + this.props.classes.success
+                  }
+                  >
+                  <h4>{t("label_save_success_revision")}</h4>
+              </SweetAlert>
+            : ""}
+            {editRevisionError ? 
+              <SweetAlert
+                  warning
+                  style={{ display: "block", marginTop: "-100px" }}
+                  onConfirm={() => this.hideAlert()}
+                  onCancel={() => this.hideAlert()}
+                  confirmBtnText={t("button_continue")}
+                  confirmBtnCssClass={
+                      this.props.classes.button + " " + this.props.classes.success
+                  }
+                  >
+                  <h4>{t("label_save_error")}</h4>
+              </SweetAlert>
+            : ""}
+            {sendRevisionProjectSuccessfull ? 
+              <SweetAlert
+                  success
+                  style={{ display: "block", marginTop: "-100px" }}
+                  onConfirm={() => this.redirectDashboard()}
+                  onCancel={() => this.hideAlert()}
+                  confirmBtnText={t("button_continue")}
+                  confirmBtnCssClass={
+                      this.props.classes.button + " " + this.props.classes.success
+                  }
+                  >
+                  <h4>{t("label_revision_sent_successfully")}</h4>
+              </SweetAlert>
+            : ""}
+            {sendRevisionProjectError ? 
+              <SweetAlert
+                  warning
+                  style={{ display: "block", marginTop: "-100px" }}
+                  onConfirm={() => this.hideAlert()}
+                  onCancel={() => this.hideAlert()}
+                  confirmBtnText={t("button_continue")}
+                  confirmBtnCssClass={
+                      this.props.classes.button + " " + this.props.classes.success
+                  }
+                  >
+                  <h4>{t("label_save_error")}</h4>
+              </SweetAlert>
+            : ""}
+            {approveProjectSuccessfull ? 
+              <SweetAlert
+                  success
+                  style={{ display: "block", marginTop: "-200px" }}
+                  onConfirm={() => this.redirectDashboard()}
+                  onCancel={() => this.hideAlert()}
+                  confirmBtnText={t("button_continue")}
+                  confirmBtnCssClass={
+                      this.props.classes.button + " " + this.props.classes.success
+                  }
+                  >
+                  <h4>{t("label_success_approved")}</h4>                
+              </SweetAlert>
+            : ""}
+            {approveProjectError ? 
+              <SweetAlert
+                  warning
+                  style={{ display: "block", marginTop: "-100px" }}
+                  onConfirm={() => this.hideAlert()}
+                  onCancel={() => this.hideAlert()}
+                  confirmBtnText={t("button_continue")}
+                  confirmBtnCssClass={
+                      this.props.classes.button + " " + this.props.classes.success
+                  }
+                  >
+                  <h4>{t("label_save_error")}</h4>
+              </SweetAlert>
+            : ""}
+            
         <div
           className={classes.main}
           style={{
@@ -46,16 +142,36 @@ class Show extends React.Component {
           <div className={classes.containerHeader} >
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={12}>
-                <ShowRep generalStyles={styles}/>
+                <ShowRep />
               </GridItem>
             </GridContainer>
           </div>
-          <Footer blackFont />
         </div>
       </div>
-      </PerfectScrollbar>
+    
     );
   }
 }
 
-export default withStyles(styles)(Show);
+Show.propTypes = {
+  classes: PropTypes.object
+};
+
+
+const mapStateToProps = state => ({ 
+  editRevisionError: state.programmbsReducer.editRevisionError,
+  editRevisionSuccessfull: state.programmbsReducer.editRevisionSuccessfull,
+  approveProjectError: state.programmbsReducer.approveProjectError,
+  approveProjectSuccessfull: state.programmbsReducer.approveProjectSuccessfull,
+  sendRevisionProjectError: state.programmbsReducer.sendRevisionProjectError,
+  sendRevisionProjectSuccessfull: state.programmbsReducer.sendRevisionProjectSuccessfull
+    
+});
+
+const mapDispatchToPropsActions = dispatch => ({
+  dispatchHideRevisionAlert: () => dispatch( hideRevisionAlert() ),
+  dispatchRedirectDashboard: param => dispatch( redirectDashboard(param) )
+});
+
+const ShowComponent = translate(withStyles(styles)(Show));
+export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(ShowComponent));

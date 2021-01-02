@@ -13,11 +13,11 @@ import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import EditForm from 'views/User/Edit/EditForm.jsx';
+import EditForm from 'views/Profile/Edit/EditForm.jsx';
 
 import { getData } from "actions/actions.jsx";
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
 
 const styles = {
@@ -41,7 +41,7 @@ class EditRep extends React.Component {
           <Card>
             <CardHeader color="info">
             <center>
-             <h4 className={classes.cardTitle}>{t("title.edit_profile")}</h4>
+             <h4 className={classes.cardTitle}>{t("title_edit_profile")}</h4>
              </center>
             </CardHeader>
             <CardBody>
@@ -64,5 +64,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const EditRepComponent = translate('provider')(withStyles(styles)(EditRep));
+const EditRepComponent = translate(withStyles(styles)(EditRep));
 export default withRouter(connect(null, mapDispatchToPropsActions)(EditRepComponent));

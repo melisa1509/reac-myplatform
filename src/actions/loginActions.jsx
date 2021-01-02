@@ -1,11 +1,15 @@
-import { SUCCESSFULL_AUTHENTICACION, FAILED_AUTHENTICATION } from 'constants/actionTypes.jsx';
+import { SUCCESSFULL_AUTHENTICATION, FAILED_AUTHENTICATION, SUCCESSFULL_ACTIVE_USER, LOGOUT_USER, CLEAN_AUTHENTICATION } from 'constants/actionTypes.jsx';
 import $ from 'jquery';
-import { SUCCESSFULL_ACTIVE_USER } from 'constants/actionTypes';
-
+import { BASE_URL } from 'constants/urlTypes';
+import { setLanguage } from 'react-switch-lang';
+import { getGroupList, getGroupProgram } from "actions/groupActions.jsx";
+import { getStudentList, getMbsStudentList } from "actions/studentActions.jsx";
+import { getAdminStudentMbsList } from "actions/dashboardActions.jsx";
+import { getAmbassadorList } from "actions/ambassadorActions";
 
 export const getAuthenticacion = ( params, redirect ) => {
     var settings = {
-                "url": "https://api.interweavesolutions.org/api/login_check",
+                "url": BASE_URL + "/api/login_check",
                 "method": "POST",
                 "timeout": 0,
                 "headers": {
@@ -18,12 +22,51 @@ export const getAuthenticacion = ( params, redirect ) => {
     }
     
     return (dispatch, getState ) => {
+        const reduxState = getState();
+        dispatch ({ type: CLEAN_AUTHENTICATION });
 
         return $.ajax(settings)
-                .done(function (response) {
+                .done(function (data) {
                     
-                    dispatch ({ type: SUCCESSFULL_AUTHENTICACION, payload: response });
-                    redirect.push('/student');
+                    //dispatch ({ type: SUCCESSFULL_AUTHENTICATION, payload: response });
+                    var settings = {
+                        "url": BASE_URL + "/user/active_user",
+                        "method": "POST",
+                        "timeout": 0,
+                        "headers": {
+                          "Content-Type": "application/x-www-form-urlencoded",
+                          "Authorization": "Bearer " + data.token
+                        },
+                        "data": {
+                        }
+                      };
+                    return $.ajax(settings)
+                            .done(function (response) {
+                                dispatch ({ type: SUCCESSFULL_AUTHENTICATION, payload: data });
+                                dispatch ({ type: SUCCESSFULL_ACTIVE_USER, payload: JSON.parse(response) });
+                                const active_user = JSON.parse(response).data;
+
+                                if(active_user.roles.includes("ROLE_STUDENT") || active_user.roles.includes("ROLE_STUDENT_EMBASSADOR")){
+                                    redirect.push('/dashboard/student');
+                                }
+                                else if(active_user.roles.includes("ROLE_LANGUAGE_ADMIN") || active_user.roles.includes("ROLE_ADMIN")){
+                                    dispatch( getAdminStudentMbsList());
+                                    dispatch( getAmbassadorList());
+                                    dispatch( getGroupList());
+                                    dispatch( getStudentList());  
+                                    dispatch( getGroupProgram());
+                                    dispatch( getMbsStudentList());                                  
+                                    redirect.push('/dashboard');
+                                }
+                                else{
+                                    redirect.push('/dashboard');
+                                }
+                                
+                            })
+                            .fail(function (response){
+                                redirect.push('/login');
+                            });
+
 
                 })
                 .fail(function (response){
@@ -39,7 +82,7 @@ export const getActiveUser = ( redirect ) => {
         const reduxState = getState();
         
         var settings = {
-            "url": "https://api.interweavesolutions.org/user/active_user",
+            "url": BASE_URL + "/user/active_user",
             "method": "POST",
             "timeout": 0,
             "headers": {
@@ -53,6 +96,7 @@ export const getActiveUser = ( redirect ) => {
         return $.ajax(settings)
                 .done(function (response) {
                     dispatch ({ type: SUCCESSFULL_ACTIVE_USER, payload: JSON.parse(response) });
+                    setLanguage(reduxState.loginReducer.active_user.language);
 
                 })
                 .fail(function (response){
@@ -62,17 +106,15 @@ export const getActiveUser = ( redirect ) => {
     
 }
 
-<<<<<<< Updated upstream
-=======
 export const logoutUser = ( redirect ) => {
     return (dispatch ) => {        
             dispatch ({ type: LOGOUT_USER });  
             redirect.push('/login');
-            window.location.reload(true);
-                        
+            window.location.reload(true);                        
+
     }
     
 }
 
 export const cleanState = () => ({ type: LOGOUT_USER })
->>>>>>> Stashed changes
+

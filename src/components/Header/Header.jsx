@@ -8,13 +8,14 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
-import Button from "@material-ui/core/Button";
 import Hidden from "@material-ui/core/Hidden";
 import Drawer from "@material-ui/core/Drawer";
 // @material-ui/icons
 import Menu from "@material-ui/icons/Menu";
 // core components
 import headerStyle from "assets/jss/material-kit-react/components/headerStyle.jsx";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 const logo = require("assets/img/interweavelogo.png");
 
@@ -67,7 +68,8 @@ class Header extends React.Component {
       leftLinks,
       brand,
       fixed,
-      absolute
+      absolute,
+      active_user
     } = this.props;
     const appBarClasses = classNames({
       [classes.appBar]: true,
@@ -76,7 +78,9 @@ class Header extends React.Component {
       [classes.fixed]: fixed
     });
     
-    const brandComponent = <img src={logo} height="50px" alt="..." />;
+    let roles = active_user.roles === undefined ? [] : active_user.roles;
+    let dashboardLink = roles.includes("ROLE_STUDENT_EMBASSADOR") || roles.includes("ROLE_STUDENT_EMBASSADOR") ? "/dashboard/student" : "/dashboard";
+    const brandComponent = <Link to={dashboardLink}><img src={logo} height="50px" alt="..." /></Link>;
     return (
       <AppBar className={appBarClasses}>
         <Toolbar className={classes.container}>
@@ -168,4 +172,13 @@ Header.propTypes = {
   })
 };
 
-export default withStyles(headerStyle)(Header);
+const mapStateToProps = state => ({ 
+  active_user: state.loginReducer.active_user,
+});
+
+const mapDispatchToPropsActions = dispatch => ({
+});
+
+
+const HeaderComponent = withStyles(headerStyle)(Header);
+export default connect(mapStateToProps, mapDispatchToPropsActions)(HeaderComponent);

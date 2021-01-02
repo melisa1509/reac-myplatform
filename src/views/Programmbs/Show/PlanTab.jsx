@@ -15,9 +15,10 @@ import CardBody from "components/Card/CardBody.jsx";
 import SuccessBold from "components/Typography/SuccessBold.jsx";
 import MutedText from "components/Typography/Muted.jsx";
 import Controls from './Controls.jsx';
+import ControlNavigation from './ControlNavigation.jsx';
 import RevisionForm from './RevisionForm.jsx';
 
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 const styles = {
@@ -36,10 +37,10 @@ class PlanTab extends React.Component {
     return (
         <Card >
           <CardBody>
-            <h3 className={classes.cardTitleCenter} >{t("title.plan")}</h3>
+            <h3 className={classes.cardTitleCenter} >{t("title_plan")}</h3>
             <br/>
             <SuccessBold>
-              {t("question.plan1")}
+              {t("question_plan1")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -47,16 +48,17 @@ class PlanTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.plan2")}
+              {t("question_plan2")}
             </SuccessBold>
             <br/>
             <MutedText>
               {programmbs.plan2}
             </MutedText>
             <br/>
-            <RevisionForm name="revisionplan" labelText={t("label.revision_product")+ " *"} />
+            <RevisionForm name="revisionplan" labelText={t("label_revision_plan")+ " *"} />
             <br/>
             <Controls/>
+            <ControlNavigation previous={"plan"} next={"product"} />
           </CardBody>
         </Card>
     );
@@ -76,5 +78,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const PlanTabComponent = translate('provider')(withStyles(styles)(PlanTab));
+const PlanTabComponent = translate(withStyles(styles)(PlanTab));
 export default connect(mapStateToProps, mapDispatchToPropsActions)(PlanTabComponent);

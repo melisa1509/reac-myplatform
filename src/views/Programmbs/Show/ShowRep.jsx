@@ -16,7 +16,7 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import ShowForm from './ShowForm.jsx';
 
 
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 const styles = {
@@ -36,17 +36,17 @@ class ShowRep extends React.Component {
  
 
   render() {
-    const { classes, programmbs } = this.props;
+    const { classes, programmbs, active } = this.props;
     let { t } = this.props;
     return (
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={12}>
             <CardHeader color="info" >
-                <h4 className={classes.cardTitleCenter}>{t("title.program_mbs")}</h4>
+                <h4 className={classes.cardTitleCenter}>{t("title_program_mbs")}</h4>
                 <p className={classes.cardCategory}>{ programmbs.student.first_name + " " + programmbs.student.last_name + " / " + programmbs.student.studentgroup.group.name + " / " + programmbs.student.studentgroup.group.embassador.first_name + "  " + programmbs.student.studentgroup.group.embassador.last_name} </p> 
             </CardHeader>
             <CardBody>
-                <ShowForm  />      
+                <ShowForm active={active} />      
             </CardBody>
         </GridItem>
       </GridContainer>
@@ -66,5 +66,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const NewRepComponent = translate('provider')(withStyles(styles)(ShowRep));
+const NewRepComponent = translate(withStyles(styles)(ShowRep));
 export default connect(mapStateToProps, mapDispatchToPropsActions)(NewRepComponent);

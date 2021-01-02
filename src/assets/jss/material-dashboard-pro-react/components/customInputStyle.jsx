@@ -64,10 +64,10 @@ const customInputStyle = {
     }
   },
   labelRootError: {
-    color: dangerColor[0] + " !important"
+    color: dangerColor[0] + " !important",
   },
   labelRootSuccess: {
-    color: successColor[0] + " !important"
+    color: successColor[0] + " !important",
   },
   formControl: {
     margin: "0 0 17px 0",

@@ -15,9 +15,10 @@ import CardBody from "components/Card/CardBody.jsx";
 import SuccessBold from "components/Typography/SuccessBold.jsx";
 import MutedText from "components/Typography/Muted.jsx";
 import Controls from './Controls.jsx';
+import ControlNavigation from './ControlNavigation.jsx';
 import RevisionForm from './RevisionForm.jsx';
 
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 const styles = {
@@ -36,10 +37,10 @@ class PriceTab extends React.Component {
     return (
         <Card >
           <CardBody>
-            <h3 className={classes.cardTitleCenter} >{t("title.price")}</h3>
+            <h3 className={classes.cardTitleCenter} >{t("title_price")}</h3>
             <br/>
             <SuccessBold>
-              {t("question.price1")}
+              {t("question_price1")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -47,7 +48,7 @@ class PriceTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.price2")}
+              {t("question_price2")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -55,7 +56,7 @@ class PriceTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.price3")}
+              {t("question_price3")}
             </SuccessBold>
             <br/>
             <MutedText>
@@ -63,16 +64,17 @@ class PriceTab extends React.Component {
             </MutedText>
             <br/>
             <SuccessBold>
-              {t("question.price4")}
+              {t("question_price4")}
             </SuccessBold>
             <br/>
             <MutedText>
               {programmbs.price4}
             </MutedText>
             <br/>
-            <RevisionForm name="revisionprice" labelText={t("label.revision_price")+ " *"} />
+            <RevisionForm name="revisionprice" labelText={t("label_revision_price")+ " *"} />
             <br/>
             <Controls/>
+            <ControlNavigation previous={"process"} next={"promotion"} />
           </CardBody>
         </Card>
     );
@@ -92,5 +94,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const PriceTabComponent = translate('provider')(withStyles(styles)(PriceTab));
+const PriceTabComponent = translate(withStyles(styles)(PriceTab));
 export default connect(mapStateToProps, mapDispatchToPropsActions)(PriceTabComponent);

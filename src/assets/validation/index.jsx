@@ -11,7 +11,7 @@ export const verifyEmail = value => {
 
 // function that verifies if a string has a given length or not
 export const verifyLength = (value, length) => {
-    if (value.length >= length) {
+    if (value.length > length) {
       return true;
     }
     return false;
@@ -59,7 +59,7 @@ export const verifyChange = (event, stateName, type, stateNameEqualTo, maxValue,
         }
         break;
       case "equalTo":
-        if (compare(event.target.value, this.state[stateNameEqualTo])) {
+        if (compare(event.target.value, state[stateNameEqualTo])) {
           state.setState({ [stateName + "State"]: "success" });
         } else {
           state.setState({ [stateName + "State"]: "error" });
@@ -143,5 +143,3 @@ export const verifyChange = (event, stateName, type, stateNameEqualTo, maxValue,
         break;
     }
   }
-
-  

@@ -26,7 +26,7 @@ import { dataTable, dataTableHalf } from "variables/general.jsx";
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 import { setData } from "actions/actions.jsx";
 

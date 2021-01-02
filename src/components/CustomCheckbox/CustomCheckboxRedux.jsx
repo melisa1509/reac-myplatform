@@ -273,35 +273,38 @@ class CustomCheckboxRedux extends React.Component {
     }
   }
   render() {
-    const { classes, input } = this.props;
+    const { classes, input, label } = this.props;
     return (
      
-            <FormControlLabel
-                control={
-                <Checkbox
-                    tabIndex={-1}
-                    onClick={event =>
-                    this.change(event, "registerCheckbox", "checkbox")
-                    }
-                    checkedIcon={<Check className={classes.checkedIcon} />}
-                    icon={<Check className={classes.uncheckedIcon} />}
-                    classes={{
-                    checked: classes.checked,
-                    root: classes.checkRoot
-                    }}
-                    onChange={input.onChange}
-                    checked={input.value}
-                />
-                }
-                classes={{
-                label:
-                    classes.label +
-                    (this.state.registerCheckboxState === "error"
-                    ? " " + classes.labelError
-                    : "")
-                }}
-                label="Subscribe to newsletter"
-            />
+      <div
+      className={
+          classes.checkboxAndRadio +
+          " " +
+          classes.checkboxAndRadioHorizontal
+      }
+      >
+      <FormControlLabel
+          control={
+          <Checkbox
+              checked={input.value}
+              checkedIcon={
+              <Check className={classes.checkedIcon} />
+              }
+              icon={<Check className={classes.uncheckedIcon} />}
+              classes={{
+              checked: classes.checked,
+              root: classes.checkRoot
+              }}
+              onChange={input.onChange}
+          />
+          }
+          classes={{ 
+          label: classes.label,
+          root: classes.labelRoot
+          }}
+          label={label}
+      />
+      </div>
     );
   }
 }

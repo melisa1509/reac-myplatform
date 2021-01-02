@@ -16,7 +16,7 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 
@@ -75,41 +75,58 @@ class IndexTable extends React.Component {
       let buttonSa = false;
       let idMbs = "";
       let idSa = "";
+      let labelButton = t('button_mbs');
+      let colorButton = "success";
+
+      if (prop.studentgroup !== undefined){
+        if(prop.studentgroup.group !== undefined){
+          if(prop.studentgroup.group.program === "option.program4"){
+            labelButton =  t('button_mbs_jr');
+            colorButton =  "warning";
+          }          
+        }        
+      }
       if (prop.programsa !== undefined) {
-            projectState = t("label.project_ambassador") + " " +  t(prop.programsa.state);
+            projectState = t("label_project_ambassador") + " " +  t(prop.programsa.state);
             buttonSa =  true;
             idSa = prop.programsa.id;
             
       }
       else if(prop.programmbs !== undefined){
-            projectState = t("state.project_mbs") + " " +  t(prop.programmbs.state);
-            buttonMbs =  true;
-            idMbs = prop.programmbs.id;
+            projectState = t("state_project_mbs") + " " +  t(prop.programmbs.state);
       }
       else{
-            projectState = t("label.project_mbs") + " " +  t("state.without_starting");
+            projectState = t("label_project_mbs") + " " +  t("state_without_starting");
       }
+
+      if(prop.programmbs !== undefined){
+        buttonMbs =  true;
+        idMbs = prop.programmbs.id;
+      }      
+
+      var groups = (prop.studentgroup !== undefined ? prop.studentgroup.group.name : "") + (prop.studentambassadorgroup !== undefined ? " / " + prop.studentambassadorgroup.group.name : "");
       return {
         id: key, 
         full_name: prop.first_name + " "+ prop.last_name,
+        group: groups,
         state: projectState,
         projects: (
-          <div className="actions-left">
-            <Link to={buttonMbs ? "/programmbs/" + idMbs : "#"}>
+          <div className="actions-left">            
+            <Link to={buttonMbs ? prop.programmbs.modality === "option.modality1" ? "/programmbs/showfile/" + idMbs : "/programmbs/show/" + idMbs : "#"}>
               <Button
                 size="sm"
-                color={buttonMbs ? "success" : "default" }
+                color={buttonMbs ? colorButton : "default" }
               >
-                {t('button.mbs')}
+                { labelButton }
               </Button>
             </Link>
             {" "}
-            <Link to={buttonSa ? "/programsa/" + idSa : "#"}>
+            <Link to={buttonSa ? "/programsa/show/" + idSa : "#"}>
               <Button
                 size="sm"
                 color={buttonSa ? "info" : "default" }
               >
-                {t('button.embassador')}
+                {t('button_embassador')}
               </Button>
             </Link>
             
@@ -118,7 +135,7 @@ class IndexTable extends React.Component {
         actions: (
           // we've added some custom button actions
           <div className="actions-left">
-            <Link to={"/user/show/" + prop.id}>
+            <Link to={"/student/show/" + prop.id}>
               <Button
                 justIcon
                 round4
@@ -128,7 +145,7 @@ class IndexTable extends React.Component {
                 <Visibility />
               </Button>
             </Link>{" "}
-            <Link to={"/user/edit/" + prop.id}>
+            <Link to={"/student/edit/" + prop.id}>
               <Button
                 justIcon
                 round
@@ -138,7 +155,7 @@ class IndexTable extends React.Component {
                 <Create />
               </Button>
             </Link>{" "}
-            <Link to={"/user/show/" + prop.id}>
+            <Link to={"/student/show/" + prop.id}>
               <Button
                 justIcon
                 round
@@ -179,29 +196,30 @@ class IndexTable extends React.Component {
 
               columns={[
                 {
-                  Header: t("label.name"),
+                  Header: t("label_name"),
                   accessor: "full_name"
                 },
                 {
-                  Header: t("label.state"),
+                  Header: t("label_state"),
                   accessor: "state"
                 },
                 {
-                  Header: t("th.projects"),
+                  Header: t("th_group"),
+                  accessor: "group",
+                  resizable:true
+                },
+                {
+                  Header: t("th_projects"),
                   accessor: "projects"
                 },
                 {
-                  Header: t("th.actions"),
+                  Header: t("th_actions"),
                   accessor: "actions",
                   sortable: false,
-                  filterable: false
+                  filterable: false,
+                  width: 150,
                 },
                 {
-                  // NOTE - this is a "filter all" DUMMY column
-                  // you can't HIDE it because then it wont FILTER
-                  // but it has a size of ZERO with no RESIZE and the
-                  // FILTER component is NULL (it adds a little to the front)
-                  // You culd possibly move it to the end
                   Header: "",
                   id: 'all',
                   width: 0,
@@ -248,6 +266,6 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchGetStudentList: key => dispatch( getStudentList(key) )
 });
 
-const IndexTableComponent = translate('provider')(IndexTable);
+const IndexTableComponent = translate(IndexTable);
 export default connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent);
 

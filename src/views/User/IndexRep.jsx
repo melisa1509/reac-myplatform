@@ -25,12 +25,12 @@ import { dataTable, dataTableHalf } from "variables/general.jsx";
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 import { setData } from "actions/actions.jsx";
 
 import { store } from 'store/index.jsx';
-import { getCourseList } from "actions/courseActions";
+import { getCourseList } from "actions/courseActions.jsx";
 
 const styles = {
   cardIconTitle: {
@@ -302,5 +302,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const ReactTablesComponent = translate('buttons')(withStyles(styles)(ReactTables));
+const ReactTablesComponent = translate(withStyles(styles)(ReactTables));
 export default connect(null, mapDispatchToPropsActions)(ReactTablesComponent);

@@ -9,20 +9,18 @@ import withStyles from "@material-ui/core/styles/withStyles";
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
-import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import LoginForm from './LoginForm.jsx';
 import Logo from "assets/img/logo_interweave.png";
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
+import Language from "views/Header/Language.jsx";
+
 
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 
 
 const styles = {
@@ -48,11 +46,12 @@ class LoginRep extends React.Component {
     const { classes, styles } = this.props;
     let { t } = this.props;
     return (
-<<<<<<< Updated upstream
       <GridContainer justify="center">
-=======
-      <GridContainer justify="center">        
->>>>>>> Stashed changes
+        <GridContainer justify="right">
+          <GridItem xs={12} sm={12} md={4}>
+            <Language/>
+          </GridItem>
+        </GridContainer>
         <GridContainer justify="center">
           <GridItem>
             <img src={Logo} height="90px" alt="..." />
@@ -61,8 +60,8 @@ class LoginRep extends React.Component {
         <GridItem xs={12} sm={12} md={5}>
           <Card>
             <CardHeader color="info">
-                <h4 className={classes.cardTitle}>{t("title.interweave_academy")}</h4>
-                <p className={classes.cardCategory}>{t("title.welcome")}</p>
+                <h4 className={classes.cardTitle}>{t("title_interweave_academy")}</h4>
+                <p className={classes.cardCategory}>{t("title_welcome")}</p>
             </CardHeader>
             <CardBody>
                 <LoginForm  />      
@@ -85,5 +84,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const LoginRepComponent = translate('provider')(withStyles(styles)(LoginRep));
+const LoginRepComponent = translate(withStyles(styles)(LoginRep));
 export default connect(null, mapDispatchToPropsActions)(LoginRepComponent);

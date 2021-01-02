@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 // react component for creating dynamic tables
 import { connect } from "react-redux";
 
@@ -47,7 +47,6 @@ class ShowTable extends React.Component {
     
     render() {
         const { active_user } = this.props;
-        console.log(active_user);
         let { t } = this.props;
         return (
           <GridContainer justify="center">
@@ -56,13 +55,13 @@ class ShowTable extends React.Component {
               striped
               tableHead={[]}
               tableData={[
-                [<th>{t("label.email")}</th>,<p>{active_user.first_name}</p>],
-                [<th>{t("label.name")}</th>,],
-                [<th>{t("label.lastName")}</th>,],
-                [<th>{t("label.country")}</th>,],
-                [<th>{t("label.city")}</th>, "Minerva Hooper"],
-                [<th>{t("label.whatsApp")}</th>, "Minerva Hooper"],
-                [<th>{t("label.language")}</th>,  "Minerva Hooper"],
+                [<th>{t("label_username")}</th>,<p>{active_user.username}</p>],
+                [<th>{t("label_name")}</th>,<p>{active_user.first_name}</p>],
+                [<th>{t("label_lastName")}</th>,<p>{active_user.last_name}</p>],
+                [<th>{t("label_country")}</th>,<p>{active_user.country}</p>],
+                [<th>{t("label_city")}</th>,<p>{active_user.city}</p>],
+                [<th>{t("label_whatsApp")}</th>,<p>{active_user.whatsapp}</p>],
+                [<th>{t("label_language")}</th>,<p>{active_user.language}</p>],
               ]}
             />
             <br/>
@@ -71,13 +70,13 @@ class ShowTable extends React.Component {
                       <center>
                         <Link to={"/profile/edit/"}>
                           <Button color="info" size="sm">
-                          {t("button.edit")}
+                          {t("button_edit")}
                           </Button>
                         </Link>
                           {" "}
                         <Link to={"/profile/editpassword/"}>
                           <Button color="default" size="sm">
-                          {t("button.change_password")}
+                          {t("button_change_password")}
                         </Button>
                         </Link>
                       </center>
@@ -96,7 +95,7 @@ const mapStateToProps = state => ({
 const mapDispatchToPropsActions = dispatch => ({
 });
 
-const ShowTableComponent = translate('provider')(withStyles(style)(ShowTable));
+const ShowTableComponent = translate(withStyles(style)(ShowTable));
 export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(ShowTableComponent));
 
 

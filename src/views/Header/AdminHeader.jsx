@@ -33,7 +33,7 @@ class AdminHeader extends React.Component {
         <Header
           absolute
           color="white"
-          brand="assets/img/interweavelogo.png"
+          brand="assets/img/interweavelogo22.png"
           rightLinks={<HeaderLinks rol={rol} />}
           {...rest}
         />

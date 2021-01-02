@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { translate } from "react-translate";
+import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
 
 // react component for creating dynamic tables
@@ -21,9 +21,10 @@ import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/
 import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
 
 import { verifyChange } from "assets/validation/index.jsx";
-import { getAuthenticacion } from "actions/loginActions";
-import { dispatchGetStudentList } from "actions/studentActions";
-import { getStudentList } from "actions/studentActions";
+import { getAuthenticacion, cleanState } from "actions/loginActions";
+import { getReports } from "actions/reportActions.jsx";
+import { store } from 'store/index.jsx';
+
 
 
 const style = {
@@ -42,6 +43,7 @@ const style = {
     ...customSelectStyle,
     ...validationFormsStyle
 };
+
 
 
 class LoginForm extends React.Component {
@@ -97,6 +99,7 @@ class LoginForm extends React.Component {
         this.loginClick = this.loginClick.bind(this);
         this.typeClick = this.typeClick.bind(this);
         this.rangeClick = this.rangeClick.bind(this);
+        this.escFunction = this.escFunction.bind(this);
       }
      
       registerClick() {
@@ -164,31 +167,47 @@ class LoginForm extends React.Component {
           this.setState({ maxValueState: "error" });
         }
       }
-    sendState() {
-        return this.state;
-    }
-    handleSimple = event => {
-        this.setState({ [event.target.name]: event.target.value });
-    };
-    handleChange = name => event => {
-        this.setState({ [name]: event.target.checked });
-    };
-    isValidated() {
-        return true;
-    }
+      sendState() {
+          return this.state;
+      }
+      handleSimple = event => {
+          this.setState({ [event.target.name]: event.target.value });
+      };
+      handleChange = name => event => {
+          this.setState({ [name]: event.target.checked });
+      };
+      isValidated() {
+          return true;
+      }
 
-    componentDidMount() {
-      this.props.dispatchGetStudentList();
-    }
+      componentDidMount() {
+        this.props.dispatchGetCleanState();      
+        document.addEventListener("keydown", this.escFunction, false);        
+      }
 
-    
 
+      escFunction(event){
+        if(event.keyCode === 13) {
+          if (this.state.loginUsernameState === "") {
+            this.setState({ loginUsernameState: "error" });
+          }
+          if (this.state.loginPasswordState === "") {
+            this.setState({ loginPasswordState: "error" });
+          }
+          if(this.state.loginUsernameState === "success" && this.state.loginPasswordState === "success"){
+            const params = {
+              username: this.state.loginUsername,
+              password: this.state.loginPassword
+            }
+            this.props.dispatchGetAuthenticacion(params, this.props.history);
+            
+          }
+        }
+      }
 
     render() {
         const { classes, styles, loginError } = this.props;
-        let { t } = this.props;
-        const login = "es";
-        
+        let { t } = this.props;       
         
         return (
           <GridContainer justify="center">
@@ -198,7 +217,7 @@ class LoginForm extends React.Component {
                       <CustomInput
                           success={this.state.loginUsernameState === "success"}
                           error={this.state.loginUsernameState === "error"}
-                          labelText={t("label.username")}
+                          labelText={t("label_username")}
                           id="loginUsername"
                           formControlProps={{
                               fullWidth: true
@@ -219,7 +238,7 @@ class LoginForm extends React.Component {
                       <CustomInput
                           success={this.state.loginPasswordState === "success"}
                           error={this.state.loginPasswordState === "error"}
-                          labelText={t("label.password")}
+                          labelText={t("label_password")}
                           id="loginpassword"
                           formControlProps={{
                             fullWidth: true
@@ -236,11 +255,25 @@ class LoginForm extends React.Component {
               </GridContainer>
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
-                      <Button color="danger" fullWidth  onClick={this.loginClick}>
-                          {t("button.login")}
+                      <Button color="danger" fullWidth  onClick={this.loginClick} >
+                          {t("button_login")}
                       </Button>
                   </GridItem>
               </GridContainer>
+              <div className={classes.justifyContentCenter}>
+                    <a href="/password">
+                        <center>{t("label_forgot_password")}</center>
+                    </a>
+                  </div>
+                  <div>
+                    <center>
+                      <span>{t("label_dont_have_account")} </span>
+                        <a href="/register">{t("button_sign_up")}</a>
+                      <span>
+                      {"\n"}
+                      </span>
+                    </center>
+                  </div>
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
                       { loginError ? <Danger><h6 className={classes.infoText}>Invalid Credentials</h6></Danger>: ""}
@@ -262,11 +295,13 @@ const mapStateToProps = state => (
 );
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetAuthenticacion: (params, history) => dispatch( getAuthenticacion(params, history) ),
-  dispatchGetStudentList: () => dispatch( getStudentList() ),
+  dispatchGetAuthenticacion: (params, history) => dispatch( getAuthenticacion(params, history) ),  
+  dispatchGetReports: () => dispatch( getReports() ),
+  dispatchGetCleanState: () => dispatch (cleanState())
+    
 });
 
-const LoginFormComponent = translate('provider')(withStyles(style)(LoginForm));
+const LoginFormComponent = translate(withStyles(style)(LoginForm));
 export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(LoginFormComponent));
 
 
