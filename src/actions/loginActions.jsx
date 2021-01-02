@@ -62,3 +62,17 @@ export const getActiveUser = ( redirect ) => {
     
 }
 
+<<<<<<< Updated upstream
+=======
+export const logoutUser = ( redirect ) => {
+    return (dispatch ) => {        
+            dispatch ({ type: LOGOUT_USER });  
+            redirect.push('/login');
+            window.location.reload(true);
+                        
+    }
+    
+}
+
+export const cleanState = () => ({ type: LOGOUT_USER })
+>>>>>>> Stashed changes
