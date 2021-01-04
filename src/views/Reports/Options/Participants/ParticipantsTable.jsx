@@ -6,6 +6,11 @@ import { connect } from "react-redux";
 import { getStudentAmbassadorList } from "actions/studentActions.jsx";
 import { Link } from "react-router-dom";
 
+// @material-ui/icons
+import Create from "@material-ui/icons/Create";
+import Visibility from "@material-ui/icons/Visibility";
+import Close from "@material-ui/icons/Close";
+
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
@@ -15,7 +20,7 @@ import matchSorter from 'match-sorter';
 import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
 
-class AmbassadorTable extends React.Component {
+class ParticipantsTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -87,6 +92,41 @@ class AmbassadorTable extends React.Component {
         state:projectState,
         date:updated_at,
         country: prop.country,
+        actions: (
+          // we've added some custom button actions
+          <div className="actions-left">
+            <Link to={"/student/show/" + prop.id}>
+              <Button
+                justIcon
+                round4
+                simple
+                color="info"
+              >
+                <Visibility />
+              </Button>
+            </Link>{" "}
+            <Link to={"/student/edit/" + prop.id}>
+              <Button
+                justIcon
+                round
+                simple            
+                color="warning"
+              >
+                <Create />
+              </Button>
+            </Link>{" "}
+            <Link to={"/student/show/" + prop.id}>
+              <Button
+                justIcon
+                round
+                simple            
+                color="danger"
+              >
+                <Close />
+              </Button>
+            </Link>{" "}
+          </div>
+        )
       };
     });
 
@@ -127,8 +167,10 @@ class AmbassadorTable extends React.Component {
                   accessor: "date",
                 },
                 {
-                  Header: t("label_country"),
-                  accessor: "country",
+                  Header: t("th_actions"),
+                  accessor: "actions",
+                  sortable: false,
+                  filterable: false
                 },
                 {
                   Header: "",
@@ -139,13 +181,10 @@ class AmbassadorTable extends React.Component {
                   
                   getProps: () => {
                     return {
-                      style: { height: "40px"}
+                      //style: { height: "40px"}
                     }
                   },
                   filterMethod: (filter, rows) => {
-                    // using match-sorter
-                    // it will take the content entered into the "filter"
-                    // and search for it in EITHER the firstName or lastName
                     const result = matchSorter(rows, filter.value, {
                       keys: [
                         "full_name",
@@ -177,6 +216,7 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchGetStudentAmbassadorList: key => dispatch( getStudentAmbassadorList(key) )
 });
 
-const AmbassadorTableComponent = translate(AmbassadorTable);
-export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(AmbassadorTableComponent));
+const ParticipantsTableComponent = translate(ParticipantsTable);
+export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(ParticipantsTableComponent));
 
+ 

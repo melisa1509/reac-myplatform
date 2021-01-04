@@ -507,6 +507,7 @@
         "th_quality":                "Calidad",
         "th_service":                "Servicio",
         "th_graduates":              "Graduados",
+        "th_date":                   "Ultimo Acceso",
 
         "subject.pending_correction":    "[My Platform] Notificación proyecto con correcciones pendientes.",
         "subject.pending_correction_sa": "[My Platform] Notificación proyecto con correcciones pendientes.",

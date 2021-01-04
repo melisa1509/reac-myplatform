@@ -11,16 +11,29 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import withStyles from "@material-ui/core/styles/withStyles";
 
-import Button from "components/CustomButtons/Button.jsx";
-import Participants from "views/Reports/Options/Participants/AmbassadorTable.jsx";
+import Muted from "components/Typography/Muted.jsx"
+import Card from "components/Card/Card.jsx";
+import CardIcon from "components/Card/CardIcon.jsx";
+import CardBody from "components/Card/CardBody.jsx";
+import CardHeader from "components/Card/CardHeader.jsx";
+
+import Participants from "views/Reports/Options/Participants/ParticipantsTable.jsx";
 import Groups from "views/Reports/Options/Groups/IndexAmbassador.jsx";
 import IndexAmbassadorTable from 'views/Reports/IndexAmbassadorTable.jsx';
+import AmbassadorTableReports from 'views/Reports/AmbassadorTableReports.jsx';
+import DashboardAmbassador from 'views/Reports/Options/Dashboard/DashboardAmbassador.jsx';
+import Histories from 'views/History/IndexTable.jsx';
 
+import Dashboard from "@material-ui/icons/Dashboard";
+import Icon from "@material-ui/core/Icon";
 import Face from "@material-ui/icons/Face";
 import Group from "@material-ui/icons/Group";
 import Equalizer from "@material-ui/icons/Equalizer";
+import School from "@material-ui/icons/School";
 // core components
 import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
+
+
 
 const styles = {
   textCenter: {
@@ -91,13 +104,23 @@ class IndexTable extends React.Component {
         headerColor="info"
         tabs={[
           {
+            tabName: t("link_dashboard"),
+            tabIcon: Dashboard,
+            tabContent: (
+              <p className={classes.textCenter}>
+                <DashboardAmbassador/>
+              </p>
+            ),
+          },
+          {
             tabName: t("link_participants"),
             tabIcon: Face,
             tabContent: (
               <p className={classes.textCenter}>
                 <Participants/>
               </p>
-            )
+            ),
+            rtlActive:true
           },
           {
             tabName: t("link_groups"),
@@ -113,7 +136,46 @@ class IndexTable extends React.Component {
             tabIcon: Equalizer,
             tabContent: (
               <p className={classes.textCenter}>
-                <IndexAmbassadorTable/>
+                <Card>
+                  <CardHeader icon >
+                    <CardIcon color="success">
+                      <Icon>dns</Icon>
+                    </CardIcon>
+                    <Muted>
+                      <h4>{t("title_number_people_improvement")}</h4>
+                    </Muted>
+                  </CardHeader>
+                  <CardBody>
+                      <AmbassadorTableReports/>   
+                  </CardBody>
+                </Card>
+                <br/>
+                <Card>
+                  <CardHeader icon >
+                    <CardIcon color="rose">
+                      <Icon>equalizer</Icon>
+                    </CardIcon>
+                    <Muted>
+                      <h4>{t("title_evaluation_statistics")}</h4>
+                    </Muted>
+                  </CardHeader>
+                  <CardBody>
+                    <IndexAmbassadorTable/>   
+                  </CardBody>
+                </Card>
+              </p>
+            )
+          },
+          {
+            tabName: t("link_success_story"),
+            tabIcon: School,
+            tabContent: (
+              <p className={classes.textCenter}>
+                  <GridContainer justify="center">
+                    <GridItem xs={12} sm={12} md={12}>
+                        <Histories/>
+                    </GridItem>
+                  </GridContainer>
               </p>
             )
           },

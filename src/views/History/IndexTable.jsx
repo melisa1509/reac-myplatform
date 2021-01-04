@@ -4,8 +4,10 @@ import PropTypes from "prop-types";
 // react component for creating dynamic tables
 import ReactTable from "react-table";
 import { connect } from "react-redux";
-import { successStory  } from "actions/studentActions.jsx";
+import { withRouter } from 'react-router-dom';
 import { Link } from "react-router-dom";
+import { successStory  } from "actions/studentActions.jsx";
+
 
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -55,7 +57,7 @@ class IndexTable extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatchSuccessStory();
+    this.props.dispatchSuccessStory(this.props.match.params.id);
   }
  
   render() {
@@ -170,9 +172,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchSuccessStory: () => dispatch( successStory() )
+  dispatchSuccessStory: (key) => dispatch( successStory(key) )
 });
 
 const IndexTableComponent = translate(IndexTable);
-export default connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent);
+export default  withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent));
 

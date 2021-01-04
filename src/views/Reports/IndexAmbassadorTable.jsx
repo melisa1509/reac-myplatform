@@ -4,6 +4,7 @@ import ReactTable from "react-table";
 import matchSorter from 'match-sorter';
 import { connect } from "react-redux";
 import { translate } from 'react-switch-lang';
+import { withRouter } from 'react-router-dom';
 
 import DragHandle from "@material-ui/icons/DragHandle";
 import Navigation from "@material-ui/icons/Navigation";
@@ -85,7 +86,7 @@ class IndexAmbassadorTable extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatchGetReports();
+    this.props.dispatchGetReports(this.props.match.params.id);
   }
 
  
@@ -153,7 +154,7 @@ class IndexAmbassadorTable extends React.Component {
                 {
                   Header: t("th_name"),
                   accessor: "name",
-                  width: 150,   
+                  width: 200,   
                 },
                 {
                   Header: t("th_question1"),
@@ -256,9 +257,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetReports: () => dispatch( getReports() )
+  dispatchGetReports: (key) => dispatch( getReports(key) )
 });
 
 const IndexAmbassadorTableComponent = translate(IndexAmbassadorTable);
-export default connect(mapStateToProps, mapDispatchToPropsActions)(IndexAmbassadorTableComponent);
+export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(IndexAmbassadorTableComponent));
 

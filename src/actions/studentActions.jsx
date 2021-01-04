@@ -285,17 +285,30 @@ export const evaluationPost = ()=> {
     }
 };
 
-export const successStory = () => {
+export const successStory = (key) => {
     return (dispatch,getState) => {
-
         const reduxState = getState();
+        var id ="";
+        var role = "";
+        if(reduxState.loginReducer.active_user.roles[0]=="ROLE_ADMIN" && key != undefined){
+          id= key;
+          role= "ROLE_EMBASSADOR"
+        }
+        else if(reduxState.loginReducer.active_user.roles[0]=="ROLE_ADMIN") {
+          id=reduxState.loginReducer.active_user.id
+          role="ROLE_ADMIN"
+        }
+        else if(reduxState.loginReducer.active_user.roles[0]=="ROLE_EMBASSADOR") {
+            id=reduxState.loginReducer.active_user.id
+            role="ROLE_EMBASSADOR"
+        }
 
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
         var urlencoded = new URLSearchParams();
-        urlencoded.append("id_ambassador",reduxState.loginReducer.active_user.id);
-        urlencoded.append("role", reduxState.loginReducer.active_user.roles[0]);
+        urlencoded.append("id_ambassador",id);
+        urlencoded.append("role", role);
        
         var requestOptions = {
         method: 'POST',
