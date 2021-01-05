@@ -118,12 +118,6 @@ class IndexTable extends React.Component {
                   width: 250,
                 },
                 {
-                  Header: t("th_certificates"),
-                  accessor: "certificates",
-                  sortable: false,
-                  width: 150,
-                },
-                {
                   Header: t("th_participants"),
                   accessor: "participants",
                   resizable:true,
@@ -131,14 +125,20 @@ class IndexTable extends React.Component {
                   width: 150,
                 },
                 {
-                  Header: t("th_stories"),
-                  accessor: "stories",
+                  Header: t("th_groups"),
+                  accessor: "group",
                   sortable: false,
                   width: 150,
                 },
                 {
-                  Header: t("th_group"),
-                  accessor: "group",
+                  Header: t("th_certificates"),
+                  accessor: "certificates",
+                  sortable: false,
+                  width: 150,
+                },
+                {
+                  Header: t("th_stories"),
+                  accessor: "stories",
                   sortable: false,
                   width: 150,
                 },

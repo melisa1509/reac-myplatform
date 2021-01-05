@@ -6,6 +6,7 @@ import ReactTable from "react-table";
 import { connect } from "react-redux";
 import { successStory  } from "actions/studentActions.jsx";
 import { Link } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -55,7 +56,7 @@ class IndexTableAdmin extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatchSuccessStory();
+    this.props.dispatchSuccessStory(this.props.match.params.id);
   }
  
   render() {
@@ -144,7 +145,8 @@ class IndexTableAdmin extends React.Component {
                     const result = matchSorter(rows, filter.value, {
                       keys: [
                         "name",
-                        "username",
+                        "group",
+                        "nameAmbassador"
                       ], threshold: matchSorter.rankings.WORD_STARTS_WITH
                     });
                     return result;
@@ -170,9 +172,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchSuccessStory: () => dispatch( successStory() )
+  dispatchSuccessStory: (key) => dispatch( successStory(key) )
 });
 
 const IndexTableAdminComponent = translate(IndexTableAdmin);
-export default connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableAdminComponent);
+export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableAdminComponent));
 

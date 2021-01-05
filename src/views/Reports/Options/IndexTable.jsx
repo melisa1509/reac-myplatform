@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { getAmbassadorStatistics } from "actions/reportActions.jsx";
 import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -16,6 +17,7 @@ import Card from "components/Card/Card.jsx";
 import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
+import Button from "components/CustomButtons/Button.jsx";
 
 import Participants from "views/Reports/Options/Participants/ParticipantsTable.jsx";
 import Groups from "views/Reports/Options/Groups/IndexAmbassador.jsx";
@@ -32,6 +34,7 @@ import Equalizer from "@material-ui/icons/Equalizer";
 import School from "@material-ui/icons/School";
 // core components
 import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
+import AmbaJRTableReports from "../AmbaJRTableReports";
 
 
 
@@ -87,7 +90,7 @@ class IndexTable extends React.Component {
   
 
   render() {
-    const { student_ambassador_list,ambassador_statistics,classes } = this.props;
+    const { ambassador_statistics,classes } = this.props;
     let { t } = this.props;
     var name
     const name_ambassador= ambassador_statistics.map((prop, key) => {
@@ -109,7 +112,19 @@ class IndexTable extends React.Component {
             tabContent: (
               <p className={classes.textCenter}>
                 <DashboardAmbassador/>
-              </p>
+                <br/>
+                <GridContainer >
+                  <GridItem xs={12} sm={12} md={12}>
+                  <center>
+                      <Link to={"/report/ambassadorstatistics"}>
+                      <Button color="success" size="sm">
+                      {t("button_return_to_list")}
+                      </Button>
+                      </Link>
+                  </center>
+                  </GridItem>
+                </GridContainer>
+              </p>   
             ),
           },
           {
@@ -118,6 +133,18 @@ class IndexTable extends React.Component {
             tabContent: (
               <p className={classes.textCenter}>
                 <Participants/>
+                <br/>
+                <GridContainer >
+                  <GridItem xs={12} sm={12} md={12}>
+                  <center>
+                      <Link to={"/report/ambassadorstatistics"}>
+                      <Button color="success" size="sm">
+                      {t("button_return_to_list")}
+                      </Button>
+                      </Link>
+                  </center>
+                  </GridItem>
+                </GridContainer>
               </p>
             ),
             rtlActive:true
@@ -128,6 +155,18 @@ class IndexTable extends React.Component {
             tabContent: (
               <p className={classes.textCenter}>
                 <Groups/>
+                <br/>
+                <GridContainer >
+                  <GridItem xs={12} sm={12} md={12}>
+                  <center>
+                      <Link to={"/report/ambassadorstatistics"}>
+                      <Button color="success" size="sm">
+                      {t("button_return_to_list")}
+                      </Button>
+                      </Link>
+                  </center>
+                  </GridItem>
+                </GridContainer>
               </p>
             )
           },
@@ -152,6 +191,20 @@ class IndexTable extends React.Component {
                 <br/>
                 <Card>
                   <CardHeader icon >
+                    <CardIcon color="danger">
+                      <Icon>dns</Icon>
+                    </CardIcon>
+                    <Muted>
+                      <h4>{t("title_number_people_improvement")}</h4>
+                    </Muted>
+                  </CardHeader>
+                  <CardBody>
+                    <AmbaJRTableReports/>   
+                  </CardBody>
+                </Card>
+                <br/>
+                <Card>
+                  <CardHeader icon >
                     <CardIcon color="rose">
                       <Icon>equalizer</Icon>
                     </CardIcon>
@@ -163,6 +216,18 @@ class IndexTable extends React.Component {
                     <IndexAmbassadorTable/>   
                   </CardBody>
                 </Card>
+                <br/>
+                <GridContainer >
+                  <GridItem xs={12} sm={12} md={12}>
+                  <center>
+                      <Link to={"/report/ambassadorstatistics"}>
+                      <Button color="success" size="sm">
+                      {t("button_return_to_list")}
+                      </Button>
+                      </Link>
+                  </center>
+                  </GridItem>
+                </GridContainer>
               </p>
             )
           },
@@ -171,11 +236,23 @@ class IndexTable extends React.Component {
             tabIcon: School,
             tabContent: (
               <p className={classes.textCenter}>
-                  <GridContainer justify="center">
-                    <GridItem xs={12} sm={12} md={12}>
-                        <Histories/>
-                    </GridItem>
-                  </GridContainer>
+                <GridContainer justify="center">
+                  <GridItem xs={12} sm={12} md={12}>
+                      <Histories/>
+                  </GridItem>
+                </GridContainer>
+                <br/>
+                <GridContainer >
+                  <GridItem xs={12} sm={12} md={12}>
+                  <center>
+                      <Link to={"/report/ambassadorstatistics"}>
+                      <Button color="success" size="sm">
+                      {t("button_return_to_list")}
+                      </Button>
+                      </Link>
+                  </center>
+                  </GridItem>
+                </GridContainer>
               </p>
             )
           },

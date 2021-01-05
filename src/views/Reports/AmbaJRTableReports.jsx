@@ -2,13 +2,13 @@ import React from "react";
 // react component for creating dynamic tables
 import { connect } from "react-redux";
 import { translate } from 'react-switch-lang';
+import { withRouter } from 'react-router-dom';
 
 // core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Table from "components/Table/Table.jsx";
-import AmbassadorSelect from "views/Select/AmbassadorSelect.jsx";
 import { getReportAmbassador } from "actions/reportActions.jsx";
 
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
@@ -27,7 +27,7 @@ class AmbassadorTableReports extends React.Component {
     };
   }
   componentDidMount(){
-    this.props.dispatchGetReportAmbassador();
+    this.props.dispatchGetReportAmbassador(this.props.match.params.id);
   }
   render() {
     const {report_ambassador} = this.props;
@@ -94,9 +94,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetReportAmbassador: () => dispatch( getReportAmbassador() )
+  dispatchGetReportAmbassador: (key) => dispatch( getReportAmbassador(key) )
 });
 
 const AmbassadorTableReportsComponent = translate(withStyles(style)(AmbassadorTableReports));
-export default connect(mapStateToProps, mapDispatchToPropsActions)(AmbassadorTableReportsComponent);
+export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(AmbassadorTableReportsComponent));
 

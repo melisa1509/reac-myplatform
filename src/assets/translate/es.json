@@ -482,6 +482,7 @@
         "th_status":                 "Estado",
         "th_username":               "Usuario",
         "th_group":                  "Grupo",
+        "th_groups":                 "Grupos",
         "th_certificates":           "Certificados",
         "th_stories":                "Historias de Exito",
         "th_embassador_mentor":      "Embajador Mentor",

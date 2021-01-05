@@ -70,7 +70,7 @@ import ShowPromotionProgramMbs from 'views/Programmbs/Show/ShowPromotion.jsx';
 import ShowPaperworkProgramMbs from 'views/Programmbs/Show/ShowPaperwork.jsx';
 import ShowQualityProgramMbs from 'views/Programmbs/Show/ShowQuality.jsx';
 import ShowServiceProgramMbs from 'views/Programmbs/Show/ShowService.jsx';
-import ShowHistoryProgramMbs from 'views/Programmbs/Show/ShowHistory.jsx';
+import ShowHistoryProgramMbs from 'views/History/Show/Index.jsx';
 import EditProgramMbs from 'views/Programmbs/Edit/Show.jsx';
 import EditPlanProgramMbs from 'views/Programmbs/Edit/EditPlan.jsx';
 import EditProductProgramMbs from 'views/Programmbs/Edit/EditProduct.jsx';
