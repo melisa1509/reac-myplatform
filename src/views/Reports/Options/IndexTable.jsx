@@ -138,11 +138,11 @@ class IndexTable extends React.Component {
                 <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                   <center>
-                      <Link to={"/report/ambassadorstatistics"}>
+                    <Link to={"/report/ambassadorstatistics"}>
                       <Button color="success" size="sm">
-                      {t("button_return_to_list")}
+                       {t("button_return_to_list")}
                       </Button>
-                      </Link>
+                    </Link>
                   </center>
                   </GridItem>
                 </GridContainer>
@@ -160,11 +160,11 @@ class IndexTable extends React.Component {
                 <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                   <center>
-                      <Link to={"/report/ambassadorstatistics"}>
+                    <Link to={"/report/ambassadorstatistics"}>
                       <Button color="success" size="sm">
-                      {t("button_return_to_list")}
+                       {t("button_return_to_list")}
                       </Button>
-                      </Link>
+                    </Link>
                   </center>
                   </GridItem>
                 </GridContainer>
@@ -176,7 +176,7 @@ class IndexTable extends React.Component {
             tabIcon: Equalizer,
             tabContent: (
               <p className={classes.textCenter}>
-                <Card>
+                <br/>
                   <CardHeader icon >
                     <CardIcon color="success">
                       <Icon>dns</Icon>
@@ -185,26 +185,18 @@ class IndexTable extends React.Component {
                       <h4>{t("title_number_people_improvement")}</h4>
                     </Muted>
                   </CardHeader>
-                  <CardBody>
                       <AmbassadorTableReports/>   
-                  </CardBody>
-                </Card>
                 <br/>
-                <Card>
                   <CardHeader icon >
-                    <CardIcon color="danger">
+                    <CardIcon color="warning">
                       <Icon>dns</Icon>
                     </CardIcon>
                     <Muted>
                       <h4>{t("title_number_people_improvement")}</h4>
                     </Muted>
                   </CardHeader>
-                  <CardBody>
                     <AmbaJRTableReports/>   
-                  </CardBody>
-                </Card>
                 <br/>
-                <Card>
                   <CardHeader icon >
                     <CardIcon color="rose">
                       <Icon>equalizer</Icon>
@@ -213,10 +205,7 @@ class IndexTable extends React.Component {
                       <h4>{t("title_evaluation_statistics")}</h4>
                     </Muted>
                   </CardHeader>
-                  <CardBody>
                     <IndexAmbassadorTable/>   
-                  </CardBody>
-                </Card>
                 <br/>
                 <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>

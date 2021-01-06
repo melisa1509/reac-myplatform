@@ -11,6 +11,7 @@ import ShowStudent from 'views/Student/Show/Show.jsx';
 import EditStudent from 'views/Student/Edit/Edit.jsx';
 import PreEvaluationStudent from 'views/Student/PreEvaluation/New.jsx';
 import PostEvaluationStudent from 'views/Student/PostEvaluation/New.jsx';
+import PersonalEvaluationStudent from 'views/Reports/Options/Participants/Evaluation/New.jsx';
 import StudentChangePassword  from 'views/Student/ChangePassword/ChangePassword.jsx';
 import SuccessStory  from 'views/History/Index.jsx';
 
@@ -174,6 +175,7 @@ ReactDOM.render(
           <Route path="/student/edit/:id" component={EditStudent} exact />
           <Route path="/student/preevaluation" component={PreEvaluationStudent} exact />
           <Route path="/student/postevaluation" component={PostEvaluationStudent} exact />
+          <Route path="/student/personalevaluation/:id" component={PersonalEvaluationStudent} exact />
           <Route path="/student/editpassword/:id" component={StudentChangePassword} exact /> 
           <Route path="/programmbs/new" component={NewProgramMbs} exact/>
           <Route path="/programmbs/new/plan" component={NewPlanProgramMbs} exact/>

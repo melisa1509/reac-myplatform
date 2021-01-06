@@ -32,7 +32,7 @@ class IndexRep extends React.Component {
  
 
   render() {
-    const { classes, styles, active_user } = this.props;
+    const { classes, active_user, success_story} = this.props;
     let { t } = this.props;
     const login = "es";
     let rol=false
@@ -60,6 +60,7 @@ IndexRep.propTypes = {
   classes: PropTypes.object,
 };
 const mapStateToProps = state => ({ 
+  success_story: state.studentReducer.success_story,
   active_user: state.loginReducer.active_user,
 });
 

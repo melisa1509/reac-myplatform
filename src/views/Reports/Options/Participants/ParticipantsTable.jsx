@@ -126,6 +126,18 @@ class ParticipantsTable extends React.Component {
               </Button>
             </Link>{" "}
           </div>
+        ),
+        projects: (
+          <div className="actions-left">
+            <Link to={"/student/personalevaluation/" + prop.id}>
+              <Button
+                size="sm"
+                color="info"
+              >
+                 {t('button_evaluation')}
+              </Button>
+            </Link>{" "}
+          </div>
         )
       };
     });
@@ -169,6 +181,12 @@ class ParticipantsTable extends React.Component {
                 {
                   Header: t("th_actions"),
                   accessor: "actions",
+                  sortable: false,
+                  filterable: false
+                },
+                {
+                  Header: t("th_evaluation"),
+                  accessor: "projects",
                   sortable: false,
                   filterable: false
                 },
