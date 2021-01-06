@@ -33,7 +33,7 @@ import Group from "@material-ui/icons/Group";
 import Equalizer from "@material-ui/icons/Equalizer";
 import School from "@material-ui/icons/School";
 // core components
-import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
+import CustomTabs from "components/CustomTabs/CustomTabsSelected.jsx";
 import AmbaJRTableReports from "../AmbaJRTableReports";
 
 
@@ -105,6 +105,7 @@ class IndexTable extends React.Component {
       <CustomTabs
         title= {t("link_reports") +" "+ " / " + " " + name}
         headerColor="info"
+        active={2}
         tabs={[
           {
             tabName: t("link_dashboard"),
