@@ -10,6 +10,7 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
+import { getProjectProgress } from "actions/groupActions";
 import matchSorter from 'match-sorter';
 import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
@@ -52,7 +53,9 @@ class MBSTable extends React.Component {
     }
     
   }
-
+  componentDidMount() {
+    this.props.dispatchGetProjectProgress(this.props.match.params.id);
+  }
  
  
   render() {
@@ -202,6 +205,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToPropsActions = dispatch => ({
+  dispatchGetProjectProgress: (key) => dispatch( getProjectProgress(key) )
 });
 
 const MBSTableComponent = translate(MBSTable);

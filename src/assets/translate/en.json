@@ -64,6 +64,7 @@
     "button_previous":                   "Previous",
     "button_next":                       "Next",
     "button_continue_editing":           "Continue Editing",
+    "button_evaluation":                 "Personal Evaluation",
 
     "label_month":                      "Month",
     "label_choose_language":            "Choose Language",
