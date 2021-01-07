@@ -24,7 +24,7 @@ import Groups from "views/Reports/Options/Groups/IndexAmbassador.jsx";
 import IndexAmbassadorTable from 'views/Reports/IndexAmbassadorTable.jsx';
 import AmbassadorTableReports from 'views/Reports/AmbassadorTableReports.jsx';
 import DashboardAmbassador from 'views/Reports/Options/Dashboard/DashboardAmbassador.jsx';
-import Histories from 'views/History/IndexTable.jsx';
+import Histories from 'views/Reports/Options/History/IndexTable.jsx';
 
 import Dashboard from "@material-ui/icons/Dashboard";
 import Icon from "@material-ui/core/Icon";
@@ -90,9 +90,9 @@ class IndexTable extends React.Component {
   
 
   render() {
-    const { ambassador_statistics,classes } = this.props;
+    const { ambassador_statistics,classes,active} = this.props;
     let { t } = this.props;
-    var name
+    var name 
     const name_ambassador= ambassador_statistics.map((prop, key) => {
       if(this.props.match.params.id==prop.id){
         name= prop.first_name + " " + prop.last_name
@@ -105,7 +105,7 @@ class IndexTable extends React.Component {
       <CustomTabs
         title= {t("link_reports") +" "+ " / " + " " + name}
         headerColor="info"
-        active={2}
+        active={active}
         tabs={[
           {
             tabName: t("link_dashboard"),
@@ -133,7 +133,7 @@ class IndexTable extends React.Component {
             tabIcon: Face,
             tabContent: (
               <p className={classes.textCenter}>
-                <Participants/>
+                <Participants  active={1}/>
                 <br/>
                 <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
@@ -155,7 +155,7 @@ class IndexTable extends React.Component {
             tabIcon: Group,
             tabContent: (
               <p className={classes.textCenter}>
-                <Groups/>
+                <Groups active={2}/>
                 <br/>
                 <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>

@@ -12,12 +12,16 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import IndexTable from './IndexTable.jsx';
+import IndexRep from 'views/Reports/Options/IndexRep.jsx';
+import AdminHeader from "views/Header/AdminHeader.jsx";
+import mainPageStyle from "assets/jss/material-kit-react/views/mainPage.jsx";
+import DashboardAmbassador from 'views/Reports/Options/Dashboard/DashboardAmbassador.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
 
 const styles = {
+   ...mainPageStyle,
   cardIconTitle: {
     ...cardTitle,
     marginTop: "15px",
@@ -26,7 +30,7 @@ const styles = {
 };
 
 
-class IndexRep extends React.Component {
+class ShowHistory extends React.Component {
  
 
   render() {
@@ -38,12 +42,23 @@ class IndexRep extends React.Component {
     }
     const login = "es";
     return (
+      <div>
+      <AdminHeader/>
+      <div
+          className={classes.main}
+          style={{
+            backgroundSize: "cover",
+            backgroundPosition: "top center",
+            backgroundColor: "#eee"
+          }}
+        />
       <div className={classes.container}>
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={12}>
-            <IndexTable active={active}/>     
+            <IndexRep active={4}/>     
         </GridItem>
       </GridContainer>
+      </div>
       </div>
     );
   }
@@ -62,5 +77,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const NewRepComponent = translate(withStyles(styles)(IndexRep));
-export default connect(mapStateToProps, mapDispatchToPropsActions)(NewRepComponent);
+const ShowHistoryComponent = translate(withStyles(styles)(ShowHistory));
+export default connect(mapStateToProps, mapDispatchToPropsActions)(ShowHistoryComponent);
