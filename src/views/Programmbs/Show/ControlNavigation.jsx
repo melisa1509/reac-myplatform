@@ -42,26 +42,7 @@ class ControlNavigation extends React.Component {
     let { t } = this.props;
     return (
         <GridContainer justify="center">
-            <GridItem xs={3} sm={3} md={3}>            
-                    <center>
-                        <Link to={"/programmbs/show/" + previous +"/" + this.props.match.params.id}>
-                            <Button color="default" fullWidth >
-                                {t("button_previous")}
-                            </Button>  
-                        </Link> 
-                    </center>               
-            </GridItem>
-            <GridItem xs={6} sm={6} md={6}></GridItem>
-            <GridItem xs={3} sm={3} md={3}>            
-                    <center>
-                        <Link to={"/programmbs/show/" + next + "/" + this.props.match.params.id}>
-                            <Button color="rose" fullWidth >
-                                {t("button_next")}
-                            </Button>  
-                        </Link> 
-                    </center>               
-            </GridItem>
-      </GridContainer>
+        </GridContainer>
     );
   } 
 }
