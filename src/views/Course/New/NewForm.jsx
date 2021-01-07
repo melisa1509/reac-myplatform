@@ -158,14 +158,10 @@ class NewForm extends React.Component {
               <br/>
               <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
-                  <labelText>{t("label_description")}</labelText>
-                    <center>
                     <Field
-                      labelText={t("label_description")+ " *"}
                       name="description"
                       component={TextEditor}
                     />
-                    </center>
                   </GridItem>
               </GridContainer>
               <GridContainer >

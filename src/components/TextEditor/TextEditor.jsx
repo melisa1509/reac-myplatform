@@ -17,9 +17,11 @@ class TextEditor extends React.Component {
       
             <FormControl >
                 <Editor
+                    apiKey='ciub0gjh4346udf5npj2yg77rt2ewkl162hcxz8cwn2z88io'
                     initialValue="<p>This is the initial content of the editor</p>"
                     init={{
-                      height: 200,
+                      height: 400,
+                      width: 600,
                       menubar: 'file edit view insert format tools table help',
                       plugins: 'print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons',
                       toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',

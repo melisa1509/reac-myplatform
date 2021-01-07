@@ -15,7 +15,6 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import LoginForm from './LoginForm.jsx';
 import Logo from "assets/img/logo_interweave.png";
 
-import Language from "views/Header/Language.jsx";
 
 
 
@@ -46,12 +45,7 @@ class LoginRep extends React.Component {
     const { classes, styles } = this.props;
     let { t } = this.props;
     return (
-      <GridContainer justify="center">
-        <GridContainer justify="right">
-          <GridItem xs={12} sm={12} md={4}>
-            <Language/>
-          </GridItem>
-        </GridContainer>
+      <GridContainer justify="center">        
         <GridContainer justify="center">
           <GridItem>
             <img src={Logo} height="90px" alt="..." />
