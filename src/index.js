@@ -30,6 +30,9 @@ import ReactTable from "views/Tables/ReactTables.jsx";
 import Reports from 'views/Reports/Index.jsx';
 import ReportsAmbassadorStatistics from 'views/Reports/Ambassador/Index.jsx';
 import ReportsOptions from 'views/Reports/Options/Index.jsx';
+import ReportsOptionsGroups from 'views/Reports/Options/Groups/ShowGroups.jsx';
+import ReportsOptionsParticipants from 'views/Reports/Options/Participants/ShowParticipants.jsx';
+import ReportsOptionsHistory from 'views/Reports/Options/History/ShowHistory.jsx';
 import AuthLayout from "layouts/Auth.jsx";
 import RtlLayout from "layouts/RTL.jsx";
 
@@ -259,6 +262,9 @@ ReactDOM.render(
           <Route path="/report" component={Reports} exact />
           <Route path="/report/ambassadorstatistics" component={ReportsAmbassadorStatistics} exact />
           <Route path="/report/options/:id" component={ReportsOptions} exact />
+          <Route path="/report/options/:id/groups" component={ReportsOptionsGroups} exact />
+          <Route path="/report/options/:id/participants" component={ReportsOptionsParticipants} exact />
+          <Route path="/report/options/:id/histories" component={ReportsOptionsHistory} exact />
           <Route path="/register" component={Register} exact /> 
           <Route path="/register/new/:id" component={RegisterStudent} exact /> 
           <Route path="/register/evaluation" component={RegisterEvaluation} exact />

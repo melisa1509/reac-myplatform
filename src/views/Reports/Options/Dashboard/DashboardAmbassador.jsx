@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Icon from "@material-ui/core/Icon";
 import dashboardStyle from "assets/jss/material-dashboard-pro-react/views/dashboardStyle";
+import CustomTabs from "components/CustomTabs/CustomTabsSelected.jsx";
 import { statisticsGlobalAmbassador } from "actions/reportActions.jsx";
 
 // core components
@@ -48,15 +49,13 @@ class DashboardAmbassador extends React.Component {
   
  
   render() {
-    const { classes, dashboard_ambassador, active_user } = this.props;
+    const { classes, dashboard_ambassador,active} = this.props;
     let { t } = this.props;   
-    console.log(dashboard_ambassador);     
-    
+    console.log(dashboard_ambassador);      
     return (
-      <GridContainer>
-
+      <GridContainer >
         <GridItem xs={6} sm={6} md={3} lg={3}>
-        <Link to={"/group"} className={classes.dropdownLink} >
+        <Link to={"/report/options/"+ this.props.match.params.id +"/groups"} className={classes.dropdownLink} >
           <Card>
             <CardHeader color="primary" stats icon>
               <CardIcon color="primary">
@@ -71,7 +70,7 @@ class DashboardAmbassador extends React.Component {
         </GridItem>
 
         <GridItem xs={6} sm={6} md={3} lg={3}>
-        <Link to={"/student"} className={classes.dropdownLink} >
+        <Link to={"/report/options/"+ this.props.match.params.id +"/participants"} className={classes.dropdownLink} >
           <Card>
             <CardHeader color="danger" stats icon>
               <CardIcon color="danger">
@@ -86,7 +85,7 @@ class DashboardAmbassador extends React.Component {
         </GridItem>
 
         <GridItem xs={6} sm={6} md={3} lg={3}>
-        <Link to={"/certificate"} className={classes.dropdownLink} >
+        <Link to={"/report/options/"+ this.props.match.params.id +"/groups"} className={classes.dropdownLink} >
           <Card>
             <CardHeader color="info" stats icon>
               <CardIcon color="info">
@@ -101,7 +100,7 @@ class DashboardAmbassador extends React.Component {
         </GridItem>
 
         <GridItem xs={6} sm={6} md={3} lg={3}>
-        <Link to={"/"} className={classes.dropdownLink} >
+        <Link to={"/report/options/"+ this.props.match.params.id +"/histories"} className={classes.dropdownLink} >
           <Card>
             <CardHeader color="success" stats icon>
               <CardIcon color="success">

@@ -1,10 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 // react component for creating dynamic tables
 import ReactTable from "react-table";
 import { connect } from "react-redux";
-import { getAmbassadorStatistics } from "actions/reportActions.jsx";
+import { withRouter } from 'react-router-dom';
 import { Link } from "react-router-dom";
+import { successStory  } from "actions/studentActions.jsx";
+
 
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -13,8 +16,6 @@ import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
 import { translate } from 'react-switch-lang';
-
-const name_ambassador= ""
 
 class IndexTable extends React.Component {
   constructor(props) {
@@ -56,31 +57,27 @@ class IndexTable extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatchGetAmbassadorStatistics();
+    this.props.dispatchSuccessStory(this.props.match.params.id);
   }
-  
+ 
   render() {
-    const { ambassador_statistics, loading,active } = this.props;
+    const { success_story, loading } = this.props;
     let { t } = this.props;
             
-    const data = ambassador_statistics.map((prop, key) => {
-
+    const data = success_story.map((prop, key) => {
       return {
         id: key, 
-        full_name: prop.first_name + " "+ prop.last_name,
-        group: prop.groups,
-        participants: prop.participants,
-        certificates:prop.certificates,
-        stories:prop.stories,
+        name: prop.student.first_name + " " + prop.student.last_name ,
+        group:prop.group.name,
         actions: (
           // we've added some custom button actions
           <div className="actions-left">
-            <Link to={"/report/options/" + prop.id}>
+            <Link to={"/programmbs/show/history/" + prop.student.programmbs.id}>
               <Button
                 size="sm"
-                color= "success"
+                color="success"
               >
-                {t('button_statistics')}
+                 {t('button_story')}
               </Button>
             </Link>{" "}
           </div>
@@ -114,33 +111,12 @@ class IndexTable extends React.Component {
               columns={[
                 {
                   Header: t("th_name"),
-                  accessor: "full_name",
-                  width: 250,
+                  accessor: "name",
                 },
                 {
-                  Header: t("th_participants"),
-                  accessor: "participants",
-                  resizable:true,
-                  sortable: false,
-                  width: 150,
-                },
-                {
-                  Header: t("th_groups"),
+                  Header: t("th_group"),
                   accessor: "group",
-                  sortable: false,
-                  width: 150,
-                },
-                {
-                  Header: t("th_certificates"),
-                  accessor: "certificates",
-                  sortable: false,
-                  width: 150,
-                },
-                {
-                  Header: t("th_stories"),
-                  accessor: "stories",
-                  sortable: false,
-                  width: 150,
+                  resizable:true
                 },
                 {
                   Header: t("th_actions"),
@@ -150,6 +126,11 @@ class IndexTable extends React.Component {
                   width: 150,
                 },
                 {
+                  // NOTE - this is a "filter all" DUMMY column
+                  // you can't HIDE it because then it wont FILTER
+                  // but it has a size of ZERO with no RESIZE and the
+                  // FILTER component is NULL (it adds a little to the front)
+                  // You culd possibly move it to the end
                   Header: "",
                   id: 'all',
                   width: 0,
@@ -158,16 +139,14 @@ class IndexTable extends React.Component {
                   
                   getProps: () => {
                     return {
-                      // style: { padding: "0px"}
+                      style: { padding: "5px"}
                     }
                   },
                   filterMethod: (filter, rows) => {
-                    // using match-sorter
-                    // it will take the content entered into the "filter"
-                    // and search for it in EITHER the firstName or lastName
                     const result = matchSorter(rows, filter.value, {
                       keys: [
-                        "full_name",
+                        "name",
+                        "username",
                       ], threshold: matchSorter.rankings.WORD_STARTS_WITH
                     });
                     return result;
@@ -188,14 +167,14 @@ class IndexTable extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
-      ambassador_statistics: state.reportReducer.ambassador_statistics, 
-      loading: state.reportReducer.loading
+      success_story: state.studentReducer.success_story, 
+      loading: state.studentReducer.loading
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetAmbassadorStatistics: () => dispatch( getAmbassadorStatistics() )
+  dispatchSuccessStory: (key) => dispatch( successStory(key) )
 });
 
 const IndexTableComponent = translate(IndexTable);
-export default connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent);
+export default  withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent));
 
