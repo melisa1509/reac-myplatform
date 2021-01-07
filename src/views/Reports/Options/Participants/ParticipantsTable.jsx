@@ -3,13 +3,14 @@ import PropTypes from "prop-types";
 // react component for creating dynamic tables
 import ReactTable from "react-table";
 import { connect } from "react-redux";
-import { getStudentList } from "actions/studentActions.jsx";
+import { getStudentAmbassadorList } from "actions/studentActions.jsx";
 import { Link } from "react-router-dom";
 
 // @material-ui/icons
 import Create from "@material-ui/icons/Create";
 import Visibility from "@material-ui/icons/Visibility";
 import Close from "@material-ui/icons/Close";
+
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
@@ -17,11 +18,9 @@ import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
 import { translate } from 'react-switch-lang';
+import { withRouter } from 'react-router-dom';
 
-
-
-
-class IndexTable extends React.Component {
+class ParticipantsTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -61,35 +60,23 @@ class IndexTable extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatchGetStudentList();
+    this.props.dispatchGetStudentAmbassadorList(this.props.match.params.id);
   }
 
  
   render() {
-    const { student_list, loading } = this.props;
+    const { student_ambassador_list, loading } = this.props;
     let { t } = this.props;
             
-    const data = student_list.map((prop, key) => {
+    const data = student_ambassador_list.map((prop, key) => {
       let projectState = "";
-      let buttonMbs = false;
-      let buttonSa = false;
-      let idMbs = "";
-      let idSa = "";
-      let labelButton = t('button_mbs');
-      let colorButton = "success";
-
-      if (prop.studentgroup !== undefined){
-        if(prop.studentgroup.group !== undefined){
-          if(prop.studentgroup.group.program === "option.program4"){
-            labelButton =  t('button_mbs_jr');
-            colorButton =  "warning";
-          }          
-        }        
+      let i = 0;
+      let updated_at=[];
+      for (i = 1; i < 10 ; i++) {
+         updated_at[i]=prop.updated_at[i]
       }
       if (prop.programsa !== undefined) {
             projectState = t("label_project_ambassador") + " " +  t(prop.programsa.state);
-            buttonSa =  true;
-            idSa = prop.programsa.id;
             
       }
       else if(prop.programmbs !== undefined){
@@ -99,39 +86,12 @@ class IndexTable extends React.Component {
             projectState = t("label_project_mbs") + " " +  t("state_without_starting");
       }
 
-      if(prop.programmbs !== undefined){
-        buttonMbs =  true;
-        idMbs = prop.programmbs.id;
-      }      
-
-      var groups = (prop.studentgroup !== undefined ? prop.studentgroup.group.name : "") + (prop.studentambassadorgroup !== undefined ? " / " + prop.studentambassadorgroup.group.name : "");
       return {
         id: key, 
         full_name: prop.first_name + " "+ prop.last_name,
-        group: groups,
-        state: projectState,
-        projects: (
-          <div className="actions-left">            
-            <Link to={buttonMbs ? prop.programmbs.modality === "option.modality1" ? "/programmbs/showfile/" + idMbs : "/programmbs/show/" + idMbs : "#"}>
-              <Button
-                size="sm"
-                color={buttonMbs ? colorButton : "default" }
-              >
-                { labelButton }
-              </Button>
-            </Link>
-            {" "}
-            <Link to={buttonSa ? "/programsa/show/" + idSa : "#"}>
-              <Button
-                size="sm"
-                color={buttonSa ? "info" : "default" }
-              >
-                {t('button_embassador')}
-              </Button>
-            </Link>
-            
-          </div>
-        ),
+        state:projectState,
+        date:updated_at,
+        country: prop.country,
         actions: (
           // we've added some custom button actions
           <div className="actions-left">
@@ -166,14 +126,24 @@ class IndexTable extends React.Component {
               </Button>
             </Link>{" "}
           </div>
+        ),
+        projects: (
+          <div className="actions-left">
+            <Link to={"/student/personalevaluation/" + prop.id}>
+              <Button
+                size="sm"
+                color="info"
+              >
+                 {t('button_evaluation')}
+              </Button>
+            </Link>{" "}
+          </div>
         )
       };
     });
-    
-    
-    
+
     return (
-      <GridContainer>
+      <GridContainer justify="center">
         <GridItem xs={12}>
         <CustomInput
           inputProps={{
@@ -193,30 +163,32 @@ class IndexTable extends React.Component {
               defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value}
               data={data}
               loading={loading}
+
               columns={[
                 {
                   Header: t("label_name"),
-                  accessor: "full_name"
+                  accessor: "full_name",
+                  
                 },
                 {
                   Header: t("label_state"),
-                  accessor: "state"
+                  accessor: "state",
                 },
                 {
-                  Header: t("th_group"),
-                  accessor: "group",
-                  resizable:true
-                },
-                {
-                  Header: t("th_projects"),
-                  accessor: "projects"
+                  Header: t("th_date"),
+                  accessor: "date",
                 },
                 {
                   Header: t("th_actions"),
                   accessor: "actions",
                   sortable: false,
-                  filterable: false,
-                  width: 150,
+                  filterable: false
+                },
+                {
+                  Header: t("th_evaluation"),
+                  accessor: "projects",
+                  sortable: false,
+                  filterable: false
                 },
                 {
                   Header: "",
@@ -227,17 +199,13 @@ class IndexTable extends React.Component {
                   
                   getProps: () => {
                     return {
-                      // style: { padding: "0px"}
+                      //style: { height: "40px"}
                     }
                   },
                   filterMethod: (filter, rows) => {
-                    // using match-sorter
-                    // it will take the content entered into the "filter"
-                    // and search for it in EITHER the firstName or lastName
                     const result = matchSorter(rows, filter.value, {
                       keys: [
                         "full_name",
-                        "state"
                       ], threshold: matchSorter.rankings.WORD_STARTS_WITH
                     });
                     return result;
@@ -258,14 +226,15 @@ class IndexTable extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
-      student_list: state.studentReducer.student_list, 
+      student_ambassador_list: state.studentReducer.student_ambassador_list, 
       loading: state.studentReducer.loading
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetStudentList: key => dispatch( getStudentList(key) )
+  dispatchGetStudentAmbassadorList: key => dispatch( getStudentAmbassadorList(key) )
 });
 
-const IndexTableComponent = translate(IndexTable);
-export default connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent);
+const ParticipantsTableComponent = translate(ParticipantsTable);
+export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(ParticipantsTableComponent));
 
+ 

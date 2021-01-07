@@ -12,14 +12,16 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import IndexTable from './IndexTable.jsx';
+import IndexRep from 'views/Reports/Options/IndexRep.jsx';
+import AdminHeader from "views/Header/AdminHeader.jsx";
+import mainPageStyle from "assets/jss/material-kit-react/views/mainPage.jsx";
+import DashboardAmbassador from 'views/Reports/Options/Dashboard/DashboardAmbassador.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
-import AmbassadorTable from "./AmbassadorTable.jsx";
-
 
 const styles = {
+   ...mainPageStyle,
   cardIconTitle: {
     ...cardTitle,
     marginTop: "15px",
@@ -28,11 +30,11 @@ const styles = {
 };
 
 
-class IndexRep extends React.Component {
+class ShowParticipants extends React.Component {
  
 
   render() {
-    const { classes, active_user } = this.props;
+    const { classes, styles, active_user,active } = this.props;
     let { t } = this.props;
     let rol=false
     if(active_user.roles == "ROLE_EMBASSADOR" || active_user.roles == "ROLE_STUDENT_EMBASSADOR"){
@@ -40,18 +42,24 @@ class IndexRep extends React.Component {
     }
     const login = "es";
     return (
+      <div>
+      <AdminHeader/>
+      <div
+          className={classes.main}
+          style={{
+            backgroundSize: "cover",
+            backgroundPosition: "top center",
+            backgroundColor: "#eee"
+          }}
+        />
+      <div className={classes.container}>
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={12}>
-          <Card>
-            <CardHeader color="info">
-                <h4 className={classes.cardTitle}>{t("title_student_list")}</h4>
-            </CardHeader>
-            <CardBody>
-                {rol ? <AmbassadorTable/> : <IndexTable /> }          
-            </CardBody>
-          </Card>
+            <IndexRep active={1}/>     
         </GridItem>
       </GridContainer>
+      </div>
+      </div>
     );
   }
 }
@@ -69,5 +77,5 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 
-const NewRepComponent = translate(withStyles(styles)(IndexRep));
-export default connect(mapStateToProps, mapDispatchToPropsActions)(NewRepComponent);
+const ShowParticipantsComponent = translate(withStyles(styles)(ShowParticipants));
+export default connect(mapStateToProps, mapDispatchToPropsActions)(ShowParticipantsComponent);

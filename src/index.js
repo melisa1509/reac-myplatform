@@ -11,6 +11,7 @@ import ShowStudent from 'views/Student/Show/Show.jsx';
 import EditStudent from 'views/Student/Edit/Edit.jsx';
 import PreEvaluationStudent from 'views/Student/PreEvaluation/New.jsx';
 import PostEvaluationStudent from 'views/Student/PostEvaluation/New.jsx';
+import PersonalEvaluationStudent from 'views/Reports/Options/Participants/Evaluation/New.jsx';
 import StudentChangePassword  from 'views/Student/ChangePassword/ChangePassword.jsx';
 import SuccessStory  from 'views/History/Index.jsx';
 
@@ -27,6 +28,11 @@ import AmbassadorStudentConfirmMentor from 'views/AmbassadorStudent/AssignMentor
 //general
 import ReactTable from "views/Tables/ReactTables.jsx";
 import Reports from 'views/Reports/Index.jsx';
+import ReportsAmbassadorStatistics from 'views/Reports/Ambassador/Index.jsx';
+import ReportsOptions from 'views/Reports/Options/Index.jsx';
+import ReportsOptionsGroups from 'views/Reports/Options/Groups/ShowGroups.jsx';
+import ReportsOptionsParticipants from 'views/Reports/Options/Participants/ShowParticipants.jsx';
+import ReportsOptionsHistory from 'views/Reports/Options/History/ShowHistory.jsx';
 import AuthLayout from "layouts/Auth.jsx";
 import RtlLayout from "layouts/RTL.jsx";
 
@@ -68,7 +74,7 @@ import ShowPromotionProgramMbs from 'views/Programmbs/Show/ShowPromotion.jsx';
 import ShowPaperworkProgramMbs from 'views/Programmbs/Show/ShowPaperwork.jsx';
 import ShowQualityProgramMbs from 'views/Programmbs/Show/ShowQuality.jsx';
 import ShowServiceProgramMbs from 'views/Programmbs/Show/ShowService.jsx';
-import ShowHistoryProgramMbs from 'views/Programmbs/Show/ShowHistory.jsx';
+import ShowHistoryProgramMbs from 'views/History/Show/Index.jsx';
 import EditProgramMbs from 'views/Programmbs/Edit/Show.jsx';
 import EditPlanProgramMbs from 'views/Programmbs/Edit/EditPlan.jsx';
 import EditProductProgramMbs from 'views/Programmbs/Edit/EditProduct.jsx';
@@ -172,6 +178,7 @@ ReactDOM.render(
           <Route path="/student/edit/:id" component={EditStudent} exact />
           <Route path="/student/preevaluation" component={PreEvaluationStudent} exact />
           <Route path="/student/postevaluation" component={PostEvaluationStudent} exact />
+          <Route path="/student/personalevaluation/:id" component={PersonalEvaluationStudent} exact />
           <Route path="/student/editpassword/:id" component={StudentChangePassword} exact /> 
           <Route path="/programmbs/new" component={NewProgramMbs} exact/>
           <Route path="/programmbs/new/plan" component={NewPlanProgramMbs} exact/>
@@ -242,7 +249,6 @@ ReactDOM.render(
           <Route path="/dashboard/clearpending/:student" component={ClearPendingDashboard} exact />
           <Route path="/ambassadorstudent/assignmentor/:student" component={AmbassadorStudentAssignMentor} exact />
           <Route path="/ambassadorstudent/confirmmentor/:student/:group" component={AmbassadorStudentConfirmMentor} exact />
-          <Route path="/report" component={Reports} exact />
           <Route path="/code" component={ListCode} exact />
           <Route path="/code/show/:id" component={ShowCode} exact />
           <Route path="/code/edit/:id" component={EditCode} exact />
@@ -253,6 +259,12 @@ ReactDOM.render(
           <Route path="/admin/show/:id" component={ShowAdmin} exact />
           <Route path="/admin/edit/:id" component={EditAdmin} exact />
           <Route path="/admin/editpassword/:id" component={AdminPassword} exact /> 
+          <Route path="/report" component={Reports} exact />
+          <Route path="/report/ambassadorstatistics" component={ReportsAmbassadorStatistics} exact />
+          <Route path="/report/options/:id" component={ReportsOptions} exact />
+          <Route path="/report/options/:id/groups" component={ReportsOptionsGroups} exact />
+          <Route path="/report/options/:id/participants" component={ReportsOptionsParticipants} exact />
+          <Route path="/report/options/:id/histories" component={ReportsOptionsHistory} exact />
           <Route path="/register" component={Register} exact /> 
           <Route path="/register/new/:id" component={RegisterStudent} exact /> 
           <Route path="/register/evaluation" component={RegisterEvaluation} exact />

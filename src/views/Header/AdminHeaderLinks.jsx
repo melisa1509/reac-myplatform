@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
 
 // @material-ui/icons
-import { Apps, Message, Face, Dashboard, HowToReg, SupervisorAccount, TrackChanges, LibraryBooks, Person, Stars, School, Cancel, Group } from "@material-ui/icons";
+import { Apps, Message, Face, Dashboard, HowToReg, SupervisorAccount, TrackChanges, LibraryBooks, Person, Stars, Book,School, Cancel, Group, Class, Description } from "@material-ui/icons";
 
 // core components
 import CustomDropdown from "components/CustomDropdown/CustomDropdown.jsx";
@@ -99,7 +99,7 @@ class AdminHeaderLinks extends React.Component {
           </Link>,
           <Link to={'/student/successStory/list'} className={classes.dropdownLink}>
             
-                <School color="danger" className={classes.icons} /> {t("link_success_story")}
+                <Book color="danger" className={classes.icons} /> {t("link_success_story")}
  
           </Link>, 
           <Link to={'/code'} className={classes.dropdownLink}>
@@ -111,6 +111,11 @@ class AdminHeaderLinks extends React.Component {
             
                 <LibraryBooks color="danger" className={classes.icons} /> {t("link_reports")}
             
+          </Link>,
+          <Link to={'/report/ambassadorstatistics'} className={classes.dropdownLink}>
+            
+                <Description color="danger" className={classes.icons} /> {t("link_reports_ambassador")}
+      
           </Link>,
           <Link onClick={this.logoutUser} className={classes.dropdownLink}>
             
@@ -150,7 +155,7 @@ class AdminHeaderLinks extends React.Component {
           </Link>,      
            <Link to={'/student/successStory/list'} className={classes.dropdownLink}>
             
-                <School color="danger" className={classes.icons} /> {t("link_success_story")}
+                <Book color="danger" className={classes.icons} /> {t("link_success_story")}
        
           </Link>,    
           <Link to={'/report'} className={classes.dropdownLink}>

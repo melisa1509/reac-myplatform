@@ -16,8 +16,6 @@ import IndexTable from './IndexTable.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
-import IndexTableAdmin from "./IndexTableAdmin.jsx";
-
 
 const styles = {
   cardIconTitle: {
@@ -32,26 +30,21 @@ class IndexRep extends React.Component {
  
 
   render() {
-    const { classes, active_user, success_story} = this.props;
+    const { classes, styles, active_user,active } = this.props;
     let { t } = this.props;
-    const login = "es";
     let rol=false
-    if(active_user.roles == "ROLE_EMBASSADOR" ){
+    if(active_user.roles == "ROLE_EMBASSADOR" || active_user.roles == "ROLE_STUDENT_EMBASSADOR"){
       rol=true
     }
+    const login = "es";
     return (
+      <div className={classes.container}>
       <GridContainer justify="center">
-        <GridItem xs={12} sm={12} md={10}>
-          <Card>
-            <CardHeader color="info">
-                <h4 className={classes.cardTitle}>{t("label_success_story")}</h4>
-            </CardHeader>
-            <CardBody>
-                {rol ? <IndexTable  /> : <IndexTableAdmin /> }     
-            </CardBody>
-          </Card>
+        <GridItem xs={12} sm={12} md={12}>
+            <IndexTable active={active}/>     
         </GridItem>
       </GridContainer>
+      </div>
     );
   }
 }
@@ -59,13 +52,15 @@ class IndexRep extends React.Component {
 IndexRep.propTypes = {
   classes: PropTypes.object,
 };
+
+//export default withStyles(styles)(ReactTables);
 const mapStateToProps = state => ({ 
-  success_story: state.studentReducer.success_story,
   active_user: state.loginReducer.active_user,
 });
 
 const mapDispatchToPropsActions = dispatch => ({
 });
 
-const IndexRepComponent = translate(withStyles(styles)(IndexRep));
-export default connect(mapStateToProps, mapDispatchToPropsActions)(IndexRepComponent);
+
+const NewRepComponent = translate(withStyles(styles)(IndexRep));
+export default connect(mapStateToProps, mapDispatchToPropsActions)(NewRepComponent);

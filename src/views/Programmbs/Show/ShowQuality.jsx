@@ -43,7 +43,7 @@ class Show extends React.Component {
     this.props.dispatchRedirectDashboard(this.props.history);
   }
   render() {
-    const { classes, sendRevisionProjectSuccessfull, sendRevisionProjectError, editRevisionSuccessfull, editRevisionError, approveProjectError, approveProjectSuccessfull, t } = this.props;
+    const { classes} = this.props;
     return (
         <div>
           <Popups/>    

@@ -6,6 +6,7 @@ import ReactTable from "react-table";
 import { connect } from "react-redux";
 import { successStory  } from "actions/studentActions.jsx";
 import { Link } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -55,7 +56,7 @@ class IndexTableAdmin extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatchSuccessStory();
+    this.props.dispatchSuccessStory(this.props.match.params.id);
   }
  
   render() {
@@ -69,12 +70,11 @@ class IndexTableAdmin extends React.Component {
         nameAmbassador:prop.group.embassador.first_name + " " + prop.group.embassador.last_name ,
         group:prop.group.name,
         actions: (
-          // we've added some custom button actions
           <div className="actions-left">
-            <Link to={"/programmbs/show/history/" + prop.student.id}>
+            <Link to={"/programmbs/show/history/" + prop.student.programmbs.id}>
               <Button
                 size="sm"
-                color="info"
+                color="success"
               >
                  {t('button_story')}
               </Button>
@@ -130,11 +130,6 @@ class IndexTableAdmin extends React.Component {
                   width: 150,
                 },
                 {
-                  // NOTE - this is a "filter all" DUMMY column
-                  // you can't HIDE it because then it wont FILTER
-                  // but it has a size of ZERO with no RESIZE and the
-                  // FILTER component is NULL (it adds a little to the front)
-                  // You culd possibly move it to the end
                   Header: "",
                   id: 'all',
                   width: 0,
@@ -150,7 +145,8 @@ class IndexTableAdmin extends React.Component {
                     const result = matchSorter(rows, filter.value, {
                       keys: [
                         "name",
-                        "username",
+                        "group",
+                        "nameAmbassador"
                       ], threshold: matchSorter.rankings.WORD_STARTS_WITH
                     });
                     return result;
@@ -176,9 +172,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchSuccessStory: () => dispatch( successStory() )
+  dispatchSuccessStory: (key) => dispatch( successStory(key) )
 });
 
 const IndexTableAdminComponent = translate(IndexTableAdmin);
-export default connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableAdminComponent);
+export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableAdminComponent));
 

@@ -65,6 +65,7 @@
     "button_previous":                   "Previous",
     "button_next":                       "Next",
     "button_continue_editing":           "Continue Editing",
+    "button_evaluation":                 "Personal Evaluation",
 
 
     "label_month":                      "Month",
@@ -277,6 +278,7 @@
     "link_program_mbs":                 "MBS Program",
     "link_program_ambassador":          "Success Ambassador",
     "link_reports":                     "Reports",
+    "link_reports_ambassador":          "Reports of Ambassador",
     "link_username":                    "Email address",
     "link_student":                     "Student",
     "link_user_profile":                "User Profile",
@@ -555,6 +557,7 @@
     "th_quality":                "Home Plan",
     "th_service":                "Service",
     "th_graduates":              "Graduates",
+    "th_date":                   "Last Login",
 
     "ABW": "Aruba",
     "AFG": "Afghanistan",

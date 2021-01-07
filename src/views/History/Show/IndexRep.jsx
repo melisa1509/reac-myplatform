@@ -16,7 +16,7 @@ import IndexTable from './IndexTable.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
-import IndexTableAdmin from "./IndexTableAdmin.jsx";
+import { withRouter } from 'react-router-dom';
 
 
 const styles = {
@@ -32,22 +32,24 @@ class IndexRep extends React.Component {
  
 
   render() {
-    const { classes, active_user, success_story} = this.props;
+    const { classes,success_story } = this.props;
     let { t } = this.props;
     const login = "es";
-    let rol=false
-    if(active_user.roles == "ROLE_EMBASSADOR" ){
-      rol=true
+    let name="";
+    const data = success_story.map((prop, key) => {
+    if(this.props.match.params.id==prop.student.programmbs.id){
+      name= prop.student.first_name + " " + prop.student.last_name
     }
+    })
     return (
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={10}>
           <Card>
             <CardHeader color="info">
-                <h4 className={classes.cardTitle}>{t("label_success_story")}</h4>
+                <h4 className={classes.cardTitle}>{t("title_history")+" "+"/"+" "+name}</h4>
             </CardHeader>
             <CardBody>
-                {rol ? <IndexTable  /> : <IndexTableAdmin /> }     
+                 <IndexTable  />    
             </CardBody>
           </Card>
         </GridItem>
@@ -61,11 +63,11 @@ IndexRep.propTypes = {
 };
 const mapStateToProps = state => ({ 
   success_story: state.studentReducer.success_story,
-  active_user: state.loginReducer.active_user,
+  programmbs: state.programmbsReducer.programmbs
 });
 
 const mapDispatchToPropsActions = dispatch => ({
 });
 
 const IndexRepComponent = translate(withStyles(styles)(IndexRep));
-export default connect(mapStateToProps, mapDispatchToPropsActions)(IndexRepComponent);
+export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(IndexRepComponent));

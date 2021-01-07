@@ -52,7 +52,10 @@
         "button_previous":                   "Anterior",
         "button_next":                       "Siguiente",
         "button_continue_editing":           "Continuar Editando",
-        "button_story":                      "Historia",
+        "button_story":                      "Ver Historia",
+        "button_statistics":                 "Estadisticas",
+        "button_evaluation":                 "Evaluacion Personal",
+        
         
         
 
@@ -228,6 +231,7 @@
         "link_program_mbs":                 "Programa MBS",
         "link_program_ambassador":          "Embajador de Éxito",
         "link_reports":                     "Reportes",
+        "link_reports_ambassador":          "Reportes por Embajador",
         "link_username":                    "Usuario",
         "link_user_profile":                "Perfil de Usuario",
         "link_student":                     "Estudiante",
@@ -235,7 +239,7 @@
         "link_ambassador":                  "Embajador",
         "link_codes":                       "Codigo",
         "link_success_story":               "Historias de Éxito",
-        "link_success_stories":               "Historias de Éxito",
+        "link_success_stories":              "Historias de Éxito",
         "link_generate_groups_question1":   "https://interweavesolutions.org/galeria-de-medios",
         "link_generate_groups_question3":   "https://interweavesolutions.org/recursos-embajadores",
   
@@ -474,15 +478,19 @@
         "th_paperwork4_date":        "Fecha",
         "th_projects":               "Proyectos",
         "th_role":                   "Rol",
+        "th_whatsapp":               "Whatsapp",
         "th_start_classes":          "Inicio de Clases",
         "th_status":                 "Estado",
         "th_username":               "Usuario",
         "th_group":                  "Grupo",
+        "th_groups":                 "Grupos",
+        "th_certificates":           "Certificados",
+        "th_stories":                "Historias de Exito",
         "th_embassador_mentor":      "Embajador Mentor",
         "th_certificate_mbs":        "MBS Certificate",
         "th_certificate_ambassador": "Success Ambassador certificate",
         "th_evaluation":             "Evaluacion",
-        "th_number":                 "Numero de Estudiantes",
+        "th_participants":           "Participantes",
         "th_question1":              "P1",
         "th_question2":              "P2",
         "th_question3":              "P3",
@@ -501,6 +509,7 @@
         "th_quality":                "Calidad",
         "th_service":                "Servicio",
         "th_graduates":              "Graduados",
+        "th_date":                   "Ultimo Acceso",
 
         "subject.pending_correction":    "[My Platform] Notificación proyecto con correcciones pendientes.",
         "subject.pending_correction_sa": "[My Platform] Notificación proyecto con correcciones pendientes.",
