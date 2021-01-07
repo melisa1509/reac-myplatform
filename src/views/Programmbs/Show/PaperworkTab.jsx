@@ -98,7 +98,7 @@ class PaperworkTab extends React.Component {
         ]
     }
 
-    const arrayPaperwork4 = programmbs.paperwork4.p4_array;
+    const arrayPaperwork4 = programmbs.paperwork4.p4_array === undefined ? ["", "", "", "", ""] : programmbs.paperwork4.p4_array;
     const numColumsPaperwork4 = arrayPaperwork4.length / 5;
     const rowsPaperwork4 = [];
     const widthColumsPaperwork4 = ["10%", "45%", "15%", "15%", "15%"];
@@ -110,7 +110,7 @@ class PaperworkTab extends React.Component {
       end = end + 5;
     }
 
-    const arrayPaperwork5 = programmbs.paperwork5.p5_array;
+    const arrayPaperwork5 = programmbs.paperwork5.p5_array === undefined ? ["", "", "", "", ""] : programmbs.paperwork5.p5_array;
     const numColumsPaperwork5 = arrayPaperwork5.length / 2;
     const rowsPaperwork5 = [];
     const widthColumsPaperwork5 = ["70%", "30%"];
@@ -122,7 +122,7 @@ class PaperworkTab extends React.Component {
       endP5 = endP5 + 2;
     }
 
-    const arrayPaperwork6 = programmbs.paperwork6.p6_array;
+    const arrayPaperwork6 = programmbs.paperwork6.p6_array === undefined ? ["", "", "", "", ""] : programmbs.paperwork6.p6_array;
     const numColumsPaperwork6 = arrayPaperwork6.length / 2;
     const rowsPaperwork6 = [];
     const widthColumsPaperwork6 = ["70%", "30%"];
@@ -135,7 +135,7 @@ class PaperworkTab extends React.Component {
     }
 
     const titlePaperwork7 = [];
-    const titleArray = Array.from(programmbs.paperwork7.p7_title);
+    const titleArray = Array.from(programmbs.paperwork7.p7_title === undefined ? ["","", "", "", "", "", "", "", "", ""] : programmbs.paperwork7.p7_title);
     titleArray.unshift(t("label_month"));
     titlePaperwork7.push(titleArray);
     const widthColumsPaperwork7Title = ["28%","8%", "8%", "8%", "8%", "8%", "8%", "8%", "8%", "8%"];
@@ -146,7 +146,7 @@ class PaperworkTab extends React.Component {
     initialCapitalPaperwork7.push(initialCapitalArray);
     const widthColumsPaperwork7InitialCapital = ["28%","8%", "8%", "8%", "8%", "8%", "8%", "8%", "8%", "8%"];
 
-    const arrayPaperwork7 = programmbs.paperwork7.p7_array;
+    const arrayPaperwork7 = programmbs.paperwork7.p7_array === undefined ? ["", "", "", "", ""] : programmbs.paperwork7.p7_array;
     const numColumsPaperwork7 = arrayPaperwork7.length / 10;
     const rowsPaperwork7 = [];
     const widthColumsPaperwork7 = ["28%","8%", "8%", "8%", "8%", "8%", "8%", "8%", "8%", "8%"];
@@ -159,11 +159,11 @@ class PaperworkTab extends React.Component {
     }
 
     const incomePaperwork7 = [];
-    const incomeArray = Array.from(programmbs.paperwork7.p7_income);
+    const incomeArray = Array.from(programmbs.paperwork7.p7_income === undefined ? ["","", "", "", "", "", "", "", "", ""] : programmbs.paperwork7.p7_income);
     incomeArray.unshift(t("label_total_income"));
     incomePaperwork7.push(incomeArray);
 
-    const arrayPaperwork8 = programmbs.paperwork8.p8_array;
+    const arrayPaperwork8 = programmbs.paperwork8.p8_array === undefined ? ["", "", "", "", ""] : programmbs.paperwork8.p8_array;
     const numColumsPaperwork8 = arrayPaperwork8.length / 10;
     const rowsPaperwork8 = [];
     const widthColumsPaperwork8 = ["28%","8%", "8%", "8%", "8%", "8%", "8%", "8%", "8%", "8%"];
@@ -176,17 +176,17 @@ class PaperworkTab extends React.Component {
     }
 
     const expensesPaperwork8 = [];
-    const expensesArray = Array.from(programmbs.paperwork8.p8_expenses);
+    const expensesArray = Array.from(programmbs.paperwork8.p8_expenses === undefined ? ["","", "", "", "", "", "", "", "", ""] : programmbs.paperwork8.p8_expenses);
     expensesArray.unshift(t("label_total_expenses"));
     expensesPaperwork8.push(expensesArray);
 
     const earnings_losesPaperwork8 = [];
-    const earnings_losesArray = Array.from(programmbs.paperwork8.p8_earnings_loses);
+    const earnings_losesArray = Array.from(programmbs.paperwork8.p8_earnings_loses === undefined ? ["","", "", "", "", "", "", "", "", ""] : programmbs.paperwork8.p8_earnings_loses);
     earnings_losesArray.unshift(t("label_earnings_loses"));
     earnings_losesPaperwork8.push(earnings_losesArray);
 
     const balancePaperwork8 = [];
-    const balanceArray = Array.from(programmbs.paperwork8.p8_balance);
+    const balanceArray = Array.from(programmbs.paperwork8.p8_balance === undefined ? ["","", "", "", "", "", "", "", "", ""] : programmbs.paperwork8.p8_balance);
     balanceArray.unshift(t("label_ending_balance"));
     balancePaperwork8.push(balanceArray);
 

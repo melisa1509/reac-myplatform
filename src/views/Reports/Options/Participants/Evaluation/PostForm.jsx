@@ -236,36 +236,47 @@ class PostForm extends React.Component {
                 <GridContainer>
                   <GridItem xs={12} sm={12} md={12}> 
                     <InputLabel className={classes.label}>
-                    { program === "option.program4" ? t("question_jr_evaluation_question7") : t("question_evaluation_question7")}
+                      { program === "option.program4" ? t("question_jr_evaluation_question7") : t("question_evaluation_question7")}
                     </InputLabel>
-                    <GridContainer>
-                    <GridItem xs={3} sm={3} md={6}>
-                    <Field
-                      component={CustomRadioReduxDisabled}
-                      name="question7"
-                      data={radios}
-                    /> 
-                    </GridItem>
-                    <GridItem xs={3} sm={3} md={6}> 
-                      <Field
-                        component={CustomRadioReduxDisabled}
-                        name="postquestion7"
-                        data={radios}
-                      /> 
-                    </GridItem>       
-                    </GridContainer>          
+                      <GridContainer>
+                        <GridItem xs={3} sm={3} md={6}>
+                          <Field
+                            component={CustomRadioReduxDisabled}
+                            name="question7"
+                            data={radios}
+                          /> 
+                        </GridItem>
+                        <GridItem xs={3} sm={3} md={6}> 
+                          <Field
+                            component={CustomRadioReduxDisabled}
+                            name="postquestion7"
+                            data={radios}
+                          /> 
+                        </GridItem>       
+                      </GridContainer>          
                   </GridItem> 
                 </GridContainer>
                 <GridContainer>
                   <GridItem xs={12} sm={12} md={12}> 
                     <InputLabel className={classes.label}>
-                    { program === "option.program4" ? t("question_jr_evaluation_question8") : t("question_evaluation_question8")}
+                      { program === "option.program4" ? t("question_jr_evaluation_question8") : t("question_evaluation_question8")}
                     </InputLabel>
-                    <Field
-                      component={CustomRadioReduxDisabled}
-                      name="postquestion8"
-                      data={radios}
-                    />          
+                      <GridContainer>
+                        <GridItem xs={3} sm={3} md={6}>
+                          <Field
+                            component={CustomRadioReduxDisabled}
+                            name="question8"
+                            data={option1}
+                          /> 
+                        </GridItem>
+                        <GridItem xs={3} sm={3} md={6}> 
+                          <Field
+                            component={CustomRadioReduxDisabled}
+                            name="postquestion8"
+                            data={option1}
+                          /> 
+                        </GridItem>       
+                      </GridContainer>          
                   </GridItem> 
                 </GridContainer>
                 <GridContainer>
@@ -273,11 +284,22 @@ class PostForm extends React.Component {
                     <InputLabel className={classes.label}>
                     { program === "option.program4" ? t("question_jr_evaluation_question9") : t("question_evaluation_question9")}
                     </InputLabel>
-                    <Field
-                      component={CustomRadioReduxDisabled}
-                      name="postquestion9"
-                      data={radios}
-                    />          
+                      <GridContainer>
+                        <GridItem xs={3} sm={3} md={6}>
+                          <Field
+                            component={CustomRadioReduxDisabled}
+                            name="question8"
+                            data={option1}
+                          /> 
+                        </GridItem>
+                        <GridItem xs={3} sm={3} md={6}> 
+                          <Field
+                            component={CustomRadioReduxDisabled}
+                            name="postquestion8"
+                            data={option1}
+                          /> 
+                        </GridItem>       
+                      </GridContainer>          
                   </GridItem> 
                 </GridContainer>
                 </div>

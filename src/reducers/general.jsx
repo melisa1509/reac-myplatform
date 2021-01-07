@@ -13,7 +13,6 @@ const initialState = {
   dismatch_password:false,
   delete:false
 }
-//crear un 
 
 export const generalReducer = (state = initialState, action) => {
     switch (action.type) {
