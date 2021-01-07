@@ -105,7 +105,7 @@ class IndexTable extends React.Component {
       <CustomTabs
         title= {t("link_reports") +" "+ " / " + " " + name}
         headerColor="info"
-        active={2}
+        active={0}
         tabs={[
           {
             tabName: t("link_dashboard"),
