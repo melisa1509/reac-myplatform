@@ -105,9 +105,23 @@ class IndexTable extends React.Component {
               >
                 <Close />
               </Button>
+            </Link>{" "}           
+          </div>
+        ),
+        statistics: (
+          // we've added some custom button actions
+          <div className="actions-left">            
+            <Link to={"/report/options/" + prop.id}>
+              <Button
+                size="sm"
+                color= "success"
+              >
+                {t('button_statistics')}
+              </Button>
             </Link>{" "}
           </div>
         )
+
       };
     });
     
@@ -160,6 +174,13 @@ class IndexTable extends React.Component {
                   sortable: false,
                   filterable: false,
                   width: 150,
+                },
+                {
+                  Header: t(""),
+                  accessor: "statistics",
+                  sortable: false,
+                  filterable: false,
+                  width: 100,
                 },
                 {
                   // NOTE - this is a "filter all" DUMMY column

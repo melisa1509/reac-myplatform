@@ -76,7 +76,7 @@ class IndexTableAdmin extends React.Component {
                 size="sm"
                 color="success"
               >
-                 {t('button_story')}
+                 {t('button_success_story')}
               </Button>
             </Link>{" "}
           </div>

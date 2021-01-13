@@ -55,6 +55,7 @@
         "button_story":                      "Ver Historia",
         "button_statistics":                 "Estadisticas",
         "button_evaluation":                 "Evaluacion Personal",
+        "button_success_story":              "Historia de Éxito",
         
         
         
@@ -218,6 +219,7 @@
         "label_local_image":                 "Logo organización local ( png )",
         "label_years":                       "Años",
         "label_initial_capital":             "Saldo de Caja Inicial",
+        
    
         "link_admins":                      "Administradores",
         "link_administrator":               "Administration",
@@ -231,7 +233,7 @@
         "link_program_mbs":                 "Programa MBS",
         "link_program_ambassador":          "Embajador de Éxito",
         "link_reports":                     "Reportes",
-        "link_reports_ambassador":          "Reportes por Embajador",
+        "link_reports_ambassador":          "Estadísticas por Embajador",
         "link_username":                    "Usuario",
         "link_user_profile":                "Perfil de Usuario",
         "link_student":                     "Estudiante",

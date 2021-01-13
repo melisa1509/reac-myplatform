@@ -54,20 +54,6 @@ class DashboardAmbassador extends React.Component {
     console.log(dashboard_ambassador);      
     return (
       <GridContainer >
-        <GridItem xs={6} sm={6} md={3} lg={3}>
-        <Link to={"/report/options/"+ this.props.match.params.id +"/groups"} className={classes.dropdownLink} >
-          <Card>
-            <CardHeader color="primary" stats icon>
-              <CardIcon color="primary">
-                <Icon>group</Icon>
-              </CardIcon>
-                <p className={classes.cardCategory}>{t("link_groups")}</p>
-                <br/>
-                <Muted><h3>{dashboard_ambassador.global_groups}</h3></Muted>
-            </CardHeader>            
-          </Card>
-        </Link>
-        </GridItem>
 
         <GridItem xs={6} sm={6} md={3} lg={3}>
         <Link to={"/report/options/"+ this.props.match.params.id +"/participants"} className={classes.dropdownLink} >
@@ -81,8 +67,23 @@ class DashboardAmbassador extends React.Component {
                 <Muted><h3>{dashboard_ambassador.global_participants}</h3></Muted>
             </CardHeader>            
           </Card>
-          </Link>
+        </Link>
         </GridItem>
+
+        <GridItem xs={6} sm={6} md={3} lg={3}>
+        <Link to={"/report/options/"+ this.props.match.params.id +"/groups"} className={classes.dropdownLink} >
+          <Card>
+            <CardHeader color="primary" stats icon>
+              <CardIcon color="primary">
+                <Icon>group</Icon>
+              </CardIcon>
+                <p className={classes.cardCategory}>{t("link_groups")}</p>
+                <br/>
+                <Muted><h3>{dashboard_ambassador.global_groups}</h3></Muted>
+            </CardHeader>            
+          </Card>
+        </Link>
+        </GridItem>        
 
         <GridItem xs={6} sm={6} md={3} lg={3}>
         <Link to={"/report/options/"+ this.props.match.params.id +"/groups"} className={classes.dropdownLink} >
@@ -91,7 +92,7 @@ class DashboardAmbassador extends React.Component {
               <CardIcon color="info">
                 <Icon>school</Icon>
               </CardIcon>
-                <p className={classes.cardCategory}>{t("link_certificates")}</p>
+                <p className={classes.cardCategory}>{t("th_graduates")}</p>
                 <br/>
                 <Muted><h3>{dashboard_ambassador.global_certificates}</h3></Muted>
             </CardHeader>            

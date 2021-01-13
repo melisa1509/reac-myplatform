@@ -266,14 +266,14 @@ class PostForm extends React.Component {
                           <Field
                             component={CustomRadioReduxDisabled}
                             name="question8"
-                            data={option1}
+                            data={radios}
                           /> 
                         </GridItem>
                         <GridItem xs={3} sm={3} md={6}> 
                           <Field
                             component={CustomRadioReduxDisabled}
                             name="postquestion8"
-                            data={option1}
+                            data={radios}
                           /> 
                         </GridItem>       
                       </GridContainer>          
@@ -289,14 +289,14 @@ class PostForm extends React.Component {
                           <Field
                             component={CustomRadioReduxDisabled}
                             name="question8"
-                            data={option1}
+                            data={radios}
                           /> 
                         </GridItem>
                         <GridItem xs={3} sm={3} md={6}> 
                           <Field
                             component={CustomRadioReduxDisabled}
                             name="postquestion8"
-                            data={option1}
+                            data={radios}
                           /> 
                         </GridItem>       
                       </GridContainer>          

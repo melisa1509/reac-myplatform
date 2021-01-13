@@ -42,7 +42,7 @@ class IndexRep extends React.Component {
         <GridItem xs={12} sm={12} md={12}>
           <Card>
             <CardHeader color="info">
-                <h4 className={classes.cardTitle}>{t("title_ambassador_list")}</h4>
+                <h4 className={classes.cardTitle}>{t("link_reports_ambassador") + " / " + t("title_ambassador_list")}</h4>
             </CardHeader>
             <CardBody>
                 <IndexTable/>     
