@@ -15,6 +15,7 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
+import TabsRouter from 'components/CustomTabs/CustomTabsNavigate.jsx';
 import matchSorter from 'match-sorter';
 import { translate } from 'react-switch-lang';
 
@@ -115,6 +116,10 @@ class IndexTable extends React.Component {
     return (
       <GridContainer>
         <GridItem xs={12}>
+         hola <TabsRouter/>
+          </GridItem>
+        <GridItem xs={12}>
+          
         <CustomInput
           inputProps={{
             placeholder: "Search",

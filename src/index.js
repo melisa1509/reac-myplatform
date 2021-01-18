@@ -200,6 +200,7 @@ ReactDOM.render(
           <Route path="/programmbs/show/quality/:id" component={ShowQualityProgramMbs} exact/>
           <Route path="/programmbs/show/service/:id" component={ShowServiceProgramMbs} exact/>
           <Route path="/programmbs/show/history/:id" component={ShowHistoryProgramMbs} exact/>
+          <Route path="/programmbs/show/:page/:id" component={ProgramMbs} exact/>
           <Route path="/programmbs/edit/:id" component={EditProgramMbs} exact/>
           <Route path="/programmbs/edit/plan/:id" component={EditPlanProgramMbs} exact/>
           <Route path="/programmbs/edit/product/:id" component={EditProductProgramMbs} exact/>

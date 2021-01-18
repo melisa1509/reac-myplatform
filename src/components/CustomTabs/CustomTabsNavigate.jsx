@@ -1,19 +1,3 @@
-/*!
-
-=========================================================
-* Material Dashboard PRO React - v1.7.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-pro-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
@@ -30,6 +14,7 @@ import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 
 import customTabsStyle from "assets/jss/material-dashboard-pro-react/components/customTabsStyle.jsx";
+import { withRouter } from 'react-router-dom';
 
 class CustomTabs extends React.Component {
   state = {
@@ -47,7 +32,8 @@ class CustomTabs extends React.Component {
       plainTabs,
       tabs,
       title,
-      rtlActive
+      rtlActive, 
+      match
     } = this.props;
     const cardTitle = classNames({
       [classes.cardTitle]: true,
@@ -60,7 +46,7 @@ class CustomTabs extends React.Component {
             <div className={cardTitle}>{title}</div>
           ) : null}
           <Tabs
-            value={this.state.value}
+            value={match.params.tab}
             onChange={this.handleChange}
             classes={{
               root: classes.tabsRoot,
@@ -97,23 +83,6 @@ class CustomTabs extends React.Component {
             return null;
           })}
         </CardBody>
-        <GridContainer justify="center">
-            <GridItem xs={3} sm={3} md={3}>            
-                    <center>
-                            <Button color="default" fullWidth >
-                                {t("button_previous")}
-                            </Button>  
-                    </center>               
-            </GridItem>
-            <GridItem xs={6} sm={6} md={6}></GridItem>
-            <GridItem xs={3} sm={3} md={3}>            
-                    <center>
-                            <Button color="rose" fullWidth >
-                                {t("button_next")}
-                            </Button>  
-                    </center>               
-            </GridItem>
-      </GridContainer>
       </Card>
     );
   }
@@ -141,4 +110,4 @@ CustomTabs.propTypes = {
   plainTabs: PropTypes.bool
 };
 
-export default withStyles(customTabsStyle)(CustomTabs);
+export default withRouter(withStyles(customTabsStyle)(CustomTabs));

@@ -82,7 +82,7 @@ export const getActiveUser = ( redirect ) => {
         const reduxState = getState();
         
         var settings = {
-            "url": BASE_URL + "/user/active_user",
+            "url": BASE_URL + "/user/active_user", 
             "method": "POST",
             "timeout": 0,
             "headers": {
