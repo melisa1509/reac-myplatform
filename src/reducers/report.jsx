@@ -46,7 +46,7 @@ export const reportReducer = (state = initialState, action) => {
         });
       case GET_REPORT_COUNTRY:
         return Object.assign({}, state, {
-          report_country: action.payload,
+          report_country: action.payload, 
         });
       case GET_AMBASSADOR_COUNTRY:
         return Object.assign({}, state, {

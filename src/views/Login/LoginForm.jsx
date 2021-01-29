@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { translate } from 'react-switch-lang';
-import { withRouter } from 'react-router-dom';
 
 // react component for creating dynamic tables
 import { connect } from "react-redux";
@@ -23,7 +22,6 @@ import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSel
 import { verifyChange } from "assets/validation/index.jsx";
 import { getAuthenticacion, cleanState } from "actions/loginActions";
 import { getReports } from "actions/reportActions.jsx";
-import { store } from 'store/index.jsx';
 
 
 
@@ -302,7 +300,7 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 
 const LoginFormComponent = translate(withStyles(style)(LoginForm));
-export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(LoginFormComponent));
+export default connect(mapStateToProps, mapDispatchToPropsActions)(LoginFormComponent);
 
 
 

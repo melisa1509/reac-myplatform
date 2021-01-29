@@ -201,7 +201,7 @@ class IndexRep extends React.Component {
               </Muted>
             </CardHeader>
             <CardBody>
-              {rol ? <IndexAmbassadorTable/>: <IndexTable  />  }        
+            {rol ? <IndexAmbassadorTable/>: <IndexTable  />  }      
             </CardBody>
           </Card>
         </GridItem>

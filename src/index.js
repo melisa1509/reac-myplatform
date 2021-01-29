@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 import { Provider } from 'react-redux';
+import history from './history'
 
 //Student
 import Student from 'views/Student/Index.jsx';
@@ -164,7 +165,7 @@ function getLanguage(variable) {
 
 ReactDOM.render(
   <Provider store={store}>
-      <Router history={hist}>
+      <Router history={history}>
         <Switch>
           <Route path="/rtl" component={RtlLayout} />
           <Route path="/auth" component={AuthLayout} />
