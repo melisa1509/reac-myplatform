@@ -66,6 +66,18 @@ const style = {
 
 class ShowForm extends React.Component { 
 
+    componentDidMount() {
+      document.addEventListener("keydown", this.escFunction, false);        
+    }
+
+
+    escFunction(event){
+      if(event.keyCode === 13) {
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+      }
+    }
+
     
     render() {
         const { classes, programmbs, progressmbs, active_tab, active } = this.props;

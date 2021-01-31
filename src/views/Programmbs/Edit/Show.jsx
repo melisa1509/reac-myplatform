@@ -50,6 +50,7 @@ class Show extends React.Component {
   handleSendPostEvaluation(){
     this.props.dispatchSendPostEvaluation(this.props.history);
   }
+  
   render() {
     const { classes, sendRevisionProjectSuccessfull, sendRevisionProjectError, editRevisionSuccessfull, editRevisionError, approveProjectError, approveProjectSuccessfull, t } = this.props;
     return (
