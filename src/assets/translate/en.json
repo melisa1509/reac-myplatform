@@ -44,6 +44,8 @@
     "button_sign_in":                    "Sign in ",
     "button_sign_up":                    "Sign Up",
     "button_statistics":                 "Statistics",
+    "button_updates":                    "Updates",
+    "button_create_grant":               "Create Grant",
 
     "button_show_all_list":              "Show All List",
     "button_upload_file":                "Upload File",
@@ -266,6 +268,10 @@
     "label_update_error":                "Update Error, please contact the Admin",
     "label_save_error":                  "An error has occurred. Reload the page, type something and try saving again. If the problem persists, contact the administrator.",
     "label_success_story":               "List Success Stories",
+    "label_amount":                      "Amount",
+    "label_date":                        "Date",
+    "label_number_students":             "Number of Participants",    
+
     
     "link_administrator":               "Administrator",
     "link_ambassador_student":          "Advance to Student Ambassador",
@@ -290,7 +296,8 @@
     "link_success_stories":             "Success Stories",
     "link_evaluations":                 "Evaluation",
     "link_generate_groups_question1":   "https://www.interweavesolutions.org/media-gallery/",
-    "link_generate_groups_question3":   "https://www.interweavesolutions.org/success-ambassador-resources/",       
+    "link_generate_groups_question3":   "https://www.interweavesolutions.org/success-ambassador-resources/", 
+    "link_grants":                      "Grants",      
     
     "option_quality5":                    "5. I am very happy with this area of my life.",
     "option_quality4":                    "4. Normally, I am happy with the area of my life.",
@@ -354,6 +361,7 @@
     "title_show_group":                 "Group",
     "title_show_student":               "Participant", 
     "title_show_code":                  "Code", 
+    "title_show_grant":                 "Grant",
     "title_user_list":                  "User List",
     "title_user_profile":               "User Profile", 
     "title_welcome_mbs":                "Welcome to Success! in Business",
@@ -407,6 +415,9 @@
     "title_support_groups":             "Maintain Groups", 
     "title_register_participants":      "Register Of Participants",
     "title_student_list_future_ambassador_revision":   "Potential Success Ambassador Group Assignment",
+    "title_new_grant":                  "New Grant",
+    "title_grant_list":                 "Grant List",
+    "title_edit_grant":                 "Edit Grant",
 
     "message_approved_project" :         "Congratulations! Your Project has been approved.",
 
@@ -560,6 +571,8 @@
     "th_service":                "Service",
     "th_graduates":              "Graduates",
     "th_date":                   "Last Login",
+    "th_date_grant":             "Date",
+    "th_amount":                 "Amount",
 
     "ABW": "Aruba",
     "AFG": "Afghanistan",

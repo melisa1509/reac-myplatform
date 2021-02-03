@@ -141,27 +141,18 @@ import RegisterEvaluation from 'views/Register/PreEvaluation/New.jsx';
 //Course
 import NewCourse from 'views/Course/New/New.jsx';
 import ListCourse from 'views/Course/Index.jsx';
+
+//Grant
+import Grant from 'views/Grant/Index.jsx';
+import ShowGrant from 'views/Grant/Show/Show.jsx';
+import EditGrant from 'views/Grant/Edit/Edit.jsx';
+import NewGrant from 'views/Grant/New/New.jsx';
+import GrantAmbassadors from 'views/Grant/New/ListAmbassador/Index.jsx';
+import UpdateGrant from 'views/Grant/Update/Show.jsx';
+
 import { store } from 'store/index.jsx';
 
 import "assets/scss/material-dashboard-pro-react.scss?v=1.7.0";
-import Success from "components/Typography/Success";
-
-const hist = createBrowserHistory();
-
-const defaultLanguage = "en";
-
-
-function getLanguage(variable) {
-   var query = window.location.search.substring(1);
-   var vars = query.split("&");
-   for (var i=0; i < vars.length; i++) {
-       var pair = vars[i].split("=");
-       if(pair[0] === variable) {
-           return pair[1];
-       }
-   }
-   return defaultLanguage;
-}
 
 ReactDOM.render(
   <Provider store={store}>
@@ -272,6 +263,12 @@ ReactDOM.render(
           <Route path="/register/evaluation" component={RegisterEvaluation} exact />
           <Route path="/student/successStory/list" component={SuccessStory} exact /> 
           <Route path="/password" component={newPassword} exact /> 
+          <Route path="/grant" component={Grant} exact /> 
+          <Route path="/grant/new/:id" component={NewGrant} exact /> 
+          <Route path="/grant/show/:id" component={ShowGrant} exact /> 
+          <Route path="/grant/edit/:id" component={EditGrant} exact /> 
+          <Route path="/grant/ambassador" component={GrantAmbassadors} exact />
+          <Route path="/grant/update/:id" component={UpdateGrant} exact />
           <Redirect from="/" to="/login" />
         </Switch>
       </Router>,

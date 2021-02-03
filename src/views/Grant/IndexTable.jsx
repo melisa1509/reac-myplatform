@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 // react component for creating dynamic tables
 import ReactTable from "react-table";
 import { connect } from "react-redux";
-import { getStudentList } from "actions/studentActions.jsx";
+import { getGrantList } from "actions/grantActions.jsx";
 import { Link } from "react-router-dom";
 
 // @material-ui/icons
@@ -47,7 +47,6 @@ class IndexTable extends React.Component {
     const { value } = e.target;
     const filterAll = value;
     const filtered = [{ id: 'all', value: filterAll }];
-    // NOTE: this completely clears any COLUMN filters
     this.setState({ filterAll, filtered });
   }
 
@@ -61,81 +60,41 @@ class IndexTable extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatchGetStudentList();
+    this.props.dispatchGetGrantList();
   }
 
  
   render() {
-    const { student_list, loading } = this.props;
+    const { grant_list, loading } = this.props;
     let { t } = this.props;
             
-    const data = student_list.map((prop, key) => {
-      let projectState = "";
-      let buttonMbs = false;
-      let buttonSa = false;
-      let idMbs = "";
-      let idSa = "";
-      let labelButton = t('button_mbs');
-      let colorButton = "success";
-
-      if (prop.studentgroup !== undefined){
-        if(prop.studentgroup.group !== undefined){
-          if(prop.studentgroup.group.program === "option.program4"){
-            labelButton =  t('button_mbs_jr');
-            colorButton =  "warning";
-          }          
-        }        
+    const data = grant_list.map((prop, key) => {
+      let i = 0;
+      let date=[];
+      for (i = 0; i < 10 ; i++) {
+         date[i]=prop.date[i]
       }
-      if (prop.programsa !== undefined) {
-            projectState = t("label_project_ambassador") + " " +  t(prop.programsa.state);
-            buttonSa =  true;
-            idSa = prop.programsa.id;
-            
-      }
-      else if(prop.programmbs !== undefined){
-            projectState = t("state_project_mbs") + " " +  t(prop.programmbs.state);
-      }
-      else{
-            projectState = t("label_project_mbs") + " " +  t("state_without_starting");
-      }
-
-      if(prop.programmbs !== undefined){
-        buttonMbs =  true;
-        idMbs = prop.programmbs.id;
-      }      
-
-      var groups = (prop.studentgroup !== undefined ? prop.studentgroup.group.name : "") + (prop.studentambassadorgroup !== undefined ? " / " + prop.studentambassadorgroup.group.name : "");
       return {
         id: key, 
-        full_name: prop.first_name + " "+ prop.last_name,
-        group: groups,
-        state: projectState,
+        ambassador: prop.embassador.first_name + " " + prop.embassador.last_name,
+        date:date,
+        amount: prop.amount,
+        participants_number: prop.participants_number,      
         projects: (
-          <div className="actions-left">            
-            <Link to={buttonMbs ? prop.programmbs.modality === "option.modality1" ? "/programmbs/showfile/" + idMbs : "/programmbs/show/" + idMbs : "#"}>
+          <div className="actions-left">
+            <Link to={"/grant/student/" + prop.id}>
               <Button
                 size="sm"
-                color={buttonMbs ? colorButton : "default" }
+                color="success"
               >
-                { labelButton }
+                {t('button_updates')}
               </Button>
-            </Link>
-            {" "}
-            <Link to={buttonSa ? "/programsa/show/" + idSa : "#"}>
-              <Button
-                size="sm"
-                color={buttonSa ? "info" : "default" }
-              >
-                {t('button_embassador')}
-              </Button>
-            </Link>
-            
+            </Link>           
           </div>
         ),
         actions: (
-          // we've added some custom button actions
           <div className="actions-left">
-            <Link to={"/student/show/" + prop.id}>
+            <Link to={"/grant/show/" + prop.id}>
               <Button
                 justIcon
                 round4
@@ -145,17 +104,17 @@ class IndexTable extends React.Component {
                 <Visibility />
               </Button>
             </Link>{" "}
-            <Link to={"/student/edit/" + prop.id}>
+            <Link to={"/grant/edit/" + prop.id}>
               <Button
                 justIcon
                 round
-                simple            
+                simple             
                 color="warning"
               >
                 <Create />
               </Button>
             </Link>{" "}
-            <Link to={"/student/show/" + prop.id}>
+            <Link to={"/grant/show/" + prop.id}>
               <Button
                 justIcon
                 round
@@ -164,13 +123,11 @@ class IndexTable extends React.Component {
               >
                 <Close />
               </Button>
-            </Link>{" "}
+            </Link>
           </div>
         )
       };
     });
-    
-    
     
     return (
       <GridContainer>
@@ -193,29 +150,44 @@ class IndexTable extends React.Component {
               defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value}
               data={data}
               loading={loading}
+
               columns={[
                 {
-                  Header: t("label_name"),
-                  accessor: "full_name"
+                  Header: t("th_embassador_mentor"),
+                  accessor: "ambassador",
+                  sortable: true,
+                  width: 300
                 },
                 {
-                  Header: t("label_state"),
-                  accessor: "state"
+                  Header: t("th_date_grant"),
+                  accessor: "date",
+                  sortable: true,
+                  width: 100
                 },
                 {
-                  Header: t("th_group"),
-                  accessor: "group",
+                  Header: t("th_amount"),
+                  accessor: "amount",
+                  sortable: true,
+                  width: 150
                 },
                 {
-                  Header: t("th_projects"),
-                  accessor: "projects"
+                  Header: t("th_number_students"),
+                  accessor: "participants_number",
+                  sortable: true,
+                  width: 150
                 },
                 {
                   Header: t("th_actions"),
                   accessor: "actions",
                   sortable: false,
                   filterable: false,
-                  width: 150,
+                  width: 150
+                },
+                {
+                  Header: "",
+                  accessor: "projects",
+                  sortable: false,
+                  width: 150
                 },
                 {
                   Header: "",
@@ -226,18 +198,15 @@ class IndexTable extends React.Component {
                   
                   getProps: () => {
                     return {
-                      // style: { padding: "0px"}
+                      style: { padding: "0px"}
                     }
                   },
                   filterMethod: (filter, rows) => {
-                    // using match-sorter
-                    // it will take the content entered into the "filter"
-                    // and search for it in EITHER the firstName or lastName
                     const result = matchSorter(rows, filter.value, {
                       keys: [
-                        "full_name",
-                        "group",
-                        "state"
+                        "ambassador",
+                        "date",
+                        "amount"
                       ], threshold: matchSorter.rankings.WORD_STARTS_WITH
                     });
                     return result;
@@ -252,18 +221,30 @@ class IndexTable extends React.Component {
               className="-striped -highlight"
           />
         </GridItem>
+          <GridContainer>
+            <GridItem xs={12} sm={12} md={12}>
+                <center>
+                <Link to={"/grant/ambassador"}>
+                <Button color="info" size="sm">
+                {t("button_create_new")}
+                </Button>
+                {" "}
+                </Link>{" "}
+                </center>
+            </GridItem>
+          </GridContainer>
       </GridContainer>
     );
   }
 }
 
 const mapStateToProps = state => ({ 
-      student_list: state.studentReducer.student_list, 
-      loading: state.studentReducer.loading
+      grant_list: state.grantReducer.grant_list, 
+      loading: state.grantReducer.loading
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetStudentList: key => dispatch( getStudentList(key) )
+  dispatchGetGrantList: () => dispatch( getGrantList() )
 });
 
 const IndexTableComponent = translate(IndexTable);

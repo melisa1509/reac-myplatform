@@ -52,7 +52,6 @@ class DashboardAmbassador extends React.Component {
   render() {
     const { classes, dashboard_ambassador, active_user } = this.props;
     let { t } = this.props;   
-    console.log(dashboard_ambassador);     
     
       
     
@@ -113,7 +112,7 @@ class DashboardAmbassador extends React.Component {
               </CardIcon>
                 <p className={classes.cardCategory}>{t("link_success_stories")}</p>
                 <br/>
-                <Muted><h3>{0}</h3></Muted>
+                <Muted><h3>{dashboard_ambassador.global_stories}</h3></Muted>
             </CardHeader>            
           </Card>
           </Link>

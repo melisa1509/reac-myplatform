@@ -97,6 +97,7 @@ class AmbassadorTable extends React.Component {
       return {
         id: key, 
         full_name: prop.first_name + " "+ prop.last_name,
+        group: groups,
         state: projectState,
         projects: (
           <div className="actions-left">            
@@ -186,9 +187,14 @@ class AmbassadorTable extends React.Component {
                   accessor: "full_name"
                 },
                 {
+                  Header: t("th_group"),
+                  accessor: "group",
+                  resizable:true
+                },
+                {
                   Header: t("label_state"),
                   accessor: "state"
-                },
+                },               
                 {
                   Header: t("th_projects"),
                   accessor: "projects"
@@ -219,6 +225,7 @@ class AmbassadorTable extends React.Component {
                     const result = matchSorter(rows, filter.value, {
                       keys: [
                         "full_name",
+                        "group",
                         "state"
                       ], threshold: matchSorter.rankings.WORD_STARTS_WITH
                     });

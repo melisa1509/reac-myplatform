@@ -398,7 +398,7 @@ class IndexTable extends React.Component {
                 }
               ]}
               key={data.length}
-              defaultPageSize={data.length < 10 ? data.length : 10}
+              defaultPageSize={data.length < 5 ? data.length : 5}
               showPaginationTop={false}
               showPaginationBottom={true}
               className="-striped -highlight"

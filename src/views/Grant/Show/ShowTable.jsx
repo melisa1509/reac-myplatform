@@ -4,14 +4,13 @@ import { Link } from "react-router-dom";
 
 // react component for creating dynamic tables
 import { connect } from "react-redux";
-import { showStudent } from "actions/studentActions.jsx";
-import { deleteStudent } from "actions/studentActions.jsx";
+import { showGrant } from "actions/grantActions.jsx";
+import { deleteGrant } from "actions/grantActions.jsx";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 
 // core components
-import SnackbarContent from "components/Snackbar/SnackbarContent";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
@@ -37,6 +36,8 @@ const style = {
       cursor: "pointer",
       marginTop: "20px"
     },
+    ...validationFormsStyle,
+    ...customSelectStyle
 };
 
 class ShowTable extends React.Component {
@@ -49,53 +50,52 @@ class ShowTable extends React.Component {
     }
 
     deleteClick() {
-      this.props.dispatchDeleteStudent(this.props.match.params.id, this.props.history);
+      this.props.dispatchDeleteGrant(this.props.match.params.id,  this.props.history);
     }
     componentDidMount() {
-      this.props.dispatchShowStudent(this.props.match.params.id);
+      this.props.dispatchShowGrant(this.props.match.params.id);
     }
 
     render() {
-        const { show_student, successful_delete } = this.props;
+        const { show_grant} = this.props;
         let { t } = this.props;
-        let group = show_student.studentgroup === undefined ? "" : show_student.studentgroup.group.id;
+        let i = "";
+        let date=[];
+          for (i = 0; i < 10 ; i++) {
+              date[i]=show_grant.date[i]
+          }
         return (
           <GridContainer justify="center">
-            <GridItem xs={12} sm={12} md={8}>
-              <GridItem xs={12} sm={12} md={12}>
-              </GridItem>
-            <Table
-              striped
-              tableHead={[]}
-              tableData={[
-                [<th>{t("label_email")}</th>,<p>{show_student.username}</p>],
-                [<th>{t("label_name")}</th>,show_student.first_name],
-                [<th>{t("label_lastName")}</th>,show_student.last_name],
-                [<th>{t("label_country")}</th>,show_student.country],
-                [<th>{t("label_city")}</th>, show_student.city],
-                [<th>{t("label_whatsapp")}</th>, show_student.whatsapp],
-                [<th>{t("label_language")}</th>,  show_student.language],
-              ]}
-            />
+            <GridItem xs={12} sm={12} md={9}>
+              <Table
+                striped
+                tableHead={[]}
+                tableData={[
+                  [<th>{t("label_embassador_mentor")}</th>,show_grant.embassador.first_name+ " "+ show_grant.embassador.last_name,],
+                  [<th>{t("label_date")}</th>,date],
+                  [<th>{t("label_number_students")}</th>,show_grant.participants_number],
+                  [<th>{t("label_amount")}</th>,show_grant.amount],
+                ]}
+              />
+              <Table
+                striped
+                tableData={[
+                  [show_grant.description],
+                ]}
+              />
             <br/>
              <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
                       <center>
-                      <Link to={"/group/student/" + group  }>
+                      <Link to={"/grant"}>
                       <Button color="default" size="sm">
                       {t("button_return_to_list")}
                       </Button>
                       {" "}
                       </Link>{" "}
-                      <Link to={"/student/edit/" + show_student.id}>
+                      <Link to={"/grant/edit/" + show_grant.id}>
                       <Button color="info" size="sm">
                       {t("button_edit")}
-                      </Button>
-                      {" "}
-                      </Link>{" "}
-                      <Link to={"/student/editpassword/" + show_student.id}>
-                      <Button color="warning" size="sm">
-                      {t("button_change_password")}
                       </Button>
                       {" "}
                       </Link>{" "}
@@ -113,14 +113,14 @@ class ShowTable extends React.Component {
     }
 }
 const mapStateToProps = state => ({ 
-  show_student: state.studentReducer.show_student,
-  delete_student: state.studentReducer.delete_student, 
+  show_grant: state.grantReducer.show_grant,
+  delete_grant: state.grantReducer.delete_grant, 
   successful_delete: state.generalReducer.successful_delete
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchShowStudent: key => dispatch(showStudent(key)), 
-  dispatchDeleteStudent: (key, history) => dispatch(deleteStudent(key, history))
+  dispatchShowGrant: key => dispatch(showGrant(key)), 
+  dispatchDeleteGrant: (key, history) => dispatch(deleteGrant(key, history))
 });
 
 const ShowTableComponent = translate(withStyles(style)(ShowTable));

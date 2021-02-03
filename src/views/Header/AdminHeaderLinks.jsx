@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
 
 // @material-ui/icons
-import { Apps, Message, Face, Dashboard, HowToReg, SupervisorAccount, TrackChanges, LibraryBooks, Person, Stars, Book,School, Cancel, Group, Class, Description } from "@material-ui/icons";
+import { Apps, Message, Face, Dashboard, HowToReg, SupervisorAccount, TrackChanges, LibraryBooks, Person, Stars, Book,School, Cancel, Description, MonetizationOn, Eject } from "@material-ui/icons";
 
 // core components
 import CustomDropdown from "components/CustomDropdown/CustomDropdown.jsx";
@@ -77,6 +77,11 @@ class AdminHeaderLinks extends React.Component {
                 <Stars color="danger" className={classes.icons} /> {t("link_groups")}
             
           </Link>,
+          <Link to={'/grant'} className={classes.dropdownLink}>
+            
+                <MonetizationOn color="danger" className={classes.icons} /> {t("link_grants")}
+                  
+          </Link>,
           <Link to={'/student'} className={classes.dropdownLink}>
             
                 <HowToReg color="danger" className={classes.icons} /> {t("link_participants")}
@@ -84,7 +89,7 @@ class AdminHeaderLinks extends React.Component {
           </Link>,
           <Link to={'/ambassadorstudent'} className={classes.dropdownLink}>
             
-                <Group color="danger" className={classes.icons} /> {t("link_ambassador_student")}
+                <Eject color="danger" className={classes.icons} /> {t("link_ambassador_student")}
                         
           </Link>,
           <Link to={'/ambassador'} className={classes.dropdownLink}>
@@ -142,6 +147,11 @@ class AdminHeaderLinks extends React.Component {
             
                 <Stars color="danger" className={classes.icons} /> {t("link_groups")}
             
+          </Link>,
+          <Link to={'/grant'} className={classes.dropdownLink}>
+            
+                 <MonetizationOn color="danger" className={classes.icons} /> {t("link_grants")}
+                        
           </Link>,
           <Link to={'/student'} className={classes.dropdownLink}>
             
