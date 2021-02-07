@@ -73,8 +73,6 @@ class ShowTable extends React.Component {
                 tableData={[
                   [<th>{t("label_embassador_mentor")}</th>,show_grant.embassador.first_name+ " "+ show_grant.embassador.last_name,],
                   [<th>{t("label_date")}</th>,date],
-                  [<th>{t("label_number_students")}</th>,show_grant.participants_number],
-                  [<th>{t("label_amount")}</th>,show_grant.amount],
                 ]}
               />
               <Table

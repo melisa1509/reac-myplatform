@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { translate } from 'react-switch-lang';
 import { Link } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 
 // react component for creating dynamic tables
 import { connect } from "react-redux";
@@ -20,6 +21,9 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx'; 
 import DateTimePicker from 'components/DateTimePicker/DateTimePickerRedux.jsx';
+import TextEditor from "components/TextEditor/TextEditor";
+
+
 import { newGrant } from "actions/grantActions.jsx"; 
 import { errorRequiredFields } from "actions/generalActions.jsx";
 import { successRequiredFields } from "actions/generalActions.jsx";
@@ -31,7 +35,8 @@ import { deleteSuccessful } from "actions/generalActions.jsx";
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
 import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
-import { withRouter } from 'react-router-dom';
+import ActiveSelect from "views/Select/ActiveSelect";
+import LanguageSelect from "views/Select/LanguageSelect";
 
 const style = {
     infoText: {
@@ -102,7 +107,7 @@ class NewForm extends React.Component {
         let { t } = this.props;       
         return (
           <GridContainer justify="center">
-            <GridItem xs={12} sm={12} md={8}>
+            <GridItem xs={12} sm={12} md={11}>
               <form>
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
@@ -124,9 +129,9 @@ class NewForm extends React.Component {
               <GridContainer >
                   <GridItem xs={12} sm={12} md={4}>
                     <Field
-                      labelText={t("label_amount")+ " *"}
+                      labelText={t("label_title")+ " *"}
                       component={CustomInputRedux}
-                      name="amount"
+                      name="title"
                       success={this.state.amountState === "success"}
                       error={this.state.amountState === "error"}
                       formControlProps={{
@@ -134,28 +139,27 @@ class NewForm extends React.Component {
                       }}
                       inputProps={{
                         onKeyUp: event => 
-                              verifyChange(event, "amount", "number", 0, null, this),
+                              verifyChange(event, "title", "length", 0, null, this),
                         type: "text",
                       }}
                     />
                 </GridItem>
               </GridContainer>
               <GridContainer >
-                  <GridItem xs={12} sm={12} md={5}>
+                  <GridItem xs={12} sm={12} md={12}>
+                  <Field
+                      name="description"
+                      component={TextEditor}
+                      height={500}
+                      width={900}
+                    />
+                </GridItem>
+              </GridContainer>                
+              <GridContainer >
+                <GridItem xs={12} sm={12} md={6}>
                     <Field
-                      labelText={t("label_number_students_enrolled")+ " *"}
-                      component={CustomInputRedux}
-                      name="participants_number"
-                      success={this.state.participants_numberState === "success"}
-                      error={this.state.participants_numberState === "error"}
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        onKeyUp: event => 
-                              verifyChange(event, "participants_number", "number", 0, null, this),
-                        type: "text",
-                      }}
+                      component={LanguageSelect}
+                      name="language"
                     />
                 </GridItem>
               </GridContainer>
@@ -169,27 +173,15 @@ class NewForm extends React.Component {
                       name="date"
                     />
                 </GridItem>
-              </GridContainer>   
+              </GridContainer> 
               <GridContainer >
-                  <GridItem xs={12} sm={12} md={12}>
+                <GridItem xs={12} sm={12} md={6}>
                     <Field
-                      labelText={t("label_description")+ " *"}
-                      component={CustomInputRedux}
-                      name="description"
-                      success={this.state.descriptionState === "success"}
-                      error={this.state.descriptionState === "error"}
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        multiline: true,
-                        rows: 7,
-                        onKeyUp: event => 
-                              verifyChange(event, "description", "length", 0, null, this),
-                      }}
+                      component={ActiveSelect}
+                      name="state"
                     />
                 </GridItem>
-              </GridContainer>                        
+              </GridContainer>
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <Field

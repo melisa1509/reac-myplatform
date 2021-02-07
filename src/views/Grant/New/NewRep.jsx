@@ -47,7 +47,7 @@ class NewRep extends React.Component {
     }
     return (
       <GridContainer justify="center">
-        <GridItem xs={12} sm={12} md={8}>
+        <GridItem xs={12} sm={12} md={12}>
           <Card>
             <CardHeader color="info">
             <center>
