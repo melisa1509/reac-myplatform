@@ -148,7 +148,7 @@ class AdminHeaderLinks extends React.Component {
                 <Stars color="danger" className={classes.icons} /> {t("link_groups")}
             
           </Link>,
-          <Link to={'/grant'} className={classes.dropdownLink}>
+          <Link to={'/grant/ambassador'} className={classes.dropdownLink}>
             
                  <MonetizationOn color="danger" className={classes.icons} /> {t("link_grants")}
                         

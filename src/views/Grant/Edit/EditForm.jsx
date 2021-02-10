@@ -13,7 +13,8 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import InputLabel from "@material-ui/core/InputLabel";
 import SweetAlert from "react-bootstrap-sweetalert";
 import SuccessLabel from "components/Typography/SuccessLabel.jsx";
-import Accordion from "components/Accordion/Accordion.jsx";
+import TextEditor from "components/TextEditor/TextEditor";
+import Success from "components/Typography/Success.jsx";
 
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -35,6 +36,8 @@ import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweet
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
 import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
 import { withRouter } from 'react-router-dom';
+import ActiveSelect from "views/Select/ActiveSelect";
+import LanguageSelect from "views/Select/LanguageSelect";
 
 const style = {
     infoText: {
@@ -63,9 +66,7 @@ class EditForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            amountState: "success",
-            participants_numberState: "success",
-            descriptionState: "success",
+            titleState: "success",
         };
         this.saveClick = this.saveClick.bind(this);
         this.deleteClick = this.deleteClick.bind(this);
@@ -73,22 +74,12 @@ class EditForm extends React.Component {
 
      
       saveClick() {
-          if (this.state.descriptionState === "") {
+          if (this.state.titleState === "") {
               this.setState({ descriptionState: "error" });    
               this.props.dispatchErrorRequiredFields();        
-          }       
+          }      
 
-          if (this.state.amountState === "") {
-            this.setState({ amountState: "error" });
-            this.props.dispatchErrorRequiredFields();            
-          }        
-
-          if (this.state.participants_numberState === "") {
-            this.setState({ participants_numberState: "error" }); 
-            this.props.dispatchErrorRequiredFields();           
-          }        
-
-          if(this.state.participants_numberState === "success" || this.state.descriptionState === "success" || this.state.amountState === "success"){     
+          if(this.state.titleState === "success"){     
             this.props.dispatchEditGrant();
             this.props.dispatchSuccessRequiredFields();
           }
@@ -108,7 +99,7 @@ class EditForm extends React.Component {
         
         return (
           <GridContainer justify="center">
-            <GridItem xs={12} sm={12} md={8}>
+            <GridItem xs={12} sm={12} md={11}>
               <form>
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
@@ -123,6 +114,7 @@ class EditForm extends React.Component {
                       : ""}
                   </GridItem>
               </GridContainer>
+              
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
                       { successfull_edit ?      
@@ -141,45 +133,27 @@ class EditForm extends React.Component {
                   </GridItem>
               </GridContainer>
               <GridContainer >
-                  <GridItem xs={12} sm={12} md={4}>
+                  <GridItem xs={12} sm={12} md={6}>
                     <Field
-                      labelText={t("label_amount")+ " *"}
+                      labelText={t("label_title")+ " *"}
                       component={CustomInputRedux}
-                      name="amount"
-                      success={this.state.amountState === "success"}
-                      error={this.state.amountState === "error"}
+                      name="title"
+                      success={this.state.titleState === "success"}
+                      error={this.state.titleState === "error"}
                       formControlProps={{
                         fullWidth: true
                       }}
                       inputProps={{
                         onKeyUp: event => 
-                              verifyChange(event, "amount", "number", 0, null, this),
+                              verifyChange(event, "title", "length", 0, null, this),
                         type: "text",
                       }}
                     />
                 </GridItem>
               </GridContainer>
+              <br/>
               <GridContainer >
-                  <GridItem xs={12} sm={12} md={5}>
-                    <Field
-                      labelText={t("label_number_students_enrolled")+ " *"}
-                      component={CustomInputRedux}
-                      name="participants_number"
-                      success={this.state.participants_numberState === "success"}
-                      error={this.state.participants_numberState === "error"}
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        onKeyUp: event => 
-                              verifyChange(event, "participants_number", "number", 0, null, this),
-                        type: "text",
-                      }}
-                    />
-                </GridItem>
-              </GridContainer>
-              <GridContainer >
-                <GridItem xs={12} sm={12} md={6}>
+                <GridItem xs={12} sm={12} md={3}>
                   <InputLabel className={classes.label}>
                     <SuccessLabel>{t("label_date")}</SuccessLabel>
                   </InputLabel>
@@ -188,38 +162,39 @@ class EditForm extends React.Component {
                       name="date"
                     />
                 </GridItem>
-              </GridContainer>   
+              </GridContainer> 
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
-                    <Field
-                      labelText={t("label_description")+ " *"}
-                      component={CustomInputRedux}
+                    <InputLabel
+                        htmlFor="simple-select"
+                    >
+                        <Success>{t("label_description")}</Success>
+                    </InputLabel>
+                  <Field
                       name="description"
-                      success={this.state.descriptionState === "success"}
-                      error={this.state.descriptionState === "error"}
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        multiline: true,
-                        rows: 7,
-                        onKeyUp: event => 
-                              verifyChange(event, "description", "length", 0, null, this),
-                      }}
+                      component={TextEditor}
+                      height={500}
+                      width={900}
                     />
                 </GridItem>
-              </GridContainer>                        
+              </GridContainer>                
               <GridContainer >
-                  <GridItem xs={12} sm={12} md={12}>
+                <GridItem xs={12} sm={12} md={3}>
                     <Field
-                      component={CustomInputRedux}
-                      name="id_ambassador"
-                      inputProps={{
-                        type: "hidden",
-                      }}
+                      component={LanguageSelect}
+                      name="language"
                     />
                 </GridItem>
               </GridContainer>
+              
+              <GridContainer >
+                <GridItem xs={12} sm={12} md={3}>
+                    <Field
+                      component={ActiveSelect}
+                      name="state"
+                    />
+                </GridItem>
+              </GridContainer>                       
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
                       { errorRequired ? <Danger><h6 className={classes.infoText}>{t("label_require_fields")}</h6></Danger>: ""}

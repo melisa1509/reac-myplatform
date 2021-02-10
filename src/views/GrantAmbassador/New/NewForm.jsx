@@ -20,9 +20,8 @@ import GridItem from "components/Grid/GridItem.jsx";
 import SweetAlert from "react-bootstrap-sweetalert";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx'; 
-import DateTimePicker from 'components/DateTimePicker/DateTimePickerRedux.jsx';
-import TextEditor from "components/TextEditor/TextEditor";
-import Success from "components/Typography/Success.jsx";
+import FileUpload from "components/CustomUpload/FileUpload.jsx";
+import Table from "components/Table/Table.jsx";
 
 
 import { newGrant } from "actions/grantActions.jsx"; 
@@ -31,13 +30,13 @@ import { successRequiredFields } from "actions/generalActions.jsx";
 import { showGrantRedirect  } from "actions/grantActions.jsx";
 import { verifyChange } from "assets/validation/index.jsx";
 import { deleteSuccessful } from "actions/generalActions.jsx";
+import { showGrant } from "actions/grantActions.jsx";
 
 // style for this view
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
 import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
-import ActiveSelect from "views/Select/ActiveSelect";
-import LanguageSelect from "views/Select/LanguageSelect";
+
 
 const style = {
     infoText: {
@@ -88,16 +87,49 @@ class NewForm extends React.Component {
     }
 
     deleteClick(){
-      this.props.dispatchShowGrantRedirect(this.props.history)
       this.props.dispatchDeleteSuccessful();
+    }
+
+    componentDidMount() {
+      this.props.dispatchShowGrant(this.props.match.params.id);
+    }
+
+    updateFileName = (key) => {
+      this.props.change('file', key);
     }
 
     
     render() {
-        const { classes, errorRequired, successRequired, successfull_new } = this.props;
-        let { t } = this.props;       
+        const { classes, errorRequired, show_grant, successfull_new } = this.props;
+        let { t } = this.props;  
+        let i = "";
+        let date=[];
+          for (i = 0; i < 10 ; i++) {
+              date[i]=show_grant.date[i]
+          }     
         return (
           <GridContainer justify="center">
+            <GridContainer justify="center">
+            <GridItem xs={12} sm={12} md={11}>
+              <Table
+                striped
+                tableData={[
+                  [<th>{t("label_administrator")}</th>,show_grant.administrator.first_name+ " "+ show_grant.administrator.last_name,],
+                  [<th>{t("label_date")}</th>,date],
+                  [<th>{t("label_language")}</th>, t(show_grant.language)],
+                  
+                ]}
+              />
+              <Table
+                striped
+                tableData={[
+                  [],
+                  [<div dangerouslySetInnerHTML={{ __html: show_grant.description }}></div>],
+                ]}
+              />
+            <br/>
+            </GridItem>
+          </GridContainer>
             <GridItem xs={12} sm={12} md={11}>
               <form>
               <GridContainer justify="center">
@@ -120,66 +152,74 @@ class NewForm extends React.Component {
               <GridContainer >
                   <GridItem xs={12} sm={12} md={6}>
                     <Field
-                      labelText={t("label_title")+ " *"}
+                      labelText={t("label_code")+ " *"}
                       component={CustomInputRedux}
-                      name="title"
-                      success={this.state.titleState === "success"}
-                      error={this.state.titleState === "error"}
+                      name="code"
+                      success={this.state.codeState === "success"}
+                      error={this.state.codeState === "error"}
                       formControlProps={{
                         fullWidth: true
                       }}
                       inputProps={{
                         onKeyUp: event => 
-                              verifyChange(event, "title", "length", 0, null, this),
+                              verifyChange(event, "code", "length", 0, null, this),
                         type: "text",
                       }}
                     />
                 </GridItem>
               </GridContainer>
               <GridContainer >
-                <GridItem xs={12} sm={12} md={3}>
-                  <InputLabel className={classes.label}>
-                    <SuccessLabel>{t("label_date")}</SuccessLabel>
-                  </InputLabel>
+                  <GridItem xs={12} sm={12} md={6}>
                     <Field
-                      component={DateTimePicker}
-                      name="date"
+                      labelText={t("label_participants_number")+ " *"}
+                      component={CustomInputRedux}
+                      name="number"
+                      success={this.state.numberState === "success"}
+                      error={this.state.numberState === "error"}
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        onKeyUp: event => 
+                              verifyChange(event, "number", "length", 0, null, this),
+                        type: "text",
+                      }}
+                    />
+                </GridItem>
+              </GridContainer>
+              <GridContainer >
+                <GridItem xs={12} sm={12} md={11}>
+                    <Field
+                      labelText={"question_grant1"}
+                      component={CustomInputRedux}
+                      name="question1"
+                      success
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        multiline: true,
+                        rows: 7,
+                      }}
                     />
                 </GridItem>
               </GridContainer> 
               <br/>
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
-                    <InputLabel
-                        htmlFor="simple-select"
-                    >
-                        <Success>{t("label_description")}</Success>
-                    </InputLabel>
-                  <Field
-                      name="description"
-                      component={TextEditor}
-                      height={500}
-                      width={900}
-                    />
-                </GridItem>
+                    <InputLabel className={classes.label}>
+                        <SuccessLabel className={classes.label}>{t("grant_file")}</SuccessLabel>
+                    </InputLabel>                
+                    <Field
+                      component={FileUpload}
+                      name="file"
+                      changeFileName = {this.updateFileName}
+                      inputProps={{
+                        type: "file",
+                      }}
+                    /> 
+                  </GridItem>
               </GridContainer>                
-              <GridContainer >
-                <GridItem xs={12} sm={12} md={3}>
-                    <Field
-                      component={LanguageSelect}
-                      name="language"
-                    />
-                </GridItem>
-              </GridContainer>
-              
-              <GridContainer >
-                <GridItem xs={12} sm={12} md={3}>
-                    <Field
-                      component={ActiveSelect}
-                      name="state"
-                    />
-                </GridItem>
-              </GridContainer>              
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
                       { errorRequired ? <Danger><h6 className={classes.infoText}>{t("label_require_fields")}</h6></Danger>: ""}
@@ -225,8 +265,9 @@ NewForm = connect(
     successRequired:state.generalReducer.successRequired,
     successfull_new:state.generalReducer.successfull_new,
     new_grant: state.grantReducer.new_grant,
+    show_grant: state.grantReducer.show_grant,
   }),
-  { dispatchNewGrant: newGrant, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful, dispatchShowGrantRedirect: showGrantRedirect },
+  { dispatchShowGrant: showGrant, dispatchNewGrant: newGrant, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful, dispatchShowGrantRedirect: showGrantRedirect },
 )(NewForm);
 
 export default  withRouter(translate(withStyles(style)(NewForm)));

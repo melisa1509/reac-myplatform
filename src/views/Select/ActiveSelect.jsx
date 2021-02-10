@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { translate } from 'react-switch-lang';
 // react component for creating dynamic tables
 import { connect } from "react-redux";
+import { updateActiveSelect } from "actions/selectActions.jsx";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -11,6 +12,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 
+import Success from "components/Typography/Success.jsx";
 
 // style for this view
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
@@ -24,10 +26,12 @@ const style = {
 };
 
 
-class StateSelect extends React.Component {
+class ActiveSelect extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            
+            // Select
             simpleSelect: "",
             desgin: false,
             code: false,
@@ -36,11 +40,13 @@ class StateSelect extends React.Component {
         
     }
      
+      
     sendState() {
         return this.state;
     }
     handleSimple = event => {
         this.setState({ [event.target.name]: event.target.value });
+        this.props.dispatchUpdateActiveSelect(event.target.value);
     };
     handleChange = name => event => {
         this.setState({ [name]: event.target.checked });
@@ -51,16 +57,15 @@ class StateSelect extends React.Component {
 
 
     render() {
-        const { classes} = this.props;
+        const { classes, input } = this.props;
         let { t } = this.props;
         
         return (
                 <FormControl fullWidth className={classes.selectFormControl}>
                     <InputLabel
                         htmlFor="simple-select"
-                        className={classes.selectLabel}
                     >
-                        {t("label_state")}
+                        <Success>{t("label_state")}</Success>
                     </InputLabel>
                     <Select
                         MenuProps={{
@@ -69,13 +74,22 @@ class StateSelect extends React.Component {
                         classes={{
                             select: classes.select
                         }}
-                            value={this.state.simpleSelect}
-                            onChange={this.handleSimple}
+                            value={input.value}
+                            onChange={this.handleSimple , input.onChange}
                             inputProps={{
                             name: "simpleSelect",
                             id: "simple-select"
                         }}
                     >
+                        <MenuItem
+                            disabled
+                            classes={{
+                                root: classes.selectMenuItem
+                            }}
+                            value="-1"
+                        >
+                            {t("label_choose_state")}
+                        </MenuItem>
                         <MenuItem
                             classes={{
                                 root: classes.selectMenuItem,
@@ -83,7 +97,7 @@ class StateSelect extends React.Component {
                             }}
                             value="state.inactive"
                         >
-                            {t("state_inactive")}
+                            {t("label_inactive")}
                         </MenuItem>
                         <MenuItem
                             classes={{
@@ -92,21 +106,22 @@ class StateSelect extends React.Component {
                             }}
                             value="state.active"
                         >
-                            {t("state_active")}
-                        </MenuItem>
+                            {t("label_active")}
+                        </MenuItem>                        
                     </Select>
                 </FormControl>
         );
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = state => ({ 
 });
 
 const mapDispatchToPropsActions = dispatch => ({
+  dispatchUpdateActiveSelect: key => dispatch( updateActiveSelect(key) ), 
 });
 
-const ActiveSelectComponent = translate(withStyles(style)(StateSelect));
+const ActiveSelectComponent = translate(withStyles(style)(ActiveSelect));
 export default connect(mapStateToProps, mapDispatchToPropsActions)(ActiveSelectComponent);
 
 

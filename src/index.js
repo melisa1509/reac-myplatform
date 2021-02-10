@@ -147,8 +147,9 @@ import Grant from 'views/Grant/Index.jsx';
 import ShowGrant from 'views/Grant/Show/Show.jsx';
 import EditGrant from 'views/Grant/Edit/Edit.jsx';
 import NewGrant from 'views/Grant/New/New.jsx';
-import GrantAmbassadors from 'views/Grant/New/ListAmbassador/Index.jsx';
 import UpdateGrant from 'views/Grant/Update/Show.jsx';
+import GrantAmbassador from 'views/GrantAmbassador/Index.jsx';
+import NewGrantAmbassador from 'views/GrantAmbassador/New/New.jsx';
 
 import { store } from 'store/index.jsx';
 
@@ -264,11 +265,12 @@ ReactDOM.render(
           <Route path="/student/successStory/list" component={SuccessStory} exact /> 
           <Route path="/password" component={newPassword} exact /> 
           <Route path="/grant" component={Grant} exact /> 
-          <Route path="/grant/new/:id" component={NewGrant} exact /> 
+          <Route path="/grant/new" component={NewGrant} exact /> 
           <Route path="/grant/show/:id" component={ShowGrant} exact /> 
           <Route path="/grant/edit/:id" component={EditGrant} exact /> 
-          <Route path="/grant/ambassador" component={GrantAmbassadors} exact />
           <Route path="/grant/update/:id" component={UpdateGrant} exact />
+          <Route path="/grant/ambassador" component={GrantAmbassador} exact />
+          <Route path="/grant/newambassador/:id" component={NewGrantAmbassador} exact />
           <Redirect from="/" to="/login" />
         </Switch>
       </Router>,

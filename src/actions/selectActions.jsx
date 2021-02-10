@@ -1,10 +1,16 @@
 import { UPDATE_LANGUAGE_SELECT, UPDATE_COUNTRY_SELECT, COUNTRY_LIST, UPDATE_MODALITY_SELECT, UPDATE_PROGRAM_SELECT, UPDATE_ROLE_SELECT } from 'constants/actionTypes.jsx';
-import { UPDATE_AMBASSADOR_SELECT, UPDATE_QUALITY1_SELECT } from 'constants/actionTypes.jsx';
+import { UPDATE_AMBASSADOR_SELECT, UPDATE_QUALITY1_SELECT, UPDATE_ACTIVE_SELECT } from 'constants/actionTypes.jsx';
 
 
 export const updateLanguageSelect = params => {
     return (dispatch) => {
             dispatch ({ type: UPDATE_LANGUAGE_SELECT, payload: params });
+    }   
+}
+
+export const updateActiveSelect = params => {
+    return (dispatch) => {
+            dispatch ({ type: UPDATE_ACTIVE_SELECT, payload: params });
     }   
 }
 export const updateCountrySelect = params => {

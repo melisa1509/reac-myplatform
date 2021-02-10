@@ -9,9 +9,8 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 
 import mainPageStyle from "assets/jss/material-kit-react/views/mainPage.jsx";
-import IndexRep from "./IndexRep.jsx";
+import NewRep from 'views/GrantAmbassador/New/NewRep.jsx';
 import AdminHeader from "views/Header/AdminHeader.jsx";
-import PerfectScrollbar from 'react-perfect-scrollbar';
 
 
 const styles = {
@@ -19,8 +18,13 @@ const styles = {
   ...PerfectScrollbarStyle
 };
 
-class Index extends React.Component {
-  
+class New extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
+  }
+
   render() {
     const { classes, ...rest } = this.props;
     return (
@@ -36,8 +40,8 @@ class Index extends React.Component {
         >
           <div className={classes.container}>
             <GridContainer justify="center">
-              <GridItem xs={12} sm={12} md={10}>
-                <IndexRep generalStyles={styles}/>
+              <GridItem xs={12} sm={12} md={12}>
+                <NewRep generalStyles={styles}/>
               </GridItem>
             </GridContainer>
           </div>
@@ -48,4 +52,4 @@ class Index extends React.Component {
   }
 }
 
-export default withStyles(styles)(Index);
+export default withStyles(styles)(New);

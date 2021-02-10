@@ -8,20 +8,24 @@ import { MBS_IMAGE_ALERT , DELETE_IMAGE_ALERT} from "constants/actionTypes";
 import { adjustDate } from "assets/functions/general.jsx";
 import { NEW_GRANT_UPDATE } from "constants/actionTypes";
 import { SHOW_GRANT_UPDATE } from "constants/actionTypes";
+import { GRANT_ACTIVE_LIST } from "constants/actionTypes";
+import { NEW_GRANT_AMBASSADOR } from "constants/actionTypes";
 
 const initialState = { 
   show_grant: {
     id:"",
-    embassador:[],
+    administrator:[],
     date:"",
-    amount:"",
-    participants_number:"",
+    title:"",
+    language:"",
     description:"",   
+    state:"",
   },
   new_grant:{
     id:""
   },
   grant_list: [],
+  grant_active_list: [],
   show_grant_update: [],
   grant_program: [],
   progress_list:{
@@ -88,6 +92,15 @@ export const grantReducer = (state = initialState, action) => {
         return Object.assign({}, state, {
           show_grant_update: action.payload,
           loading: false
+        });
+      case GRANT_ACTIVE_LIST:
+        return Object.assign({}, state, {
+          grant_active_list: action.payload,
+          loading: false
+        });
+      case NEW_GRANT_AMBASSADOR:
+        return Object.assign({}, state, {
+          new_grant_ambassador: action.payload
         });
   }
     return state;

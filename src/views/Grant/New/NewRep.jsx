@@ -15,7 +15,6 @@ import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import NewForm from 'views/Grant/New/NewForm.jsx';
 
-import { showAmbassador } from 'actions/ambassadorActions.jsx';
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
@@ -34,12 +33,9 @@ class NewRep extends React.Component {
     };
   }
 
-  componentWillMount(){
-    this.props.dispatchGetShowAmbassador(this.props.match.params.id);
-  }
   
   render() {
-    const { classes, show_ambassador, active_user } = this.props;
+    const { classes } = this.props;
     let { t } = this.props;
     const initialValuesGrant= {
       date:moment().format('YYYY-MMM-DD'),
@@ -52,7 +48,6 @@ class NewRep extends React.Component {
             <CardHeader color="info">
             <center>
              <h4 className={classes.cardTitle}>{t("title_new_grant")}</h4>
-             <p>{ show_ambassador.first_name + " " + show_ambassador.last_name }</p>
              </center>
             </CardHeader>
             <CardBody>
@@ -70,13 +65,10 @@ NewRep.propTypes = {
 };
 
 const mapStateToProps = state => ({ 
-  show_ambassador: state.ambassadorReducer.show_ambassador, 
-  active_user: state.loginReducer.active_user, 
 });
 
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetShowAmbassador: key => dispatch( showAmbassador(key) )
 });
 
 

@@ -76,10 +76,11 @@ class IndexTable extends React.Component {
       }
       return {
         id: key, 
-        ambassador: prop.embassador.first_name + " " + prop.embassador.last_name,
+        title: prop.title,
+        language: t(prop.language),
+        state: t(prop.state),
+        administrator: prop.administrator.first_name + " " + prop.administrator.last_name,
         date:date,
-        amount: prop.amount,
-        participants_number: prop.participants_number,      
         projects: (
           <div className="actions-left">
             <Link to={"/grant/student/" + prop.id}>
@@ -153,29 +154,35 @@ class IndexTable extends React.Component {
 
               columns={[
                 {
-                  Header: t("th_embassador_mentor"),
-                  accessor: "ambassador",
+                  Header: t("th_administrator"),
+                  accessor: "administrator",
                   sortable: true,
-                  width: 300
+                  width: 250
+                },
+                {
+                  Header: t("th_title"),
+                  accessor: "title",
+                  sortable: true,
+                  width: 250
+                },
+                {
+                  Header: t("th_language"),
+                  accessor: "language",
+                  sortable: true,
+                  width: 100
+                },
+                {
+                  Header: t("th_state"),
+                  accessor: "state",
+                  sortable: true,
+                  width: 100
                 },
                 {
                   Header: t("th_date_grant"),
                   accessor: "date",
                   sortable: true,
                   width: 100
-                },
-                {
-                  Header: t("th_amount"),
-                  accessor: "amount",
-                  sortable: true,
-                  width: 150
-                },
-                {
-                  Header: t("th_number_students"),
-                  accessor: "participants_number",
-                  sortable: true,
-                  width: 150
-                },
+                },               
                 {
                   Header: t("th_actions"),
                   accessor: "actions",
@@ -204,9 +211,10 @@ class IndexTable extends React.Component {
                   filterMethod: (filter, rows) => {
                     const result = matchSorter(rows, filter.value, {
                       keys: [
-                        "ambassador",
-                        "date",
-                        "amount"
+                        "administrator",
+                        "title",
+                        "state",
+                        "language",
                       ], threshold: matchSorter.rankings.WORD_STARTS_WITH
                     });
                     return result;
@@ -224,7 +232,7 @@ class IndexTable extends React.Component {
           <GridContainer>
             <GridItem xs={12} sm={12} md={12}>
                 <center>
-                <Link to={"/grant/ambassador"}>
+                <Link to={"/grant/new"}>
                 <Button color="info" size="sm">
                 {t("button_create_new")}
                 </Button>

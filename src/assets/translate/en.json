@@ -178,7 +178,7 @@
     "label_section_approved_success":   "Section Approved!",
     "label_save_success_revision":      "Revision Saved!",
     "label_revision_sent_successfully": "Revision Sent!",
-    "lable_send_for_revision":          "Submit for revision",
+    "label_send_for_revision":          "Submit for revision",
     "label_signup":                     "Sign Up",
     "label_file_admin_proposed_correction":  "Proposed Corrections from the Administrator",
     "label_file_student_correction":         "Participant Corrections",
@@ -271,6 +271,9 @@
     "label_amount":                      "Amount",
     "label_date":                        "Date",
     "label_number_students":             "Number of Participants",    
+    "label_title":                       "Title",
+    "label_active":                      "Active",
+    "label_inactive":                    "Inactive",
 
     
     "link_administrator":               "Administrator",
@@ -317,6 +320,8 @@
     "state_revision":                   "under revision",
     "state_project_mbs":                "MBS Project",
     "state_without_starting":           "not started",
+    "state_active":                     "Active",
+    "state_inactive":                   "Inactive",
 
     "title_student_list":               "List of Participants",
     "title_interweave_academy":         "Interweave My Platform",
@@ -573,6 +578,13 @@
     "th_date":                   "Last Login",
     "th_date_grant":             "Date",
     "th_amount":                 "Amount",
+    "th_administrator":          "Administrator",
+    "th_title":                  "Title",
+
+    "en":                        "English",
+    "fr":                        "French",
+    "pt":                        "Portuguese",
+    "es":                        "Spanish",
 
     "ABW": "Aruba",
     "AFG": "Afghanistan",
@@ -829,7 +841,9 @@
         "approved":                   "approved",
         "revision":                   "under review",
         "draft":                      "Draft",
-        "publish":                    "Publish"    
+        "publish":                    "Publish",
+        "active":                     "Active",
+        "inactive":                   "Inactive"    
     }, 
 
     "option":{

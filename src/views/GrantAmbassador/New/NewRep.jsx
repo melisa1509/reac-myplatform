@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 // react component for creating dynamic tables
 import { connect } from "react-redux";
+import moment from "moment";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -12,11 +13,12 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import IndexTable from './IndexTable.jsx';
+import NewForm from 'views/GrantAmbassador/New/NewForm.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
-
+import { withRouter } from 'react-router-dom';
+import { showGrant} from 'actions/grantActions.jsx';
 
 const styles = {
   cardIconTitle: {
@@ -25,24 +27,36 @@ const styles = {
     marginBottom: "0px"
   } 
 };
+class NewRep extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {       
+    };
+  }
 
+  componentDidMount() {
+    this.props.dispatchShowGrant(this.props.match.params.id);
+  }
 
-class IndexRep extends React.Component {
- 
-
+  
   render() {
-    const { classes, styles } = this.props;
+    const { classes, show_grant } = this.props;
     let { t } = this.props;
-    const login = "es";
+    const initialValuesGrant= {
+      date:moment().format('YYYY-MMM-DD'),
+    }
     return (
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={12}>
           <Card>
             <CardHeader color="info">
-                <h4 className={classes.cardTitle}>{t("title_ambassador_list")}</h4>
+            <center>
+             <h4 className={classes.cardTitle}>{t("title_grant_application")}</h4>
+             <p>{show_grant.title}</p>
+             </center>
             </CardHeader>
             <CardBody>
-                <IndexTable  />      
+                <NewForm initialValues={initialValuesGrant} />
             </CardBody>
           </Card>
         </GridItem>
@@ -51,12 +65,19 @@ class IndexRep extends React.Component {
   }
 }
 
-IndexRep.propTypes = {
+NewRep.propTypes = {
   classes: PropTypes.object,
 };
 
-const mapDispatchToPropsActions = dispatch => ({
+const mapStateToProps = state => ({ 
+  show_grant: state.grantReducer.show_grant
 });
 
-const IndexRepComponent = translate(withStyles(styles)(IndexRep));
-export default connect(null, mapDispatchToPropsActions)(IndexRepComponent);
+
+const mapDispatchToPropsActions = dispatch => ({
+  dispatchShowGrant: key => dispatch(showGrant(key)),
+});
+
+
+const NewRepComponent = translate(withStyles(styles)(NewRep));
+export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(NewRepComponent));
