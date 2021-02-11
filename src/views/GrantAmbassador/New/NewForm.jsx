@@ -121,9 +121,8 @@ class NewForm extends React.Component {
                 ]}
               />
               <Table
-                striped
+                striped={false}
                 tableData={[
-                  [],
                   [<div dangerouslySetInnerHTML={{ __html: show_grant.description }}></div>],
                 ]}
               />
@@ -150,7 +149,7 @@ class NewForm extends React.Component {
                   </GridItem>
               </GridContainer>
               <GridContainer >
-                  <GridItem xs={12} sm={12} md={6}>
+                  <GridItem xs={12} sm={12} md={3}>
                     <Field
                       labelText={t("label_code")+ " *"}
                       component={CustomInputRedux}
@@ -169,7 +168,7 @@ class NewForm extends React.Component {
                 </GridItem>
               </GridContainer>
               <GridContainer >
-                  <GridItem xs={12} sm={12} md={6}>
+                  <GridItem xs={12} sm={12} md={3}>
                     <Field
                       labelText={t("label_participants_number")+ " *"}
                       component={CustomInputRedux}
@@ -190,7 +189,7 @@ class NewForm extends React.Component {
               <GridContainer >
                 <GridItem xs={12} sm={12} md={11}>
                     <Field
-                      labelText={"question_grant1"}
+                      labelText={t("question_grant1")}
                       component={CustomInputRedux}
                       name="question1"
                       success
@@ -204,6 +203,94 @@ class NewForm extends React.Component {
                     />
                 </GridItem>
               </GridContainer> 
+              <GridContainer >
+                <GridItem xs={12} sm={12} md={11}>
+                    <Field
+                      labelText={t("question_grant2")}
+                      component={CustomInputRedux}
+                      name="question2"
+                      success
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        multiline: true,
+                        rows: 7,
+                      }}
+                    />
+                </GridItem>
+              </GridContainer>
+              <h5 className={classes.cardTitleCenter} >{t("question_grant")}</h5>
+              <GridContainer >
+                <GridItem xs={12} sm={12} md={5}>
+                    <Field
+                      labelText={t("question_grant3")}
+                      component={CustomInputRedux}
+                      name="question3"
+                      success
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        onKeyUp: event => 
+                              verifyChange(event, "question3", "length", 0, null, this),
+                        type: "text",
+                      }}
+                    />
+                </GridItem>
+              </GridContainer>
+              <GridContainer >
+                <GridItem xs={12} sm={12} md={11}>
+                    <Field
+                      labelText={t("question_grant4")}
+                      component={CustomInputRedux}
+                      name="question4"
+                      success
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        multiline: true,
+                        rows: 7,
+                      }}
+                    />
+                </GridItem>
+              </GridContainer>
+              <GridContainer >
+                <GridItem xs={12} sm={12} md={11}>
+                    <Field
+                      labelText={t("question_grant5")}
+                      component={CustomInputRedux}
+                      name="question5"
+                      success
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        multiline: true,
+                        rows: 7,
+                      }}
+                    />
+                </GridItem>
+              </GridContainer>
+              <h5 className={classes.cardTitleCenter} >{t("question_grant6")}</h5>
+              <GridContainer >
+                <GridItem xs={12} sm={12} md={3}>
+                    <Field
+                      component={CustomInputRedux}
+                      name="question6"
+                      success
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        onKeyUp: event => 
+                              verifyChange(event, "question6", "length", 0, null, this),
+                        type: "text",
+                      }}
+                    />
+                </GridItem>
+              </GridContainer>
               <br/>
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>

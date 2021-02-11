@@ -527,6 +527,13 @@
     "question_support1":                 "1. How are you going to help your groups continue to meet?",
     "question_support2":                 "2. What do you have to do to remain a qualified Ambassador?",
     "question_support3":                 "3. Why do you want to be a Success Ambassador?",
+    "question_grant":                    "What is your estimated financial need?",
+    "question_grant1":                   "In the space below, please give a brief history of your time as a Success Ambassador (tell us about the MBS groups you have facilitated so far including the number of participants and graduates, previous grants received from Interweave, etc.)",
+    "question_grant2":                   "In the space below, please explain your need for Interweave’s Scholarship Grant, (including a summary of your efforts to find funding from the sources listed in the introductory letter):",
+    "question_grant3":                   "How many participants will you train in this group (Max 30)?",
+    "question_grant4":                   "How much will participants contribute for their own participation?",
+    "question_grant5":                   "What other sources of funding do you have and how much will they contribute? (Partnerships or contracts)",
+    "question_grant6":                   "TOTAL AMOUNT SOUGHT FROM INTERWEAVE:",
 
     "th_actions":                "Actions",
     "th_id":                     "ID",
