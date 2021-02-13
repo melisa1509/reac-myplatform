@@ -12,12 +12,11 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import IndexTable from './IndexTable.jsx';
+import EditForm from 'views/GrantAmbassador/Edit/EditForm.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
-import IndexTableAdmin from "./IndexTableAdmin.jsx";
-
+import { withRouter } from 'react-router-dom';
 
 const styles = {
   cardIconTitle: {
@@ -28,26 +27,23 @@ const styles = {
 };
 
 
-class IndexRep extends React.Component {
- 
-
+class EditRep extends React.Component {
+  
   render() {
-    const { classes, active_user, success_story} = this.props;
+    const { classes, show_ambassador, active_user} = this.props;
     let { t } = this.props;
-    const login = "es";
-    let rol=false
-    if(active_user.roles == "ROLE_EMBASSADOR" ){
-      rol=true
-    }
+    
     return (
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={12}>
           <Card>
             <CardHeader color="info">
-                <h4 className={classes.cardTitle}>{t("label_success_story")}</h4>
+            <center>
+             <h4 className={classes.cardTitle}>{t("title_edit_grant")}</h4>
+             </center>
             </CardHeader>
             <CardBody>
-                {rol ? <IndexTable  /> : <IndexTableAdmin /> }     
+                <EditForm  />
             </CardBody>
           </Card>
         </GridItem>
@@ -56,16 +52,19 @@ class IndexRep extends React.Component {
   }
 }
 
-IndexRep.propTypes = {
+EditRep.propTypes = {
   classes: PropTypes.object,
 };
-const mapStateToProps = state => ({ 
-  success_story: state.studentReducer.success_story,
-  active_user: state.loginReducer.active_user,
-});
+
 
 const mapDispatchToPropsActions = dispatch => ({
 });
 
-const IndexRepComponent = translate(withStyles(styles)(IndexRep));
-export default connect(mapStateToProps, mapDispatchToPropsActions)(IndexRepComponent);
+const mapStateToProps = state => ({ 
+  show_ambassador: state.grantReducer.show_embassador, 
+  active_user: state.loginReducer.active_user, 
+});
+
+
+const EditRepComponent = translate(withStyles(styles)(EditRep));
+export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(EditRepComponent));

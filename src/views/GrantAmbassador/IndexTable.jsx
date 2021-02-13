@@ -61,7 +61,7 @@ class IndexTable extends React.Component {
 
  
   render() {
-    const { grant_active_list, loading } = this.props;
+    const { grant_active_list, loading, active_user } = this.props;
     let { t } = this.props;
             
     const data = grant_active_list.map((prop, key) => {
@@ -70,6 +70,8 @@ class IndexTable extends React.Component {
       for (i = 0; i < 10 ; i++) {
          date[i]=prop.date[i]
       }
+      let grants_ambassador = prop.grantsambassador.filter((application) => application.ambassador.id === active_user.id );
+      let edit_grant_ambassador = grants_ambassador.length === 0 ? false : true;
       return {
         id: key, 
         title: prop.title,
@@ -78,7 +80,7 @@ class IndexTable extends React.Component {
         date:date,
         projects: (
           <div className="actions-left">
-            <Link to={"/grant/newambassador/" + prop.id}>
+            <Link to={ edit_grant_ambassador ? "/grant/editambassador/" + prop.id + "/" + grants_ambassador[0].id : "/grant/newambassador/" + prop.id}>
               <Button
                 size="sm"
                 color="success"
@@ -142,7 +144,7 @@ class IndexTable extends React.Component {
                   Header: "",
                   accessor: "projects",
                   sortable: false,
-                  width: 150
+                  width: 200
                 },
                 {
                   Header: "",
@@ -184,7 +186,8 @@ class IndexTable extends React.Component {
 
 const mapStateToProps = state => ({ 
       grant_active_list: state.grantReducer.grant_active_list, 
-      loading: state.grantReducer.loading
+      loading: state.grantReducer.loading,
+      active_user: state.loginReducer.active_user
 });
 
 const mapDispatchToPropsActions = dispatch => ({

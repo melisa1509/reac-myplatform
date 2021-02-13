@@ -12,7 +12,7 @@ import extendedFormsStyle from "assets/jss/material-dashboard-pro-react/views/ex
 class TextEditor extends React.Component {
   
   render() {
-    const { input, height, width } = this.props;
+    const { input, height, width, lang } = this.props;
     return (
       
             <FormControl >
@@ -20,6 +20,7 @@ class TextEditor extends React.Component {
                     apiKey='ciub0gjh4346udf5npj2yg77rt2ewkl162hcxz8cwn2z88io'
                     initialValue="<p>This is the initial content of the editor</p>"
                     init={{
+                      language: lang,
                       height: height,
                       width: width,
                       menubar: 'file edit view insert format tools table help',

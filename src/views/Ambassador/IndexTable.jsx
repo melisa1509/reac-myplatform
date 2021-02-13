@@ -71,7 +71,8 @@ class IndexTable extends React.Component {
         id: key, 
         name: prop.first_name + " " + prop.last_name ,
         username:prop.username,
-        country:prop.country,
+        language:t(prop.language),
+        country:t(prop.country),
         code:prop.code,
         actions: (
           // we've added some custom button actions
@@ -156,7 +157,12 @@ class IndexTable extends React.Component {
                 {
                   Header: t("th_username"),
                   accessor: "username",
-                  resizable:true
+                  width: 200,
+                },
+                {
+                  Header: t("th_language"),
+                  accessor: "language",
+                  width: 100,
                 },
                 {
                   Header: t("th_country"),
@@ -166,7 +172,7 @@ class IndexTable extends React.Component {
                 {
                   Header: t("th_code"),
                   accessor: "code",
-                  width: 150,
+                  width: 100,
                 },
                 {
                   Header: t("th_actions"),
@@ -204,6 +210,8 @@ class IndexTable extends React.Component {
                       keys: [
                         "name",
                         "username",
+                        "language",
+                        "country"
                       ], threshold: matchSorter.rankings.WORD_STARTS_WITH
                     });
                     return result;

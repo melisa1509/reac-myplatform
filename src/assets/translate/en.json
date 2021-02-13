@@ -274,6 +274,8 @@
     "label_title":                       "Title",
     "label_active":                      "Active",
     "label_inactive":                    "Inactive",
+    "label_success_ambassador_code":      "Success Ambassador Certificate Code",
+    
 
     
     "link_administrator":               "Administrator",
@@ -423,6 +425,8 @@
     "title_new_grant":                  "New Grant",
     "title_grant_list":                 "Grant List",
     "title_edit_grant":                 "Edit Grant",
+    "title_grant_application":          "Grant Application",
+    "title_grant_overview":             "Grant Overview",
 
     "message_approved_project" :         "Congratulations! Your Project has been approved.",
 

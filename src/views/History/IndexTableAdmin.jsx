@@ -67,6 +67,7 @@ class IndexTableAdmin extends React.Component {
       return {
         id: key, 
         name: prop.student.first_name + " " + prop.student.last_name ,
+        country: t(prop.student.country),
         nameAmbassador:prop.group.embassador.first_name + " " + prop.group.embassador.last_name ,
         group:prop.group.name,
         actions: (
@@ -111,6 +112,10 @@ class IndexTableAdmin extends React.Component {
                 {
                   Header: t("th_name"),
                   accessor: "name",
+                },
+                {
+                  Header: t("th_country"),
+                  accessor: "country",
                 },
                 {
                   Header: t("th_group"),

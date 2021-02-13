@@ -10,6 +10,9 @@ import { NEW_GRANT_UPDATE } from "constants/actionTypes";
 import { SHOW_GRANT_UPDATE } from "constants/actionTypes";
 import { GRANT_ACTIVE_LIST } from "constants/actionTypes";
 import { NEW_GRANT_AMBASSADOR } from "constants/actionTypes";
+import { EDIT_GRANT_AMBASSADOR } from "constants/actionTypes";
+import { LOAD_FORM_GRANT_AMBASSADOR } from "constants/actionTypes";
+import { SHOW_GRANT_AMBASSADOR } from "constants/actionTypes";
 
 const initialState = { 
   show_grant: {
@@ -20,6 +23,20 @@ const initialState = {
     language:"",
     description:"",   
     state:"",
+  },
+  show_grant_ambassador: {
+    id:"",
+    administrator:[],
+    grant:[],
+    number:"",
+    code:"",
+    question1:"",
+    question2:"",   
+    question3:"",
+    question4:"",
+    question5:"",
+    question6:"",
+    file:"",
   },
   new_grant:{
     id:""
@@ -101,6 +118,19 @@ export const grantReducer = (state = initialState, action) => {
       case NEW_GRANT_AMBASSADOR:
         return Object.assign({}, state, {
           new_grant_ambassador: action.payload
+        });
+      case SHOW_GRANT_AMBASSADOR:
+        return Object.assign({}, state, {
+          show_grant_ambassador: action.payload,
+          loading: false
+        });
+      case EDIT_GRANT_AMBASSADOR:
+        return Object.assign({}, state, {
+          edit_grant_ambassador: action.payload
+        });
+      case LOAD_FORM_GRANT_AMBASSADOR:
+        return Object.assign({}, state, {
+          data_grant_ambassador: action.data
         });
   }
     return state;
