@@ -85,7 +85,7 @@ class IndexTable extends React.Component {
     
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.dispatchGetReports(this.props.match.params.id);
   }
 
@@ -93,8 +93,9 @@ class IndexTable extends React.Component {
   render() {
     const { report_list, loading} = this.props;
     let { t } = this.props;
+    //const report_list = { evaluations: []}; 
             
-    const data = report_list.evaluations.map((prop) => {
+    const data = report_list.map((prop) => {
       let question1
       let question2
       let question3
@@ -266,7 +267,7 @@ class IndexTable extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
-      report_list: state.reportReducer.report_list,
+      report_list: state.reportReducer.report_list.evaluations ,
       loading: state.reportReducer.loading 
 });
 
