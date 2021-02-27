@@ -15,12 +15,10 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import IndexTable from './IndexTable.jsx';
 import IndexAmbassador from './IndexAmbassador.jsx';
 import IndexAmbassadorOnline from './IndexAmbassadorOnline.jsx';
-import MBSTable from './MBSTable.jsx';
 
 import { getCertificateList } from "actions/certificateActions.jsx";
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
-import PreForm from "./PreForm.jsx";
 
 const styles = {
   cardIconTitle: {

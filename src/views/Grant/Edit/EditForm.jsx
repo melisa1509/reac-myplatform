@@ -99,7 +99,7 @@ class EditForm extends React.Component {
         
         return (
           <GridContainer justify="center">
-            <GridItem xs={12} sm={12} md={11}>
+            <GridItem xs={12} sm={12} md={10}>
               <form>
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
@@ -155,7 +155,7 @@ class EditForm extends React.Component {
               <GridContainer >
                 <GridItem xs={12} sm={12} md={3}>
                   <InputLabel className={classes.label}>
-                    <SuccessLabel>{t("label_date")}</SuccessLabel>
+                    <SuccessLabel>{t("label_deadline_applications")}</SuccessLabel>
                   </InputLabel>
                     <Field
                       component={DateTimePicker}
@@ -163,6 +163,7 @@ class EditForm extends React.Component {
                     />
                 </GridItem>
               </GridContainer> 
+              <br/>
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <InputLabel

@@ -65,7 +65,7 @@ class UpdateForm extends React.Component {
   }
 
   saveClick() {
-    this.props.dispatchNewGrantUpdate();
+    this.props.dispatchNewGrantUpdate(this.props.match.params.id);
   }    
 
   deleteClick(){
@@ -78,7 +78,14 @@ class UpdateForm extends React.Component {
   }
 
   render() {
-    const { t, show_grant, classes, successfull_new } = this.props;
+    const { t, active_user, classes, successfull_new } = this.props;
+    let label = "label_grant_corrections";
+    if(active_user.roles.includes("ROLE_LANGUAGE_ADMIN") || active_user.roles.includes("ROLE_ADMIN")){
+      label = "label_grant_corrections";
+    }
+    else{
+      label = "label_grant_updates";
+    }
     return (
       <GridContainer justify="center">
         <GridContainer justify="center">
@@ -103,9 +110,8 @@ class UpdateForm extends React.Component {
             <GridItem xs={12} sm={12} md={12}>
               <form>
                   <SuccessBold>
-                    {t("question_history1")}
+                    {t(label)}
                   </SuccessBold>
-                  <br/>
                   <Field
                     component={CustomInputRedux}
                     name="description"
@@ -120,7 +126,7 @@ class UpdateForm extends React.Component {
                   />                
                   <br/>
                   <InputLabel className={classes.label}>
-                      <SuccessLabel className={classes.label}>{t("grant_file")}</SuccessLabel>
+                      <SuccessBold className={classes.label}>{t("label_grant_file")}</SuccessBold>
                   </InputLabel>                
                   <Field
                     component={FileUpload}
@@ -158,6 +164,7 @@ UpdateForm = reduxForm({
 UpdateForm = connect(
   state => ({
     successfull_new:state.generalReducer.successfull_new,
+    active_user:state.loginReducer.active_user
   }),
   { dispatchDeleteSuccessful: deleteSuccessful, dispatchNewGrantUpdate: newGrantUpdate, dispatchShowGrant: showGrant, dispatchShowGrantUpdate: showGrantUpdate }, 
 )(UpdateForm);

@@ -24,11 +24,13 @@ import Danger from "components/Typography/Danger.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import { showGrant, showGrantAmbassador } from "actions/grantActions.jsx";
-import { editGrant } from "actions/grantActions.jsx"; 
+import { sendRevisionGrantAmbassador } from "actions/grantActions"; 
 import { errorRequiredFields } from "actions/generalActions.jsx";
 import { successRequiredFields } from "actions/generalActions.jsx";
 import { verifyChange } from "assets/validation/index.jsx";
 import { deleteSuccessful } from "actions/generalActions.jsx";
+import { showDate } from "assets/functions/general.jsx";
+import { BASE_URL } from 'constants/urlTypes';
 
 // style for this view
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
@@ -68,11 +70,17 @@ class EditForm extends React.Component {
         };
         this.saveClick = this.saveClick.bind(this);
         this.deleteClick = this.deleteClick.bind(this);
+        this.sendRevision = this.sendRevision.bind(this);
       }
 
      
       saveClick() {
           this.props.dispatchEditGrantAmbassador();
+      }
+
+      sendRevision() {
+        this.props.dispatchDeleteSuccessful();
+        this.props.dispatchSendRevisionGrantAmbassador();
       }
 
       deleteClick(){
@@ -87,25 +95,38 @@ class EditForm extends React.Component {
       updateFileName = (key) => {
         this.props.change('file', key);
       }
+
+      updateFileName2 = (key) => {
+        this.props.change('file2', key);
+      }
       
     render() {
-        const { classes, successfull_edit, editError, errorRequired, show_grant, active_user } = this.props;
+        const { classes, successfull_edit, editError, errorRequired, show_grant, active_user, successful_send, show_grant_ambassador } = this.props;
+        console.log(classes);
         let { t } = this.props;
-        let i = "";
-        let date=[];
-          for (i = 0; i < 10 ; i++) {
-              date[i]=show_grant.date[i]
-          }
+       
         return (
           <GridContainer justify="center">
             <GridContainer justify="center">
-                <center><h3 >{t("title_grant_overview")}</h3></center>
+                  <GridItem xs={12} sm={12} md={12}>
+                    <center><h3 >{t("title_grant_overview")}</h3></center>
+                  </GridItem>
                   <GridItem xs={12} sm={12} md={11}>
+                   
+                          {show_grant_ambassador.state === "state.revision" ? <center><Danger><h6 className={classes.infoText}>{t("label_grant_success_revision")}</h6></Danger></center>: ""}
+                          {show_grant_ambassador.state === "state.approved" ? <center><Danger><h5 className={classes.infoText}>{t("label_grant_application_approved")}</h5></Danger></center>: ""}
+                          {show_grant_ambassador.state === "state.reject" ? <center><Danger><h5 className={classes.infoText}>{t("label_sent_reject_successful")}</h5></Danger></center>: ""}
+                          {show_grant_ambassador.state === "state.correction" ? <center><Danger><h6 className={classes.infoText}>{t("state_correction")}</h6></Danger></center>: ""}
+                          {show_grant_ambassador.state === "state.correction" ? <div>{show_grant_ambassador.correction}</div>: ""}
+                          {show_grant_ambassador.state === "state.reject" ? <div>{show_grant_ambassador.correction}</div>: ""}
+                  </GridItem>
+                  <GridItem xs={12} sm={12} md={11}>
+                    <br/>
                     <Table
                       striped
                       tableData={[
                         [<th>{t("label_administrator")}</th>,show_grant.administrator.first_name+ " "+ show_grant.administrator.last_name,],
-                        [<th>{t("label_date")}</th>,date],
+                        [<th>{t("label_deadline_applications")}</th>, showDate(show_grant.date)],
                         [<th>{t("label_language")}</th>, t(show_grant.language)],
                         
                       ]}
@@ -142,15 +163,34 @@ class EditForm extends React.Component {
                       { successfull_edit ?      
                         <SweetAlert
                           success
-                          style={{ display: "block", marginTop: "-100px", close:true }}
-                          onConfirm={() => this.deleteClick()}
+                          showCancel
+                          style={{ display: "block", marginTop: "-100px" }}
+                          onConfirm={() => this.sendRevision()}
+                          onCancel={() => this.deleteClick()}
+                          confirmBtnText={t("button_send_revision")}
+                          cancelBtnText={t("button_continue")}
                           confirmBtnCssClass={
+                              this.props.classes.button + " " + this.props.classes.warning
+                          }
+                          cancelBtnCssClass={
                               this.props.classes.button + " " + this.props.classes.success
                           }
-                          confirmBtnText={t("button_continue")}
-                          >
+                        >
                           <h4>{t("label_save_success")}</h4>
                         </SweetAlert> 
+                      : ""}
+                      {successful_send ? 
+                          <SweetAlert
+                            success                            
+                            style={{ display: "block", marginTop: "-100px" }}
+                            onConfirm={() => this.deleteClick()}
+                            confirmBtnText={t("button_continue")}
+                            confirmBtnCssClass={
+                              this.props.classes.button + " " + this.props.classes.success
+                            }
+                          >
+                          <h4>{t("label_grant_success_revision")}</h4>
+                          </SweetAlert>
                       : ""}
                   </GridItem>
               </GridContainer>
@@ -278,9 +318,21 @@ class EditForm extends React.Component {
               <br/>
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
-                    <InputLabel className={classes.label}>
-                        <SuccessBold className={classes.label}>{t("grant_file")}</SuccessBold>
-                    </InputLabel>                
+                    <SuccessBold>
+                      {t("label_grant_file")}
+                    </SuccessBold>
+                    <br/>
+                    {
+                      show_grant_ambassador.file !== undefined ?
+                      <a
+                        href={BASE_URL +  "/web/file/"  + show_grant_ambassador.file}
+                        target="_blank"
+                      >
+                          {t("label_download_file")}
+                      </a>:
+                      ""
+                    }    
+                    <br/>            
                     <Field
                       component={FileUpload}
                       name="file"
@@ -290,7 +342,35 @@ class EditForm extends React.Component {
                       }}
                     /> 
                   </GridItem>
-              </GridContainer>                       
+              </GridContainer>
+              <br/>
+              <GridContainer >
+                  <GridItem xs={12} sm={12} md={12}>
+                    <SuccessBold>
+                      {t("label_grant_file2")}
+                    </SuccessBold>
+                    <br/>
+                    {
+                      show_grant_ambassador.file2 !== undefined ?
+                      <a
+                        href={BASE_URL +  "/web/file/"  + show_grant_ambassador.file2}
+                        target="_blank"
+                      >
+                          {t("label_download_file")}
+                      </a>:
+                      ""
+                    }    
+                    <br/>               
+                    <Field
+                      component={FileUpload}
+                      name="file2"
+                      changeFileName = {this.updateFileName2}
+                      inputProps={{
+                        type: "file",
+                      }}
+                    /> 
+                  </GridItem>
+              </GridContainer>                        
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
                       { errorRequired ? <Danger><h6 className={classes.infoText}>{t("label_require_fields")}</h6></Danger>: ""}
@@ -299,7 +379,7 @@ class EditForm extends React.Component {
               <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
                   <div className={classes.center}>
-                      <Link to={"/grant"}>
+                      <Link to={"/grant/ambassador"}>
                       <Button color="default" size="sm">
                       {t("button_return_to_list")}
                       </Button>
@@ -334,9 +414,11 @@ EditForm = connect(
     successRequired:state.generalReducer.successRequired,
     successfull_edit:state.generalReducer.successfull_edit,
     show_grant: state.grantReducer.show_grant,
-    active_user: state.loginReducer.active_user
+    active_user: state.loginReducer.active_user,
+    successful_send:state.generalReducer.successful_send,
+    show_grant_ambassador: state.grantReducer.show_grant_ambassador
   }),
-  { loadShowGrant: showGrant, loadShowGrantAmbassador: showGrantAmbassador, dispatchEditGrantAmbassador: editGrantAmbassador, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful},
+  { dispatchSendRevisionGrantAmbassador: sendRevisionGrantAmbassador, loadShowGrant: showGrant, loadShowGrantAmbassador: showGrantAmbassador, dispatchEditGrantAmbassador: editGrantAmbassador, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful},
 )(EditForm);
 
 export default  withRouter(translate(withStyles(style)(EditForm)));

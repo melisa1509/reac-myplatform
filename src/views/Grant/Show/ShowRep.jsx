@@ -34,7 +34,7 @@ class ShowRep extends React.Component {
     let { t } = this.props;
     return (
       <GridContainer justify="center">
-        <GridItem xs={12} sm={12} md={9}>
+        <GridItem xs={12} sm={12} md={11}>
           <Card>
             <CardHeader color="info">
             <center>

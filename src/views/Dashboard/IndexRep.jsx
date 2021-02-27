@@ -15,6 +15,7 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import MbsTable from './MbsTable.jsx';
 import AmbassadorTable from './AmbassadorTable.jsx';
 import FutureAmbassadorTable from './FutureAmbassadorTable.jsx';
+import GrantTable from './GrantTable.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
@@ -65,6 +66,17 @@ class IndexRep extends React.Component {
             </CardHeader>
             <CardBody>
                 <AmbassadorTable  />      
+            </CardBody>
+          </Card>
+          }
+          <br/>
+          {rol ? "" :
+          <Card>
+            <CardHeader color="info">
+                <h4 className={classes.cardTitle}>{t("title_grant_ambassador_list_revision")}</h4>
+            </CardHeader>
+            <CardBody>
+                <GrantTable  />      
             </CardBody>
           </Card>
           }

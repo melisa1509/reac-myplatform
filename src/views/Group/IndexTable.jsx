@@ -17,6 +17,7 @@ import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
 import { translate } from 'react-switch-lang';
+import { showDate } from 'assets/functions/general.jsx';
 
 
 
@@ -69,15 +70,11 @@ class IndexTable extends React.Component {
     let { t } = this.props;
             
     const data = group_list.map((prop, key) => {
-      let i = 0;
-      let start_date=[];
-      for (i = 0; i < 10 ; i++) {
-         start_date[i]=prop.start_date[i]
-      }
+     
       return {
         id: key, 
         full_name: prop.name,
-        date:start_date,
+        date: showDate(prop.start_date),
         AmbassadorMentor: prop.embassador.first_name + " " + prop.embassador.last_name,
         projects: (
           <div className="actions-left">

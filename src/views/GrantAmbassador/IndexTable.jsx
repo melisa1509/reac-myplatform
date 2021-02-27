@@ -13,6 +13,7 @@ import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
 import { translate } from 'react-switch-lang';
+import { showDate } from "assets/functions/general.jsx";
 
 
 
@@ -61,25 +62,35 @@ class IndexTable extends React.Component {
 
  
   render() {
-    const { grant_active_list, loading, active_user } = this.props;
-    let { t } = this.props;
-            
-    const data = grant_active_list.map((prop, key) => {
-      let i = 0;
-      let date=[];
-      for (i = 0; i < 10 ; i++) {
-         date[i]=prop.date[i]
-      }
+      const { grant_active_list, loading, active_user } = this.props;
+      let { t } = this.props;
+              
+      const data = grant_active_list.map((prop, key) => {
+      
       let grants_ambassador = prop.grantsambassador.filter((application) => application.ambassador.id === active_user.id );
       let edit_grant_ambassador = grants_ambassador.length === 0 ? false : true;
+      let state_application = edit_grant_ambassador ? t("label_application") + " " + t(grants_ambassador[0].state) : t("label_application") + " " +  t("state_without_starting") ;
+      let state = edit_grant_ambassador ? grants_ambassador[0].state : "";
+
       return {
         id: key, 
         title: prop.title,
-        language: prop.language,
+        state: state_application,
         administrator: prop.administrator.first_name + " " + prop.administrator.last_name,
-        date:date,
+        date: showDate(prop.date),
         projects: (
           <div className="actions-left">
+             
+            { state === "state.approved" ?
+            <Link to={"/grant/update/" + grants_ambassador[0].id + "/" + prop.id}>
+            <Button
+              size="sm"
+              color="info"
+            >
+              {t('button_updates')}
+            </Button>
+          </Link>
+            :
             <Link to={ edit_grant_ambassador ? "/grant/editambassador/" + prop.id + "/" + grants_ambassador[0].id : "/grant/newambassador/" + prop.id}>
               <Button
                 size="sm"
@@ -87,7 +98,7 @@ class IndexTable extends React.Component {
               >
                 {t('button_application')}
               </Button>
-            </Link>           
+            </Link>}          
           </div>
         )
       };
@@ -120,25 +131,25 @@ class IndexTable extends React.Component {
                   Header: t("th_title"),
                   accessor: "title",
                   sortable: true,
-                  width: 350
+                  width: 300
                 },
                 {
                   Header: t("th_administrator"),
                   accessor: "administrator",
                   sortable: true,
-                  width: 300
-                },                
+                  width: 250
+                },  
                 {
-                  Header: t("th_language"),
-                  accessor: "language",
+                  Header: t("th_state"),
+                  accessor: "state",
                   sortable: true,
-                  width: 100
-                },
+                  width: 200
+                },              
                 {
-                  Header: t("th_date_grant"),
+                  Header: t("label_deadline"),
                   accessor: "date",
                   sortable: true,
-                  width: 100
+                  width: 150
                 },              
                 {
                   Header: "",

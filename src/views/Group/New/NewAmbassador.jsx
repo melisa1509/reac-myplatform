@@ -66,9 +66,9 @@ class NewForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            groupnameState: "success",
-            interweaveLocalState: "success",
-            authorizationCodeState: "success",
+            nameState: "",
+            interweaveLocalState: "",
+            authorizationCodeState: "",
             uploadPercentage: 0,
         };
         this.saveClick = this.saveClick.bind(this);
@@ -82,25 +82,17 @@ class NewForm extends React.Component {
     
      
     saveClick() {
-        if (this.state.groupnameState === "") {
-        this.setState({ groupnameState: "error" });
-        }
-        if (this.state.interweaveLocalState === "") {
-          this.setState({ imterweaveLocalState: "error" });
-        }
-        if (this.state.authorizationCodeState === "") {
-          this.setState({ authorizationCodeState: "error" });
-        }
-        if(this.state.groupnameState === "error" || this.state.full_nameState === "error"){
-          const stateRedux = store.getState();
+        if (this.state.nameState === "") {
+          this.setState({ nameState: "error" });
           this.props.dispatchErrorRequiredFields();
         }
-        if(this.state.groupnameState === "success" ){
-        const reduxState = store.getState();
+
+       
+        if(this.state.nameState === "success" ){
         this.props.dispatchNewGroup();
         this.props.dispatchSuccessRequiredFields();
         }
-      }
+    }
 
     deleteClick(){
       this.props.dispatchShowGroupRedirect(this.props.history)
@@ -145,14 +137,14 @@ class NewForm extends React.Component {
                       labelText={t("label_name")+ " *"}
                       component={CustomInputRedux}
                       name="name"
-                      success={this.state.groupnameState === "success"}
-                      error={this.state.groupnameState === "error"}
+                      success={this.state.nameState === "success"}
+                      error={this.state.nameState === "error"}
                       formControlProps={{
                         fullWidth: true
                       }}
                       inputProps={{
                         onKeyUp: event => 
-                              verifyChange(event, "groupname", "length", 0, null, this),
+                              verifyChange(event, "name", "length", 0, null, this),
                         type: "text",
                       }}
                     />
@@ -293,7 +285,6 @@ class NewForm extends React.Component {
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
                       { errorRequired ? <Danger><h6 className={classes.infoText}>{t("label_require_fields")}</h6></Danger>: ""}
-                      { successRequired ? "" :  ""}
                   </GridItem>
               </GridContainer>
               <GridContainer>

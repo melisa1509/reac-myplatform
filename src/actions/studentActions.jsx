@@ -5,8 +5,8 @@ import { BASE_URL} from 'constants/urlTypes.jsx';
 import { SUCCESS_STORY } from 'constants/actionTypes';
 
 export const getStudentList = key => {
+    
     return (dispatch, getState) => {
-        const reduxState = getState();
         return fetch(BASE_URL + "/student/?callback=foo")
         .then(response => response.json())
         .then(json => {

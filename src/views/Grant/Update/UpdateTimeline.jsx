@@ -26,6 +26,8 @@ import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/
 import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
 
 import { withRouter } from 'react-router-dom';
+import { showDate } from "assets/functions/general.jsx";
+import { BASE_URL } from 'constants/urlTypes';
 
 const style = {
     infoText: {
@@ -60,6 +62,7 @@ class UpdateTimeline extends React.Component {
     }
     componentDidMount() {
       this.props.dispatchShowGrantUpdate(this.props.match.params.id);
+      
     }
 
     deleteClick(){
@@ -68,112 +71,155 @@ class UpdateTimeline extends React.Component {
     }
 
     render() {
-        const { show_grant, show_grant_update} = this.props;
-        const updates = show_grant_update.map((prop, key) => {
-          return {
-            inverted: isOdd(key),
-            badgeColor: isOdd(key),
-            badgeIcon: isOdd(key) ? CardTravel : Extension,
-            title: prop.grant.embassador.first_name,
-            titleColor: isOdd(key) ? "danger" : "info",
-            body: (
-              <p>
-                {prop.description}
-              </p>
-            ),
-            footerTitle: prop.create_at
-          }
+        const { show_grant_update, t} = this.props;
+        const list = show_grant_update === undefined ? [] : show_grant_update;
+        let ind = 0;
+        const updates = list.map((prop, key) => {
+            ind++;
+            switch (ind) {
+              case 1:
+                  return {
+                    inverted: true,
+                    badgeColor: "danger",
+                    badgeIcon: CardTravel,
+                    title: prop.user.first_name + " "+ prop.user.last_name,
+                    titleColor: "danger",
+                    body: (
+                      <p>
+                        {prop.description}
+                      </p>
+                    ),
+                    footerTitle: showDate(prop.create_at),
+                    footer: (
+                      <p>
+                        {
+                          prop.file !== "undefined" ?
+                          <a
+                            href={BASE_URL +  "/web/file/"  + prop.file}
+                            target="_blank"
+                          >
+                              {t("label_download_file")}
+                          </a>:
+                          ""
+                        }
+                      </p>
+                    )
+                  }
+              case 2:
+                  return {
+                    badgeColor: "success",
+                    badgeIcon: Extension,
+                    title: prop.user.first_name + " "+ prop.user.last_name,
+                    titleColor: "success",
+                    body: (
+                      <p>
+                        {prop.description}
+                      </p>
+                    ),
+                    footerTitle: showDate(prop.create_at),
+                    footer: (
+                      <p>
+                        {
+                          prop.file !== "undefined" ?
+                          <a
+                            href={BASE_URL +  "/web/file/"  + prop.file}
+                            target="_blank"
+                          >
+                              {t("label_download_file")}
+                          </a>:
+                          ""
+                        }
+                      </p>
+                    )
+                  }
+              case 3:
+                  return {
+                    inverted: true,
+                    badgeColor: "info",
+                    badgeIcon: Fingerprint,
+                    title: prop.user.first_name + " "+ prop.user.last_name,
+                    titleColor: "info",
+                    body: (
+                      <p>
+                        {prop.description}
+                      </p>
+                    ),
+                    footerTitle: showDate(prop.create_at),
+                    footer: (
+                      <p>
+                        {
+                          prop.file !== "undefined" ?
+                          <a
+                            href={BASE_URL +  "/web/file/"  + prop.file}
+                            target="_blank"
+                          >
+                              {t("label_download_file")}
+                          </a>:
+                          ""
+                        }
+                      </p>
+                    )
+                  }
+              case 4:
+                  ind = 0;
+                  return {
+                    badgeColor: "warning",
+                    badgeIcon: FlightLand,
+                    title: prop.user.first_name + " "+ prop.user.last_name,
+                    titleColor: "warning",
+                    body: (
+                      <p>
+                        {prop.description}
+                      </p>
+                    ),
+                    footerTitle: showDate(prop.create_at),
+                    footer: (
+                      <p>
+                        {
+                          prop.file !== "undefined" ?
+                          <a
+                            href={BASE_URL +  "/web/file/"  + prop.file}
+                            target="_blank"
+                          >
+                              {t("label_download_file")}
+                          </a>:
+                          ""
+                        }
+                      </p>
+                    )
+                  }
+              default:
+                  return {
+                    inverted: true,
+                    badgeColor: "danger",
+                    badgeIcon: CardTravel,
+                    title: prop.user.first_name + " "+ prop.user.last_name,
+                    titleColor: "danger",
+                    body: (
+                      <p>
+                        {prop.description}
+                      </p>
+                    ),
+                    footerTitle: showDate(prop.create_at),
+                    footer: (
+                      <p>
+                        {
+                          prop.file !== "undefined" ?
+                          <a
+                            href={BASE_URL +  "/web/file/"  + prop.file}
+                            target="_blank"
+                          >
+                              {t("label_download_file")}
+                          </a>:
+                          ""
+                        }
+                      </p>
+                    )
+                  }
+            }
+            
         })
-        const stories = [
-          {
-            // First story
-            inverted: true,
-            badgeColor: "danger",
-            badgeIcon: CardTravel,
-            title: "Some Title",
-            titleColor: "danger",
-            body: (
-              <p>
-                Wifey made the best Father{"'"}s Day meal ever. So thankful so happy so
-                blessed. Thank you for making my family We just had fun with the
-                “future” theme !!! It was a fun night all together ... The always rude
-                Kanye Show at 2am Sold Out Famous viewing @ Figueroa and 12th in
-                downtown.
-              </p>
-            ),
-            footerTitle: "11 hours ago via Twitter"
-          },
-          {
-            // Second story
-            badgeColor: "success",
-            badgeIcon: Extension,
-            title: "Another One",
-            titleColor: "success",
-            body: (
-              <p>
-                Thank God for the support of my wife and real friends. I also wanted to
-                point out that it’s the first album to go number 1 off of streaming!!! I
-                love you Ellen and also my number one design rule of anything I do from
-                shoes to music to homes is that Kim has to like it....
-              </p>
-            )
-          },
-          {
-            // Third story
-            inverted: true,
-            badgeColor: "info",
-            badgeIcon: Fingerprint,
-            title: "Another Title",
-            titleColor: "info",
-            body: (
-              <div>
-                <p>
-                  Called I Miss the Old Kanye That’s all it was Kanye And I love you
-                  like Kanye loves Kanye Famous viewing @ Figueroa and 12th in downtown
-                  LA 11:10PM
-                </p>
-                <p>
-                  What if Kanye made a song about Kanye Royère doesn{"'"}t make a Polar
-                  bear bed but the Polar bear couch is my favorite piece of furniture we
-                  own It wasn’t any Kanyes Set on his goals Kanye
-                </p>
-              </div>
-            ),
-            footer: (
-              <CustomDropdown
-                buttonIcon={Build}
-                buttonProps={{
-                  round: true,
-                  style: { marginBottom: "0" },
-                  color: "info"
-                }}
-                dropdownList={[
-                  "Action",
-                  "Another action",
-                  "Something else here",
-                  { divider: true },
-                  "Separated link"
-                ]}
-              />
-            )
-          },
-          {
-            // Fourth story
-            badgeColor: "warning",
-            badgeIcon: FlightLand,
-            title: "Another One",
-            titleColor: "warning",
-            body: (
-              <p>
-                Tune into Big Boy{"'"}s 92.3 I{"'"}m about to play the first single from
-                Cruel Winter also to Kim’s hair and makeup Lorraine jewelry and the
-                whole style squad at Balmain and the Yeezy team. Thank you Anna for the
-                invite thank you to the whole Vogue team
-              </p>
-            )
-          }
-        ];
-        let { t } = this.props;
+        
        
         return (
             <Timeline stories={updates} />

@@ -72,7 +72,7 @@ class IndexRep extends React.Component {
                   {dashboard_student.progressSa.submitted === "state.revision" ? <center><Danger><h5 className={classes.infoText}>{t("label_success_revision")}</h5></Danger></center>: ""}
                   <p>{t("label_program_sa_starting")}</p>
                   <br/>
-                  {dashboard_student.progressMbs.submitted !== "state.approved" ? <center><Danger><h5 className={classes.infoText}>{t("label_restricted_access")}</h5></Danger></center>: <IndexTableSa  />}
+                  {active_user.roles.includes("ROLE_STUDENT_EMBASSADOR") ? <IndexTableSa  /> : <center><Danger><h5 className={classes.infoText}>{t("label_restricted_access")}</h5></Danger></center>}
               </CardBody>
             </Card>          
           </GridItem>

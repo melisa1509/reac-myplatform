@@ -5,7 +5,8 @@ import { setLanguage } from 'react-switch-lang';
 import { getGroupList, getGroupProgram } from "actions/groupActions.jsx";
 import { getStudentList, getMbsStudentList } from "actions/studentActions.jsx";
 import { getAdminStudentMbsList } from "actions/dashboardActions.jsx";
-import { getAmbassadorList } from "actions/ambassadorActions";
+import { getAmbassadorList } from "actions/ambassadorActions.jsx";
+import { grantAmbassadorList } from "actions/grantActions.jsx";
 import history from '../history';
 
 export const getAuthenticacion = ( params ) => {
@@ -53,6 +54,7 @@ export const getAuthenticacion = ( params ) => {
                                 else if(active_user.roles.includes("ROLE_LANGUAGE_ADMIN") || active_user.roles.includes("ROLE_ADMIN")){
                                     dispatch( getAdminStudentMbsList());
                                     dispatch( getAmbassadorList());
+                                    dispatch( grantAmbassadorList());
                                     dispatch( getGroupList());
                                     dispatch( getStudentList());  
                                     dispatch( getGroupProgram());

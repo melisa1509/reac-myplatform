@@ -1,15 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 // react component for creating dynamic tables
 import ReactTable from "react-table";
 import { connect } from "react-redux";
-import { getGrantList } from "actions/grantActions.jsx";
+import { grantAmbassadorList } from "actions/grantActions.jsx";
 import { Link } from "react-router-dom";
 
-// @material-ui/icons
-import Create from "@material-ui/icons/Create";
-import Visibility from "@material-ui/icons/Visibility";
-import Close from "@material-ui/icons/Close";
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
@@ -17,12 +14,8 @@ import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
 import { translate } from 'react-switch-lang';
-import { showDate } from "assets/functions/general.jsx";
 
-
-
-
-class IndexTable extends React.Component {
+class GrantTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -61,73 +54,39 @@ class IndexTable extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatchGetGrantList();
+    this.props.dispatchGetGrantAmbassadorList();
   }
-
  
   render() {
-    const { grant_list, loading, active_user } = this.props;
+    const {  loading, grant_ambassador_list, active_user } = this.props;
     let { t } = this.props;
 
-    const list = active_user.roles.includes("ROLE_LANGUAGE_ADMIN") ? grant_list.filter(prop => active_user.language_grader.includes(prop.language) )  : grant_list ;
+    const list = active_user.roles.includes("ROLE_LANGUAGE_ADMIN") ? grant_ambassador_list.filter(prop => active_user.language_grader.includes(prop.language) )  : grant_ambassador_list ;
             
     const data = list.map((prop, key) => {
-     
       return {
         id: key, 
-        title: prop.title,
-        language: t(prop.language),
-        state: t(prop.state),
-        administrator: prop.administrator.first_name + " " + prop.administrator.last_name,
-        date: showDate(prop.date),
+        title: prop.grant.title,
+        administrator: prop.grant.administrator.first_name + " " + prop.grant.administrator.last_name,
+        ambassador:prop.ambassador.first_name + " " + prop.ambassador.last_name,
+        language: t(prop.grant.language),
         projects: (
           <div className="actions-left">
-            <Link to={"/grant/application/" + prop.id}>
+            <Link to={"/grant/showambassador/" + prop.grant.id + "/" + prop.id}>
               <Button
                 size="sm"
-                color="success"
+                color="rose"
               >
-                {t('button_applications')}
-              </Button>
-            </Link>           
-          </div>
-        ),
-        actions: (
-          <div className="actions-left">
-            <Link to={"/grant/show/" + prop.id}>
-              <Button
-                justIcon
-                round4
-                simple
-                color="info"
-              >
-                <Visibility />
-              </Button>
-            </Link>{" "}
-            <Link to={"/grant/edit/" + prop.id}>
-              <Button
-                justIcon
-                round
-                simple             
-                color="warning"
-              >
-                <Create />
-              </Button>
-            </Link>{" "}
-            <Link to={"/grant/show/" + prop.id}>
-              <Button
-                justIcon
-                round
-                simple            
-                color="danger"
-              >
-                <Close />
+                {t('button_application')}
               </Button>
             </Link>
+            
           </div>
         )
       };
     });
+    
+    
     
     return (
       <GridContainer>
@@ -150,52 +109,40 @@ class IndexTable extends React.Component {
               defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value}
               data={data}
               loading={loading}
-
               columns={[
-                {
-                  Header: t("th_administrator"),
-                  accessor: "administrator",
-                  sortable: true,
-                  width: 230
-                },
                 {
                   Header: t("th_title"),
                   accessor: "title",
-                  sortable: true,
-                  width: 230
+                  width: 250,
+                  sortable: true
+                },
+                {
+                  Header: t("th_ambassador"),
+                  accessor: "ambassador",
+                  width: 250,
+                  sortable: true
+                },
+                {
+                  Header: t("th_administrator"),
+                  accessor: "administrator",
+                  width: 250,
+                  sortable: true
                 },
                 {
                   Header: t("th_language"),
                   accessor: "language",
-                  sortable: true,
-                  width: 100
-                },
-                {
-                  Header: t("th_state"),
-                  accessor: "state",
-                  sortable: true,
-                  width: 100
-                },
-                {
-                  Header: t("label_deadline"),
-                  accessor: "date",
-                  sortable: true,
-                  width: 100
-                },               
-                {
-                  Header: t("th_actions"),
-                  accessor: "actions",
-                  sortable: false,
-                  filterable: false,
-                  width: 150
+                  width: 100,
+                  sortable: true
                 },
                 {
                   Header: "",
                   accessor: "projects",
+                  width: 150,
                   sortable: false,
-                  width: 150
+                  filterable: false
                 },
                 {
+                 
                   Header: "",
                   id: 'all',
                   width: 0,
@@ -204,16 +151,15 @@ class IndexTable extends React.Component {
                   
                   getProps: () => {
                     return {
-                      style: { padding: "0px"}
+                      style: { padding: "5px"}
                     }
                   },
                   filterMethod: (filter, rows) => {
                     const result = matchSorter(rows, filter.value, {
                       keys: [
-                        "administrator",
                         "title",
-                        "state",
-                        "language",
+                        "ambassador",
+                        "administrator",
                       ], threshold: matchSorter.rankings.WORD_STARTS_WITH
                     });
                     return result;
@@ -228,33 +174,21 @@ class IndexTable extends React.Component {
               className="-striped -highlight"
           />
         </GridItem>
-          <GridContainer>
-            <GridItem xs={12} sm={12} md={12}>
-                <center>
-                <Link to={"/grant/new"}>
-                <Button color="info" size="sm">
-                {t("button_create_new")}
-                </Button>
-                {" "}
-                </Link>{" "}
-                </center>
-            </GridItem>
-          </GridContainer>
       </GridContainer>
     );
   }
 }
 
 const mapStateToProps = state => ({ 
-      grant_list: state.grantReducer.grant_list, 
+      grant_ambassador_list: state.grantReducer.grant_ambassador_list, 
       loading: state.grantReducer.loading,
       active_user: state.loginReducer.active_user
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetGrantList: () => dispatch( getGrantList() )
+  dispatchGetGrantAmbassadorList: () => dispatch( grantAmbassadorList() )
 });
 
-const IndexTableComponent = translate(IndexTable);
-export default connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent);
+const GrantTableComponent = translate(GrantTable);
+export default connect(mapStateToProps, mapDispatchToPropsActions)(GrantTableComponent);
 

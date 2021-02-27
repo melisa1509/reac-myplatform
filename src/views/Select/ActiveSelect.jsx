@@ -95,18 +95,18 @@ class ActiveSelect extends React.Component {
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                             }}
-                            value="state.inactive"
+                            value="state.available"
                         >
-                            {t("label_inactive")}
+                            {t("label_available")}
                         </MenuItem>
                         <MenuItem
                             classes={{
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                             }}
-                            value="state.active"
+                            value="state.not_available"
                         >
-                            {t("label_active")}
+                            {t("label_unavailable")}
                         </MenuItem>                        
                     </Select>
                 </FormControl>

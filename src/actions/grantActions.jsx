@@ -9,6 +9,13 @@ import { EDIT_GRANT_AMBASSADOR } from 'constants/actionTypes';
 import { LOAD_FORM_GRANT_AMBASSADOR } from 'constants/actionTypes';
 import { SHOW_GRANT_AMBASSADOR } from 'constants/actionTypes';
 import { SEND_REVISION_GRANT_AMBASSADOR } from 'constants/actionTypes';
+import { SEND_CORRECTION_GRANT_AMBASSADOR } from 'constants/actionTypes';
+import { SEND_REJECT_GRANT_AMBASSADOR } from 'constants/actionTypes';
+import { SEND_APPROVED_GRANT_AMBASSADOR } from 'constants/actionTypes';
+import { GRANT_AMBASSADOR_LIST } from 'constants/actionTypes';
+import { SUCCESSFUL_SEND } from 'constants/actionTypes';
+import { DELETE_SUCCESSFUL } from 'constants/actionTypes';
+import { convertDate } from 'assets/functions/general.jsx';
 
 export const getGrantList= () => {
     return (dispatch, getState) => {
@@ -32,6 +39,30 @@ export const getGrantList= () => {
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: GRANT_LIST, payload: json.data });
+        });
+    }
+}
+
+export const grantAmbassadorList= () => {
+    return (dispatch) => {
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("state", "state.revision");
+
+        var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: urlencoded,
+        redirect: 'follow'
+        };
+
+        return fetch( BASE_URL + "/grant/ambassadorlist", requestOptions)
+        .then(response => response.json())
+        .then(json => {
+            dispatch ({ type: GRANT_AMBASSADOR_LIST, data: json.data });
         });
     }
 }
@@ -100,9 +131,11 @@ export const showGrantUpdate = key => {
 
 export const loadFormGrant = data => ({ type: LOAD_FORM_GRANT, data });
 export const editGrant = ()=> {
+    
     return (dispatch, getState) => {
     const reduxState = getState();
     const key = reduxState.form.grantform.values.id;
+    console.log(reduxState.form.grantform.values.date);
   
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
@@ -112,7 +145,7 @@ export const editGrant = ()=> {
         urlencoded.append("language",reduxState.form.grantform.values.language);
         urlencoded.append("description", reduxState.form.grantform.values.description);
         urlencoded.append("state", reduxState.form.grantform.values.state); 
-        urlencoded.append("date", reduxState.form.grantform.values.date);
+        urlencoded.append("date",  convertDate(reduxState.form.grantform.values.date) );
 
         var requestOptions = {
         method: 'PUT',
@@ -150,6 +183,7 @@ export const editGrantAmbassador = ()=> {
         urlencoded.append("question6",reduxState.form.grantAmbassadorform.values.question6);
         urlencoded.append("question7",reduxState.form.grantAmbassadorform.values.question7);
         urlencoded.append("file",reduxState.form.grantAmbassadorform.values.file);
+        urlencoded.append("file2",reduxState.form.grantAmbassadorform.values.file2);
 
         var requestOptions = {
         method: 'PUT',
@@ -171,7 +205,7 @@ export const editGrantAmbassador = ()=> {
 export const sendRevisionGrantAmbassador = ()=> {
     return (dispatch, getState) => {
     const reduxState = getState();
-    const key = reduxState.grantReducer.new_grant_ambassador.id;
+    const key = reduxState.grantReducer.edit_grant_ambassador.id;
   
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
@@ -187,8 +221,93 @@ export const sendRevisionGrantAmbassador = ()=> {
 
         return fetch( BASE_URL + "/grant/revisionambassador/"+ key +"?callback=foo", requestOptions)
         .then(response => response.json())
-        .then(json => {
+        .then(json => {            
             dispatch ({ type: SEND_REVISION_GRANT_AMBASSADOR, payload: json.data });
+            dispatch ({ type: SUCCESSFUL_SEND});  
+        })
+
+    }
+};
+
+export const sendCorrectionGrantAmbassador = ()=> {
+    return (dispatch, getState) => {
+    const reduxState = getState();
+    const key = reduxState.grantReducer.show_grant_ambassador.id;
+  
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("correction",reduxState.form.grantAmbassadorform.values.correction);
+
+        var requestOptions = {
+        method: 'PUT',
+        headers: myHeaders,
+        body: urlencoded,
+        redirect: 'follow'
+        };
+
+        return fetch( BASE_URL + "/grant/correctionambassador/"+ key +"?callback=foo", requestOptions)
+        .then(response => response.json())
+        .then(json => {
+            dispatch ({ type: SEND_CORRECTION_GRANT_AMBASSADOR, payload: json.data });
+            dispatch ({ type: SUCCESSFULL_EDIT});  
+        })
+
+    }
+};
+
+export const sendRejectGrantAmbassador = ()=> {
+    return (dispatch, getState) => {
+    const reduxState = getState();
+    const key = reduxState.grantReducer.show_grant_ambassador.id;
+  
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("correction",reduxState.form.grantAmbassadorform.values.correction);
+
+        var requestOptions = {
+        method: 'PUT',
+        headers: myHeaders,
+        body: urlencoded,
+        redirect: 'follow'
+        };
+
+        return fetch( BASE_URL + "/grant/rejectambassador/"+ key +"?callback=foo", requestOptions)
+        .then(response => response.json())
+        .then(json => {
+            dispatch ({ type: SEND_REJECT_GRANT_AMBASSADOR, payload: json.data });
+            dispatch ({ type: SUCCESSFULL_EDIT});  
+        })
+
+    }
+};
+
+export const sendApprovedGrantAmbassador = ()=> {
+    return (dispatch, getState) => {
+    const reduxState = getState();
+    const key = reduxState.grantReducer.show_grant_ambassador.id;
+  
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("correction",reduxState.form.grantAmbassadorform.values.correction);
+        urlencoded.append("amount",reduxState.form.grantAmbassadorform.values.amount);
+
+        var requestOptions = {
+        method: 'PUT',
+        headers: myHeaders,
+        body: urlencoded,
+        redirect: 'follow'
+        };
+
+        return fetch( BASE_URL + "/grant/approveambassador/"+ key +"?callback=foo", requestOptions)
+        .then(response => response.json())
+        .then(json => {
+            dispatch ({ type: SEND_APPROVED_GRANT_AMBASSADOR, payload: json.data });
             dispatch ({ type: SUCCESSFULL_EDIT});  
         })
 
@@ -207,7 +326,7 @@ export const newGrant = ()=> {
     urlencoded.append("language",reduxState.form.grantNewform.values.language);
     urlencoded.append("description", reduxState.form.grantNewform.values.description);
     urlencoded.append("state", reduxState.form.grantNewform.values.state); 
-    urlencoded.append("date", reduxState.form.grantNewform.values.date);   
+    urlencoded.append("date", convertDate(reduxState.form.grantNewform.values.date));   
     
     var requestOptions = {
       method: 'POST',
@@ -244,6 +363,7 @@ export const newGrantAmbassador = ()=> {
     urlencoded.append("question6",reduxState.form.grantAmbassadorNewform.values.question6);
     urlencoded.append("question7",reduxState.form.grantAmbassadorNewform.values.question7);
     urlencoded.append("file",reduxState.form.grantAmbassadorNewform.values.file);
+    urlencoded.append("file2",reduxState.form.grantAmbassadorNewform.values.file2);
     
     
     var requestOptions = {
@@ -262,14 +382,15 @@ export const newGrantAmbassador = ()=> {
     }
 };
 
-export const newGrantUpdate = ()=> {
+export const newGrantUpdate = (key)=> {
     return (dispatch, getState) => {
     const reduxState = getState();
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
     
     var urlencoded = new URLSearchParams();
-    urlencoded.append("id_grant", reduxState.grantReducer.show_grant.id);
+    urlencoded.append("id_grant_ambassador", key);
+    urlencoded.append("id_user", reduxState.loginReducer.active_user.id);
     urlencoded.append("file",reduxState.form.grantUpdateForm.values.file);
     urlencoded.append("description", reduxState.form.grantUpdateForm.values.description);
     
@@ -345,3 +466,4 @@ export const showGrantRedirect =  (redirect)  => {
         return redirect.push( '/grant/show/'+ key);
     }
 }
+

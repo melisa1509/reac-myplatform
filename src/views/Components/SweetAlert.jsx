@@ -133,7 +133,7 @@ class SweetAlertPage extends React.Component {
             this.props.classes.button + " " + this.props.classes.success
           }
           cancelBtnCssClass={
-            this.props.classes.button + " " + this.props.classes.danger
+            this.props.classes.button + " " + this.props.classes.danger 
           }
           confirmBtnText="Yes, delete it!"
           cancelBtnText="Cancel"

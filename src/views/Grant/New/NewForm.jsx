@@ -139,7 +139,7 @@ class NewForm extends React.Component {
               <GridContainer >
                 <GridItem xs={12} sm={12} md={3}>
                   <InputLabel className={classes.label}>
-                    <SuccessLabel>{t("label_date")}</SuccessLabel>
+                    <SuccessLabel>{t("label_deadline_applications")}</SuccessLabel>
                   </InputLabel>
                     <Field
                       component={DateTimePicker}
@@ -225,6 +225,7 @@ NewForm = connect(
     successRequired:state.generalReducer.successRequired,
     successfull_new:state.generalReducer.successfull_new,
     new_grant: state.grantReducer.new_grant,
+    initialValues: state.grantReducer.new_grant
   }),
   { dispatchNewGrant: newGrant, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful, dispatchShowGrantRedirect: showGrantRedirect },
 )(NewForm);

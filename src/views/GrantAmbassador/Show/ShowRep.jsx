@@ -12,15 +12,11 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import ShowTable from 'views/Grant/Update/ShowTable.jsx';
-import UpdateTimeline from 'views/Grant/Update/UpdateTimeline.jsx';
-import UpdateForm from 'views/Grant/Update/UpdateForm.jsx';
-import Info from "components/Typography/Info.jsx";
+import ShowForm from 'views/GrantAmbassador/Show/ShowForm.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
-
 
 const styles = {
   cardIconTitle: {
@@ -31,30 +27,24 @@ const styles = {
 };
 
 
-class ShowRep extends React.Component { 
-
+class ShowRep extends React.Component {
+  
   render() {
-    const { classes, show_grant } = this.props;   
+    const { classes, show_ambassador, show_grant} = this.props;
     let { t } = this.props;
+    
     return (
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={12}>
           <Card>
             <CardHeader color="info">
             <center>
-             <h4 className={classes.cardTitle}>{t("title_show_grant")}</h4>
+             <h4 className={classes.cardTitle}>{t("title_edit_grant")}</h4>
              <p>{ show_grant.title }</p>
              </center>
             </CardHeader>
             <CardBody>
-              <ShowTable  />
-            </CardBody>            
-          </Card>
-          <center><Info><h3 >{t("label_updates")}</h3></Info></center>
-          <UpdateTimeline/>
-          <Card>
-            <CardBody>
-              <UpdateForm/>
+                <ShowForm  />
             </CardBody>
           </Card>
         </GridItem>
@@ -67,13 +57,14 @@ ShowRep.propTypes = {
   classes: PropTypes.object,
 };
 
-//export default withStyles(styles)(ReactTables);
-const mapStateToProps = state => ({ 
-  active_user: state.loginReducer.active_user, 
-  show_grant: state.grantReducer.show_grant
-});
 
 const mapDispatchToPropsActions = dispatch => ({
+});
+
+const mapStateToProps = state => ({ 
+  show_ambassador: state.grantReducer.show_embassador, 
+  active_user: state.loginReducer.active_user, 
+  show_grant: state.grantReducer.show_grant
 });
 
 

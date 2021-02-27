@@ -13,20 +13,28 @@ import { NEW_GRANT_AMBASSADOR } from "constants/actionTypes";
 import { EDIT_GRANT_AMBASSADOR } from "constants/actionTypes";
 import { LOAD_FORM_GRANT_AMBASSADOR } from "constants/actionTypes";
 import { SHOW_GRANT_AMBASSADOR } from "constants/actionTypes";
+import { GRANT_AMBASSADOR_LIST } from "constants/actionTypes";
+import { SEND_REVISION_GRANT_AMBASSADOR } from "constants/actionTypes";
+import { SEND_CORRECTION_GRANT_AMBASSADOR } from "constants/actionTypes";
+import { SEND_APPROVED_GRANT_AMBASSADOR } from "constants/actionTypes";
+import { SEND_REJECT_GRANT_AMBASSADOR } from "constants/actionTypes";
 
 const initialState = { 
   show_grant: {
     id:"",
     administrator:[],
+    grantambassador:[],
     date:"",
     title:"",
     language:"",
     description:"",   
     state:"",
   },
+  show_grant_update: [],
   show_grant_ambassador: {
     id:"",
     administrator:[],
+    ambassador:[],
     grant:[],
     number:"",
     code:"",
@@ -39,11 +47,18 @@ const initialState = {
     file:"",
   },
   new_grant:{
-    id:""
+    id:"",
+    language:"en",
+    state:"state.available",
+    date: new Date(),
+    description: ""
+  },
+  correction_grant: {
+    correction: ""
   },
   grant_list: [],
-  grant_active_list: [],
-  show_grant_update: [],
+  grant_active_list: [],  
+  grant_ambassador_list: [],
   grant_program: [],
   progress_list:{
     progressMbs:[" "],
@@ -117,7 +132,7 @@ export const grantReducer = (state = initialState, action) => {
         });
       case NEW_GRANT_AMBASSADOR:
         return Object.assign({}, state, {
-          new_grant_ambassador: action.payload
+          edit_grant_ambassador: action.payload
         });
       case SHOW_GRANT_AMBASSADOR:
         return Object.assign({}, state, {
@@ -131,6 +146,27 @@ export const grantReducer = (state = initialState, action) => {
       case LOAD_FORM_GRANT_AMBASSADOR:
         return Object.assign({}, state, {
           data_grant_ambassador: action.data
+        });
+      case GRANT_AMBASSADOR_LIST:
+        return Object.assign({}, state, {
+          grant_ambassador_list: action.data,
+          loading: false
+        });
+      case SEND_REVISION_GRANT_AMBASSADOR:
+        return Object.assign({}, state, {
+          edit_grant_ambassador: action.data
+        });
+      case SEND_REJECT_GRANT_AMBASSADOR:
+        return Object.assign({}, state, {
+          edit_grant_ambassador: action.data
+        });
+      case SEND_APPROVED_GRANT_AMBASSADOR:
+        return Object.assign({}, state, {
+          edit_grant_ambassador: action.data
+        });
+      case SEND_CORRECTION_GRANT_AMBASSADOR:
+        return Object.assign({}, state, {
+          edit_grant_ambassador: action.data
         });
   }
     return state;

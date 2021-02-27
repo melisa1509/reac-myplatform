@@ -21,6 +21,7 @@ import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/
 import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
 
 import { withRouter } from 'react-router-dom';
+import { showDate } from "assets/functions/general.jsx";
 
 const style = {
     infoText: {
@@ -59,20 +60,16 @@ class ShowTable extends React.Component {
     render() {
         const { show_grant} = this.props;
         let { t } = this.props;
-        let i = "";
-        let date=[];
-          for (i = 0; i < 10 ; i++) {
-              date[i]=show_grant.date[i]
-          }
+       
         return (
           <GridContainer justify="center">
-            <GridItem xs={12} sm={12} md={9}>
+            <GridItem xs={12} sm={12} md={10}>
               <Table
                 striped
                 tableHead={[]}
                 tableData={[
-                  [<th>{t("label_administrator_mentor")}</th>,show_grant.administrator.first_name+ " "+ show_grant.administrator.last_name,],
-                  [<th>{t("label_date")}</th>,date],
+                  [<th>{t("label_administrator")}</th>,show_grant.administrator.first_name+ " "+ show_grant.administrator.last_name,],
+                  [<th>{t("label_deadline_applications")}</th>, showDate(show_grant.date)],
                 ]}
               />
               <Table

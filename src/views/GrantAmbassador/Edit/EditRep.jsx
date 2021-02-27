@@ -30,7 +30,7 @@ const styles = {
 class EditRep extends React.Component {
   
   render() {
-    const { classes, show_ambassador, active_user} = this.props;
+    const { classes, show_grant} = this.props;
     let { t } = this.props;
     
     return (
@@ -40,6 +40,7 @@ class EditRep extends React.Component {
             <CardHeader color="info">
             <center>
              <h4 className={classes.cardTitle}>{t("title_edit_grant")}</h4>
+             <p>{show_grant.title}</p>
              </center>
             </CardHeader>
             <CardBody>
@@ -63,6 +64,7 @@ const mapDispatchToPropsActions = dispatch => ({
 const mapStateToProps = state => ({ 
   show_ambassador: state.grantReducer.show_embassador, 
   active_user: state.loginReducer.active_user, 
+  show_grant: state.grantReducer.show_grant
 });
 
 

@@ -68,8 +68,10 @@ class IndexTable extends React.Component {
   render() {
     const { student_list, loading } = this.props;
     let { t } = this.props;
+
+    const list = student_list.filter( prop => prop.roles.includes("ROLE_STUDENT") ||  prop.roles.includes("ROLE_STUDENT_EMBASSADOR"));
             
-    const data = student_list.map((prop, key) => {
+    const data = list.map((prop, key) => {
       let projectState = "";
       let buttonMbs = false;
       let buttonSa = false;
