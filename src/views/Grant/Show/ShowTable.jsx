@@ -58,7 +58,7 @@ class ShowTable extends React.Component {
     }
 
     render() {
-        const { show_grant} = this.props;
+        const { show_grant, grant_deadline} = this.props;
         let { t } = this.props;
        
         return (
@@ -69,7 +69,7 @@ class ShowTable extends React.Component {
                 tableHead={[]}
                 tableData={[
                   [<th>{t("label_administrator")}</th>,show_grant.administrator.first_name+ " "+ show_grant.administrator.last_name,],
-                  [<th>{t("label_deadline_applications")}</th>, showDate(show_grant.date)],
+                  [<th>{t("label_deadline_applications")}</th>, showDate(grant_deadline)],
                 ]}
               />
               <Table
@@ -110,7 +110,8 @@ class ShowTable extends React.Component {
 const mapStateToProps = state => ({ 
   show_grant: state.grantReducer.show_grant,
   delete_grant: state.grantReducer.delete_grant, 
-  successful_delete: state.generalReducer.successful_delete
+  successful_delete: state.generalReducer.successful_delete,
+  grant_deadline: state.grantReducer.grant_deadline
 });
 
 const mapDispatchToPropsActions = dispatch => ({

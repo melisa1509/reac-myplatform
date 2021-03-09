@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 // react component for creating dynamic tables
 import ReactTable from "react-table";
 import { connect } from "react-redux";
-
+import { getGrantActiveList, showGrantDeadline } from "actions/grantActions.jsx";
 import { Link } from "react-router-dom";
 
 // core components
@@ -13,14 +13,12 @@ import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
 import { translate } from 'react-switch-lang';
-import { withRouter } from 'react-router-dom';
-import { grantAmbassadorApplication } from "actions/grantActions";
-import { showDate} from "assets/functions/general.jsx";
+import { lastDayMonth, monthDate } from "assets/functions/general.jsx";
 
 
 
 
-class IndexTable extends React.Component {
+class IndexTableApplication extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -59,32 +57,48 @@ class IndexTable extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatchShowGrantAmbassadorApplication(this.props.match.params.id);
+    this.props.dispatchGetGrantActiveList();
+    this.props.dispatchShowGrantDeadline();
   }
 
  
   render() {
-    const { grant_ambassador_application, loading, show_grant, grant_deadline } = this.props;
-    let { t } = this.props;
-
-    const list = grant_ambassador_application === undefined ? [] : grant_ambassador_application.filter((application) => application.state === "state.revision" );      
-    const data = list.map((prop, key) => {
+      const { grant_application_list, loading, active_user, grant_deadline } = this.props;
+      let { t } = this.props;
       
+      const list = grant_application_list === undefined ? [] : grant_application_list;
+      const data = list.map((prop, key) => {
+     
       return {
         id: key, 
-        ambassador: prop.ambassador.first_name + " "+ prop.ambassador.last_name,
-        state: t("label_application") + " "+ t(prop.state),
-        deadline: showDate(grant_deadline),
+        title: prop.grant.title,
+        state: t("label_application") + " " + t(prop.state),
+        type: t(prop.grant.type),
+        administrator: prop.grant.administrator.first_name + " " + prop.grant.administrator.last_name,
+        date: monthDate(prop.created_at),
         projects: (
           <div className="actions-left">
-              <Link to={"/grant/showambassador/" + show_grant.id + "/" + prop.id}>
+            { prop.state === "state.approved" ?
+            <Link to={"/grant/update/" + prop.id + "/" + prop.grant.id}>
+            <Button
+              size="sm"
+              color="info"
+            >
+              {t('button_updates')}
+            </Button>
+          </Link>
+            :
+            ( lastDayMonth(prop.created_at) === lastDayMonth(grant_deadline) ?
+              <Link to={ "/grant/editambassador/" + prop.grant.id + "/" + prop.id }>
                 <Button
                   size="sm"
-                  color="rose"
+                  color="success"
                 >
                   {t('button_application')}
                 </Button>
-              </Link>
+              </Link>: ""
+            )
+            }         
           </div>
         )
       };
@@ -114,28 +128,34 @@ class IndexTable extends React.Component {
 
               columns={[
                 {
-                  Header: t("th_ambassador"),
-                  accessor: "ambassador",
+                  Header: t("th_title"),
+                  accessor: "title",
                   sortable: true,
-                  width: 350
+                  width: 400
                 },
                 {
                   Header: t("th_state"),
                   accessor: "state",
                   sortable: true,
-                  width: 200
-                },
-                {
-                  Header: t("label_deadline"),
-                  accessor: "deadline",
-                  sortable: true,
                   width: 150
-                },
+                },                  
+                {
+                  Header: t("th_type"),
+                  accessor: "type",
+                  sortable: true,
+                  width: 100
+                },              
+                {
+                  Header: t("th_date_application"),
+                  accessor: "date",
+                  sortable: true,
+                  width: 170
+                },              
                 {
                   Header: "",
                   accessor: "projects",
                   sortable: false,
-                  width: 200
+                  width: 150
                 },
                 {
                   Header: "",
@@ -152,8 +172,10 @@ class IndexTable extends React.Component {
                   filterMethod: (filter, rows) => {
                     const result = matchSorter(rows, filter.value, {
                       keys: [
-                        "ambassador",
-                        "state",
+                        "administrator",
+                        "title",
+                        "language",
+                        "date",
                       ], threshold: matchSorter.rankings.WORD_STARTS_WITH
                     });
                     return result;
@@ -174,16 +196,17 @@ class IndexTable extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
-      grant_ambassador_application: state.grantReducer.grant_ambassador_application, 
+      grant_application_list: state.grantReducer.grant_active_list.grants_ambassador, 
       loading: state.grantReducer.loading,
-      show_grant: state.grantReducer.show_grant,
-      grant_deadline: state.grantReducer.grant_deadline
+      active_user: state.loginReducer.active_user,
+      grant_deadline: state.grantReducer.grant_deadline,
 });
 
-const mapDispatchToPropsActions = dispatch => ({  
-  dispatchShowGrantAmbassadorApplication: (key) => dispatch( grantAmbassadorApplication(key) )
+const mapDispatchToPropsActions = dispatch => ({
+  dispatchGetGrantActiveList: () => dispatch( getGrantActiveList() ),
+  dispatchShowGrantDeadline: () => dispatch( showGrantDeadline() )
 });
 
-const IndexTableComponent = translate(IndexTable);
-export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent));
+const IndexTableApplicationComponent = translate(IndexTableApplication);
+export default connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableApplicationComponent);
 

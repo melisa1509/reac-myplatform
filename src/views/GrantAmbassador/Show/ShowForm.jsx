@@ -104,7 +104,7 @@ class ShowForm extends React.Component {
       }
       
     render() {
-        const { classes, successfull_edit, editError, errorRequired, show_grant, active_user, show_grant_ambassador } = this.props;
+        const { classes, successfull_edit, editError, errorRequired, show_grant, grant_deadline, show_grant_ambassador } = this.props;
         console.log(classes);
         let { t } = this.props;
         
@@ -117,7 +117,7 @@ class ShowForm extends React.Component {
                       striped
                       tableData={[
                         [<th>{t("label_administrator")}</th>,show_grant.administrator.first_name+ " "+ show_grant.administrator.last_name,],
-                        [<th>{t("label_deadline_applications")}</th>, showDate(show_grant.date)],
+                        [<th>{t("label_deadline_applications")}</th>, showDate(grant_deadline)],
                         [<th>{t("label_language")}</th>, t(show_grant.language)],
                         [<th>{t("label_ambassador")}</th>, show_grant_ambassador.ambassador.first_name + " " + show_grant_ambassador.ambassador.last_name],
                         [<th>{t("question_grant6")}</th>, t(show_grant_ambassador.question6)],
@@ -342,7 +342,8 @@ ShowForm = connect(
     successfull_edit:state.generalReducer.successfull_edit,
     show_grant: state.grantReducer.show_grant,
     show_grant_ambassador: state.grantReducer.show_grant_ambassador,
-    active_user: state.loginReducer.active_user
+    active_user: state.loginReducer.active_user,
+    grant_deadline: state.grantReducer.grant_deadline
   }),
   { dispatchSendRejectGrantAmbassador: sendRejectGrantAmbassador, dispatchSendApprovedGrantAmbassador: sendApprovedGrantAmbassador, dispatchSendCorrectionGrantAmbassador: sendCorrectionGrantAmbassador, loadShowGrant: showGrant, loadShowGrantAmbassador: showGrantAmbassador, dispatchShowGrantAmbassador: editGrantAmbassador, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful},
 )(ShowForm);

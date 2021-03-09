@@ -38,6 +38,7 @@ import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSel
 import { withRouter } from 'react-router-dom';
 import ActiveSelect from "views/Select/ActiveSelect";
 import LanguageSelect from "views/Select/LanguageSelect";
+import TypeSelect from "views/Select/TypeSelect";
 
 const style = {
     infoText: {
@@ -153,18 +154,6 @@ class EditForm extends React.Component {
               </GridContainer>
               <br/>
               <GridContainer >
-                <GridItem xs={12} sm={12} md={3}>
-                  <InputLabel className={classes.label}>
-                    <SuccessLabel>{t("label_deadline_applications")}</SuccessLabel>
-                  </InputLabel>
-                    <Field
-                      component={DateTimePicker}
-                      name="date"
-                    />
-                </GridItem>
-              </GridContainer> 
-              <br/>
-              <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <InputLabel
                         htmlFor="simple-select"
@@ -187,7 +176,6 @@ class EditForm extends React.Component {
                     />
                 </GridItem>
               </GridContainer>
-              
               <GridContainer >
                 <GridItem xs={12} sm={12} md={3}>
                     <Field
@@ -195,7 +183,15 @@ class EditForm extends React.Component {
                       name="state"
                     />
                 </GridItem>
-              </GridContainer>                       
+              </GridContainer> 
+              <GridContainer >
+                <GridItem xs={12} sm={12} md={3}>
+                    <Field
+                      component={TypeSelect}
+                      name="type"
+                    />
+                </GridItem>
+              </GridContainer>                      
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
                       { errorRequired ? <Danger><h6 className={classes.infoText}>{t("label_require_fields")}</h6></Danger>: ""}

@@ -15,12 +15,12 @@ import matchSorter from 'match-sorter';
 import { translate } from 'react-switch-lang';
 import { withRouter } from 'react-router-dom';
 import { grantAmbassadorApplication } from "actions/grantActions";
-import { showDate} from "assets/functions/general.jsx";
+import { monthDate} from "assets/functions/general.jsx";
 
 
 
 
-class IndexTable extends React.Component {
+class IndexTableUpdates extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -64,25 +64,25 @@ class IndexTable extends React.Component {
 
  
   render() {
-    const { grant_ambassador_application, loading, show_grant, grant_deadline } = this.props;
+    const { grant_ambassador_application, loading, show_grant } = this.props;
     let { t } = this.props;
 
-    const list = grant_ambassador_application === undefined ? [] : grant_ambassador_application.filter((application) => application.state === "state.revision" );      
+    const list = grant_ambassador_application === undefined ? [] : grant_ambassador_application.filter((application) => application.state === "state.approved" );      
     const data = list.map((prop, key) => {
       
       return {
         id: key, 
         ambassador: prop.ambassador.first_name + " "+ prop.ambassador.last_name,
         state: t("label_application") + " "+ t(prop.state),
-        deadline: showDate(grant_deadline),
+        date: monthDate(prop.create_at),
         projects: (
           <div className="actions-left">
-              <Link to={"/grant/showambassador/" + show_grant.id + "/" + prop.id}>
+              <Link to={"/grant/update/" + prop.id + "/" + show_grant.id}>
                 <Button
                   size="sm"
-                  color="rose"
+                  color="info"
                 >
-                  {t('button_application')}
+                  {t('button_updates')}
                 </Button>
               </Link>
           </div>
@@ -126,16 +126,16 @@ class IndexTable extends React.Component {
                   width: 200
                 },
                 {
-                  Header: t("label_deadline"),
-                  accessor: "deadline",
+                  Header: t("th_date_application"),
+                  accessor: "date",
                   sortable: true,
-                  width: 150
+                  width: 200
                 },
                 {
                   Header: "",
                   accessor: "projects",
                   sortable: false,
-                  width: 200
+                  width: 300
                 },
                 {
                   Header: "",
@@ -177,13 +177,13 @@ const mapStateToProps = state => ({
       grant_ambassador_application: state.grantReducer.grant_ambassador_application, 
       loading: state.grantReducer.loading,
       show_grant: state.grantReducer.show_grant,
-      grant_deadline: state.grantReducer.grant_deadline
+      
 });
 
 const mapDispatchToPropsActions = dispatch => ({  
   dispatchShowGrantAmbassadorApplication: (key) => dispatch( grantAmbassadorApplication(key) )
 });
 
-const IndexTableComponent = translate(IndexTable);
-export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent));
+const IndexTableUpdatesComponent = translate(IndexTableUpdates);
+export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableUpdatesComponent));
 

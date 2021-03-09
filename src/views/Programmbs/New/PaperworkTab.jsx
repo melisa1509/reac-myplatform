@@ -20,11 +20,8 @@ import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx';
 
 // core components
 import SuccessBold from "components/Typography/SuccessBold.jsx";
-import MutedText from "components/Typography/Muted.jsx";
 import Controls from './Controls.jsx';
 import ControlNavigation from './ControlNavigation.jsx';
-import RevisionForm from './RevisionForm.jsx';
-import RenderCell from './RenderCell.jsx';
 import RenderCellTable from './RenderCellTable.jsx';
 import CustomRenderCell from './CustomRenderCell.jsx';
 

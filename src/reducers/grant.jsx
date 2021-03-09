@@ -18,6 +18,12 @@ import { SEND_REVISION_GRANT_AMBASSADOR } from "constants/actionTypes";
 import { SEND_CORRECTION_GRANT_AMBASSADOR } from "constants/actionTypes";
 import { SEND_APPROVED_GRANT_AMBASSADOR } from "constants/actionTypes";
 import { SEND_REJECT_GRANT_AMBASSADOR } from "constants/actionTypes";
+import { SHOW_GRANT_DEADLINE } from "constants/actionTypes";
+import { GRANT_AMBASSADOR_APPLICATION } from "constants/actionTypes";
+import { NEW_GRANT_GROUP } from "constants/actionTypes";
+import { LOAD_FORM_GRANT_GROUP } from "constants/actionTypes";
+import { SHOW_GRANT_GROUP } from "constants/actionTypes";
+import { SHOW_GRANT_GROUP_LIST } from "constants/actionTypes";
 
 const initialState = { 
   show_grant: {
@@ -50,7 +56,7 @@ const initialState = {
     id:"",
     language:"en",
     state:"state.available",
-    date: new Date(),
+    type:"state.startup",
     description: ""
   },
   correction_grant: {
@@ -64,6 +70,10 @@ const initialState = {
     progressMbs:[" "],
     progressSa:[" "]
   },
+  grant_group:{
+    groups: {"g-220": true}
+  },
+  grant_deadline: new Date(),
   loading: true,
   image_alert:false
 }
@@ -167,6 +177,32 @@ export const grantReducer = (state = initialState, action) => {
       case SEND_CORRECTION_GRANT_AMBASSADOR:
         return Object.assign({}, state, {
           edit_grant_ambassador: action.data
+        });
+      case SHOW_GRANT_DEADLINE:
+        return Object.assign({}, state, {
+          grant_deadline: action.payload
+        });
+      case GRANT_AMBASSADOR_APPLICATION:
+        return Object.assign({}, state, {
+          grant_ambassador_application: action.data
+        });
+      case NEW_GRANT_GROUP:
+        return Object.assign({}, state, {
+          new_grant_group: action.data
+        });      
+      case LOAD_FORM_GRANT_GROUP:
+        var data =  {};
+        var options = {};
+        action.data.forEach(element => {
+          options["g-" + element.id] = true;
+        });
+        data.groups = options;
+        return Object.assign({}, state, {
+          grant_group: data
+        });
+      case SHOW_GRANT_GROUP_LIST:
+        return Object.assign({}, state, {
+          grant_group_list: action.data
         });
   }
     return state;

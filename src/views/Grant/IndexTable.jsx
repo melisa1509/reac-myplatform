@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 // react component for creating dynamic tables
 import ReactTable from "react-table";
 import { connect } from "react-redux";
-import { getGrantList } from "actions/grantActions.jsx";
+import { getGrantList, showGrantDeadline } from "actions/grantActions.jsx";
 import { Link } from "react-router-dom";
 
 // @material-ui/icons
@@ -62,11 +62,12 @@ class IndexTable extends React.Component {
 
   componentDidMount() {
     this.props.dispatchGetGrantList();
+    this.props.dispatchShowGrantDeadline();
   }
 
  
   render() {
-    const { grant_list, loading, active_user } = this.props;
+    const { grant_list, loading, active_user, grant_deadline } = this.props;
     let { t } = this.props;
 
     const list = active_user.roles.includes("ROLE_LANGUAGE_ADMIN") ? grant_list.filter(prop => active_user.language_grader.includes(prop.language) )  : grant_list ;
@@ -78,8 +79,9 @@ class IndexTable extends React.Component {
         title: prop.title,
         language: t(prop.language),
         state: t(prop.state),
+        type: t(prop.type),
         administrator: prop.administrator.first_name + " " + prop.administrator.last_name,
-        date: showDate(prop.date),
+        deadline: showDate(grant_deadline),
         projects: (
           <div className="actions-left">
             <Link to={"/grant/application/" + prop.id}>
@@ -156,13 +158,13 @@ class IndexTable extends React.Component {
                   Header: t("th_administrator"),
                   accessor: "administrator",
                   sortable: true,
-                  width: 230
+                  width: 200
                 },
                 {
                   Header: t("th_title"),
                   accessor: "title",
                   sortable: true,
-                  width: 230
+                  width: 200
                 },
                 {
                   Header: t("th_language"),
@@ -178,10 +180,16 @@ class IndexTable extends React.Component {
                 },
                 {
                   Header: t("label_deadline"),
-                  accessor: "date",
+                  accessor: "deadline",
                   sortable: true,
                   width: 100
-                },               
+                },    
+                {
+                  Header: t("label_type_grant"),
+                  accessor: "type",
+                  sortable: true,
+                  width: 100
+                },           
                 {
                   Header: t("th_actions"),
                   accessor: "actions",
@@ -193,7 +201,7 @@ class IndexTable extends React.Component {
                   Header: "",
                   accessor: "projects",
                   sortable: false,
-                  width: 150
+                  width: 130
                 },
                 {
                   Header: "",
@@ -248,11 +256,13 @@ class IndexTable extends React.Component {
 const mapStateToProps = state => ({ 
       grant_list: state.grantReducer.grant_list, 
       loading: state.grantReducer.loading,
-      active_user: state.loginReducer.active_user
+      active_user: state.loginReducer.active_user,
+      grant_deadline: state.grantReducer.grant_deadline
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetGrantList: () => dispatch( getGrantList() )
+  dispatchGetGrantList: () => dispatch( getGrantList() ),
+  dispatchShowGrantDeadline: () => dispatch( showGrantDeadline() )
 });
 
 const IndexTableComponent = translate(IndexTable);

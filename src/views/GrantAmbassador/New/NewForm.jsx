@@ -30,7 +30,7 @@ import { newGrantAmbassador } from "actions/grantActions";
 import { sendRevisionGrantAmbassador } from "actions/grantActions";
 import { errorRequiredFields } from "actions/generalActions.jsx";
 import { successRequiredFields } from "actions/generalActions.jsx";
-import { showGrantRedirect  } from "actions/grantActions.jsx";
+import { showGrantRedirect, showGrantDeadline  } from "actions/grantActions.jsx";
 import { verifyChange } from "assets/validation/index.jsx";
 import { deleteSuccessful } from "actions/generalActions.jsx";
 import { showGrant } from "actions/grantActions.jsx";
@@ -126,6 +126,7 @@ class NewForm extends React.Component {
 
     componentDidMount() {
       this.props.dispatchShowGrant(this.props.match.params.id);
+      this.props.dispatchShowGrantDeadline();
     }
 
     updateFileName = (key) => {
@@ -138,9 +139,8 @@ class NewForm extends React.Component {
 
     
     render() {
-        const { classes, errorRequired, show_grant, successfull_new, active_user, new_grant_ambassador, successful_send } = this.props;
+        const { classes, errorRequired, show_grant, successfull_new, active_user, grant_deadline, successful_send } = this.props;
         let { t } = this.props;  
-        console.log(new_grant_ambassador);
          
         return (
           <GridContainer justify="center">
@@ -151,7 +151,7 @@ class NewForm extends React.Component {
                 striped
                 tableData={[
                   [<th>{t("label_administrator")}</th>,show_grant.administrator.first_name+ " "+ show_grant.administrator.last_name,],
-                  [<th>{t("label_deadline_applications")}</th>, showDate(show_grant.date)],
+                  [<th>{t("label_deadline_applications")}</th>, showDate(grant_deadline)],
                   [<th>{t("label_language")}</th>, t(show_grant.language)],
                   
                 ]}
@@ -421,8 +421,9 @@ NewForm = connect(
     active_user: state.loginReducer.active_user,
     new_grant_ambassador: state.form.grantAmbassadorNewform,
     successful_send:state.generalReducer.successful_send,
+    grant_deadline: state.grantReducer.grant_deadline
   }),
-  { dispatchSendRevisionGrantAmbassador: sendRevisionGrantAmbassador, dispatchShowGrant: showGrant, dispatchNewGrantAmbassador: newGrantAmbassador, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful, dispatchShowGrantRedirect: showGrantRedirect },
+  { dispatchShowGrantDeadline: showGrantDeadline, dispatchSendRevisionGrantAmbassador: sendRevisionGrantAmbassador, dispatchShowGrant: showGrant, dispatchNewGrantAmbassador: newGrantAmbassador, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful, dispatchShowGrantRedirect: showGrantRedirect },
 )(NewForm);
 
 export default  withRouter(translate(withStyles(style)(NewForm)));

@@ -12,7 +12,7 @@ export const getReports = (key) => {
           id= key;
           role= "ROLE_EMBASSADOR"
         }
-        else if(reduxState.loginReducer.active_user.roles[0]=="ROLE_ADMIN") {
+        else if(reduxState.loginReducer.active_user.roles.includes("ROLE_LANGUAGE_ADMIN") || reduxState.loginReducer.active_user.roles.includes("ROLE_ADMIN")){
           id=reduxState.loginReducer.active_user.id
           role="ROLE_ADMIN"
         }

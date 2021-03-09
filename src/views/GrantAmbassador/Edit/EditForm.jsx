@@ -29,7 +29,7 @@ import { errorRequiredFields } from "actions/generalActions.jsx";
 import { successRequiredFields } from "actions/generalActions.jsx";
 import { verifyChange } from "assets/validation/index.jsx";
 import { deleteSuccessful } from "actions/generalActions.jsx";
-import { showDate } from "assets/functions/general.jsx";
+import { lastDayMonth } from "assets/functions/general.jsx";
 import { BASE_URL } from 'constants/urlTypes';
 
 // style for this view
@@ -102,7 +102,6 @@ class EditForm extends React.Component {
       
     render() {
         const { classes, successfull_edit, editError, errorRequired, show_grant, active_user, successful_send, show_grant_ambassador } = this.props;
-        console.log(classes);
         let { t } = this.props;
        
         return (
@@ -126,7 +125,7 @@ class EditForm extends React.Component {
                       striped
                       tableData={[
                         [<th>{t("label_administrator")}</th>,show_grant.administrator.first_name+ " "+ show_grant.administrator.last_name,],
-                        [<th>{t("label_deadline_applications")}</th>, showDate(show_grant.date)],
+                        [<th>{t("label_deadline_applications")}</th>, lastDayMonth(show_grant.created_at)],
                         [<th>{t("label_language")}</th>, t(show_grant.language)],
                         
                       ]}

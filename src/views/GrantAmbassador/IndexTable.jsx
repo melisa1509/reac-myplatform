@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 // react component for creating dynamic tables
 import ReactTable from "react-table";
 import { connect } from "react-redux";
-import { getGrantActiveList } from "actions/grantActions.jsx";
+import { getGrantActiveList, showGrantDeadline } from "actions/grantActions.jsx";
 import { Link } from "react-router-dom";
 
 // core components
@@ -58,47 +58,32 @@ class IndexTable extends React.Component {
 
   componentDidMount() {
     this.props.dispatchGetGrantActiveList();
+    this.props.dispatchShowGrantDeadline();
   }
 
  
   render() {
-      const { grant_active_list, loading, active_user } = this.props;
-      let { t } = this.props;
-              
-      const data = grant_active_list.map((prop, key) => {
+      const { grant_active_list, loading, active_user, grant_deadline } = this.props;
+      let { t } = this.props;   
+      const list = grant_active_list === undefined ? [] : grant_active_list;         
+      const data = list.map((prop, key) => {
       
-      let grants_ambassador = prop.grantsambassador.filter((application) => application.ambassador.id === active_user.id );
-      let edit_grant_ambassador = grants_ambassador.length === 0 ? false : true;
-      let state_application = edit_grant_ambassador ? t("label_application") + " " + t(grants_ambassador[0].state) : t("label_application") + " " +  t("state_without_starting") ;
-      let state = edit_grant_ambassador ? grants_ambassador[0].state : "";
-
       return {
         id: key, 
         title: prop.title,
-        state: state_application,
+        type: t(prop.type),
         administrator: prop.administrator.first_name + " " + prop.administrator.last_name,
-        date: showDate(prop.date),
+        deadline: showDate(grant_deadline),
         projects: (
           <div className="actions-left">
-             
-            { state === "state.approved" ?
-            <Link to={"/grant/update/" + grants_ambassador[0].id + "/" + prop.id}>
-            <Button
-              size="sm"
-              color="info"
-            >
-              {t('button_updates')}
-            </Button>
-          </Link>
-            :
-            <Link to={ edit_grant_ambassador ? "/grant/editambassador/" + prop.id + "/" + grants_ambassador[0].id : "/grant/newambassador/" + prop.id}>
+            <Link to={ "/grant/newambassador/" + prop.id}>
               <Button
                 size="sm"
                 color="success"
               >
-                {t('button_application')}
+                {t('button_apply')}
               </Button>
-            </Link>}          
+            </Link>       
           </div>
         )
       };
@@ -140,14 +125,14 @@ class IndexTable extends React.Component {
                   width: 250
                 },  
                 {
-                  Header: t("th_state"),
-                  accessor: "state",
+                  Header: t("th_type"),
+                  accessor: "type",
                   sortable: true,
                   width: 200
                 },              
                 {
                   Header: t("label_deadline"),
-                  accessor: "date",
+                  accessor: "deadline",
                   sortable: true,
                   width: 150
                 },              
@@ -175,7 +160,6 @@ class IndexTable extends React.Component {
                         "administrator",
                         "title",
                         "language",
-                        "date",
                       ], threshold: matchSorter.rankings.WORD_STARTS_WITH
                     });
                     return result;
@@ -196,13 +180,15 @@ class IndexTable extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
-      grant_active_list: state.grantReducer.grant_active_list, 
+      grant_active_list: state.grantReducer.grant_active_list.grants_available, 
       loading: state.grantReducer.loading,
-      active_user: state.loginReducer.active_user
+      active_user: state.loginReducer.active_user,
+      grant_deadline: state.grantReducer.grant_deadline,
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetGrantActiveList: () => dispatch( getGrantActiveList() )
+  dispatchGetGrantActiveList: () => dispatch( getGrantActiveList() ),
+  dispatchShowGrantDeadline: () => dispatch( showGrantDeadline() )
 });
 
 const IndexTableComponent = translate(IndexTable);

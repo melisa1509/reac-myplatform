@@ -13,9 +13,11 @@ import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import IndexTable from './IndexTable.jsx';
+import IndexTableApplication from './IndexTableApplications.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
+import IndexTableApplications from "./IndexTableApplications.jsx";
 
 
 const styles = {
@@ -47,6 +49,15 @@ class IndexRep extends React.Component {
             </CardHeader>
             <CardBody>
               <IndexTable  />
+            </CardBody>
+          </Card>
+          <br/>
+          <Card>
+            <CardHeader color="info">
+                <h4 className={classes.cardTitle}>{t("title_grant_applications")}</h4>
+            </CardHeader>
+            <CardBody>
+              <IndexTableApplications />
             </CardBody>
           </Card>
         </GridItem>

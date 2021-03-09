@@ -11,7 +11,6 @@ import { Field, reduxForm } from 'redux-form';
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import InputLabel from "@material-ui/core/InputLabel";
-import SuccessLabel from "components/Typography/SuccessLabel.jsx";
 
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -20,7 +19,6 @@ import GridItem from "components/Grid/GridItem.jsx";
 import SweetAlert from "react-bootstrap-sweetalert";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInputRedux from 'components/CustomInput/CustomInputRedux.jsx'; 
-import DateTimePicker from 'components/DateTimePicker/DateTimePickerRedux.jsx';
 import TextEditor from "components/TextEditor/TextEditor";
 import Success from "components/Typography/Success.jsx";
 
@@ -38,6 +36,7 @@ import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/
 import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
 import ActiveSelect from "views/Select/ActiveSelect";
 import LanguageSelect from "views/Select/LanguageSelect";
+import TypeSelect from "views/Select/TypeSelect";
 
 const style = {
     infoText: {
@@ -136,17 +135,6 @@ class NewForm extends React.Component {
                     />
                 </GridItem>
               </GridContainer>
-              <GridContainer >
-                <GridItem xs={12} sm={12} md={3}>
-                  <InputLabel className={classes.label}>
-                    <SuccessLabel>{t("label_deadline_applications")}</SuccessLabel>
-                  </InputLabel>
-                    <Field
-                      component={DateTimePicker}
-                      name="date"
-                    />
-                </GridItem>
-              </GridContainer> 
               <br/>
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
@@ -171,12 +159,19 @@ class NewForm extends React.Component {
                     />
                 </GridItem>
               </GridContainer>
-              
               <GridContainer >
                 <GridItem xs={12} sm={12} md={3}>
                     <Field
                       component={ActiveSelect}
                       name="state"
+                    />
+                </GridItem>
+              </GridContainer>
+              <GridContainer >
+                <GridItem xs={12} sm={12} md={3}>
+                    <Field
+                      component={TypeSelect}
+                      name="type"
                     />
                 </GridItem>
               </GridContainer>              

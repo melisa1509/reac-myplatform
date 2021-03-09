@@ -24,6 +24,18 @@ export const showDate = ( time = new Date() , prefix = "") => {
     return prefix + date.toLocaleDateString(undefined, date_options);
 }
 
+export const monthDate = ( time = new Date() , prefix = "") => {
+    const date_options = {  year: 'numeric', month: 'long' };
+    const date =  typeof time === "object" ? time : new Date (time.slice(0,10).split("-") ) ;
+    
+    return prefix + date.toLocaleDateString(undefined, date_options).charAt(0).toUpperCase() + date.toLocaleDateString(undefined, date_options).slice(1);
+}
+
 export const convertDate = date => {
     return moment(date).format('YYYY-MMM-DD');
+}
+
+export const lastDayMonth = time => {
+    const date_options = {  year: 'numeric', month: 'short', day: 'numeric' };
+    return  moment(time).clone().endOf('month').format('DD MMM YYYY');
 }
