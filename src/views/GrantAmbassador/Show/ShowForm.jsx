@@ -232,7 +232,7 @@ class ShowForm extends React.Component {
                     </SuccessBold>
                     <br/>
                     {
-                      show_grant_ambassador.file !== undefined ?
+                      show_grant_ambassador.file !== "undefined" ?
                       <a
                         href={BASE_URL +  "/web/file/"  + show_grant_ambassador.file}
                         target="_blank"
@@ -247,7 +247,7 @@ class ShowForm extends React.Component {
                     </SuccessBold>
                     <br/>
                     {
-                      show_grant_ambassador.file2 !== undefined ?
+                      show_grant_ambassador.file2 !== "undefined" ?
                       <a
                         href={BASE_URL +  "/web/file/"  + show_grant_ambassador.file2}
                         target="_blank"
@@ -316,6 +316,14 @@ class ShowForm extends React.Component {
                       {t("button_grant_approved")}
                       </Button>
                       {" "}
+                      <Button
+                        size="sm"
+                        color="info"
+                        href={ BASE_URL + "/file/grantapplication/" + show_grant_ambassador.id}
+                        target="_blank"
+                      >
+                        {t('button_download_pdf')}
+                      </Button>
                   </div>
                   </GridItem>
               </GridContainer>

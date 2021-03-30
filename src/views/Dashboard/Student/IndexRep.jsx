@@ -61,7 +61,7 @@ class IndexRep extends React.Component {
         </GridItem>
         <br/>
         {
-          dashboard_student.progressSa.student_ambassador === true ? 
+          active_user.roles.includes("ROLE_STUDENT_EMBASSADOR") ? 
           <GridItem xs={12} sm={12} md={11}>
             <Card>
               <CardHeader color="success">

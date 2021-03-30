@@ -24,7 +24,7 @@ import Face from "@material-ui/icons/Face";
 
 
 // core components
-import NavPills from "components/NavPills/NavPills.jsx";
+import NavPills from "components/NavPills/NavPillsRouter.jsx";
 import MisionTab from "./MisionTab.jsx";
 import GenerateGroupsTab from "./GenerateGroupsTab.jsx";
 import FacilitateGroupsTab from "./FacilitateGroupsTab.jsx";

@@ -153,6 +153,7 @@ import NewGrantAmbassador from 'views/GrantAmbassador/New/New.jsx';
 import EditGrantAmbassador from 'views/GrantAmbassador/Edit/Edit.jsx';
 import ShowGrantAmbassador from 'views/GrantAmbassador/Show/Show.jsx';
 import ApplicationGrantAmbassador from 'views/Grant/Application/Index.jsx';
+import ShowGrantStatisticGroup from 'views/Grant/IndexTabs/StatisticTab/Groups/Index.jsx';
 
 import { store } from 'store/index.jsx';
 
@@ -277,6 +278,7 @@ ReactDOM.render(
           <Route path="/grant/editambassador/:id/:ambassador" component={EditGrantAmbassador} exact />
           <Route path="/grant/showambassador/:id/:ambassador" component={ShowGrantAmbassador} exact />
           <Route path="/grant/application/:id" component={ApplicationGrantAmbassador} exact />
+          <Route path="/grant/statistic/group/:id" component={ShowGrantStatisticGroup} exact />
           <Redirect from="/" to="/login" />
         </Switch>
       </Router>,

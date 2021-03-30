@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 // react component for creating dynamic tables
 import ReactTable from "react-table";
 import { connect } from "react-redux";
+import { grantAmbassadorList } from "actions/grantActions.jsx";
 import { Link } from "react-router-dom";
 
 // core components
@@ -10,13 +12,11 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
-import { getProjectProgress } from "actions/groupActions";
 import matchSorter from 'match-sorter';
 import { translate } from 'react-switch-lang';
-import { withRouter } from 'react-router-dom';
+import { BASE_URL } from 'constants/urlTypes.jsx';
 
-
-class MBSTable extends React.Component {
+class GrantTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -53,30 +53,50 @@ class MBSTable extends React.Component {
     }
     
   }
+
   componentDidMount() {
-    this.props.dispatchGetProjectProgress(this.props.match.params.id);
+    this.props.dispatchGetGrantAmbassadorList();
   }
  
- 
   render() {
-    const {  loading, progress_list } = this.props;
-    let { t } = this.props;    
-    console.log(this.props.match);
+    const {  loading, grant_ambassador_list, active_user } = this.props;
+    let { t } = this.props;
+
+    const list = active_user.roles.includes("ROLE_LANGUAGE_ADMIN") ? grant_ambassador_list.filter(prop => active_user.language_grader.includes(prop.language) )  : grant_ambassador_list ;
             
-    const data = progress_list.progressMbs.map((prop, key) => {
+    const data = list.map((prop, key) => {
       return {
         id: key, 
-        name: prop.name,
-        plan:prop.plan,
-        product:prop.product, 
-        process:prop.process,
-        price:prop.price,
-        promotion:prop.promotion,
-        paperwork:prop.paperwork,
-        quality:prop.quality,
-        service:prop.service,
+        title: prop.grant.title,
+        administrator: prop.grant.administrator.first_name + " " + prop.grant.administrator.last_name,
+        ambassador:prop.ambassador.first_name + " " + prop.ambassador.last_name,
+        language: t(prop.grant.language),
+        projects: (
+          <div className="actions-left">
+            <Link to={"/grant/showambassador/" + prop.grant.id + "/" + prop.id}>
+              <Button
+                size="sm"
+                color="rose"
+              >
+                {t('button_application')}
+              </Button>
+            </Link>
+            {" "}
+              <Button
+                size="sm"
+                color="info"
+                href={ BASE_URL + "/file/grantapplication/" + prop.id}
+                target="_blank"
+              >
+                {t('button_download_pdf')}
+              </Button>
+            
+          </div>
+        )
       };
     });
+    
+    
     
     return (
       <GridContainer>
@@ -99,61 +119,38 @@ class MBSTable extends React.Component {
               defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value}
               data={data}
               loading={loading}
-
               columns={[
                 {
-                  Header: t("th_name"),
-                  accessor: "name",
+                  Header: t("th_title"),
+                  accessor: "title",
+                  width: 250,
+                  resizable: false,
+                  sortable: true
                 },
                 {
-                  Header: t("th_plan"),
-                  accessor: "plan",
-                  width: 97,
+                  Header: t("th_ambassador"),
+                  accessor: "ambassador",
+                  width: 250,
+                  resizable: false,
+                  sortable: true
+                },               
+                {
+                  Header: t("th_language"),
+                  accessor: "language",
+                  width: 100,
+                  resizable: false,
+                  sortable: true
+                },
+                {
+                  Header: "",
+                  accessor: "projects",
+                  width: 350,
                   sortable: false,
+                  resizable: false,
+                  filterable: false
                 },
                 {
-                  Header: t("th_product"),
-                  accessor: "product",
-                  width: 97,
-                  sortable: false,
-                },
-                {
-                  Header: t("th_process"),
-                  accessor: "process",
-                  width: 97,
-                  sortable: false,
-                },
-                {
-                  Header: t("th_price"),
-                  accessor: "price",
-                  width: 97,
-                  sortable: false,
-                },
-                {
-                  Header: t("th_promotion"),
-                  accessor: "promotion",
-                  width: 97,
-                  sortable: false,
-                },
-                {
-                  Header: t("th_paperwork"),
-                  accessor: "paperwork",
-                  width: 97,
-                  sortable: false,
-                },
-                {
-                  Header: t("th_quality"),
-                  accessor: "quality",
-                  width: 97,
-                  sortable: false,
-                },
-                {
-                  Header: t("th_service"),
-                  accessor: "service",
-                  width: 97,
-                  sortable: false,
-                },
-                {
+                 
                   Header: "",
                   id: 'all',
                   width: 0,
@@ -162,13 +159,15 @@ class MBSTable extends React.Component {
                   
                   getProps: () => {
                     return {
-                      style: { height:"30px"}
+                      style: { padding: "5px"}
                     }
                   },
                   filterMethod: (filter, rows) => {
                     const result = matchSorter(rows, filter.value, {
                       keys: [
-                        "name"
+                        "title",
+                        "ambassador",
+                        "administrator",
                       ], threshold: matchSorter.rankings.WORD_STARTS_WITH
                     });
                     return result;
@@ -177,38 +176,27 @@ class MBSTable extends React.Component {
                 }
               ]}
               key={data.length}
-              defaultPageSize={data.length < 10 ? data.length : 10 }
+              defaultPageSize={data.length < 10 ? data.length : 10}
               showPaginationTop={false}
               showPaginationBottom={true}
               className="-striped -highlight"
           />
         </GridItem>
-          <GridContainer>
-            <GridItem xs={12} sm={12} md={12}>
-                <center>
-                <Link to={"/group"}>
-                <Button color="default" size="sm">
-                {t("button_return_to_list")}
-                </Button>
-                {" "}
-                </Link>{" "}
-                </center>
-            </GridItem>
-          </GridContainer>
       </GridContainer>
     );
   }
 }
 
 const mapStateToProps = state => ({ 
-      progress_list: state.groupReducer.progress_list, 
-      loading: state.groupReducer.loading
+      grant_ambassador_list: state.grantReducer.grant_ambassador_list, 
+      loading: state.grantReducer.loading,
+      active_user: state.loginReducer.active_user
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetProjectProgress: (key) => dispatch( getProjectProgress(key) )
+  dispatchGetGrantAmbassadorList: () => dispatch( grantAmbassadorList() )
 });
 
-const MBSTableComponent = translate(MBSTable);
-export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(MBSTableComponent));
+const GrantTableComponent = translate(GrantTable);
+export default connect(mapStateToProps, mapDispatchToPropsActions)(GrantTableComponent);
 

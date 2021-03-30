@@ -80,7 +80,15 @@ class GrantTable extends React.Component {
                 {t('button_application')}
               </Button>
             </Link>
-            
+            {" "}
+              <Button
+                size="sm"
+                color="info"
+                href={ "https://lms.interweavesolutions.org/file/grantapplication/" + prop.id}
+                target="_blank"
+              >
+                {t('button_download_pdf')}
+              </Button>
           </div>
         )
       };
@@ -123,12 +131,6 @@ class GrantTable extends React.Component {
                   sortable: true
                 },
                 {
-                  Header: t("th_administrator"),
-                  accessor: "administrator",
-                  width: 250,
-                  sortable: true
-                },
-                {
                   Header: t("th_language"),
                   accessor: "language",
                   width: 100,
@@ -137,7 +139,7 @@ class GrantTable extends React.Component {
                 {
                   Header: "",
                   accessor: "projects",
-                  width: 150,
+                  width: 350,
                   sortable: false,
                   filterable: false
                 },

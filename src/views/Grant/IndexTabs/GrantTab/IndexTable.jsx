@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 // react component for creating dynamic tables
 import ReactTable from "react-table";
 import { connect } from "react-redux";
-import { getGroupList } from "actions/groupActions.jsx";
+import { getGrantList, showGrantDeadline } from "actions/grantActions.jsx";
 import { Link } from "react-router-dom";
 
 // @material-ui/icons
@@ -17,7 +17,7 @@ import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
 import { translate } from 'react-switch-lang';
-import { showDate } from 'assets/functions/general.jsx';
+import { showDate } from "assets/functions/general.jsx";
 
 
 
@@ -61,46 +61,41 @@ class IndexTable extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatchGetGroupList();
+    this.props.dispatchGetGrantList();
+    this.props.dispatchShowGrantDeadline();
   }
 
  
   render() {
-    const { group_list, loading } = this.props;
+    const { grant_list, loading, active_user, grant_deadline } = this.props;
     let { t } = this.props;
+
+    const list = active_user.roles.includes("ROLE_LANGUAGE_ADMIN") ? grant_list.filter(prop => active_user.language_grader.includes(prop.language) )  : grant_list ;
             
-    const data = group_list.map((prop, key) => {
+    const data = list.map((prop, key) => {
      
       return {
         id: key, 
-        full_name: prop.name,
-        date: showDate(prop.start_date),
-        modality: t(prop.modality),
-        AmbassadorMentor: prop.embassador.first_name + " " + prop.embassador.last_name,
+        title: prop.title,
+        language: t(prop.language),
+        state: t(prop.state),
+        type: t(prop.type),
+        deadline: showDate(grant_deadline),
         projects: (
           <div className="actions-left">
-            <Link to={"/group/student/" + prop.id}>
+            <Link to={"/grant/application/" + prop.id}>
               <Button
                 size="sm"
                 color="success"
               >
-                {t('button_manage_students')}
+                {t('button_applications')}
               </Button>
-            </Link>
-            {" "}
-            <Link to={"/group/progress/" + prop.id}>
-              <Button
-                size="sm"
-                color="info"
-              >
-                {t('button_project_progress')}
-              </Button>
-            </Link>
+            </Link>           
           </div>
         ),
         actions: (
           <div className="actions-left">
-            <Link to={"/group/show/" + prop.id}>
+            <Link to={"/grant/show/" + prop.id}>
               <Button
                 justIcon
                 round4
@@ -110,7 +105,7 @@ class IndexTable extends React.Component {
                 <Visibility />
               </Button>
             </Link>{" "}
-            <Link to={"/group/edit/" + prop.id}>
+            <Link to={"/grant/edit/" + prop.id}>
               <Button
                 justIcon
                 round
@@ -120,7 +115,7 @@ class IndexTable extends React.Component {
                 <Create />
               </Button>
             </Link>{" "}
-            <Link to={"/group/show/" + prop.id}>
+            <Link to={"/grant/show/" + prop.id}>
               <Button
                 justIcon
                 round
@@ -159,34 +154,45 @@ class IndexTable extends React.Component {
 
               columns={[
                 {
-                  Header: t("th_name"),
-                  accessor: "full_name",
+                  Header: t("th_title"),
+                  accessor: "title",
                   sortable: true,
-                  width: 200
+                  resizable: false,
+                  width: 350
                 },
                 {
-                  Header: t("th_embassador_mentor"),
-                  accessor: "AmbassadorMentor",
+                  Header: t("th_language"),
+                  accessor: "language",
                   sortable: true,
-                  width: 200
+                  resizable: false,
+                  width: 100
                 },
                 {
-                  Header: t("th_modality"),
-                  accessor: "modality",
+                  Header: t("th_state"),
+                  accessor: "state",
                   sortable: true,
-                  width: 150
+                  resizable: false,
+                  width: 100
                 },
                 {
-                  Header: t("th_start_classes"),
-                  accessor: "date",
+                  Header: t("label_deadline"),
+                  accessor: "deadline",
                   sortable: true,
-                  filterable: false,
-                  width: 150
-                },
+                  resizable: false,
+                  width: 100
+                },    
+                {
+                  Header: t("label_type_grant"),
+                  accessor: "type",
+                  sortable: true,
+                  resizable: false,
+                  width: 100
+                },           
                 {
                   Header: t("th_actions"),
                   accessor: "actions",
                   sortable: false,
+                  resizable: false,
                   filterable: false,
                   width: 150
                 },
@@ -194,7 +200,7 @@ class IndexTable extends React.Component {
                   Header: "",
                   accessor: "projects",
                   sortable: false,
-                  width: 170
+                  width: 130
                 },
                 {
                   Header: "",
@@ -211,8 +217,10 @@ class IndexTable extends React.Component {
                   filterMethod: (filter, rows) => {
                     const result = matchSorter(rows, filter.value, {
                       keys: [
-                        "full_name",
-                        "AmbassadorMentor"
+                        "administrator",
+                        "title",
+                        "state",
+                        "language",
                       ], threshold: matchSorter.rankings.WORD_STARTS_WITH
                     });
                     return result;
@@ -230,7 +238,7 @@ class IndexTable extends React.Component {
           <GridContainer>
             <GridItem xs={12} sm={12} md={12}>
                 <center>
-                <Link to={"/group/ambassador"}>
+                <Link to={"/grant/new"}>
                 <Button color="info" size="sm">
                 {t("button_create_new")}
                 </Button>
@@ -245,12 +253,15 @@ class IndexTable extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
-      group_list: state.groupReducer.group_list, 
-      loading: state.groupReducer.loading
+      grant_list: state.grantReducer.grant_list, 
+      loading: state.grantReducer.loading,
+      active_user: state.loginReducer.active_user,
+      grant_deadline: state.grantReducer.grant_deadline
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchGetGroupList: () => dispatch( getGroupList() )
+  dispatchGetGrantList: () => dispatch( getGrantList() ),
+  dispatchShowGrantDeadline: () => dispatch( showGrantDeadline() )
 });
 
 const IndexTableComponent = translate(IndexTable);

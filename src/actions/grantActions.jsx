@@ -17,8 +17,9 @@ import { SUCCESSFUL_SEND } from 'constants/actionTypes';
 import { SHOW_GRANT_DEADLINE } from 'constants/actionTypes';
 import { jsonToArray } from 'assets/functions/general.jsx';
 import { GRANT_AMBASSADOR_APPLICATION } from 'constants/actionTypes';
-import { NEW_GRANT_GROUP } from 'constants/actionTypes';
+import { NEW_GRANT_GROUP, SHOW_GRANT_USER } from 'constants/actionTypes';
 import { SHOW_GRANT_GROUP_LIST, LOAD_FORM_GRANT_GROUP } from 'constants/actionTypes';
+import { SHOW_GRANT_STATISTIC } from 'constants/actionTypes';
 
 export const getGrantList= () => {
     return (dispatch, getState) => {
@@ -167,6 +168,28 @@ export const showGrantGroup = key => {
     }
 };
 
+export const showGrantStatisticGroup = key => {
+    return (dispatch) => {
+        return fetch( BASE_URL + "/grantstatistic/showgroup/"+ key +"?callback=foo")
+        .then(response => response.json())
+        .then(json => {
+            dispatch ({ type: SHOW_GRANT_GROUP_LIST, data: json.data.groups });
+        })
+
+    }
+};
+
+export const showGrantStatistic = key => {
+    return (dispatch) => {
+        return fetch( BASE_URL + "/grantstatistic")
+        .then(response => response.json())
+        .then(json => {
+            dispatch ({ type: SHOW_GRANT_STATISTIC, data: json.data });
+        })
+
+    }
+};
+
 
 export const loadFormGrantAmbassador = data => ({ type: LOAD_FORM_GRANT_AMBASSADOR, data });
 export const loadFormGrantGroup = data => ({ type: LOAD_FORM_GRANT_GROUP, data });
@@ -177,6 +200,17 @@ export const showGrantUpdate = key => {
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: SHOW_GRANT_UPDATE, payload: json.data });
+        })
+
+    }
+};
+
+export const showGrantUser = key => {
+    return (dispatch) => {
+        return fetch( BASE_URL + "/grant/showuser/"+ key +"?callback=foo")
+        .then(response => response.json())
+        .then(json => {
+            dispatch ({ type: SHOW_GRANT_USER, payload: json.data });
         })
 
     }

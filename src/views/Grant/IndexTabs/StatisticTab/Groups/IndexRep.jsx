@@ -12,12 +12,11 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import ShowTable from 'views/Grant/Show/ShowTable.jsx';
+import IndexTable from './IndexTable.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
-import { withRouter } from 'react-router-dom';
-import { SHOW_GRANT } from "constants/actionTypes";
+
 
 const styles = {
   cardIconTitle: {
@@ -28,23 +27,26 @@ const styles = {
 };
 
 
-class ShowRep extends React.Component { 
+class IndexRep extends React.Component {
+ 
 
   render() {
-    const { classes, styles, show_grant } = this.props;   
+    const { classes, styles, active_user } = this.props;
     let { t } = this.props;
+    let rol=false
+    if(active_user.roles == "ROLE_EMBASSADOR" || active_user.roles == "ROLE_STUDENT_EMBASSADOR"){
+      rol=true
+    }
+    const login = "es";
     return (
       <GridContainer justify="center">
-        <GridItem xs={12} sm={12} md={11}>
+        <GridItem xs={12} sm={12} md={12}>
           <Card>
             <CardHeader color="info">
-            <center>
-             <h4 className={classes.cardTitle}>{t("title_show_grant")}</h4>
-             <p>{show_grant.title}</p>
-             </center>
+                <h4 className={classes.cardTitle}>{t("title_group_list")}</h4>
             </CardHeader>
             <CardBody>
-              <ShowTable  />
+              <IndexTable  />
             </CardBody>
           </Card>
         </GridItem>
@@ -53,19 +55,17 @@ class ShowRep extends React.Component {
   }
 }
 
-ShowRep.propTypes = {
+IndexRep.propTypes = {
   classes: PropTypes.object,
 };
 
 //export default withStyles(styles)(ReactTables);
-const mapStateToProps = state => ({ 
-  active_user: state.loginReducer.active_user, 
-  show_grant: state.grantReducer.show_grant,
-});
 
 const mapDispatchToPropsActions = dispatch => ({
 });
+const mapStateToProps = state => ({ 
+  active_user: state.loginReducer.active_user, 
+});
 
-
-const ShowRepComponent = translate(withStyles(styles)(ShowRep));
-export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(ShowRepComponent));
+const NewRepComponent = translate(withStyles(styles)(IndexRep));
+export default connect(mapStateToProps, mapDispatchToPropsActions)(NewRepComponent);

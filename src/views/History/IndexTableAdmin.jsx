@@ -15,6 +15,7 @@ import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
 import { translate } from 'react-switch-lang';
+import { showDate } from 'assets/functions/general.jsx';
 
 class IndexTableAdmin extends React.Component {
   constructor(props) {
@@ -70,6 +71,7 @@ class IndexTableAdmin extends React.Component {
         country: t(prop.student.country),
         nameAmbassador:prop.group.embassador.first_name + " " + prop.group.embassador.last_name ,
         group:prop.group.name,
+        date: showDate(prop.student.programmbs.approval_date),
         actions: (
           <div className="actions-left">
             <Link to={"/programmbs/show/history/" + prop.student.programmbs.id}>
@@ -112,20 +114,27 @@ class IndexTableAdmin extends React.Component {
                 {
                   Header: t("th_name"),
                   accessor: "name",
+                  width: 250,
                 },
                 {
                   Header: t("th_country"),
                   accessor: "country",
+                  width: 150,
                 },
                 {
                   Header: t("th_group"),
                   accessor: "group",
-                  resizable:true
+                  width: 200,
+                },
+                {
+                  Header: t("label_date"),
+                  accessor: "date",
+                  width: 100,
                 },
                 {
                   Header: t("th_ambassador"),
                   accessor: "nameAmbassador",
-                  resizable:true
+                  width: 200,
                 },
                 {
                   Header: t("th_actions"),

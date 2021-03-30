@@ -75,6 +75,8 @@ class ShowTable extends React.Component {
                   <GridItem xs={12} sm={12} md={11}>
                    
                           {show_grant_ambassador.state === "state.approved" ? <center><Danger><h5>{t("label_grant_application_approved")}</h5></Danger></center>: ""}
+                          {show_grant_ambassador.state === "state.approved" ? <div>{show_grant_ambassador.correction}</div>: ""}
+                          <br/>
                         
                   </GridItem>
                   <GridItem xs={12} sm={12} md={11}>
@@ -93,7 +95,7 @@ class ShowTable extends React.Component {
                   <br/>
                   </GridItem>
                   <br/>
-                  <center><h3 >{t("title_grant_application")}</h3></center>
+                  <center><h4 >{t("title_groups_created")}</h4></center>
                   <GridContainer justify="center">
                     <GridItem xs={12} sm={12} md={11}>
                         { active_user.roles.includes("ROLE_LANGUAGE_ADMIN") || active_user.roles.includes("ROLE_ADMIN") ?

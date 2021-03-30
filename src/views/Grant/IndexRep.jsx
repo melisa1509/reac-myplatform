@@ -6,16 +6,25 @@ import { connect } from "react-redux";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 
+import Dashboard from "@material-ui/icons/Dashboard";
+import Icon from "@material-ui/core/Icon";
+import Face from "@material-ui/icons/Face";
+import Group from "@material-ui/icons/Group";
+import Equalizer from "@material-ui/icons/Equalizer";
+import School from "@material-ui/icons/School";
+
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
-import Card from "components/Card/Card.jsx";
-import CardBody from "components/Card/CardBody.jsx";
-import CardHeader from "components/Card/CardHeader.jsx";
-import IndexTable from './IndexTable.jsx';
+import CustomTabs from 'components/CustomTabs/CustomTabsRouter.jsx';
+
+import GrantTab from './IndexTabs/GrantTab/GrantTab.jsx';
+import StatisticTab from './IndexTabs/StatisticTab/StatisticTab.jsx';
+
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
+import { withRouter } from 'react-router-dom';
 
 
 const styles = {
@@ -28,22 +37,43 @@ const styles = {
 
 
 class IndexRep extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+        active: 3,       
+    };
+  }
+
+  componentWillMount(){
+    this.setState({ active: this.props.match.params.tab });
+  }
  
 
   render() {
-    const { classes, styles, active_user } = this.props;
+    const { classes, active_tab } = this.props;
     let { t } = this.props;    
     return (
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={12}>
-          <Card>
-            <CardHeader color="info">
-                <h4 className={classes.cardTitle}>{t("title_grant_list")}</h4>
-            </CardHeader>
-            <CardBody>
-              <IndexTable  />
-            </CardBody>
-          </Card>
+            <CustomTabs
+              title= {t("link_grants")}
+              headerColor="success"
+              active={active_tab }
+              tabs={[
+                {
+                  tabName: t("link_list"),
+                  tabIcon: Dashboard,
+                  tabContent: <GrantTab/>
+                },
+                {
+                  tabName: t("link_statistics"),
+                  tabIcon: Equalizer,
+                  tabContent: <StatisticTab/>,
+                  rtlActive:true
+                },
+              ]}
+            />
         </GridItem>
       </GridContainer>
     );
@@ -60,7 +90,8 @@ const mapDispatchToPropsActions = dispatch => ({
 });
 const mapStateToProps = state => ({ 
   active_user: state.loginReducer.active_user, 
+  active_tab: state.generalReducer.active_tab
 });
 
-const NewRepComponent = translate(withStyles(styles)(IndexRep));
+const NewRepComponent = withRouter(translate(withStyles(styles)(IndexRep)));
 export default connect(mapStateToProps, mapDispatchToPropsActions)(NewRepComponent);

@@ -112,12 +112,13 @@ class EditForm extends React.Component {
                   </GridItem>
                   <GridItem xs={12} sm={12} md={11}>
                    
-                          {show_grant_ambassador.state === "state.revision" ? <center><Danger><h6 className={classes.infoText}>{t("label_grant_success_revision")}</h6></Danger></center>: ""}
+                          {show_grant_ambassador.state === "state.revision" ? <center><Danger><h5 className={classes.infoText}>{t("label_grant_success_revision")}</h5></Danger></center>: ""}
                           {show_grant_ambassador.state === "state.approved" ? <center><Danger><h5 className={classes.infoText}>{t("label_grant_application_approved")}</h5></Danger></center>: ""}
                           {show_grant_ambassador.state === "state.reject" ? <center><Danger><h5 className={classes.infoText}>{t("label_sent_reject_successful")}</h5></Danger></center>: ""}
-                          {show_grant_ambassador.state === "state.correction" ? <center><Danger><h6 className={classes.infoText}>{t("state_correction")}</h6></Danger></center>: ""}
+                          {show_grant_ambassador.state === "state.correction" ? <center><Danger><h5 className={classes.infoText}>{t("state_correction")}</h5></Danger></center>: ""}
                           {show_grant_ambassador.state === "state.correction" ? <div>{show_grant_ambassador.correction}</div>: ""}
                           {show_grant_ambassador.state === "state.reject" ? <div>{show_grant_ambassador.correction}</div>: ""}
+                          {show_grant_ambassador.state === "state.approved" ? <div>{show_grant_ambassador.correction}</div>: ""}
                   </GridItem>
                   <GridItem xs={12} sm={12} md={11}>
                     <br/>
@@ -322,7 +323,7 @@ class EditForm extends React.Component {
                     </SuccessBold>
                     <br/>
                     {
-                      show_grant_ambassador.file !== undefined ?
+                      show_grant_ambassador.file !== "undefined" ?
                       <a
                         href={BASE_URL +  "/web/file/"  + show_grant_ambassador.file}
                         target="_blank"
@@ -350,7 +351,7 @@ class EditForm extends React.Component {
                     </SuccessBold>
                     <br/>
                     {
-                      show_grant_ambassador.file2 !== undefined ?
+                      show_grant_ambassador.file2 !== "undefined" ?
                       <a
                         href={BASE_URL +  "/web/file/"  + show_grant_ambassador.file2}
                         target="_blank"

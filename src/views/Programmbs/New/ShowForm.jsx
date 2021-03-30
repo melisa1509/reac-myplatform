@@ -24,7 +24,7 @@ import Face from "@material-ui/icons/Face";
 
 
 // core components
-import NavPills from "components/NavPills/NavPills.jsx";
+import NavPills from "components/NavPills/NavPillsRouter.jsx";
 import PlanTab from "./PlanTab.jsx";
 import ProductTab from "./ProductTab.jsx";
 import ProcessTab from './ProcessTab.jsx';

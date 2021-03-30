@@ -69,11 +69,12 @@ class ShowTable extends React.Component {
                 tableHead={[]}
                 tableData={[
                   [<th>{t("label_administrator")}</th>,show_grant.administrator.first_name+ " "+ show_grant.administrator.last_name,],
-                  [<th>{t("label_deadline_applications")}</th>, showDate(grant_deadline)],
+                  [<th>{t("label_language")}</th>, t(show_grant.language)],
+                  [<th>{t("label_type_grant")}</th>, t(show_grant.type)],
+                  [<th>{t("label_state")}</th>, t(show_grant.state)],
                 ]}
               />
               <Table
-                striped
                 tableData={[
                   [<div dangerouslySetInnerHTML={{ __html: show_grant.description }}></div>],
                 ]}

@@ -12,7 +12,6 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import IndexTable from './IndexTable.jsx';
 import IndexTableUpdates from "./IndexTableUpdates.jsx";
 
 import { showGrant } from "actions/grantActions.jsx";
@@ -44,16 +43,6 @@ class IndexRep extends React.Component {
     return (
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={10}>
-          <Card>
-            <CardHeader color="info">
-                <h4 className={classes.cardTitle}>{t("title_grant_ambassador_list_revision")}</h4>
-                <p>{ show_grant.title + " / " + t(show_grant.language)}</p>
-            </CardHeader>
-            <CardBody>
-              <IndexTable  />
-            </CardBody>
-          </Card>
-          <br/>
           <Card>
             <CardHeader color="info">
                 <h4 className={classes.cardTitle}>{t("title_approved_grant_applications")}</h4>

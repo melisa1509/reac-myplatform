@@ -96,11 +96,11 @@ class GroupTable extends React.Component {
 
 
   render() {
-    const { grant_group_list, loading, successful_new_array } = this.props;
+    const { show_grant_group, loading, successful_new_array } = this.props;
     let { t } = this.props;
 
 
-    const list = grant_group_list === undefined ? [] : grant_group_list;
+    const list = show_grant_group === undefined ? [] : show_grant_group;
     const data = list.map((prop, key) => {
      
         return {
@@ -226,7 +226,7 @@ class GroupTable extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
-    grant_group_list: state.grantReducer.grant_group_list,
+   show_grant_group: state.grantReducer.show_grant_group,
 });
 
 const mapDispatchToPropsActions = dispatch => ({

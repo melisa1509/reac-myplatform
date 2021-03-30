@@ -1,5 +1,6 @@
 import { ERROR_REQUIRED_FIELDS, SUCCESS_REQUIRED_FIELDS} from "constants/actionTypes";
 import { SUCCESSFULL_EDIT, SUCCESSFUL_DELETE  } from "constants/actionTypes";
+import { CHANGE_ACTIVE_TAB } from "constants/actionTypes";
 import { DISMATCH_PASSWORD, SUCCESSFULL_EDIT_CLEAN } from "constants/actionTypes";
 import { SUCCESSFULL_NEW, DELETE_SUCCESSFUL, UPDATE_FILE_NAME, SUCCESSFUL_NEW_ARRAY, SUCCESSFUL_SEND } from "constants/actionTypes";
 import { DELETE_ALERT } from "constants/actionTypes";
@@ -13,7 +14,8 @@ const initialState = {
   errorRequired: false,
   successRequired: false,
   dismatch_password:false,
-  delete:false
+  delete:false, 
+  active_tab: 0,
 }
 
 export const generalReducer = (state = initialState, action) => {
@@ -69,8 +71,13 @@ export const generalReducer = (state = initialState, action) => {
           return Object.assign({}, state, {
             enviando: element
           });
+
+        case CHANGE_ACTIVE_TAB:
+          return Object.assign({}, state, {
+            active_tab: action.payload
+          });
         }
-      
+
      return state;
 }
   
