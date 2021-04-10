@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
 
 // @material-ui/icons
-import { Apps, Message, Face, Dashboard, HowToReg, SupervisorAccount, TrackChanges, LibraryBooks, Person, Stars, Book,School, Cancel, Description, MonetizationOn, Eject } from "@material-ui/icons";
+import { Apps, Message, Face, Dashboard, HowToReg, SupervisorAccount, TrackChanges, LibraryBooks, Person, Stars, Book,School, Cancel, Description, MonetizationOn, Eject, Help, VideoLibrary } from "@material-ui/icons";
 
 // core components
 import CustomDropdown from "components/CustomDropdown/CustomDropdown.jsx";
@@ -253,6 +253,33 @@ class AdminHeaderLinks extends React.Component {
         link_menu = "link_student";
         links=[];
       }
+
+      let link_support = "https://api.whatsapp.com/send?phone=13852928829";
+      if(active_user.language === 'en'){
+            link_support = "https://api.whatsapp.com/send?phone=13852928829";
+      }
+      else if(active_user.language === 'es'){
+            link_support = "https://api.whatsapp.com/send?phone=593983309589";
+      }
+      else if(active_user.language === 'pt'){
+            link_support = "https://api.whatsapp.com/send?phone=18014272094";
+      }
+      else if(active_user.language === 'fr'){
+            link_support = "https://api.whatsapp.com/send?phone=13852928833";
+      }
+      let links_help = [
+            <a href={link_support} target="_blank" className={classes.dropdownLink}>
+            
+                  <Message color="danger" className={classes.icons} /> {t("link_live_support")}
+            
+            </a>,
+            <Link to={'/'} className={classes.dropdownLink}>
+            
+                  <VideoLibrary color="danger" className={classes.icons} /> {t("link_video_tutorial")}
+            
+            </Link>,
+            
+      ]
       
       
       return (
@@ -277,12 +304,18 @@ class AdminHeaderLinks extends React.Component {
             />
           </ListItem>
           <ListItem className={classes.listItem}>
-          <Button
-                color="transparent" 
-                className={classes.navLink}
-            >
-            <Message color="danger" className={classes.icons} />Messages
-          </Button>
+          
+          <CustomDropdown
+              noLiPadding
+              buttonText={t('link_help')}
+              buttonProps={{
+                className: classes.navLink,
+                color: "transparent"
+              }}
+              hoverColor="info"
+              buttonIcon={Help}
+              dropdownList={ links_help }
+            />
           </ListItem>
           
         </List>

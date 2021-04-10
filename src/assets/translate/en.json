@@ -339,6 +339,9 @@
     "link_applications":                "Applications",
     "link_countries":                   "Countries",
     "link_graduates":                   "Graduates",
+    "link_video_tutorial":              "Video Tutorials",
+    "link_help":                        "Help",
+    "link_live_support":                "Live Support",
     
     "option_quality5":                    "5. I am very happy with this area of my life.",
     "option_quality4":                    "4. Normally, I am happy with the area of my life.",
@@ -644,6 +647,7 @@
     "th_program":                "Program",
     "th_created_date":           "Date Application",
     "th_type":                   "Type",
+    "th_approval_date":          "Approval Date",
 
     "en":                        "English",
     "fr":                        "French",

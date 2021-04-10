@@ -5,6 +5,7 @@ import ReactTable from "react-table";
 import { connect } from "react-redux";
 import { getGroupList } from "actions/groupActions.jsx";
 import { Link } from "react-router-dom";
+import { showDate } from 'assets/functions/general.jsx';
 
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -63,15 +64,11 @@ class IndexTable extends React.Component {
     let { t } = this.props;
             
     const data = group_list.map((prop, key) => {
-      let i = 0;
-      let start_date=[];
-      for (i = 0; i < 10 ; i++) {
-         start_date[i]=prop.start_date[i]
-      }
+     
       return {
         id: key, 
         full_name: prop.name,
-        date:start_date,
+        date:showDate(prop.start_date),
         AmbassadorMentor: prop.embassador.first_name + " " + prop.embassador.last_name,
         projects: (
           <div className="actions-left">
