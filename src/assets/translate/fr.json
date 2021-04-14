@@ -299,7 +299,7 @@
         "label_updates":	             "Mises à Jour des Bourses",
         "label_type_grant":	             "Type",
         "label_start_up":	             "Démarrage",
-        "label_schollarship":	             "Bourse d'Études",
+        "label_scholarship":	             "Bourse d'Études",
         "label_choose_type": 	             "Choisir le Type",
         "label_choose_state":  	             "Choisir le Statut",
         "label_number_participants_trained": "Nombre de Participants Formés",
@@ -915,7 +915,7 @@
                 "available":                  "Disponible",
                 "not_available":	      "Non Disponible",
                 "startup":	              "Démarrage",
-                "schollarship":	              "Études"
+                "scholarship":	              "Études"
     
         }, 
         

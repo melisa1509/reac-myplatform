@@ -62,6 +62,10 @@ const initialState = {
     type:"state.startup",
     description: ""
   },
+  new_grant_ambassador:{
+    id:"",
+    question12:"state.not",
+  },
   correction_grant: {
     correction: ""
   },

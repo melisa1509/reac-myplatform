@@ -1,9 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { translate } from 'react-switch-lang';
 // react component for creating dynamic tables
 import { connect } from "react-redux";
-import { updateTypeSelect } from "actions/selectActions.jsx";
+import { updateYesNotSelect } from "actions/selectActions.jsx";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -26,7 +25,7 @@ const style = {
 };
 
 
-class TypeSelect extends React.Component {
+class YesNotSelect extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -46,7 +45,7 @@ class TypeSelect extends React.Component {
     }
     handleSimple = event => {
         this.setState({ [event.target.name]: event.target.value });
-        this.props.dispatchUpdateTypeSelect(event.target.value);
+        this.props.dispatchUpdateYesNotSelect(event.target.value);
     };
     handleChange = name => event => {
         this.setState({ [name]: event.target.checked });
@@ -65,7 +64,7 @@ class TypeSelect extends React.Component {
                     <InputLabel
                         htmlFor="simple-select"
                     >
-                        <Success>{t("label_type_grant")}</Success>
+                        <Success>{}</Success>
                     </InputLabel>
                     <Select
                         MenuProps={{
@@ -88,25 +87,25 @@ class TypeSelect extends React.Component {
                             }}
                             value="-1"
                         >
-                            {t("label_choose_type")}
+                            {t("label_choose_option")}
                         </MenuItem>
                         <MenuItem
                             classes={{
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                             }}
-                            value="state.startup"
+                            value="state.not"
                         >
-                            {t("label_start_up")}
+                            {t("label_not")}
                         </MenuItem>
                         <MenuItem
                             classes={{
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected
                             }}
-                            value="state.scholarship"
+                            value="state.yes"
                         >
-                            {t("label_scholarship")}
+                            {t("label_yes")}
                         </MenuItem>                        
                     </Select>
                 </FormControl>
@@ -118,11 +117,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToPropsActions = dispatch => ({
-  dispatchUpdateTypeSelect: key => dispatch( updateTypeSelect(key) ), 
+  dispatchUpdateYesNotSelect: key => dispatch( updateYesNotSelect(key) ), 
 });
 
-const TypeSelectComponent = translate(withStyles(style)(TypeSelect));
-export default connect(mapStateToProps, mapDispatchToPropsActions)(TypeSelectComponent);
+const YesNotSelectComponent = translate(withStyles(style)(YesNotSelect));
+export default connect(mapStateToProps, mapDispatchToPropsActions)(YesNotSelectComponent);
 
 
 

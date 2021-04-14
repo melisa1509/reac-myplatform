@@ -301,10 +301,21 @@
     "label_updates":                     "Grant Updates",
     "label_type_grant":                  "Type",
     "label_start_up":                    "Start Up",
-    "label_schollarship":                "Schollarship",
+    "label_scholarship":                 "scholarship",
     "label_choose_type":                 "Choose Type",
     "label_choose_state":                "Choose State",
     "label_number_participants_trained": "No. Participants Trained",
+    "label_grant_details_factors":       "Please provide details of your plan regarding the following start-up factors.",
+    "label_grant_startup_file3":         "a) A 6P's checklist",
+    "label_grant_startup_file4":         "b) 6 month Cash Flow Projection",
+    "label_grant_startup_file5":         "c) Income Statement",
+    "label_grant_startup_file6":         "d) Income and Expense Log",
+    "label_grant_startup_includes":      "A complete Business Plan includes:",
+    "label_grant_present_need":          "Present Need",
+    "label_grant_history":               "History",
+    "label_grant_future_impact":         "Future Impact",
+    "label_grant_startup_plan":          "Your Business Plan should be detailed and well thought-out. We are looking for evidence that you have a plan of exactly how you will use Interweave’s funds to start your business. The receipt of this grant should facilitate self-reliance for your business in the future and we want to see that reflected in your plan.",
+    "label_grant_startup_attach":        "Please also attach your current MBS Business Plan to this proposal. Your application will not be considered if your MBS plan is not attached. This plan should be based off of your CURRENT SUCCESS AMBASSADOR BUSINESS.",
     
 
     
@@ -584,6 +595,20 @@
     "question_grant4":                   "How much will participants contribute for their own participation?",
     "question_grant5":                   "What other sources of funding do you have and how much will they contribute? (Partnerships or contracts)",
     "question_grant6":                   "TOTAL AMOUNT SOUGHT FROM INTERWEAVE:",
+    "question_startup_grant3":           "How many groups have you trained?",
+    "question_startup_grant4":           "How many MBS graduates do you have?",
+    "question_startup_grant5":           "How many months have you been a Success Ambassador?",
+    "question_startup_grant7":           "How many Success Ambassadors have you trained?",
+    "question_startup_grant8":           "Building / Rent",
+    "question_startup_grant9":           "Legal / Registration Fees",
+    "question_startup_grant10":          "Transportation",
+    "question_startup_grant11":          "Printing Fees",
+    "question_startup_grant12":          "Are you an active SA?",
+    "question_startup_grant13":          "Other (must speficy, If you asked for money for OTHER please specify what the money.)",
+    "question_startup_grant14":          "How much have/will you contribute of your own money?",
+    "question_startup_grant15":          "How will this grant help the Success Ambassador get more groups in the future/ improve their business?",
+    "question_startup_number":           "How many groups do you anticipate to train in the next 6 months?",
+    "question_startup_amount":           "Total Amount asking from Interweave Solutions:",
 
     "th_actions":                "Actions",
     "th_id":                     "ID",
@@ -916,7 +941,7 @@
         "available":                  "Available",
         "not_available":              "Not available",
         "startup":                    "Start Up",
-        "schollarship":               "Schollarship"    
+        "scholarship":                "scholarship"    
     }, 
 
     "option":{

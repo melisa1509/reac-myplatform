@@ -14,6 +14,7 @@ import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import NewForm from 'views/GrantAmbassador/New/NewForm.jsx';
+import NewStartupForm from 'views/GrantAmbassador/New/NewStartupForm.jsx';
 
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
@@ -42,9 +43,6 @@ class NewRep extends React.Component {
   render() {
     const { classes, show_grant } = this.props;
     let { t } = this.props;
-    const initialValuesGrant= {
-      date:moment().format('YYYY-MMM-DD'),
-    }
     return (
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={12}>
@@ -56,7 +54,7 @@ class NewRep extends React.Component {
              </center>
             </CardHeader>
             <CardBody>
-                <NewForm initialValues={initialValuesGrant} />
+              {show_grant.type === "state.scholarship" ? <NewForm /> : <NewStartupForm />}
             </CardBody>
           </Card>
         </GridItem>

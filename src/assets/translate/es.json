@@ -297,7 +297,7 @@
         "label_updates":                     "Progresos de Subvención",
         "label_type_grant":                  "Tipo",
         "label_start_up":                    "Inicio de Negocio",
-        "label_schollarship":                "Beca Estudio",
+        "label_scholarship":                "Beca Estudio",
         "label_choose_type":                 "Escoja un Tipo",
         "label_choose_state":                "Escoja un Estado",
         "label_number_participants_trained": "No. de Participantes Formados",
@@ -903,7 +903,7 @@
                 "available":                  "Disponible",
                 "not_available":              "No Disponible",
                 "startup":                    "Inicio de Negocio",
-                "schollarship":               "Beca Estudio"   
+                "scholarship":               "Beca Estudio"   
             }, 
         
             "option":{
