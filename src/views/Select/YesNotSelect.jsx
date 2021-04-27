@@ -90,6 +90,7 @@ class YesNotSelect extends React.Component {
                             {t("label_choose_option")}
                         </MenuItem>
                         <MenuItem
+                            selected
                             classes={{
                                 root: classes.selectMenuItem,
                                 selected: classes.selectMenuItemSelected

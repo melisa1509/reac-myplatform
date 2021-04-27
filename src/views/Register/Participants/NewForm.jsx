@@ -85,12 +85,10 @@ class NewForm extends React.Component {
         if (this.state.passowordState === "") {
           this.setState({ passwordState: "error" });
         }
-        if(this.state.usernameState === "error" || this.state.first_nameState === "error" || this.state.last_nameState === "error"){
-          const stateRedux = store.getState();
+        if(this.state.passowordState === "error" || this.state.whatsappState === "error" || this.state.usernameState === "error" || this.state.first_nameState === "error" || this.state.last_nameState === "error"){
           this.props.dispatchErrorRequiredFields();
         }
-        if(this.state.usernameState === "success" && this.state.first_nameState === "success"&& this.state.last_nameState === "success"){
-          const reduxState = store.getState();
+        if(this.state.passowordState === "success" || this.state.whatsappState === "success" || this.state.usernameState === "success" && this.state.first_nameState === "success"&& this.state.last_nameState === "success"){
           this.props.dispatchNewStudent(this.props.history);
           this.props.dispatchSuccessRequiredFields();
         }

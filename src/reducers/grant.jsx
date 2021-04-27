@@ -37,13 +37,15 @@ const initialState = {
     language:"",
     description:"",   
     state:"",
-    type:"",
+    type:"state.scholarship",
   },
   show_grant_update: [],
   show_grant_ambassador: {
     id:"",
     administrator:[],
-    ambassador:[],
+    ambassador:{
+      country:"USA"
+    },
     grant:[],
     number:"",
     code:"",
@@ -53,6 +55,7 @@ const initialState = {
     question4:"",
     question5:"",
     question6:"",
+    question12: "state.not",
     file:"",
   },
   new_grant:{
@@ -62,9 +65,16 @@ const initialState = {
     type:"state.startup",
     description: ""
   },
+  initial_grant:{
+    id:"",
+    language:"en",
+    state:"state.available",
+    type:"state.startup",
+    description: ""
+  },
   new_grant_ambassador:{
     id:"",
-    question12:"state.not",
+    question12: "state.not",
   },
   correction_grant: {
     correction: ""

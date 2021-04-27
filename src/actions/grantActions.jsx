@@ -150,6 +150,7 @@ export const showGrantAmbassador = key => {
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: SHOW_GRANT_AMBASSADOR, payload: json.data });
+            dispatch ({ type: NEW_GRANT_AMBASSADOR, payload: json.data });
             dispatch ({ type: LOAD_FORM_GRANT_AMBASSADOR, data: json.data });   
         })
 
@@ -269,8 +270,20 @@ export const editGrantAmbassador = ()=> {
         urlencoded.append("question5",reduxState.form.grantAmbassadorform.values.question5);
         urlencoded.append("question6",reduxState.form.grantAmbassadorform.values.question6);
         urlencoded.append("question7",reduxState.form.grantAmbassadorform.values.question7);
+        urlencoded.append("question8",reduxState.form.grantAmbassadorform.values.question8);
+        urlencoded.append("question9",reduxState.form.grantAmbassadorform.values.question9);
+        urlencoded.append("question10",reduxState.form.grantAmbassadorform.values.question10);
+        urlencoded.append("question11",reduxState.form.grantAmbassadorform.values.question11);
+        urlencoded.append("question12",reduxState.form.grantAmbassadorform.values.question12);
+        urlencoded.append("question13",reduxState.form.grantAmbassadorform.values.question13);
+        urlencoded.append("question14",reduxState.form.grantAmbassadorform.values.question14);
         urlencoded.append("file",reduxState.form.grantAmbassadorform.values.file);
         urlencoded.append("file2",reduxState.form.grantAmbassadorform.values.file2);
+        urlencoded.append("file3",reduxState.form.grantAmbassadorform.values.file3);
+        urlencoded.append("file4",reduxState.form.grantAmbassadorform.values.file4);
+        urlencoded.append("file5",reduxState.form.grantAmbassadorform.values.file5);
+        urlencoded.append("file6",reduxState.form.grantAmbassadorform.values.file6);
+        urlencoded.append("file7",reduxState.form.grantAmbassadorform.values.file7);
 
         var requestOptions = {
         method: 'PUT',
@@ -455,6 +468,8 @@ export const newGrantAmbassador = ()=> {
     urlencoded.append("question11",reduxState.form.grantAmbassadorNewform.values.question11);
     urlencoded.append("question12",reduxState.form.grantAmbassadorNewform.values.question12);
     urlencoded.append("question13",reduxState.form.grantAmbassadorNewform.values.question13);
+    urlencoded.append("question14",reduxState.form.grantAmbassadorNewform.values.question14);
+    urlencoded.append("question15",reduxState.form.grantAmbassadorNewform.values.question15);
     urlencoded.append("file",reduxState.form.grantAmbassadorNewform.values.file);
     urlencoded.append("file2",reduxState.form.grantAmbassadorNewform.values.file2);
     urlencoded.append("file3",reduxState.form.grantAmbassadorNewform.values.file3);

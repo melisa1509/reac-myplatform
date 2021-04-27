@@ -74,6 +74,10 @@
         "button_apply":        	             "Appliquer",
         "button_groups":	             "Groupes",
         "button_save_groups":    	     "Sauvegarder les Groupes Sélectionnés",
+        "button_create_new":                 "Créer Nouveau",
+        "button_return":                     "Revenir",
+        "button_send_correction":            "Soumettre pour Révision",
+        "button_download_pdf":               "Télécharger Pdf",
 
 
 
@@ -282,7 +286,6 @@
         "label_application":	             "Application",
         "label_administrator":	             "Administrateur",
         "label_grant_corrections":	     "Mises à Jour ou Commentaires",
-        "label_grant_file":	             "Télécharger le Fichier 1 / Vidéo 1 (taille maximale 60 Mb)",
         "label_grant_file2":	             "Télécharger le Fichier 2 / Vidéo 2 (taille maximale 60 Mb)",
         "label_grant_success_revision":      "Votre candidature a été soumise avec succès. Vous recevrez un email de confirmation une fois qu'elle aura été examinée.",
         "label_grant_updates":	             "Quels progrès avez-vous réalisés au cours du dernier mois dans votre région grâce à la bourse que vous avez reçue ?",
@@ -303,6 +306,28 @@
         "label_choose_type": 	             "Choisir le Type",
         "label_choose_state":  	             "Choisir le Statut",
         "label_number_participants_trained": "Nombre de Participants Formés",
+        "label_grant_file":                  "A 30 sec-1:00 min video of you explaining the need for this Scholarship Grant. ",
+        "label_grant_file_startup":          "Une vidéo de 30 sec-1 min de vous expliquant la nécessité de cette Bourse de Démarrage.",
+        "label_schollarship":                "Bourse d'Études",
+        "label_total_expenses":              "Dépenses Totales",
+        "label_section_approved_success":    "Section approuvée !",
+        "label_all_ambassadors":             "Tous les Ambassadeurs",
+        "label_all_country":                 "Tous les Pays",
+        "label_authorization_code1":         "Organisation Locale",
+        "label_upload_image":                "Télécharger l'Image",
+        "label_grant_details_factors":       "Veuillez fournir les détails de votre plan concernant la bourse de démarrage suivante.",
+        "label_grant_startup_file3":         "a) Une liste de contrôle des 6P",
+        "label_grant_startup_file4":         "b) Projection des flux de trésorerie à 6 mois",
+        "label_grant_startup_file5":         "c) Compte de Résultat",
+        "label_grant_startup_file6":         "d) Journal des Revenus et des Dépenses",
+        "label_grant_startup_includes":      "Un Plan d'Affaires complet comprend :",
+        "label_grant_present_need":          "Besoin Actuel",
+        "label_grant_history":               "Histoire",
+        "label_grant_future_impact":         "Impact Futur",
+        "label_grant_startup_plan":          "Votre plan d'affaires doit être détaillé et bien pensé. Nous recherchons la preuve que vous avez un plan indiquant exactement comment vous allez utiliser les fonds d'Interweave pour lancer votre entreprise. La réception de cette bourse devrait faciliter l'autonomie de votre entreprise dans le futur et nous voulons voir cela reflété dans votre plan.",
+        "label_grant_startup_attach":        "Veuillez également joindre votre plan d'affaires MBS actuel à cette proposition. Votre demande ne sera pas prise en considération si votre plan MBS n'est pas joint. Ce plan doit être basé sur votre ENTREPRISE ACTUELLE D'AMBASSADEUR DE SUCCÈS.",
+        "label_yes":                         "Oui",
+        "label_not":                         "Non",
 
 
        "link_administrator":               "Administrateur",
@@ -336,6 +361,7 @@
        "link_countries":	           "Pays",
        "link_graduates":	           "Diplômés",
        "link_reports_ambassador":	   "Statistiques des Ambassadeurs du Succès",
+       
 
 
        "option_quality5":                    "5_ Je suis très heureux dans ce domaine de ma vie_",
@@ -361,6 +387,7 @@
         "state_without_starting":           "pas encore commencé",
         "state_active":	                    "Actif",
         "state_inactive":	            "Inactif",
+        
 
        
         "title_student_list":               "Liste des Participants",
@@ -432,7 +459,7 @@
         "title_by_student":                 "par Étudiant",
         "title_code_list_mbs":              "Liste de Code MBS",
         "title_code_list_sa":               "Liste de Code SA",
-       "title_code_list_jr":               "Liste de Code JR",
+        "title_code_list_jr":               "Liste de Code JR",
         "title_edit_code":                  "Modifier le code",
         "title_revision_project_mbs":       "Révision du Projet MBS",
         "title_progress_dashboard_ambassador":  "Tableau de Bord des Progrès de l'Ambassadeur",
@@ -470,6 +497,9 @@
         "title_approved_grant_applications":"Liste des Demandes de Bourses",
         "title_groups_created":	            "Groupes Créés Grâce à Cette Bourse",
         "title_grant_applications":	    "Mon Application de Bourse",
+        "title_grant_application_startup":  "Application pour la Bourse de Démarrage",
+
+        "message_approved_project":         "Félicitations ! Votre projet a été approuvé.",
 
 
         "question_evaluation_question1":     "1. J'ai ma propre entreprise",
@@ -573,13 +603,34 @@
         "question_support1":                 "1. Comment allez-vous aider vos groupes à continuer à se rencontrer?",
         "question_support2":                 "2. Que devez-vous faire pour maintenir votre statut d'Ambassadeur qualifié?",
         "question_support3":                 "3. Pourquoi voulez-vous devenir un Ambassadeur du Succès?",
-        "question_grant":	             "Quel est votre besoin financier estimé ?",
-        "question_grant1":	             "Dans l'espace ci-dessous, veuillez donner un bref aperçu de votre expérience en tant qu'Ambassadeur du Succès (parlez-nous des groupes MBS que vous avez animés jusqu'à présent, y compris le nombre de participants et de diplômés, les subventions précédentes reçues d'Interweave, etc.)",
-        "question_grant2":	             "Dans l'espace ci-dessous, veuillez expliquer votre besoin de la bourse d'études d'Interweave, (y compris un résumé de vos efforts pour trouver un financement auprès des sources énumérées dans la lettre d'introduction) :",
-        "question_grant3":	             "Combien de participants allez-vous former dans ce groupe (Max 30) ?",
-        "question_grant4":	             "Combien les participants contribueront-ils pour leur propre participation ?",
-        "question_grant5":	             "Quelles sont les autres sources de financement dont vous disposez et quelle sera leur contribution ? (Partenariats ou contrats)",
-        "question_grant6":	             "MONTANT TOTAL DEMANDÉ À INTERWEAVE :",
+        "question_grant":                    "What is your estimated financial need?",
+        "question_grant1":                   "Dans l'espace ci-dessous, veuillez donner un bref aperçu de votre expérience en tant qu'Ambassadeur du Succès (parlez-nous des groupes MBS que vous avez animés jusqu'à présent, y compris le nombre de participants et de diplômés, les subventions précédentes reçues d'Interweave, etc.)",
+        "question_grant2":                   "Dans l'espace ci-dessous, veuillez expliquer votre besoin de la bourse d'études d'Interweave, (y compris un résumé de vos efforts pour trouver un financement auprès des sources énumérées dans la lettre d'introduction) :",
+        "question_grant3":                   "Combien de participants allez-vous former avec cette bourse ?",
+        "question_grant4":                   "Combien les participants contribueront-ils pour leur propre participation ?",
+        "question_grant5":                   "Quelles sont les autres sources de financement dont vous disposez et quelle sera leur contribution ? (Partenariats ou contrats)",
+        "question_grant6":                   "Quel est le montant total en dollars que vous souhaitez recevoir d'Interweave Solutions ?",
+        "question_grant8":                   "Quel est le coût financier TOTAL pour offrir cette formation ? (Bâtiment, transport, électricité, etc.)",
+        "question_grant9":                   "Combien les participants contribueront-ils de leur propre argent, en dollars ?",
+        "question_grant10":                  "Combien d'autres organisations contribueront-elles de leurs propres ressources, en dollars ? (Montant estimé en dollars s'ils fournissent le centre de formation, le recrutement, etc. )",
+        "question_grant11":                  "Est-ce une zone difficile à atteindre ?",
+        "question_grant12":                  "Quel est le montant total en dollars que vous souhaitez recevoir d'Interweave Solutions ?",
+        "question_grant13":                  "Quel est l'impact potentiel ? Participants formés",
+        "question_grant14":                  "Comment cette bourse aidera-t-elle l'Ambassadeur du Succès à obtenir plus de groupes à l'avenir/à améliorer son entreprise ?",
+        "question_startup_grant3":           "Combien de groupes avez-vous formés ?",
+        "question_startup_grant4":           "Combien de diplômés de MBS avez-vous ?",
+        "question_startup_grant5":           "Depuis combien de temps êtes-vous Ambassadeur du Succès ?",
+        "question_startup_grant7":           "Combien d'Ambassadeurs du Succès avez-vous recommandés ?",
+        "question_startup_grant8":           "Bâtiment / Location",
+        "question_startup_grant9":           "Frais Juridiques / d'Enregistrement",
+        "question_startup_grant10":          "Transport",
+        "question_startup_grant11":          "Frais d'Impression",
+        "question_startup_grant12":          "Êtes-vous un Ambassadeur actif ?",
+        "question_startup_grant13":          "Autre (si vous avez demandé de l'argent pour autre chose, veuillez préciser à quoi servira cet argent).",
+        "question_startup_grant14":          "Combien de votre propre argent contribuerez-vous ?",
+        "question_startup_grant15":          "Comment cette bourse vous aidera-t-elle à organiser plus de groupes à l’avenir/ à améliorer votre entreprise ?",
+        "question_startup_number":           "Combien de groupes pensez-vous former au cours des 6 prochains mois ?",
+        "question_startup_amount":           "Montant total demandé à Interweave Solutions :",
 
 
         "th_actions":                "Actions",
@@ -644,12 +695,14 @@
         "th_program":	             "Programme",
         "th_created_date":	     "Date de l'Application",
         "th_type":	             "Type",
+  
 
 
         "en":	                     "Anglais",
         "fr":	                     "Français",
         "pt":	                     "Portugais",
         "es":	                     "Espagnol",
+        
 
 
 

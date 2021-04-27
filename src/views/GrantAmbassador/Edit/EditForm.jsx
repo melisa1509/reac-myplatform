@@ -9,13 +9,12 @@ import { Field, reduxForm } from 'redux-form';
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-import InputLabel from "@material-ui/core/InputLabel";
 import SweetAlert from "react-bootstrap-sweetalert";
-import TextEditor from "components/TextEditor/TextEditor";
 import CustomInputReduxMod from 'components/CustomInput/CustomInputReduxMod.jsx';
 import FileUpload from "components/CustomUpload/FileUpload.jsx";
 import Table from "components/Table/Table.jsx";
 import SuccessBold from "components/Typography/SuccessBold.jsx";
+import InfoBold from "components/Typography/InfoBold.jsx";
 
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -29,13 +28,14 @@ import { errorRequiredFields } from "actions/generalActions.jsx";
 import { successRequiredFields } from "actions/generalActions.jsx";
 import { verifyChange } from "assets/validation/index.jsx";
 import { deleteSuccessful } from "actions/generalActions.jsx";
-import { lastDayMonth } from "assets/functions/general.jsx";
+import { showDate } from "assets/functions/general.jsx";
 import { BASE_URL } from 'constants/urlTypes';
 
 // style for this view
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
 import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
+import YesNotSelect from "views/Select/YesNotSelect";
 import { withRouter } from 'react-router-dom';
 import { editGrantAmbassador } from "actions/grantActions";
 
@@ -66,7 +66,19 @@ class EditForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            titleState: "success",
+            codeState:  "success",
+            numberState: "success",
+            question3State: "success",
+            question4State: "success",
+            question5State: "success",
+            question6State: "success",
+            question7State: "success",
+            question8State: "success",
+            question9State: "success",
+            question10State: "success",
+            question11State: "success",
+            question13State: "success",
+            question14State: "success",
         };
         this.saveClick = this.saveClick.bind(this);
         this.deleteClick = this.deleteClick.bind(this);
@@ -75,8 +87,77 @@ class EditForm extends React.Component {
 
      
       saveClick() {
+        if (this.state.codeState === "") {
+          this.setState({ codeState: "error" });
+          this.props.dispatchErrorRequiredFields();
+        }
+
+        if (this.state.numberState === "") {
+          this.setState({ numberState: "error" });
+          this.props.dispatchErrorRequiredFields();
+        }
+
+        if (this.state.question3State === "") {
+          this.setState({ question3State: "error" });
+          this.props.dispatchErrorRequiredFields();
+        }
+
+        if (this.state.question4State === "") {
+          this.setState({ question4State: "error" });
+          this.props.dispatchErrorRequiredFields();
+        }
+
+        if (this.state.question5State === "") {
+          this.setState({ question5State: "error" });
+          this.props.dispatchErrorRequiredFields();
+        }
+
+        if (this.state.question6State === "") {
+          this.setState({ question6State: "error" });
+          this.props.dispatchErrorRequiredFields();
+        }
+
+        if (this.state.question7State === "") {
+          this.setState({ question7State: "error" });
+          this.props.dispatchErrorRequiredFields();
+        }
+
+        if (this.state.question8State === "") {
+          this.setState({ question8State: "error" });
+          this.props.dispatchErrorRequiredFields();
+        }
+
+        if (this.state.question9State === "") {
+          this.setState({ question9State: "error" });
+          this.props.dispatchErrorRequiredFields();
+        }
+
+        if (this.state.question10State === "") {
+          this.setState({ question10State: "error" });
+          this.props.dispatchErrorRequiredFields();
+        }
+
+        if (this.state.question11State === "") {
+          this.setState({ question11State: "error" });
+          this.props.dispatchErrorRequiredFields();
+        }
+
+        if (this.state.question13State === "") {
+          this.setState({ question13State: "error" });
+          this.props.dispatchErrorRequiredFields();
+        }
+
+        if (this.state.question14State === "") {
+          this.setState({ question14State: "error" });
+          this.props.dispatchErrorRequiredFields();
+        }
+ 
+        if(this.state.codeState === "success"  && this.state.numberState === "success"  && this.state.question3State === "success" && this.state.question4State === "success" && this.state.question5State === "success" && this.state.question6State === "success" && this.state.question7State === "success" && this.state.question8State === "success" && this.state.question9State === "success" && this.state.question10State === "success" && this.state.question11State === "success" && this.state.question13State === "success" && this.state.question14State === "success"){
           this.props.dispatchEditGrantAmbassador();
-      }
+          this.props.dispatchSuccessRequiredFields();
+        }
+      
+    }
 
       sendRevision() {
         this.props.dispatchDeleteSuccessful();
@@ -95,13 +176,10 @@ class EditForm extends React.Component {
       updateFileName = (key) => {
         this.props.change('file', key);
       }
-
-      updateFileName2 = (key) => {
-        this.props.change('file2', key);
-      }
+     
       
     render() {
-        const { classes, successfull_edit, editError, errorRequired, show_grant, active_user, successful_send, show_grant_ambassador } = this.props;
+        const { classes, grant_deadline, successfull_edit, editError, errorRequired, show_grant, active_user, successful_send, show_grant_ambassador } = this.props;
         let { t } = this.props;
        
         return (
@@ -126,7 +204,7 @@ class EditForm extends React.Component {
                       striped
                       tableData={[
                         [<th>{t("label_administrator")}</th>,show_grant.administrator.first_name+ " "+ show_grant.administrator.last_name,],
-                        [<th>{t("label_deadline_applications")}</th>, lastDayMonth(show_grant.created_at)],
+                        [<th>{t("label_deadline_applications")}</th>, showDate(grant_deadline)],
                         [<th>{t("label_language")}</th>, t(show_grant.language)],
                         
                       ]}
@@ -212,54 +290,113 @@ class EditForm extends React.Component {
                     />
                 </GridItem>
               </GridContainer>
+              <br/>
+              <center><InfoBold><h4 className={classes.cardTitleCenter} >{t("label_grant_history")}</h4></InfoBold></center>
               <GridContainer >
-                  <GridItem xs={12} sm={12} md={12}>
-                    <InputLabel
-                        htmlFor="question1"
-                    >
-                        <SuccessBold>{t("question_grant1")}</SuccessBold>
-                    </InputLabel>
-                    <br/>
-                  <Field
-                      name="question1"
-                      component={TextEditor}
-                      height={500}
-                      width={900}
-                      lang={active_user.language}
+                  <GridItem xs={12} sm={12} md={5}>
+                    <Field
+                      labelText={t("question_startup_grant3")}
+                      component={CustomInputReduxMod}
+                      name="question3"
+                      success={this.state.question3State === "success"}
+                      error={this.state.question3State === "error"}
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        onKeyUp: event => verifyChange(event, "question3", "length", 0, null, this),
+                        type: "text",
+                      }}
+                    />
+                </GridItem>
+              </GridContainer>
+              <GridContainer >
+                <GridItem xs={12} sm={12} md={5}>
+                    <Field
+                      labelText={t("question_startup_grant4")}
+                      component={CustomInputReduxMod}
+                      name="question4"
+                      success={this.state.question4State === "success"}
+                      error={this.state.question4State === "error"}
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        onKeyUp: event => verifyChange(event, "question4", "length", 0, null, this),
+                        type: "text",
+                      }}
+                    />
+                </GridItem>
+              </GridContainer>
+              <GridContainer >
+                <GridItem xs={12} sm={12} md={5}>
+                    <Field
+                      labelText={t("question_startup_grant5")}
+                      component={CustomInputReduxMod}
+                      name="question5"
+                      success={this.state.question5State === "success"}
+                      error={this.state.question5State === "error"}
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        onKeyUp: event => verifyChange(event, "question5", "length", 0, null, this),
+                        type: "text",
+                      }}
+                    />
+                </GridItem>
+              </GridContainer>
+              <GridContainer >
+                  <GridItem xs={12} sm={12} md={5}>
+                    <Field
+                      labelText={t("question_startup_grant7")}
+                      component={CustomInputReduxMod}
+                      name="question7"
+                      success={this.state.question7State === "success"}
+                      error={this.state.question7State === "error"}
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        onKeyUp: event => verifyChange(event, "question7", "length", 0, null, this),
+                        type: "text",
+                      }}
                     />
                 </GridItem>
               </GridContainer>
               <br/>
+              <center><InfoBold><h4 className={classes.cardTitleCenter} >{t("label_grant_present_need")}</h4></InfoBold></center>
               <GridContainer >
-                  <GridItem xs={12} sm={12} md={12}>
-                    <InputLabel
-                        htmlFor="question2"
-                    >
-                        <SuccessBold>{t("question_grant2")}</SuccessBold>
-                    </InputLabel>
+                <GridItem xs={12} sm={12} md={3}>
                     <br/>
-                  <Field
-                      name="question2"
-                      component={TextEditor}
-                      height={500}
-                      width={900}
-                      lang={active_user.language}
+                    <SuccessBold>
+                      {t("question_startup_grant12")}
+                    </SuccessBold>
+                    <br/>
+                    <Field
+                      component={YesNotSelect}
+                      name="question12"
                     />
                 </GridItem>
               </GridContainer>
-              <br/>
+
+
+
+
               <center><h5 className={classes.cardTitleCenter} >{t("question_grant")}</h5></center>
               <GridContainer >
-                  <GridItem xs={12} sm={12} md={4}>
+                  <GridItem xs={12} sm={12} md={5}>
                     <Field
                       labelText={t("question_grant3")}
                       component={CustomInputReduxMod}
                       name="number"
-                      success
+                      success={this.state.numberState === "success"}
+                      error={this.state.numberState === "error"}
                       formControlProps={{
                         fullWidth: true
                       }}
                       inputProps={{
+                        onKeyUp: event => verifyChange(event, "number", "length", 0, null, this),
                         type: "text",
                       }}
                     />
@@ -268,14 +405,16 @@ class EditForm extends React.Component {
               <GridContainer >
                 <GridItem xs={12} sm={12} md={11}>
                     <Field
-                      labelText={t("question_grant4")}
+                      labelText={t("question_grant8")}
                       component={CustomInputReduxMod}
-                      name="question4"
-                      success
+                      name="question8"
+                      success={this.state.question8State === "success"}
+                      error={this.state.question8State === "error"}
                       formControlProps={{
                         fullWidth: true
                       }}
                       inputProps={{
+                        onKeyUp: event => verifyChange(event, "question8", "length", 0, null, this),
                         multiline: true,
                         rows: 7,
                       }}
@@ -285,14 +424,16 @@ class EditForm extends React.Component {
               <GridContainer >
                 <GridItem xs={12} sm={12} md={11}>
                     <Field
-                      labelText={t("question_grant5")}
+                      labelText={t("question_grant9")}
                       component={CustomInputReduxMod}
-                      name="question5"
-                      success
+                      name="question9"
+                      success={this.state.question9State === "success"}
+                      error={this.state.question9State === "error"}
                       formControlProps={{
                         fullWidth: true
                       }}
                       inputProps={{
+                        onKeyUp: event => verifyChange(event, "question9", "length", 0, null, this),
                         multiline: true,
                         rows: 7,
                       }}
@@ -300,22 +441,103 @@ class EditForm extends React.Component {
                 </GridItem>
               </GridContainer>
               <GridContainer >
-                  <GridItem xs={12} sm={12} md={4}>
-                  <h6 className={classes.cardTitleCenter} >{t("question_grant6")}</h6>
+                <GridItem xs={12} sm={12} md={11}>
                     <Field
+                      labelText={t("question_grant10")}
+                      component={CustomInputReduxMod}
+                      name="question10"
+                      success={this.state.question10State === "success"}
+                      error={this.state.question10State === "error"}
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        onKeyUp: event => verifyChange(event, "question10", "length", 0, null, this),
+                        multiline: true,
+                        rows: 7,
+                      }}
+                    />
+                </GridItem>
+              </GridContainer>
+              <GridContainer >
+                  <GridItem xs={12} sm={12} md={10}>
+                    <Field
+                      labelText={t("question_grant6")}
                       component={CustomInputReduxMod}
                       name="question6"
-                      success
+                      success={this.state.question6State === "success"}
+                      error={this.state.question6State === "error"}
                       formControlProps={{
                         fullWidth: true
                       }}
                       inputProps={{
+                        onKeyUp: event => verifyChange(event, "question6", "length", 0, null, this),
                         type: "text",
                       }}
                     />
                 </GridItem>
-              </GridContainer>              
+              </GridContainer>
+              <br/><br/>
+              <center><InfoBold><h4 className={classes.cardTitleCenter} >{t("label_grant_future_impact")}</h4></InfoBold></center>              
               <br/>
+              <GridContainer >
+                <GridItem xs={12} sm={12} md={11}>
+                    <Field
+                      labelText={t("question_grant11")}
+                      component={CustomInputReduxMod}
+                      name="question11"
+                      success={this.state.question11State === "success"}
+                      error={this.state.question11State === "error"}
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        onKeyUp: event => verifyChange(event, "question11", "length", 0, null, this),
+                        multiline: true,
+                        rows: 7,
+                      }}
+                    />
+                </GridItem>
+              </GridContainer>
+              <GridContainer >
+                <GridItem xs={12} sm={12} md={11}>
+                    <Field
+                      labelText={t("question_grant13")}
+                      component={CustomInputReduxMod}
+                      name="question13"
+                      success={this.state.question13State === "success"}
+                      error={this.state.question13State === "error"}
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        onKeyUp: event => verifyChange(event, "question13", "length", 0, null, this),
+                        multiline: true,
+                        rows: 7,
+                      }}
+                    />
+                </GridItem>
+              </GridContainer>
+              <GridContainer >
+                <GridItem xs={12} sm={12} md={11}>
+                    <Field
+                      labelText={t("question_grant14")}
+                      component={CustomInputReduxMod}
+                      name="question14"
+                      success={this.state.question14State === "success"}
+                      error={this.state.question14State === "error"}
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        onKeyUp: event => verifyChange(event, "question14", "length", 0, null, this),
+                        multiline: true,
+                        rows: 7,
+                      }}
+                    />
+                </GridItem>
+              </GridContainer>
+              
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
                     <SuccessBold>
@@ -343,34 +565,6 @@ class EditForm extends React.Component {
                     /> 
                   </GridItem>
               </GridContainer>
-              <br/>
-              <GridContainer >
-                  <GridItem xs={12} sm={12} md={12}>
-                    <SuccessBold>
-                      {t("label_grant_file2")}
-                    </SuccessBold>
-                    <br/>
-                    {
-                      show_grant_ambassador.file2 !== "undefined" ?
-                      <a
-                        href={BASE_URL +  "/web/file/"  + show_grant_ambassador.file2}
-                        target="_blank"
-                      >
-                          {t("label_download_file")}
-                      </a>:
-                      ""
-                    }    
-                    <br/>               
-                    <Field
-                      component={FileUpload}
-                      name="file2"
-                      changeFileName = {this.updateFileName2}
-                      inputProps={{
-                        type: "file",
-                      }}
-                    /> 
-                  </GridItem>
-              </GridContainer>                        
               <GridContainer justify="center">
                   <GridItem xs={12} sm={12} md={12}>
                       { errorRequired ? <Danger><h6 className={classes.infoText}>{t("label_require_fields")}</h6></Danger>: ""}
@@ -378,18 +572,22 @@ class EditForm extends React.Component {
               </GridContainer>
               <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
-                  <div className={classes.center}>
-                      <Link to={"/grant/ambassador"}>
-                      <Button color="default" size="sm">
-                      {t("button_return_to_list")}
-                      </Button>
-                      {" "}
-                      </Link>{" "}
-                      <Button color="info" size="sm" onClick={this.saveClick.bind(this)}>
-                      {t("button_save")}
-                      </Button>
-                      {" "}
-                  </div>
+                  {show_grant_ambassador.state !== "state.reject" && show_grant_ambassador.state !== "state.approved"?
+                    <div className={classes.center}>
+                        <Link to={"/grant/ambassador"}>
+                        <Button color="default" size="sm">
+                        {t("button_return_to_list")}
+                        </Button>
+                        {" "}
+                        </Link>{" "}
+                        <Button color="info" size="sm" onClick={this.saveClick.bind(this)}>
+                        {t("button_save")}
+                        </Button>
+                        {" "}
+                    </div>
+                    :""
+                  }
+                  
                   </GridItem>
               </GridContainer>
               
@@ -416,7 +614,8 @@ EditForm = connect(
     show_grant: state.grantReducer.show_grant,
     active_user: state.loginReducer.active_user,
     successful_send:state.generalReducer.successful_send,
-    show_grant_ambassador: state.grantReducer.show_grant_ambassador
+    show_grant_ambassador: state.grantReducer.show_grant_ambassador,
+    grant_deadline: state.grantReducer.grant_deadline,
   }),
   { dispatchSendRevisionGrantAmbassador: sendRevisionGrantAmbassador, loadShowGrant: showGrant, loadShowGrantAmbassador: showGrantAmbassador, dispatchEditGrantAmbassador: editGrantAmbassador, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful},
 )(EditForm);

@@ -49,7 +49,7 @@ class NewRep extends React.Component {
           <Card>
             <CardHeader color="info">
             <center>
-             <h4 className={classes.cardTitle}>{t("title_grant_application")}</h4>
+             <h4 className={classes.cardTitle}>{show_grant.type === "state.scholarship" ? t("title_grant_application") : t("title_grant_application_startup")}</h4>
              <p>{show_grant.title}</p>
              </center>
             </CardHeader>

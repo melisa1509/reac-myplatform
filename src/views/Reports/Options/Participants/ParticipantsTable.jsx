@@ -5,6 +5,7 @@ import ReactTable from "react-table";
 import { connect } from "react-redux";
 import { getStudentAmbassadorList } from "actions/studentActions.jsx";
 import { Link } from "react-router-dom";
+import { showDate } from "assets/functions/general.jsx";
 
 // @material-ui/icons
 import Create from "@material-ui/icons/Create";
@@ -70,11 +71,7 @@ class ParticipantsTable extends React.Component {
             
     const data = student_ambassador_list.map((prop, key) => {
       let projectState = "";
-      let i = 0;
-      let updated_at=[];
-      for (i = 1; i < 10 ; i++) {
-         updated_at[i]=prop.updated_at[i]
-      }
+     
       if (prop.programsa !== undefined) {
             projectState = t("label_project_ambassador") + " " +  t(prop.programsa.state);
             
@@ -90,7 +87,7 @@ class ParticipantsTable extends React.Component {
         id: key, 
         full_name: prop.first_name + " "+ prop.last_name,
         state:projectState,
-        date:updated_at,
+        date:showDate(prop.updated_at),
         country: prop.country,
         actions: (
           // we've added some custom button actions

@@ -45,7 +45,8 @@ class Show extends React.Component {
   
 
   render() {
-    const { classes, sendRevisionProjectSuccessfull, sendRevisionProjectError, editRevisionSuccessfull, editRevisionError, approveProjectError, approveProjectSuccessfull, t } = this.props;
+    const { classes, idle_timer_modal, sendRevisionProjectSuccessfull, sendRevisionProjectError, editRevisionSuccessfull, editRevisionError, approveProjectError, approveProjectSuccessfull, t } = this.props;
+    console.log('modal->' + idle_timer_modal);
     return (
         <div>
             <AdminHeader/>
@@ -105,6 +106,15 @@ class Show extends React.Component {
                   <h4>{t("label_save_error")}</h4>
               </SweetAlert>
             : ""}
+            {idle_timer_modal ? 
+              <SweetAlert
+                  warning
+                  style={{ display: "block", marginTop: "-100px" }}
+                  title="Your session has expired!"
+                  >
+                  <h4>{t("label_save_error")}</h4>
+              </SweetAlert>
+            : ""}
             
             
         <div
@@ -140,7 +150,8 @@ const mapStateToProps = state => ({
   approveProjectError: state.programmbsReducer.approveProjectError,
   approveProjectSuccessfull: state.programmbsReducer.approveProjectSuccessfull,
   sendRevisionProjectError: state.programmbsReducer.sendRevisionProjectError,
-  sendRevisionProjectSuccessfull: state.programmbsReducer.sendRevisionProjectSuccessfull
+  sendRevisionProjectSuccessfull: state.programmbsReducer.sendRevisionProjectSuccessfull,
+  idle_timer_modal: state.generalReducer.idle_timer_modal,
     
 });
 

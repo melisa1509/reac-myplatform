@@ -1,11 +1,13 @@
 import { ERROR_REQUIRED_FIELDS, SUCCESS_REQUIRED_FIELDS} from "constants/actionTypes";
 import { SUCCESSFULL_EDIT, SUCCESSFUL_DELETE  } from "constants/actionTypes";
+import { IDLE_TIMER } from "constants/actionTypes";
 import { CHANGE_ACTIVE_TAB } from "constants/actionTypes";
 import { DISMATCH_PASSWORD, SUCCESSFULL_EDIT_CLEAN } from "constants/actionTypes";
 import { SUCCESSFULL_NEW, DELETE_SUCCESSFUL, UPDATE_FILE_NAME, SUCCESSFUL_NEW_ARRAY, SUCCESSFUL_SEND } from "constants/actionTypes";
 import { DELETE_ALERT } from "constants/actionTypes";
 
-const initialState = { 
+const initialState = {
+  idle_timer_modal: false, 
   successfull_edit: false,
   successful_delete: false,
   successful_new: false,
@@ -76,8 +78,14 @@ export const generalReducer = (state = initialState, action) => {
           return Object.assign({}, state, {
             active_tab: action.payload
           });
-        }
 
+        case IDLE_TIMER:
+          return Object.assign({}, state, {
+            idle_timer_modal: true
+          });
+
+        }
+        
      return state;
 }
   

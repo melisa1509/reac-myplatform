@@ -1,6 +1,6 @@
 import { ADD_ROWN_P4, ERROR_SEND_REVISION_PROJECT, SUCCESSFULL_SEND_REVISION_PROJECT, SHOW_PROGRAMMBS, LOAD_FORM_PROGRAMMBS, SUCCESSFULL_EDIT_REVISION, ERROR_EDIT_REVISION, HIDE_REVISION_ALERT, SUCCESSFULL_APPROVE_PROJECT, ERROR_APPROVE_PROJECT } from 'constants/actionTypes.jsx';
 import { BASE_URL } from 'constants/urlTypes';
-import { jsonToArray } from "assets/functions/general.jsx";
+import { jsonToArray, checkArray } from "assets/functions/general.jsx";
 import { dashboardStudent } from "actions/studentActions.jsx";
 import { ACTIVE_TAB } from 'constants/actionTypes';
 import { RESET_SHOW_PROGRAMMBS } from 'constants/actionTypes';
@@ -351,11 +351,19 @@ const getValuesForm =  (urlencoded, reduxState) =>{
         urlencoded.append("paperwork1", reduxState.form.programmbs.values.paperwork1 !== undefined ? reduxState.form.programmbs.values.paperwork1 : "");
         urlencoded.append("paperwork2", reduxState.form.programmbs.values.paperwork2 !== undefined ? reduxState.form.programmbs.values.paperwork2 : "");
         urlencoded.append("paperwork3", jsonToArray(reduxState.form.programmbs.values.paperwork3));
+
+        reduxState.form.programmbs.values.paperwork4.p4_array = checkArray(reduxState.form.programmbs.values.paperwork4.p4_array);
+        reduxState.form.programmbs.values.paperwork5.p5_array = checkArray(reduxState.form.programmbs.values.paperwork5.p5_array);
+        reduxState.form.programmbs.values.paperwork6.p6_array = checkArray(reduxState.form.programmbs.values.paperwork6.p6_array);
+        reduxState.form.programmbs.values.paperwork7.p7_array = checkArray(reduxState.form.programmbs.values.paperwork7.p7_array);
+        reduxState.form.programmbs.values.paperwork8.p8_array = checkArray(reduxState.form.programmbs.values.paperwork8.p8_array);
         urlencoded.append("paperwork4", reduxState.form.programmbs.values.paperwork4 !== undefined ? JSON.stringify(reduxState.form.programmbs.values.paperwork4) : "");
         urlencoded.append("paperwork5", reduxState.form.programmbs.values.paperwork5 !== undefined ? JSON.stringify(reduxState.form.programmbs.values.paperwork5) : "");
         urlencoded.append("paperwork6", reduxState.form.programmbs.values.paperwork6 !== undefined ? JSON.stringify(reduxState.form.programmbs.values.paperwork6) : "");
         urlencoded.append("paperwork7", reduxState.form.programmbs.values.paperwork7 !== undefined ? JSON.stringify(reduxState.form.programmbs.values.paperwork7) : "");
         urlencoded.append("paperwork8", reduxState.form.programmbs.values.paperwork8 !== undefined ? JSON.stringify(reduxState.form.programmbs.values.paperwork8) : "");
+
+
         urlencoded.append("quality_p1", reduxState.form.programmbs.values.quality_p1 !== undefined ? reduxState.form.programmbs.values.quality_p1 : "");
         urlencoded.append("quality_p2", reduxState.form.programmbs.values.quality_p2 !== undefined ? reduxState.form.programmbs.values.quality_p2 : "");
         urlencoded.append("quality_p3", reduxState.form.programmbs.values.quality_p3 !== undefined ? reduxState.form.programmbs.values.quality_p3 : "");

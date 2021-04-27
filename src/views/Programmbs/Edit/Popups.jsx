@@ -51,7 +51,7 @@ class Popups extends React.Component {
     
   }
   render() {
-    const { active_user, progressmbs, sendRevisionProjectSuccessfull, sendRevisionProjectError, editRevisionSuccessfull, editRevisionError, approveProjectError, approveProjectSuccessfull, t } = this.props;
+    const { idle_timer_modal, active_user, progressmbs, sendRevisionProjectSuccessfull, sendRevisionProjectError, editRevisionSuccessfull, editRevisionError, approveProjectError, approveProjectSuccessfull, t } = this.props;
     let state = progressmbs === undefined ? false : progressmbs.complete;
     return (
         <>
@@ -148,6 +148,18 @@ class Popups extends React.Component {
                   <h4>{t("label_save_error")}</h4>
               </SweetAlert>
             : ""}
+            {idle_timer_modal ? 
+              <SweetAlert
+                  warning
+                  style={{ display: "block", marginTop: "-100px" }}
+                  title={t("label_session_expired")}
+                  confirmBtnText={t("button_continue")}
+                  confirmBtnCssClass={
+                      this.props.classes.button + " " + this.props.classes.success
+                  }
+                  >
+              </SweetAlert>
+            : ""} 
             
         
       </>
@@ -169,7 +181,8 @@ const mapStateToProps = state => ({
   sendRevisionProjectError: state.programmbsReducer.sendRevisionProjectError,
   sendRevisionProjectSuccessfull: state.programmbsReducer.sendRevisionProjectSuccessfull,
   progressmbs: state.studentReducer.dashboard_student.progressMbs,
-  active_user: state.loginReducer.active_user
+  active_user: state.loginReducer.active_user,
+  idle_timer_modal: state.generalReducer.idle_timer_modal
     
 });
 

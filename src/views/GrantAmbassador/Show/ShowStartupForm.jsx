@@ -15,6 +15,7 @@ import TextEditor from "components/TextEditor/TextEditor";
 import CustomInputReduxMod from 'components/CustomInput/CustomInputReduxMod.jsx';
 import FileUpload from "components/CustomUpload/FileUpload.jsx";
 import Table from "components/Table/Table.jsx";
+import SuccessBold from "components/Typography/SuccessBold.jsx";
 
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -23,9 +24,6 @@ import Danger from "components/Typography/Danger.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import MutedText from "components/Typography/Muted.jsx";
-import SuccessBold from "components/Typography/SuccessBold.jsx";
-import MutedBold from "components/Typography/MutedBold.jsx";
-import InfoBold from "components/Typography/InfoBold.jsx";
 
 import { showGrant, showGrantAmbassador } from "actions/grantActions.jsx";
 import { sendCorrectionGrantAmbassador, sendApprovedGrantAmbassador, sendRejectGrantAmbassador } from "actions/grantActions"; 
@@ -33,6 +31,8 @@ import { errorRequiredFields } from "actions/generalActions.jsx";
 import { successRequiredFields } from "actions/generalActions.jsx";
 import { deleteSuccessful } from "actions/generalActions.jsx";
 import { showDate, monthDate } from "assets/functions/general.jsx";
+import MutedBold from "components/Typography/MutedBold.jsx";
+import InfoBold from "components/Typography/InfoBold.jsx";
 
 // style for this view
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
@@ -65,7 +65,7 @@ const style = {
 };
 
 
-class ShowForm extends React.Component {
+class ShowStartupForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -80,30 +80,30 @@ class ShowForm extends React.Component {
 
      
       sendCorrection() {
-          this.setState({ message: "label_sent_correction_successful"});
-          this.props.dispatchSendCorrectionGrantAmbassador();
-          
-      }
+        this.setState({ message: "label_sent_correction_successful"});
+        this.props.dispatchSendCorrectionGrantAmbassador();
+        
+    }
 
-      sendApproved() {
-          this.setState({ message: "label_sent_approved_successful"});
-          this.props.dispatchSendApprovedGrantAmbassador();
-      }
+    sendApproved() {
+        this.setState({ message: "label_sent_approved_successful"});
+        this.props.dispatchSendApprovedGrantAmbassador();
+    }
 
-      sendReject(){
-         this.setState({ message: "label_sent_reject_successful"});
-         this.props.dispatchSendRejectGrantAmbassador();
-      }
+    sendReject(){
+       this.setState({ message: "label_sent_reject_successful"});
+       this.props.dispatchSendRejectGrantAmbassador();
+    }
 
-      componentDidMount() {
-        this.props.loadShowGrant(this.props.match.params.id);
-        this.props.loadShowGrantAmbassador(this.props.match.params.ambassador);
-      }
+    componentDidMount() {
+      this.props.loadShowGrant(this.props.match.params.id);
+      this.props.loadShowGrantAmbassador(this.props.match.params.ambassador);
+    }
 
-     
-      deleteClick(){
-        this.props.dispatchDeleteSuccessful();
-      }
+   
+    deleteClick(){
+      this.props.dispatchDeleteSuccessful();
+    }
       
     render() {
         const { classes, successfull_edit, editError, errorRequired, show_grant, grant_deadline, show_grant_ambassador } = this.props;
@@ -229,15 +229,7 @@ class ShowForm extends React.Component {
                     </MutedText>
                     <br/>
                     <SuccessBold>
-                      {t("question_grant3")}
-                    </SuccessBold>
-                    <br/>
-                    <MutedText>
-                      {show_grant_ambassador.number}
-                    </MutedText>
-                    <br/>
-                    <SuccessBold>
-                      {t("question_grant8")}
+                      {t("question_startup_grant8")}
                     </SuccessBold>
                     <br/>
                     <MutedText>
@@ -245,7 +237,7 @@ class ShowForm extends React.Component {
                     </MutedText>
                     <br/>
                     <SuccessBold>
-                      {t("question_grant9")}
+                      {t("question_startup_grant9")}
                     </SuccessBold>
                     <br/>
                     <MutedText>
@@ -253,7 +245,7 @@ class ShowForm extends React.Component {
                     </MutedText>
                     <br/>
                     <SuccessBold>
-                      {t("question_grant10")}
+                      {t("question_startup_grant10")}
                     </SuccessBold>
                     <br/>
                     <MutedText>
@@ -261,18 +253,7 @@ class ShowForm extends React.Component {
                     </MutedText>
                     <br/>
                     <SuccessBold>
-                      {t("question_grant6")}
-                    </SuccessBold>
-                    <br/>
-                    <MutedText>
-                      {show_grant_ambassador.question6}
-                    </MutedText>
-                    <br/>
-                    <br/><br/>
-                    <center><InfoBold><h4 className={classes.cardTitleCenter} >{t("label_grant_future_impact")}</h4></InfoBold></center>              
-                    <br/>
-                    <SuccessBold>
-                      {t("question_grant11")}
+                      {t("question_startup_grant11")}
                     </SuccessBold>
                     <br/>
                     <MutedText>
@@ -280,33 +261,135 @@ class ShowForm extends React.Component {
                     </MutedText>
                     <br/>
                     <SuccessBold>
-                      {t("question_grant13")}
+                      {t("question_startup_grant13")}
                     </SuccessBold>
                     <br/>
                     <MutedText>
                       {show_grant_ambassador.question13}
                     </MutedText>
                     <br/>
-                    
                     <SuccessBold>
-                        {t("label_grant_file")}
+                      {t("question_startup_amount")}
+                    </SuccessBold>
+                    <br/>
+                    <MutedText>
+                      {show_grant_ambassador.question6}
+                    </MutedText>
+                    <br/>
+                    <SuccessBold>
+                      {t("question_startup_grant14")}
+                    </SuccessBold>
+                    <br/>
+                    <MutedText>
+                      {show_grant_ambassador.question14}
+                    </MutedText>
+                    <br/><br/><br/>
+                    <InfoBold>
+                      {t("label_grant_startup_attach")}
+                    </InfoBold>
+                    <br/>
+                      <MutedBold>{t("label_grant_startup_includes")}</MutedBold>
+                    <br/>
+                    <br/>
+                    <SuccessBold>
+                      {t("label_grant_startup_file3")}
                     </SuccessBold>
                     <br/>
                     {
-                        show_grant_ambassador.file !== "undefined" ?
-                        <a
-                        href={BASE_URL +  "/web/file/"  + show_grant_ambassador.file}
+                      show_grant_ambassador.file3 !== "undefined" ?
+                      <a
+                        href={BASE_URL +  "/web/file/"  + show_grant_ambassador.file3}
                         target="_blank"
-                        >
-                            {t("label_download_file")}
-                        </a>:
-                        ""
+                      >
+                          {t("label_download_file")}
+                      </a>:
+                      ""
+                    }
+                    <br/><br/>
+                    <SuccessBold>
+                      {t("label_grant_startup_file4")}
+                    </SuccessBold>
+                    <br/>
+                    {
+                      show_grant_ambassador.file4 !== "undefined" ?
+                      <a
+                        href={BASE_URL +  "/web/file/"  + show_grant_ambassador.file4}
+                        target="_blank"
+                      >
+                          {t("label_download_file")}
+                      </a>:
+                      ""
+                    }
+                    <br/><br/>
+                    <SuccessBold>
+                      {t("label_grant_startup_file5")}
+                    </SuccessBold>
+                    <br/>
+                    {
+                      show_grant_ambassador.file5 !== "undefined" ?
+                      <a
+                        href={BASE_URL +  "/web/file/"  + show_grant_ambassador.file5}
+                        target="_blank"
+                      >
+                          {t("label_download_file")}
+                      </a>:
+                      ""
+                    }
+                    <br/><br/>
+                    <SuccessBold>
+                      {t("label_grant_startup_file6")}
+                    </SuccessBold>
+                    <br/>
+                    {
+                      show_grant_ambassador.file6 !== "undefined" ?
+                      <a
+                        href={BASE_URL +  "/web/file/"  + show_grant_ambassador.file6}
+                        target="_blank"
+                      >
+                          {t("label_download_file")}
+                      </a>:
+                      ""
                     }
                     <br/>
                 </GridItem>
               </GridContainer>
               <br/>
-            
+                 <MutedBold>{t("label_grant_startup_plan")}</MutedBold>
+              <br/><br/><br/>
+              <center><InfoBold><h4 className={classes.cardTitleCenter} >{t("label_grant_future_impact")}</h4></InfoBold></center>
+              <br/>
+              <SuccessBold>
+                {t("question_startup_number")}
+              </SuccessBold>
+              <br/>
+              <MutedText>
+                {show_grant_ambassador.number}
+              </MutedText>
+              <br/>
+              <SuccessBold>
+                {t("question_startup_grant15")}
+              </SuccessBold>
+              <br/>
+              <MutedText>
+                {show_grant_ambassador.question15}
+              </MutedText>
+              <br/><br/>
+                <SuccessBold>
+                    {t("label_grant_file_startup")}
+                </SuccessBold>
+                <br/>
+                {
+                    show_grant_ambassador.file !== "undefined" ?
+                    <a
+                    href={BASE_URL +  "/web/file/"  + show_grant_ambassador.file}
+                    target="_blank"
+                    >
+                        {t("label_download_file")}
+                    </a>:
+                    ""
+                }
+
+              <br/>
               <center><h5 className={classes.cardTitleCenter} >{t("label_admin_coments")}</h5></center>
               <GridContainer >
                 <GridItem xs={12} sm={12} md={4}>
@@ -383,13 +466,13 @@ class ShowForm extends React.Component {
     }
 }
 
-ShowForm = reduxForm({
+ShowStartupForm = reduxForm({
   form: 'grantAmbassadorform', 
   enableReinitialize: true
-})(ShowForm);
+})(ShowStartupForm);
 
 
-ShowForm = connect(
+ShowStartupForm = connect(
   state => ({
     initialValues: state.grantReducer.data_grant_ambassador,
     errorRequired:state.generalReducer.errorRequired,
@@ -401,9 +484,9 @@ ShowForm = connect(
     grant_deadline: state.grantReducer.grant_deadline
   }),
   { dispatchSendRejectGrantAmbassador: sendRejectGrantAmbassador, dispatchSendApprovedGrantAmbassador: sendApprovedGrantAmbassador, dispatchSendCorrectionGrantAmbassador: sendCorrectionGrantAmbassador, loadShowGrant: showGrant, loadShowGrantAmbassador: showGrantAmbassador, dispatchShowGrantAmbassador: editGrantAmbassador, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful},
-)(ShowForm);
+)(ShowStartupForm);
 
-export default  withRouter(translate(withStyles(style)(ShowForm)));
+export default  withRouter(translate(withStyles(style)(ShowStartupForm)));
 
 
 

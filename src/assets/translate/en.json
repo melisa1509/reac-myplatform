@@ -284,7 +284,8 @@
     "label_application":                 "Application",
     "label_administrator":               "Administrator",
     "label_grant_corrections":           "Updates or Comments",
-    "label_grant_file":                  "Upload File 1 / Video 1 (Max size 60 Mb)",
+    "label_grant_file":                  "A 30 sec-1:00 min video of you explaining the need for this Scholarship Grant. ",
+    "label_grant_file_startup":          "A 30 sec-1:00 min video of you explaining the need for this Start Up Grant. ",
     "label_grant_file2":                 "Upload File 2 / Video 2 (Max size 60 Mb)",
     "label_grant_success_revision":      "Your application has been submitted successfully. You will receive a confirmation email once it has been reviewed.",
     "label_grant_updates":               "What progress have you made in the past month in your area because of the grant you received ?",
@@ -316,7 +317,8 @@
     "label_grant_future_impact":         "Future Impact",
     "label_grant_startup_plan":          "Your Business Plan should be detailed and well thought-out. We are looking for evidence that you have a plan of exactly how you will use Interweave’s funds to start your business. The receipt of this grant should facilitate self-reliance for your business in the future and we want to see that reflected in your plan.",
     "label_grant_startup_attach":        "Please also attach your current MBS Business Plan to this proposal. Your application will not be considered if your MBS plan is not attached. This plan should be based off of your CURRENT SUCCESS AMBASSADOR BUSINESS.",
-    
+    "label_yes":                         "Yes",
+    "label_not":                         "Not",
 
     
     "link_administrator":               "Administrator",
@@ -475,7 +477,8 @@
     "title_new_grant":                  "New Grant",
     "title_grant_list":                 "Grant List",
     "title_edit_grant":                 "Edit Grant",
-    "title_grant_application":          "Grant Application",
+    "title_grant_application":          "Scholarship Grant Application",
+    "title_grant_application_startup":  "Start Up Grant Application",
     "title_grant_overview":             "Grant Overview",
     "title_grant_application_list":     "Grant Application List",
     "title_grant_ambassador_list_revision" : "Grant Applications Revision Ready",
@@ -591,10 +594,17 @@
     "question_grant":                    "What is your estimated financial need?",
     "question_grant1":                   "In the space below, please give a brief history of your time as a Success Ambassador (tell us about the MBS groups you have facilitated so far including the number of participants and graduates, previous grants received from Interweave, etc.)",
     "question_grant2":                   "In the space below, please explain your need for Interweave’s Scholarship Grant, (including a summary of your efforts to find funding from the sources listed in the introductory letter):",
-    "question_grant3":                   "How many participants will you train in this group (Max 30)?",
+    "question_grant3":                   "How many total participants will this grant train?",
     "question_grant4":                   "How much will participants contribute for their own participation?",
     "question_grant5":                   "What other sources of funding do you have and how much will they contribute? (Partnerships or contracts)",
-    "question_grant6":                   "TOTAL AMOUNT SOUGHT FROM INTERWEAVE:",
+    "question_grant6":                   "What is the total amount is USD you are looking to receive from Interweave Solutions?",
+    "question_grant8":                   "What is the TOTAL financial cost to offer this training? (Bldg, transportation, electricity,etc.)",
+    "question_grant9":                   "How much will participants contribute of their own money, in USD?",
+    "question_grant10":                  "How much will other organizations contribute of their own resources, in USD? (Estimated dollar amount if they are providing the training facility, recruiting, etc. )",
+    "question_grant11":                  "Is it a hard to serve area?",
+    "question_grant12":                  "What is the total amount is USD you are looking to receive from Interweave Solutions?",
+    "question_grant13":                  "What is the potential impact? Trained participants",
+    "question_grant14":                  "How will this grant help the Success Ambassador get more groups in the future/ improve their business?",
     "question_startup_grant3":           "How many groups have you trained?",
     "question_startup_grant4":           "How many MBS graduates do you have?",
     "question_startup_grant5":           "How many months have you been a Success Ambassador?",
@@ -941,7 +951,9 @@
         "available":                  "Available",
         "not_available":              "Not available",
         "startup":                    "Start Up",
-        "scholarship":                "scholarship"    
+        "scholarship":                "scholarship",
+        "yes":                        "Yes",
+        "not":                        "Not"    
     }, 
 
     "option":{

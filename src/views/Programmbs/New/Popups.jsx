@@ -47,7 +47,7 @@ class Show extends React.Component {
   
 
   render() {
-    const { classes, progressmbs, sendRevisionProjectSuccessfull, sendRevisionProjectError, editRevisionSuccessfull, editRevisionError, approveProjectError, approveProjectSuccessfull, t } = this.props;
+    const { idle_timer_modal, progressmbs, sendRevisionProjectSuccessfull, sendRevisionProjectError, editRevisionSuccessfull, editRevisionError, approveProjectError, approveProjectSuccessfull, t } = this.props;
     let state = progressmbs === undefined ? false : progressmbs.complete;
     return (
         <div>
@@ -115,6 +115,18 @@ class Show extends React.Component {
                   >
                   <h4>{t("label_save_error")}</h4>
               </SweetAlert>
+            : ""}
+            {idle_timer_modal ? 
+              <SweetAlert
+                  warning
+                  style={{ display: "block", marginTop: "-100px" }}
+                  title={t("label_session_expired")}
+                  confirmBtnText={t("button_continue")}
+                  confirmBtnCssClass={
+                      this.props.classes.button + " " + this.props.classes.success
+                  }
+                  >
+              </SweetAlert>
             : ""}  
       </div>
     
@@ -134,8 +146,8 @@ const mapStateToProps = state => ({
   approveProjectSuccessfull: state.programmbsReducer.approveProjectSuccessfull,
   sendRevisionProjectError: state.programmbsReducer.sendRevisionProjectError,
   sendRevisionProjectSuccessfull: state.programmbsReducer.sendRevisionProjectSuccessfull,
-  progressmbs: state.studentReducer.dashboard_student.progressMbs
-    
+  progressmbs: state.studentReducer.dashboard_student.progressMbs,
+  idle_timer_modal: state.generalReducer.idle_timer_modal    
 });
 
 const mapDispatchToPropsActions = dispatch => ({
