@@ -14,6 +14,7 @@ import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
 import { translate } from 'react-switch-lang';
 import { showDate } from "assets/functions/general.jsx";
+import { cleanNewGrantAmbassador } from "actions/grantActions";
 
 
 
@@ -59,6 +60,7 @@ class IndexTable extends React.Component {
   componentDidMount() {
     this.props.dispatchGetGrantActiveList();
     this.props.dispatchShowGrantDeadline();
+    this.props.dispatchCleanGrantAmbassador();
   }
 
  
@@ -188,7 +190,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToPropsActions = dispatch => ({
   dispatchGetGrantActiveList: () => dispatch( getGrantActiveList() ),
-  dispatchShowGrantDeadline: () => dispatch( showGrantDeadline() )
+  dispatchShowGrantDeadline: () => dispatch( showGrantDeadline() ),
+  dispatchCleanGrantAmbassador: () => dispatch( cleanNewGrantAmbassador())
 });
 
 const IndexTableComponent = translate(IndexTable);

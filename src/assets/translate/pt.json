@@ -323,7 +323,8 @@
     "label_grant_startup_attach":        "Por favor, inclua também seu Plano de Negócios atual do MBS a esta proposta. Sua solicitação não será considerada se seu plano MBS não for anexado. Este plano deve ser baseado em seu NEGÓCIO ATUAL DE EMBAIXADOR DE SUCESSO.",
     "label_yes":                         "Sim",
     "label_not":                         "Não",
-
+    "label_only_numbers":                "(Apenas números)",
+    "label_message_require_fields":      "Seu Aplicação não foi aprovado porque está incompleto. Por favor, verifique cada uma das seções e certifique-se de que todas as informações foram preenchidas. Se você tiver alguma dúvida, mande um e-mail para team@interweavesolutions.org.",
 
 
     "link_administrator":               "Administrador",

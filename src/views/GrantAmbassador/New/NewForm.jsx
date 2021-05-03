@@ -20,7 +20,7 @@ import GridItem from "components/Grid/GridItem.jsx";
 import SweetAlert from "react-bootstrap-sweetalert";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInputReduxMod from 'components/CustomInput/CustomInputReduxMod.jsx';
-import FileUpload from "components/CustomUpload/FileUpload.jsx";
+import FileInput from "components/CustomUpload/FileInput.jsx";
 import Table from "components/Table/Table.jsx";
 import SuccessBold from "components/Typography/SuccessBold.jsx";
 import MutedBold from "components/Typography/MutedBold.jsx";
@@ -28,7 +28,7 @@ import InfoBold from "components/Typography/InfoBold.jsx";
 
 import { newGrantAmbassador } from "actions/grantActions";
 import { sendRevisionGrantAmbassador } from "actions/grantActions";
-import { errorRequiredFields } from "actions/generalActions.jsx";
+import { errorRequiredFields, errorSubmit, successSubmit } from "actions/generalActions.jsx";
 import { successRequiredFields } from "actions/generalActions.jsx";
 import { showGrantRedirect, showGrantDeadline  } from "actions/grantActions.jsx";
 import { verifyChange } from "assets/validation/index.jsx";
@@ -84,6 +84,7 @@ class NewForm extends React.Component {
             question11State: "",
             question13State: "",
             question14State: "",
+            fileState: "",
         };
         this.saveClick = this.saveClick.bind(this);
         this.deleteClick= this.deleteClick.bind(this);
@@ -91,82 +92,103 @@ class NewForm extends React.Component {
     }
 
 
-    saveClick() {
-        if (this.state.codeState === "") {
+    sendRevision() {
+        
+        if (this.state.codeState === "" || this.state.codeState === "error") {
           this.setState({ codeState: "error" });
           this.props.dispatchErrorRequiredFields();
+          this.props.dispatchErrorSubmit();
         }
 
-        if (this.state.numberState === "") {
+        if (this.state.numberState === "" ||  this.state.numberState === "error") {
           this.setState({ numberState: "error" });
           this.props.dispatchErrorRequiredFields();
+          this.props.dispatchErrorSubmit();
         }
 
-        if (this.state.question3State === "") {
+        if (this.state.question3State === "" || this.state.question3State === "error") {
           this.setState({ question3State: "error" });
           this.props.dispatchErrorRequiredFields();
+          this.props.dispatchErrorSubmit();
         }
 
-        if (this.state.question4State === "") {
+        if (this.state.question4State === "" || this.state.question4State === "error") {
           this.setState({ question4State: "error" });
           this.props.dispatchErrorRequiredFields();
+          this.props.dispatchErrorSubmit();
         }
 
-        if (this.state.question5State === "") {
+        if (this.state.question5State === "" || this.state.question5State === "error") {
           this.setState({ question5State: "error" });
           this.props.dispatchErrorRequiredFields();
+          this.props.dispatchErrorSubmit();
         }
 
-        if (this.state.question6State === "") {
+        if (this.state.question6State === "" || this.state.question6State === "error") {
           this.setState({ question6State: "error" });
           this.props.dispatchErrorRequiredFields();
+          this.props.dispatchErrorSubmit();
         }
 
-        if (this.state.question7State === "") {
+        if (this.state.question7State === "" || this.state.question7State === "error") {
           this.setState({ question7State: "error" });
           this.props.dispatchErrorRequiredFields();
+          this.props.dispatchErrorSubmit();
         }
 
-        if (this.state.question8State === "") {
+        if (this.state.question8State === "" || this.state.question8State === "error") {
           this.setState({ question8State: "error" });
           this.props.dispatchErrorRequiredFields();
+          this.props.dispatchErrorSubmit();
         }
 
-        if (this.state.question9State === "") {
+        if (this.state.question9State === "" || this.state.question9State === "error") {
           this.setState({ question9State: "error" });
           this.props.dispatchErrorRequiredFields();
+          this.props.dispatchErrorSubmit();
         }
 
-        if (this.state.question10State === "") {
+        if (this.state.question10State === "" || this.state.question10State === "error") {
           this.setState({ question10State: "error" });
           this.props.dispatchErrorRequiredFields();
+          this.props.dispatchErrorSubmit();
         }
 
-        if (this.state.question11State === "") {
+        if (this.state.question11State === "" || this.state.question11State === "error") {
           this.setState({ question11State: "error" });
           this.props.dispatchErrorRequiredFields();
+          this.props.dispatchErrorSubmit();
         }
 
-        if (this.state.question13State === "") {
+        if (this.state.question13State === "" || this.state.question13State === "error") {
           this.setState({ question13State: "error" });
           this.props.dispatchErrorRequiredFields();
+          this.props.dispatchErrorSubmit();
         }
 
-        if (this.state.question14State === "") {
+        if (this.state.question14State === "" || this.state.question14State === "error") {
           this.setState({ question14State: "error" });
           this.props.dispatchErrorRequiredFields();
+          this.props.dispatchErrorSubmit();
+        }
+
+        if (this.state.fileState === "" || this.state.fileState === "error") {
+          this.setState({ fileState: "error" });
+          this.props.dispatchErrorRequiredFields();
+          this.props.dispatchErrorSubmit();
         }
  
-        if(this.state.codeState === "success"  && this.state.numberState === "success"  && this.state.question3State === "success" && this.state.question4State === "success" && this.state.question5State === "success" && this.state.question6State === "success" && this.state.question7State === "success" && this.state.question8State === "success" && this.state.question9State === "success" && this.state.question10State === "success" && this.state.question11State === "success" && this.state.question13State === "success" && this.state.question14State === "success"){
+        if(this.state.fileState === "success"  && this.state.codeState === "success"  && this.state.numberState === "success"  && this.state.question3State === "success" && this.state.question4State === "success" && this.state.question5State === "success" && this.state.question6State === "success" && this.state.question7State === "success" && this.state.question8State === "success" && this.state.question9State === "success" && this.state.question10State === "success" && this.state.question11State === "success" && this.state.question13State === "success" && this.state.question14State === "success"){
           this.props.dispatchNewGrantAmbassador();
           this.props.dispatchSuccessRequiredFields();
+          this.props.dispatchDeleteSuccessful();
+          this.props.dispatchSendRevisionGrantAmbassador();
         }
       
     }
 
-    sendRevision() {
-      this.props.dispatchDeleteSuccessful();
-      this.props.dispatchSendRevisionGrantAmbassador();
+    saveClick(){
+      this.props.dispatchNewGrantAmbassador();
     }
 
     deleteClick(){
@@ -175,15 +197,16 @@ class NewForm extends React.Component {
 
     componentDidMount() {
       this.props.change('question12', "state.not");
+      this.props.change('number', 0);
     }
 
     updateFileName = (key) => {
       this.props.change('file', key);
+      verifyChange(key, "file", "attached", 0, null, this);
     }
 
-        
     render() {
-        const { classes, errorRequired, show_grant, successfull_new, active_user, grant_deadline, successful_send } = this.props;
+        const { classes, errorRequired, show_grant, successfull_new, errorSubmit, grant_deadline, successful_send } = this.props;
         let { t } = this.props;  
          
         return (
@@ -235,6 +258,19 @@ class NewForm extends React.Component {
                           <h4>{t("label_save_success")}</h4>
                           </SweetAlert>
                       : ""}
+                      {errorSubmit ? 
+                          <SweetAlert
+                            warning
+                            style={{ display: "block", marginTop: "-100px" }}
+                            onConfirm={() => this.deleteClick()}
+                            confirmBtnText={t("button_continue")}
+                            confirmBtnCssClass={
+                              this.props.classes.button + " " + this.props.classes.success
+                            }
+                          >
+                          <h4>{t("label_message_require_fields")}</h4>
+                          </SweetAlert>
+                      : ""}
                       {successful_send ? 
                           <SweetAlert
                             success                            
@@ -253,7 +289,7 @@ class NewForm extends React.Component {
                   </GridItem>
               </GridContainer>
               <GridContainer >
-                  <GridItem xs={12} sm={12} md={4}>
+                  <GridItem xs={12} sm={12} md={2}>
                     <Field
                       labelText={t("label_success_ambassador_code")+ " *"}
                       component={CustomInputReduxMod}
@@ -271,11 +307,11 @@ class NewForm extends React.Component {
                 </GridItem>
               </GridContainer>
               <br/>
-              <center><InfoBold><h4 className={classes.cardTitleCenter} >{t("label_grant_history")}</h4></InfoBold></center>
+              <center><InfoBold><h4 className={classes.cardTitleCenter} >{t("label_grant_history") + " " + t("label_only_numbers")}</h4></InfoBold></center>
               <GridContainer >
-                  <GridItem xs={12} sm={12} md={5}>
+                  <GridItem xs={12} sm={12} md={2}>
                     <Field
-                      labelText={t("question_startup_grant3")}
+                      labelText={t("question_startup_grant3") + " " + t("label_only_numbers")}
                       component={CustomInputReduxMod}
                       name="question3"
                       success={this.state.question3State === "success"}
@@ -285,15 +321,15 @@ class NewForm extends React.Component {
                       }}
                       inputProps={{
                         onKeyUp: event => verifyChange(event, "question3", "length", 0, null, this),
-                        type: "text",
+                        type: "number",
                       }}
                     />
                 </GridItem>
               </GridContainer>
               <GridContainer >
-                <GridItem xs={12} sm={12} md={5}>
+                <GridItem xs={12} sm={12} md={2}>
                     <Field
-                      labelText={t("question_startup_grant4")}
+                      labelText={t("question_startup_grant4") + " " + t("label_only_numbers")}
                       component={CustomInputReduxMod}
                       name="question4"
                       success={this.state.question4State === "success"}
@@ -303,15 +339,15 @@ class NewForm extends React.Component {
                       }}
                       inputProps={{
                         onKeyUp: event => verifyChange(event, "question4", "length", 0, null, this),
-                        type: "text",
+                        type: "number",
                       }}
                     />
                 </GridItem>
               </GridContainer>
               <GridContainer >
-                <GridItem xs={12} sm={12} md={5}>
+                <GridItem xs={12} sm={12} md={2}>
                     <Field
-                      labelText={t("question_startup_grant5")}
+                      labelText={t("question_startup_grant5") + " " + t("label_only_numbers")}
                       component={CustomInputReduxMod}
                       name="question5"
                       success={this.state.question5State === "success"}
@@ -321,15 +357,15 @@ class NewForm extends React.Component {
                       }}
                       inputProps={{
                         onKeyUp: event => verifyChange(event, "question5", "length", 0, null, this),
-                        type: "text",
+                        type: "number",
                       }}
                     />
                 </GridItem>
               </GridContainer>
               <GridContainer >
-                  <GridItem xs={12} sm={12} md={5}>
+                  <GridItem xs={12} sm={12} md={2}>
                     <Field
-                      labelText={t("question_startup_grant7")}
+                      labelText={t("question_startup_grant7") + " " + t("label_only_numbers")}
                       component={CustomInputReduxMod}
                       name="question7"
                       success={this.state.question7State === "success"}
@@ -339,7 +375,7 @@ class NewForm extends React.Component {
                       }}
                       inputProps={{
                         onKeyUp: event => verifyChange(event, "question7", "length", 0, null, this),
-                        type: "text",
+                        type: "number",
                       }}
                     />
                 </GridItem>
@@ -347,7 +383,7 @@ class NewForm extends React.Component {
               <br/>
               <center><InfoBold><h4 className={classes.cardTitleCenter} >{t("label_grant_present_need")}</h4></InfoBold></center>
               <GridContainer >
-                <GridItem xs={12} sm={12} md={3}>
+                <GridItem xs={12} sm={12} md={2}>
                     <br/>
                     <SuccessBold>
                       {t("question_startup_grant12")}
@@ -362,9 +398,9 @@ class NewForm extends React.Component {
 
 
               <GridContainer >
-                  <GridItem xs={12} sm={12} md={5}>
+                  <GridItem xs={12} sm={12} md={2}>
                     <Field
-                      labelText={t("question_grant3")}
+                      labelText={t("question_grant3") + " " + t("label_only_numbers")}
                       component={CustomInputReduxMod}
                       name="number"
                       success={this.state.numberState === "success"}
@@ -374,7 +410,7 @@ class NewForm extends React.Component {
                       }}
                       inputProps={{
                         onKeyUp: event => verifyChange(event, "number", "length", 0, null, this),
-                        type: "text",
+                        type: "number",
                       }}
                     />
                 </GridItem>
@@ -437,9 +473,9 @@ class NewForm extends React.Component {
                 </GridItem>
               </GridContainer>
               <GridContainer >
-                  <GridItem xs={12} sm={12} md={10}>
+                  <GridItem xs={12} sm={12} md={2}>
                     <Field
-                      labelText={t("question_grant6")}
+                      labelText={t("question_grant6") + " " + t("label_only_numbers")}
                       component={CustomInputReduxMod}
                       name="question6"
                       success={this.state.question6State === "success"}
@@ -449,7 +485,7 @@ class NewForm extends React.Component {
                       }}
                       inputProps={{
                         onKeyUp: event => verifyChange(event, "question6", "length", 0, null, this),
-                        type: "text",
+                        type: "number",
                       }}
                     />
                 </GridItem>
@@ -517,13 +553,12 @@ class NewForm extends React.Component {
               
               <GridContainer >
                   <GridItem xs={12} sm={12} md={12}>
-                    <SuccessBold>
-                      {t("label_grant_file")}
-                    </SuccessBold>
-                    <br/>             
                     <Field
-                      component={FileUpload}
+                      labelText={t('label_grant_file')}
+                      component={FileInput}
                       name="file"
+                      success={this.state.fileState === "success"}
+                      error={this.state.fileState === "error"}
                       changeFileName = {this.updateFileName}
                       inputProps={{
                         type: "file",
@@ -574,6 +609,7 @@ NewForm = reduxForm({
 NewForm = connect(
   state => ({
     errorRequired:state.generalReducer.errorRequired,
+    errorSubmit:state.generalReducer.errorSubmit,
     successRequired:state.generalReducer.successRequired,
     successfull_new:state.generalReducer.successfull_new,
     new_grant: state.grantReducer.new_grant,
@@ -582,9 +618,8 @@ NewForm = connect(
     new_grant_ambassador: state.form.grantAmbassadorNewform,
     successful_send:state.generalReducer.successful_send,
     grant_deadline: state.grantReducer.grant_deadline,
-    initialValues: state.grantReducer.new_grant_ambassador,
   }),
-  { dispatchShowGrantDeadline: showGrantDeadline, dispatchSendRevisionGrantAmbassador: sendRevisionGrantAmbassador, dispatchShowGrant: showGrant, dispatchNewGrantAmbassador: newGrantAmbassador, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful, dispatchShowGrantRedirect: showGrantRedirect },
+  { dispatchErrorSubmit: errorSubmit, dispatchSuccessSubmit: successSubmit, dispatchShowGrantDeadline: showGrantDeadline, dispatchSendRevisionGrantAmbassador: sendRevisionGrantAmbassador, dispatchShowGrant: showGrant, dispatchNewGrantAmbassador: newGrantAmbassador, dispatchErrorRequiredFields: errorRequiredFields, dispatchSuccessRequiredFields: successRequiredFields, dispatchDeleteSuccessful: deleteSuccessful, dispatchShowGrantRedirect: showGrantRedirect },
 )(NewForm);
 
 export default  withRouter(translate(withStyles(style)(NewForm)));

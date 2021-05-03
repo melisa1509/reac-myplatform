@@ -102,7 +102,7 @@ function CustomInputReduxMod({...props }) {
         classes={{
           input: inputClasses,
           root: marginTop,
-          disabled: classes.disabled,
+          disabled: classes.disabled, 
           underline: underlineClasses
         }}
         id={id}

@@ -49,7 +49,7 @@ class FileUpload extends React.Component {
       
     render() {
         const { input} = this.props;
-        const {uploadPercentage} = this.state;
+        const {uploadPercentage} = this.state; 
         return (
             <div>
                 <input type="file" onChange={this.uploadFile} multiple />

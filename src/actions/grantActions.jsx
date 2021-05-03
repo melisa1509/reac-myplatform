@@ -20,6 +20,7 @@ import { GRANT_AMBASSADOR_APPLICATION } from 'constants/actionTypes';
 import { NEW_GRANT_GROUP, SHOW_GRANT_USER } from 'constants/actionTypes';
 import { SHOW_GRANT_GROUP_LIST, LOAD_FORM_GRANT_GROUP } from 'constants/actionTypes';
 import { SHOW_GRANT_STATISTIC } from 'constants/actionTypes';
+import { CLEAN_NEW_GRANT_AMBASSADOR } from 'constants/actionTypes';
 
 export const getGrantList= () => {
     return (dispatch, getState) => {
@@ -218,6 +219,7 @@ export const showGrantUser = key => {
 };
 
 export const loadFormGrant = data => ({ type: LOAD_FORM_GRANT, data });
+export const cleanNewGrantAmbassador = () => ({ type: CLEAN_NEW_GRANT_AMBASSADOR });
 export const editGrant = ()=> {
     
     return (dispatch, getState) => {
@@ -277,6 +279,7 @@ export const editGrantAmbassador = ()=> {
         urlencoded.append("question12",reduxState.form.grantAmbassadorform.values.question12);
         urlencoded.append("question13",reduxState.form.grantAmbassadorform.values.question13);
         urlencoded.append("question14",reduxState.form.grantAmbassadorform.values.question14);
+        urlencoded.append("question15",reduxState.form.grantAmbassadorform.values.question15);
         urlencoded.append("file",reduxState.form.grantAmbassadorform.values.file);
         urlencoded.append("file2",reduxState.form.grantAmbassadorform.values.file2);
         urlencoded.append("file3",reduxState.form.grantAmbassadorform.values.file3);
@@ -453,6 +456,7 @@ export const newGrantAmbassador = ()=> {
     var urlencoded = new URLSearchParams();
     urlencoded.append("id_ambassador",reduxState.loginReducer.active_user.id);
     urlencoded.append("id_grant", reduxState.grantReducer.show_grant.id);
+    urlencoded.append("id", reduxState.grantReducer.new_grant_ambassador.id);
     urlencoded.append("code",reduxState.form.grantAmbassadorNewform.values.code);
     urlencoded.append("number",reduxState.form.grantAmbassadorNewform.values.number);
     urlencoded.append("question1",reduxState.form.grantAmbassadorNewform.values.question1);

@@ -11,7 +11,7 @@ export const verifyEmail = value => {
 
 // function that verifies if a string has a given length or not
 export const verifyLength = (value, length) => {
-    if (value.length > length) {
+    if (value.length > length && value !== "undefined") {
       return true;
     }
     return false;
@@ -131,6 +131,13 @@ export const verifyChange = (event, stateName, type, stateNameEqualTo, maxValue,
           state.setState({ [stateName + "State"]: "error" });
         }
         break;
+      case "attached":
+        if (verifyLength(event, stateNameEqualTo)) {
+          state.setState({ [stateName + "State"]: "success" });
+        } else {
+          state.setState({ [stateName + "State"]: "error" });
+        }
+        break;
       default:
         break;
     }
@@ -138,8 +145,14 @@ export const verifyChange = (event, stateName, type, stateNameEqualTo, maxValue,
       case "checkbox":
         state.setState({ [stateName]: event.target.checked });
         break;
+      case "attached":
+        break;
       default:
         state.setState({ [stateName]: event.target.value });
         break;
     }
   }
+
+ 
+
+ 

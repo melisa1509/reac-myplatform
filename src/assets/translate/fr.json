@@ -328,7 +328,8 @@
         "label_grant_startup_attach":        "Veuillez également joindre votre plan d'affaires MBS actuel à cette proposition. Votre demande ne sera pas prise en considération si votre plan MBS n'est pas joint. Ce plan doit être basé sur votre ENTREPRISE ACTUELLE D'AMBASSADEUR DE SUCCÈS.",
         "label_yes":                         "Oui",
         "label_not":                         "Non",
-
+        "label_only_numbers":                "(Seulement les chiffres)",
+        "label_message_require_fields":      "Votre application n'a pas pu être soumis parce qu'il n'est pas complet. Veuillez passer en revue chacune des sections et vous assurer que tous les renseignements sont complets. Si vous avez des questions, veuillez contacter equipe@interweavesolutions.org.",
 
        "link_administrator":               "Administrateur",
        "link_ambassador_student":          "Assigner Mentor",

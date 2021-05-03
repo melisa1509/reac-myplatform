@@ -54,6 +54,7 @@ import {
     labelRoot: {
       ...defaultFont,
       color: grayColor[3] + " !important",
+      transform: "scale(0.95, 0.95)",
       width: "max-content",
       fontWeight: "400",
       fontSize: "14px",

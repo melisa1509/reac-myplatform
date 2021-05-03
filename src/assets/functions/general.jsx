@@ -67,8 +67,6 @@ export const monthDate = ( time = new Date() , prefix = "") => {
         return moment(date).format('MMM-YYYY');
     }
     
-    
-    
 }
 
 export const convertDate = date => {

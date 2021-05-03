@@ -319,6 +319,8 @@
     "label_grant_startup_attach":        "Please also attach your current MBS Business Plan to this proposal. Your application will not be considered if your MBS plan is not attached. This plan should be based off of your CURRENT SUCCESS AMBASSADOR BUSINESS.",
     "label_yes":                         "Yes",
     "label_not":                         "Not",
+    "label_only_numbers":                "(Only numbers)",
+    "label_message_require_fields":      "Your application could not be submitted because it is not complete. Please go through each of the sections and make sure that all of the information is filled out. If you have any questions, please contact team@interweavesolutions.org.",
 
     
     "link_administrator":               "Administrator",

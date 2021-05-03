@@ -315,6 +315,8 @@
         "label_grant_startup_attach":        "Por favor, adjunte también su plan de negocio MBS actual a esta propuesta. Su solicitud no será considerada si no se adjunta su plan de MBS. Este plan debe basarse en su actual negocio de Embajador éxito.",
         "label_yes":                         "Si",
         "label_not":                         "No",
+        "label_only_numbers":                "(Solo números)",
+        "label_message_require_fields":      "No es posible enviar su aplicación debido a que no ha completado el 100% de información requerida. Si tiene alguna pregunta use el boton de ayuda para contactar con un administrador.",
         
    
         "link_admins":                      "Administradores",
