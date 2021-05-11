@@ -14,6 +14,7 @@ import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import matchSorter from 'match-sorter';
 import { translate } from 'react-switch-lang';
+import { BASE_URL } from "constants/urlTypes";
 
 class GrantTable extends React.Component {
   constructor(props) {
@@ -61,7 +62,7 @@ class GrantTable extends React.Component {
     const {  loading, grant_ambassador_list, active_user } = this.props;
     let { t } = this.props;
 
-    const list = active_user.roles.includes("ROLE_LANGUAGE_ADMIN") ? grant_ambassador_list.filter(prop => active_user.language_grader.includes(prop.language) )  : grant_ambassador_list ;
+    const list = active_user.roles.includes("ROLE_LANGUAGE_ADMIN") ? grant_ambassador_list.filter(prop => active_user.language_grader.includes(prop.grant.language) )  : grant_ambassador_list ;
             
     const data = list.map((prop, key) => {
       return {
@@ -84,7 +85,7 @@ class GrantTable extends React.Component {
               <Button
                 size="sm"
                 color="info"
-                href={ "https://lms.interweavesolutions.org/file/grantapplication/" + prop.id}
+                href={ BASE_URL + "/file/grantapplication/" + prop.id}
                 target="_blank"
               >
                 {t('button_download_pdf')}

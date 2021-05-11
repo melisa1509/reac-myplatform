@@ -43,6 +43,7 @@ class ShowRep extends React.Component {
         <GridItem xs={12} sm={12} md={12}>
             <CardHeader color="info" >
                 <h4 className={classes.cardTitleCenter}>{t("title_program_sa")}</h4>
+                <center><p>{t("title_program_sa_subtitle")}</p></center>
                 <p className={classes.cardCategory}>{ programsa.student.first_name + " " + programsa.student.last_name + " / " + programsa.student.studentgroup.group.name + " / " + programsa.student.studentgroup.group.embassador.first_name + "  " + programsa.student.studentgroup.group.embassador.last_name} </p> 
             </CardHeader>
             <CardBody>
