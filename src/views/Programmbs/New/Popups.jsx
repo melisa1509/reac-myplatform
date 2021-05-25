@@ -51,7 +51,7 @@ class Show extends React.Component {
     let state = progressmbs === undefined ? false : progressmbs.complete;
     return (
         <div>
-            <AdminHeader/>
+          <AdminHeader/>
             {editRevisionSuccessfull ? 
               <SweetAlert
                   success

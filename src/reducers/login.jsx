@@ -12,7 +12,11 @@ const initialState = {
     evaluation:{},
     studentgroup:{
       group:{
-        program:""
+        program:"",
+        embassador:{
+          first_name:"",
+          last_name:""
+        }
       }
     },
   }

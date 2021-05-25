@@ -77,7 +77,7 @@ class ShowForm extends React.Component {
 
 
     render() {
-        const { classes, programmbs } = this.props;
+        const { classes, programmbs, active_user } = this.props;
         let { t } = this.props;
         return (
           <GridContainer justify="center">
@@ -109,17 +109,13 @@ class ShowForm extends React.Component {
                         </Button>
                         </Link>
                       </center>
+                      {active_user.roles.includes("ROLE_ADMIN") || active_user.roles.includes("ROLE_LANGUAGE_ADMIN") ?
                       <center>
-                        <Link to={"/profile/edit/"}> 
-                          <Button color="default" size="sm">
-                          {t("button_certificate_attendance")}
-                          </Button>
-                        </Link>
-                          {" "}
                         <Button color="success" size="sm" onClick={this.handleApproveProject}>
                             {t("button_approved")}
                         </Button>
                       </center>
+                      :""}
                   </GridItem>
               </GridContainer>
             </GridItem>
@@ -130,6 +126,7 @@ class ShowForm extends React.Component {
 
 const mapStateToProps = state => ({ 
       programmbs: state.programmbsReducer.programmbs,
+      active_user: state.loginReducer.active_user
       
 });
 

@@ -100,7 +100,7 @@ class Controls extends React.Component {
                 }
                 <IdleTimer
                   ref={ref => { this.idleTimer = ref }}
-                  timeout={1000 * 60 * 15 }
+                  timeout={1000 * 60 * 15}
                   onActive={this.handleOnActive}
                   onIdle={this.handleOnIdle}
                   onAction={this.handleOnAction}

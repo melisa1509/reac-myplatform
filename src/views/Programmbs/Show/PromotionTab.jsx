@@ -50,8 +50,28 @@ class PromotionTab extends React.Component {
               {t("question_promotion1")}
             </SuccessBold>
             <br/>
+            <br/>
+            <SuccessBold>
+              {t("question_promotion6")}
+            </SuccessBold>
+            <br/>
+            {
+                  programmbs.promotion6 !== "undefined" && programmbs.promotion6 !== undefined ?
+                  <a
+                    href={BASE_URL +  "/web/file/"  + programmbs.promotion6}
+                    target="_blank"
+                  >
+                      {t("label_download_file")}
+                  </a>:
+                  ""
+                }
+            <br/>
+            <SuccessBold>
+              {t("question_promotion7")}
+            </SuccessBold>
+            <br/>
             <MutedText>
-              {programmbs.promotion1}
+              {t(programmbs.promotion7)}
             </MutedText>
             <br/>
             <SuccessBold>
@@ -83,7 +103,7 @@ class PromotionTab extends React.Component {
             </SuccessBold>
             <br/>
             {
-                  programmbs.promotion5 !== undefined ?
+                  programmbs.promotion5 !== "undefined" && programmbs.promotion5 !== undefined ?
                   <a
                     href={BASE_URL +  "/web/file/"  + programmbs.promotion5}
                     target="_blank"

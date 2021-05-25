@@ -293,7 +293,7 @@ class ShowForm extends React.Component {
                     </SuccessBold>
                     <br/>
                     {
-                        show_grant_ambassador.file !== "undefined" ?
+                        show_grant_ambassador.file !== "undefined" && show_grant_ambassador.file !== undefined ?
                         <a
                         href={BASE_URL +  "/web/file/"  + show_grant_ambassador.file}
                         target="_blank"

@@ -695,7 +695,7 @@ class EditStartupForm extends React.Component {
                     /> 
                     <br/>
                     {
-                      show_grant_ambassador.file3 !== "undefined" ?
+                      show_grant_ambassador.file3 !== "undefined" && show_grant_ambassador.file3 !== undefined ?
                       <a
                         href={BASE_URL +  "/web/file/"  + show_grant_ambassador.file3}
                         target="_blank"
@@ -724,7 +724,7 @@ class EditStartupForm extends React.Component {
                     /> 
                     <br/>
                     {
-                      show_grant_ambassador.file4 !== "undefined" ?
+                      show_grant_ambassador.file4 !== "undefined" && show_grant_ambassador.file4 !== undefined ?
                       <a
                         href={BASE_URL +  "/web/file/"  + show_grant_ambassador.file4}
                         target="_blank"
@@ -752,7 +752,7 @@ class EditStartupForm extends React.Component {
                     /> 
                     <br/>
                     {
-                      show_grant_ambassador.file5 !== "undefined" ?
+                      show_grant_ambassador.file5 !== "undefined" && show_grant_ambassador.file5 !== undefined ?
                       <a
                         href={BASE_URL +  "/web/file/"  + show_grant_ambassador.file5}
                         target="_blank"
@@ -780,7 +780,7 @@ class EditStartupForm extends React.Component {
                     /> 
                     <br/>
                     {
-                      show_grant_ambassador.file6 !== "undefined" ?
+                      show_grant_ambassador.file6 !== "undefined" && show_grant_ambassador.file6 !== undefined ?
                       <a
                         href={BASE_URL +  "/web/file/"  + show_grant_ambassador.file6}
                         target="_blank"
@@ -851,7 +851,7 @@ class EditStartupForm extends React.Component {
                     />
                     <br/>
                     {
-                      show_grant_ambassador.file !== "undefined" ?
+                      show_grant_ambassador.file !== "undefined" && show_grant_ambassador.file !== undefined ?
                       <a
                         href={BASE_URL +  "/web/file/"  + show_grant_ambassador.file}
                         target="_blank"

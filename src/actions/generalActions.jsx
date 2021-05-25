@@ -5,6 +5,7 @@ import { CHANGE_ACTIVE_TAB } from 'constants/actionTypes';
 import { IDLE_TIMER } from 'constants/actionTypes';
 import { ERROR_SUBMIT } from 'constants/actionTypes';
 import { SUCCESS_SUBMIT } from 'constants/actionTypes';
+import { ERROR_EVALUATION } from 'constants/actionTypes';
 
 export const successfulEdit =() => ({ type: SUCCESSFULL_EDIT})
 export const successfulNew =(redirect) => {
@@ -41,6 +42,7 @@ export const updateFileName = (key) => ({ type: UPDATE_FILE_NAME, payload: key})
 export const changeActiveTab = (key) => ({ type: CHANGE_ACTIVE_TAB, payload: key})
 export const errorSubmit = () => ({ type: ERROR_SUBMIT})
 export const successSubmit = () => ({ type: SUCCESS_SUBMIT})
+export const errorEvaluation = () => ({ type: ERROR_EVALUATION})
 
 
 

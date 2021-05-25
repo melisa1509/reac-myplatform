@@ -58,10 +58,11 @@ class Controls extends React.Component {
  
 
   render() {
-    const { classes, programmbs } = this.props;
+    const { classes, active_user } = this.props;
     let { t } = this.props;
     return (
       <GridContainer justify="center">
+        {active_user.roles.includes("ROLE_ADMIN") || active_user.roles.includes("ROLE_LANGUAGE_ADMIN") ?  
         <GridItem xs={12} sm={12} md={12}>
             <GridContainer justify="center">
                 <Button color="warning" size="sm" onClick={this.loginClick}>
@@ -86,6 +87,8 @@ class Controls extends React.Component {
                 
             </GridContainer>
         </GridItem>
+        :""
+        }
       </GridContainer>
     );
   } 
@@ -96,6 +99,7 @@ Controls.propTypes = {
 };
 
 const mapStateToProps = state => ({ 
+  active_user: state.loginReducer.active_user
 });
 
 const mapDispatchToPropsActions = dispatch => ({

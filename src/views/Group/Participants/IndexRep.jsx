@@ -15,10 +15,12 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import IndexTable from './IndexTable.jsx';
 import IndexAmbassador from './IndexAmbassador.jsx';
 import IndexAmbassadorOnline from './IndexAmbassadorOnline.jsx';
+import CustomTabs from 'components/CustomTabs/CustomTabsRouter.jsx';
 
 import { getCertificateList } from "actions/certificateActions.jsx";
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
+import { Face, Group } from "@material-ui/icons";
 
 const styles = {
   cardIconTitle: {
@@ -38,28 +40,37 @@ class IndexRep extends React.Component {
     }
     return (
       <GridContainer justify="center">
+        { rol ? 
+        <GridItem xs={12} sm={12} md={12}>
+            <CustomTabs
+              title= {t("title_student_list")}
+              headerColor="info"
+              tabs={[
+                {
+                  tabName: t("title_paper_documentation") + " / "+ t("state_project_mbs") + " " + t("state.without_starting"),
+                  tabIcon: Face,
+                  tabContent: <IndexAmbassador/>
+                },
+                {
+                  tabName: t("title_online_documentation"),
+                  tabIcon: Group,
+                  tabContent: <IndexAmbassadorOnline/>,
+                },
+              ]}
+            />
+        </GridItem>
+        :
         <GridItem xs={12} sm={12} md={12}>
           <Card>
             <CardHeader color="info">
-                { rol ? <h4 className={classes.cardTitle}>{t("title_student_list") +" "+ t("title_paper_documentation") + " / "+ t("state_project_mbs") + " " + t("state.without_starting")}</h4> :<h4 className={classes.cardTitle}>{t("title_student_list")}</h4>}
+                <h4 className={classes.cardTitle}>{t("title_student_list")}</h4>
             </CardHeader>
             <CardBody>
-                {rol ? <IndexAmbassador  /> : <IndexTable  /> }   
+                <IndexTable  />  
             </CardBody>
           </Card>          
         </GridItem>
-        {rol ?
-        <GridItem xs={12} sm={12} md={12}>
-          <Card>
-            <CardHeader color="info">
-                <h4 className={classes.cardTitle}>{t("title_student_list") +" "+ t("title_online_documentation")}</h4>
-            </CardHeader>
-            <CardBody>
-                 <IndexAmbassadorOnline />
-            </CardBody>
-          </Card>          
-        </GridItem>
-        :""}
+        }
       </GridContainer>
     );
   }

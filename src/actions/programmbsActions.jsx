@@ -344,6 +344,8 @@ const getValuesForm =  (urlencoded, reduxState) =>{
         urlencoded.append("promotion3", reduxState.form.programmbs.values.promotion3 !== undefined ? reduxState.form.programmbs.values.promotion3 : "");
         urlencoded.append("promotion4", reduxState.form.programmbs.values.promotion4 !== undefined ? reduxState.form.programmbs.values.promotion4 : "");
         urlencoded.append("promotion5", reduxState.form.programmbs.values.promotion5 !== undefined ? reduxState.form.programmbs.values.promotion5 : "");
+        urlencoded.append("promotion6", reduxState.form.programmbs.values.promotion6 !== undefined ? reduxState.form.programmbs.values.promotion6 : "");
+        urlencoded.append("promotion7", reduxState.form.programmbs.values.promotion7 !== undefined ? reduxState.form.programmbs.values.promotion7 : "");
         urlencoded.append("process1", reduxState.form.programmbs.values.process1 !== undefined ? reduxState.form.programmbs.values.process1 : "");
         urlencoded.append("process2", reduxState.form.programmbs.values.process2 !== undefined ? reduxState.form.programmbs.values.process2 : "");
         urlencoded.append("process3", reduxState.form.programmbs.values.process3 !== undefined ? reduxState.form.programmbs.values.process3 : "");
@@ -396,4 +398,9 @@ const getValuesForm =  (urlencoded, reduxState) =>{
         urlencoded.append("service6", reduxState.form.programmbs.values.service6 !== undefined ? reduxState.form.programmbs.values.service6 : "");
         urlencoded.append("history1", reduxState.form.programmbs.values.history1 !== undefined ? reduxState.form.programmbs.values.history1 : "");
         urlencoded.append("history2", reduxState.form.programmbs.values.history2 !== undefined ? reduxState.form.programmbs.values.history2 : "");
+
+        urlencoded.append("productName", reduxState.form.programmbs.values.product_name !== undefined ? reduxState.form.programmbs.values.product_name : "");
+        urlencoded.append("productDescription", reduxState.form.programmbs.values.product_description !== undefined ? reduxState.form.programmbs.values.product_description : "");
+        urlencoded.append("productWeb", reduxState.form.programmbs.values.product_web !== undefined ? reduxState.form.programmbs.values.product_web : "");
+        urlencoded.append("productPhone", reduxState.form.programmbs.values.product_phone !== undefined ? reduxState.form.programmbs.values.product_phone : "");
 }

@@ -653,7 +653,7 @@ class EditForm extends React.Component {
                     /> 
                     <br/>
                     {
-                      show_grant_ambassador.file !== "undefined" ?
+                      show_grant_ambassador.file !== "undefined" && show_grant_ambassador.file !== undefined ?
                       <a
                         href={BASE_URL +  "/web/file/"  + show_grant_ambassador.file}
                         target="_blank"

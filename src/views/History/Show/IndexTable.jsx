@@ -60,7 +60,7 @@ class IndexTable extends React.Component {
             </SuccessBold>
             <br/>
             {
-                  programmbs.history2 !== "undefined" ?
+                  programmbs.history2 !== "undefined" && programmbs.history2 !== undefined ?
                   <a
                     href={BASE_URL +  "/web/file/"  + programmbs.history2}
                     target="_blank"

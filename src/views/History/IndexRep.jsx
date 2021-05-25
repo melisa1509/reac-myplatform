@@ -17,6 +17,7 @@ import IndexTable from './IndexTable.jsx';
 import { cardTitle } from "assets/jss/material-dashboard-pro-react.jsx";
 import { translate } from 'react-switch-lang';
 import IndexTableAdmin from "./IndexTableAdmin.jsx";
+import IndexTablePromotion from "./IndexTablePromotion.jsx";
 
 
 const styles = {
@@ -48,6 +49,15 @@ class IndexRep extends React.Component {
             </CardHeader>
             <CardBody>
                 {rol ? <IndexTable  /> : <IndexTableAdmin /> }     
+            </CardBody>
+          </Card>
+          <br/>
+          <Card>
+            <CardHeader color="info">
+                <h4 className={classes.cardTitle}>{t("title_business_statement_video")}</h4>
+            </CardHeader>
+            <CardBody>
+                <IndexTablePromotion  />
             </CardBody>
           </Card>
         </GridItem>

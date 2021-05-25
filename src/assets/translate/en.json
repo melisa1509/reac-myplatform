@@ -76,6 +76,8 @@
     "button_groups":                     "Groups",
     "button_save_groups":                "Save Selected Groups",
     "button_download_pdf":               "Download Pdf",
+    "button_join_facebook_group":        "Join to facebook group",
+    "button_download_video":             "Download Video",
 
 
     "label_month":                      "Month",
@@ -321,8 +323,10 @@
     "label_not":                         "Not",
     "label_only_numbers":                "(Only numbers)",
     "label_message_require_fields":      "Your application could not be submitted because it is not complete. Please go through each of the sections and make sure that all of the information is filled out. If you have any questions, please contact team@interweavesolutions.org.",
+    "label_worldwide_directory_explanation": "if you decide to complete this section you will be added to the worldwide MBS business directory where the whole world will be able to know about your business.",
+    "label_category":                    "Business Category",
 
-    
+
     "link_administrator":               "Administrator",
     "link_ambassador_student":          "Advance to Student Ambassador",
     "link_ambassador":                  "Ambassador",
@@ -490,6 +494,8 @@
     "title_student_list_ambassador_revision" : "Ambassador Revisions Ready",
     "title_grant_applications":         "My Grant Applications",
     "title_program_sa_subtitle":        "Please write your business plan for your Success Ambassador Business using the 6P’s",
+    "title_business_statement_video":   "MBS Alumni / business Statement Video",
+    "title_worldwide_directory":        "Worldwide MBS Business Directory",
 
     "message_approved_project" :         "Congratulations! Your Project has been approved.",
 
@@ -623,6 +629,12 @@
     "question_startup_number":           "How many groups do you anticipate to train in the next 6 months?",
     "question_startup_amount":           "Total Amount asking from Interweave Solutions:",
     "question_support4":                 "4. What are your obligations to remain a Success Ambassador?",
+    "question_promotion6":               "A 30 sec min video of you saying your Business Statement",
+    "question_promotion7":               "Because you are receiving your MBS certificate you are now authorized to join the MBS alumni Facebook Group. This group has weekly live videos with Interweave Solutions Staff. They help answer any business questions you might have. You can connect with other MBS graduates from around the world just like you. You can learn from one another and how you can grow your business. To join the group click the link below. ",
+    "question_promotion_product_name":   "Name of Business",
+    "question_promotion_product_description": "What did you learn from the MBS course?",
+    "question_promotion_product_contact": "Contact information",
+
 
     "th_actions":                "Actions",
     "th_id":                     "ID",
@@ -687,6 +699,8 @@
     "th_created_date":           "Date Application",
     "th_type":                   "Type",
     "th_approval_date":          "Approval Date",
+    "th_business_statement_video": "business statement video",
+    "th_facebook_group" :        "Facebook Group",
 
     "en":                        "English",
     "fr":                        "French",
@@ -957,7 +971,9 @@
         "startup":                    "Start Up",
         "scholarship":                "scholarship",
         "yes":                        "Yes",
-        "not":                        "Not"    
+        "not":                        "Not",
+        "joined_facebook":            "Joined to facebook group",   
+        "not_joined_facebook":        "Not Joined to facebook group" 
     }, 
 
     "option":{
@@ -971,7 +987,12 @@
         "program1":                    "Master of Business in the Streets",
         "program2":                    "Success Ambassador",
         "program3":                    "MBS and Success Ambassador",
-        "program4":                    "Master of Business in the Streets Junior"
+        "program4":                    "Master of Business in the Streets Junior",
+        "clothing":                    "Clothing",
+        "food":                        "Food",
+        "technology":                  "Technology",
+        "household":                   "Household",
+        "health":                      "Health"
     }
 
 }
