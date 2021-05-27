@@ -109,7 +109,7 @@
         "label_city":                       "Ciudad",
         "label_country":                    "País",
         "label_code":                       "Codigo",
-        "label_compress_file":              "Por favor ponga sus archivos en una sola carpeta y comprimalos (.zip o .rar) antes de subirlos.",      
+        "label_compress_file":              "",      
         "label_authorization_code":         "Organización Local",
         "label_check_your_email":           "Un mensaje con el enlace para cambiar su contraseña ha sido enviado a su correo. Recuerde revisar su carpeta de correo no deseado, es posible que el mensaje haya llegado a esta carpeta.",
         "label_correction_comments":        "Correciones Pendientes",

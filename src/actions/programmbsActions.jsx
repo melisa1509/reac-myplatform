@@ -80,8 +80,14 @@ export const newProgrammbs = (redirect) => {
         return fetch( BASE_URL + "/programmbs/new" +  "?callback=foo", requestOptions)
         .then(response => response.json())
         .then(json => {
-            dispatch({type:SUCCESSFULL_EDIT_REVISION})
-            dispatch(dashboardStudent())
+            if(json.code === 500){
+                dispatch({type:ERROR_EDIT_REVISION})
+            }
+            else{
+                dispatch({type:SUCCESSFULL_EDIT_REVISION})
+                dispatch(dashboardStudent())
+            }
+            
         })
         .catch(json =>{
             dispatch({type:ERROR_EDIT_REVISION})
@@ -114,8 +120,13 @@ export const editProgrammbs = (redirect) => {
         return fetch( BASE_URL + "/programmbs/edit/" + key + "?callback=foo", requestOptions)
         .then(response => response.json())
         .then(json => {
-            dispatch({type:SUCCESSFULL_EDIT_REVISION})
-            dispatch(dashboardStudent())
+            if(json.code === 500){
+                dispatch({type:ERROR_EDIT_REVISION})
+            }
+            else{
+                dispatch({type:SUCCESSFULL_EDIT_REVISION})
+                dispatch(dashboardStudent())
+            }
         })
         .catch(json =>{
             dispatch({type:ERROR_EDIT_REVISION})

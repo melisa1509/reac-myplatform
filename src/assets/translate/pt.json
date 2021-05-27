@@ -116,7 +116,7 @@
     "label_city":                       "Cidade",
     "label_country":                    "País",
     "label_code":                       "Código",
-    "label_compress_file":              "Arquivo comprimido",      
+    "label_compress_file":              "",      
     "label_authorization_code":         "Organização local",
     "label_code_list_sa":               "Lista de códigos Embaixador de Sucesso", 
     "label_code_list_MBS":              "Lista de códigos MBS",

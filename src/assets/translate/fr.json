@@ -118,7 +118,7 @@
         "label_city":                       "Ville",
         "label_country":                    "Pays",
         "label_code":                       "Code",
-        "label_compress_file":              "Veuillez vous assurer de compresser tous les fichiers avant de les télécharger.",      
+        "label_compress_file":              "",      
         "label_authorization_code":         "Organisation Locale",
         "label_code_list_sa":               "Liste de Codes AS", 
         "label_code_list_MBS":              "Liste de Codes MBS",

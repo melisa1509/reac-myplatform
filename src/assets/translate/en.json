@@ -117,7 +117,7 @@
     "label_city":                       "City",
     "label_country":                    "Country",
     "label_code":                       "Code",
-    "label_compress_file":              "Compress File",      
+    "label_compress_file":              "",      
     "label_authorization_code":         "Local Organization",
     "label_code_list_sa":               "Code List SA", 
     "label_code_list_MBS":              "Code List MBS",

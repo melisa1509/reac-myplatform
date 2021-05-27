@@ -11,6 +11,12 @@ export const jsonToArray = (jsonValues) => {
     return arrayValues;
 }
 
+export const adjustCoordinates = (coordinates) => {
+    var arrayCoordinates = coordinates.split(",");
+    var adjust_coordinates = parseInt(arrayCoordinates[0], 10) - 115;
+    return adjust_coordinates + "," + arrayCoordinates[1];
+}
+
 export const adjustDate = value => {
     let date = new Date(value)
     date.setMinutes(date.getMinutes() + date.getTimezoneOffset())
