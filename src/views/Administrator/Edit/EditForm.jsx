@@ -113,6 +113,16 @@ class EditForm extends React.Component {
             { label: t("label_portuguese") , val: "language_grader[pr]"  },
           ]
         }
+
+        const messages = {         
+          options:[
+            { label: t("link_groups"),          val: "message[group]"        },
+            { label: t("link_ambassadors"),     val: "message[ambassador]"   },
+            { label: t("link_grants"),          val: "message[grant]"        },
+            { label: t("link_participants"),    val: "message[participant]"  },
+            { label: t("link_certificates"),    val: "message[certificate]"  },
+          ]
+        }
         return (
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={8}>
@@ -235,6 +245,24 @@ class EditForm extends React.Component {
               <div>      
                   {
                       languages.options.map((prop, key) => {
+                          return (
+                            <Field
+                              component={CustomCheckbox}
+                              name={prop.val}
+                              label={prop.label}                             
+                            />
+                            );
+                      })
+                  }
+              </div>
+              <br/>
+              <SuccessBold>
+                  {t("label_admin_messages")}
+              </SuccessBold>
+              <div>      
+                  {
+                      messages.options.map((prop, key) => {
+                       
                           return (
                             <Field
                               component={CustomCheckbox}

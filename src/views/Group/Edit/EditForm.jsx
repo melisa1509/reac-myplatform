@@ -109,7 +109,7 @@ class EditForm extends React.Component {
       }
 
       componentDidMount() {
-        this.props.loadShowGroup(this.props.match.params.id);
+        this.props.loadShowGroup(this.props.match.params.id); 
       }
       
     render() {

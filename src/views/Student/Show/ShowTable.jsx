@@ -20,6 +20,7 @@ import Table from "components/Table/Table.jsx";
 
 import { withRouter } from 'react-router-dom';
 import { monthDate } from "assets/functions/general";
+import Timeline from "./Timeline";
 
 const style = {
     infoText: {
@@ -102,7 +103,7 @@ class ShowTable extends React.Component {
 
         return (
           <GridContainer justify="center">
-            <GridItem xs={12} sm={12} md={8}>
+            <GridItem xs={12} sm={12} md={11}>
               <GridItem xs={12} sm={12} md={12}>
               </GridItem>
             <Table
@@ -120,6 +121,19 @@ class ShowTable extends React.Component {
             />
             
               <br/>
+              <GridContainer justify="center">
+                  <GridItem xs={12} sm={12} md={12}>
+                    <Accordion
+                        active={-1}
+                        collapses={[
+                          {
+                            title: t("link_participant_follow_up"),
+                            content: <Timeline/>                                 
+                          }
+                        ]}
+                    />
+                  </GridItem>
+              </GridContainer>
               <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
                     <Accordion
@@ -133,7 +147,6 @@ class ShowTable extends React.Component {
                     />
                   </GridItem>
               </GridContainer>
-
               <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
                     <Accordion

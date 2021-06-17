@@ -167,7 +167,8 @@ ReactDOM.render(
           <Route path="/auth" component={AuthLayout} />
           <Route path="/table" component={ReactTable} />
           <Route path="/age" component={Age} />
-          <Route path="/login" component={Login} />
+          <Route path="/login" component={Login} exact />
+          <Route path="/login/:lang" component={Login} exact />
           <Route path="/app" component={App} />
           <Route path="/student" component={Student} exact />
           <Route path="/student/new/:id" component={NewStudent} exact />
@@ -264,6 +265,7 @@ ReactDOM.render(
           <Route path="/report/options/:id/participants" component={ReportsOptionsParticipants} exact />
           <Route path="/report/options/:id/histories" component={ReportsOptionsHistory} exact />
           <Route path="/register" component={Register} exact /> 
+          <Route path="/register/:lang" component={Register} exact />
           <Route path="/register/new/:id" component={RegisterStudent} exact /> 
           <Route path="/register/evaluation" component={RegisterEvaluation} exact />
           <Route path="/student/successstory/list" component={SuccessStory} exact /> 

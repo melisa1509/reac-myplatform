@@ -11,17 +11,21 @@ import { deleteAmbassador } from "actions/ambassadorActions.jsx";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 // core components
+import Accordion from "components/Accordion/Accordion.jsx";
 import SnackbarContent from "components/Snackbar/SnackbarContent";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import Table from "components/Table/Table.jsx";
+import { monthDate } from "assets/functions/general";
+import Timeline from "./Timeline";
 
 // style for this view
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
 import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
 
 import { withRouter } from 'react-router-dom';
+import { showListGrantAmbassador } from "actions/grantActions";
 
 const style = {
     infoText: {
@@ -54,15 +58,31 @@ class ShowTable extends React.Component {
       this.props.dispatchDeleteAmbassador(this.props.match.params.id, this.props.history);
     }
     componentDidMount() {
+      this.props.dispatchShowListAmbassador(this.props.match.params.id);
       this.props.dispatchShowAmbassador(this.props.match.params.id);
     }
 
     render() {
-        const { show_ambassador, successful_delete } = this.props;
+        const { show_ambassador, successful_delete, show_list_grant_ambassador } = this.props;
         let { t } = this.props;
+        const data = show_list_grant_ambassador.map((prop, key) => {
+          return (
+           
+                <Table
+                  striped
+                  tableHead={[prop.grant.title]}
+                  tableData={[
+                    [<th>{t("label_date")}</th>,monthDate(prop.created_at)],
+                    [<th>{t("label_type_grant")}</th>,t(prop.grant.type)],
+                  ]}
+                />
+             
+          );
+        });
+
         return (
           <GridContainer justify="center">
-            <GridItem xs={12} sm={12} md={8}>
+            <GridItem xs={12} sm={12} md={11}>
               <GridItem xs={12} sm={12} md={12}>
                   { successful_delete ?      
                   <SnackbarContent
@@ -87,6 +107,34 @@ class ShowTable extends React.Component {
                 [<th>{t("label_whatsApp")}</th>, show_ambassador.whatsapp],
               ]}
             />
+            <br/>
+              <GridContainer justify="center">
+                  <GridItem xs={12} sm={12} md={12}>
+                    <Accordion
+                        active={-1}
+                        collapses={[
+                          {
+                            title: t("link_ambassador_follow_up"),
+                            content: <Timeline/>                                 
+                          }
+                        ]}
+                    />
+                  </GridItem>
+              </GridContainer>
+              <GridContainer>
+                  <GridItem xs={12} sm={12} md={12}>
+                    <Accordion
+                        active={-1}
+                        collapses={[
+                          {
+                            title: t("link_grants"),
+                            content: data                                  
+                          }
+                        ]}
+                    />
+                  </GridItem>
+              </GridContainer>
+              <br/>
             <br/>
              <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
@@ -125,10 +173,12 @@ class ShowTable extends React.Component {
 const mapStateToProps = state => ({ 
   show_ambassador: state.ambassadorReducer.show_ambassador,
   delete_ambassador: state.ambassadorReducer.delete_ambassador, 
-  successful_delete: state.generalReducer.successful_delete
+  successful_delete: state.generalReducer.successful_delete,
+  show_list_grant_ambassador: state.grantReducer.show_list_grant_ambassador,
 });
 
 const mapDispatchToPropsActions = dispatch => ({
+  dispatchShowListAmbassador: key => dispatch(showListGrantAmbassador(key)), 
   dispatchShowAmbassador: key => dispatch(showAmbassador(key)), 
   dispatchDeleteAmbassador: (key, history) => dispatch(deleteAmbassador(key, history))
 });

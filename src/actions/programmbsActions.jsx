@@ -235,6 +235,38 @@ export const approveProject = (redirect) => {
     
 }
 
+export const approveListProject = (redirect) => {
+    return (dispatch, getState) => {
+
+        const reduxState = getState();
+        const list = jsonToArray(reduxState.form.certificateform.values !== undefined ? reduxState.form.certificateform.values.list : "" );
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("list", list);
+        
+        var requestOptions = {
+            method: 'PUT',
+            headers: myHeaders,
+            body: urlencoded,
+            redirect: 'follow'
+        };
+
+        return fetch( BASE_URL + "/programmbs/approvedlist?callback=foo", requestOptions)
+        .then(response => response.json())
+        .then(json => {
+            dispatch({type:SUCCESSFULL_APPROVE_PROJECT})
+        })
+        .catch(json =>{
+            dispatch({type:ERROR_APPROVE_PROJECT})
+        });
+
+    }
+    
+}
+
 export const sendRevisionProject = (redirect) => {
     return (dispatch, getState) => {
 

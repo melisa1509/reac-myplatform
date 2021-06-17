@@ -44,6 +44,7 @@ export const newAdministrator = (redirect)=> {
         urlencoded.append("country", reduxState.form.adminNewform.values.country);
         urlencoded.append("roles", reduxState.form.adminNewform.values.roles);
         urlencoded.append("language_grader", jsonToArray(reduxState.form.adminNewform.values.language_grader));
+        urlencoded.append("message", jsonToArray(reduxState.form.adminNewform.values.message));
     
     var requestOptions = {
       method: 'POST',
@@ -93,6 +94,7 @@ export const editAdministrator =() => {
         urlencoded.append("country", reduxState.form.adminform.values.country);
         urlencoded.append("roles", reduxState.form.adminform.values.roles);
         urlencoded.append("language_grader", jsonToArray(reduxState.form.adminform.values.language_grader));
+        urlencoded.append("message", jsonToArray(reduxState.form.adminform.values.message));
            
       
             var requestOptions = {

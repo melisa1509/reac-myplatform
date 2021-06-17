@@ -67,7 +67,7 @@ class AdminHeaderLinks extends React.Component {
               <Face color="danger" className={classes.icons} /> {t("link_admins")}
         
           </Link>,
-          <Link to={'/profile'} className={classes.dropdownLink}>
+          <Link to={'/admin/edit/' + active_user.id } className={classes.dropdownLink}>
             
                 <Person color="danger" className={classes.icons} /> {t("link_user_profile")}
             
@@ -285,10 +285,16 @@ class AdminHeaderLinks extends React.Component {
       return (
         <List className={classes.list}>
           <ListItem className={classes.listItem}>
-            <Link to={'/profile'} className={classes.navLink}>
-                 
+                {roles.includes("ROLE_ADMIN")  || roles.includes("ROLE_LANGUAGE_ADMIN") ?
+                 <Link to={'/admin/edit/' + active_user.id} className={classes.navLink}>
                         <Face color="danger" className={classes.icons} /> { active_user.first_name + " " + active_user.last_name } | 
-            </Link>
+                  </Link>
+                 :
+                  <Link to={'/profile'} className={classes.navLink}>
+                        <Face color="danger" className={classes.icons} /> { active_user.first_name + " " + active_user.last_name } | 
+                  </Link>
+                }
+            
           </ListItem>
           <ListItem className={classes.listItem}>
             <CustomDropdown

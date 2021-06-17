@@ -111,6 +111,16 @@ class NewForm extends React.Component {
           ]
         }
 
+        const messages = {         
+          options:[
+            { label: t("link_groups"),          val: "message[group]"        },
+            { label: t("link_ambassadors"),     val: "message[ambassador]"   },
+            { label: t("link_grans"),          val: "message[grant]"        },
+            { label: t("link_participants"),    val: "message[participant]"  },
+            { label: t("link_certificates"),    val: "message[certificate]"  },
+          ]
+        }
+
         const radios = {         
           options:[
             { label: t("label_english"),     val: "en"  },
@@ -231,6 +241,24 @@ class NewForm extends React.Component {
               <div>      
                   {
                       languages.options.map((prop, key) => {
+                       
+                          return (
+                            <Field
+                              component={CustomCheckbox}
+                              name={prop.val}
+                              label={prop.label}                             
+                            />
+                            );
+                      })
+                  }
+              </div>
+              <br/>
+              <SuccessBold>
+                  {t("label_admin_messages")}
+              </SuccessBold>
+              <div>      
+                  {
+                      messages.options.map((prop, key) => {
                        
                           return (
                             <Field

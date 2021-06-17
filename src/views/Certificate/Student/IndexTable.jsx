@@ -10,8 +10,12 @@ import { getCertificateList } from "actions/certificateActions.jsx";
 import { showGroup } from "actions/groupActions.jsx";
 import { showDate} from 'assets/functions/general.jsx';
 
-import Checkbox from "@material-ui/core/Checkbox";
-import Check from "@material-ui/icons/Check";
+// @material-ui/core components
+import withStyles from "@material-ui/core/styles/withStyles";
+
+import CheckboxStudent from "./CheckboxStudent.jsx";
+import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
+import SweetAlert from "react-bootstrap-sweetalert";
 
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -19,6 +23,13 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import { Link } from "react-router-dom";
+import { approveListProject } from "actions/programmbsActions.jsx";
+import { hideRevisionAlert } from "actions/programmbsActions.jsx";
+
+
+const styles = {
+  ...sweetAlertStyle
+};
 
 
 class IndexTable extends React.Component {
@@ -31,6 +42,8 @@ class IndexTable extends React.Component {
     };
     this.filterAll = this.filterAll.bind(this);
     this.searchFilter = this.searchFilter.bind(this);
+    this.approveList = this.approveList.bind(this);
+    this.hideAlert = this.hideAlert.bind(this);
   }
 
   onFilteredChange(filtered) {
@@ -64,9 +77,18 @@ class IndexTable extends React.Component {
     this.props.dispatchShowGroup(this.props.match.params.id);
   }
 
+  approveList(){
+    this.props.dispatchApproveList();
+  }
+
+  hideAlert() {
+    this.props.dispatchGetCertificateList(this.props.match.params.id);
+    this.props.dispatchHideRevisionAlert();
+  }
+
  
   render() {
-    const { certificate_list, active_user, show_group } = this.props;
+    const { certificate_list, active_user, show_group, approveProjectSuccessfull } = this.props;
     let { t } = this.props;
     let rol=false;  
 
@@ -136,25 +158,41 @@ class IndexTable extends React.Component {
         ),
         SAcertificate:(
           <div className="actions-left">
-          {SAButton ?
-          <Button
-            size="sm"
-            color="success"
-            href={"https://api.interweavesolutions.org/certificate/ambassador/student/" + prop.student.id}
-            target="_blank"
-          >
-            {t('button_certificate_ambassador')}
-          </Button>
-          :
-            t("label_not_available")
-          }
-      </div>
-      )
+            {SAButton ?
+            <Button
+              size="sm"
+              color="success"
+              href={"https://api.interweavesolutions.org/certificate/ambassador/student/" + prop.student.id}
+              target="_blank"
+            >
+              {t('button_certificate_ambassador')}
+            </Button>
+            :
+              t("label_not_available")
+            }
+        </div>
+        ),
+        checkbox:(
+          <CheckboxStudent student={prop.student.id}/>
+        )
       };
     });
     
     return (
       <GridContainer>
+        {approveProjectSuccessfull ? 
+          <SweetAlert
+              success
+              style={{ display: "block", marginTop: "-200px" }}
+              onConfirm={() => this.hideAlert()}
+              confirmBtnText={t("button_continue")}
+              confirmBtnCssClass={
+                  this.props.classes.button + " " + this.props.classes.success
+              }
+              >
+              <h4>{t("label_success_approved")}</h4>                
+          </SweetAlert>
+        : ""}
         <GridItem xs={12}>
         <CustomInput
           inputProps={{
@@ -175,6 +213,12 @@ class IndexTable extends React.Component {
               data={data}
               hover
               columns={[
+                {
+                  Header: t(""),
+                  accessor: "checkbox",
+                  resizable: false,
+                  width: 30,
+                },
                 {
                   Header: t("th_name"),
                   accessor: "full_name",
@@ -201,7 +245,7 @@ class IndexTable extends React.Component {
                 {
                   Header: t("th_certificate_ambassador"),
                   accessor: "SAcertificate",
-                  width: 250,
+                  width: 230,
                   filterable: false,
                 
                 },
@@ -272,7 +316,7 @@ class IndexTable extends React.Component {
                       </Button>
                       {" "}
                       {rol ? "" : 
-                      <Button color="danger" size="sm">
+                      <Button color="danger" size="sm" onClick={this.approveList}>
                       {t("button_approve_selected_certificates")}
                       </Button>}
                       {" "}
@@ -288,14 +332,17 @@ class IndexTable extends React.Component {
 const mapStateToProps = state => ({ 
       certificate_list: state.certificateReducer.certificate_list, 
       active_user: state.loginReducer.active_user,
-      show_group: state.groupReducer.show_group
+      show_group: state.groupReducer.show_group,
+      approveProjectSuccessfull: state.programmbsReducer.approveProjectSuccessfull,
 });
 
 const mapDispatchToPropsActions = dispatch => ({
   dispatchGetCertificateList: (key) => dispatch( getCertificateList(key)),                 
-  dispatchShowGroup: (key) => dispatch( showGroup(key))
+  dispatchShowGroup: (key) => dispatch( showGroup(key)),
+  dispatchApproveList: () => dispatch( approveListProject() ),
+  dispatchHideRevisionAlert: () => dispatch( hideRevisionAlert() ),
 });
 
-const IndexTableComponent = translate(IndexTable);
+const IndexTableComponent = translate(withStyles(styles)(IndexTable));
 export default withRouter(connect(mapStateToProps, mapDispatchToPropsActions)(IndexTableComponent));
 

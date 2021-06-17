@@ -19,10 +19,13 @@ const styles = {
   ...mainPageStyle,
   ...PerfectScrollbarStyle
 };
-setDefaultLanguage('en');
 
-var userLang = navigator.language || navigator.userLanguage; 
-var lang = userLang.split("-");
+
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const lang = urlParams.get('lang');
+setDefaultLanguage(lang !== null ? (lang === "en" || lang === "es" || lang === "pt" || lang === "fr" ? lang : "en") : "en");
+
 
 class Login extends React.Component {
   constructor(props) {

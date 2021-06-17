@@ -21,6 +21,7 @@ import { NEW_GRANT_GROUP, SHOW_GRANT_USER } from 'constants/actionTypes';
 import { SHOW_GRANT_GROUP_LIST, LOAD_FORM_GRANT_GROUP } from 'constants/actionTypes';
 import { SHOW_GRANT_STATISTIC } from 'constants/actionTypes';
 import { CLEAN_NEW_GRANT_AMBASSADOR } from 'constants/actionTypes';
+import { SHOW_LIST_GRANT_AMBASSADOR } from 'constants/actionTypes';
 
 export const getGrantList= () => {
     return (dispatch, getState) => {
@@ -213,6 +214,17 @@ export const showGrantUser = key => {
         .then(response => response.json())
         .then(json => {
             dispatch ({ type: SHOW_GRANT_USER, payload: json.data });
+        })
+
+    }
+};
+
+export const showListGrantAmbassador = key => {
+    return (dispatch) => {
+        return fetch( BASE_URL + "/grant/showlistambassador/"+ key +"?callback=foo")
+        .then(response => response.json())
+        .then(json => {
+            dispatch ({ type: SHOW_LIST_GRANT_AMBASSADOR, payload: json.data });
         })
 
     }

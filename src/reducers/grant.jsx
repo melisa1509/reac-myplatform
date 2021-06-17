@@ -26,6 +26,7 @@ import { SHOW_GRANT_GROUP } from "constants/actionTypes";
 import { SHOW_GRANT_GROUP_LIST } from "constants/actionTypes";
 import { SHOW_GRANT_USER } from "constants/actionTypes";
 import { SHOW_GRANT_STATISTIC } from "constants/actionTypes";
+import { SHOW_LIST_GRANT_AMBASSADOR } from "constants/actionTypes";
 
 const initialState = { 
   show_grant: {
@@ -119,6 +120,7 @@ const initialState = {
     }
   },
   show_grant_group:[],
+  show_list_grant_ambassador:[],
   grant_deadline: new Date(),
   loading: true,
   image_alert:false
@@ -255,6 +257,10 @@ export const grantReducer = (state = initialState, action) => {
       case SHOW_GRANT_USER:
         return Object.assign({}, state, {
           show_grant_user: action.payload
+        });
+      case SHOW_LIST_GRANT_AMBASSADOR:
+        return Object.assign({}, state, {
+          show_list_grant_ambassador: action.payload
         });
       case SHOW_GRANT_STATISTIC:
         return Object.assign({}, state, {

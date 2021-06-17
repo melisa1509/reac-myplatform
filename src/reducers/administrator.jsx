@@ -17,6 +17,13 @@ const initialState = {
   new_administrator:{
     id:"",
     language_grader:{},
+    message:{
+      "group": true,
+      "grant": true,
+      "participant": true,
+      "certificate": true,
+      "ambassador": true
+    },
     language: "en",
     country:"AFG",
     roles:"ROLE_ADMIN",
@@ -25,6 +32,7 @@ const initialState = {
     roles:"",
     language:"",
     language_grader:[],
+    message:[],
     first_name:"",
     last_name: "",
     country:"",
@@ -60,6 +68,12 @@ export const administratorReducer = (state = initialState, action) => {
           langs[element] = true;
         });
         admin.language_grader = langs;
+
+        var messages = {};
+        admin.message.forEach(element => {
+          messages[element] = true;
+        });
+        admin.message = messages;
         return Object.assign({}, state, {
           data: admin
         }); 

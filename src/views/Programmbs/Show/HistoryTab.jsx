@@ -109,7 +109,7 @@ class HistoryTab extends React.Component {
             </SuccessBold>
             <br/>
             <MutedText>
-              {t(programmbs.product_web)}
+              {programmbs.product_web !== "undefined" && programmbs.product_web !== undefined ? t(programmbs.product_web) : ""}
             </MutedText>
             <br/>
             <SuccessBold>
@@ -132,7 +132,7 @@ class HistoryTab extends React.Component {
             </SuccessBold>
             <br/>
             <MutedText>
-              {t(programmbs.promotion7)}
+            {programmbs.promotion7 !== "undefined" && programmbs.promotion7 !== undefined ? t(programmbs.promotion7) : ""}
             </MutedText>
             <Controls/>
             <ControlNavigation previous={"service"} next={"plan"} />

@@ -50,6 +50,10 @@ class PromotionTab extends React.Component {
               {t("question_promotion1")}
             </SuccessBold>
             <br/>
+            <MutedText>
+              {programmbs.promotion1}
+            </MutedText>
+            <br/>
             <SuccessBold>
               {t("question_promotion2")}
             </SuccessBold>
@@ -122,7 +126,7 @@ class PromotionTab extends React.Component {
             </SuccessBold>
             <br/>
             <MutedText>
-              {t(programmbs.product_web)}
+            {programmbs.product_web !== "undefined" && programmbs.product_web !== undefined ? t(programmbs.product_web) : ""}
             </MutedText>
             <br/>
             <SuccessBold>
@@ -145,7 +149,7 @@ class PromotionTab extends React.Component {
             </SuccessBold>
             <br/>
             <MutedText>
-              {t(programmbs.promotion7)}
+              {programmbs.promotion7 !== "undefined" && programmbs.promotion7 !== undefined ? t(programmbs.promotion7) : ""}
             </MutedText>
 
 

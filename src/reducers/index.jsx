@@ -18,6 +18,7 @@ import { evaluationReducer } from 'reducers/evaluation.jsx';
 import { registerReducer } from 'reducers/register.jsx';
 import { courseReducer } from 'reducers/course.jsx';
 import { grantReducer } from 'reducers/grant.jsx';
+import { timelineprofileReducer } from 'reducers/timelineprofile.jsx';
 import { reducer as reduxFormReducer } from 'redux-form';
 import { LOGOUT_USER } from 'constants/actionTypes';
 
@@ -41,6 +42,7 @@ const manageReducer =  combineReducers({
     registerReducer,
     courseReducer,
     grantReducer,
+    timelineprofileReducer,
     form: reduxFormReducer,
 })
 
