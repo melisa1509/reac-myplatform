@@ -55,6 +55,7 @@ export const deleteTimelineProfile  = (key, redirect) => {
       .then(response => response.json())
       .then(json => {
           dispatch ({ type: DELETE_TIMELINE_PROFILE, payload: json.data });
+          dispatch ({ type: SUCCESSFULL_NEW });
       });
   }
 }

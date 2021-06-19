@@ -330,7 +330,8 @@
     "label_worldwide_directory_explanation": "Se decidir completar esta secção será adicionado ao directório mundial de empresas MBS onde o mundo inteiro poderá saber mais sobre o seu negócio",
     "label_category":                    "Categoria de negócio",
     "label_error_evaluation":            "Você precisa completar a pré-avaliação e a pós-avaliação do participante antes de enviar o arquivo.",
-    
+    "label_admin_messages":              "Mensagens de correio electrónico",
+    "label_choose_picture":              "Escolha uma fotografia ",
 
     "link_administrator":               "Administrador",
     "link_ambassador_student":          "Assinatura do mentor",

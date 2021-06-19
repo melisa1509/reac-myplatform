@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { showAmbassador } from "actions/ambassadorActions.jsx";
 import { deleteAmbassador } from "actions/ambassadorActions.jsx";
 
+
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 
@@ -17,7 +18,9 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import Table from "components/Table/Table.jsx";
+import defaultImage from "assets/img/default-avatar.png";
 import { monthDate } from "assets/functions/general";
+import { BASE_URL } from 'constants/urlTypes';
 import Timeline from "./Timeline";
 
 // style for this view
@@ -94,9 +97,31 @@ class ShowTable extends React.Component {
                   />
                   : ""}
               </GridItem>
+              <div className="picture-container">
+                <div className="picture">
+                  <img
+                    src={show_ambassador.picture === "NULL" || show_ambassador.picture === "undefined" || show_ambassador.picture === undefined ? defaultImage : BASE_URL +  "/web/file/"  + show_ambassador.picture }
+                    className="picture-src"
+                    alt="..."
+                  />
+                </div>
+              </div>
+              <br/>
+              <center>
+                {
+                  show_ambassador.picture !== "undefined" && show_ambassador.picture !== undefined ?
+                  <a
+                    href={BASE_URL +  "/web/file/"  + show_ambassador.picture}
+                    target="_blank"
+                  >
+                      {t("label_download_file")}
+                  </a>:
+                  ""
+                }    
+              </center>            
+              <br/>
             <Table
               striped
-              tableHead={[]}
               tableData={[
                 [<th>{t("label_email")}</th>,show_ambassador.username],
                 [<th>{t("label_name")}</th>,show_ambassador.first_name],

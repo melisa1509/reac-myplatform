@@ -320,7 +320,9 @@
         "label_worldwide_directory_explanation": "Si decide completar esta sección será añadido al directorio mundial de empresas MBS donde todo el mundo podrá conocer su negocio..",
         "label_category":                    "Categoría de Negocio",
         "label_error_evaluation":            "Usted necesita completar la Pre y la Post evaluación de este participante antes de poder subir los archivos del projecto MBS.",
-   
+        "label_admin_messages":              "Mensajes de Email",
+        "label_choose_picture":              "Elija una Imagen",
+
         "link_admins":                      "Administradores",
         "link_administrator":               "Administrador",
         "link_ambassador_student":          "Avanzar a Estudiante Embajador",

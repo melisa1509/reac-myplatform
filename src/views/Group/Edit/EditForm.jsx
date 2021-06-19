@@ -29,6 +29,7 @@ import { errorRequiredFields } from "actions/generalActions.jsx";
 import { successRequiredFields } from "actions/generalActions.jsx";
 import { verifyChange } from "assets/validation/index.jsx";
 import { deleteSuccessful } from "actions/generalActions.jsx";
+import { BASE_URL } from 'constants/urlTypes';
 import ModalitySelect from "views/Select/ModalitySelect.jsx";
 import ProgramSelect from "views/Select/ProgramSelect.jsx";
 import FileUpload from "components/CustomUpload/FileUpload.jsx";
@@ -113,7 +114,7 @@ class EditForm extends React.Component {
       }
       
     render() {
-        const { classes, successfull_edit, editError, errorRequired, successRequired } = this.props;
+        const { classes, successfull_edit, editError, errorRequired, successRequired, show_group } = this.props;
         let { t } = this.props;
         const custom_certificate_options = {         
           options:[
@@ -282,7 +283,19 @@ class EditForm extends React.Component {
                                         inputProps={{
                                           type: "file",
                                         }}
-                                      />            
+                                      /> 
+                                      <br/>
+                                      {
+                                        show_group.name_image !== "undefined" && show_group.name_image !== undefined ?
+                                        <a
+                                          href={BASE_URL +  "/web/file/"  + show_group.name_image}
+                                          target="_blank"
+                                        >
+                                            {t("label_download_file")}
+                                        </a>:
+                                        ""
+                                      }                
+                                      <br/>           
                                     </GridItem>
                                     <GridItem xs={12} sm={12} md={12}>
                                       <Field

@@ -8,6 +8,7 @@ import { showStudent } from "actions/studentActions.jsx";
 import { deleteStudent } from "actions/studentActions.jsx";
 import { showGrantUser} from "actions/grantActions.jsx";
 
+
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 
@@ -17,9 +18,11 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import Table from "components/Table/Table.jsx";
+import defaultImage from "assets/img/default-avatar.png";
 
 import { withRouter } from 'react-router-dom';
 import { monthDate } from "assets/functions/general";
+import { BASE_URL } from 'constants/urlTypes';
 import Timeline from "./Timeline";
 
 const style = {
@@ -105,6 +108,15 @@ class ShowTable extends React.Component {
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={11}>
               <GridItem xs={12} sm={12} md={12}>
+                <div className="picture-container">
+                  <div className="picture">
+                    <img
+                      src={show_student.picture === "NULL" || show_student.picture === "undefined" || show_student.picture === undefined ? defaultImage : BASE_URL +  "/web/file/"  + show_student.picture }
+                      className="picture-src"
+                      alt="..."
+                    />
+                  </div>
+                </div>
               </GridItem>
             <Table
               striped
@@ -121,19 +133,7 @@ class ShowTable extends React.Component {
             />
             
               <br/>
-              <GridContainer justify="center">
-                  <GridItem xs={12} sm={12} md={12}>
-                    <Accordion
-                        active={-1}
-                        collapses={[
-                          {
-                            title: t("link_participant_follow_up"),
-                            content: <Timeline/>                                 
-                          }
-                        ]}
-                    />
-                  </GridItem>
-              </GridContainer>
+              
               <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
                     <Accordion

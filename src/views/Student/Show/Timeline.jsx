@@ -61,7 +61,7 @@ class TimelineProfile extends React.Component {
     }
 
     render() {
-        const { show_timeline_profile, t} = this.props;
+        const { show_timeline_profile, successfull_new,  t} = this.props;
         const list = show_timeline_profile === undefined ? [] : show_timeline_profile;
         let ind = 0;
         const updates = list.map((prop, key) => {
@@ -167,7 +167,8 @@ class TimelineProfile extends React.Component {
     }
 }
 const mapStateToProps = state => ({ 
-    show_timeline_profile: state.timelineprofileReducer.show_timeline_profile
+    show_timeline_profile: state.timelineprofileReducer.show_timeline_profile,
+    successfull_new:state.generalReducer.successfull_new,
 });
 
 const mapDispatchToPropsActions = dispatch => ({
