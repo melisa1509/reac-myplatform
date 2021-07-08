@@ -28,25 +28,27 @@ export const showDate = ( time = new Date() , prefix = "") => {
     const date =  typeof time === "object" ? time : new Date (time.slice(0,10).split("-") ) ;
     if(checkBrowser()){
         let updated_at=[];      
-        updated_at[9] = time[3];
-        updated_at[8] = time[2];
-        updated_at[7] = time[1];
-        updated_at[6] = time[0];
+     
+        updated_at[0] = time[0];
+        updated_at[1] = time[1];
+        updated_at[2] = time[2];
+        updated_at[3] = time[3];
         
-        updated_at[5] = time[4];
+        updated_at[4] = time[4];
 
-        updated_at[4] = time[6];
-        updated_at[3] = time[5];
         
-        updated_at[2] = time[7];
+        updated_at[5] = time[5];
+        updated_at[6] = time[6];
+        
+        updated_at[7] = time[7];
 
-        updated_at[1] = time[9];
-        updated_at[0] = time[8];
+        updated_at[8] = time[8];
+        updated_at[9] = time[9];
 
         return updated_at;
     }
     else{
-        return moment(date).format('DD-MMM-YYYY');
+        return moment(date).format('YYYY-MMM-DD');
     }
     
 }

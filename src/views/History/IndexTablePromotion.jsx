@@ -70,18 +70,18 @@ class IndexTable extends React.Component {
         id: key, 
         name: prop.student.first_name + " " + prop.student.last_name ,
         group:prop.group.name,
-        facebook_group: t(prop.student.programmbs.promotion7),
+        facebook_group: t(prop.student.programmbs.promotion7 !== undefined ? prop.student.programmbs.promotion7 : "state.not_joined_facebook"),
         actions: (
           // we've added some custom button actions
           <div className="actions-left">
-            <Link to={BASE_URL + "/web/file/" + prop.student.programmbs.promotion6}>
               <Button
                 size="sm"
                 color="success"
+                href={ BASE_URL + "/web/file/" + prop.student.programmbs.promotion6}
+                target="_blank"
               >
                  {t('button_download_video')}
               </Button>
-            </Link>{" "}
           </div>
         )
       };

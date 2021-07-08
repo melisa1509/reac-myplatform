@@ -12,11 +12,12 @@ import { uploadImageAlert } from "actions/groupActions.jsx";
 import { showEvaluationPre } from "actions/evaluationActions.jsx";
 import { showEvaluationPost } from "actions/evaluationActions.jsx";
 import { evaluationPre } from "actions/evaluationActions.jsx";
-import { evaluationPost } from "actions/evaluationActions.jsx";
+import { evaluationPostPopup } from "actions/evaluationActions.jsx";
 import { deleteAlert } from "actions/evaluationActions.jsx";
 import { deleteImageAlert } from "actions/groupActions.jsx";
 import { deleteSuccessful, errorEvaluation } from "actions/generalActions.jsx";
 import { uploadImage } from "actions/groupActions.jsx";
+import Danger from "components/Typography/Danger.jsx";
 
 import SweetAlert from "react-bootstrap-sweetalert";
 import UploadForm from './UploadForm.jsx';
@@ -143,7 +144,7 @@ class IndexTable extends React.Component {
   }
  
   render() {
-    const { certificate_list, image_alert, pre_alert,post_alert, successfull_edit, error_evaluation} = this.props;
+    const { errorRequired, certificate_list, image_alert, pre_alert,post_alert, successfull_edit, error_evaluation} = this.props;
     let { t } = this.props;
     let id_student=""
     let approved = certificate_list.filter(prop => prop.student.programmbs == undefined || prop.student.programmbs.modality == "option.modality1" )
@@ -321,6 +322,7 @@ class IndexTable extends React.Component {
                 showCancel
                 >
                 <h4>{t("title_post_evaluation")}</h4>
+                { errorRequired ? <Danger><h6 >{t("label_require_fields")}</h6></Danger>: ""}
                 <br/>
                     <PostForm/>
                 <GridItem xs={12} sm={12} md={12}>
@@ -464,6 +466,7 @@ const mapStateToProps = state => ({
       active_user: state.loginReducer.active_user,
       successfull_edit:state.generalReducer.successfull_edit,
       error_evaluation: state.generalReducer.error_evaluation,
+      errorRequired:state.generalReducer.errorRequired,
 });
 
 const mapDispatchToPropsActions = dispatch => ({
@@ -473,7 +476,7 @@ const mapDispatchToPropsActions = dispatch => ({
   dispatchShowEvaluationPre: (key) => dispatch( showEvaluationPre(key)),
   dispatchShowEvaluationPost: (key) => dispatch(showEvaluationPost(key)),
   dispatchEvaluationPre: () => dispatch(evaluationPre()),
-  dispatchEvaluationPost: () => dispatch(evaluationPost()),
+  dispatchEvaluationPost: () => dispatch(evaluationPostPopup()),
   dispatchDeleteAlert:()=> dispatch(deleteAlert()),
   dispatchDeleteSuccessful: () => dispatch(deleteSuccessful()),
   dispatchDeleteImageAlert: () => dispatch(deleteImageAlert()),

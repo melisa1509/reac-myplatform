@@ -27,12 +27,16 @@ import { verifyChange } from "assets/validation/index.jsx";
 import LanguageSelect from "views/Select/LanguageSelect.jsx";
 import CountrySelect from "views/Select/CountrySelect.jsx";
 import SweetAlert from "react-bootstrap-sweetalert";
+import FileUpload from "components/CustomUpload/FileUpload.jsx";
+import defaultImage from "assets/img/default-avatar.png";
+import { BASE_URL } from 'constants/urlTypes';
 
 // style for this view
 import sweetAlertStyle from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.jsx";
 import validationFormsStyle from "assets/jss/material-dashboard-pro-react/views/validationFormsStyle.jsx";
 import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
 import { withRouter } from 'react-router-dom';
+import SuccessLabel from "components/Typography/SuccessLabel";
 
 const style = {
     infoText: {
@@ -65,7 +69,8 @@ class EditForm extends React.Component {
             last_nameState: "success",
             cityState: "success",
             whatsappState: "success",
-            codeState:"success"
+            codeState:"success",
+            picture: defaultImage
         };
         this.saveClick = this.saveClick.bind(this);
         this.deleteClick = this.deleteClick.bind(this);
@@ -108,6 +113,11 @@ class EditForm extends React.Component {
       componentDidMount() {
         this.props.loadShowAmbassador(this.props.match.params.id);
       }
+
+      updateFile = (key) => {
+        this.props.change('picture', key);
+        this.setState({picture: BASE_URL +  "/web/file/"  + key});
+      }
       
     render() {
         const { classes, successfull_edit, editError, errorRequired, successRequired, show_ambassador } = this.props;
@@ -144,6 +154,29 @@ class EditForm extends React.Component {
                         <h4>{t("label_save_success")}</h4>
                       </SweetAlert> 
                       : ""}
+                  </GridItem>
+              </GridContainer>
+              <GridContainer >
+                  <GridItem xs={12} sm={12} md={12}>
+                      <div className="picture-container">
+                        <div className="picture">
+                          <img
+                            src={show_ambassador.picture === "NULL" || show_ambassador.picture === "undefined" || show_ambassador.picture === undefined ? this.state.picture : ( this.state.picture !== defaultImage ? this.state.picture : BASE_URL +  "/web/file/"  + show_ambassador.picture ) }
+                            className="picture-src"
+                            alt="..."
+                          />
+                        </div>
+                      </div>
+                    <br/>
+                    <SuccessLabel>{t("label_choose_picture")}</SuccessLabel>
+                  <Field
+                    component={FileUpload}
+                    name="picture"
+                    changeFileName = {this.updateFile}
+                    inputProps={{
+                      type: "file",
+                    }}
+                  />
                   </GridItem>
               </GridContainer>
               <GridContainer >
